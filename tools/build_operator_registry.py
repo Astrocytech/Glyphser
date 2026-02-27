@@ -31,16 +31,16 @@ def main() -> int:
     catalogs = mda.build_catalogs()
 
     api_path = ROOT / "docs" / "layer1-foundation" / "API-Interfaces.md"
-    api_ops = parse_api_interfaces(api_path)
+    api_records = parse_api_interfaces(api_path)
 
-    registry = build_operator_registry_from_list(api_ops, catalogs["digest_map"])
+    registry = build_operator_registry_from_list(api_records, catalogs["digest_map"])
 
     contracts_dir = ROOT / "contracts"
     contracts_dir.mkdir(parents=True, exist_ok=True)
 
     src_path = contracts_dir / "operator_registry_source.json"
     src_path.write_text(
-        json.dumps({"source": str(api_path), "operators": api_ops}, indent=2, sort_keys=True)
+        json.dumps({"source": str(api_path), "operators": [r["operator_id"] for r in api_records]}, indent=2, sort_keys=True)
         + "\n",
         encoding="utf-8",
     )

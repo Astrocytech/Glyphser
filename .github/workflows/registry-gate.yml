@@ -1,0 +1,27 @@
+name: registry-gate
+
+on:
+  push:
+    paths:
+      - "docs/layer1-foundation/API-Interfaces.md"
+      - "contracts/operator_registry.json"
+      - "contracts/error_codes.json"
+      - "tools/registry_gate.py"
+  pull_request:
+    paths:
+      - "docs/layer1-foundation/API-Interfaces.md"
+      - "contracts/operator_registry.json"
+      - "contracts/error_codes.json"
+      - "tools/registry_gate.py"
+
+jobs:
+  registry-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run registry gate
+        run: python tools/registry_gate.py

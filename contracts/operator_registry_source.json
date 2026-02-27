@@ -1,8 +1,32 @@
 {
   "operators": [
-    "Glyphser.Implementation.ComputeInterfaceHash",
-    "Glyphser.Implementation.ValidateAPISignature",
-    "Glyphser.Implementation.ValidateIOShape"
+    "Glyphser.Data.NextBatch",
+    "Glyphser.Model.Forward",
+    "Glyphser.Model.ModelIR_Executor",
+    "Glyphser.DifferentialPrivacy.Apply",
+    "Glyphser.TMMU.PrepareMemory",
+    "Glyphser.Backend.LoadDriver",
+    "Glyphser.IO.SaveCheckpoint",
+    "Glyphser.Checkpoint.Restore",
+    "Glyphser.Error.Emit",
+    "Glyphser.Tracking.RunCreate",
+    "Glyphser.Tracking.RunStart",
+    "Glyphser.Tracking.RunEnd",
+    "Glyphser.Tracking.MetricLog",
+    "Glyphser.Tracking.ArtifactPut",
+    "Glyphser.Tracking.ArtifactGet",
+    "Glyphser.Tracking.ArtifactList",
+    "Glyphser.Tracking.ArtifactTombstone",
+    "Glyphser.Registry.VersionCreate",
+    "Glyphser.Registry.StageTransition",
+    "Glyphser.Monitor.Register",
+    "Glyphser.Monitor.Emit",
+    "Glyphser.Monitor.DriftCompute",
+    "Glyphser.Certificate.EvidenceValidate",
+    "Glyphser.Config.ManifestMigrate",
+    "Glyphser.Checkpoint.CheckpointMigrate",
+    "Glyphser.Trace.TraceMigrate",
+    "Glyphser.Import.LegacyFramework"
   ],
-  "source": "/home/coka/Desktop/INTERVJUI/IZBR/ML2ML/docs/layer1-foundation/API-Interfaces.md"
+  "source": "/home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/docs/layer1-foundation/API-Interfaces.md"
 }
