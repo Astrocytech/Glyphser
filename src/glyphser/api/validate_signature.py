@@ -21,7 +21,12 @@ def validate_api_signature(record: Dict[str, Any], allowed_ops: Iterable[str] | 
 
     if allowed_ops is None:
         api_path = Path(__file__).resolve().parents[3] / "docs" / "layer1-foundation" / "API-Interfaces.md"
-        allowed_ops = parse_api_interfaces(api_path)
+        allowed_ops = [row.get("operator_id", "") for row in parse_api_interfaces(api_path)]
+    else:
+        allowed_ops = [
+            row.get("operator_id", "") if isinstance(row, dict) else str(row)
+            for row in allowed_ops
+        ]
 
     if record["operator_id"] not in set(allowed_ops):
         raise ValueError("operator_id not declared in API-Interfaces")
