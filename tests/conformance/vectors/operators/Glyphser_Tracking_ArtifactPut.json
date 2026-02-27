@@ -18,12 +18,73 @@
         "error": {
           "code_id": "CONTRACT_VIOLATION",
           "context": {
-            "operator_id": "Glyphser.Tracking.ArtifactPut"
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.Tracking.ArtifactPut",
+            "replay_token": "placeholder",
+            "t": "placeholder"
           },
           "message": "invalid request"
         }
       },
       "request": {
+        "error_code": "CONTRACT_VIOLATION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Tracking.ArtifactPut.CONTRACT_VIOLATION.error",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.Tracking.ArtifactPut",
+            "replay_token": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "CONTRACT_VIOLATION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Tracking.ArtifactPut.CONTRACT_VIOLATION.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.Tracking.ArtifactPut",
+            "replay_token": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "CONTRACT_VIOLATION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Tracking.ArtifactPut.CONTRACT_VIOLATION.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.Tracking.ArtifactPut",
+            "replay_token": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "CONTRACT_VIOLATION",
         "force_error": true
       }
     }

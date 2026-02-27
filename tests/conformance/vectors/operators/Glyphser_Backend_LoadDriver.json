@@ -17,14 +17,79 @@
       "case_id": "Glyphser.Backend.LoadDriver.invalid_request",
       "expected": {
         "error": {
-          "code_id": "CONTRACT_VIOLATION",
+          "code_id": "BACKEND_CONTRACT_VIOLATION",
           "context": {
-            "operator_id": "Glyphser.Backend.LoadDriver"
+            "backend_binary_hash": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.Backend.LoadDriver",
+            "t": "placeholder"
           },
           "message": "invalid request"
         }
       },
       "request": {
+        "error_code": "BACKEND_CONTRACT_VIOLATION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Backend.LoadDriver.BACKEND_CONTRACT_VIOLATION.error",
+      "expected": {
+        "error": {
+          "code_id": "BACKEND_CONTRACT_VIOLATION",
+          "context": {
+            "backend_binary_hash": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.Backend.LoadDriver",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "BACKEND_CONTRACT_VIOLATION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Backend.LoadDriver.BACKEND_CONTRACT_VIOLATION.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "BACKEND_CONTRACT_VIOLATION",
+          "context": {
+            "backend_binary_hash": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.Backend.LoadDriver",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "BACKEND_CONTRACT_VIOLATION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Backend.LoadDriver.BACKEND_CONTRACT_VIOLATION.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "BACKEND_CONTRACT_VIOLATION",
+          "context": {
+            "backend_binary_hash": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.Backend.LoadDriver",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "BACKEND_CONTRACT_VIOLATION",
         "force_error": true
       }
     }

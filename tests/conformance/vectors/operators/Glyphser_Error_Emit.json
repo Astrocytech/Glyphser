@@ -7,12 +7,73 @@
         "error": {
           "code_id": "PRIMITIVE_UNSUPPORTED",
           "context": {
-            "operator_id": "Glyphser.Error.Emit"
+            "backend_binary_hash": "placeholder",
+            "instr": "placeholder",
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.Error.Emit",
+            "t": "placeholder"
           },
           "message": "Generated stub not implemented"
         }
       },
       "request": {}
+    },
+    {
+      "case_id": "Glyphser.Error.Emit.CONTRACT_VIOLATION.error",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.Error.Emit",
+            "replay_token": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "CONTRACT_VIOLATION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Error.Emit.CONTRACT_VIOLATION.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.Error.Emit",
+            "replay_token": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "CONTRACT_VIOLATION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Error.Emit.CONTRACT_VIOLATION.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.Error.Emit",
+            "replay_token": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "CONTRACT_VIOLATION",
+        "force_error": true
+      }
     }
   ]
 }

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "glyphser.schemas.l3.operator_error_vectors",
+  "title": "Glyphser Operator Error Vectors",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["operator_id", "vectors"],
+  "properties": {
+    "operator_id": {"type": "string", "minLength": 1},
+    "vectors": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["case_id", "request", "expected"],
+        "properties": {
+          "case_id": {"type": "string", "minLength": 1},
+          "request": {"type": ["object", "string", "number", "array", "boolean", "null"]},
+          "expected": {
+            "type": "object",
+            "required": ["error"],
+            "properties": {
+              "error": {
+                "type": "object",
+                "required": ["code_id", "message", "context"],
+                "properties": {
+                  "code_id": {"type": "string", "minLength": 1},
+                  "message": {"type": "string"},
+                  "context": {"type": "object"}
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "x_glyphser": {
+    "schema_id": "glyphser.schemas.l3.operator_error_vectors",
+    "source_doc": "docs/layer3-tests/Operator-Vectors.md",
+    "compatibility_policy": "MAJOR",
+    "layer": "L3",
+    "schema_version": "1.0.0",
+    "hash_rule": "sha256_canonical_json",
+    "prose_check": "relaxed"
+  }
+}

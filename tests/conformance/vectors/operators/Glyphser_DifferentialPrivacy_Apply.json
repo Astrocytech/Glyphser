@@ -16,14 +16,418 @@
       "case_id": "Glyphser.DifferentialPrivacy.Apply.invalid_request",
       "expected": {
         "error": {
-          "code_id": "CONTRACT_VIOLATION",
+          "code_id": "PRIVACY_BUDGET_EXCEEDED",
           "context": {
-            "operator_id": "Glyphser.DifferentialPrivacy.Apply"
+            "cumulative_epsilon": "placeholder",
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "t": "placeholder",
+            "target_epsilon": "placeholder"
           },
           "message": "invalid request"
         }
       },
       "request": {
+        "error_code": "PRIVACY_BUDGET_EXCEEDED",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.DifferentialPrivacy.Apply.PRIVACY_BUDGET_EXCEEDED.error",
+      "expected": {
+        "error": {
+          "code_id": "PRIVACY_BUDGET_EXCEEDED",
+          "context": {
+            "cumulative_epsilon": "placeholder",
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "t": "placeholder",
+            "target_epsilon": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "PRIVACY_BUDGET_EXCEEDED",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.DifferentialPrivacy.Apply.PRIVACY_BUDGET_EXCEEDED.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "PRIVACY_BUDGET_EXCEEDED",
+          "context": {
+            "cumulative_epsilon": "placeholder",
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "t": "placeholder",
+            "target_epsilon": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "PRIVACY_BUDGET_EXCEEDED",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.DifferentialPrivacy.Apply.PRIVACY_BUDGET_EXCEEDED.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "PRIVACY_BUDGET_EXCEEDED",
+          "context": {
+            "cumulative_epsilon": "placeholder",
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "t": "placeholder",
+            "target_epsilon": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "PRIVACY_BUDGET_EXCEEDED",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.DifferentialPrivacy.Apply.INVALID_DP_CONFIG.error",
+      "expected": {
+        "error": {
+          "code_id": "INVALID_DP_CONFIG",
+          "context": {
+            "accountant": "placeholder",
+            "clipping_strategy": "placeholder",
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "INVALID_DP_CONFIG",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.DifferentialPrivacy.Apply.INVALID_DP_CONFIG.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "INVALID_DP_CONFIG",
+          "context": {
+            "accountant": "placeholder",
+            "clipping_strategy": "placeholder",
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "INVALID_DP_CONFIG",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.DifferentialPrivacy.Apply.INVALID_DP_CONFIG.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "INVALID_DP_CONFIG",
+          "context": {
+            "accountant": "placeholder",
+            "clipping_strategy": "placeholder",
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "INVALID_DP_CONFIG",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.DifferentialPrivacy.Apply.INVALID_GRADIENT.error",
+      "expected": {
+        "error": {
+          "code_id": "INVALID_GRADIENT",
+          "context": {
+            "grad_hash": "placeholder",
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "INVALID_GRADIENT",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.DifferentialPrivacy.Apply.INVALID_GRADIENT.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "INVALID_GRADIENT",
+          "context": {
+            "grad_hash": "placeholder",
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "INVALID_GRADIENT",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.DifferentialPrivacy.Apply.INVALID_GRADIENT.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "INVALID_GRADIENT",
+          "context": {
+            "grad_hash": "placeholder",
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "INVALID_GRADIENT",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.DifferentialPrivacy.Apply.NAN_IN_SIGMA.error",
+      "expected": {
+        "error": {
+          "code_id": "NAN_IN_SIGMA",
+          "context": {
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "sigma_map_hash": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "NAN_IN_SIGMA",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.DifferentialPrivacy.Apply.NAN_IN_SIGMA.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "NAN_IN_SIGMA",
+          "context": {
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "sigma_map_hash": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "NAN_IN_SIGMA",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.DifferentialPrivacy.Apply.NAN_IN_SIGMA.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "NAN_IN_SIGMA",
+          "context": {
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "sigma_map_hash": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "NAN_IN_SIGMA",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.DifferentialPrivacy.Apply.ACCOUNTANT_OVERFLOW.error",
+      "expected": {
+        "error": {
+          "code_id": "ACCOUNTANT_OVERFLOW",
+          "context": {
+            "accountant_type": "placeholder",
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "state_hash": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "ACCOUNTANT_OVERFLOW",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.DifferentialPrivacy.Apply.ACCOUNTANT_OVERFLOW.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "ACCOUNTANT_OVERFLOW",
+          "context": {
+            "accountant_type": "placeholder",
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "state_hash": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "ACCOUNTANT_OVERFLOW",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.DifferentialPrivacy.Apply.ACCOUNTANT_OVERFLOW.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "ACCOUNTANT_OVERFLOW",
+          "context": {
+            "accountant_type": "placeholder",
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "state_hash": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "ACCOUNTANT_OVERFLOW",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.DifferentialPrivacy.Apply.ACCOUNTANT_DIVERGENCE.error",
+      "expected": {
+        "error": {
+          "code_id": "ACCOUNTANT_DIVERGENCE",
+          "context": {
+            "accountant_type": "placeholder",
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "state_hash": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "ACCOUNTANT_DIVERGENCE",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.DifferentialPrivacy.Apply.ACCOUNTANT_DIVERGENCE.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "ACCOUNTANT_DIVERGENCE",
+          "context": {
+            "accountant_type": "placeholder",
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "state_hash": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "ACCOUNTANT_DIVERGENCE",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.DifferentialPrivacy.Apply.ACCOUNTANT_DIVERGENCE.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "ACCOUNTANT_DIVERGENCE",
+          "context": {
+            "accountant_type": "placeholder",
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "state_hash": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "ACCOUNTANT_DIVERGENCE",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.DifferentialPrivacy.Apply.RNG_CONSUMPTION_VIOLATION.error",
+      "expected": {
+        "error": {
+          "code_id": "RNG_CONSUMPTION_VIOLATION",
+          "context": {
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "rng_offset_after": "placeholder",
+            "rng_offset_before": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "RNG_CONSUMPTION_VIOLATION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.DifferentialPrivacy.Apply.RNG_CONSUMPTION_VIOLATION.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "RNG_CONSUMPTION_VIOLATION",
+          "context": {
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "rng_offset_after": "placeholder",
+            "rng_offset_before": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "RNG_CONSUMPTION_VIOLATION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.DifferentialPrivacy.Apply.RNG_CONSUMPTION_VIOLATION.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "RNG_CONSUMPTION_VIOLATION",
+          "context": {
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "rng_offset_after": "placeholder",
+            "rng_offset_before": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "RNG_CONSUMPTION_VIOLATION",
         "force_error": true
       }
     }

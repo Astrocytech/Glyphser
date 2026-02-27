@@ -7,12 +7,304 @@
         "error": {
           "code_id": "PRIMITIVE_UNSUPPORTED",
           "context": {
-            "operator_id": "Glyphser.Data.NextBatch"
+            "backend_binary_hash": "placeholder",
+            "instr": "placeholder",
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.Data.NextBatch",
+            "t": "placeholder"
           },
           "message": "Generated stub not implemented"
         }
       },
       "request": {}
+    },
+    {
+      "case_id": "Glyphser.Data.NextBatch.BATCH_SIZE_INCONSISTENT.error",
+      "expected": {
+        "error": {
+          "code_id": "BATCH_SIZE_INCONSISTENT",
+          "context": {
+            "dataset_key": "placeholder",
+            "operator_id": "Glyphser.Data.NextBatch",
+            "replay_token": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "BATCH_SIZE_INCONSISTENT",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Data.NextBatch.BATCH_SIZE_INCONSISTENT.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "BATCH_SIZE_INCONSISTENT",
+          "context": {
+            "dataset_key": "placeholder",
+            "operator_id": "Glyphser.Data.NextBatch",
+            "replay_token": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "BATCH_SIZE_INCONSISTENT",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Data.NextBatch.BATCH_SIZE_INCONSISTENT.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "BATCH_SIZE_INCONSISTENT",
+          "context": {
+            "dataset_key": "placeholder",
+            "operator_id": "Glyphser.Data.NextBatch",
+            "replay_token": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "BATCH_SIZE_INCONSISTENT",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Data.NextBatch.INVALID_DATASET_KEY.error",
+      "expected": {
+        "error": {
+          "code_id": "INVALID_DATASET_KEY",
+          "context": {
+            "dataset_key": "placeholder",
+            "operator_id": "Glyphser.Data.NextBatch",
+            "replay_token": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "INVALID_DATASET_KEY",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Data.NextBatch.INVALID_DATASET_KEY.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "INVALID_DATASET_KEY",
+          "context": {
+            "dataset_key": "placeholder",
+            "operator_id": "Glyphser.Data.NextBatch",
+            "replay_token": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "INVALID_DATASET_KEY",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Data.NextBatch.INVALID_DATASET_KEY.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "INVALID_DATASET_KEY",
+          "context": {
+            "dataset_key": "placeholder",
+            "operator_id": "Glyphser.Data.NextBatch",
+            "replay_token": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "INVALID_DATASET_KEY",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Data.NextBatch.CARDINALITY_MISMATCH.error",
+      "expected": {
+        "error": {
+          "code_id": "CARDINALITY_MISMATCH",
+          "context": {
+            "dataset_key": "placeholder",
+            "operator_id": "Glyphser.Data.NextBatch",
+            "registered_hash": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "CARDINALITY_MISMATCH",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Data.NextBatch.CARDINALITY_MISMATCH.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "CARDINALITY_MISMATCH",
+          "context": {
+            "dataset_key": "placeholder",
+            "operator_id": "Glyphser.Data.NextBatch",
+            "registered_hash": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "CARDINALITY_MISMATCH",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Data.NextBatch.CARDINALITY_MISMATCH.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "CARDINALITY_MISMATCH",
+          "context": {
+            "dataset_key": "placeholder",
+            "operator_id": "Glyphser.Data.NextBatch",
+            "registered_hash": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "CARDINALITY_MISMATCH",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Data.NextBatch.GLOBAL_POSITION_EXCEEDS_CARDINALITY.error",
+      "expected": {
+        "error": {
+          "code_id": "GLOBAL_POSITION_EXCEEDS_CARDINALITY",
+          "context": {
+            "cardinality": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "operator_id": "Glyphser.Data.NextBatch",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "GLOBAL_POSITION_EXCEEDS_CARDINALITY",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Data.NextBatch.GLOBAL_POSITION_EXCEEDS_CARDINALITY.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "GLOBAL_POSITION_EXCEEDS_CARDINALITY",
+          "context": {
+            "cardinality": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "operator_id": "Glyphser.Data.NextBatch",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "GLOBAL_POSITION_EXCEEDS_CARDINALITY",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Data.NextBatch.GLOBAL_POSITION_EXCEEDS_CARDINALITY.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "GLOBAL_POSITION_EXCEEDS_CARDINALITY",
+          "context": {
+            "cardinality": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "operator_id": "Glyphser.Data.NextBatch",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "GLOBAL_POSITION_EXCEEDS_CARDINALITY",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Data.NextBatch.INVALID_STAGE_TYPE.error",
+      "expected": {
+        "error": {
+          "code_id": "INVALID_STAGE_TYPE",
+          "context": {
+            "operator_id": "Glyphser.Data.NextBatch",
+            "replay_token": "placeholder",
+            "stage_id": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "INVALID_STAGE_TYPE",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Data.NextBatch.INVALID_STAGE_TYPE.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "INVALID_STAGE_TYPE",
+          "context": {
+            "operator_id": "Glyphser.Data.NextBatch",
+            "replay_token": "placeholder",
+            "stage_id": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "INVALID_STAGE_TYPE",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Data.NextBatch.INVALID_STAGE_TYPE.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "INVALID_STAGE_TYPE",
+          "context": {
+            "operator_id": "Glyphser.Data.NextBatch",
+            "replay_token": "placeholder",
+            "stage_id": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "INVALID_STAGE_TYPE",
+        "force_error": true
+      }
     }
   ]
 }

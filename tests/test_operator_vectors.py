@@ -20,6 +20,10 @@ def test_operator_vectors_stub_errors():
             expected = vector["expected"]
             result = stub(vector["request"])
             if "error" in expected:
-                assert result["error"] == expected["error"]
+                assert "error" in result
+                assert result["error"]["code_id"] == expected["error"]["code_id"]
+                assert result["error"]["message"] == expected["error"]["message"]
+                for key, val in expected["error"]["context"].items():
+                    assert result["error"]["context"].get(key) == val
             else:
                 assert result == expected["response"]

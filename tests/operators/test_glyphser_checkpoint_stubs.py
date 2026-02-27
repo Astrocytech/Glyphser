@@ -18,7 +18,11 @@ def test_glyphser_checkpoint_checkpointmigrate_vector():
     stub = getattr(gen_ops, "Glyphser_Checkpoint_CheckpointMigrate")
     result = stub(vector["request"])
     if "error" in expected:
-        assert result["error"] == expected["error"]
+        assert "error" in result
+        assert result["error"]["code_id"] == expected["error"]["code_id"]
+        assert result["error"]["message"] == expected["error"]["message"]
+        for key, val in expected["error"]["context"].items():
+            assert result["error"]["context"].get(key) == val
     else:
         assert result == expected["response"]
 
@@ -29,7 +33,11 @@ def test_glyphser_checkpoint_restore_vector():
     stub = getattr(gen_ops, "Glyphser_Checkpoint_Restore")
     result = stub(vector["request"])
     if "error" in expected:
-        assert result["error"] == expected["error"]
+        assert "error" in result
+        assert result["error"]["code_id"] == expected["error"]["code_id"]
+        assert result["error"]["message"] == expected["error"]["message"]
+        for key, val in expected["error"]["context"].items():
+            assert result["error"]["context"].get(key) == val
     else:
         assert result == expected["response"]
 

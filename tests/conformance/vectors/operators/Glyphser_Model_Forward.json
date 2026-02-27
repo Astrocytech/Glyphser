@@ -24,12 +24,133 @@
         "error": {
           "code_id": "CONTRACT_VIOLATION",
           "context": {
-            "operator_id": "Glyphser.Model.Forward"
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.Model.Forward",
+            "replay_token": "placeholder",
+            "t": "placeholder"
           },
           "message": "invalid request"
         }
       },
       "request": {
+        "error_code": "CONTRACT_VIOLATION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.Forward.CONTRACT_VIOLATION.error",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.Model.Forward",
+            "replay_token": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "CONTRACT_VIOLATION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.Forward.CONTRACT_VIOLATION.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.Model.Forward",
+            "replay_token": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "CONTRACT_VIOLATION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.Forward.CONTRACT_VIOLATION.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.Model.Forward",
+            "replay_token": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "CONTRACT_VIOLATION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.Forward.PRIMITIVE_UNSUPPORTED.error",
+      "expected": {
+        "error": {
+          "code_id": "PRIMITIVE_UNSUPPORTED",
+          "context": {
+            "backend_binary_hash": "placeholder",
+            "instr": "placeholder",
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.Model.Forward",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "PRIMITIVE_UNSUPPORTED",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.Forward.PRIMITIVE_UNSUPPORTED.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "PRIMITIVE_UNSUPPORTED",
+          "context": {
+            "backend_binary_hash": "placeholder",
+            "instr": "placeholder",
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.Model.Forward",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "PRIMITIVE_UNSUPPORTED",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.Forward.PRIMITIVE_UNSUPPORTED.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "PRIMITIVE_UNSUPPORTED",
+          "context": {
+            "backend_binary_hash": "placeholder",
+            "instr": "placeholder",
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.Model.Forward",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "PRIMITIVE_UNSUPPORTED",
         "force_error": true
       }
     }

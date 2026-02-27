@@ -7,12 +7,364 @@
         "error": {
           "code_id": "PRIMITIVE_UNSUPPORTED",
           "context": {
-            "operator_id": "Glyphser.Model.ModelIR_Executor"
+            "backend_binary_hash": "placeholder",
+            "instr": "placeholder",
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.Model.ModelIR_Executor",
+            "t": "placeholder"
           },
           "message": "Generated stub not implemented"
         }
       },
       "request": {}
+    },
+    {
+      "case_id": "Glyphser.Model.ModelIR_Executor.INVALID_IR.error",
+      "expected": {
+        "error": {
+          "code_id": "INVALID_IR",
+          "context": {
+            "ir_hash": "placeholder",
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.Model.ModelIR_Executor",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "INVALID_IR",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.ModelIR_Executor.INVALID_IR.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "INVALID_IR",
+          "context": {
+            "ir_hash": "placeholder",
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.Model.ModelIR_Executor",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "INVALID_IR",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.ModelIR_Executor.INVALID_IR.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "INVALID_IR",
+          "context": {
+            "ir_hash": "placeholder",
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.Model.ModelIR_Executor",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "INVALID_IR",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.ModelIR_Executor.PRIMITIVE_UNSUPPORTED.error",
+      "expected": {
+        "error": {
+          "code_id": "PRIMITIVE_UNSUPPORTED",
+          "context": {
+            "backend_binary_hash": "placeholder",
+            "instr": "placeholder",
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.Model.ModelIR_Executor",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "PRIMITIVE_UNSUPPORTED",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.ModelIR_Executor.PRIMITIVE_UNSUPPORTED.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "PRIMITIVE_UNSUPPORTED",
+          "context": {
+            "backend_binary_hash": "placeholder",
+            "instr": "placeholder",
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.Model.ModelIR_Executor",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "PRIMITIVE_UNSUPPORTED",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.ModelIR_Executor.PRIMITIVE_UNSUPPORTED.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "PRIMITIVE_UNSUPPORTED",
+          "context": {
+            "backend_binary_hash": "placeholder",
+            "instr": "placeholder",
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.Model.ModelIR_Executor",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "PRIMITIVE_UNSUPPORTED",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.ModelIR_Executor.CYCLE_DETECTED.error",
+      "expected": {
+        "error": {
+          "code_id": "CYCLE_DETECTED",
+          "context": {
+            "ir_hash": "placeholder",
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.Model.ModelIR_Executor",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "CYCLE_DETECTED",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.ModelIR_Executor.CYCLE_DETECTED.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "CYCLE_DETECTED",
+          "context": {
+            "ir_hash": "placeholder",
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.Model.ModelIR_Executor",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "CYCLE_DETECTED",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.ModelIR_Executor.CYCLE_DETECTED.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "CYCLE_DETECTED",
+          "context": {
+            "ir_hash": "placeholder",
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.Model.ModelIR_Executor",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "CYCLE_DETECTED",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.ModelIR_Executor.SHAPE_MISMATCH.error",
+      "expected": {
+        "error": {
+          "code_id": "SHAPE_MISMATCH",
+          "context": {
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.Model.ModelIR_Executor",
+            "shape_expected": "placeholder",
+            "shape_in": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "SHAPE_MISMATCH",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.ModelIR_Executor.SHAPE_MISMATCH.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "SHAPE_MISMATCH",
+          "context": {
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.Model.ModelIR_Executor",
+            "shape_expected": "placeholder",
+            "shape_in": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "SHAPE_MISMATCH",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.ModelIR_Executor.SHAPE_MISMATCH.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "SHAPE_MISMATCH",
+          "context": {
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.Model.ModelIR_Executor",
+            "shape_expected": "placeholder",
+            "shape_in": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "SHAPE_MISMATCH",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.ModelIR_Executor.TMMU_ALLOCATION_FAILURE.error",
+      "expected": {
+        "error": {
+          "code_id": "TMMU_ALLOCATION_FAILURE",
+          "context": {
+            "arena": "placeholder",
+            "operator_id": "Glyphser.Model.ModelIR_Executor",
+            "peak_required_bytes": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "TMMU_ALLOCATION_FAILURE",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.ModelIR_Executor.TMMU_ALLOCATION_FAILURE.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "TMMU_ALLOCATION_FAILURE",
+          "context": {
+            "arena": "placeholder",
+            "operator_id": "Glyphser.Model.ModelIR_Executor",
+            "peak_required_bytes": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "TMMU_ALLOCATION_FAILURE",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.ModelIR_Executor.TMMU_ALLOCATION_FAILURE.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "TMMU_ALLOCATION_FAILURE",
+          "context": {
+            "arena": "placeholder",
+            "operator_id": "Glyphser.Model.ModelIR_Executor",
+            "peak_required_bytes": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "TMMU_ALLOCATION_FAILURE",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.ModelIR_Executor.CONTRACT_VIOLATION.error",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.Model.ModelIR_Executor",
+            "replay_token": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "CONTRACT_VIOLATION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.ModelIR_Executor.CONTRACT_VIOLATION.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.Model.ModelIR_Executor",
+            "replay_token": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "CONTRACT_VIOLATION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.Model.ModelIR_Executor.CONTRACT_VIOLATION.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.Model.ModelIR_Executor",
+            "replay_token": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "CONTRACT_VIOLATION",
+        "force_error": true
+      }
     }
   ]
 }

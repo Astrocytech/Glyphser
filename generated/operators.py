@@ -33,14 +33,88 @@ from src.glyphser.legacy_import.legacy_framework import legacy_framework_import
 
 def Glyphser_Data_NextBatch(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Data.NextBatch stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Data.NextBatch")}
+    if isinstance(request, dict) and request.get("force_error") is True:
+        code = request.get("error_code") or "PRIMITIVE_UNSUPPORTED"
+        ctx = {
+            "operator_id": "Glyphser.Data.NextBatch",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
+    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Data.NextBatch", t="placeholder", node_id="placeholder", instr="placeholder", backend_binary_hash="placeholder")}
 
 def Glyphser_Model_Forward(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Model.Forward stub."""
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Model.Forward")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Model.Forward")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.Model.Forward",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         return forward(request)
     except Exception:
@@ -48,14 +122,88 @@ def Glyphser_Model_Forward(request: Dict[str, Any]) -> Dict[str, Any]:
 
 def Glyphser_Model_ModelIR_Executor(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Model.ModelIR_Executor stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Model.ModelIR_Executor")}
+    if isinstance(request, dict) and request.get("force_error") is True:
+        code = request.get("error_code") or "PRIMITIVE_UNSUPPORTED"
+        ctx = {
+            "operator_id": "Glyphser.Model.ModelIR_Executor",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
+    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Model.ModelIR_Executor", t="placeholder", node_id="placeholder", instr="placeholder", backend_binary_hash="placeholder")}
 
 def Glyphser_DifferentialPrivacy_Apply(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.DifferentialPrivacy.Apply stub."""
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.DifferentialPrivacy.Apply")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.DifferentialPrivacy.Apply")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         return dp_apply(request)
     except Exception:
@@ -66,7 +214,43 @@ def Glyphser_TMMU_PrepareMemory(request: Dict[str, Any]) -> Dict[str, Any]:
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.TMMU.PrepareMemory")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.TMMU.PrepareMemory")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.TMMU.PrepareMemory",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         return prepare_memory(request)
     except Exception:
@@ -77,7 +261,43 @@ def Glyphser_Backend_LoadDriver(request: Dict[str, Any]) -> Dict[str, Any]:
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Backend.LoadDriver")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Backend.LoadDriver")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.Backend.LoadDriver",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         return load_driver(request)
     except Exception:
@@ -88,7 +308,43 @@ def Glyphser_IO_SaveCheckpoint(request: Dict[str, Any]) -> Dict[str, Any]:
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.IO.SaveCheckpoint")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.IO.SaveCheckpoint")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.IO.SaveCheckpoint",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         state = request.get("state", {})
         path = request.get("path")
@@ -104,7 +360,43 @@ def Glyphser_Checkpoint_Restore(request: Dict[str, Any]) -> Dict[str, Any]:
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Checkpoint.Restore")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Checkpoint.Restore")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.Checkpoint.Restore",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         result = restore_checkpoint(request)
         return result
@@ -113,14 +405,88 @@ def Glyphser_Checkpoint_Restore(request: Dict[str, Any]) -> Dict[str, Any]:
 
 def Glyphser_Error_Emit(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Error.Emit stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Error.Emit")}
+    if isinstance(request, dict) and request.get("force_error") is True:
+        code = request.get("error_code") or "PRIMITIVE_UNSUPPORTED"
+        ctx = {
+            "operator_id": "Glyphser.Error.Emit",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
+    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Error.Emit", t="placeholder", node_id="placeholder", instr="placeholder", backend_binary_hash="placeholder")}
 
 def Glyphser_Tracking_RunCreate(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Tracking.RunCreate stub."""
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.RunCreate")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.RunCreate")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.Tracking.RunCreate",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         return run_create(request)
     except Exception:
@@ -131,7 +497,43 @@ def Glyphser_Tracking_RunStart(request: Dict[str, Any]) -> Dict[str, Any]:
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.RunStart")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.RunStart")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.Tracking.RunStart",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         return run_start(request)
     except Exception:
@@ -142,7 +544,43 @@ def Glyphser_Tracking_RunEnd(request: Dict[str, Any]) -> Dict[str, Any]:
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.RunEnd")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.RunEnd")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.Tracking.RunEnd",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         return run_end(request)
     except Exception:
@@ -153,7 +591,43 @@ def Glyphser_Tracking_MetricLog(request: Dict[str, Any]) -> Dict[str, Any]:
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.MetricLog")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.MetricLog")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.Tracking.MetricLog",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         return metric_log(request)
     except Exception:
@@ -164,7 +638,43 @@ def Glyphser_Tracking_ArtifactPut(request: Dict[str, Any]) -> Dict[str, Any]:
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.ArtifactPut")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.ArtifactPut")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.Tracking.ArtifactPut",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         return artifact_put(request)
     except Exception:
@@ -175,7 +685,43 @@ def Glyphser_Tracking_ArtifactGet(request: Dict[str, Any]) -> Dict[str, Any]:
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.ArtifactGet")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.ArtifactGet")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.Tracking.ArtifactGet",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         return artifact_get(request)
     except Exception:
@@ -186,7 +732,43 @@ def Glyphser_Tracking_ArtifactList(request: Dict[str, Any]) -> Dict[str, Any]:
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.ArtifactList")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.ArtifactList")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.Tracking.ArtifactList",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         return artifact_list(request)
     except Exception:
@@ -197,7 +779,43 @@ def Glyphser_Tracking_ArtifactTombstone(request: Dict[str, Any]) -> Dict[str, An
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.ArtifactTombstone")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.ArtifactTombstone")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.Tracking.ArtifactTombstone",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         return artifact_tombstone(request)
     except Exception:
@@ -208,7 +826,43 @@ def Glyphser_Registry_VersionCreate(request: Dict[str, Any]) -> Dict[str, Any]:
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Registry.VersionCreate")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Registry.VersionCreate")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.Registry.VersionCreate",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         return version_create(request)
     except Exception:
@@ -219,7 +873,43 @@ def Glyphser_Registry_StageTransition(request: Dict[str, Any]) -> Dict[str, Any]
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Registry.StageTransition")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Registry.StageTransition")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.Registry.StageTransition",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         return stage_transition(request)
     except Exception:
@@ -230,7 +920,43 @@ def Glyphser_Monitor_Register(request: Dict[str, Any]) -> Dict[str, Any]:
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Monitor.Register")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Monitor.Register")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.Monitor.Register",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         return monitor_register(request)
     except Exception:
@@ -241,7 +967,43 @@ def Glyphser_Monitor_Emit(request: Dict[str, Any]) -> Dict[str, Any]:
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Monitor.Emit")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Monitor.Emit")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.Monitor.Emit",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         return monitor_emit(request)
     except Exception:
@@ -252,7 +1014,43 @@ def Glyphser_Monitor_DriftCompute(request: Dict[str, Any]) -> Dict[str, Any]:
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Monitor.DriftCompute")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Monitor.DriftCompute")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.Monitor.DriftCompute",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         return drift_compute(request)
     except Exception:
@@ -263,7 +1061,43 @@ def Glyphser_Certificate_EvidenceValidate(request: Dict[str, Any]) -> Dict[str, 
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Certificate.EvidenceValidate")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Certificate.EvidenceValidate")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.Certificate.EvidenceValidate",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         return evidence_validate(request)
     except Exception:
@@ -274,7 +1108,43 @@ def Glyphser_Config_ManifestMigrate(request: Dict[str, Any]) -> Dict[str, Any]:
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Config.ManifestMigrate")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Config.ManifestMigrate")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.Config.ManifestMigrate",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         return manifest_migrate(request)
     except Exception:
@@ -285,7 +1155,43 @@ def Glyphser_Checkpoint_CheckpointMigrate(request: Dict[str, Any]) -> Dict[str, 
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Checkpoint.CheckpointMigrate")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Checkpoint.CheckpointMigrate")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.Checkpoint.CheckpointMigrate",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         return checkpoint_migrate(request)
     except Exception:
@@ -296,7 +1202,43 @@ def Glyphser_Trace_TraceMigrate(request: Dict[str, Any]) -> Dict[str, Any]:
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Trace.TraceMigrate")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Trace.TraceMigrate")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.Trace.TraceMigrate",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         return migrate_trace(request)
     except Exception:
@@ -307,7 +1249,43 @@ def Glyphser_Import_LegacyFramework(request: Dict[str, Any]) -> Dict[str, Any]:
     if not isinstance(request, dict):
         return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Import.LegacyFramework")}
     if request.get("force_error") is True:
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Import.LegacyFramework")}
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
+        ctx = {
+            "operator_id": "Glyphser.Import.LegacyFramework",
+            "t": "placeholder",
+            "node_id": "placeholder",
+            "instr": "placeholder",
+            "backend_binary_hash": "placeholder",
+            "failure_operator": "placeholder",
+            "driver_runtime_fingerprint_hash": "placeholder",
+            "replay_token": "placeholder",
+            "dataset_key": "placeholder",
+            "global_position": "placeholder",
+            "cardinality": "placeholder",
+            "shape_in": "placeholder",
+            "shape_expected": "placeholder",
+            "size": "placeholder",
+            "capacity": "placeholder",
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "offset": "placeholder",
+            "peak_required_bytes": "placeholder",
+            "state_hash": "placeholder",
+            "registered_hash": "placeholder",
+            "stage_id": "placeholder",
+            "ir_hash": "placeholder",
+            "grad_hash": "placeholder",
+            "rng_offset_before": "placeholder",
+            "rng_offset_after": "placeholder",
+            "required": "placeholder",
+            "accountant": "placeholder",
+            "accountant_type": "placeholder",
+            "sigma_map_hash": "placeholder",
+            "clipping_strategy": "placeholder",
+            "cumulative_epsilon": "placeholder",
+            "target_epsilon": "placeholder",
+        }
+        return {"error": emit_error(code, "invalid request", **ctx)}
     try:
         return legacy_framework_import(request)
     except Exception:

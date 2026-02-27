@@ -45,6 +45,14 @@ def validate_vectors_payload(payload: Dict[str, Any]) -> List[str]:
         else:
             if "error" not in expected and "response" not in expected:
                 errors.append(f"vector[{idx}] expected must include error or response")
+            if "error" in expected:
+                err = expected.get("error", {})
+                if not isinstance(err, dict):
+                    errors.append(f"vector[{idx}] error must be object")
+                else:
+                    for key in ("code_id", "message", "context"):
+                        if key not in err:
+                            errors.append(f"vector[{idx}] error missing {key}")
     return errors
 
 
@@ -60,4 +68,3 @@ def enumerate_vector_files() -> List[Path]:
 
 def ensure_root() -> None:
     VECTORS_ROOT.mkdir(parents=True, exist_ok=True)
-

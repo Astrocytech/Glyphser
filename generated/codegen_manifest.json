@@ -11,15 +11,15 @@
   "outputs_with_hashes": [
     {
       "path": "generated/models.py",
-      "sha256": "196d58154f265aa23266ad5fbc83f4a65941bf2c3fdb120984e792615f49b9e5"
+      "sha256": "37bac3ff0443faf074837e3f371a9de55799bde319bfb5f0db178ecfe4307528"
     },
     {
       "path": "generated/operators.py",
-      "sha256": "0be4367ec797ad15eb596477feb3fee47e9f491fa01dac4a4aef4ca74fd1de1a"
+      "sha256": "b5bcca6e7ef81ac214d0f187230d37e3a6162d374ee6f099822af5d39c2a6078"
     },
     {
       "path": "generated/validators.py",
-      "sha256": "72a0eb78c4be15c54b9b5e57c156e5a26e09cb4d75990bec6df19009a70e0c9f"
+      "sha256": "b41d639ae599dcdc1a0c4bf115b98a6e60038af79dee5608deef4c18f6b9b8d1"
     },
     {
       "path": "generated/error.py",
@@ -31,6 +31,10 @@
     }
   ],
   "schemas": [
+    {
+      "path": "schemas/l3_operator_error_vectors.schema.json",
+      "sha256": "15bd2d4265e178a60a89714819e03161fb9451c466b192e0bdd1d2e1a6e2eaa2"
+    },
     {
       "path": "schemas/l3_operator_vectors.schema.json",
       "sha256": "2dc4f0f2a727e32689e621c35d63eae57c07dcd8650a3e802014e2cd467b88c3"

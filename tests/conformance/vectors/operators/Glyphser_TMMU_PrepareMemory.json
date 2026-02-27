@@ -16,14 +16,366 @@
       "case_id": "Glyphser.TMMU.PrepareMemory.invalid_request",
       "expected": {
         "error": {
-          "code_id": "CONTRACT_VIOLATION",
+          "code_id": "INVALID_IR_SHAPES",
           "context": {
-            "operator_id": "Glyphser.TMMU.PrepareMemory"
+            "ir_hash": "placeholder",
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.TMMU.PrepareMemory",
+            "t": "placeholder"
           },
           "message": "invalid request"
         }
       },
       "request": {
+        "error_code": "INVALID_IR_SHAPES",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.TMMU.PrepareMemory.INVALID_IR_SHAPES.error",
+      "expected": {
+        "error": {
+          "code_id": "INVALID_IR_SHAPES",
+          "context": {
+            "ir_hash": "placeholder",
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.TMMU.PrepareMemory",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "INVALID_IR_SHAPES",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.TMMU.PrepareMemory.INVALID_IR_SHAPES.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "INVALID_IR_SHAPES",
+          "context": {
+            "ir_hash": "placeholder",
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.TMMU.PrepareMemory",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "INVALID_IR_SHAPES",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.TMMU.PrepareMemory.INVALID_IR_SHAPES.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "INVALID_IR_SHAPES",
+          "context": {
+            "ir_hash": "placeholder",
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.TMMU.PrepareMemory",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "INVALID_IR_SHAPES",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.TMMU.PrepareMemory.LIVENESS_CYCLE.error",
+      "expected": {
+        "error": {
+          "code_id": "LIVENESS_CYCLE",
+          "context": {
+            "ir_hash": "placeholder",
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.TMMU.PrepareMemory",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "LIVENESS_CYCLE",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.TMMU.PrepareMemory.LIVENESS_CYCLE.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "LIVENESS_CYCLE",
+          "context": {
+            "ir_hash": "placeholder",
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.TMMU.PrepareMemory",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "LIVENESS_CYCLE",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.TMMU.PrepareMemory.LIVENESS_CYCLE.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "LIVENESS_CYCLE",
+          "context": {
+            "ir_hash": "placeholder",
+            "node_id": "placeholder",
+            "operator_id": "Glyphser.TMMU.PrepareMemory",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "LIVENESS_CYCLE",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.TMMU.PrepareMemory.ADDRESS_COLLISION.error",
+      "expected": {
+        "error": {
+          "code_id": "ADDRESS_COLLISION",
+          "context": {
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "operator_id": "Glyphser.TMMU.PrepareMemory",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "ADDRESS_COLLISION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.TMMU.PrepareMemory.ADDRESS_COLLISION.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "ADDRESS_COLLISION",
+          "context": {
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "operator_id": "Glyphser.TMMU.PrepareMemory",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "ADDRESS_COLLISION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.TMMU.PrepareMemory.ADDRESS_COLLISION.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "ADDRESS_COLLISION",
+          "context": {
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "operator_id": "Glyphser.TMMU.PrepareMemory",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "ADDRESS_COLLISION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.TMMU.PrepareMemory.ALLOCATION_OVERFLOW.error",
+      "expected": {
+        "error": {
+          "code_id": "ALLOCATION_OVERFLOW",
+          "context": {
+            "arena": "placeholder",
+            "offset": "placeholder",
+            "operator_id": "Glyphser.TMMU.PrepareMemory",
+            "size": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "ALLOCATION_OVERFLOW",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.TMMU.PrepareMemory.ALLOCATION_OVERFLOW.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "ALLOCATION_OVERFLOW",
+          "context": {
+            "arena": "placeholder",
+            "offset": "placeholder",
+            "operator_id": "Glyphser.TMMU.PrepareMemory",
+            "size": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "ALLOCATION_OVERFLOW",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.TMMU.PrepareMemory.ALLOCATION_OVERFLOW.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "ALLOCATION_OVERFLOW",
+          "context": {
+            "arena": "placeholder",
+            "offset": "placeholder",
+            "operator_id": "Glyphser.TMMU.PrepareMemory",
+            "size": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "ALLOCATION_OVERFLOW",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.TMMU.PrepareMemory.ARENA_TOO_SMALL.error",
+      "expected": {
+        "error": {
+          "code_id": "ARENA_TOO_SMALL",
+          "context": {
+            "arena": "placeholder",
+            "capacity": "placeholder",
+            "operator_id": "Glyphser.TMMU.PrepareMemory",
+            "required": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "ARENA_TOO_SMALL",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.TMMU.PrepareMemory.ARENA_TOO_SMALL.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "ARENA_TOO_SMALL",
+          "context": {
+            "arena": "placeholder",
+            "capacity": "placeholder",
+            "operator_id": "Glyphser.TMMU.PrepareMemory",
+            "required": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "ARENA_TOO_SMALL",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.TMMU.PrepareMemory.ARENA_TOO_SMALL.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "ARENA_TOO_SMALL",
+          "context": {
+            "arena": "placeholder",
+            "capacity": "placeholder",
+            "operator_id": "Glyphser.TMMU.PrepareMemory",
+            "required": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "ARENA_TOO_SMALL",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.TMMU.PrepareMemory.ALIGNMENT_VIOLATION.error",
+      "expected": {
+        "error": {
+          "code_id": "ALIGNMENT_VIOLATION",
+          "context": {
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "operator_id": "Glyphser.TMMU.PrepareMemory",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "ALIGNMENT_VIOLATION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.TMMU.PrepareMemory.ALIGNMENT_VIOLATION.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "ALIGNMENT_VIOLATION",
+          "context": {
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "operator_id": "Glyphser.TMMU.PrepareMemory",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "ALIGNMENT_VIOLATION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.TMMU.PrepareMemory.ALIGNMENT_VIOLATION.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "ALIGNMENT_VIOLATION",
+          "context": {
+            "arena": "placeholder",
+            "logical_slot": "placeholder",
+            "operator_id": "Glyphser.TMMU.PrepareMemory",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "ALIGNMENT_VIOLATION",
         "force_error": true
       }
     }

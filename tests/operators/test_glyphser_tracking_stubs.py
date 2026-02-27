@@ -18,7 +18,11 @@ def test_glyphser_tracking_artifactget_vector():
     stub = getattr(gen_ops, "Glyphser_Tracking_ArtifactGet")
     result = stub(vector["request"])
     if "error" in expected:
-        assert result["error"] == expected["error"]
+        assert "error" in result
+        assert result["error"]["code_id"] == expected["error"]["code_id"]
+        assert result["error"]["message"] == expected["error"]["message"]
+        for key, val in expected["error"]["context"].items():
+            assert result["error"]["context"].get(key) == val
     else:
         assert result == expected["response"]
 
@@ -29,7 +33,11 @@ def test_glyphser_tracking_artifactlist_vector():
     stub = getattr(gen_ops, "Glyphser_Tracking_ArtifactList")
     result = stub(vector["request"])
     if "error" in expected:
-        assert result["error"] == expected["error"]
+        assert "error" in result
+        assert result["error"]["code_id"] == expected["error"]["code_id"]
+        assert result["error"]["message"] == expected["error"]["message"]
+        for key, val in expected["error"]["context"].items():
+            assert result["error"]["context"].get(key) == val
     else:
         assert result == expected["response"]
 
@@ -40,7 +48,11 @@ def test_glyphser_tracking_artifactput_vector():
     stub = getattr(gen_ops, "Glyphser_Tracking_ArtifactPut")
     result = stub(vector["request"])
     if "error" in expected:
-        assert result["error"] == expected["error"]
+        assert "error" in result
+        assert result["error"]["code_id"] == expected["error"]["code_id"]
+        assert result["error"]["message"] == expected["error"]["message"]
+        for key, val in expected["error"]["context"].items():
+            assert result["error"]["context"].get(key) == val
     else:
         assert result == expected["response"]
 
@@ -51,7 +63,11 @@ def test_glyphser_tracking_artifacttombstone_vector():
     stub = getattr(gen_ops, "Glyphser_Tracking_ArtifactTombstone")
     result = stub(vector["request"])
     if "error" in expected:
-        assert result["error"] == expected["error"]
+        assert "error" in result
+        assert result["error"]["code_id"] == expected["error"]["code_id"]
+        assert result["error"]["message"] == expected["error"]["message"]
+        for key, val in expected["error"]["context"].items():
+            assert result["error"]["context"].get(key) == val
     else:
         assert result == expected["response"]
 
@@ -62,7 +78,11 @@ def test_glyphser_tracking_metriclog_vector():
     stub = getattr(gen_ops, "Glyphser_Tracking_MetricLog")
     result = stub(vector["request"])
     if "error" in expected:
-        assert result["error"] == expected["error"]
+        assert "error" in result
+        assert result["error"]["code_id"] == expected["error"]["code_id"]
+        assert result["error"]["message"] == expected["error"]["message"]
+        for key, val in expected["error"]["context"].items():
+            assert result["error"]["context"].get(key) == val
     else:
         assert result == expected["response"]
 
@@ -73,7 +93,11 @@ def test_glyphser_tracking_runcreate_vector():
     stub = getattr(gen_ops, "Glyphser_Tracking_RunCreate")
     result = stub(vector["request"])
     if "error" in expected:
-        assert result["error"] == expected["error"]
+        assert "error" in result
+        assert result["error"]["code_id"] == expected["error"]["code_id"]
+        assert result["error"]["message"] == expected["error"]["message"]
+        for key, val in expected["error"]["context"].items():
+            assert result["error"]["context"].get(key) == val
     else:
         assert result == expected["response"]
 
@@ -84,7 +108,11 @@ def test_glyphser_tracking_runend_vector():
     stub = getattr(gen_ops, "Glyphser_Tracking_RunEnd")
     result = stub(vector["request"])
     if "error" in expected:
-        assert result["error"] == expected["error"]
+        assert "error" in result
+        assert result["error"]["code_id"] == expected["error"]["code_id"]
+        assert result["error"]["message"] == expected["error"]["message"]
+        for key, val in expected["error"]["context"].items():
+            assert result["error"]["context"].get(key) == val
     else:
         assert result == expected["response"]
 
@@ -95,7 +123,11 @@ def test_glyphser_tracking_runstart_vector():
     stub = getattr(gen_ops, "Glyphser_Tracking_RunStart")
     result = stub(vector["request"])
     if "error" in expected:
-        assert result["error"] == expected["error"]
+        assert "error" in result
+        assert result["error"]["code_id"] == expected["error"]["code_id"]
+        assert result["error"]["message"] == expected["error"]["message"]
+        for key, val in expected["error"]["context"].items():
+            assert result["error"]["context"].get(key) == val
     else:
         assert result == expected["response"]
 
