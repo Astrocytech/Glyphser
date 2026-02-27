@@ -1,0 +1,29 @@
+from __future__ import annotations
+import json
+from pathlib import Path
+
+from generated import operators as gen_ops
+
+ROOT = Path(__file__).resolve().parents[2]
+VEC_ROOT = ROOT / "tests" / "conformance" / "vectors" / "operators"
+
+def _load(op_id: str) -> dict:
+    path = VEC_ROOT / (op_id.replace(".", "_") + ".json")
+    return json.loads(path.read_text(encoding="utf-8"))
+
+def test_glyphser_model_forward_stub_error():
+    data = _load("Glyphser.Model.Forward")
+    vector = data["vectors"][0]
+    expected = vector["expected"]["error"]
+    stub = getattr(gen_ops, "Glyphser_Model_Forward")
+    result = stub(vector["request"])
+    assert result["error"] == expected
+
+def test_glyphser_model_modelir_executor_stub_error():
+    data = _load("Glyphser.Model.ModelIR_Executor")
+    vector = data["vectors"][0]
+    expected = vector["expected"]["error"]
+    stub = getattr(gen_ops, "Glyphser_Model_ModelIR_Executor")
+    result = stub(vector["request"])
+    assert result["error"] == expected
+

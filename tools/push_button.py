@@ -21,6 +21,7 @@ def _steps() -> Iterable[List[str]]:
         [sys.executable, "tools/registry_gate.py"],
         [sys.executable, "tools/conformance/cli.py", "run"],
         [sys.executable, "tools/conformance/cli.py", "report"],
+        [sys.executable, "tools/vector_gate.py"],
         [sys.executable, "tools/coverage_report.py"],
         [sys.executable, "tools/codegen/generate.py"],
         [sys.executable, "tools/codegen/check_generated_drift.py"],

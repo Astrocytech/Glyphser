@@ -1,0 +1,18 @@
+{
+  "operator_id": "Glyphser.TMMU.PrepareMemory",
+  "vectors": [
+    {
+      "case_id": "Glyphser.TMMU.PrepareMemory.stub_error",
+      "expected": {
+        "error": {
+          "code_id": "PRIMITIVE_UNSUPPORTED",
+          "context": {
+            "operator_id": "Glyphser.TMMU.PrepareMemory"
+          },
+          "message": "Generated stub not implemented"
+        }
+      },
+      "request": {}
+    }
+  ]
+}

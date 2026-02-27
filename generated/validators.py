@@ -4,6 +4,22 @@ from __future__ import annotations
 
 from typing import Any, Dict, List
 
+def validate_Glyphser_Operator_Vectors(obj: Any) -> List[str]:
+    errors: List[str] = []
+    if not isinstance(obj, dict):
+        return ["expected object"]
+    if 'operator_id' not in obj:
+        errors.append("missing operator_id")
+    if 'vectors' not in obj:
+        errors.append("missing vectors")
+    if 'operator_id' in obj:
+        if not isinstance(obj['operator_id'], str):
+            errors.append("operator_id must be string")
+    if 'vectors' in obj:
+        if not isinstance(obj['vectors'], list):
+            errors.append("vectors must be array")
+    return errors
+
 def validate_API_Interfaces(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):

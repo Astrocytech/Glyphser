@@ -1,0 +1,18 @@
+{
+  "operator_id": "Glyphser.IO.SaveCheckpoint",
+  "vectors": [
+    {
+      "case_id": "Glyphser.IO.SaveCheckpoint.stub_error",
+      "expected": {
+        "error": {
+          "code_id": "PRIMITIVE_UNSUPPORTED",
+          "context": {
+            "operator_id": "Glyphser.IO.SaveCheckpoint"
+          },
+          "message": "Generated stub not implemented"
+        }
+      },
+      "request": {}
+    }
+  ]
+}

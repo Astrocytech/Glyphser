@@ -1,0 +1,18 @@
+{
+  "operator_id": "Glyphser.Data.NextBatch",
+  "vectors": [
+    {
+      "case_id": "Glyphser.Data.NextBatch.stub_error",
+      "expected": {
+        "error": {
+          "code_id": "PRIMITIVE_UNSUPPORTED",
+          "context": {
+            "operator_id": "Glyphser.Data.NextBatch"
+          },
+          "message": "Generated stub not implemented"
+        }
+      },
+      "request": {}
+    }
+  ]
+}

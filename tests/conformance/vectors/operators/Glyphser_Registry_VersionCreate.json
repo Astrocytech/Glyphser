@@ -1,0 +1,18 @@
+{
+  "operator_id": "Glyphser.Registry.VersionCreate",
+  "vectors": [
+    {
+      "case_id": "Glyphser.Registry.VersionCreate.stub_error",
+      "expected": {
+        "error": {
+          "code_id": "PRIMITIVE_UNSUPPORTED",
+          "context": {
+            "operator_id": "Glyphser.Registry.VersionCreate"
+          },
+          "message": "Generated stub not implemented"
+        }
+      },
+      "request": {}
+    }
+  ]
+}

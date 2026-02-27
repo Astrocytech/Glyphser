@@ -1,0 +1,18 @@
+{
+  "operator_id": "Glyphser.Tracking.MetricLog",
+  "vectors": [
+    {
+      "case_id": "Glyphser.Tracking.MetricLog.stub_error",
+      "expected": {
+        "error": {
+          "code_id": "PRIMITIVE_UNSUPPORTED",
+          "context": {
+            "operator_id": "Glyphser.Tracking.MetricLog"
+          },
+          "message": "Generated stub not implemented"
+        }
+      },
+      "request": {}
+    }
+  ]
+}

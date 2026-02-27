@@ -1,0 +1,18 @@
+{
+  "operator_id": "Glyphser.Monitor.DriftCompute",
+  "vectors": [
+    {
+      "case_id": "Glyphser.Monitor.DriftCompute.stub_error",
+      "expected": {
+        "error": {
+          "code_id": "PRIMITIVE_UNSUPPORTED",
+          "context": {
+            "operator_id": "Glyphser.Monitor.DriftCompute"
+          },
+          "message": "Generated stub not implemented"
+        }
+      },
+      "request": {}
+    }
+  ]
+}

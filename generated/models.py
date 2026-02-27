@@ -6,6 +6,11 @@ from dataclasses import dataclass
 from typing import Any, Dict, List, Optional
 
 @dataclass
+class Glyphser Operator Vectors:
+    operator_id: str
+    vectors: List[Any]
+
+@dataclass
 class API Interfaces:
     interface_hash: str
     interfaces: List[Any]

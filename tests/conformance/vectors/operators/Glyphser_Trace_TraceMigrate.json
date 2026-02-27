@@ -1,0 +1,18 @@
+{
+  "operator_id": "Glyphser.Trace.TraceMigrate",
+  "vectors": [
+    {
+      "case_id": "Glyphser.Trace.TraceMigrate.stub_error",
+      "expected": {
+        "error": {
+          "code_id": "PRIMITIVE_UNSUPPORTED",
+          "context": {
+            "operator_id": "Glyphser.Trace.TraceMigrate"
+          },
+          "message": "Generated stub not implemented"
+        }
+      },
+      "request": {}
+    }
+  ]
+}

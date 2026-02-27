@@ -1,0 +1,18 @@
+{
+  "operator_id": "Glyphser.Monitor.Emit",
+  "vectors": [
+    {
+      "case_id": "Glyphser.Monitor.Emit.stub_error",
+      "expected": {
+        "error": {
+          "code_id": "PRIMITIVE_UNSUPPORTED",
+          "context": {
+            "operator_id": "Glyphser.Monitor.Emit"
+          },
+          "message": "Generated stub not implemented"
+        }
+      },
+      "request": {}
+    }
+  ]
+}

@@ -28,8 +28,9 @@ def _find_vector_files() -> Dict[str, List[str]]:
             data = json.loads(path.read_text(encoding="utf-8"))
         except Exception:
             continue
+        file_operator_id = data.get("operator_id")
         for vector in data.get("vectors", []):
-            operator_id = vector.get("operator_id")
+            operator_id = vector.get("operator_id") or file_operator_id
             if not operator_id:
                 continue
             rel = str(path.relative_to(ROOT)).replace("\\", "/")

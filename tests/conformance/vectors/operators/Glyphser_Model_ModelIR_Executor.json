@@ -1,0 +1,18 @@
+{
+  "operator_id": "Glyphser.Model.ModelIR_Executor",
+  "vectors": [
+    {
+      "case_id": "Glyphser.Model.ModelIR_Executor.stub_error",
+      "expected": {
+        "error": {
+          "code_id": "PRIMITIVE_UNSUPPORTED",
+          "context": {
+            "operator_id": "Glyphser.Model.ModelIR_Executor"
+          },
+          "message": "Generated stub not implemented"
+        }
+      },
+      "request": {}
+    }
+  ]
+}

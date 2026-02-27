@@ -11,7 +11,7 @@
   "outputs_with_hashes": [
     {
       "path": "generated/models.py",
-      "sha256": "d5ae89a6294d322d68995d094976575642db2e913bca343081536aea644c7217"
+      "sha256": "196d58154f265aa23266ad5fbc83f4a65941bf2c3fdb120984e792615f49b9e5"
     },
     {
       "path": "generated/operators.py",
@@ -19,7 +19,7 @@
     },
     {
       "path": "generated/validators.py",
-      "sha256": "6d743b1d7e4fbeba8f0f2dee713f4ca0e7d396db53fb5f828bccf2a933388c93"
+      "sha256": "72a0eb78c4be15c54b9b5e57c156e5a26e09cb4d75990bec6df19009a70e0c9f"
     },
     {
       "path": "generated/error.py",
@@ -31,6 +31,10 @@
     }
   ],
   "schemas": [
+    {
+      "path": "schemas/l3_operator_vectors.schema.json",
+      "sha256": "2dc4f0f2a727e32689e621c35d63eae57c07dcd8650a3e802014e2cd467b88c3"
+    },
     {
       "path": "schemas/pilot/l1_api_interfaces.schema.json",
       "sha256": "328faa577872bbad64a58b6686322c4bbd97fab626c393f58aaa6de23c3e452b"
