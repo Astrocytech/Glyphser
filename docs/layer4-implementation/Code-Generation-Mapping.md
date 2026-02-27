@@ -93,6 +93,7 @@
 | `Glyphser.DifferentialPrivacy.Apply` | `src/dp/apply.py` | `dp_apply` | `py_operator_stub` | privacy team | `["ADVANCES_RNG","MUTATES_ACCOUNTANT"]` | `sha256:df574eb8b39a83a8107bce17dbcddbd3c1751aa51ccd6f9dcdd0e95ddab6b52f` |
 | `Glyphser.TMMU.PrepareMemory` | `src/tmmu/prepare_memory.py` | `prepare_memory` | `py_operator_stub` | runtime team | `["ALLOCATES_MEMORY"]` | `sha256:87ad2acf49cc0081824d67a2b0838d03d3bd2f3f2d3ae19a9b07af50bc264b09` |
 | `Glyphser.Trace.ComputeTraceHash` | `src/trace/compute_trace_hash.py` | `compute_trace_hash` | `py_operator_stub` | trace team | `["NONE"]` | `sha256:688952452590da608369e8ce224f014a053ccf9ec0b0f1d58766a6433d62c6bb` |
+| `Glyphser.Error.Emit` | `src/error/emit.py` | `emit_error` | `py_operator_stub` | core team | `["NONE"]` | `sha256:0cb1f29e7f28d98dc020d74fdac09b1d56e18e137e6a5f445447480bd450785c` |
 | `Glyphser.IO.SaveCheckpoint` | `src/io/save_checkpoint.py` | `save_checkpoint` | `py_operator_stub` | runtime team | `["PERFORMS_IO"]` | `sha256:7500cd45013f340439c196a8119f1da650f325f9b9fb22567574df80a78c5d77` |
 | `Glyphser.Certificate.EvidenceValidate` | `src/cert/evidence_validate.py` | `evidence_validate` | `py_operator_stub` | security team | `["NONE"]` | `sha256:9d55661802f55dacd9695031acfeed3745f9a501b7db5606b814ad546116d5b1` |
 | `Glyphser.Tracking.MetricLog` | `src/tracking/metric_log.py` | `metric_log` | `py_operator_stub` | platform team | `["PERFORMS_IO"]` | `sha256:2bfc26d97f932a7f4dc99529872f54dcee07c1f37fa160dc1f09d4bbc0052553` |

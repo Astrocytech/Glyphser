@@ -1,0 +1,13 @@
+{
+  "run": {
+    "run_id": "mini-run-1"
+  },
+  "metric": {
+    "name": "loss",
+    "value": 1.0
+  },
+  "monitor": {
+    "monitor_id": "mini-monitor-1",
+    "event": "heartbeat"
+  }
+}

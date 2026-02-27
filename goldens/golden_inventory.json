@@ -1,0 +1,21 @@
+{
+  "manifest_version": 1,
+  "required": [
+    {
+      "golden_id": "golden_kernel_train",
+      "sha256": "aa01aa01aa01aa01aa01aa01aa01aa01aa01aa01aa01aa01aa01aa01aa01aa01"
+    },
+    {
+      "golden_id": "golden_data_nextbatch",
+      "sha256": "bb02bb02bb02bb02bb02bb02bb02bb02bb02bb02bb02bb02bb02bb02bb02bb02"
+    },
+    {
+      "golden_id": "golden_modelir_exec",
+      "sha256": "cc03cc03cc03cc03cc03cc03cc03cc03cc03cc03cc03cc03cc03cc03cc03cc03"
+    },
+    {
+      "golden_id": "golden_dp_apply",
+      "sha256": "dd04dd04dd04dd04dd04dd04dd04dd04dd04dd04dd04dd04dd04dd04dd04dd04"
+    }
+  ]
+}
