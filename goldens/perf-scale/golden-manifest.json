@@ -1,0 +1,10 @@
+{
+  "files": [
+    {
+      "path": "goldens/perf-scale/forward_expected.json",
+      "sha256": "684580cd6520df8c86137e05fce62303a40890d1fe538f20c03878d1d52c694c",
+      "size_bytes": 8912
+    }
+  ],
+  "golden_set_id": "perf-scale-goldens-v1"
+}

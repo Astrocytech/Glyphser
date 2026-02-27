@@ -13,6 +13,10 @@ Status: ACTIVE
 - Replay determinism: `vectors/replay-determinism/vectors.json`
 - Registry lifecycle: `vectors/registry-lifecycle/vectors.json`
 - Tracking/monitoring: `vectors/tracking-monitoring/vectors.json`
+- Failure injection: `vectors/failure-injection/vectors.json`
+- Perf/scale: `vectors/perf-scale/vectors.json`
+- Failure injection: `vectors/failure-injection/vectors.json`
+- Perf/scale: `vectors/perf-scale/vectors.json`
 - Checkpoint/restore: `vectors/checkpoint-restore/vectors.json`
 - Replay determinism: `vectors/replay-determinism/vectors.json`
 - Registry lifecycle: `vectors/registry-lifecycle/vectors.json`
