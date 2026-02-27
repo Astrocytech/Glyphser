@@ -8,6 +8,28 @@
     "generated/error.py",
     "generated/bindings.py"
   ],
+  "outputs_with_hashes": [
+    {
+      "path": "generated/models.py",
+      "sha256": "d5ae89a6294d322d68995d094976575642db2e913bca343081536aea644c7217"
+    },
+    {
+      "path": "generated/operators.py",
+      "sha256": "6e1f4986a0abf1170110f1a471030a997001f1b5cf7e55275a5aaf0b74bee66a"
+    },
+    {
+      "path": "generated/validators.py",
+      "sha256": "6d743b1d7e4fbeba8f0f2dee713f4ca0e7d396db53fb5f828bccf2a933388c93"
+    },
+    {
+      "path": "generated/error.py",
+      "sha256": "9606fc1ba9929fe4453343017aaf6b32db13c4e378d57081e19d6fcc512e1e18"
+    },
+    {
+      "path": "generated/bindings.py",
+      "sha256": "ada04914e715dc3d8eeb6c9ea9cc3b15029fcf7a86a346b15df1faf7a138af98"
+    }
+  ],
   "schemas": [
     {
       "path": "schemas/pilot/l1_api_interfaces.schema.json",

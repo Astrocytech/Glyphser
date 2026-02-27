@@ -248,6 +248,17 @@ def generate() -> None:
     bindings_out = _load_template("bindings.py.tpl").format(source_summary=source_summary)
     (OUT_DIR / "bindings.py").write_text(bindings_out, encoding="utf-8")
 
+    output_hashes = [
+        {"path": path, "sha256": _sha256_hex_path(ROOT / path)}
+        for path in [
+            "generated/models.py",
+            "generated/operators.py",
+            "generated/validators.py",
+            "generated/error.py",
+            "generated/bindings.py",
+        ]
+    ]
+
     manifest = {
         "generator": "tools/codegen/generate.py",
         "operator_registry_root_hash": _registry_root_hash(),
@@ -260,6 +271,7 @@ def generate() -> None:
             "generated/error.py",
             "generated/bindings.py",
         ],
+        "outputs_with_hashes": output_hashes,
     }
     (OUT_DIR / "codegen_manifest.json").write_text(
         json.dumps(manifest, indent=2, sort_keys=True) + "\n",
