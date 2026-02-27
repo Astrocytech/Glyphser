@@ -2,17 +2,21 @@
   "operator_id": "Glyphser.Model.Forward",
   "vectors": [
     {
-      "case_id": "Glyphser.Model.Forward.stub_error",
+      "case_id": "Glyphser.Model.Forward.ok",
       "expected": {
-        "error": {
-          "code_id": "PRIMITIVE_UNSUPPORTED",
-          "context": {
-            "operator_id": "Glyphser.Model.Forward"
-          },
-          "message": "Generated stub not implemented"
+        "response": {
+          "outputs": [
+            1.0,
+            2.0
+          ]
         }
       },
-      "request": {}
+      "request": {
+        "inputs": [
+          1.0,
+          2.0
+        ]
+      }
     }
   ]
 }

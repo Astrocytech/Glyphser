@@ -2,17 +2,16 @@
   "operator_id": "Glyphser.Backend.LoadDriver",
   "vectors": [
     {
-      "case_id": "Glyphser.Backend.LoadDriver.stub_error",
+      "case_id": "Glyphser.Backend.LoadDriver.ok",
       "expected": {
-        "error": {
-          "code_id": "PRIMITIVE_UNSUPPORTED",
-          "context": {
-            "operator_id": "Glyphser.Backend.LoadDriver"
-          },
-          "message": "Generated stub not implemented"
+        "response": {
+          "driver_id": "default",
+          "status": "OK"
         }
       },
-      "request": {}
+      "request": {
+        "driver_id": "default"
+      }
     }
   ]
 }

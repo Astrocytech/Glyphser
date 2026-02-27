@@ -2,17 +2,25 @@
   "operator_id": "Glyphser.IO.SaveCheckpoint",
   "vectors": [
     {
-      "case_id": "Glyphser.IO.SaveCheckpoint.stub_error",
+      "case_id": "Glyphser.IO.SaveCheckpoint.ok",
       "expected": {
-        "error": {
-          "code_id": "PRIMITIVE_UNSUPPORTED",
-          "context": {
-            "operator_id": "Glyphser.IO.SaveCheckpoint"
-          },
-          "message": "Generated stub not implemented"
+        "response": {
+          "checkpoint_hash": "fe63b994c626b093cac6b71396067a4bd614fd7c4ed261119733f2f8f9320ec9"
         }
       },
-      "request": {}
+      "request": {
+        "path": "temp/checkpoint-restore/ckpt-1.json",
+        "state": {
+          "checkpoint_id": "ckpt-1",
+          "global_step": 1,
+          "payload": {
+            "w": [
+              0.1,
+              0.2
+            ]
+          }
+        }
+      }
     }
   ]
 }

@@ -11,19 +11,25 @@ def _load(op_id: str) -> dict:
     path = VEC_ROOT / (op_id.replace(".", "_") + ".json")
     return json.loads(path.read_text(encoding="utf-8"))
 
-def test_glyphser_checkpoint_checkpointmigrate_stub_error():
+def test_glyphser_checkpoint_checkpointmigrate_vector():
     data = _load("Glyphser.Checkpoint.CheckpointMigrate")
     vector = data["vectors"][0]
-    expected = vector["expected"]["error"]
+    expected = vector["expected"]
     stub = getattr(gen_ops, "Glyphser_Checkpoint_CheckpointMigrate")
     result = stub(vector["request"])
-    assert result["error"] == expected
+    if "error" in expected:
+        assert result["error"] == expected["error"]
+    else:
+        assert result == expected["response"]
 
-def test_glyphser_checkpoint_restore_stub_error():
+def test_glyphser_checkpoint_restore_vector():
     data = _load("Glyphser.Checkpoint.Restore")
     vector = data["vectors"][0]
-    expected = vector["expected"]["error"]
+    expected = vector["expected"]
     stub = getattr(gen_ops, "Glyphser_Checkpoint_Restore")
     result = stub(vector["request"])
-    assert result["error"] == expected
+    if "error" in expected:
+        assert result["error"] == expected["error"]
+    else:
+        assert result == expected["response"]
 

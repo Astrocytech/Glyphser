@@ -17,6 +17,9 @@ def test_operator_vectors_stub_errors():
         func_name = operator_id.replace(".", "_")
         stub = getattr(gen_ops, func_name)
         for vector in payload.get("vectors", []):
-            expected = vector["expected"]["error"]
+            expected = vector["expected"]
             result = stub(vector["request"])
-            assert result["error"] == expected
+            if "error" in expected:
+                assert result["error"] == expected["error"]
+            else:
+                assert result == expected["response"]

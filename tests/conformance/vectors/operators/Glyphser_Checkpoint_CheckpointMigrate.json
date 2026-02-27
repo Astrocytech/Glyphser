@@ -2,17 +2,15 @@
   "operator_id": "Glyphser.Checkpoint.CheckpointMigrate",
   "vectors": [
     {
-      "case_id": "Glyphser.Checkpoint.CheckpointMigrate.stub_error",
+      "case_id": "Glyphser.Checkpoint.CheckpointMigrate.ok",
       "expected": {
-        "error": {
-          "code_id": "PRIMITIVE_UNSUPPORTED",
-          "context": {
-            "operator_id": "Glyphser.Checkpoint.CheckpointMigrate"
-          },
-          "message": "Generated stub not implemented"
+        "response": {
+          "status": "OK"
         }
       },
-      "request": {}
+      "request": {
+        "checkpoint_id": "ckpt-1"
+      }
     }
   ]
 }

@@ -2,14 +2,11 @@
   "operator_id": "Glyphser.Tracking.ArtifactList",
   "vectors": [
     {
-      "case_id": "Glyphser.Tracking.ArtifactList.stub_error",
+      "case_id": "Glyphser.Tracking.ArtifactList.ok",
       "expected": {
-        "error": {
-          "code_id": "PRIMITIVE_UNSUPPORTED",
-          "context": {
-            "operator_id": "Glyphser.Tracking.ArtifactList"
-          },
-          "message": "Generated stub not implemented"
+        "response": {
+          "items": [],
+          "status": "OK"
         }
       },
       "request": {}

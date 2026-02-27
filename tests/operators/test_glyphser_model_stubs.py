@@ -11,19 +11,25 @@ def _load(op_id: str) -> dict:
     path = VEC_ROOT / (op_id.replace(".", "_") + ".json")
     return json.loads(path.read_text(encoding="utf-8"))
 
-def test_glyphser_model_forward_stub_error():
+def test_glyphser_model_forward_vector():
     data = _load("Glyphser.Model.Forward")
     vector = data["vectors"][0]
-    expected = vector["expected"]["error"]
+    expected = vector["expected"]
     stub = getattr(gen_ops, "Glyphser_Model_Forward")
     result = stub(vector["request"])
-    assert result["error"] == expected
+    if "error" in expected:
+        assert result["error"] == expected["error"]
+    else:
+        assert result == expected["response"]
 
-def test_glyphser_model_modelir_executor_stub_error():
+def test_glyphser_model_modelir_executor_vector():
     data = _load("Glyphser.Model.ModelIR_Executor")
     vector = data["vectors"][0]
-    expected = vector["expected"]["error"]
+    expected = vector["expected"]
     stub = getattr(gen_ops, "Glyphser_Model_ModelIR_Executor")
     result = stub(vector["request"])
-    assert result["error"] == expected
+    if "error" in expected:
+        assert result["error"] == expected["error"]
+    else:
+        assert result == expected["response"]
 

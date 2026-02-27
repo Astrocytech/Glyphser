@@ -2,17 +2,15 @@
   "operator_id": "Glyphser.Tracking.ArtifactPut",
   "vectors": [
     {
-      "case_id": "Glyphser.Tracking.ArtifactPut.stub_error",
+      "case_id": "Glyphser.Tracking.ArtifactPut.ok",
       "expected": {
-        "error": {
-          "code_id": "PRIMITIVE_UNSUPPORTED",
-          "context": {
-            "operator_id": "Glyphser.Tracking.ArtifactPut"
-          },
-          "message": "Generated stub not implemented"
+        "response": {
+          "status": "OK"
         }
       },
-      "request": {}
+      "request": {
+        "artifact_id": "a1"
+      }
     }
   ]
 }

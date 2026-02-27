@@ -2,9 +2,34 @@
 # Source: registry+schemas
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Any, Dict
 
 from src.glyphser.error.emit import emit_error
+from src.glyphser.checkpoint.write import save_checkpoint
+from src.glyphser.checkpoint.restore import restore_checkpoint
+from src.glyphser.checkpoint.migrate_checkpoint import checkpoint_migrate
+from src.glyphser.trace.migrate_trace import migrate_trace
+from src.glyphser.registry.version_create import version_create
+from src.glyphser.registry.stage_transition import stage_transition
+from src.glyphser.tracking.run_create import run_create
+from src.glyphser.tracking.run_start import run_start
+from src.glyphser.tracking.run_end import run_end
+from src.glyphser.tracking.metric_log import metric_log
+from src.glyphser.tracking.artifact_put import artifact_put
+from src.glyphser.tracking.artifact_get import artifact_get
+from src.glyphser.tracking.artifact_list import artifact_list
+from src.glyphser.tracking.artifact_tombstone import artifact_tombstone
+from src.glyphser.monitor.register import monitor_register
+from src.glyphser.monitor.emit import monitor_emit
+from src.glyphser.monitor.drift_compute import drift_compute
+from src.glyphser.backend.load_driver import load_driver
+from src.glyphser.dp.apply import dp_apply
+from src.glyphser.model.forward import forward
+from src.glyphser.tmmu.prepare_memory import prepare_memory
+from src.glyphser.cert.evidence_validate import evidence_validate
+from src.glyphser.config.migrate_manifest import manifest_migrate
+from src.glyphser.legacy_import.legacy_framework import legacy_framework_import
 
 def Glyphser_Data_NextBatch(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Data.NextBatch stub."""
@@ -12,7 +37,7 @@ def Glyphser_Data_NextBatch(request: Dict[str, Any]) -> Dict[str, Any]:
 
 def Glyphser_Model_Forward(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Model.Forward stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Model.Forward")}
+    return forward(request)
 
 def Glyphser_Model_ModelIR_Executor(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Model.ModelIR_Executor stub."""
@@ -20,23 +45,29 @@ def Glyphser_Model_ModelIR_Executor(request: Dict[str, Any]) -> Dict[str, Any]:
 
 def Glyphser_DifferentialPrivacy_Apply(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.DifferentialPrivacy.Apply stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.DifferentialPrivacy.Apply")}
+    return dp_apply(request)
 
 def Glyphser_TMMU_PrepareMemory(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.TMMU.PrepareMemory stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.TMMU.PrepareMemory")}
+    return prepare_memory(request)
 
 def Glyphser_Backend_LoadDriver(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Backend.LoadDriver stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Backend.LoadDriver")}
+    return load_driver(request)
 
 def Glyphser_IO_SaveCheckpoint(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.IO.SaveCheckpoint stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.IO.SaveCheckpoint")}
+    state = request.get("state", {})
+    path = request.get("path")
+    if not path:
+        return {"error": emit_error("INPUT_MISSING", "missing path", operator_id="Glyphser.IO.SaveCheckpoint")}
+    digest = save_checkpoint(state, Path(path))
+    return {"checkpoint_hash": digest}
 
 def Glyphser_Checkpoint_Restore(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Checkpoint.Restore stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Checkpoint.Restore")}
+    result = restore_checkpoint(request)
+    return result
 
 def Glyphser_Error_Emit(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Error.Emit stub."""
@@ -44,73 +75,73 @@ def Glyphser_Error_Emit(request: Dict[str, Any]) -> Dict[str, Any]:
 
 def Glyphser_Tracking_RunCreate(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Tracking.RunCreate stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Tracking.RunCreate")}
+    return run_create(request)
 
 def Glyphser_Tracking_RunStart(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Tracking.RunStart stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Tracking.RunStart")}
+    return run_start(request)
 
 def Glyphser_Tracking_RunEnd(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Tracking.RunEnd stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Tracking.RunEnd")}
+    return run_end(request)
 
 def Glyphser_Tracking_MetricLog(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Tracking.MetricLog stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Tracking.MetricLog")}
+    return metric_log(request)
 
 def Glyphser_Tracking_ArtifactPut(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Tracking.ArtifactPut stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Tracking.ArtifactPut")}
+    return artifact_put(request)
 
 def Glyphser_Tracking_ArtifactGet(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Tracking.ArtifactGet stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Tracking.ArtifactGet")}
+    return artifact_get(request)
 
 def Glyphser_Tracking_ArtifactList(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Tracking.ArtifactList stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Tracking.ArtifactList")}
+    return artifact_list(request)
 
 def Glyphser_Tracking_ArtifactTombstone(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Tracking.ArtifactTombstone stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Tracking.ArtifactTombstone")}
+    return artifact_tombstone(request)
 
 def Glyphser_Registry_VersionCreate(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Registry.VersionCreate stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Registry.VersionCreate")}
+    return version_create(request)
 
 def Glyphser_Registry_StageTransition(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Registry.StageTransition stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Registry.StageTransition")}
+    return stage_transition(request)
 
 def Glyphser_Monitor_Register(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Monitor.Register stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Monitor.Register")}
+    return monitor_register(request)
 
 def Glyphser_Monitor_Emit(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Monitor.Emit stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Monitor.Emit")}
+    return monitor_emit(request)
 
 def Glyphser_Monitor_DriftCompute(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Monitor.DriftCompute stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Monitor.DriftCompute")}
+    return drift_compute(request)
 
 def Glyphser_Certificate_EvidenceValidate(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Certificate.EvidenceValidate stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Certificate.EvidenceValidate")}
+    return evidence_validate(request)
 
 def Glyphser_Config_ManifestMigrate(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Config.ManifestMigrate stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Config.ManifestMigrate")}
+    return manifest_migrate(request)
 
 def Glyphser_Checkpoint_CheckpointMigrate(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Checkpoint.CheckpointMigrate stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Checkpoint.CheckpointMigrate")}
+    return checkpoint_migrate(request)
 
 def Glyphser_Trace_TraceMigrate(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Trace.TraceMigrate stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Trace.TraceMigrate")}
+    return migrate_trace(request)
 
 def Glyphser_Import_LegacyFramework(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Import.LegacyFramework stub."""
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Import.LegacyFramework")}
+    return legacy_framework_import(request)
 

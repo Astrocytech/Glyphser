@@ -2,17 +2,18 @@
   "operator_id": "Glyphser.Registry.StageTransition",
   "vectors": [
     {
-      "case_id": "Glyphser.Registry.StageTransition.stub_error",
+      "case_id": "Glyphser.Registry.StageTransition.ok",
       "expected": {
-        "error": {
-          "code_id": "PRIMITIVE_UNSUPPORTED",
-          "context": {
-            "operator_id": "Glyphser.Registry.StageTransition"
-          },
-          "message": "Generated stub not implemented"
+        "response": {
+          "from": "DRAFT",
+          "status": "OK",
+          "to": "ACTIVE"
         }
       },
-      "request": {}
+      "request": {
+        "from": "DRAFT",
+        "to": "ACTIVE"
+      }
     }
   ]
 }

@@ -2,17 +2,15 @@
   "operator_id": "Glyphser.Config.ManifestMigrate",
   "vectors": [
     {
-      "case_id": "Glyphser.Config.ManifestMigrate.stub_error",
+      "case_id": "Glyphser.Config.ManifestMigrate.ok",
       "expected": {
-        "error": {
-          "code_id": "PRIMITIVE_UNSUPPORTED",
-          "context": {
-            "operator_id": "Glyphser.Config.ManifestMigrate"
-          },
-          "message": "Generated stub not implemented"
+        "response": {
+          "status": "OK"
         }
       },
-      "request": {}
+      "request": {
+        "manifest_id": "m1"
+      }
     }
   ]
 }

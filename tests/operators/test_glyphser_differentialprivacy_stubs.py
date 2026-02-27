@@ -11,11 +11,14 @@ def _load(op_id: str) -> dict:
     path = VEC_ROOT / (op_id.replace(".", "_") + ".json")
     return json.loads(path.read_text(encoding="utf-8"))
 
-def test_glyphser_differentialprivacy_apply_stub_error():
+def test_glyphser_differentialprivacy_apply_vector():
     data = _load("Glyphser.DifferentialPrivacy.Apply")
     vector = data["vectors"][0]
-    expected = vector["expected"]["error"]
+    expected = vector["expected"]
     stub = getattr(gen_ops, "Glyphser_DifferentialPrivacy_Apply")
     result = stub(vector["request"])
-    assert result["error"] == expected
+    if "error" in expected:
+        assert result["error"] == expected["error"]
+    else:
+        assert result == expected["response"]
 

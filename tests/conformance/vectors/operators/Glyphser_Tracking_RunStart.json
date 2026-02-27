@@ -2,17 +2,16 @@
   "operator_id": "Glyphser.Tracking.RunStart",
   "vectors": [
     {
-      "case_id": "Glyphser.Tracking.RunStart.stub_error",
+      "case_id": "Glyphser.Tracking.RunStart.ok",
       "expected": {
-        "error": {
-          "code_id": "PRIMITIVE_UNSUPPORTED",
-          "context": {
-            "operator_id": "Glyphser.Tracking.RunStart"
-          },
-          "message": "Generated stub not implemented"
+        "response": {
+          "run_id": "run-1",
+          "status": "OK"
         }
       },
-      "request": {}
+      "request": {
+        "run_id": "run-1"
+      }
     }
   ]
 }

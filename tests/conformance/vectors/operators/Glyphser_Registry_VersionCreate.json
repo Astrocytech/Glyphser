@@ -2,17 +2,17 @@
   "operator_id": "Glyphser.Registry.VersionCreate",
   "vectors": [
     {
-      "case_id": "Glyphser.Registry.VersionCreate.stub_error",
+      "case_id": "Glyphser.Registry.VersionCreate.ok",
       "expected": {
-        "error": {
-          "code_id": "PRIMITIVE_UNSUPPORTED",
-          "context": {
-            "operator_id": "Glyphser.Registry.VersionCreate"
-          },
-          "message": "Generated stub not implemented"
+        "response": {
+          "status": "OK",
+          "version": "v1"
         }
       },
-      "request": {}
+      "request": {
+        "notes": "init",
+        "version": "v1"
+      }
     }
   ]
 }

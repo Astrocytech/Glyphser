@@ -125,15 +125,97 @@ def _operator_stub_name(operator_id: str) -> str:
 
 def _render_operator_stubs(records: Iterable[Dict[str, Any]]) -> str:
     blocks: List[str] = []
+    implemented = {
+        "Glyphser.Backend.LoadDriver",
+        "Glyphser.IO.SaveCheckpoint",
+        "Glyphser.Checkpoint.Restore",
+        "Glyphser.Checkpoint.CheckpointMigrate",
+        "Glyphser.Config.ManifestMigrate",
+        "Glyphser.Import.LegacyFramework",
+        "Glyphser.DifferentialPrivacy.Apply",
+        "Glyphser.Model.Forward",
+        "Glyphser.TMMU.PrepareMemory",
+        "Glyphser.Certificate.EvidenceValidate",
+        "Glyphser.Trace.TraceMigrate",
+        "Glyphser.Registry.VersionCreate",
+        "Glyphser.Registry.StageTransition",
+        "Glyphser.Tracking.RunCreate",
+        "Glyphser.Tracking.RunStart",
+        "Glyphser.Tracking.RunEnd",
+        "Glyphser.Tracking.MetricLog",
+        "Glyphser.Tracking.ArtifactPut",
+        "Glyphser.Tracking.ArtifactGet",
+        "Glyphser.Tracking.ArtifactList",
+        "Glyphser.Tracking.ArtifactTombstone",
+        "Glyphser.Monitor.Register",
+        "Glyphser.Monitor.Emit",
+        "Glyphser.Monitor.DriftCompute",
+    }
     for record in records:
         operator_id = record.get("operator_id", "")
         func_name = _operator_stub_name(operator_id)
         blocks.append(f"def {func_name}(request: Dict[str, Any]) -> Dict[str, Any]:")
         blocks.append(f"    \"\"\"{operator_id} stub.\"\"\"")
-        blocks.append(
-            "    return {\"error\": emit_error(\"PRIMITIVE_UNSUPPORTED\", "
-            "\"Generated stub not implemented\", operator_id=\"%s\")}" % operator_id
-        )
+        if operator_id in implemented:
+            if operator_id == "Glyphser.IO.SaveCheckpoint":
+                blocks.append("    state = request.get(\"state\", {})")
+                blocks.append("    path = request.get(\"path\")")
+                blocks.append("    if not path:")
+                blocks.append("        return {\"error\": emit_error(\"INPUT_MISSING\", \"missing path\", operator_id=\"%s\")}" % operator_id)
+                blocks.append("    digest = save_checkpoint(state, Path(path))")
+                blocks.append("    return {\"checkpoint_hash\": digest}")
+            elif operator_id == "Glyphser.Checkpoint.Restore":
+                blocks.append("    result = restore_checkpoint(request)")
+                blocks.append("    return result")
+            elif operator_id == "Glyphser.Checkpoint.CheckpointMigrate":
+                blocks.append("    return checkpoint_migrate(request)")
+            elif operator_id == "Glyphser.Config.ManifestMigrate":
+                blocks.append("    return manifest_migrate(request)")
+            elif operator_id == "Glyphser.Import.LegacyFramework":
+                blocks.append("    return legacy_framework_import(request)")
+            elif operator_id == "Glyphser.DifferentialPrivacy.Apply":
+                blocks.append("    return dp_apply(request)")
+            elif operator_id == "Glyphser.Model.Forward":
+                blocks.append("    return forward(request)")
+            elif operator_id == "Glyphser.TMMU.PrepareMemory":
+                blocks.append("    return prepare_memory(request)")
+            elif operator_id == "Glyphser.Certificate.EvidenceValidate":
+                blocks.append("    return evidence_validate(request)")
+            elif operator_id == "Glyphser.Trace.TraceMigrate":
+                blocks.append("    return migrate_trace(request)")
+            elif operator_id == "Glyphser.Registry.VersionCreate":
+                blocks.append("    return version_create(request)")
+            elif operator_id == "Glyphser.Registry.StageTransition":
+                blocks.append("    return stage_transition(request)")
+            elif operator_id == "Glyphser.Tracking.RunCreate":
+                blocks.append("    return run_create(request)")
+            elif operator_id == "Glyphser.Tracking.RunStart":
+                blocks.append("    return run_start(request)")
+            elif operator_id == "Glyphser.Tracking.RunEnd":
+                blocks.append("    return run_end(request)")
+            elif operator_id == "Glyphser.Tracking.MetricLog":
+                blocks.append("    return metric_log(request)")
+            elif operator_id == "Glyphser.Tracking.ArtifactPut":
+                blocks.append("    return artifact_put(request)")
+            elif operator_id == "Glyphser.Tracking.ArtifactGet":
+                blocks.append("    return artifact_get(request)")
+            elif operator_id == "Glyphser.Tracking.ArtifactList":
+                blocks.append("    return artifact_list(request)")
+            elif operator_id == "Glyphser.Tracking.ArtifactTombstone":
+                blocks.append("    return artifact_tombstone(request)")
+            elif operator_id == "Glyphser.Monitor.Register":
+                blocks.append("    return monitor_register(request)")
+            elif operator_id == "Glyphser.Monitor.Emit":
+                blocks.append("    return monitor_emit(request)")
+            elif operator_id == "Glyphser.Monitor.DriftCompute":
+                blocks.append("    return drift_compute(request)")
+            elif operator_id == "Glyphser.Backend.LoadDriver":
+                blocks.append("    return load_driver(request)")
+        else:
+            blocks.append(
+                "    return {\"error\": emit_error(\"PRIMITIVE_UNSUPPORTED\", "
+                "\"Generated stub not implemented\", operator_id=\"%s\")}" % operator_id
+            )
         blocks.append("")
     return "\n".join(blocks).strip() + "\n"
 

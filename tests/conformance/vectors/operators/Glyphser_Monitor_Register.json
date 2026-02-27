@@ -2,17 +2,15 @@
   "operator_id": "Glyphser.Monitor.Register",
   "vectors": [
     {
-      "case_id": "Glyphser.Monitor.Register.stub_error",
+      "case_id": "Glyphser.Monitor.Register.ok",
       "expected": {
-        "error": {
-          "code_id": "PRIMITIVE_UNSUPPORTED",
-          "context": {
-            "operator_id": "Glyphser.Monitor.Register"
-          },
-          "message": "Generated stub not implemented"
+        "response": {
+          "status": "OK"
         }
       },
-      "request": {}
+      "request": {
+        "monitor_id": "m1"
+      }
     }
   ]
 }

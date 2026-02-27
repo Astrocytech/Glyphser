@@ -2,17 +2,32 @@
   "operator_id": "Glyphser.Trace.TraceMigrate",
   "vectors": [
     {
-      "case_id": "Glyphser.Trace.TraceMigrate.stub_error",
+      "case_id": "Glyphser.Trace.TraceMigrate.ok",
       "expected": {
-        "error": {
-          "code_id": "PRIMITIVE_UNSUPPORTED",
-          "context": {
-            "operator_id": "Glyphser.Trace.TraceMigrate"
-          },
-          "message": "Generated stub not implemented"
+        "response": {
+          "status": "OK",
+          "trace": {
+            "records": [
+              {
+                "event": "A",
+                "step": 1
+              }
+            ],
+            "run_id": "replay-1"
+          }
         }
       },
-      "request": {}
+      "request": {
+        "trace": {
+          "records": [
+            {
+              "event": "A",
+              "step": 1
+            }
+          ],
+          "run_id": "replay-1"
+        }
+      }
     }
   ]
 }

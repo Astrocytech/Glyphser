@@ -2,17 +2,15 @@
   "operator_id": "Glyphser.Certificate.EvidenceValidate",
   "vectors": [
     {
-      "case_id": "Glyphser.Certificate.EvidenceValidate.stub_error",
+      "case_id": "Glyphser.Certificate.EvidenceValidate.ok",
       "expected": {
-        "error": {
-          "code_id": "PRIMITIVE_UNSUPPORTED",
-          "context": {
-            "operator_id": "Glyphser.Certificate.EvidenceValidate"
-          },
-          "message": "Generated stub not implemented"
+        "response": {
+          "status": "OK"
         }
       },
-      "request": {}
+      "request": {
+        "certificate_id": "c1"
+      }
     }
   ]
 }
