@@ -1,0 +1,39 @@
+name: push-button
+
+on:
+  push:
+    paths:
+      - "contracts/**"
+      - "docs/**"
+      - "schemas/**"
+      - "src/**"
+      - "tests/**"
+      - "tools/**"
+      - "vectors/**"
+      - "fixtures/**"
+      - "goldens/**"
+  pull_request:
+    paths:
+      - "contracts/**"
+      - "docs/**"
+      - "schemas/**"
+      - "src/**"
+      - "tests/**"
+      - "tools/**"
+      - "vectors/**"
+      - "fixtures/**"
+      - "goldens/**"
+
+jobs:
+  push-button:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install -e .
+      - name: Run push-button pipeline
+        run: python tools/push_button.py

@@ -96,6 +96,9 @@
 4. Emit ci_report
 ```
 
+Required pipeline (normative):
+- `tools/push_button.py` must run in CI for all changes to contracts/specs/tooling.
+
 ---
 ## 7) Trace & Metrics
 ### Logging rule
