@@ -1,0 +1,52 @@
+name: conformance-gate
+
+on:
+  push:
+    paths:
+      - "conformance/**"
+      - "contracts/**"
+      - "docs/**"
+      - "tools/**"
+      - "scripts/**"
+      - "src/**"
+      - "tests/**"
+      - "vectors/**"
+  pull_request:
+    paths:
+      - "conformance/**"
+      - "contracts/**"
+      - "docs/**"
+      - "tools/**"
+      - "scripts/**"
+      - "src/**"
+      - "tests/**"
+      - "vectors/**"
+
+jobs:
+  conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install -e .
+      - name: Run conformance
+        run: |
+          python tools/conformance/cli.py run
+          python tools/conformance/cli.py report
+
+  hello-core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install -e .
+      - name: Run hello-core
+        run: python scripts/run_hello_core.py

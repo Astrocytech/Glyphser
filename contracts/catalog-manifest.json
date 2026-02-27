@@ -13,8 +13,8 @@
       "size_bytes": 240
     },
     "operator_registry.cbor": {
-      "sha256": "6f8185660c9599c757baac82944375decfc1761837df107230a1dca341f2ff37",
-      "size_bytes": 1058
+      "sha256": "3b9835998b3f2a24315c318baa91c5a2feaeed9fceb3360725e1b91b29ab2ed0",
+      "size_bytes": 14461
     },
     "schema_catalog.cbor": {
       "sha256": "2bfaac6a4f45cfe55e33e0ca4de86923a3e78652947f56ea458f8a53c98eb9fd",
@@ -28,7 +28,7 @@
   "canonical_profile": "CanonicalSerialization",
   "derived_identities": {
     "digest_catalog_hash": "b18d515a42abf201cd615865f04f25df6558df2d9eac632e54f8245330d91315",
-    "operator_registry_root_hash": "6773411ce21616159c1574d1d98460d89c2cda06191c11845ebb1e08e84dc712",
+    "operator_registry_root_hash": "d6c07c27e755cca8767ab62fb8106fead06055e90dc50c86ea015cde45e9fbc4",
     "vectors_catalog_hash": "7f7dcf04adb454fbc168b3d8840404692ba4a38215d922ce94ab62ffd7b93c65"
   },
   "manifest_version": "doc-artifacts-v1"

@@ -24,6 +24,8 @@ reports/
 output/
 artifacts/
 *.log
+conformance/results/
+conformance/reports/
 
 # Private / internal docs and planning
 docs/ip/
