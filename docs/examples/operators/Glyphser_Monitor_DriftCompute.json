@@ -1,0 +1,12 @@
+{
+  "expected_example": {
+    "response": {
+      "drift_score": 0.0,
+      "status": "OK"
+    }
+  },
+  "operator_id": "Glyphser.Monitor.DriftCompute",
+  "request_example": {
+    "window": "w1"
+  }
+}

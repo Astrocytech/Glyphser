@@ -1,0 +1,11 @@
+{
+  "expected_example": {
+    "response": {
+      "status": "OK"
+    }
+  },
+  "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+  "request_example": {
+    "epsilon": 1.0
+  }
+}

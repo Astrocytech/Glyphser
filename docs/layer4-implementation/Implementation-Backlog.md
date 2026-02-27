@@ -182,3 +182,30 @@
 - Canonical CBOR.
 ### Restore semantics
 - Resumed backlog processing must preserve transition order and coverage results.
+
+---
+## Operator Semantic Change Log (Draft)
+- `Glyphser.IO.SaveCheckpoint`: minimal deterministic implementation wired; vectors updated to response-based expectations.
+- `Glyphser.Checkpoint.Restore`: minimal deterministic implementation wired; vectors updated to response-based expectations.
+- `Glyphser.Checkpoint.CheckpointMigrate`: minimal deterministic implementation wired.
+- `Glyphser.Config.ManifestMigrate`: minimal deterministic implementation wired.
+- `Glyphser.Import.LegacyFramework`: minimal deterministic implementation wired.
+- `Glyphser.DifferentialPrivacy.Apply`: minimal deterministic implementation wired.
+- `Glyphser.Model.Forward`: minimal deterministic implementation wired.
+- `Glyphser.TMMU.PrepareMemory`: minimal deterministic implementation wired.
+- `Glyphser.Certificate.EvidenceValidate`: minimal deterministic implementation wired.
+- `Glyphser.Trace.TraceMigrate`: minimal deterministic implementation wired.
+- `Glyphser.Registry.VersionCreate`: minimal deterministic implementation wired.
+- `Glyphser.Registry.StageTransition`: minimal deterministic implementation wired.
+- `Glyphser.Tracking.RunCreate`: minimal deterministic implementation wired.
+- `Glyphser.Tracking.RunStart`: minimal deterministic implementation wired.
+- `Glyphser.Tracking.RunEnd`: minimal deterministic implementation wired.
+- `Glyphser.Tracking.MetricLog`: minimal deterministic implementation wired.
+- `Glyphser.Tracking.ArtifactPut`: minimal deterministic implementation wired.
+- `Glyphser.Tracking.ArtifactGet`: minimal deterministic implementation wired.
+- `Glyphser.Tracking.ArtifactList`: minimal deterministic implementation wired.
+- `Glyphser.Tracking.ArtifactTombstone`: minimal deterministic implementation wired.
+- `Glyphser.Monitor.Register`: minimal deterministic implementation wired.
+- `Glyphser.Monitor.Emit`: minimal deterministic implementation wired.
+- `Glyphser.Monitor.DriftCompute`: minimal deterministic implementation wired.
+- `Glyphser.Backend.LoadDriver`: minimal deterministic implementation wired.

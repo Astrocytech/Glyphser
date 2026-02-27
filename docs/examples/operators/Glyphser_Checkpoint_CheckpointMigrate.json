@@ -1,0 +1,11 @@
+{
+  "expected_example": {
+    "response": {
+      "status": "OK"
+    }
+  },
+  "operator_id": "Glyphser.Checkpoint.CheckpointMigrate",
+  "request_example": {
+    "checkpoint_id": "ckpt-1"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "expected_example": {
+    "response": {
+      "from": "DRAFT",
+      "status": "OK",
+      "to": "ACTIVE"
+    }
+  },
+  "operator_id": "Glyphser.Registry.StageTransition",
+  "request_example": {
+    "from": "DRAFT",
+    "to": "ACTIVE"
+  }
+}

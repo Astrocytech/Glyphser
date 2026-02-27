@@ -1,0 +1,11 @@
+{
+  "expected_example": {
+    "response": {
+      "status": "OK"
+    }
+  },
+  "operator_id": "Glyphser.Tracking.ArtifactPut",
+  "request_example": {
+    "artifact_id": "a1"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "expected_example": {
+    "response": {
+      "status": "OK"
+    }
+  },
+  "operator_id": "Glyphser.Config.ManifestMigrate",
+  "request_example": {
+    "manifest_id": "m1"
+  }
+}

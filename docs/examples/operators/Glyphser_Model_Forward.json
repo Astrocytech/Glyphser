@@ -1,0 +1,17 @@
+{
+  "expected_example": {
+    "response": {
+      "outputs": [
+        1.0,
+        2.0
+      ]
+    }
+  },
+  "operator_id": "Glyphser.Model.Forward",
+  "request_example": {
+    "inputs": [
+      1.0,
+      2.0
+    ]
+  }
+}

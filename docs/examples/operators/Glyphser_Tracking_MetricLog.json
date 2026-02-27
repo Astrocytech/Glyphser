@@ -1,0 +1,14 @@
+{
+  "expected_example": {
+    "response": {
+      "status": "OK"
+    }
+  },
+  "operator_id": "Glyphser.Tracking.MetricLog",
+  "request_example": {
+    "metric": {
+      "loss": 0.5
+    },
+    "run_id": "run-1"
+  }
+}

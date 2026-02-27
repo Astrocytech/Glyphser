@@ -1,0 +1,11 @@
+{
+  "expected_example": {
+    "response": {
+      "status": "OK"
+    }
+  },
+  "operator_id": "Glyphser.Import.LegacyFramework",
+  "request_example": {
+    "source": "legacy"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "expected_example": {
+    "response": {
+      "status": "OK"
+    }
+  },
+  "operator_id": "Glyphser.Monitor.Register",
+  "request_example": {
+    "monitor_id": "m1"
+  }
+}
