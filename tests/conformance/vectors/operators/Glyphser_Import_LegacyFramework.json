@@ -11,6 +11,21 @@
       "request": {
         "source": "legacy"
       }
+    },
+    {
+      "case_id": "Glyphser.Import.LegacyFramework.invalid_request",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "operator_id": "Glyphser.Import.LegacyFramework"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "force_error": true
+      }
     }
   ]
 }

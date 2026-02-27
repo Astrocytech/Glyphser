@@ -12,6 +12,21 @@
       "request": {
         "window": "w1"
       }
+    },
+    {
+      "case_id": "Glyphser.Monitor.DriftCompute.invalid_request",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "operator_id": "Glyphser.Monitor.DriftCompute"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "force_error": true
+      }
     }
   ]
 }

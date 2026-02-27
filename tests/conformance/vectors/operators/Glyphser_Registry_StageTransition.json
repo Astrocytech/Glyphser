@@ -14,6 +14,21 @@
         "from": "DRAFT",
         "to": "ACTIVE"
       }
+    },
+    {
+      "case_id": "Glyphser.Registry.StageTransition.invalid_request",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "operator_id": "Glyphser.Registry.StageTransition"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "force_error": true
+      }
     }
   ]
 }

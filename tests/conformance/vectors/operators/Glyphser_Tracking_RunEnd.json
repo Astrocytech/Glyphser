@@ -12,6 +12,21 @@
       "request": {
         "run_id": "run-1"
       }
+    },
+    {
+      "case_id": "Glyphser.Tracking.RunEnd.invalid_request",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "operator_id": "Glyphser.Tracking.RunEnd"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "force_error": true
+      }
     }
   ]
 }

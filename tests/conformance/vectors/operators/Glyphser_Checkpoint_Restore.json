@@ -29,6 +29,21 @@
           }
         }
       }
+    },
+    {
+      "case_id": "Glyphser.Checkpoint.Restore.invalid_request",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "operator_id": "Glyphser.Checkpoint.Restore"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "force_error": true
+      }
     }
   ]
 }

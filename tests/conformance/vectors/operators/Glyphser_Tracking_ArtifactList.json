@@ -10,6 +10,21 @@
         }
       },
       "request": {}
+    },
+    {
+      "case_id": "Glyphser.Tracking.ArtifactList.invalid_request",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "operator_id": "Glyphser.Tracking.ArtifactList"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "force_error": true
+      }
     }
   ]
 }

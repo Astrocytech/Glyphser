@@ -11,6 +11,21 @@
       "request": {
         "certificate_id": "c1"
       }
+    },
+    {
+      "case_id": "Glyphser.Certificate.EvidenceValidate.invalid_request",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "operator_id": "Glyphser.Certificate.EvidenceValidate"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "force_error": true
+      }
     }
   ]
 }

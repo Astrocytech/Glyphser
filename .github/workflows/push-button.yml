@@ -37,3 +37,13 @@ jobs:
         run: pip install -e .
       - name: Run push-button pipeline
         run: python tools/push_button.py
+      - name: Upload release checksum
+        uses: actions/upload-artifact@v4
+        with:
+          name: hello-core-bundle-sha256
+          path: dist/hello-core-bundle.sha256
+      - name: Upload release checksum
+        uses: actions/upload-artifact@v4
+        with:
+          name: hello-core-bundle-sha256
+          path: dist/hello-core-bundle.sha256

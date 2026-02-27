@@ -21,6 +21,21 @@
           }
         }
       }
+    },
+    {
+      "case_id": "Glyphser.IO.SaveCheckpoint.invalid_request",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "operator_id": "Glyphser.IO.SaveCheckpoint"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "force_error": true
+      }
     }
   ]
 }

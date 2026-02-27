@@ -37,7 +37,14 @@ def Glyphser_Data_NextBatch(request: Dict[str, Any]) -> Dict[str, Any]:
 
 def Glyphser_Model_Forward(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Model.Forward stub."""
-    return forward(request)
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Model.Forward")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Model.Forward")}
+    try:
+        return forward(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Model.Forward")}
 
 def Glyphser_Model_ModelIR_Executor(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Model.ModelIR_Executor stub."""
@@ -45,29 +52,64 @@ def Glyphser_Model_ModelIR_Executor(request: Dict[str, Any]) -> Dict[str, Any]:
 
 def Glyphser_DifferentialPrivacy_Apply(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.DifferentialPrivacy.Apply stub."""
-    return dp_apply(request)
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.DifferentialPrivacy.Apply")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.DifferentialPrivacy.Apply")}
+    try:
+        return dp_apply(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.DifferentialPrivacy.Apply")}
 
 def Glyphser_TMMU_PrepareMemory(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.TMMU.PrepareMemory stub."""
-    return prepare_memory(request)
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.TMMU.PrepareMemory")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.TMMU.PrepareMemory")}
+    try:
+        return prepare_memory(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.TMMU.PrepareMemory")}
 
 def Glyphser_Backend_LoadDriver(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Backend.LoadDriver stub."""
-    return load_driver(request)
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Backend.LoadDriver")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Backend.LoadDriver")}
+    try:
+        return load_driver(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Backend.LoadDriver")}
 
 def Glyphser_IO_SaveCheckpoint(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.IO.SaveCheckpoint stub."""
-    state = request.get("state", {})
-    path = request.get("path")
-    if not path:
-        return {"error": emit_error("INPUT_MISSING", "missing path", operator_id="Glyphser.IO.SaveCheckpoint")}
-    digest = save_checkpoint(state, Path(path))
-    return {"checkpoint_hash": digest}
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.IO.SaveCheckpoint")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.IO.SaveCheckpoint")}
+    try:
+        state = request.get("state", {})
+        path = request.get("path")
+        if not path:
+            return {"error": emit_error("INPUT_MISSING", "missing path", operator_id="Glyphser.IO.SaveCheckpoint")}
+        digest = save_checkpoint(state, Path(path))
+        return {"checkpoint_hash": digest}
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.IO.SaveCheckpoint")}
 
 def Glyphser_Checkpoint_Restore(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Checkpoint.Restore stub."""
-    result = restore_checkpoint(request)
-    return result
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Checkpoint.Restore")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Checkpoint.Restore")}
+    try:
+        result = restore_checkpoint(request)
+        return result
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Checkpoint.Restore")}
 
 def Glyphser_Error_Emit(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Error.Emit stub."""
@@ -75,73 +117,199 @@ def Glyphser_Error_Emit(request: Dict[str, Any]) -> Dict[str, Any]:
 
 def Glyphser_Tracking_RunCreate(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Tracking.RunCreate stub."""
-    return run_create(request)
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.RunCreate")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.RunCreate")}
+    try:
+        return run_create(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.RunCreate")}
 
 def Glyphser_Tracking_RunStart(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Tracking.RunStart stub."""
-    return run_start(request)
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.RunStart")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.RunStart")}
+    try:
+        return run_start(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.RunStart")}
 
 def Glyphser_Tracking_RunEnd(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Tracking.RunEnd stub."""
-    return run_end(request)
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.RunEnd")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.RunEnd")}
+    try:
+        return run_end(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.RunEnd")}
 
 def Glyphser_Tracking_MetricLog(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Tracking.MetricLog stub."""
-    return metric_log(request)
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.MetricLog")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.MetricLog")}
+    try:
+        return metric_log(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.MetricLog")}
 
 def Glyphser_Tracking_ArtifactPut(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Tracking.ArtifactPut stub."""
-    return artifact_put(request)
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.ArtifactPut")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.ArtifactPut")}
+    try:
+        return artifact_put(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.ArtifactPut")}
 
 def Glyphser_Tracking_ArtifactGet(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Tracking.ArtifactGet stub."""
-    return artifact_get(request)
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.ArtifactGet")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.ArtifactGet")}
+    try:
+        return artifact_get(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.ArtifactGet")}
 
 def Glyphser_Tracking_ArtifactList(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Tracking.ArtifactList stub."""
-    return artifact_list(request)
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.ArtifactList")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.ArtifactList")}
+    try:
+        return artifact_list(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.ArtifactList")}
 
 def Glyphser_Tracking_ArtifactTombstone(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Tracking.ArtifactTombstone stub."""
-    return artifact_tombstone(request)
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.ArtifactTombstone")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.ArtifactTombstone")}
+    try:
+        return artifact_tombstone(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Tracking.ArtifactTombstone")}
 
 def Glyphser_Registry_VersionCreate(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Registry.VersionCreate stub."""
-    return version_create(request)
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Registry.VersionCreate")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Registry.VersionCreate")}
+    try:
+        return version_create(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Registry.VersionCreate")}
 
 def Glyphser_Registry_StageTransition(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Registry.StageTransition stub."""
-    return stage_transition(request)
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Registry.StageTransition")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Registry.StageTransition")}
+    try:
+        return stage_transition(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Registry.StageTransition")}
 
 def Glyphser_Monitor_Register(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Monitor.Register stub."""
-    return monitor_register(request)
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Monitor.Register")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Monitor.Register")}
+    try:
+        return monitor_register(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Monitor.Register")}
 
 def Glyphser_Monitor_Emit(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Monitor.Emit stub."""
-    return monitor_emit(request)
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Monitor.Emit")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Monitor.Emit")}
+    try:
+        return monitor_emit(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Monitor.Emit")}
 
 def Glyphser_Monitor_DriftCompute(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Monitor.DriftCompute stub."""
-    return drift_compute(request)
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Monitor.DriftCompute")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Monitor.DriftCompute")}
+    try:
+        return drift_compute(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Monitor.DriftCompute")}
 
 def Glyphser_Certificate_EvidenceValidate(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Certificate.EvidenceValidate stub."""
-    return evidence_validate(request)
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Certificate.EvidenceValidate")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Certificate.EvidenceValidate")}
+    try:
+        return evidence_validate(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Certificate.EvidenceValidate")}
 
 def Glyphser_Config_ManifestMigrate(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Config.ManifestMigrate stub."""
-    return manifest_migrate(request)
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Config.ManifestMigrate")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Config.ManifestMigrate")}
+    try:
+        return manifest_migrate(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Config.ManifestMigrate")}
 
 def Glyphser_Checkpoint_CheckpointMigrate(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Checkpoint.CheckpointMigrate stub."""
-    return checkpoint_migrate(request)
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Checkpoint.CheckpointMigrate")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Checkpoint.CheckpointMigrate")}
+    try:
+        return checkpoint_migrate(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Checkpoint.CheckpointMigrate")}
 
 def Glyphser_Trace_TraceMigrate(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Trace.TraceMigrate stub."""
-    return migrate_trace(request)
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Trace.TraceMigrate")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Trace.TraceMigrate")}
+    try:
+        return migrate_trace(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Trace.TraceMigrate")}
 
 def Glyphser_Import_LegacyFramework(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Import.LegacyFramework stub."""
-    return legacy_framework_import(request)
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Import.LegacyFramework")}
+    if request.get("force_error") is True:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Import.LegacyFramework")}
+    try:
+        return legacy_framework_import(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Import.LegacyFramework")}
 

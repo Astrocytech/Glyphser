@@ -11,6 +11,21 @@
       "request": {
         "epsilon": 1.0
       }
+    },
+    {
+      "case_id": "Glyphser.DifferentialPrivacy.Apply.invalid_request",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "operator_id": "Glyphser.DifferentialPrivacy.Apply"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "force_error": true
+      }
     }
   ]
 }

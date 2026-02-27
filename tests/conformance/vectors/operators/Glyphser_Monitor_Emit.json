@@ -11,6 +11,21 @@
       "request": {
         "monitor_id": "m1"
       }
+    },
+    {
+      "case_id": "Glyphser.Monitor.Emit.invalid_request",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "operator_id": "Glyphser.Monitor.Emit"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "force_error": true
+      }
     }
   ]
 }

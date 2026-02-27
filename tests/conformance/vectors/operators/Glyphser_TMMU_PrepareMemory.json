@@ -11,6 +11,21 @@
       "request": {
         "plan": "default"
       }
+    },
+    {
+      "case_id": "Glyphser.TMMU.PrepareMemory.invalid_request",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "operator_id": "Glyphser.TMMU.PrepareMemory"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "force_error": true
+      }
     }
   ]
 }

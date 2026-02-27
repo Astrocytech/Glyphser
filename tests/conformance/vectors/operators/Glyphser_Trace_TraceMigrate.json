@@ -28,6 +28,21 @@
           "run_id": "replay-1"
         }
       }
+    },
+    {
+      "case_id": "Glyphser.Trace.TraceMigrate.invalid_request",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "operator_id": "Glyphser.Trace.TraceMigrate"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "force_error": true
+      }
     }
   ]
 }

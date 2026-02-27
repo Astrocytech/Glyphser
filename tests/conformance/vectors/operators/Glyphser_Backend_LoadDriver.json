@@ -12,6 +12,21 @@
       "request": {
         "driver_id": "default"
       }
+    },
+    {
+      "case_id": "Glyphser.Backend.LoadDriver.invalid_request",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "operator_id": "Glyphser.Backend.LoadDriver"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "force_error": true
+      }
     }
   ]
 }

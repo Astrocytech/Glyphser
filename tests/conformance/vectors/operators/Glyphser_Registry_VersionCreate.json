@@ -13,6 +13,21 @@
         "notes": "init",
         "version": "v1"
       }
+    },
+    {
+      "case_id": "Glyphser.Registry.VersionCreate.invalid_request",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "operator_id": "Glyphser.Registry.VersionCreate"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "force_error": true
+      }
     }
   ]
 }

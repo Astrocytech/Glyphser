@@ -11,6 +11,21 @@
       "request": {
         "manifest_id": "m1"
       }
+    },
+    {
+      "case_id": "Glyphser.Config.ManifestMigrate.invalid_request",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "operator_id": "Glyphser.Config.ManifestMigrate"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "force_error": true
+      }
     }
   ]
 }

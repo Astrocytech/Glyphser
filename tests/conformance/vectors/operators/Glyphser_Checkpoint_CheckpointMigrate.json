@@ -11,6 +11,21 @@
       "request": {
         "checkpoint_id": "ckpt-1"
       }
+    },
+    {
+      "case_id": "Glyphser.Checkpoint.CheckpointMigrate.invalid_request",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "operator_id": "Glyphser.Checkpoint.CheckpointMigrate"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "force_error": true
+      }
     }
   ]
 }
