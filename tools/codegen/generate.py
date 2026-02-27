@@ -512,6 +512,12 @@ def generate() -> None:
         encoding="utf-8",
     )
 
+    # write input hash manifest for drift checks
+    import sys as _sys  # noqa: E402
+    _sys.path.insert(0, str(ROOT))
+    from tools.codegen.input_hash_manifest import main as _input_manifest  # noqa: E402
+    _input_manifest()
+
 
 if __name__ == "__main__":
     generate()

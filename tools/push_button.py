@@ -27,6 +27,8 @@ def _steps() -> Iterable[List[str]]:
         [sys.executable, "tools/error_code_gate.py"],
         [sys.executable, "tools/codegen/generate.py"],
         [sys.executable, "tools/codegen/check_generated_drift.py"],
+        [sys.executable, "tools/codegen/clean_build_generate.py"],
+        [sys.executable, "tools/codegen/diff_fidelity.py"],
         [sys.executable, "-m", "pytest"],
         [sys.executable, "tools/deploy/run_deployment_pipeline.py"],
         [sys.executable, "tools/build_release_bundle.py"],
