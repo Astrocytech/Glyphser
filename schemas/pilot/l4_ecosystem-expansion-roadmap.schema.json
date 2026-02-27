@@ -1,0 +1,16 @@
+{
+  "$id": "glyphser:l4:ecosystem-expansion-roadmap",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {},
+  "title": "Ecosystem-Expansion-Roadmap (L4)",
+  "type": "object",
+  "x_glyphser": {
+    "compatibility_policy": "MAJOR/MINOR/PATCH",
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L4",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer4-implementation/Ecosystem-Expansion-Roadmap.md"
+  }
+}

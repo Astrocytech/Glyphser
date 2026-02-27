@@ -233,6 +233,7 @@
   "title": "Trace-Sidecar (L2)",
   "type": "object",
   "x_glyphser": {
+    "compatibility_policy": "MAJOR/MINOR/PATCH",
     "hash_rule": "canonical_json_sha256",
     "layer": "L2",
     "prose_check": "relaxed",

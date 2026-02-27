@@ -1,0 +1,16 @@
+{
+  "$id": "glyphser:l4:artifact-store-adapter-guide",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {},
+  "title": "Artifact-Store-Adapter-Guide (L4)",
+  "type": "object",
+  "x_glyphser": {
+    "compatibility_policy": "MAJOR/MINOR/PATCH",
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L4",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer4-implementation/Artifact-Store-Adapter-Guide.md"
+  }
+}

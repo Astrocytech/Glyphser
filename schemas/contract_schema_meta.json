@@ -1,8 +1,49 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "glyphser:meta:contract-schema",
-  "title": "Glyphser Contract Schema Meta",
-  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "$id": {
+      "type": "string"
+    },
+    "$schema": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "x_glyphser": {
+      "additionalProperties": true,
+      "properties": {
+        "compatibility_policy": {
+          "type": "string"
+        },
+        "hash_rule": {
+          "type": "string"
+        },
+        "layer": {
+          "type": "string"
+        },
+        "schema_version": {
+          "type": "string"
+        },
+        "source_doc": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "layer",
+        "source_doc",
+        "schema_version",
+        "hash_rule",
+        "compatibility_policy"
+      ],
+      "type": "object"
+    }
+  },
   "required": [
     "$schema",
     "$id",
@@ -10,27 +51,6 @@
     "type",
     "x_glyphser"
   ],
-  "properties": {
-    "$schema": {"type": "string"},
-    "$id": {"type": "string"},
-    "title": {"type": "string"},
-    "type": {"type": "string"},
-    "x_glyphser": {
-      "type": "object",
-      "required": [
-        "layer",
-        "source_doc",
-        "schema_version",
-        "hash_rule"
-      ],
-      "properties": {
-        "layer": {"type": "string"},
-        "source_doc": {"type": "string"},
-        "schema_version": {"type": "string"},
-        "hash_rule": {"type": "string"}
-      },
-      "additionalProperties": true
-    }
-  },
-  "additionalProperties": true
+  "title": "Glyphser Contract Schema Meta",
+  "type": "object"
 }

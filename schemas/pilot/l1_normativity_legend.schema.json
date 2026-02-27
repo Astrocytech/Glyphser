@@ -24,6 +24,7 @@
   "title": "Normativity Legend",
   "type": "object",
   "x_glyphser": {
+    "compatibility_policy": "MAJOR/MINOR/PATCH",
     "hash_rule": "canonical_json_sha256",
     "layer": "L1",
     "prose_check": "relaxed",
