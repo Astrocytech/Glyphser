@@ -1,0 +1,10 @@
+{
+  "files": [
+    {
+      "path": "fixtures/replay-suite-1/trace.json",
+      "sha256": "50b8cf98544161da6a6f9644245c34db9d52ec70c1f0fb43e715732b15baf55f",
+      "size_bytes": 224
+    }
+  ],
+  "fixture_set_id": "replay-suite-1-fixtures-v1"
+}

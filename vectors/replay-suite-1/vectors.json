@@ -1,0 +1,10 @@
+{
+  "vector_set_id": "replay-suite-1-vectors-v1",
+  "vectors": [
+    {
+      "case_id": "replay_suite_1",
+      "expected_ref": "goldens/replay-suite-1/trace_expected.json",
+      "input_ref": "fixtures/replay-suite-1/trace.json"
+    }
+  ]
+}
