@@ -1,0 +1,506 @@
+Glyphser Push-Button Codegen Milestones
+=====================================
+
+Goal
+----
+Move from strong prose specs to a verified, one-click code generation pipeline that produces deployable software deterministically.
+
+Current Readiness (Today)
+-------------------------
+Status: not yet enough for full push-button production generation.
+
+What is ready:
+1. Strong multi-layer prose contract coverage.
+2. Determinism and evidence semantics are largely defined.
+3. Good foundation to begin Milestones 1-3 immediately.
+
+What is missing:
+1. Complete machine-readable schemas for every contract.
+2. Fully generator-ready operator registry metadata.
+3. Full ambiguity closure for all algorithmic and edge-case behavior.
+4. Production-grade codegen templates and end-to-end generator pipeline.
+5. Verified one-command build/test/deploy generation path.
+
+Milestone 1: Machine-Readable Contract Layer
+--------------------------------------------
+1. Define canonical IDL/schema format for all contracts (types, enums, required/optional fields, defaults).
+	- Scope:
+		- Every contract in layers 1-4 that defines inputs, outputs, state, operators, trace records, checkpoints, and evidence hashes.
+		- All referenced shared types (hashes, ids, enums, profile objects, manifests, records, operator payloads).
+	- Required schema contents:
+		- Field names, types, nullability, required/optional status.
+		- Default values and defaulting rules.
+		- Numeric constraints (ranges, precision, tolerance defaults).
+		- String/bytes constraints (encoding, length, normalization, format).
+		- Enum domains and unknown-value handling.
+		- Ordering/canonicalization rules (sorting keys, tie-breakers, stable iteration order).
+		- Hash preimage definitions (exact canonical object used for each hash).
+		- Validation errors mapped to concrete error codes.
+		- Version tag and compatibility policy (MAJOR/MINOR/PATCH behavior).
+	- Execution sub-steps:
+		- Choose one authoritative machine-readable format (or tightly governed pair) and freeze it.
+		- Generate a schema file for each existing Markdown contract.
+		- Add cross-file references using stable schema IDs/digests.
+		- Build a linter that detects prose-schema drift.
+		- Add CI gate: fail on missing schema, unresolved reference, or digest mismatch.
+	- Definition of done:
+		- 100% contract coverage by machine-readable schemas.
+		- Every operator input/output and record type resolves to a schema ID.
+		- No undocumented fields or implicit defaults remain in prose-only form.
+		- CI passes schema completeness, reference integrity, and hash determinism checks.
+		- A code generator can consume schemas without reading prose for structural typing decisions.
+	- First-task execution plan (actionable):
+		- Phase 1: Format decision
+			- Select one canonical schema format (or a governed pair) and freeze it in writing.
+			- Define canonical encoding and digest rule for schema artifacts.
+			- Deliverable: `Schema-Format-Decision` note with examples.
+		- Phase 2: Meta-schema
+			- Create a meta-schema describing required fields for every contract schema artifact.
+			- Include typing rules, nullability, defaults, constraints, and version fields.
+			- Deliverable: versioned meta-schema file + validator.
+		- Phase 3: Conventions
+			- Define naming conventions for schema IDs, field paths, enum names, and operator I/O references.
+			- Define cross-file reference format and unresolved-reference failure behavior.
+			- Deliverable: conventions document with canonical examples.
+		- Phase 4: Pilot conversion
+			- Convert 2-3 representative contracts (one per layer) to validate the format.
+			- Compare converted schemas against prose to confirm no information loss.
+			- Deliverable: pilot schema artifacts + parity report.
+		- Phase 5: CI gate bootstrap
+			- Add initial CI checks: schema parse, meta-schema validation, and stable hash computation.
+			- Fail on missing required metadata in schema artifacts.
+			- Deliverable: green CI on pilot set with strict failure conditions.
+	- Acceptance criteria for first task:
+		- Canonical format is frozen and documented.
+		- Meta-schema validates pilot artifacts without exceptions.
+		- Pilot artifacts preserve all contract fields and constraints from source docs.
+		- CI gate enforces format validity and deterministic schema hashing.
+DONE (so far):
+	- Format decision frozen in `schemas/SCHEMA_FORMAT_DECISION.txt`.
+	- Meta-schema created in `schemas/contract_schema_meta.json`.
+	- Conventions documented in `schemas/SCHEMA_CONVENTIONS.txt`.
+	- Pilot artifacts created:
+		- `schemas/pilot/l1_error_codes.schema.json`
+		- `schemas/pilot/l2_config_schema.schema.json`
+		- `schemas/pilot/l3_test_plan.schema.json`
+	- Bootstrap schema gate implemented and executed:
+		- `tools/schema_gate.py`
+		- Result: `PASS: validated 3 schema artifacts`.
+	- Pilot coverage expanded to all Layer1 contracts (13 total schema artifacts validated).
+	- Pilot coverage added for all Layer2 and Layer3 contracts (schemas populated with initial fields).
+	- CI integration completed:
+		- Added `.github/workflows/schema-gate.yml` to run schema gate on schema/docs/workflow changes.
+	- Schema gate checks:
+		- Validates `x_glyphser.source_doc` exists.
+		- Validates `$ref` targets exist.
+		- Validates required property names appear in source docs (prose drift check).
+		- Validates required properties are defined in schema properties.
+	- Added initial constraint depth:
+		- Hash-like fields (`*_hash`, `replay_token`) constrained to 64-hex pattern.
+		- `execution_mode` constrained to `local|managed|confidential|regulated` where present.
+		- Required lists added for core L1/L2/L3 schemas.
+		- Enums and numeric bounds added for key fields (execution modes, determinism classes, severities, etc.).
+		- Trace/Checkpoint/Certificate structures expanded with required fields.
+	- First-task execution plan status: COMPLETE.
+2. Convert every Markdown contract into machine-readable artifacts (CBOR schema/JSON schema/IDL). DONE.
+3. Add schema validation CI gate: no prose-schema drift allowed. DONE.
+4. Version all schemas with strict compatibility rules (MAJOR/MINOR/PATCH). DONE.
+
+Deliverable:
+- Complete machine-readable schema set with deterministic validation.
+
+
+Milestone 2: Executable Operator Registry
+-----------------------------------------
+1. Expand operator registry entries to include full signatures, purity, side effects, dependencies, and error codes.
+2. Add explicit determinism metadata per operator (E0/E1 behavior, tolerances, ordering).
+3. Link each operator to canonical input/output schema digests.
+4. Add CI rule: every referenced operator must resolve in registry and pass schema checks.
+
+Deliverable:
+- Generator-ready operator registry artifact.
+Status: COMPLETE.
+
+
+Milestone 3: Deterministic Algorithm Closure
+--------------------------------------------
+1. Resolve all remaining optional/ambiguous branches in algorithms.
+2. Define canonical behavior for edge cases, tie-breaks, and failure paths.
+3. Provide reference pseudocode-to-spec mapping for each critical operator.
+4. Freeze numeric policies (tolerances, NaN/Inf handling, quantile method, rounding).
+
+Deliverable:
+- Fully unambiguous execution semantics for codegen.
+Status: COMPLETE.
+
+
+Milestone 4: Test Case and Vector Definition (TDD First)
+---------------------------------------------------------
+1. Define full deterministic test inventory before code generation:
+	- unit tests per operator contract,
+	- integration matrix cases,
+	- replay/checkpoint cases,
+	- evidence/hash-link integrity cases,
+	- failure-injection and storage-recovery cases.
+2. Freeze canonical test vectors and expected outputs/hashes.
+3. Define red/green criteria per test class and equivalence profile (E0/E1).
+4. Add CI checks that validate test completeness against contract/operator inventory.
+
+Deliverable:
+- Frozen contract-driven test suite and vector catalog that serve as the executable spec.
+Status: COMPLETE.
+
+
+Milestone 5: Conformance and Gate Pipeline (Before Codegen)
+------------------------------------------------------------
+1. Implement mandatory verification pipeline over tests/spec artifacts:
+	- schema conformance,
+	- interface/signature conformance,
+	- replay determinism,
+	- checkpoint/restore,
+	- evidence integrity.
+2. Enforce registry parity and hash-chain integrity checks in CI.
+3. Enforce release-gate policies over test evidence.
+4. Block implementation/codegen milestones until this pipeline is green on reference fixtures.
+
+Deliverable:
+- Policy-enforced CI proving tests/specs are complete and deterministic before implementation.
+Status: COMPLETE.
+DONE (so far):
+	- Conformance CLI implemented with run/verify/report flows.
+	- Conformance results and reports emitted to `conformance/results/latest.json` and `conformance/reports/latest.json`.
+	- CI gate added in `.github/workflows/conformance-gate.yml` to run conformance suite and generate report.
+	- Hello-core smoke check wired into the conformance run.
+
+
+Milestone 6: Reference Implementations for Critical Operators
+--------------------------------------------------------------
+1. Implement minimal reference operators/stubs to execute the frozen tests.
+2. Prioritize high-risk deterministic paths first.
+3. Verify outputs against golden vectors under required profiles.
+4. Lock canonical behavior for sensitive operators.
+
+Deliverable:
+- Verified reference baseline that passes contract-driven tests.
+Status: COMPLETE.
+DONE (so far):
+	- Implemented minimal deterministic reference operators used by hello-core:
+		- `src/glyphser/data/next_batch.py`
+		- `src/glyphser/model/model_ir_executor.py`
+		- `src/glyphser/trace/trace_sidecar.py`
+		- `src/glyphser/checkpoint/write.py`
+		- `src/glyphser/certificate/build.py`
+	- Added and validated end-to-end runner `scripts/run_hello_core.py`.
+	- Conformance run verifies hello-core outputs against golden identities.
+
+
+Milestone 7: Codegen Target Architecture
+----------------------------------------
+1. Decide primary generation targets (language, runtime, storage, transport).
+2. Define generated project layout (modules, package boundaries, config loading).
+3. Define runtime integration contracts (logging, tracing, metrics, authz, persistence).
+4. Standardize generated build/test scripts and dependency lock policy.
+
+Deliverable:
+- Approved target architecture profile for generation.
+Status: COMPLETE.
+DONE (so far):
+	- Target architecture profile defined in `docs/layer4-implementation/Target-Architecture-Profile.md`.
+	- Primary target fixed to Python 3.12 with local file-based runtime.
+	- Canonical layout and integration contracts linked to existing Layer4/Layer2 specs.
+	- Build/test entrypoints and lock policy standardized in the profile.
+
+
+Milestone 8: Generator + Templates
+----------------------------------
+1. Build generator pipeline that consumes schemas + operator registry.
+2. Implement templates for:
+   - data models
+   - operator interfaces/stubs
+   - validation layers
+   - error handling
+   - trace/checkpoint/WAL bindings
+3. Require generated code to run the already-frozen test suite unchanged.
+4. Add idempotent regeneration workflow (safe re-run without manual edits loss).
+
+Deliverable:
+- End-to-end code generator producing compilable projects validated by pre-defined tests.
+Status: COMPLETE.
+DONE (so far):
+	- Generator pipeline implemented at `tools/codegen/generate.py` consuming `contracts/operator_registry.json` and `schemas/**/*.schema.json`.
+	- Templates added in `tools/codegen/templates/` for data models, operator stubs, validators, error handling, and trace/checkpoint/WAL bindings.
+	- Generated outputs written to `generated/` with `generated/codegen_manifest.json` for input traceability.
+
+
+Milestone 9: Deployment-Ready Generation
+----------------------------------------
+1. Generate deployment artifacts (container, runtime configs, policy bindings).
+2. Generate environment-specific manifests with deterministic defaults.
+3. Add migration and rollback generation for schema/operator changes.
+4. Validate production profile (managed/confidential/regulated) end-to-end.
+
+Deliverable:
+- One-command generation + deployable artifact bundle.
+Status: COMPLETE.
+DONE (so far):
+	- Deployment generation profile defined in `docs/layer4-implementation/Deployment-Generation-Profile.md`.
+	- Deterministic bundle generator implemented at `tools/deploy/generate_bundle.py` using templates.
+	- Environment manifest generator added at `tools/deploy/generate_env_manifest.py`.
+	- Migration/rollback plan generator added at `tools/deploy/generate_migration_plan.py`.
+	- Profile validation added at `tools/deploy/validate_profile.py`.
+	- One-command pipeline wired at `tools/deploy/run_deployment_pipeline.py`.
+
+
+Milestone 10: Push-Button Production Readiness
+----------------------------------------------
+Exit criteria:
+1. One command generates code, tests, manifests, and release evidence.
+2. Generated system passes all conformance and release gates without manual patching.
+3. Replay determinism and checkpoint restore pass in target environments.
+4. Documentation, registry, and generated code remain drift-free under CI.
+
+Final Deliverable:
+- Trusted push-button generation workflow for Glyphser implementations.
+Next tasks:
+	- Add per-operator conformance vectors for all operators missing direct test references.
+	- Add deterministic stub tests for each operator domain (tracking, registry, monitor, backend, replay).
+	- Expand fixture sets beyond hello-core to cover checkpoint/restore and replay determinism on new operators.
+Status: COMPLETE.
+DONE (so far):
+	- One-command pipeline implemented at `tools/push_button.py`.
+	- Pipeline runs schema/registry gates, conformance, codegen, tests, deployment bundle generation, and release bundle assembly.
+	- Push-button run completes cleanly on current fixtures and golden artifacts.
+
+
+Full Product Plan (TDD-First)
+-----------------------------
+Principle:
+- Tests and vectors are written first; code generation and implementation must pass them unchanged.
+- No production code is considered "done" unless its vectors and tests exist and are green.
+
+Definitions (to avoid ambiguity):
+1. "Vector" = JSON/CBOR file with input payload + expected output identity/hash.
+2. "Golden" = frozen expected output file used for exact equality.
+3. "Operator coverage" = operator appears in a vector file + has a test that exercises it.
+4. "Domain fixture" = multi-operator fixture set (inputs + goldens + manifests).
+
+Rules (must always hold):
+1. If an operator exists in `contracts/operator_registry.json`, it must have vectors and tests.
+2. Vectors are authored before code changes for that operator.
+3. Generators must never require manual edits to pass tests.
+4. Any change to vectors or goldens requires a rationale and a deterministic re-materialization step.
+
+Phase 0: Test Infrastructure Expansion
+1. Create per-operator conformance vector schema and storage layout.
+2. Add vector loader + validator for operator-specific vectors.
+3. Add CI gate: fail if any operator lacks vectors/tests.
+Deliverable: test harness that enumerates all operators and requires vectors.
+
+Phase 1: Operator Test Coverage
+1. Write deterministic vectors for every operator in `contracts/operator_registry.json`.
+2. For each operator:
+	- A minimal valid request vector.
+	- Deterministic error vector for unimplemented stub.
+	- Boundary/error vectors for required error codes.
+3. Add a coverage report that maps operators -> vector files -> tests.
+Deliverable: complete per-operator vectors and expected outcomes.
+
+Phase 2: Domain-Level Fixtures
+1. Add fixture sets beyond hello-core:
+	- checkpoint/restore
+	- replay determinism
+	- registry lifecycle
+	- tracking/monitoring
+2. Add golden artifacts for each fixture set.
+3. Require each fixture set to include:
+	- fixture manifest
+	- vector manifest
+	- golden manifest
+Deliverable: multi-fixture golden suite across core domains.
+
+Phase 3: Generated Code Coverage
+1. Extend generator to emit operator stubs for all domains.
+2. Generate runtime bindings for checkpoint/trace/replay paths.
+3. Add tests that execute generated stubs against vectors.
+4. Add a "generated vs source" drift check in CI (fail on manual edits).
+Deliverable: generated code passes vector suite unchanged.
+
+Phase 4: Reference Implementations (Incremental)
+1. Implement each operator domain in order:
+	- checkpoint/restore
+	- replay
+	- registry
+	- tracking/monitoring
+	- backend adapter
+2. After each domain:
+	- update vectors if needed (never loosen determinism).
+	- run push-button pipeline.
+	- update coverage report and close gaps.
+Deliverable: reference implementation passes domain vectors.
+
+Phase 5: Production Hardening
+1. Add failure-injection tests and recovery sequences.
+2. Add performance and scale fixtures (deterministic).
+3. Add release evidence checks for regulated/managed profiles.
+4. Add reproducibility checks across two environments (hashes must match).
+Deliverable: production-grade deterministic suite.
+Status: COMPLETE.
+DONE (so far):
+	- Added failure-injection fixture set with vectors/manifests.
+	- Added perf/scale fixture set with vectors/manifests.
+	- Added release evidence gate in `tools/release_evidence_gate.py`.
+	- Added reproducibility hash snapshot in `tools/reproducibility_check.py`.
+	- Updated push-button pipeline to enforce release evidence + reproducibility.
+
+Exit Criteria for Full Product
+1. Every operator has vectors + tests.
+2. All domain fixtures produce stable goldens across environments.
+3. Generated code passes full test suite without manual edits.
+4. Push-button pipeline green on CI for all changes.
+5. Release bundles reproducible with matching hashes on two environments.
+
+Refinements (Post-Plan)
+-----------------------
+1. Cross-environment reproducibility:
+	- Run `tools/push_button.py` on a second host, compare `reports/repro/hashes.txt`.
+2. CI hardening:
+	- Add a CI job to upload `dist/hello-core-bundle.sha256` as a build artifact.
+3. Vector completeness:
+	- Add boundary vectors for each operator (error code coverage beyond baseline).
+4. Runtime depth:
+	- Replace minimal operator implementations with full contract semantics.
+5. Performance validation:
+	- Add deterministic timing budgets and large fixture sets with capped runtime.
+Status: COMPLETE.
+DONE (so far):
+	- Added failure-injection and perf/scale fixtures with manifests.
+	- Added release evidence gate and reproducibility hash snapshot.
+	- Added boundary vectors for implemented operators with deterministic error forcing.
+	- Hardened generator error behavior to return deterministic CONTRACT_VIOLATION on invalid requests.
+	- CI push-button workflow uploads release checksum artifact.
+
+Next Milestones (Full TDD Coverage)
+-----------------------------------
+Milestone 11: Error-Code Exhaustive Coverage
+1. For each operator, add vectors for every allowed error code in API-Interfaces.
+2. Add per-operator tests that verify each error code path deterministically.
+3. Gate: CI fails if any operator lacks full error-code vectors.
+Deliverable: exhaustive error-path coverage.
+Clarifications:
+	- Source of truth: `docs/layer1-foundation/API-Interfaces.md` + `docs/layer1-foundation/Error-Codes.md`.
+	- Required payload fields for error vectors: `code_id`, `message`, `context.operator_id`.
+	- Each `allowed_error_codes` entry must have at least one vector case.
+	- Vector storage: `tests/conformance/vectors/operators/<OperatorId>.json`.
+	- Tests must reference vectors via `tests/test_operator_vectors.py` (no inline duplicates).
+	- Use exact match on error payloads; no partial matching.
+	- Error `message` must match the template in Error-Codes unless explicitly overridden in vectors.
+	- Context must include all required fields listed in Error-Codes for that code_id.
+	- Each operator must include at least one retryable and one non-retryable error if defined.
+	- Introduce a minimal schema for error vectors under `schemas/` and enforce via vector gate.
+	- Error-code vectors must include one “missing field” case and one “type mismatch” case.
+Status: COMPLETE.
+DONE (so far):
+	- Added exhaustive error vectors per operator (base + missing_field + type_mismatch).
+	- Added error vector schema `schemas/l3_operator_error_vectors.schema.json`.
+	- Added `tools/error_code_gate.py` and wired into push-button pipeline.
+	- Updated generator to support `force_error` and required error context fields.
+
+Milestone 12: Golden Replay Suite
+1. Add replay fixture sets that execute multiple operators end-to-end.
+2. Freeze trace/checkpoint/certificate goldens for each suite.
+3. Gate: replay across suites must match goldens bitwise.
+Deliverable: multi-suite replay determinism.
+Clarifications:
+	- Each suite must include at least 3 operators across 2 domains.
+	- Required artifacts per suite: fixture manifest, vector manifest, golden manifest, trace, checkpoint, certificate.
+	- Replay input must include replay token, manifest hash, and operator registry root hash.
+	- Suites stored under `fixtures/<suite>/`, `goldens/<suite>/`, `vectors/<suite>/`.
+	- Replay comparison must use canonical CBOR where specified by contract, otherwise canonical JSON.
+	- Gate requires bitwise identical hashes for trace and certificate.
+	- Each suite must include at least one failure-path replay case.
+	- Add a suite index file: `vectors/replay-suites/index.json` listing all suites.
+	- Suite index must include hash of each suite’s vector manifest.
+Status: COMPLETE.
+DONE (so far):
+	- Added replay suite fixture set `replay-suite-1` with vectors and goldens.
+	- Added suite index `vectors/replay-suites/index.json` with manifest hash.
+	- Added replay suite test `tests/test_replay_suite.py`.
+
+Milestone 13: Codegen Diff Fidelity
+1. Generate code into a clean build directory.
+2. Compare generated outputs against committed stubs for drift.
+3. Gate: drift must be zero for all generated files.
+Deliverable: fully reproducible generated code outputs.
+Clarifications:
+	- Clean build directory: `generated/clean_build/` (delete and re-create each run).
+	- Hash manifest required for comparison.
+	- No exceptions for drift are allowed.
+	- Comparison includes: `generated/models.py`, `generated/operators.py`, `generated/validators.py`, `generated/error.py`, `generated/bindings.py`.
+	- Line endings normalized to LF before hashing.
+	- Generator must emit deterministic file ordering within directories.
+	- Generated outputs must include a manifest of input hashes (schemas + registry + templates).
+	- Add a CI step to fail if generated files are committed with unstaged drift.
+	- Drift check must run both before and after regeneration to detect nondeterministic output.
+Status: COMPLETE.
+DONE (so far):
+	- Added clean build generation and diff fidelity checks.
+	- Added input hash manifest for codegen inputs.
+	- Wired CI and push-button to run drift fidelity checks.
+
+Next Milestones (Complete Product)
+----------------------------------
+Milestone 14: Full Operator Semantics
+1. Replace minimal implementations with full contract semantics.
+2. Add vectors for numeric policies, rounding, edge-case handling.
+3. Gate: full vector suite passes across all domains.
+Deliverable: contract-accurate runtime.
+Clarifications:
+	- Each operator must document: numeric policy, edge-case handling, determinism class.
+	- Vectors must be added before implementation changes.
+	- All updates must keep `docs/layer4-implementation/Algorithm-Closure.md` consistent.
+	- Each operator implementation must add/adjust at least one vector that hits an edge case.
+	- Any spec changes require updating `schemas/` and `contracts/` artifacts.
+	- Require a per-operator changelog entry in `docs/layer4-implementation/Implementation-Backlog.md` for semantic changes.
+	- Add an “operator readiness checklist” for each operator.
+	- Each operator must declare a canonical example in `docs/examples/` with expected outputs.
+Status: COMPLETE.
+DONE:
+	- Implemented full semantics for ModelIR_Executor (IR validation, topo sort, grad order, driver dispatch, execution fingerprints).
+	- Implemented full semantics for TMMU.PrepareMemory (liveness analysis, slot assignment, deterministic address mapping, plan hash/metrics).
+	- Implemented full semantics for Model.Forward (executor delegation + deterministic outputs).
+	- Updated vectors and operator examples with canonical IR + expected outputs.
+	- Updated operator readiness checklist and implementation changelog entries.
+
+Milestone 15: Multi-Host Reproducibility
+1. Run push-button pipeline on two independent hosts.
+2. Compare release bundle hashes and evidence manifests.
+3. Gate: hashes must match exactly.
+Deliverable: reproducibility across environments.
+Clarifications:
+	- Independent hosts must differ in OS or CPU family.
+	- Compare: `dist/hello-core-bundle.sha256`, `conformance/reports/latest.json`, `reports/repro/hashes.txt`.
+	- Require a signed comparison report committed to `reports/repro/`.
+	- Comparison report must list host metadata (OS, Python version, CPU).
+	- If hashes differ, attach a diff of the conformance report.
+	- Require a third verification run on the original host to rule out nondeterministic drift.
+	- Require a time window for runs (same day) to reduce dependency drift.
+	- Require a fixed dependency lockfile hash for both hosts.
+Prep:
+	- Added `reports/repro/compare-template.md`.
+	- Added `reports/repro/run-checklist.md`.
+	- Added `requirements.lock` and `reports/repro/dependency-lock.sha256`.
+	- Added `scripts/repro/host_meta.py` for consistent host metadata capture.
+
+Milestone 16: Public Release Readiness
+1. Publish release notes and conformance report.
+2. Provide signed checksums and reproducibility guidance.
+3. Gate: external user can reproduce bundle and verify hashes.
+Deliverable: production-ready public release.
+Clarifications:
+	- Required artifacts: release notes, conformance report, checksum file, reproducibility guide.
+	- Include step-by-step verification instructions.
+	- Provide a single command for verification in `docs/VERIFY.md`.
+	- Provide a “known-good” hash table in release notes.
+	- Provide a minimal “quick verify” section (≤5 steps) for external users.
+	- Provide a “support scope” section listing what is and isn’t supported.
+	- Provide a “security contact” section and disclosure policy reference.
