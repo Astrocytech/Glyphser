@@ -27,7 +27,7 @@
     },
     {
       "path": "generated/bindings.py",
-      "sha256": "ada04914e715dc3d8eeb6c9ea9cc3b15029fcf7a86a346b15df1faf7a138af98"
+      "sha256": "39cb4db1db528a24594557408131deb84300d79cd25f19f2b8ed01496f505df5"
     }
   ],
   "schemas": [
@@ -948,5 +948,5 @@
       "sha256": "96bb3e153267d464d54e128dc1ae76deea01168856e919b7b012b8dfd8ed59f9"
     }
   ],
-  "template_bundle_hash": "b720dcbaf06ff7c1191aa6312254150ed1cdeecbd415ca93658626934c0d4d09"
+  "template_bundle_hash": "d7ccb361619424c31472e629f975d86d0812b87164c1f9e629c38b29ae60d967"
 }

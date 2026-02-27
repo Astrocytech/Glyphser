@@ -23,3 +23,10 @@ def append_wal_record(record: Dict[str, Any], path: Path) -> None:
     line = json.dumps(record, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
     with path.open("a", encoding="utf-8") as handle:
         handle.write(line + "\n")
+
+
+def replay_compare_trace(path_a: Path, path_b: Path) -> Dict[str, Any]:
+    data_a = json.loads(path_a.read_text(encoding="utf-8"))
+    data_b = json.loads(path_b.read_text(encoding="utf-8"))
+    verdict = "MATCH" if data_a == data_b else "MISMATCH"
+    return {"replay_verdict": verdict}
