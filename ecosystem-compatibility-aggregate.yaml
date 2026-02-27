@@ -1,0 +1,16 @@
+compatibility_aggregate_version: "v1"
+active_environment_profiles:
+  - name: "cpu-x86-64-v3"
+    status: "validated"
+    validated_on: "2026-02-19"
+  - name: "gpu-cuda-12.4"
+    status: "pending"
+    validated_on: "2026-02-19"
+minimum_equivalence_by_layer:
+  layer0: E0
+  layer1: E0
+  layer2: E1
+  layer3: E1
+  layer4: E2
+strictest_tolerance_rule: "portfolio uses minimum EPS across all consumers"
+tolerance_inheritance: true

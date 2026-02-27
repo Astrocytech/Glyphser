@@ -1,0 +1,53 @@
+{
+  "operator_records": [
+    {
+      "allowed_error_codes": [
+        "CONTRACT_VIOLATION"
+      ],
+      "method": "CALL",
+      "operator_id": "Glyphser.Implementation.ComputeInterfaceHash",
+      "purity_class": "PURE",
+      "request_schema_digest": "sha256:schema.request.minimal",
+      "response_schema_digest": "sha256:schema.response.minimal",
+      "side_effects": [
+        "READ_ONLY"
+      ],
+      "signature_digest": "hex:4ba25485c81cf3171459eed5276db8bb9cb5f7fa492ae0d1f2ae948a2ec2b126",
+      "surface": "SYSCALL",
+      "version": "v1"
+    },
+    {
+      "allowed_error_codes": [
+        "CONTRACT_VIOLATION"
+      ],
+      "method": "CALL",
+      "operator_id": "Glyphser.Implementation.ValidateAPISignature",
+      "purity_class": "PURE",
+      "request_schema_digest": "sha256:schema.request.minimal",
+      "response_schema_digest": "sha256:schema.response.minimal",
+      "side_effects": [
+        "READ_ONLY"
+      ],
+      "signature_digest": "hex:8ad27b54fcdf3091d41055d3ecc010030b7c1a7169ad2ac5a4ac5eea7dacbe30",
+      "surface": "SYSCALL",
+      "version": "v1"
+    },
+    {
+      "allowed_error_codes": [
+        "CONTRACT_VIOLATION"
+      ],
+      "method": "CALL",
+      "operator_id": "Glyphser.Implementation.ValidateIOShape",
+      "purity_class": "PURE",
+      "request_schema_digest": "sha256:schema.request.minimal",
+      "response_schema_digest": "sha256:schema.response.minimal",
+      "side_effects": [
+        "READ_ONLY"
+      ],
+      "signature_digest": "hex:962ab8277a6bf5cc00e49ea8c72d506f0da22924aeeb56f3faaef6116e720594",
+      "surface": "SYSCALL",
+      "version": "v1"
+    }
+  ],
+  "registry_schema_version": "v1"
+}

@@ -1,0 +1,13 @@
+tooling_manifest_version: "v1"
+tooling_id: "eqc-es-v1"
+commands:
+  - name: "eqc-es validate"
+    output: "JSON"
+  - name: "eqc-es impact --change DOCID@vX.Y.Z"
+    output: "JSON"
+  - name: "eqc-es regenerate-sidecars"
+    output: "sidecar files"
+  - name: "eqc-es generate-migration-plan"
+    output: "migration-plan.yaml"
+ci_integration:
+  fail_on_errors: true

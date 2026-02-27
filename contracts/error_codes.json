@@ -1,0 +1,25 @@
+{
+  "catalog_version": 1,
+  "entries": [
+    {
+      "code_id": "CONTRACT_VIOLATION",
+      "severity": "ERROR"
+    },
+    {
+      "code_id": "EVIDENCE_MISSING",
+      "severity": "ERROR"
+    },
+    {
+      "code_id": "SIGNATURE_MISMATCH",
+      "severity": "ERROR"
+    },
+    {
+      "code_id": "RELEASE_BLOCKED",
+      "severity": "ERROR"
+    },
+    {
+      "code_id": "CATALOG_HASH_MISMATCH",
+      "severity": "ERROR"
+    }
+  ]
+}

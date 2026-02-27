@@ -1,0 +1,18 @@
+migration_plan_template_version: "v1"
+plan_id: "TBD"
+from_version: "TBD"
+to_version: "TBD"
+affected_docids: []
+steps:
+  - step_id: "S1"
+    description: "Update registry and graph"
+    required_equivalence: "E0"
+  - step_id: "S2"
+    description: "Run impacted document migrations"
+    required_equivalence: "E1"
+  - step_id: "S3"
+    description: "Run portfolio validation and shadow-traces"
+    required_equivalence: "E-PORT"
+rollback:
+  checkpoint_hash: "TBD"
+  procedure: "Restore Portfolio Checkpoint"

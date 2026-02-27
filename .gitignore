@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*.class
+.venv/
+build/
+dist/
+.coverage
+coverage.xml
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.cache/
+
+# Project Specific
+temp/
+semantic_lint_report.txt
+semantic_lint_high_confidence.txt
+merged_docs.txt
+reports/
+output/
+artifacts/
+*.log
+
+# Private / internal docs and planning
+docs/business/
+docs/ip/
+docs/INTERPRETATION_LOG.md
+docs/WEEKLY_REVIEW_TEMPLATE.md
+milestones.txt
+
+# Secrets / local config
+.env
+.env.*
+.envrc
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+*.secrets.*
+
+# OS
+.DS_Store
+
+# Editors
+.idea/
+.vscode/

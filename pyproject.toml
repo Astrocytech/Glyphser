@@ -1,0 +1,21 @@
+[project]
+name = "glyphser"
+version = "0.1.0"
+description = "Deterministic runtime and conformance verification suite for ML2ML."
+requires-python = ">=3.12"
+dependencies = [
+    "pytest",
+    "cbor2",
+    "pyyaml"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = []

@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "vectors": [
+    {
+      "id": "empty-map",
+      "input_json": {},
+      "expected_cbor_hex": "a0",
+      "notes": "Empty map canonical CBOR."
+    },
+    {
+      "id": "empty-array",
+      "input_json": [],
+      "expected_cbor_hex": "80",
+      "notes": "Empty array canonical CBOR."
+    },
+    {
+      "id": "integer-zero",
+      "input_json": 0,
+      "expected_cbor_hex": "00",
+      "notes": "Unsigned zero."
+    },
+    {
+      "id": "integer-one",
+      "input_json": 1,
+      "expected_cbor_hex": "01",
+      "notes": "Unsigned one."
+    },
+    {
+      "id": "integer-23",
+      "input_json": 23,
+      "expected_cbor_hex": "17",
+      "notes": "Unsigned small int."
+    },
+    {
+      "id": "integer-24",
+      "input_json": 24,
+      "expected_cbor_hex": "1818",
+      "notes": "Unsigned int (one-byte additional)."
+    },
+    {
+      "id": "integer-255",
+      "input_json": 255,
+      "expected_cbor_hex": "18ff",
+      "notes": "Unsigned int max one-byte."
+    },
+    {
+      "id": "integer-256",
+      "input_json": 256,
+      "expected_cbor_hex": "190100",
+      "notes": "Unsigned int two-byte."
+    },
+    {
+      "id": "integer-1000",
+      "input_json": 1000,
+      "expected_cbor_hex": "1903e8",
+      "notes": "Unsigned int 1000."
+    },
+    {
+      "id": "integer-neg1",
+      "input_json": -1,
+      "expected_cbor_hex": "20",
+      "notes": "Negative one."
+    },
+    {
+      "id": "integer-neg10",
+      "input_json": -10,
+      "expected_cbor_hex": "29",
+      "notes": "Negative ten."
+    },
+    {
+      "id": "integer-neg24",
+      "input_json": -24,
+      "expected_cbor_hex": "37",
+      "notes": "Negative twenty-four."
+    },
+    {
+      "id": "integer-neg25",
+      "input_json": -25,
+      "expected_cbor_hex": "3818",
+      "notes": "Negative twenty-five."
+    },
+    {
+      "id": "text-a",
+      "input_json": "a",
+      "expected_cbor_hex": "6161",
+      "notes": "Single character string."
+    },
+    {
+      "id": "text-hello",
+      "input_json": "hello",
+      "expected_cbor_hex": "6568656c6c6f",
+      "notes": "ASCII string."
+    },
+    {
+      "id": "text-empty",
+      "input_json": "",
+      "expected_cbor_hex": "60",
+      "notes": "Empty string."
+    },
+    {
+      "id": "bytes-empty",
+      "input_json": {"__bytes__": ""},
+      "expected_cbor_hex": "40",
+      "notes": "Empty byte string."
+    },
+    {
+      "id": "bytes-0102",
+      "input_json": {"__bytes__": "0102"},
+      "expected_cbor_hex": "420102",
+      "notes": "Byte string 0x01 0x02."
+    },
+    {
+      "id": "bytes-ff",
+      "input_json": {"__bytes__": "ff"},
+      "expected_cbor_hex": "41ff",
+      "notes": "Byte string 0xff."
+    },
+    {
+      "id": "array-1-2",
+      "input_json": [1, 2],
+      "expected_cbor_hex": "820102",
+      "notes": "Two-element array."
+    },
+    {
+      "id": "array-mixed",
+      "input_json": ["a", 1, false],
+      "expected_cbor_hex": "83616101f4",
+      "notes": "Mixed array."
+    },
+    {
+      "id": "map-a-b",
+      "input_json": {"a": 1, "b": 2},
+      "expected_cbor_hex": "a2616101616202",
+      "notes": "Two-entry map with text keys."
+    },
+    {
+      "id": "map-int-keys",
+      "input_json": {"__map__": [[1, "a"], [0, "b"]]},
+      "expected_cbor_hex": "a2006162016161",
+      "notes": "Two-entry map with integer keys (canonical ordering)."
+    },
+    {
+      "id": "map-nested",
+      "input_json": {"k": {"a": 1}},
+      "expected_cbor_hex": "a1616ba1616101",
+      "notes": "Nested map."
+    }
+  ]
+}

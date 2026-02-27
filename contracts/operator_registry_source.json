@@ -1,0 +1,8 @@
+{
+  "operators": [
+    "Glyphser.Implementation.ComputeInterfaceHash",
+    "Glyphser.Implementation.ValidateAPISignature",
+    "Glyphser.Implementation.ValidateIOShape"
+  ],
+  "source": "/home/coka/Desktop/INTERVJUI/IZBR/ML2ML/docs/layer1-foundation/API-Interfaces.md"
+}

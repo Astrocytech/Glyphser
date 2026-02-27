@@ -1,0 +1,13 @@
+data_registry_version: "v1"
+datasets:
+  - dataset_id: "glyphser_default"
+    source: "TBD"
+    dataset_root_hash: "TBD"
+    preprocessing_operator: "Glyphser.Data.Lineage"
+    referenced_by:
+      - "L1-003"
+      - "L2-004"
+      - "L2-005"
+      - "L2-008"
+      - "L2-013"
+      - "L3-005"

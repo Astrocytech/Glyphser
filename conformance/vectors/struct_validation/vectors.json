@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "vectors": [
+    {
+      "id": "trace-iter-valid-min",
+      "struct": "TraceIterRecord",
+      "input": {"t": 0, "operator_id": "Glyphser.Data.NextBatch"},
+      "expected": "valid"
+    },
+    {
+      "id": "trace-iter-valid-nonzero",
+      "struct": "TraceIterRecord",
+      "input": {"t": 12, "operator_id": "Glyphser.Model.Forward"},
+      "expected": "valid"
+    },
+    {
+      "id": "trace-iter-missing-operator",
+      "struct": "TraceIterRecord",
+      "input": {"t": 0},
+      "expected": "invalid"
+    },
+    {
+      "id": "trace-iter-missing-t",
+      "struct": "TraceIterRecord",
+      "input": {"operator_id": "Glyphser.Data.NextBatch"},
+      "expected": "invalid"
+    },
+    {
+      "id": "trace-iter-bad-type",
+      "struct": "TraceIterRecord",
+      "input": [],
+      "expected": "invalid"
+    },
+    {
+      "id": "trace-iter-bad-field-type",
+      "struct": "TraceIterRecord",
+      "input": {"t": "0", "operator_id": "Glyphser.Data.NextBatch"},
+      "expected": "invalid"
+    },
+    {
+      "id": "checkpoint-valid-min",
+      "struct": "CheckpointHeader",
+      "input": {"checkpoint_id": "chk0", "step": 0},
+      "expected": "valid"
+    },
+    {
+      "id": "checkpoint-valid-nonzero",
+      "struct": "CheckpointHeader",
+      "input": {"checkpoint_id": "chk1", "step": 7},
+      "expected": "valid"
+    },
+    {
+      "id": "checkpoint-missing-id",
+      "struct": "CheckpointHeader",
+      "input": {"step": 0},
+      "expected": "invalid"
+    },
+    {
+      "id": "checkpoint-missing-step",
+      "struct": "CheckpointHeader",
+      "input": {"checkpoint_id": "chk0"},
+      "expected": "invalid"
+    },
+    {
+      "id": "checkpoint-bad-type",
+      "struct": "CheckpointHeader",
+      "input": "bad",
+      "expected": "invalid"
+    },
+    {
+      "id": "checkpoint-bad-field-type",
+      "struct": "CheckpointHeader",
+      "input": {"checkpoint_id": 1, "step": 0},
+      "expected": "invalid"
+    }
+  ]
+}
