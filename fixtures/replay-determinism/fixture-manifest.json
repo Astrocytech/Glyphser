@@ -1,0 +1,10 @@
+{
+  "files": [
+    {
+      "path": "fixtures/replay-determinism/trace.json",
+      "sha256": "76ee3615033ebedf4e655eee5685d8b99591fa029d2dd4d6f3392423c52c6d63",
+      "size_bytes": 95
+    }
+  ],
+  "fixture_set_id": "replay-determinism-fixtures-v1"
+}

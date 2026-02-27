@@ -48,9 +48,13 @@ def verify_file_list_manifest(manifest_path: Path) -> list[str]:
 def main() -> int:
     checks = [
         (ROOT / "contracts" / "catalog-manifest.json", verify_manifest),
-        (ROOT / "fixtures" / "hello-core" / "fixture-manifest.json", verify_file_list_manifest),
-        (ROOT / "goldens" / "hello-core" / "golden-manifest.json", verify_file_list_manifest),
     ]
+
+    for path in (ROOT / "fixtures").rglob("fixture-manifest.json"):
+        checks.append((path, verify_file_list_manifest))
+
+    for path in (ROOT / "goldens").rglob("golden-manifest.json"):
+        checks.append((path, verify_file_list_manifest))
 
     all_errors: list[str] = []
     for path, fn in checks:
@@ -60,8 +64,7 @@ def main() -> int:
         errs = fn(path)
         all_errors.extend(errs)
 
-    vmanifest = ROOT / "vectors" / "hello-core" / "vectors-manifest.json"
-    if vmanifest.exists():
+    for vmanifest in (ROOT / "vectors").rglob("vectors-manifest.json"):
         vm = json.loads(vmanifest.read_text(encoding="utf-8"))
         vf = ROOT / vm["vectors_file"]
         if not vf.exists():
@@ -72,8 +75,6 @@ def main() -> int:
                 all_errors.append(
                     f"vectors hash mismatch: expected={vm.get('vectors_file_sha256')} got={h}"
                 )
-    else:
-        all_errors.append(f"missing manifest: {vmanifest}")
 
     if all_errors:
         print("VERIFY_DOC_ARTIFACTS: FAIL")

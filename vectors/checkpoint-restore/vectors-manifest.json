@@ -1,0 +1,5 @@
+{
+  "vector_set_id": "checkpoint-restore-vectors-v1",
+  "vectors_file": "vectors/checkpoint-restore/vectors.json",
+  "vectors_file_sha256": "fe80203d8bba0b86574fd1f34bac4ecfc3e105b9319802946c2c274a1f91aa3e"
+}

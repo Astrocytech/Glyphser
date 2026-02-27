@@ -1,0 +1,15 @@
+{
+  "files": [
+    {
+      "path": "fixtures/checkpoint-restore/checkpoint_input.json",
+      "sha256": "ded81094e208ff10a9c18df488154c2eb978c9396910149fa39602071e175750",
+      "size_bytes": 110
+    },
+    {
+      "path": "fixtures/checkpoint-restore/restore_request.json",
+      "sha256": "df730bc43ea774a95a136b63cfcab562fdb02f421f5d807797a4ea5fb971511e",
+      "size_bytes": 52
+    }
+  ],
+  "fixture_set_id": "checkpoint-restore-fixtures-v1"
+}

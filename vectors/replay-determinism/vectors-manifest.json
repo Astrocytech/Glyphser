@@ -1,0 +1,5 @@
+{
+  "vector_set_id": "replay-determinism-vectors-v1",
+  "vectors_file": "vectors/replay-determinism/vectors.json",
+  "vectors_file_sha256": "6c8a00a0bb26a030bf403527a61430bf18864f27d0dc53c5f7669e9319c9388c"
+}

@@ -1,0 +1,15 @@
+{
+  "files": [
+    {
+      "path": "goldens/registry-lifecycle/stage_transition_expected.json",
+      "sha256": "be1604dc3ed5b911857fc3c5084432b1b65769369b7ceb687b8fb34035edc25e",
+      "size_bytes": 21
+    },
+    {
+      "path": "goldens/registry-lifecycle/version_create_expected.json",
+      "sha256": "be1604dc3ed5b911857fc3c5084432b1b65769369b7ceb687b8fb34035edc25e",
+      "size_bytes": 21
+    }
+  ],
+  "golden_set_id": "registry-lifecycle-goldens-v1"
+}

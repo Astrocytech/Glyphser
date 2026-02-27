@@ -1,0 +1,5 @@
+{
+  "vector_set_id": "tracking-monitoring-vectors-v1",
+  "vectors_file": "vectors/tracking-monitoring/vectors.json",
+  "vectors_file_sha256": "0f87238548733552648a5fa18543c741b7ca4951685096e5ea2c4c365f3d6ee0"
+}

@@ -9,6 +9,14 @@ Status: ACTIVE
 
 ## Integration Vectors
 - Hello-core: `vectors/hello-core/vectors.json`
+- Checkpoint/restore: `vectors/checkpoint-restore/vectors.json`
+- Replay determinism: `vectors/replay-determinism/vectors.json`
+- Registry lifecycle: `vectors/registry-lifecycle/vectors.json`
+- Tracking/monitoring: `vectors/tracking-monitoring/vectors.json`
+- Checkpoint/restore: `vectors/checkpoint-restore/vectors.json`
+- Replay determinism: `vectors/replay-determinism/vectors.json`
+- Registry lifecycle: `vectors/registry-lifecycle/vectors.json`
+- Tracking/monitoring: `vectors/tracking-monitoring/vectors.json`
 
 ## Replay / Checkpoint
 - Trace hash-chain: `tests/trace/test_compute_trace_hash.py`

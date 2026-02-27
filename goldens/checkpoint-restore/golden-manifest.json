@@ -1,0 +1,15 @@
+{
+  "files": [
+    {
+      "path": "goldens/checkpoint-restore/checkpoint_expected.json",
+      "sha256": "543d35027dfd408f97f83e76b43e1818c4fd92c76be4555194da642a17da4082",
+      "size_bytes": 50
+    },
+    {
+      "path": "goldens/checkpoint-restore/restore_expected.json",
+      "sha256": "3432da2e3316e8911f5b3414bc953a3902da2b69398d7b69f559a5d731075d87",
+      "size_bytes": 29
+    }
+  ],
+  "golden_set_id": "checkpoint-restore-goldens-v1"
+}
