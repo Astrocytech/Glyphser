@@ -16,6 +16,10 @@
       "type": "array"
     }
   },
+  "required": [
+    "roles",
+    "capabilities"
+  ],
   "title": "AuthZ-Capability-Matrix (L2)",
   "type": "object",
   "x_glyphser": {

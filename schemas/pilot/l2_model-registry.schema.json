@@ -12,6 +12,10 @@
       "type": "string"
     }
   },
+  "required": [
+    "model_id",
+    "model_hash"
+  ],
   "title": "Model-Registry (L2)",
   "type": "object",
   "x_glyphser": {

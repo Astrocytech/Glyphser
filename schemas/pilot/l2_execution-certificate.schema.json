@@ -8,7 +8,7 @@
       "type": "string"
     },
     "signed_payload": {
-      "additionalProperties": true,
+      "additionalProperties": false,
       "properties": {
         "attestation_bundle_hash": {
           "pattern": "^[0-9a-fA-F]{64}$",
@@ -113,6 +113,14 @@
           "pattern": "^[0-9a-fA-F]{64}$",
           "type": "string"
         },
+        "step_end": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "step_start": {
+          "minimum": 0,
+          "type": "integer"
+        },
         "tenant_id": {
           "minLength": 1,
           "type": "string"
@@ -127,6 +135,10 @@
         },
         "trace_final_hash": {
           "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "valid_until_utc": {
+          "format": "date-time",
           "type": "string"
         }
       },

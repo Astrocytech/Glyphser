@@ -10,6 +10,9 @@
       "type": "array"
     }
   },
+  "required": [
+    "fuzz_cases"
+  ],
   "title": "Data-Contract-Fuzzing-Guide (L3)",
   "type": "object",
   "x_glyphser": {

@@ -16,6 +16,11 @@
       "type": "string"
     }
   },
+  "required": [
+    "runbook_version",
+    "environment",
+    "commands"
+  ],
   "title": "Deployment-Runbook (L2)",
   "type": "object",
   "x_glyphser": {

@@ -18,6 +18,10 @@
       "type": "string"
     },
     "method": {
+      "enum": [
+        "CALL",
+        "INTERNAL"
+      ],
       "type": "string"
     },
     "operator_id": {

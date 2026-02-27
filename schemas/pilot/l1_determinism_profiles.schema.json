@@ -28,6 +28,9 @@
       ],
       "type": "string"
     },
+    "profile_rules": {
+      "type": "object"
+    },
     "tolerance_map": {
       "type": "object"
     }

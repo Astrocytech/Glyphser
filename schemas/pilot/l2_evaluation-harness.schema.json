@@ -13,6 +13,9 @@
       "type": "object"
     }
   },
+  "required": [
+    "metrics"
+  ],
   "title": "Evaluation-Harness (L2)",
   "type": "object",
   "x_glyphser": {

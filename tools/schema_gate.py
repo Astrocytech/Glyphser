@@ -58,6 +58,9 @@ def validate_schema(schema):
     # Prose drift check: required top-level properties should appear in source doc.
     required = schema.get("required", [])
     props = schema.get("properties", {})
+    for prop in required:
+        if prop not in props:
+            raise ValueError(f"Required property '{prop}' not defined in properties")
     prose_check = xg.get("prose_check", "strict")
     if source_doc and required and prose_check != "relaxed":
         for prop in required:

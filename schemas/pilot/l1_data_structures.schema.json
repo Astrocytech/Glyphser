@@ -196,6 +196,9 @@
           "type": "string"
         },
         "kind": {
+          "enum": [
+            "ERROR"
+          ],
           "type": "string"
         },
         "rank": {
@@ -229,6 +232,9 @@
           "type": "string"
         },
         "kind": {
+          "enum": [
+            "ITER"
+          ],
           "type": "string"
         },
         "operator_id": {
@@ -286,6 +292,9 @@
       "additionalProperties": true,
       "properties": {
         "kind": {
+          "enum": [
+            "RUN_HEADER"
+          ],
           "type": "string"
         },
         "replay_token": {

@@ -18,6 +18,12 @@
       "type": "number"
     }
   },
+  "required": [
+    "epsilon",
+    "delta",
+    "clipping_strategy",
+    "accountant"
+  ],
   "title": "DifferentialPrivacy-Apply (L2)",
   "type": "object",
   "x_glyphser": {

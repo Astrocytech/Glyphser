@@ -24,6 +24,10 @@
             "type": "string"
           },
           "kind": {
+            "enum": [
+              "syscall",
+              "service"
+            ],
             "type": "string"
           },
           "pure": {
@@ -44,12 +48,21 @@
             "type": "string"
           },
           "surface": {
+            "enum": [
+              "SYSCALL",
+              "SERVICE"
+            ],
             "type": "string"
           },
           "version": {
             "type": "string"
           }
         },
+        "required": [
+          "interface_id",
+          "surface",
+          "version"
+        ],
         "type": "object"
       },
       "type": "array"
