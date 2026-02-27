@@ -6,7 +6,8 @@
 **Spec Version:** `Glyphser.Test.VectorsCatalog` | 2026-02-18 | Authors: Olejar Damir  
 **Normativity Legend:** `docs/layer1-foundation/Normativity-Legend.md`
 
-**Domain / Problem Class:** Golden-vector governance.
+**Domain / Problem Class:** Golden-vector governance.  
+**Catalog (active):** `vectors/catalog.json`
 
 ---
 ## 1) Header & Global Semantics

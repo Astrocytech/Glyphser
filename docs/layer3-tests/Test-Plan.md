@@ -6,7 +6,8 @@
 **Spec Version:** `Glyphser.Implementation.TestPlanOrchestrator` | 2026-02-18 | Authors: Olejar Damir  
 **Normativity Legend:** `docs/layer1-foundation/Normativity-Legend.md`
 
-**Domain / Problem Class:** Deterministic verification and regression control.
+**Domain / Problem Class:** Deterministic verification and regression control.  
+**Test Inventory (active):** `docs/layer3-tests/Test-Inventory.md`
 
 ---
 
