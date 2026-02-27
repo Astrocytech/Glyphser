@@ -1,0 +1,48 @@
+{
+  "$id": "glyphser:l1:determinism_profiles",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "default_compare_policy": {
+      "enum": [
+        "E0"
+      ],
+      "type": "string"
+    },
+    "determinism_profile_hash": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "determinism_profile_id": {
+      "enum": [
+        "BITWISE",
+        "TOLERANCE"
+      ],
+      "minLength": 1,
+      "type": "string"
+    },
+    "nan_policy": {
+      "enum": [
+        "FORBID",
+        "ALLOW"
+      ],
+      "type": "string"
+    },
+    "tolerance_map": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "determinism_profile_id",
+    "determinism_profile_hash"
+  ],
+  "title": "Determinism Profiles",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L1",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer1-foundation/Determinism-Profiles.md"
+  }
+}

@@ -1,0 +1,30 @@
+Schema Conventions
+==================
+
+IDs
+---
+- Use a stable, lowercase prefix: glyphser:<layer>:<contract_name>
+- Example: glyphser:l1:error_codes
+
+Files
+-----
+- Filenames: <contract_name>.schema.json
+- Pilots live under schemas/pilot/
+
+x_glyphser Block
+----------------
+Required metadata in every schema:
+- layer: L1, L2, L3, L4
+- source_doc: path to Markdown contract
+- schema_version: version string
+- hash_rule: canonical_json_sha256
+
+References
+----------
+- Use $ref for shared types.
+- All refs must resolve under schemas/.
+
+Ordering
+--------
+- JSON objects are canonicalized by sorted keys.
+- Arrays retain order as defined in schema.

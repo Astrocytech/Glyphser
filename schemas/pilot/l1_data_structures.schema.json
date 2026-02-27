@@ -1,0 +1,343 @@
+{
+  "$id": "glyphser:l1:data_structures",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "CheckpointHeader": {
+      "additionalProperties": true,
+      "properties": {
+        "backend_binary_hash": {
+          "type": "string"
+        },
+        "checkpoint_hash": {
+          "type": "string"
+        },
+        "checkpoint_header_hash": {
+          "type": "string"
+        },
+        "checkpoint_manifest_hash": {
+          "type": "string"
+        },
+        "checkpoint_merkle_root": {
+          "type": "string"
+        },
+        "code_commit_hash": {
+          "type": "string"
+        },
+        "data_access_plan_hash": {
+          "type": "string"
+        },
+        "dependencies_lock_hash": {
+          "type": "string"
+        },
+        "determinism_profile_hash": {
+          "type": "string"
+        },
+        "dp_accountant_state_hash": {
+          "type": "string"
+        },
+        "ir_hash": {
+          "type": "string"
+        },
+        "lineage_root_hash": {
+          "type": "string"
+        },
+        "lockfile_hash": {
+          "type": "string"
+        },
+        "manifest_hash": {
+          "type": "string"
+        },
+        "operator_contracts_root_hash": {
+          "type": "string"
+        },
+        "optimizer_state_root_hash": {
+          "type": "string"
+        },
+        "policy_bundle_hash": {
+          "type": "string"
+        },
+        "replay_token": {
+          "type": "string"
+        },
+        "run_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "runtime_env_hash": {
+          "type": "string"
+        },
+        "sampler_config_hash": {
+          "type": "string"
+        },
+        "spec_version": {
+          "type": "string"
+        },
+        "t": {
+          "type": "integer"
+        },
+        "tenant_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "tensors_root_hash": {
+          "type": "string"
+        },
+        "tmmu_plan_hash": {
+          "type": "string"
+        },
+        "toolchain_hash": {
+          "type": "string"
+        },
+        "trace_final_hash": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "tenant_id",
+        "run_id",
+        "spec_version",
+        "replay_token",
+        "t",
+        "manifest_hash",
+        "ir_hash",
+        "trace_final_hash",
+        "sampler_config_hash",
+        "tmmu_plan_hash",
+        "backend_binary_hash",
+        "checkpoint_merkle_root",
+        "checkpoint_header_hash",
+        "checkpoint_manifest_hash",
+        "checkpoint_hash",
+        "policy_bundle_hash",
+        "determinism_profile_hash",
+        "lockfile_hash",
+        "toolchain_hash",
+        "dependencies_lock_hash",
+        "operator_contracts_root_hash",
+        "runtime_env_hash",
+        "code_commit_hash",
+        "lineage_root_hash",
+        "tensors_root_hash",
+        "optimizer_state_root_hash"
+      ],
+      "type": "object"
+    },
+    "FieldDecl": {
+      "additionalProperties": true,
+      "properties": {
+        "constraints": {
+          "type": "object"
+        },
+        "default": {},
+        "name": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "required"
+      ],
+      "type": "object"
+    },
+    "StructDecl": {
+      "additionalProperties": true,
+      "properties": {
+        "allow_additional_fields": {
+          "type": "boolean"
+        },
+        "fields": {
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "required_fields": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "struct_name": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "struct_name",
+        "version",
+        "fields",
+        "required_fields",
+        "allow_additional_fields"
+      ],
+      "type": "object"
+    },
+    "TraceErrorRecord": {
+      "additionalProperties": true,
+      "properties": {
+        "diagnostics_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "failure_code": {
+          "type": "string"
+        },
+        "failure_operator": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "rank": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "replay_token": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "t": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "t",
+        "rank",
+        "failure_code",
+        "failure_operator",
+        "replay_token",
+        "diagnostics_hash"
+      ],
+      "type": "object"
+    },
+    "TraceIterRecord": {
+      "additionalProperties": true,
+      "properties": {
+        "functional_fp": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "operator_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "operator_seq": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "privacy_class": {
+          "enum": [
+            "PUBLIC",
+            "INTERNAL",
+            "CONFIDENTIAL"
+          ],
+          "type": "string"
+        },
+        "rank": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "replay_token": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "stage_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "state_fp": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "t": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "t",
+        "stage_id",
+        "operator_id",
+        "operator_seq",
+        "rank",
+        "status",
+        "replay_token"
+      ],
+      "type": "object"
+    },
+    "TraceRunHeader": {
+      "additionalProperties": true,
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "replay_token": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "run_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_version": {
+          "type": "string"
+        },
+        "task_type": {
+          "type": "string"
+        },
+        "tenant_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "world_size": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_version",
+        "tenant_id",
+        "run_id",
+        "replay_token",
+        "task_type",
+        "world_size"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "TraceIterRecord",
+    "TraceRunHeader",
+    "TraceErrorRecord",
+    "CheckpointHeader",
+    "StructDecl",
+    "FieldDecl"
+  ],
+  "title": "Data Structures",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L1",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer1-foundation/Data-Structures.md"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$id": "glyphser:l2:model-registry",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "model_hash": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "model_id": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "title": "Model-Registry (L2)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L2",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer2-specs/Model-Registry.md"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "$id": "glyphser:l1:redaction_policy",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "classification": {
+      "enum": [
+        "PUBLIC",
+        "INTERNAL",
+        "CONFIDENTIAL"
+      ],
+      "type": "string"
+    },
+    "redaction_key_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "redaction_mode": {
+      "enum": [
+        "NONE",
+        "HMAC_SHA256_V1",
+        "BUCKET_V1"
+      ],
+      "type": "string"
+    },
+    "redaction_policy_hash": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "transform": {
+      "enum": [
+        "NONE",
+        "HMAC_SHA256_V1",
+        "BUCKET_V1"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "classification",
+    "redaction_mode",
+    "transform"
+  ],
+  "title": "Redaction Policy",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L1",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer1-foundation/Redaction-Policy.md"
+  }
+}

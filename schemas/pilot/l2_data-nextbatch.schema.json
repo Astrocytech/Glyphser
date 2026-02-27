@@ -1,0 +1,37 @@
+{
+  "$id": "glyphser:l2:data-nextbatch",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "dataset_key": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "global_batch_size": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "seed": {
+      "type": "integer"
+    },
+    "world_size": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "dataset_key",
+    "global_batch_size",
+    "world_size",
+    "seed"
+  ],
+  "title": "Data-NextBatch (L2)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L2",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer2-specs/Data-NextBatch.md"
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "$id": "glyphser:l2:config-schema",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "checkpoint_frequency": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "custom_operators": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "data": {
+      "type": "object"
+    },
+    "datasets": {
+      "type": "object"
+    },
+    "environment": {
+      "type": "object"
+    },
+    "execution_mode": {
+      "enum": [
+        "local",
+        "managed",
+        "confidential",
+        "regulated"
+      ],
+      "type": "string"
+    },
+    "fingerprint_frequency": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "global_batch_size": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "job_priority": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "model": {
+      "type": "object"
+    },
+    "optimizer": {
+      "type": "object"
+    },
+    "parallelism": {
+      "type": "object"
+    },
+    "pipeline_stages": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "policy": {
+      "type": "object"
+    },
+    "policy_bundle": {
+      "type": "object"
+    },
+    "schema_mode": {
+      "enum": [
+        "AUTHORITATIVE",
+        "MODULAR"
+      ],
+      "type": "string"
+    },
+    "security": {
+      "type": "object"
+    },
+    "seed": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "spec_version": {
+      "type": "string"
+    },
+    "task_type": {
+      "enum": [
+        "multiclass",
+        "binary",
+        "regression"
+      ],
+      "type": "string"
+    },
+    "tenant_id": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "spec_version",
+    "tenant_id",
+    "seed",
+    "global_batch_size",
+    "datasets",
+    "environment",
+    "pipeline_stages",
+    "model",
+    "security",
+    "optimizer",
+    "policy_bundle"
+  ],
+  "title": "Config-Schema (L2)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L2",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer2-specs/Config-Schema.md"
+  }
+}

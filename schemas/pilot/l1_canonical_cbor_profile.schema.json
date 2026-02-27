@@ -1,0 +1,47 @@
+{
+  "$id": "glyphser:l1:canonical_cbor_profile",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "float_format": {
+      "enum": [
+        "binary64"
+      ],
+      "type": "string"
+    },
+    "map_key_ordering": {
+      "enum": [
+        "canonical_encoded_bytes"
+      ],
+      "type": "string"
+    },
+    "simple_values": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "string_normalization": {
+      "enum": [
+        "NONE"
+      ],
+      "type": "string"
+    },
+    "tag_policy": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "float_format",
+    "map_key_ordering"
+  ],
+  "title": "Canonical CBOR Profile",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L1",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer1-foundation/Canonical-CBOR-Profile.md"
+  }
+}

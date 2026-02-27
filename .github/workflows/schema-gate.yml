@@ -1,0 +1,25 @@
+name: schema-gate
+
+on:
+  push:
+    paths:
+      - "schemas/**"
+      - "docs/**"
+      - "tools/schema_gate.py"
+  pull_request:
+    paths:
+      - "schemas/**"
+      - "docs/**"
+      - "tools/schema_gate.py"
+
+jobs:
+  schema-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run schema gate
+        run: python tools/schema_gate.py

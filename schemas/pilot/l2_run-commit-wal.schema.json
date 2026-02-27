@@ -1,0 +1,33 @@
+{
+  "$id": "glyphser:l2:run-commit-wal",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "record_hash": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "run_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "wal_seq": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "run_id",
+    "wal_seq",
+    "record_hash"
+  ],
+  "title": "Run-Commit-WAL (L2)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L2",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer2-specs/Run-Commit-WAL.md"
+  }
+}

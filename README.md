@@ -10,6 +10,8 @@ Release bundle: PASS (local)
 
 This repository contains the deterministic runtime specifications, capability contracts, and conformance tooling for the Glyphser ecosystem, maintained by Astrocytech.
 
+GitHub: https://github.com/Astrocytech/Glyphser
+
 Independent implementation; no official affiliation or certification claims are made unless explicitly stated.
 
 ## Quick Start

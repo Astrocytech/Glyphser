@@ -1,0 +1,96 @@
+{
+  "$id": "glyphser:l1:operator_registry_schema",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "allowed_error_codes": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "determinism_class": {
+      "enum": [
+        "DETERMINISTIC",
+        "STOCHASTIC",
+        "MIXED"
+      ],
+      "type": "string"
+    },
+    "method": {
+      "type": "string"
+    },
+    "operator_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "purity_class": {
+      "enum": [
+        "PURE",
+        "STATEFUL",
+        "IO"
+      ],
+      "type": "string"
+    },
+    "request_schema_digest": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "required_capabilities": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "response_schema_digest": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "rng_usage": {
+      "enum": [
+        "NONE",
+        "PHILOX4x32_10"
+      ],
+      "type": "string"
+    },
+    "side_effects": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "surface": {
+      "enum": [
+        "SYSCALL",
+        "SERVICE"
+      ],
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "operator_id",
+    "surface",
+    "version",
+    "method",
+    "purity_class",
+    "rng_usage",
+    "determinism_class",
+    "side_effects",
+    "allowed_error_codes",
+    "required_capabilities",
+    "request_schema_digest",
+    "response_schema_digest"
+  ],
+  "title": "Operator Registry Schema",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L1",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer1-foundation/Operator-Registry-Schema.md"
+  }
+}

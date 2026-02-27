@@ -1,0 +1,32 @@
+{
+  "$id": "glyphser:l3:test-plan",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "coverage": {
+      "type": "string"
+    },
+    "pass_criteria": {
+      "type": "string"
+    },
+    "tests": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "tests",
+    "pass_criteria"
+  ],
+  "title": "Test-Plan (L3)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L3",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer3-tests/Test-Plan.md"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$id": "glyphser:l2:differentialprivacy-apply",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "accountant": {
+      "type": "string"
+    },
+    "clipping_strategy": {
+      "type": "string"
+    },
+    "delta": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "epsilon": {
+      "minimum": 0,
+      "type": "number"
+    }
+  },
+  "title": "DifferentialPrivacy-Apply (L2)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L2",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer2-specs/DifferentialPrivacy-Apply.md"
+  }
+}

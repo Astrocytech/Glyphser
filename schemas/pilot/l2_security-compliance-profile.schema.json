@@ -1,0 +1,54 @@
+{
+  "$id": "glyphser:l2:security-compliance-profile",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "attestation_bundle_hash": {
+      "type": "string"
+    },
+    "attestation_quote_hash": {
+      "type": "string"
+    },
+    "execution_mode": {
+      "enum": [
+        "local",
+        "managed",
+        "confidential",
+        "regulated"
+      ],
+      "type": "string"
+    },
+    "measurements_hash": {
+      "type": "string"
+    },
+    "redaction_mode": {
+      "enum": [
+        "NONE",
+        "HMAC_SHA256_V1",
+        "BUCKET_V1"
+      ],
+      "type": "string"
+    },
+    "tcb_version": {
+      "type": "string"
+    },
+    "tee_type": {
+      "type": "string"
+    },
+    "verification_report_hash": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "execution_mode"
+  ],
+  "title": "Security-Compliance-Profile (L2)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L2",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer2-specs/Security-Compliance-Profile.md"
+  }
+}

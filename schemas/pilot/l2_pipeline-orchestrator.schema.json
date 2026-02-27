@@ -1,0 +1,39 @@
+{
+  "$id": "glyphser:l2:pipeline-orchestrator",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "pipeline_stages": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "task_type": {
+      "enum": [
+        "multiclass",
+        "binary",
+        "regression"
+      ],
+      "type": "string"
+    },
+    "world_size": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "pipeline_stages",
+    "task_type",
+    "world_size"
+  ],
+  "title": "Pipeline-Orchestrator (L2)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L2",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer2-specs/Pipeline-Orchestrator.md"
+  }
+}

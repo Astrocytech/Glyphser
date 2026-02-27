@@ -26,7 +26,6 @@ artifacts/
 *.log
 
 # Private / internal docs and planning
-docs/business/
 docs/ip/
 docs/INTERPRETATION_LOG.md
 docs/WEEKLY_REVIEW_TEMPLATE.md

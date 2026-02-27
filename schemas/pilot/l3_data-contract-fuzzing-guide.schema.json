@@ -1,0 +1,22 @@
+{
+  "$id": "glyphser:l3:data-contract-fuzzing-guide",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "fuzz_cases": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "title": "Data-Contract-Fuzzing-Guide (L3)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L3",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer3-tests/Data-Contract-Fuzzing-Guide.md"
+  }
+}

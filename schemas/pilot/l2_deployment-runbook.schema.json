@@ -1,0 +1,28 @@
+{
+  "$id": "glyphser:l2:deployment-runbook",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "commands": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "environment": {
+      "type": "string"
+    },
+    "runbook_version": {
+      "type": "string"
+    }
+  },
+  "title": "Deployment-Runbook (L2)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L2",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer2-specs/Deployment-Runbook.md"
+  }
+}

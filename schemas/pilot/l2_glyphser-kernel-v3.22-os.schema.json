@@ -1,0 +1,37 @@
+{
+  "$id": "glyphser:l2:glyphser-kernel-v3.22-os",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "execution_mode": {
+      "enum": [
+        "local",
+        "managed",
+        "confidential",
+        "regulated"
+      ],
+      "type": "string"
+    },
+    "manifest_hash": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "replay_token": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "run_id": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "title": "Glyphser-Kernel-v3.22-OS (L2)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L2",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer2-specs/Glyphser-Kernel-v3.22-OS.md"
+  }
+}

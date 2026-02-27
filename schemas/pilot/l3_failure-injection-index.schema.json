@@ -1,0 +1,25 @@
+{
+  "$id": "glyphser:l3:failure-injection-index",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "scenarios": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "scenarios"
+  ],
+  "title": "Failure-Injection-Index (L3)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L3",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer3-tests/Failure-Injection-Index.md"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "$id": "glyphser:l3:conformance-harness-guide",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "commands": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "inputs": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "commands",
+    "inputs"
+  ],
+  "title": "Conformance-Harness-Guide (L3)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L3",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer3-tests/Conformance-Harness-Guide.md"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "$id": "glyphser:l3:integration-test-matrix",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "cases": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "matrix": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "ok",
+        "error",
+        "fail",
+        "pass",
+        "warn"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "matrix",
+    "cases"
+  ],
+  "title": "Integration-Test-Matrix (L3)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L3",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer3-tests/Integration-Test-Matrix.md"
+  }
+}

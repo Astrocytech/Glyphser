@@ -1,0 +1,33 @@
+{
+  "$id": "glyphser:l1:normativity_legend",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "default_rules": {
+      "type": "string"
+    },
+    "tags": {
+      "items": {
+        "enum": [
+          "Normative",
+          "Informative",
+          "Template-only"
+        ],
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "tags"
+  ],
+  "title": "Normativity Legend",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L1",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer1-foundation/Normativity-Legend.md"
+  }
+}

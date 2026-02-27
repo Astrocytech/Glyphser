@@ -1,0 +1,38 @@
+{
+  "$id": "glyphser:l3:conformance-ci-pipeline",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "artifacts": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "gates": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "steps": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "steps",
+    "gates"
+  ],
+  "title": "Conformance-CI-Pipeline (L3)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L3",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer3-tests/Conformance-CI-Pipeline.md"
+  }
+}

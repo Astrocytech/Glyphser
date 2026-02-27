@@ -1,0 +1,40 @@
+{
+  "$id": "glyphser:l2:tmmu-allocation",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "allocation_header": {
+      "type": "object"
+    },
+    "arena_config": {
+      "type": "object"
+    },
+    "ir_hash": {
+      "type": "string"
+    },
+    "metrics": {
+      "type": "object"
+    },
+    "replay_token": {
+      "type": "string"
+    },
+    "tensor_map": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "arena_config",
+    "ir_hash",
+    "replay_token",
+    "allocation_header"
+  ],
+  "title": "TMMU-Allocation (L2)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L2",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer2-specs/TMMU-Allocation.md"
+  }
+}

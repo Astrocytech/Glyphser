@@ -1,0 +1,40 @@
+{
+  "$id": "glyphser:l2:data-lineage",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "data_access_plan_hash": {
+      "type": "string"
+    },
+    "dataset_snapshot_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "lineage_root_hash": {
+      "type": "string"
+    },
+    "split_hashes": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "transform_chain_hash": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "dataset_snapshot_id",
+    "data_access_plan_hash",
+    "lineage_root_hash"
+  ],
+  "title": "Data-Lineage (L2)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L2",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer2-specs/Data-Lineage.md"
+  }
+}

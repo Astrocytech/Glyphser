@@ -1,0 +1,75 @@
+{
+  "$id": "glyphser:l1:api_interfaces",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "interface_hash": {
+      "type": "string"
+    },
+    "interfaces": {
+      "items": {
+        "additionalProperties": true,
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "error_codes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "interface_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "pure": {
+            "type": "boolean"
+          },
+          "schema_hash": {
+            "pattern": "^[0-9a-fA-F]{64}$",
+            "type": "string"
+          },
+          "side_effects": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "signature_hash": {
+            "pattern": "^[0-9a-fA-F]{64}$",
+            "type": "string"
+          },
+          "surface": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "spec_version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "spec_version",
+    "interfaces",
+    "interface_hash"
+  ],
+  "title": "API Interfaces",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L1",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer1-foundation/API-Interfaces.md"
+  }
+}

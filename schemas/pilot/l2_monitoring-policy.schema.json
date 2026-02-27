@@ -1,0 +1,44 @@
+{
+  "$id": "glyphser:l2:monitoring-policy",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "baselines": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "metrics": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "monitor_policy_hash": {
+      "type": "string"
+    },
+    "monitor_summary_hash": {
+      "type": "string"
+    },
+    "policy_gate_hash": {
+      "type": "string"
+    },
+    "thresholds": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "monitor_policy_hash",
+    "policy_gate_hash"
+  ],
+  "title": "Monitoring-Policy (L2)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L2",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer2-specs/Monitoring-Policy.md"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$id": "glyphser:l2:replay-determinism",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "determinism_profile_hash": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "driver_runtime_fingerprint_hash": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "env_manifest_hash": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "kernel_replay_token": {
+      "type": "string"
+    },
+    "operator_contracts_root_hash": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "policy_bundle_hash": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "replay_token": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "seed": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "kernel_replay_token",
+    "replay_token",
+    "determinism_profile_hash"
+  ],
+  "title": "Replay-Determinism (L2)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L2",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer2-specs/Replay-Determinism.md"
+  }
+}

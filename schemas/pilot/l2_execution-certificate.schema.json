@@ -1,0 +1,176 @@
+{
+  "$id": "glyphser:l2:execution-certificate",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "certificate_hash": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "signed_payload": {
+      "additionalProperties": true,
+      "properties": {
+        "attestation_bundle_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "attestation_quote_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "authz_decision_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "authz_policy_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "backend_binary_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "certificate_version": {
+          "type": "string"
+        },
+        "checkpoint_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "data_access_plan_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "dataset_snapshot_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "dependencies_lock_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "determinism_profile_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "dp_policy_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "ir_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "lineage_root_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "lockfile_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "manifest_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "monitor_policy_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "operator_contracts_root_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "policy_bundle_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "policy_gate_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "redaction_key_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "redaction_policy_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "replay_token": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "run_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sampler_config_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "security_policy_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "tenant_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "tmmu_plan_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "toolchain_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "trace_final_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "certificate_version",
+        "tenant_id",
+        "run_id",
+        "replay_token",
+        "manifest_hash",
+        "trace_final_hash",
+        "checkpoint_hash",
+        "policy_bundle_hash",
+        "policy_gate_hash",
+        "authz_decision_hash",
+        "dependencies_lock_hash",
+        "lockfile_hash",
+        "toolchain_hash",
+        "determinism_profile_hash",
+        "operator_contracts_root_hash",
+        "ir_hash",
+        "lineage_root_hash",
+        "sampler_config_hash",
+        "data_access_plan_hash",
+        "dataset_snapshot_id",
+        "tmmu_plan_hash",
+        "backend_binary_hash"
+      ],
+      "type": "object"
+    },
+    "unsigned_metadata": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "signed_payload",
+    "certificate_hash"
+  ],
+  "title": "Execution-Certificate (L2)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L2",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer2-specs/Execution-Certificate.md"
+  }
+}

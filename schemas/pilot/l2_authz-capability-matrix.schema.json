@@ -1,0 +1,28 @@
+{
+  "$id": "glyphser:l2:authz-capability-matrix",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "capabilities": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "roles": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "title": "AuthZ-Capability-Matrix (L2)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L2",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer2-specs/AuthZ-Capability-Matrix.md"
+  }
+}

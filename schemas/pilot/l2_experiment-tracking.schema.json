@@ -1,0 +1,73 @@
+{
+  "$id": "glyphser:l2:experiment-tracking",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "checkpoint_hash": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "ended_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "execution_certificate_hash": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "manifest_hash": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "replay_token": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "run_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "ok",
+        "error",
+        "fail",
+        "pass",
+        "warn"
+      ],
+      "type": "string"
+    },
+    "tenant_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "trace_final_hash": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "tenant_id",
+    "run_id",
+    "replay_token",
+    "manifest_hash",
+    "trace_final_hash",
+    "checkpoint_hash",
+    "execution_certificate_hash",
+    "status",
+    "created_at"
+  ],
+  "title": "Experiment-Tracking (L2)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L2",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer2-specs/Experiment-Tracking.md"
+  }
+}

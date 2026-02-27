@@ -1,0 +1,56 @@
+{
+  "$id": "glyphser:l1:digest_catalog",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "catalog_version": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "entries": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "algorithm": {
+            "enum": [
+              "sha256"
+            ],
+            "type": "string"
+          },
+          "digest_label": {
+            "pattern": "^[a-z0-9_\\-\\.]{1,128}$",
+            "type": "string"
+          },
+          "digest_value": {
+            "pattern": "^[0-9a-fA-F]{64}$",
+            "type": "string"
+          },
+          "domain_tag": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "digest_label",
+          "digest_value",
+          "algorithm",
+          "domain_tag"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "catalog_version",
+    "entries"
+  ],
+  "title": "Digest Catalog",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L1",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer1-foundation/Digest-Catalog.md"
+  }
+}

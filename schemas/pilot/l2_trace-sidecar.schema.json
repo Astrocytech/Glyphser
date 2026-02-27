@@ -1,0 +1,237 @@
+{
+  "$id": "glyphser:l2:trace-sidecar",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "error_records": {
+      "items": {
+        "additionalProperties": true,
+        "properties": {
+          "diagnostics_hash": {
+            "pattern": "^[0-9a-fA-F]{64}$",
+            "type": "string"
+          },
+          "failure_code": {
+            "type": "string"
+          },
+          "failure_operator": {
+            "type": "string"
+          },
+          "t": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "t",
+          "failure_code",
+          "failure_operator",
+          "diagnostics_hash"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "iter_records": {
+      "items": {
+        "additionalProperties": true,
+        "properties": {
+          "artifact_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "functional_fp": {
+            "type": "string"
+          },
+          "grad_norm": {
+            "type": "number"
+          },
+          "loss_total": {
+            "type": "number"
+          },
+          "metric_name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "metric_value": {
+            "type": "number"
+          },
+          "operator_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "operator_seq": {
+            "type": "integer"
+          },
+          "quota_decision": {
+            "type": "string"
+          },
+          "quota_policy_hash": {
+            "pattern": "^[0-9a-fA-F]{64}$",
+            "type": "string"
+          },
+          "rank": {
+            "type": "integer"
+          },
+          "replay_token": {
+            "pattern": "^[0-9a-fA-F]{64}$",
+            "type": "string"
+          },
+          "resource_ledger_hash": {
+            "pattern": "^[0-9a-fA-F]{64}$",
+            "type": "string"
+          },
+          "rng_offset_after": {
+            "type": "integer"
+          },
+          "rng_offset_before": {
+            "type": "integer"
+          },
+          "stage_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "state_fp": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "t": {
+            "type": "integer"
+          },
+          "tracking_event_type": {
+            "type": "string"
+          },
+          "window_id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "t",
+          "stage_id",
+          "operator_id",
+          "operator_seq",
+          "rank",
+          "status",
+          "replay_token"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "run_header": {
+      "additionalProperties": true,
+      "properties": {
+        "authz_decision_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "backend_binary_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "driver_runtime_fingerprint_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "hash_gate_K": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "hash_gate_M": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "kind": {
+          "enum": [
+            "RUN_HEADER"
+          ],
+          "type": "string"
+        },
+        "monitor_policy_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "operator_contracts_root_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "policy_bundle_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "redaction_key_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "redaction_mode": {
+          "type": "string"
+        },
+        "redaction_policy_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "replay_token": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        },
+        "run_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_version": {
+          "type": "string"
+        },
+        "task_type": {
+          "type": "string"
+        },
+        "tenant_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "world_size": {
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_version",
+        "replay_token",
+        "run_id",
+        "tenant_id",
+        "task_type",
+        "world_size",
+        "backend_binary_hash",
+        "driver_runtime_fingerprint_hash",
+        "policy_bundle_hash",
+        "monitor_policy_hash",
+        "operator_contracts_root_hash",
+        "redaction_mode",
+        "hash_gate_M",
+        "hash_gate_K"
+      ],
+      "type": "object"
+    },
+    "trace_final_hash": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "run_header",
+    "iter_records",
+    "error_records",
+    "trace_final_hash"
+  ],
+  "title": "Trace-Sidecar (L2)",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L2",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer2-specs/Trace-Sidecar.md"
+  }
+}

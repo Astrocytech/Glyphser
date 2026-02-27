@@ -1,0 +1,50 @@
+{
+  "$id": "glyphser:l1:environment_manifest",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "arch": {
+      "type": "string"
+    },
+    "backend_binary_hash": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "dependencies_lock_hash": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "driver_runtime_fingerprint_hash": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "gpu": {
+      "type": "string"
+    },
+    "os": {
+      "type": "string"
+    },
+    "runtime_env_hash": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "toolchain_hash": {
+      "pattern": "^[0-9a-fA-F]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "runtime_env_hash",
+    "driver_runtime_fingerprint_hash",
+    "backend_binary_hash"
+  ],
+  "title": "Environment Manifest",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L1",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer1-foundation/Environment-Manifest.md"
+  }
+}

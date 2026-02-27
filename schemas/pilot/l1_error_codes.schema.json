@@ -1,0 +1,76 @@
+{
+  "$id": "glyphser:l1:error_codes",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "error_codes": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "code_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "deterministic_fields_required": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "message_template": {
+            "type": "string"
+          },
+          "numeric_code": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "remediation": {
+            "type": "string"
+          },
+          "retryable": {
+            "type": "boolean"
+          },
+          "severity": {
+            "enum": [
+              "FATAL",
+              "ERROR",
+              "WARN"
+            ],
+            "type": "string"
+          },
+          "version_introduced": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code_id",
+          "numeric_code",
+          "category",
+          "severity",
+          "retryable",
+          "deterministic_fields_required",
+          "message_template",
+          "remediation",
+          "version_introduced"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "error_codes"
+  ],
+  "title": "Glyphser Error Codes",
+  "type": "object",
+  "x_glyphser": {
+    "hash_rule": "canonical_json_sha256",
+    "layer": "L1",
+    "prose_check": "relaxed",
+    "schema_version": "0.1",
+    "source_doc": "docs/layer1-foundation/Error-Codes.md"
+  }
+}
