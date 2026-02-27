@@ -1,0 +1,15 @@
+{
+  "runtime_profile": "regulated",
+  "execution_mode": "regulated",
+  "storage_root": "data/regulated",
+  "artifact_root": "artifacts/regulated",
+  "logging": {
+    "level": "INFO",
+    "trace_sidecar": true
+  },
+  "checkpoint": {
+    "enabled": true,
+    "interval_steps": 1
+  }
+}
+

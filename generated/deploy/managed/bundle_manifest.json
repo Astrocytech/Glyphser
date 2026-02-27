@@ -1,0 +1,15 @@
+{
+  "artifacts": [
+    {
+      "path": "generated/deploy/managed/runtime_config.json",
+      "sha256": "224a4a4a4ed88a5e513ab4dff13f63bd2417cc418a12f027ca95419fe027b9c6"
+    },
+    {
+      "path": "generated/deploy/managed/policy_bindings.json",
+      "sha256": "66aecfebce3e65f751872e29a04f7bb6ee8f9bff2621cfa761b1e8d66192f7ea"
+    }
+  ],
+  "bundle_hash": "a9c3597fb3214d0c0588df25fc4b73464beedb0eef134041a0105d7611bee54a",
+  "catalog_digest": "b18d515a42abf201cd615865f04f25df6558df2d9eac632e54f8245330d91315",
+  "profile": "managed"
+}

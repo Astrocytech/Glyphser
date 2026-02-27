@@ -1,0 +1,8 @@
+{{
+  "profile": "{profile}",
+  "determinism_profile": "CanonicalSerialization",
+  "required_capabilities": [],
+  "authz_policy_ref": "docs/layer2-specs/AuthZ-Capability-Matrix.md",
+  "security_policy_ref": "docs/layer2-specs/Security-Compliance-Profile.md",
+  "monitor_policy_ref": "docs/layer2-specs/Experiment-Tracking.md"
+}}

@@ -1,0 +1,15 @@
+{
+  "runtime_profile": "managed",
+  "execution_mode": "managed",
+  "storage_root": "data/managed",
+  "artifact_root": "artifacts/managed",
+  "logging": {
+    "level": "INFO",
+    "trace_sidecar": true
+  },
+  "checkpoint": {
+    "enabled": true,
+    "interval_steps": 1
+  }
+}
+
