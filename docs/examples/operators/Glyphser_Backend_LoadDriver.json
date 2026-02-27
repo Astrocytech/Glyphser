@@ -1,7 +1,9 @@
 {
   "expected_example": {
     "response": {
+      "backend_binary_hash": "sha256:reference",
       "driver_id": "default",
+      "driver_runtime_fingerprint_hash": "sha256:reference-runtime",
       "status": "OK"
     }
   },

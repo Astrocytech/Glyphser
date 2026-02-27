@@ -26,6 +26,7 @@ from src.glyphser.monitor.drift_compute import drift_compute
 from src.glyphser.backend.load_driver import load_driver
 from src.glyphser.dp.apply import dp_apply
 from src.glyphser.model.forward import forward
+from src.glyphser.model.model_ir_executor import execute as model_ir_execute
 from src.glyphser.tmmu.prepare_memory import prepare_memory
 from src.glyphser.cert.evidence_validate import evidence_validate
 from src.glyphser.config.migrate_manifest import manifest_migrate
@@ -122,8 +123,10 @@ def Glyphser_Model_Forward(request: Dict[str, Any]) -> Dict[str, Any]:
 
 def Glyphser_Model_ModelIR_Executor(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.Model.ModelIR_Executor stub."""
-    if isinstance(request, dict) and request.get("force_error") is True:
-        code = request.get("error_code") or "PRIMITIVE_UNSUPPORTED"
+    if not isinstance(request, dict):
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Model.ModelIR_Executor")}
+    if request.get("force_error") is True:
+        code = request.get("error_code") or "CONTRACT_VIOLATION"
         ctx = {
             "operator_id": "Glyphser.Model.ModelIR_Executor",
             "t": "placeholder",
@@ -160,7 +163,10 @@ def Glyphser_Model_ModelIR_Executor(request: Dict[str, Any]) -> Dict[str, Any]:
             "target_epsilon": "placeholder",
         }
         return {"error": emit_error(code, "invalid request", **ctx)}
-    return {"error": emit_error("PRIMITIVE_UNSUPPORTED", "Generated stub not implemented", operator_id="Glyphser.Model.ModelIR_Executor", t="placeholder", node_id="placeholder", instr="placeholder", backend_binary_hash="placeholder")}
+    try:
+        return model_ir_execute(request)
+    except Exception:
+        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.Model.ModelIR_Executor")}
 
 def Glyphser_DifferentialPrivacy_Apply(request: Dict[str, Any]) -> Dict[str, Any]:
     """Glyphser.DifferentialPrivacy.Apply stub."""

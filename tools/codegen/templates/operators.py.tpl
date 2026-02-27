@@ -26,6 +26,7 @@ from src.glyphser.monitor.drift_compute import drift_compute
 from src.glyphser.backend.load_driver import load_driver
 from src.glyphser.dp.apply import dp_apply
 from src.glyphser.model.forward import forward
+from src.glyphser.model.model_ir_executor import execute as model_ir_execute
 from src.glyphser.tmmu.prepare_memory import prepare_memory
 from src.glyphser.cert.evidence_validate import evidence_validate
 from src.glyphser.config.migrate_manifest import manifest_migrate

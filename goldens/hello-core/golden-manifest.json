@@ -2,8 +2,8 @@
   "files": [
     {
       "path": "goldens/hello-core/trace_snippet.json",
-      "sha256": "a39be934b27e74f69ff411d9a8eeaca69d9d801b18cebcafca86d0ddaf723536",
-      "size_bytes": 678
+      "sha256": "cd8d3dbc601d18451d13f48b4e23ae159601ab8f5d59f99d9ee9c137035c4c30",
+      "size_bytes": 622
     },
     {
       "path": "goldens/hello-core/checkpoint_header.json",
@@ -12,12 +12,12 @@
     },
     {
       "path": "goldens/hello-core/execution_certificate.json",
-      "sha256": "86a3104d3d73c047d7a42f9aea0852341c1fec86d2443302d420a4e04a01dcc9",
+      "sha256": "4fbdd24610342dceca4054f3823b6112b580dffc298bc53540b9d5e36390b66f",
       "size_bytes": 449
     },
     {
       "path": "goldens/hello-core/golden-identities.json",
-      "sha256": "16f066774399a89b96876ddffbdc3e391cc64b0d74073d7ce85b7bf70f5d4a77",
+      "sha256": "9bc3d7372d358be9e29c1d29718c5fed1ed2865578055f8b50e935b77b6fb582",
       "size_bytes": 440
     }
   ],

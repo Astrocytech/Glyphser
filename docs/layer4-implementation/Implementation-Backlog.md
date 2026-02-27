@@ -191,8 +191,9 @@
 - `Glyphser.Config.ManifestMigrate`: minimal deterministic implementation wired.
 - `Glyphser.Import.LegacyFramework`: minimal deterministic implementation wired.
 - `Glyphser.DifferentialPrivacy.Apply`: minimal deterministic implementation wired.
-- `Glyphser.Model.Forward`: minimal deterministic implementation wired.
-- `Glyphser.TMMU.PrepareMemory`: minimal deterministic implementation wired.
+- `Glyphser.Model.Forward`: full contract semantics wired; delegates to ModelIR_Executor with deterministic outputs and execution fingerprint.
+- `Glyphser.Model.ModelIR_Executor`: full contract semantics wired; IR validation, topo scheduling, TMMU planning, driver dispatch, execution fingerprints.
+- `Glyphser.TMMU.PrepareMemory`: full contract semantics wired; liveness analysis, slot assignment, deterministic address mapping, plan hash/metrics.
 - `Glyphser.Certificate.EvidenceValidate`: minimal deterministic implementation wired.
 - `Glyphser.Trace.TraceMigrate`: minimal deterministic implementation wired.
 - `Glyphser.Registry.VersionCreate`: minimal deterministic implementation wired.
@@ -208,4 +209,4 @@
 - `Glyphser.Monitor.Register`: minimal deterministic implementation wired.
 - `Glyphser.Monitor.Emit`: minimal deterministic implementation wired.
 - `Glyphser.Monitor.DriftCompute`: minimal deterministic implementation wired.
-- `Glyphser.Backend.LoadDriver`: minimal deterministic implementation wired.
+- `Glyphser.Backend.LoadDriver`: full contract semantics wired; returns deterministic backend binary and runtime fingerprint hashes.

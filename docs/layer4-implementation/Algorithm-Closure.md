@@ -14,6 +14,8 @@ This document records the closure of remaining algorithmic ambiguity for codegen
 - Checkpoint hash identities and restore invariants: `docs/layer2-specs/Checkpoint-Schema.md`
 - Execution certificate required fields and hash bindings: `docs/layer2-specs/Execution-Certificate.md`
 - Reference pseudocode mapping: `docs/layer4-implementation/Reference-Implementations.md`
+- Model IR executor semantics: `docs/layer2-specs/ModelIR-Executor.md`
+- TMMU allocation and liveness semantics: `docs/layer2-specs/TMMU-Allocation.md`
 - Determinism profile tie-breaks and numeric policy: `docs/contracts/DETERMINISM_PROFILE_v0.1.md`
 
 ## Numeric Policy (Frozen)

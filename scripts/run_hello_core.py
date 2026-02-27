@@ -63,11 +63,27 @@ def main() -> int:
         return 1
 
     inputs = batch[0]["x"]
-    outputs = execute(model_ir, inputs)
+    response = execute(
+        {
+            "ir_dag": model_ir,
+            "input_data": {"input": inputs},
+            "mode": "forward",
+            "replay_token": "hello-core-replay-token",
+            "tmmu_context": {
+                "arena_config": {"default": {"capacity_bytes": 1_000_000, "alignment_bytes": 64}}
+            },
+        }
+    )
+    outputs = response.get("outputs")
 
     base_records = [
         {"step": 1, "operator_id": "Glyphser.Data.NextBatch", "batch": batch[0]},
-        {"step": 1, "operator_id": "Glyphser.Model.ModelIR_Executor", "inputs": inputs, "outputs": outputs},
+        {
+            "step": 1,
+            "operator_id": "Glyphser.Model.ModelIR_Executor",
+            "inputs": inputs,
+            "outputs": outputs,
+        },
     ]
     trace_records = [{**rec, "event_hash": _record_hash(rec)} for rec in base_records]
 

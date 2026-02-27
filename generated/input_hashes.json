@@ -482,7 +482,7 @@
     },
     {
       "path": "tools/codegen/templates/operators.py.tpl",
-      "sha256": "7dae779b9cc19dd0bd6aaf0a81591d4d787a79b3c0e9ca8c15dc95b29472cc15"
+      "sha256": "3127e6a7e6ba1cafc64be207c6a1355f0b8b1748ecfa49bb3f22dfeabdc33b4e"
     },
     {
       "path": "tools/codegen/templates/validators.py.tpl",

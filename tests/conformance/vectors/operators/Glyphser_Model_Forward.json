@@ -5,17 +5,103 @@
       "case_id": "Glyphser.Model.Forward.ok",
       "expected": {
         "response": {
+          "execution_fp": "083f6807e59a1a95f7fc39150c09e42477e1951a33bd3bc479a77467fb25b578",
           "outputs": [
-            1.0,
-            2.0
-          ]
+            [
+              3.0
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+          }
         }
       },
       "request": {
-        "inputs": [
-          1.0,
-          2.0
-        ]
+        "input_data": {
+          "input": [
+            1.0,
+            2.0,
+            3.0,
+            4.0
+          ]
+        },
+        "ir_dag": {
+          "ir_schema_hash": "sha256:uml_model_ir_demo",
+          "nodes": [
+            {
+              "dtype": "float32",
+              "inputs": [],
+              "instr": "Input",
+              "node_id": "input",
+              "role": "input",
+              "shape_out": [
+                4
+              ]
+            },
+            {
+              "dtype": "float32",
+              "inputs": [
+                {
+                  "node_id": "input",
+                  "output_idx": 0
+                }
+              ],
+              "instr": "Dense",
+              "node_id": "dense",
+              "params": {
+                "bias": 0.0,
+                "weights": [
+                  0.1,
+                  0.2,
+                  0.3,
+                  0.4
+                ]
+              },
+              "role": "activation",
+              "shape_out": [
+                1
+              ]
+            },
+            {
+              "dtype": "float32",
+              "inputs": [
+                {
+                  "node_id": "dense",
+                  "output_idx": 0
+                }
+              ],
+              "instr": "Output",
+              "node_id": "output",
+              "role": "output",
+              "shape_out": [
+                1
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "node_id": "output",
+              "output_idx": 0
+            }
+          ]
+        },
+        "replay_token": "demo",
+        "tmmu_context": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          }
+        }
       }
     },
     {

@@ -134,6 +134,7 @@ def _render_operator_stubs(records: Iterable[Dict[str, Any]]) -> str:
         "Glyphser.Import.LegacyFramework",
         "Glyphser.DifferentialPrivacy.Apply",
         "Glyphser.Model.Forward",
+        "Glyphser.Model.ModelIR_Executor",
         "Glyphser.TMMU.PrepareMemory",
         "Glyphser.Certificate.EvidenceValidate",
         "Glyphser.Trace.TraceMigrate",
@@ -236,6 +237,11 @@ def _render_operator_stubs(records: Iterable[Dict[str, Any]]) -> str:
             elif operator_id == "Glyphser.Model.Forward":
                 blocks.append("    try:")
                 blocks.append("        return forward(request)")
+                blocks.append("    except Exception:")
+                blocks.append("        return {\"error\": emit_error(\"CONTRACT_VIOLATION\", \"invalid request\", operator_id=\"%s\")}" % operator_id)
+            elif operator_id == "Glyphser.Model.ModelIR_Executor":
+                blocks.append("    try:")
+                blocks.append("        return model_ir_execute(request)")
                 blocks.append("    except Exception:")
                 blocks.append("        return {\"error\": emit_error(\"CONTRACT_VIOLATION\", \"invalid request\", operator_id=\"%s\")}" % operator_id)
             elif operator_id == "Glyphser.TMMU.PrepareMemory":

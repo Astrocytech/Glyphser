@@ -1,17 +1,17 @@
 # Hello-Core Minimal Implementation: Immediate Next Steps
 
-Status: DRAFT
+Status: COMPLETE
 
 ## Goal
 Implement the minimal deterministic hello-core reference stack required to reproduce the golden artifacts.
 
 ## Step 1: Data Batching
-- Implement `Glyphser.Data.NextBatch_v2`.
+- Implement `Glyphser.Data.NextBatch`.
 - Target file: `src/glyphser/data/next_batch.py`.
 - Inputs/outputs must match the operator signature in the operator registry.
 
 ## Step 2: Minimal Model Executor
-- Implement `Glyphser.Model.ModelIR_Executor_v1`.
+- Implement `Glyphser.Model.ModelIR_Executor`.
 - Target file: `src/glyphser/model/model_ir_executor.py`.
 
 ## Step 3: Trace Writer
@@ -19,11 +19,11 @@ Implement the minimal deterministic hello-core reference stack required to repro
 - Target file: `src/glyphser/trace/trace_sidecar.py`.
 
 ## Step 4: Checkpoint Writer
-- Implement `Glyphser.IO.SaveCheckpoint_v1`.
+- Implement `Glyphser.IO.SaveCheckpoint`.
 - Target file: `src/glyphser/checkpoint/write.py`.
 
 ## Step 5: Execution Certificate
-- Implement `Glyphser.Certificate.WriteExecutionCertificate_v1`.
+- Implement `Glyphser.Certificate.WriteExecutionCertificate`.
 - Target file: `src/glyphser/certificate/build.py`.
 
 ## Step 6: Runner Script

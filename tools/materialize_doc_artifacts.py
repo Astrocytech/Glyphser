@@ -343,7 +343,19 @@ def materialize() -> None:
     batch = dataset[0]
     model_ir = json.loads((fixtures_dir / "model_ir.json").read_text(encoding="utf-8"))
     inputs = batch["x"]
-    outputs = [x * float(model_ir.get("scale", 1.0)) + float(model_ir.get("bias", 0.0)) for x in inputs]
+    from src.glyphser.model.model_ir_executor import execute as model_ir_execute  # noqa: E402
+    response = model_ir_execute(
+        {
+            "ir_dag": model_ir,
+            "input_data": {"input": inputs},
+            "mode": "forward",
+            "replay_token": "hello-core-replay-token",
+            "tmmu_context": {
+                "arena_config": {"default": {"capacity_bytes": 1_000_000, "alignment_bytes": 64}}
+            },
+        }
+    )
+    outputs = response.get("outputs")
 
     base_records = [
         {"step": 1, "operator_id": "Glyphser.Data.NextBatch", "batch": batch},
