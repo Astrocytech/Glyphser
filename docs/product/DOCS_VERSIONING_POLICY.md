@@ -1,5 +1,5 @@
-# Documentation Versioning Policy
+# Compatibility Stub
 
-- Release docs are versioned by release tag (`v0.1.0`).
-- Breaking doc changes must include explicit version markers.
-- Verification docs (`docs/VERIFY.md`, release notes, checksum docs) are updated per release.
+This file moved to `product/docs/DOCS_VERSIONING_POLICY.md` during Phase 1 repository restructuring.
+
+Use the new path as the canonical source.

@@ -1,14 +1,5 @@
-# Document and Code Separation Policy
+# Compatibility Stub
 
-Goal: keep narrative/process documentation physically separate from executable code.
+This file moved to `governance/structure/DOC_CODE_SEPARATION_POLICY.md` during Phase 1 repository restructuring.
 
-Rules:
-- Documentation files (`.md`, `.txt`, `.rst`) live under `docs/` or `document_guidelines/`.
-- Executable code (`.py`, shell scripts, and source files) does not live under `docs/` or `document_guidelines/`.
-- Code directories (`src/`, `tools/`, `scripts/`, `tests/`, `conformance/`, `generated/`) must not contain documentation files.
-- Root-level docs are restricted to governance/community files only.
-
-Enforcement:
-- Gate command: `python3 tools/doc_code_separation_gate.py`
-- Report output: `reports/structure/latest.json`
-- Pipeline integration: `tools/push_button.py`
+Use the new path as the canonical source.

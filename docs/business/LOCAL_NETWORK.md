@@ -1,14 +1,5 @@
-# Local Network Tracker
+# Compatibility Stub
 
-## Events Attended
-- None yet (no events attended).
+This file moved to `product/business/LOCAL_NETWORK.md` during Phase 1 repository restructuring.
 
-## Contacts Made
-- None yet.
-
-## Leads
-- None yet.
-
-## Notes
-- Keep entries brief and actionable.
-- Add dates to each new item.
+Use the new path as the canonical source.

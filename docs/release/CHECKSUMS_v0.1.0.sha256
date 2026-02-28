@@ -1,4 +1,1 @@
-86de4a5d30cab3a12ead92ae207bcb17fd09f7c8b498419728f7041f14e56ffe  conformance/reports/latest.json
-a612ab112515b189f7647153bf5a92c6b1c76a35703ae74f8a67f0c0c708922c  dist/hello-core-bundle.tar.gz
-1a992ebd1018a8b6a8c2185a19f88e345a458f4b587283b0da48fcb401df3008  dist/hello-core-bundle.sha256
-1a992ebd1018a8b6a8c2185a19f88e345a458f4b587283b0da48fcb401df3008  reports/repro/hashes.txt
+Moved to distribution/release/CHECKSUMS_v0.1.0.sha256

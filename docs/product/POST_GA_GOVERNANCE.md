@@ -1,6 +1,5 @@
-# Post-GA Governance
+# Compatibility Stub
 
-- Monthly reliability review.
-- Monthly security review and exception closure.
-- Quarterly roadmap and support burden review.
-- ADR required for structural architecture changes after GA.
+This file moved to `product/docs/POST_GA_GOVERNANCE.md` during Phase 1 repository restructuring.
+
+Use the new path as the canonical source.

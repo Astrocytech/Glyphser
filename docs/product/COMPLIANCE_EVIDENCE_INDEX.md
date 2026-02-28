@@ -1,10 +1,5 @@
-# Compliance Evidence Index
+# Compatibility Stub
 
-- Conformance report: `conformance/reports/latest.json`
-- Security report: `reports/security/latest.json`
-- Recovery report: `reports/recovery/latest.json`
-- Deployment report: `reports/deploy/latest.json`
-- Observability report: `reports/observability/latest.json`
-- External validation report: `reports/validation/latest.json`
-- Reproducibility snapshot: `reports/repro/hashes.txt`
-- Signed checksums: `docs/release/CHECKSUMS_v0.1.0.sha256.asc`
+This file moved to `product/docs/COMPLIANCE_EVIDENCE_INDEX.md` during Phase 1 repository restructuring.
+
+Use the new path as the canonical source.

@@ -1,5 +1,5 @@
-# Change Communication SLA
+# Compatibility Stub
 
-- Breaking changes: announce at least 30 days before release.
-- Deprecations: include warning in docs and release notes for at least one minor cycle.
-- Security hotfixes: same-day advisory once mitigation is available.
+This file moved to `product/docs/CHANGE_COMMUNICATION_SLA.md` during Phase 1 repository restructuring.
+
+Use the new path as the canonical source.

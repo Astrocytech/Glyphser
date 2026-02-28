@@ -1,6 +1,5 @@
-# GA Release Train Policy
+# Compatibility Stub
 
-- Patch releases: security and defect fixes only.
-- Minor releases: additive, backward-compatible features.
-- Breaking changes: major release only, with migration path.
-- Hotfix process: branch from last GA tag, minimal change set, gated by full push-button run.
+This file moved to `product/docs/GA_RELEASE_TRAIN_POLICY.md` during Phase 1 repository restructuring.
+
+Use the new path as the canonical source.

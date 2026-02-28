@@ -11,6 +11,8 @@ sys.path.insert(0, str(ROOT))
 
 from src.glyphser.security.audit import append_event, verify_chain
 from src.glyphser.security.authz import authorize
+sys.path.insert(0, str(ROOT / "tools"))
+from path_config import first_existing, rel
 
 
 OUT = ROOT / "reports" / "security"
@@ -83,8 +85,8 @@ def _audit_checks(tmp_dir: Path) -> dict:
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     docs_required = [
-        ROOT / "docs" / "security" / "THREAT_MODEL.md",
-        ROOT / "docs" / "security" / "OPERATIONS.md",
+        first_existing([rel("governance", "security", "THREAT_MODEL.md"), rel("docs", "security", "THREAT_MODEL.md")]),
+        first_existing([rel("governance", "security", "OPERATIONS.md"), rel("docs", "security", "OPERATIONS.md")]),
     ]
     artifacts_required = [
         OUT / "sbom.json",

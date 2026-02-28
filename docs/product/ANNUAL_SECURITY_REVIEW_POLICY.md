@@ -1,5 +1,5 @@
-# Annual Security Review Policy
+# Compatibility Stub
 
-- Independent security review at least once per year.
-- Review scope: authz/audit, dependency risk, artifact integrity, incident response readiness.
-- Findings must have owners, severity, remediation dates, and closure evidence.
+This file moved to `product/docs/ANNUAL_SECURITY_REVIEW_POLICY.md` during Phase 1 repository restructuring.
+
+Use the new path as the canonical source.

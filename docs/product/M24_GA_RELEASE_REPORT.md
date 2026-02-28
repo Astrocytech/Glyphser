@@ -1,10 +1,5 @@
-# Milestone 24 GA Release Report
+# Compatibility Stub
 
-Status: COMPLETE
+This file moved to `product/docs/M24_GA_RELEASE_REPORT.md` during Phase 1 repository restructuring.
 
-Evidence:
-- Signed checksums: `docs/release/CHECKSUMS_v0.1.0.sha256.asc`
-- Public key: `docs/release/RELEASE_PUBKEY.asc`
-- GA gate report: `reports/ga/latest.json`
-- RC verification: `reports/ga/release_candidate_verification.json`
-- Push-button full regression: `python3 tools/push_button.py` (PASS)
+Use the new path as the canonical source.

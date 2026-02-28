@@ -10,6 +10,8 @@ from typing import Any, Dict
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "reports" / "observability"
 
+from path_config import first_existing, rel
+
 
 def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -117,8 +119,8 @@ def _lineage_index() -> Dict[str, Any]:
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     required_docs = [
-        ROOT / "docs" / "ops" / "SLOs.md",
-        ROOT / "docs" / "ops" / "INCIDENT_RESPONSE.md",
+        first_existing([rel("product", "ops", "SLOs.md"), rel("docs", "ops", "SLOs.md")]),
+        first_existing([rel("product", "ops", "INCIDENT_RESPONSE.md"), rel("docs", "ops", "INCIDENT_RESPONSE.md")]),
     ]
     missing_docs = [str(p.relative_to(ROOT)).replace("\\", "/") for p in required_docs if not p.exists()]
 
@@ -165,4 +167,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

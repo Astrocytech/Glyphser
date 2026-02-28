@@ -1,27 +1,5 @@
-# Milestone 21 Deployment/Ops Report
+# Compatibility Stub
 
-Milestone: 21 - Multi-Environment Deployment and Ops
-Date: 2026-02-28
-Status: PASS
+This file moved to `product/docs/M21_DEPLOYMENT_TEST_REPORT.md` during Phase 1 repository restructuring.
 
-## Commands Executed
-- `python3 tools/deploy/run_deployment_pipeline.py`
-- `python3 -m pytest tests/deploy/test_deploy_pipeline_gate.py -q`
-- `python3 tools/push_button.py`
-
-## Result Summary
-- Deploy bundle generation: PASS
-- Overlay generation (`dev`, `staging`, `prod`): PASS
-- Staging deploy/rollback gate: PASS
-- Full push-button pipeline: PASS
-
-## Evidence Artifacts
-- `reports/deploy/latest.json`
-- `reports/deploy/rollback.json`
-- `reports/deploy/drift.json`
-- `reports/deploy/parity.json`
-- `reports/deploy/state/staging_active.json`
-
-## Operational Docs
-- `docs/ops/DEPLOYMENT_RUNBOOK.md`
-- `docs/ops/ROLLBACK_RUNBOOK.md`
+Use the new path as the canonical source.

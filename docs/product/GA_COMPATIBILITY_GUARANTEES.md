@@ -1,6 +1,5 @@
-# GA Compatibility Guarantees
+# Compatibility Stub
 
-- API contract is semver-governed (`contracts/openapi_public_api_v1.yaml`).
-- Replay/state schemas remain backward-compatible within GA minor versions.
-- Evidence artifact filenames and checksum workflow remain stable for GA line.
-- Breaking changes require major version bump and migration documentation.
+This file moved to `product/docs/GA_COMPATIBILITY_GUARANTEES.md` during Phase 1 repository restructuring.
+
+Use the new path as the canonical source.

@@ -1,11 +1,5 @@
-# Portfolio Release Notes Template
-- Portfolio Version:
-- Date:
-- Summary of Changes:
-- Impacted DocIDs:
-- Equivalence Tests Passed (E0/E1/E2/E-PORT):
-- Drift Reports:
-- Environment Profile Compatibility Aggregate:
-- Migration Notes:
-- Deprecated/Removed Items:
-- Validation Output (`eqc-es validate`):
+# Compatibility Stub
+
+This file moved to `product/docs/portfolio-release-notes-template.md` during Phase 1 repository restructuring.
+
+Use the new path as the canonical source.

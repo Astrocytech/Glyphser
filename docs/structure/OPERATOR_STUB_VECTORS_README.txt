@@ -1,3 +1,5 @@
-Placeholder for per-operator conformance vectors.
-Each operator should have a vectors.json entry that specifies request payloads
-and the expected deterministic error payload when the stub is unimplemented.
+# Compatibility Stub
+
+This file moved to `governance/structure/OPERATOR_STUB_VECTORS_README.txt` during Phase 1 repository restructuring.
+
+Use the new path as the canonical source.

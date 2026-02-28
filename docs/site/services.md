@@ -1,11 +1,5 @@
-# Astrocytech Services
+# Compatibility Stub
 
-Status: DRAFT
+This file moved to `product/site/services.md` during Phase 1 repository restructuring.
 
-## Fixed-Scope Offers
-- 2-hour Conformance Audit
-- Verifier-in-CI Integration Pack
-- Repro Bundle Review + Report
-
-## Contact
-- Provide a contact method on the public site.
+Use the new path as the canonical source.

@@ -1,10 +1,5 @@
-# GA Sign-Off
+# Compatibility Stub
 
-- Engineering Lead: Approved
-- Security Lead: Approved
-- SRE Lead: Approved
-- Product Lead: Approved
-- Compliance/Legal: Approved
+This file moved to `product/docs/GA_SIGNOFF.md` during Phase 1 repository restructuring.
 
-Date: 2026-02-28
-Release Candidate: `v0.1.0`
+Use the new path as the canonical source.

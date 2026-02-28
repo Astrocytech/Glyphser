@@ -9,6 +9,8 @@ from typing import Any, Dict
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "reports" / "ga"
 
+from path_config import first_existing, rel
+
 
 def _load_json(path: Path) -> Dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
@@ -25,34 +27,34 @@ def _status_ok(path: Path) -> bool:
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     required_docs = [
-        ROOT / "docs" / "product" / "GA_SUPPORT_MATRIX.md",
-        ROOT / "docs" / "product" / "GA_MIGRATION_GUIDE.md",
-        ROOT / "docs" / "product" / "GA_SUPPORT_LIFECYCLE.md",
-        ROOT / "docs" / "product" / "GA_STATUS_INCIDENT_COMMUNICATION.md",
-        ROOT / "docs" / "product" / "GA_RELEASE_TRAIN_POLICY.md",
-        ROOT / "docs" / "product" / "GA_CONTRACTUAL_SUPPORT_SLA.md",
-        ROOT / "docs" / "product" / "GA_GO_NO_GO_CHECKLIST.md",
-        ROOT / "docs" / "product" / "COMPLIANCE_EVIDENCE_INDEX.md",
-        ROOT / "docs" / "product" / "DEPENDENCY_LICENSE_REVIEW.md",
-        ROOT / "docs" / "product" / "GA_COMPATIBILITY_GUARANTEES.md",
-        ROOT / "docs" / "product" / "POST_GA_GOVERNANCE.md",
-        ROOT / "docs" / "product" / "ACCESSIBILITY_REVIEW.md",
-        ROOT / "docs" / "product" / "SUPPLY_CHAIN_TRUST_POLICY.md",
-        ROOT / "docs" / "product" / "PRIVACY_IMPACT_ASSESSMENT_WORKFLOW.md",
-        ROOT / "docs" / "product" / "DOCS_VERSIONING_POLICY.md",
-        ROOT / "docs" / "product" / "CHANGE_COMMUNICATION_SLA.md",
-        ROOT / "docs" / "product" / "ANNUAL_SECURITY_REVIEW_POLICY.md",
-        ROOT / "docs" / "product" / "GA_SIGNOFF.md",
-        ROOT / "docs" / "product" / "GA_SUPPORT_OPERATIONS_READINESS.md",
+        first_existing([rel("product", "docs", "GA_SUPPORT_MATRIX.md"), rel("docs", "product", "GA_SUPPORT_MATRIX.md")]),
+        first_existing([rel("product", "docs", "GA_MIGRATION_GUIDE.md"), rel("docs", "product", "GA_MIGRATION_GUIDE.md")]),
+        first_existing([rel("product", "docs", "GA_SUPPORT_LIFECYCLE.md"), rel("docs", "product", "GA_SUPPORT_LIFECYCLE.md")]),
+        first_existing([rel("product", "docs", "GA_STATUS_INCIDENT_COMMUNICATION.md"), rel("docs", "product", "GA_STATUS_INCIDENT_COMMUNICATION.md")]),
+        first_existing([rel("product", "docs", "GA_RELEASE_TRAIN_POLICY.md"), rel("docs", "product", "GA_RELEASE_TRAIN_POLICY.md")]),
+        first_existing([rel("product", "docs", "GA_CONTRACTUAL_SUPPORT_SLA.md"), rel("docs", "product", "GA_CONTRACTUAL_SUPPORT_SLA.md")]),
+        first_existing([rel("product", "docs", "GA_GO_NO_GO_CHECKLIST.md"), rel("docs", "product", "GA_GO_NO_GO_CHECKLIST.md")]),
+        first_existing([rel("product", "docs", "COMPLIANCE_EVIDENCE_INDEX.md"), rel("docs", "product", "COMPLIANCE_EVIDENCE_INDEX.md")]),
+        first_existing([rel("product", "docs", "DEPENDENCY_LICENSE_REVIEW.md"), rel("docs", "product", "DEPENDENCY_LICENSE_REVIEW.md")]),
+        first_existing([rel("product", "docs", "GA_COMPATIBILITY_GUARANTEES.md"), rel("docs", "product", "GA_COMPATIBILITY_GUARANTEES.md")]),
+        first_existing([rel("product", "docs", "POST_GA_GOVERNANCE.md"), rel("docs", "product", "POST_GA_GOVERNANCE.md")]),
+        first_existing([rel("product", "docs", "ACCESSIBILITY_REVIEW.md"), rel("docs", "product", "ACCESSIBILITY_REVIEW.md")]),
+        first_existing([rel("product", "docs", "SUPPLY_CHAIN_TRUST_POLICY.md"), rel("docs", "product", "SUPPLY_CHAIN_TRUST_POLICY.md")]),
+        first_existing([rel("product", "docs", "PRIVACY_IMPACT_ASSESSMENT_WORKFLOW.md"), rel("docs", "product", "PRIVACY_IMPACT_ASSESSMENT_WORKFLOW.md")]),
+        first_existing([rel("product", "docs", "DOCS_VERSIONING_POLICY.md"), rel("docs", "product", "DOCS_VERSIONING_POLICY.md")]),
+        first_existing([rel("product", "docs", "CHANGE_COMMUNICATION_SLA.md"), rel("docs", "product", "CHANGE_COMMUNICATION_SLA.md")]),
+        first_existing([rel("product", "docs", "ANNUAL_SECURITY_REVIEW_POLICY.md"), rel("docs", "product", "ANNUAL_SECURITY_REVIEW_POLICY.md")]),
+        first_existing([rel("product", "docs", "GA_SIGNOFF.md"), rel("docs", "product", "GA_SIGNOFF.md")]),
+        first_existing([rel("product", "docs", "GA_SUPPORT_OPERATIONS_READINESS.md"), rel("docs", "product", "GA_SUPPORT_OPERATIONS_READINESS.md")]),
     ]
     required_artifacts = [
-        ROOT / "docs" / "release" / "CHECKSUMS_v0.1.0.sha256",
-        ROOT / "docs" / "release" / "CHECKSUMS_v0.1.0.sha256.asc",
-        ROOT / "docs" / "release" / "RELEASE_PUBKEY.asc",
-        ROOT / "RELEASE_NOTES_v0.1.0.md",
+        first_existing([rel("distribution", "release", "CHECKSUMS_v0.1.0.sha256"), rel("docs", "release", "CHECKSUMS_v0.1.0.sha256")]),
+        first_existing([rel("distribution", "release", "CHECKSUMS_v0.1.0.sha256.asc"), rel("docs", "release", "CHECKSUMS_v0.1.0.sha256.asc")]),
+        first_existing([rel("distribution", "release", "RELEASE_PUBKEY.asc"), rel("docs", "release", "RELEASE_PUBKEY.asc")]),
+        first_existing([rel("distribution", "release", "RELEASE_NOTES_v0.1.0.md"), rel("RELEASE_NOTES_v0.1.0.md")]),
         ROOT / "conformance" / "reports" / "latest.json",
-        ROOT / "dist" / "hello-core-bundle.tar.gz",
-        ROOT / "dist" / "hello-core-bundle.sha256",
+        first_existing([rel("distribution", "bundles", "hello-core-bundle.tar.gz"), rel("dist", "hello-core-bundle.tar.gz")]),
+        first_existing([rel("distribution", "bundles", "hello-core-bundle.sha256"), rel("dist", "hello-core-bundle.sha256")]),
     ]
     missing_docs = [str(p.relative_to(ROOT)).replace("\\", "/") for p in required_docs if not p.exists()]
     missing_artifacts = [str(p.relative_to(ROOT)).replace("\\", "/") for p in required_artifacts if not p.exists()]
@@ -66,20 +68,24 @@ def main() -> int:
         "conformance": _status_ok(ROOT / "conformance" / "reports" / "latest.json"),
     }
     signatures = {
-        "checksum_signed": (ROOT / "docs" / "release" / "CHECKSUMS_v0.1.0.sha256.asc").exists(),
-        "pubkey_present": (ROOT / "docs" / "release" / "RELEASE_PUBKEY.asc").exists(),
+        "checksum_signed": first_existing([rel("distribution", "release", "CHECKSUMS_v0.1.0.sha256.asc"), rel("docs", "release", "CHECKSUMS_v0.1.0.sha256.asc")]).exists(),
+        "pubkey_present": first_existing([rel("distribution", "release", "RELEASE_PUBKEY.asc"), rel("docs", "release", "RELEASE_PUBKEY.asc")]).exists(),
     }
+
+    bundle_path = first_existing([rel("distribution", "bundles", "hello-core-bundle.tar.gz"), rel("dist", "hello-core-bundle.tar.gz")])
+    conformance_report_path = ROOT / "conformance" / "reports" / "latest.json"
+    checksums_path = first_existing([rel("distribution", "release", "CHECKSUMS_v0.1.0.sha256"), rel("docs", "release", "CHECKSUMS_v0.1.0.sha256")])
 
     rc_report = {
         "status": "PASS",
-        "bundle_hash": _sha256(ROOT / "dist" / "hello-core-bundle.tar.gz")
-        if (ROOT / "dist" / "hello-core-bundle.tar.gz").exists()
+        "bundle_hash": _sha256(bundle_path)
+        if bundle_path.exists()
         else "",
-        "conformance_report_hash": _sha256(ROOT / "conformance" / "reports" / "latest.json")
-        if (ROOT / "conformance" / "reports" / "latest.json").exists()
+        "conformance_report_hash": _sha256(conformance_report_path)
+        if conformance_report_path.exists()
         else "",
-        "checksums_file_hash": _sha256(ROOT / "docs" / "release" / "CHECKSUMS_v0.1.0.sha256")
-        if (ROOT / "docs" / "release" / "CHECKSUMS_v0.1.0.sha256").exists()
+        "checksums_file_hash": _sha256(checksums_path)
+        if checksums_path.exists()
         else "",
         "security_gate_status": "PASS" if gate_checks["security"] else "FAIL",
         "recovery_gate_status": "PASS" if gate_checks["recovery"] else "FAIL",
@@ -114,4 +120,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

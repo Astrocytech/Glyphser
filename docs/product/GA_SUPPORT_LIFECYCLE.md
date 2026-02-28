@@ -1,7 +1,5 @@
-# GA Support Lifecycle
+# Compatibility Stub
 
-- GA version: `v0.1.0`
-- Patch cadence: as needed for security/critical defects.
-- Minor cadence: planned, backward-compatible updates.
-- End-of-life policy: at least 12 months notice before support end.
-- Security fixes: prioritized by severity per SLA policy.
+This file moved to `product/docs/GA_SUPPORT_LIFECYCLE.md` during Phase 1 repository restructuring.
+
+Use the new path as the canonical source.

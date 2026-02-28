@@ -1,13 +1,5 @@
-# Canonical CBOR Vectors
+# Compatibility Stub
 
-Status: PLACEHOLDER
+This file moved to `governance/structure/CANONICAL_CBOR_VECTORS_README.md` during Phase 1 repository restructuring.
 
-## Purpose
-Provide golden vectors for canonical CBOR encoding and validation.
-
-## Format (Proposed)
-- Each vector includes: input JSON, expected CBOR hex, and notes.
-- Deterministic ordering and numeric edge cases are required.
-
-## Next Step
-Replace this file with actual vectors and update tests to load them.
+Use the new path as the canonical source.

@@ -1,6 +1,5 @@
-# GA Support Operations Readiness
+# Compatibility Stub
 
-- On-call rota defined for release period.
-- Escalation path documented for Sev-1/Sev-2 incidents.
-- Runbook drills completed for deploy rollback and recovery.
-- Support entry points and ownership documented.
+This file moved to `product/docs/GA_SUPPORT_OPERATIONS_READINESS.md` during Phase 1 repository restructuring.
+
+Use the new path as the canonical source.

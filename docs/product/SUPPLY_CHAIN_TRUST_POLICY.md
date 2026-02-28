@@ -1,6 +1,5 @@
-# Supply Chain Trust Policy
+# Compatibility Stub
 
-- Dependencies must come from trusted indexes and pinned versions.
-- Build provenance artifact required: `reports/security/build_provenance.json`.
-- SBOM required: `reports/security/sbom.json`.
-- Unsigned or unpinned dependency updates are blocked from GA release.
+This file moved to `product/docs/SUPPLY_CHAIN_TRUST_POLICY.md` during Phase 1 repository restructuring.
+
+Use the new path as the canonical source.

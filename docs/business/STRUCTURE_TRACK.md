@@ -1,18 +1,5 @@
-# Business Structure Track
+# Compatibility Stub
 
-Status: DRAFT
+This file moved to `product/business/STRUCTURE_TRACK.md` during Phase 1 repository restructuring.
 
-## Track Selection
-- Selected: Track A (sole proprietorship). Track B is a fallback if program requirements or customers require incorporation.
-- Last reviewed: 2026-02-27
-
-## Track A: Sole Proprietorship (Selected)
-- Use for speed and minimal admin.
-- Focus on conformance-first shipping and fixed-scope audits.
-
-## Track B: Incorporation
-- Use if program requirements or enterprise customers demand it.
-- Requires additional admin: banking, bookkeeping, compliance.
-
-## Next Steps
-- Revisit only if funding programs or customer requirements require incorporation.
+Use the new path as the canonical source.

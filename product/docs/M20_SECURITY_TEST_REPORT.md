@@ -1,0 +1,28 @@
+# Milestone 20 Security Baseline Report
+
+Milestone: 20 - Security Hardening and Access Control
+Date: 2026-02-28
+Status: PASS
+
+## Commands Executed
+- `python3 tools/security_artifacts.py`
+- `python3 tools/security_baseline_gate.py`
+- `python3 -m pytest tests/security/test_authz_and_audit.py tests/security/test_security_baseline_gate.py -q`
+- `python3 tools/push_button.py`
+
+## Result Summary
+- Security artifact generation: PASS
+- Security baseline gate: PASS
+- RBAC/audit tests: PASS
+- Full push-button pipeline with security gates: PASS
+
+## Security Evidence Artifacts
+- `reports/security/sbom.json`
+- `reports/security/build_provenance.json`
+- `reports/security/latest.json`
+
+## Security Docs
+- `docs/security/THREAT_MODEL.md`
+- `docs/security/OPERATIONS.md`
+- `SECURITY.md`
+

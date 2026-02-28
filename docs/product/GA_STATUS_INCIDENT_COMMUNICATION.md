@@ -1,6 +1,5 @@
-# Status and Incident Communication
+# Compatibility Stub
 
-- Public status updates are posted in project release notes and incident record docs.
-- Sev-1 incidents: first customer-facing update within 1 hour.
-- Sev-2 incidents: first customer-facing update within 4 hours.
-- Post-incident report: within 5 business days.
+This file moved to `product/docs/GA_STATUS_INCIDENT_COMMUNICATION.md` during Phase 1 repository restructuring.
+
+Use the new path as the canonical source.

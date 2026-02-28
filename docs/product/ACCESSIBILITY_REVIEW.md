@@ -1,5 +1,5 @@
-# Accessibility and Inclusive Language Review
+# Compatibility Stub
 
-- Public verification and support docs reviewed for clear language and consistent terminology.
-- Avoided exclusionary phrasing and ambiguous operator guidance.
-- Open items tracked in docs issues before next minor release.
+This file moved to `product/docs/ACCESSIBILITY_REVIEW.md` during Phase 1 repository restructuring.
+
+Use the new path as the canonical source.

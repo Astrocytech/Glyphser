@@ -1,6 +1,5 @@
-# Dependency License Review
+# Compatibility Stub
 
-- Python dependencies are locked by `requirements.lock`.
-- Reviewed license classes: permissive and OSI-approved licenses only.
-- No copyleft obligations identified for release redistribution baseline.
-- Review action: re-run license check on every release candidate.
+This file moved to `product/docs/DEPENDENCY_LICENSE_REVIEW.md` during Phase 1 repository restructuring.
+
+Use the new path as the canonical source.

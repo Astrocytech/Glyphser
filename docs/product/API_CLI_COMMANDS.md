@@ -1,41 +1,5 @@
-# API CLI Command Reference (Milestone 18)
+# Compatibility Stub
 
-Tool: `python tools/api_cli.py`
+This file moved to `product/docs/API_CLI_COMMANDS.md` during Phase 1 repository restructuring.
 
-## Global Options
-- `--state-path PATH`: optional local state file path.
-
-## Commands
-
-### Submit
-```bash
-python tools/api_cli.py submit \
-  --payload-file payload.json \
-  --token demo-token \
-  --scope jobs:write \
-  --idempotency-key demo-key-1
-```
-
-### Status
-```bash
-python tools/api_cli.py status \
-  --job-id <JOB_ID> \
-  --token demo-token \
-  --scope jobs:read
-```
-
-### Evidence
-```bash
-python tools/api_cli.py evidence \
-  --job-id <JOB_ID> \
-  --token demo-token \
-  --scope evidence:read
-```
-
-### Replay
-```bash
-python tools/api_cli.py replay \
-  --job-id <JOB_ID> \
-  --token demo-token \
-  --scope replay:run
-```
+Use the new path as the canonical source.

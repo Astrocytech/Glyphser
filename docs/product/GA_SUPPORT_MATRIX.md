@@ -1,9 +1,5 @@
-# GA Support Matrix
+# Compatibility Stub
 
-| Profile | OS | Python | Architecture | Support Tier |
-|---|---|---|---|---|
-| Local Dev | Linux Mint 22.1, Ubuntu 24.04 (WSL) | 3.12.x | x86_64 | Best effort |
-| Single-node Prod | Ubuntu 24.04 LTS | 3.12.x | x86_64 | Standard |
-| Multi-node Regulated | Ubuntu 24.04 LTS | 3.12.x | x86_64 | Enterprise |
+This file moved to `product/docs/GA_SUPPORT_MATRIX.md` during Phase 1 repository restructuring.
 
-Out of scope: Windows-native runtime, ARM, Python 3.13.
+Use the new path as the canonical source.
