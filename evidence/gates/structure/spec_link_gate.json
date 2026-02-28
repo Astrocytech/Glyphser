@@ -1,11 +1,11 @@
 {
   "checked_files": [
-    "product/handbook/reference/API_CLI_COMMANDS.md",
-    "product/handbook/reference/API_REFERENCE_v1.md",
-    "product/handbook/reference/API_STYLE_GUIDE.md",
-    "product/handbook/reference/PERSISTENCE_SCHEMA_v1.md",
-    "product/handbook/reference/PERSISTENT_STORAGE_ADAPTER_CONTRACT.md",
-    "product/handbook/reference/RUNTIME_PROFILES.md",
+    "product/handbook/guides/API_CLI_COMMANDS.md",
+    "product/handbook/guides/API_REFERENCE_v1.md",
+    "product/handbook/guides/API_STYLE_GUIDE.md",
+    "product/handbook/guides/PERSISTENCE_SCHEMA_v1.md",
+    "product/handbook/guides/PERSISTENT_STORAGE_ADAPTER_CONTRACT.md",
+    "product/handbook/guides/RUNTIME_PROFILES.md",
     "product/site/services.md",
     "product/site/verify.md"
   ],

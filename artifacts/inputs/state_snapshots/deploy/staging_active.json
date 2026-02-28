@@ -1,0 +1,11 @@
+{
+  "budget_alarm_usd_monthly": 250,
+  "bundle_hash": "ffa7956470412c92dc462cace0d863649ca7fdf1367f268eb1ab4033705e6f1d",
+  "deployment_target": "staging",
+  "manifest_path": "artifacts/generated/stable/deploy/managed/bundle_manifest.json",
+  "max_parallel_rollout_percent": 25,
+  "overlay_path": "artifacts/generated/stable/deploy/overlays/staging.json",
+  "quota_jobs_per_hour": 500,
+  "rollback_error_rate_threshold": 0.02,
+  "rollout_strategy": "canary"
+}

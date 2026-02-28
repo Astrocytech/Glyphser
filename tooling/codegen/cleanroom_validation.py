@@ -7,9 +7,9 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from tooling.lib.path_config import generated_root
+from tooling.lib.path_config import generated_tmp_root
 
-CLEAN = generated_root() / "codegen_staging" / "cleanroom_validation"
+CLEAN = generated_tmp_root() / "codegen_staging" / "cleanroom_validation"
 
 
 def main() -> int:

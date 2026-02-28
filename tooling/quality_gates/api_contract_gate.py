@@ -8,7 +8,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
 CONTRACT = ROOT / "specs" / "contracts" / "openapi_public_api_v1.yaml"
-STYLE_GUIDE = ROOT / "product" / "handbook" / "reference" / "API_STYLE_GUIDE.md"
+STYLE_GUIDE = ROOT / "product" / "handbook" / "guides" / "API_STYLE_GUIDE.md"
 LIFECYCLE = ROOT / "product" / "handbook" / "policies" / "API_LIFECYCLE_POLICY.md"
 
 

@@ -1,9 +1,9 @@
 {
   "version": 1,
   "required_globs": [
-    "product/handbook/reference/API*.md",
-    "product/handbook/reference/PERSIST*.md",
-    "product/handbook/reference/RUNTIME_PROFILES.md",
+    "product/handbook/guides/API*.md",
+    "product/handbook/guides/PERSIST*.md",
+    "product/handbook/guides/RUNTIME_PROFILES.md",
     "product/site/services.md",
     "product/site/verify.md"
   ],

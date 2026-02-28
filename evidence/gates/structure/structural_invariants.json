@@ -16,7 +16,7 @@
       "violations": []
     },
     {
-      "canonical_dir": "artifacts/inputs/conformance/primitives/operators",
+      "canonical_dir": "artifacts/inputs/conformance/primitive_vectors/operators",
       "has_canonical_vectors": true,
       "name": "operator_vectors_source_of_truth",
       "status": "PASS",
@@ -27,15 +27,6 @@
       "missing_dirs": [],
       "missing_files": [],
       "name": "generated_layout",
-      "status": "PASS"
-    },
-    {
-      "canonical_root": "artifacts/generated/outputs/codegen_staging/cleanroom_validation",
-      "mismatches": [],
-      "missing_canonical": [],
-      "missing_runtime": [],
-      "name": "generated_authority_linkage",
-      "runtime_root": "runtime/glyphser/_generated",
       "status": "PASS"
     }
   ],

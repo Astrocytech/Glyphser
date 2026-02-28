@@ -5,10 +5,10 @@ Status: DRAFT
 This document defines the canonical on-disk layout and minimal schema for per-operator conformance vectors.
 
 ## Storage Layout (Normative)
-- Root directory: `artifacts/inputs/conformance/primitives/operators/`
+- Root directory: `artifacts/inputs/conformance/primitive_vectors/operators/`
 - One file per operator.
 - Filename rule: replace `.` with `_` in `operator_id` and append `.json`.
-  - Example: `Glyphser.Data.NextBatch` -> `artifacts/inputs/conformance/primitives/operators/Glyphser_Data_NextBatch.json`
+  - Example: `Glyphser.Data.NextBatch` -> `artifacts/inputs/conformance/primitive_vectors/operators/Glyphser_Data_NextBatch.json`
 
 ## Minimal Vector Schema (Normative)
 Each file MUST be a JSON object with:

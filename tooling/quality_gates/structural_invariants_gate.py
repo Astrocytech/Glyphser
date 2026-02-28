@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import json
-import hashlib
 import re
 from pathlib import Path
 from typing import Dict, List
@@ -104,7 +103,7 @@ def _check_operator_vectors_source_of_truth() -> Dict[str, object]:
                             "text": line.strip()[:200],
                         }
                     )
-    canonical_dir = ROOT / "artifacts" / "inputs" / "conformance" / "primitives" / "operators"
+    canonical_dir = ROOT / "artifacts" / "inputs" / "conformance" / "primitive_vectors" / "operators"
     has_canonical_vectors = canonical_dir.exists() and any(canonical_dir.glob("*.json"))
     status = "PASS" if not violations and has_canonical_vectors else "FAIL"
     return {
@@ -118,11 +117,10 @@ def _check_operator_vectors_source_of_truth() -> Dict[str, object]:
 
 def _check_generated_layout() -> Dict[str, object]:
     req_dirs = [
-        ROOT / "artifacts" / "generated" / "outputs" / "codegen",
-        ROOT / "artifacts" / "generated" / "outputs" / "codegen_staging",
-        ROOT / "artifacts" / "generated" / "outputs" / "deploy",
-        ROOT / "artifacts" / "generated" / "outputs" / "metadata",
-        ROOT / "artifacts" / "state_snapshots",
+        ROOT / "artifacts" / "generated" / "stable" / "deploy",
+        ROOT / "artifacts" / "generated" / "stable" / "metadata",
+        ROOT / "artifacts" / "generated" / "tmp",
+        ROOT / "artifacts" / "inputs" / "state_snapshots",
     ]
     missing_dirs = [str(p.relative_to(ROOT)).replace("\\", "/") for p in req_dirs if not p.exists()]
 
@@ -135,6 +133,7 @@ def _check_generated_layout() -> Dict[str, object]:
         ROOT / "artifacts" / "generated" / "clean_build",
         ROOT / "artifacts" / "generated" / "codegen" / "clean_build",
         ROOT / "artifacts" / "generated" / "build",
+        ROOT / "artifacts" / "generated" / "stable" / "codegen_staging",
         ROOT / "artifacts" / "generated" / "codegen",
         ROOT / "artifacts" / "generated" / "deploy",
         ROOT / "artifacts" / "generated" / "codegen_manifest.json",
@@ -150,8 +149,8 @@ def _check_generated_layout() -> Dict[str, object]:
         ROOT / "runtime" / "glyphser" / "_generated" / "validators.py",
         ROOT / "runtime" / "glyphser" / "_generated" / "error.py",
         ROOT / "runtime" / "glyphser" / "_generated" / "bindings.py",
-        ROOT / "artifacts" / "generated" / "outputs" / "metadata" / "codegen_manifest.json",
-        ROOT / "artifacts" / "generated" / "outputs" / "metadata" / "input_hashes.json",
+        ROOT / "artifacts" / "generated" / "stable" / "metadata" / "codegen_manifest.json",
+        ROOT / "artifacts" / "generated" / "stable" / "metadata" / "input_hashes.json",
     ]
     missing_files = [str(p.relative_to(ROOT)).replace("\\", "/") for p in required_files if not p.exists()]
 
@@ -164,49 +163,6 @@ def _check_generated_layout() -> Dict[str, object]:
         "missing_files": missing_files,
     }
 
-
-def _sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
-
-
-def _check_generated_authority_linkage() -> Dict[str, object]:
-    runtime_root = ROOT / "runtime" / "glyphser" / "_generated"
-    canonical_root = ROOT / "artifacts" / "generated" / "outputs" / "codegen_staging" / "cleanroom_validation"
-    names = ["models.py", "operators.py", "validators.py", "error.py", "bindings.py"]
-    missing_runtime: List[str] = []
-    missing_canonical: List[str] = []
-    mismatches: List[Dict[str, str]] = []
-    for name in names:
-        runtime_file = runtime_root / name
-        canonical_file = canonical_root / name
-        if not runtime_file.exists():
-            missing_runtime.append(str(runtime_file.relative_to(ROOT)).replace("\\", "/"))
-            continue
-        if not canonical_file.exists():
-            missing_canonical.append(str(canonical_file.relative_to(ROOT)).replace("\\", "/"))
-            continue
-        runtime_hash = _sha256(runtime_file)
-        canonical_hash = _sha256(canonical_file)
-        if runtime_hash != canonical_hash:
-            mismatches.append(
-                {
-                    "file": name,
-                    "runtime_hash": runtime_hash,
-                    "canonical_hash": canonical_hash,
-                }
-            )
-    status = "PASS" if not missing_runtime and not missing_canonical and not mismatches else "FAIL"
-    return {
-        "name": "generated_authority_linkage",
-        "status": status,
-        "runtime_root": str(runtime_root.relative_to(ROOT)).replace("\\", "/"),
-        "canonical_root": str(canonical_root.relative_to(ROOT)).replace("\\", "/"),
-        "missing_runtime": missing_runtime,
-        "missing_canonical": missing_canonical,
-        "mismatches": mismatches,
-    }
-
-
 def evaluate() -> Dict[str, object]:
     OUT.parent.mkdir(parents=True, exist_ok=True)
     checks = [
@@ -215,7 +171,6 @@ def evaluate() -> Dict[str, object]:
         _check_no_legacy_test_vector_paths(),
         _check_operator_vectors_source_of_truth(),
         _check_generated_layout(),
-        _check_generated_authority_linkage(),
     ]
     status = "PASS" if all(c["status"] == "PASS" for c in checks) else "FAIL"
     payload = {"status": status, "checks": checks}

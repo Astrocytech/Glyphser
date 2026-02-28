@@ -5,7 +5,7 @@ Files in this folder are illustrative examples for specification readability.
 ## Boundary Rule
 - These files are **not** executable conformance vectors.
 - Canonical executable operator vectors live under:
-  - `artifacts/inputs/conformance/primitives/operators/`
+  - `artifacts/inputs/conformance/primitive_vectors/operators/`
 - Tests and tooling must load vectors from the canonical artifacts location.
 
 ## Curated Scope

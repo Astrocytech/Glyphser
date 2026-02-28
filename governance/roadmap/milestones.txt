@@ -229,7 +229,7 @@ Status: COMPLETE.
 DONE (so far):
 	- Generator pipeline implemented at `tooling/codegen/generate.py` consuming `specs/contracts/operator_registry.json` and `specs/schemas/**/*.schema.json`.
 	- Templates added in `tooling/codegen/templates/` for data models, operator stubs, validators, error handling, and trace/checkpoint/WAL bindings.
-	- Generated outputs written to `runtime/glyphser/_generated/` with `artifacts/generated/outputs/metadata/codegen_manifest.json` for input traceability.
+	- Generated outputs written to `runtime/glyphser/_generated/` with `artifacts/generated/stable/metadata/codegen_manifest.json` for input traceability.
 
 
 Milestone 9: Deployment-Ready Generation
@@ -390,7 +390,7 @@ Clarifications:
 	- Source of truth: `specs/layers/L1-foundation/API-Interfaces.md` + `specs/layers/L1-foundation/Error-Codes.md`.
 	- Required payload fields for error vectors: `code_id`, `message`, `context.operator_id`.
 	- Each `allowed_error_codes` entry must have at least one vector case.
-	- Vector storage: `artifacts/inputs/conformance/primitives/operators/<OperatorId>.json`.
+	- Vector storage: `artifacts/inputs/conformance/primitive_vectors/operators/<OperatorId>.json`.
 	- Tests must reference vectors via `tests/test_operator_vectors.py` (no inline duplicates).
 	- Use exact match on error payloads; no partial matching.
 	- Error `message` must match the template in Error-Codes unless explicitly overridden in vectors.
@@ -432,7 +432,7 @@ Milestone 13: Codegen Diff Fidelity
 3. Gate: drift must be zero for all generated files.
 Deliverable: fully reproducible generated code outputs.
 Clarifications:
-	- Clean build directory: `artifacts/generated/outputs/codegen_staging/cleanroom_validation/` (delete and re-create each run).
+	- Clean build directory: `artifacts/generated/stable/codegen_staging/cleanroom_validation/` (delete and re-create each run).
 	- Hash manifest required for comparison.
 	- No exceptions for drift are allowed.
 	- Comparison includes: `runtime/glyphser/_generated/models.py`, `runtime/glyphser/_generated/operators.py`, `runtime/glyphser/_generated/validators.py`, `runtime/glyphser/_generated/error.py`, `runtime/glyphser/_generated/bindings.py`.
@@ -617,7 +617,7 @@ DONE:
 		- `evidence/recovery/checkpoint-backup.json`
 	- Added recovery tests and vectors:
 		- `tests/storage/test_state_store_recovery.py`
-		- `artifacts/inputs/conformance/primitives/storage/state_recovery_vectors.json`
+		- `artifacts/inputs/conformance/primitive_vectors/storage/state_recovery_vectors.json`
 	- Verified gates:
 		- `python3 tooling/quality_gates/state_recovery_gate.py` -> PASS
 		- `python3 tooling/commands/push_button.py` -> PASS with `STATE_RECOVERY_GATE: PASS`
@@ -706,7 +706,7 @@ DONE:
 		- `tooling/deploy/generate_overlays.py`
 	- Added staging deployment + rollback validation gate:
 		- `tooling/deploy/deploy_rollback_gate.py`
-		- outputs `evidence/deploy/latest.json`, `evidence/deploy/rollback.json`, `evidence/deploy/drift.json`, `evidence/deploy/parity.json`, and `artifacts/state_snapshots/deploy/staging_active.json`
+		- outputs `evidence/deploy/latest.json`, `evidence/deploy/rollback.json`, `evidence/deploy/drift.json`, `evidence/deploy/parity.json`, and `artifacts/inputs/state_snapshots/deploy/staging_active.json`
 	- Updated deployment pipeline wiring:
 		- `tooling/deploy/run_deployment_pipeline.py` now runs overlay generation and deploy/rollback gate.
 	- Added operational runbooks:

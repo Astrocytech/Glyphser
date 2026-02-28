@@ -12,11 +12,11 @@ Validate deterministic rollback behavior for staging deployment state.
 4. Confirm drift report:
    - `evidence/deploy/drift.json`
 5. Confirm active staging state exists:
-   - `artifacts/state_snapshots/deploy/staging_active.json`
+   - `artifacts/inputs/state_snapshots/deploy/staging_active.json`
 
 ## Rollback Trigger Threshold
 - Use overlay threshold:
-- `rollback_error_rate_threshold` from `artifacts/generated/outputs/deploy/overlays/staging.json`.
+- `rollback_error_rate_threshold` from `artifacts/generated/stable/deploy/overlays/staging.json`.
 
 ## Post-Rollback Verification
 - Re-run deploy pipeline and verify gate still passes.

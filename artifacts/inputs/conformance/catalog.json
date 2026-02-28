@@ -4,17 +4,17 @@
   "vectors": [
     {
       "id": "canonical_cbor",
-      "path": "artifacts/inputs/conformance/primitives/canonical_cbor/vectors.json",
+      "path": "artifacts/inputs/conformance/primitive_vectors/canonical_cbor/vectors.json",
       "description": "Canonical CBOR encoding/ordering vectors"
     },
     {
       "id": "data_structures",
-      "path": "artifacts/inputs/conformance/primitives/data_structures/vectors.json",
+      "path": "artifacts/inputs/conformance/primitive_vectors/data_structures/vectors.json",
       "description": "Data structure validation vectors"
     },
     {
       "id": "interface_hash",
-      "path": "artifacts/inputs/conformance/primitives/interface_hash/vectors.json",
+      "path": "artifacts/inputs/conformance/primitive_vectors/interface_hash/vectors.json",
       "description": "Interface hash vectors"
     },
     {

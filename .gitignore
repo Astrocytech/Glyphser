@@ -19,6 +19,8 @@ htmlcov/
 /*.local
 output/
 *.log
+artifacts/generated/tmp/*
+!artifacts/generated/tmp/.gitkeep
 
 # Secrets / local config
 .env

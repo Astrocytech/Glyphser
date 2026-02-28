@@ -30,7 +30,7 @@ def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     required_docs = [
         first_existing([rel("product", "handbook", "policies", "GA_SUPPORT_MATRIX.md"), rel("docs", "product", "GA_SUPPORT_MATRIX.md")]),
-        first_existing([rel("product", "handbook", "reference", "GA_MIGRATION_GUIDE.md"), rel("docs", "product", "GA_MIGRATION_GUIDE.md")]),
+        first_existing([rel("product", "handbook", "guides", "GA_MIGRATION_GUIDE.md"), rel("docs", "product", "GA_MIGRATION_GUIDE.md")]),
         first_existing([rel("product", "handbook", "policies", "GA_SUPPORT_LIFECYCLE.md"), rel("docs", "product", "GA_SUPPORT_LIFECYCLE.md")]),
         first_existing([rel("product", "handbook", "policies", "GA_STATUS_INCIDENT_COMMUNICATION.md"), rel("docs", "product", "GA_STATUS_INCIDENT_COMMUNICATION.md")]),
         first_existing([rel("product", "handbook", "policies", "GA_RELEASE_TRAIN_POLICY.md"), rel("docs", "product", "GA_RELEASE_TRAIN_POLICY.md")]),

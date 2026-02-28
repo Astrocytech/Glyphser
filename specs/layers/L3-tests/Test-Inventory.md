@@ -4,7 +4,7 @@ Status: ACTIVE
 
 ## Unit Vectors
 - Canonical CBOR: `conformance/artifacts/inputs/conformance/canonical_cbor/vectors.json`
-- Struct validation: `artifacts/inputs/conformance/primitives/data_structures/vectors.json`
+- Struct validation: `artifacts/inputs/conformance/primitive_vectors/data_structures/vectors.json`
 - Interface hash: `conformance/artifacts/inputs/conformance/interface_hash/vectors.json`
 
 ## Integration Vectors

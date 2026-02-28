@@ -19,7 +19,7 @@ def _load_registry_ops() -> List[str]:
 
 def _find_vector_files() -> Dict[str, List[str]]:
     mapping: Dict[str, List[str]] = {}
-    vector_root = ROOT / "artifacts" / "inputs" / "conformance" / "primitives"
+    vector_root = ROOT / "artifacts" / "inputs" / "conformance" / "primitive_vectors"
     if not vector_root.exists():
         return mapping
 
