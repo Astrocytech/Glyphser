@@ -697,6 +697,28 @@ Execution Governance:
 	- Approver role: SRE Lead + Engineering Lead.
 	- Checkpoint cadence: weekly, with staging promotion gate each cycle.
 	- Dependencies: requires Milestones 19-20 complete; blocks Milestones 22 and 24.
+Status: COMPLETE.
+DONE:
+	- Added environment overlays and generation pipeline:
+		- `tools/deploy/overlays/dev.json`
+		- `tools/deploy/overlays/staging.json`
+		- `tools/deploy/overlays/prod.json`
+		- `tools/deploy/generate_overlays.py`
+	- Added staging deployment + rollback validation gate:
+		- `tools/deploy/deploy_rollback_gate.py`
+		- outputs `reports/deploy/latest.json`, `reports/deploy/rollback.json`, `reports/deploy/drift.json`, `reports/deploy/parity.json`, and `reports/deploy/state/staging_active.json`
+	- Updated deployment pipeline wiring:
+		- `tools/deploy/run_deployment_pipeline.py` now runs overlay generation and deploy/rollback gate.
+	- Added operational runbooks:
+		- `docs/ops/DEPLOYMENT_RUNBOOK.md`
+		- `docs/ops/ROLLBACK_RUNBOOK.md`
+	- Added deployment gate test:
+		- `tests/deploy/test_deploy_pipeline_gate.py`
+	- Added evidence report:
+		- `docs/product/M21_DEPLOYMENT_TEST_REPORT.md`
+	- Verified gates:
+		- `python3 tools/deploy/run_deployment_pipeline.py` -> `DEPLOY_ROLLBACK_GATE: PASS`
+		- `python3 tools/push_button.py` -> PASS with `DEPLOY_ROLLBACK_GATE: PASS`
 
 Milestone 22: Observability and SLO Enforcement
 1. Add metrics, structured logs, traces, and evidence lineage dashboards.

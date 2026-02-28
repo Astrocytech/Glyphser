@@ -1,0 +1,9 @@
+{
+  "approval_required": false,
+  "budget_alarm_usd_monthly": 100,
+  "deployment_environment": "dev",
+  "max_parallel_rollout_percent": 100,
+  "quota_jobs_per_hour": 100,
+  "rollback_error_rate_threshold": 0.1,
+  "rollout_strategy": "all-at-once"
+}

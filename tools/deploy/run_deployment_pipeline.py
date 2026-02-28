@@ -10,15 +10,19 @@ sys.path.insert(0, str(ROOT))
 from tools.deploy.generate_bundle import main as generate_bundles  # noqa: E402
 from tools.deploy.generate_env_manifest import main as generate_env  # noqa: E402
 from tools.deploy.generate_migration_plan import main as generate_migration  # noqa: E402
+from tools.deploy.generate_overlays import main as generate_overlays  # noqa: E402
 from tools.deploy.validate_profile import main as validate_profile  # noqa: E402
+from tools.deploy.deploy_rollback_gate import main as deploy_rollback_gate  # noqa: E402
 
 
 def main() -> int:
     status = 0
     status |= generate_bundles()
+    status |= generate_overlays()
     status |= generate_env()
     status |= generate_migration()
     status |= validate_profile()
+    status |= deploy_rollback_gate()
     return status
 
 

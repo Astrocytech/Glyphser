@@ -1,0 +1,9 @@
+{
+  "approval_required": true,
+  "budget_alarm_usd_monthly": 250,
+  "deployment_environment": "staging",
+  "max_parallel_rollout_percent": 25,
+  "quota_jobs_per_hour": 500,
+  "rollback_error_rate_threshold": 0.02,
+  "rollout_strategy": "canary"
+}
