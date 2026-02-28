@@ -1,0 +1,3 @@
+pytest
+cbor2
+pyyaml

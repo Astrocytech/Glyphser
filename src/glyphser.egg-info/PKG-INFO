@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: glyphser
+Version: 0.1.0
+Summary: Deterministic runtime and conformance verification suite for ML2ML.
+Requires-Python: >=3.12
+License-File: LICENSE
+Requires-Dist: pytest
+Requires-Dist: cbor2
+Requires-Dist: pyyaml
+Dynamic: license-file
