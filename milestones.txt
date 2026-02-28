@@ -504,3 +504,218 @@ Clarifications:
 	- Provide a minimal “quick verify” section (≤5 steps) for external users.
 	- Provide a “support scope” section listing what is and isn’t supported.
 	- Provide a “security contact” section and disclosure policy reference.
+
+Milestone 17: Product Scope and Runtime Profiles
+1. Define target product scope (MVP use cases, non-goals, supported environments).
+2. Publish runtime profiles (local dev, single-node prod, multi-node regulated).
+3. Gate: every profile has explicit constraints, supported features, and test requirements.
+Deliverable: approved product scope and profile matrix.
+Clarifications:
+	- Add `docs/product/PRODUCT_SCOPE.md` and `docs/product/RUNTIME_PROFILES.md`.
+	- Include deployment assumptions (CPU/GPU, storage class, network boundaries).
+	- Mark each profile with reproducibility class and support tier.
+	- Define baseline non-functional targets per profile (latency, throughput, max input/model size).
+	- Define data-classification and compliance boundary per profile.
+	- Include explicit unsupported workload examples and rejection criteria.
+	- Define product success metrics tied to scope acceptance (adoption, reliability, support burden).
+	- Define tenancy model (single-tenant vs multi-tenant) and isolation guarantees.
+	- Define data lifecycle policy (retention, deletion, export obligations) for each profile.
+	- Define target personas and primary user journeys (including first 30 minutes).
+	- Define internationalization/localization scope and explicit non-goals.
+	- Define required time synchronization baseline (for example NTP drift limits) per profile.
+	- Define commercial model assumptions (self-hosted only vs managed service plans).
+Execution Governance:
+	- Exit evidence package: `docs/product/PRODUCT_SCOPE.md`, `docs/product/RUNTIME_PROFILES.md`, and an approved profile review note.
+	- Owner role: Product Lead + Platform Lead.
+	- Approver role: Engineering Lead + Security Lead.
+	- Checkpoint cadence: weekly, with a hard completion target of <= 2 weeks.
+	- Dependencies: requires Milestones 15-16 complete; blocks Milestone 18.
+Status: COMPLETE.
+DONE:
+	- Added `docs/product/PRODUCT_SCOPE.md` with MVP scope, non-goals, personas, support boundaries, and success metrics.
+	- Added `docs/product/RUNTIME_PROFILES.md` with profile matrix covering constraints, supported features, test requirements, support tier, and reproducibility class.
+	- Added `docs/product/M17_APPROVAL.md` as milestone gate approval evidence.
+
+Milestone 18: Stable Runtime API and CLI
+1. Define versioned public API for job submission, status, evidence retrieval, and replay.
+2. Build a stable CLI wrapping those APIs.
+3. Gate: API schema + CLI behavior are contract-tested and semver-governed.
+Deliverable: external-facing API/CLI suitable for integrators.
+Clarifications:
+	- Add OpenAPI (or equivalent) under `contracts/` and generate reference docs.
+	- Add compatibility tests for backward-compatible vs breaking API changes.
+	- Add deprecation policy and minimum support windows.
+	- Define authentication/authorization model in API contracts (tokens/scopes/expiry).
+	- Define idempotency semantics for create/retry endpoints.
+	- Standardize pagination/filter/sort/query semantics and error envelope format.
+	- Define API rate limits/quotas and backpressure behavior.
+	- Define request/response payload size limits and streaming semantics.
+	- Define SDK/client compatibility policy when official clients are introduced.
+	- Define API version negotiation strategy and deprecation signaling headers.
+	- Require deterministic request tracing identifiers in API/CLI contracts.
+	- Publish and govern API style guide (naming, field casing, error taxonomy).
+Execution Governance:
+	- Exit evidence package: versioned API contract file(s), CLI command reference, compatibility/deprecation policy, and contract test report.
+	- Owner role: API Lead + Developer Experience Lead.
+	- Approver role: Engineering Lead + Product Lead.
+	- Checkpoint cadence: weekly, with API freeze checkpoint before implementation close.
+	- Dependencies: requires Milestone 17 complete; blocks Milestones 19 and 23.
+
+Milestone 19: Stateful Execution and Recovery
+1. Implement durable run state persistence and restart-safe recovery.
+2. Validate checkpoint/replay correctness across process restarts.
+3. Gate: crash/restart scenarios recover deterministically with no evidence corruption.
+Deliverable: production-grade state and recovery behavior.
+Clarifications:
+	- Add persistent storage adapter contracts and conformance vectors.
+	- Add chaos tests for partial writes, power-loss simulation, and replay resumption.
+	- Require deterministic recovery evidence bundle for each failure class.
+	- Define persisted-state schema versioning and migration compatibility tests.
+	- Define RPO/RTO targets and enforce them in recovery gate criteria.
+	- Add backup/restore integrity checks, retention policy, and restore drills.
+	- Define cross-version replay compatibility guarantees for checkpoint/state formats.
+	- Add corruption quarantine and operator response workflow for invalid state artifacts.
+	- Define multi-region/geo recovery expectations where applicable.
+	- Require encryption at rest and in transit for persisted state and checkpoints.
+	- Define recovery-time targets per workflow class in addition to global RPO/RTO.
+	- Define data residency constraints and regional storage boundaries where required.
+	- Define key management backend expectations (KMS/HSM class and custody model).
+Execution Governance:
+	- Exit evidence package: recovery test report, persistence schema/versioning spec, backup/restore drill evidence, and deterministic replay proof.
+	- Owner role: Runtime Lead + Data/Storage Lead.
+	- Approver role: Engineering Lead + SRE Lead.
+	- Checkpoint cadence: weekly, with mandatory crash/recovery drill each iteration.
+	- Dependencies: requires Milestone 18 complete; blocks Milestones 21, 23, and 24.
+
+Milestone 20: Security Hardening and Access Control
+1. Implement authentication, authorization, and audit logging for all control surfaces.
+2. Add secret management and key rotation procedures.
+3. Gate: security baseline passes threat-driven tests and policy checks.
+Deliverable: secure-by-default operational baseline.
+Clarifications:
+	- Require RBAC policy fixtures and negative authorization tests.
+	- Add signed audit trail verification and tamper-detection checks.
+	- Publish `docs/security/THREAT_MODEL.md` and `docs/security/OPERATIONS.md`.
+	- Add SAST/DAST/SCA and container/image scanning requirements to CI gates.
+	- Require SBOM generation and signed build provenance for release artifacts.
+	- Define incident severity classes with response/notification timeline targets.
+	- Define vulnerability remediation SLA by severity class.
+	- Add secret-scanning requirements for source and CI artifacts.
+	- Define key-compromise response playbook and mandatory key rotation cadence.
+	- Define security exception process (approvals, expiry, compensating controls).
+	- Require periodic access review cadence for privileged roles and service identities.
+	- Define independent security audit cadence and remediation closure requirements.
+Execution Governance:
+	- Exit evidence package: threat model docs, CI security gate report, RBAC/audit test report, and security operations runbook.
+	- Owner role: Security Lead.
+	- Approver role: Security Lead + Engineering Lead + Compliance/Legal reviewer.
+	- Checkpoint cadence: weekly, with vulnerability remediation burn-down tracking.
+	- Dependencies: starts after Milestone 18 baseline contracts; blocks Milestones 21, 23, and 24.
+
+Milestone 21: Multi-Environment Deployment and Ops
+1. Provide reproducible deployment bundles (container + manifests).
+2. Add environment overlays for dev/staging/prod.
+3. Gate: one-command deploy and rollback validated in staging.
+Deliverable: repeatable deployment system with rollback safety.
+Clarifications:
+	- Add deployment runbook, rollback runbook, and version pin policy.
+	- Require health/readiness checks and post-deploy verification gates.
+	- Include infra drift detection and config diff reporting.
+	- Define rollout policy (blue/green or canary) and automatic rollback thresholds.
+	- Add capacity/load-test gate prior to production promotion.
+	- Add environment parity checks and drift budget between staging and production.
+	- Add cost controls: budget alarms, per-tenant quotas, and cost regression checks.
+	- Require immutable deployment artifacts (digest-pinned images/manifests).
+	- Define production change-management controls and approval gates.
+	- Add automated bootstrap requirements for fresh environment bring-up.
+	- Require scheduled disaster-recovery promotion drills across target environments.
+	- Define infrastructure dependency pinning policy for images, registries, and IaC modules.
+Execution Governance:
+	- Exit evidence package: deployment manifests/bundles, staged rollout evidence, rollback drill transcript, and environment parity report.
+	- Owner role: SRE/Platform Ops Lead.
+	- Approver role: SRE Lead + Engineering Lead.
+	- Checkpoint cadence: weekly, with staging promotion gate each cycle.
+	- Dependencies: requires Milestones 19-20 complete; blocks Milestones 22 and 24.
+
+Milestone 22: Observability and SLO Enforcement
+1. Add metrics, structured logs, traces, and evidence lineage dashboards.
+2. Define SLOs/SLIs for correctness, latency, and availability.
+3. Gate: alerting and incident response drills succeed against injected failures.
+Deliverable: operational observability with measurable reliability targets.
+Clarifications:
+	- Add `docs/ops/SLOs.md` and `docs/ops/INCIDENT_RESPONSE.md`.
+	- Require automated alert tests and paging simulation in CI/staging.
+	- Include deterministic incident artifact capture for postmortems.
+	- Define minimum golden-signal dashboard set for every deployment profile.
+	- Add error-budget policy and release freeze criteria when budgets are exhausted.
+	- Define log/trace retention windows and PII redaction requirements.
+	- Define metric cardinality controls and label hygiene standards.
+	- Require synthetic monitoring and black-box probes in SLO gates.
+	- Define postmortem quality requirements and corrective-action closure tracking.
+	- Define observability cost controls (sampling policy, tiered retention, budget limits).
+	- Assign explicit ownership for dashboards, alerts, and on-call response targets.
+	- Define business continuity target (maximum tolerated outage window per quarter).
+	- Define optional sustainability reporting metrics (efficiency and resource utilization trends).
+Execution Governance:
+	- Exit evidence package: SLO/SLI definitions, dashboard inventory, alert test results, and incident drill report.
+	- Owner role: Reliability Engineering Lead.
+	- Approver role: SRE Lead + Product/Operations leadership.
+	- Checkpoint cadence: weekly, with error-budget review checkpoint.
+	- Dependencies: requires Milestone 21 baseline deployment observability; blocks Milestones 23 and 24.
+
+Milestone 23: External Validation Program
+1. Run clean-room verification by external users on fresh environments.
+2. Collect usability feedback for docs/API/CLI and remove blockers.
+3. Gate: at least 3 independent external reproductions succeed end-to-end.
+Deliverable: externally validated product reproducibility and usability.
+Clarifications:
+	- Require published verification transcripts and issue resolution log.
+	- Track time-to-first-success and failure taxonomy.
+	- Block completion on unresolved critical onboarding defects.
+	- Require diversity in external verifier environments (OS/cloud/runtime profiles).
+	- Require at least one blind-run validation with no maintainer intervention.
+	- Add structured UX acceptance thresholds (setup time, doc clarity, recovery guidance).
+	- Add independent external security validation (pentest/review) requirement.
+	- Add supportability evaluation rubric and threshold for external participants.
+	- Require at least one docs-only success run without interactive maintainer support.
+	- Require negative-path external validation (misconfigurations, bad keys, partial setup).
+	- Define reproducibility variance budget (setup time spread and acceptable failure rate).
+Execution Governance:
+	- Exit evidence package: external validation transcripts (>=3), issue closure log, UX/supportability scorecards, and independent verification summary.
+	- Owner role: Program Manager + Developer Experience Lead.
+	- Approver role: Product Lead + Engineering Lead.
+	- Checkpoint cadence: biweekly, with participant cohort review.
+	- Dependencies: requires Milestones 18-22 substantially complete; blocks Milestone 24.
+
+Milestone 24: GA Release and Support Model
+1. Publish GA release with signed artifacts and long-term version policy.
+2. Finalize support matrix, SLA/SLO commitments, and upgrade playbooks.
+3. Gate: release candidate passes full regression + security + reproducibility suite.
+Deliverable: full end-to-end product release (GA).
+Clarifications:
+	- Include migration guide from v0.x to GA.
+	- Include support lifecycle (LTS window, patch policy, end-of-life policy).
+	- Include customer-facing status/incident communication process.
+	- Require formal GA readiness sign-off from engineering, security, ops, and product.
+	- Require legal/compliance release checklist completion for target markets.
+	- Require support operations readiness (on-call rota, escalation paths, runbook drill evidence).
+	- Define release train policy (patch/minor cadence and hotfix process).
+	- Define contractual support workflow mapping severity classes to SLA obligations.
+	- Define GA go/no-go and rollback criteria with formal decision checklist.
+	- Require compliance evidence index for audit-ready release documentation.
+	- Require dependency license/legal review for redistribution and commercial use.
+	- Require ADR (architecture decision record) process for post-GA structural changes.
+	- Define GA compatibility guarantees for APIs, artifact formats, and replay/state schemas.
+	- Define post-GA governance cadence for roadmap, reliability, and security reviews.
+	- Require accessibility and inclusive-language review for public verification/support docs.
+	- Define supply-chain trust policy for dependency sources, mirrors, and provenance checks.
+	- Require privacy impact assessment workflow for features touching user or customer data.
+	- Define documentation versioning policy tied to release tags.
+	- Define customer-facing change communication SLA for deprecations and breaking changes.
+	- Define annual independent security review cadence for GA lifecycle governance.
+Execution Governance:
+	- Exit evidence package: GA readiness checklist, signed release artifacts, support/SLA docs, migration guide, and final release candidate verification report.
+	- Owner role: Release Manager.
+	- Approver role: Engineering Lead + Security Lead + SRE Lead + Product Lead + Compliance/Legal.
+	- Checkpoint cadence: weekly until RC, then daily go/no-go standups in release week.
+	- Dependencies: requires Milestones 17-23 complete and approved.
