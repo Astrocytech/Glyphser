@@ -162,30 +162,6 @@ class ConfigSchema (L2):
     tenant_id: str
 
 @dataclass
-class Glyphser Config Schema:
-    checkpoint_frequency: Optional[int] = None
-    custom_operators: Optional[List[Any]] = None
-    data: Optional[Dict[str, Any]] = None
-    datasets: Dict[str, Any]
-    environment: Dict[str, Any]
-    execution_mode: Optional[str] = None
-    fingerprint_frequency: Optional[int] = None
-    global_batch_size: int
-    job_priority: Optional[int] = None
-    model: Dict[str, Any]
-    optimizer: Dict[str, Any]
-    parallelism: Optional[Dict[str, Any]] = None
-    pipeline_stages: List[Any]
-    policy: Optional[Dict[str, Any]] = None
-    policy_bundle: Dict[str, Any]
-    schema_mode: Optional[str] = None
-    security: Dict[str, Any]
-    seed: int
-    spec_version: str
-    task_type: Optional[str] = None
-    tenant_id: str
-
-@dataclass
 class DataLineage (L2):
     data_access_plan_hash: str
     dataset_snapshot_id: str
@@ -383,12 +359,6 @@ class TestVectorsCatalog (L3):
     catalog_version: str
     coverage: Optional[str] = None
     vectors: List[Any]
-
-@dataclass
-class Glyphser Test Plan:
-    coverage: Optional[str] = None
-    pass_criteria: str
-    tests: List[Any]
 
 @dataclass
 class APILifecycleAndDeprecationPolicy (L4):

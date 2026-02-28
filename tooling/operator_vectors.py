@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
 ROOT = Path(__file__).resolve().parents[1]
-VECTORS_ROOT = ROOT / "tests" / "conformance" / "vectors" / "operators"
+VECTORS_ROOT = ROOT / "artifacts" / "inputs" / "vectors" / "conformance" / "operators"
 
 
 def operator_id_to_filename(operator_id: str) -> str:

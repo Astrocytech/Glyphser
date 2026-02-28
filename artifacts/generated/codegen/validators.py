@@ -538,97 +538,6 @@ def validate_ConfigSchema_L2(obj: Any) -> List[str]:
             errors.append("tenant_id must be string")
     return errors
 
-def validate_Glyphser_Config_Schema(obj: Any) -> List[str]:
-    errors: List[str] = []
-    if not isinstance(obj, dict):
-        return ["expected object"]
-    if 'spec_version' not in obj:
-        errors.append("missing spec_version")
-    if 'tenant_id' not in obj:
-        errors.append("missing tenant_id")
-    if 'seed' not in obj:
-        errors.append("missing seed")
-    if 'global_batch_size' not in obj:
-        errors.append("missing global_batch_size")
-    if 'datasets' not in obj:
-        errors.append("missing datasets")
-    if 'environment' not in obj:
-        errors.append("missing environment")
-    if 'pipeline_stages' not in obj:
-        errors.append("missing pipeline_stages")
-    if 'model' not in obj:
-        errors.append("missing model")
-    if 'security' not in obj:
-        errors.append("missing security")
-    if 'optimizer' not in obj:
-        errors.append("missing optimizer")
-    if 'policy_bundle' not in obj:
-        errors.append("missing policy_bundle")
-    if 'checkpoint_frequency' in obj:
-        if not isinstance(obj['checkpoint_frequency'], int):
-            errors.append("checkpoint_frequency must be integer")
-    if 'custom_operators' in obj:
-        if not isinstance(obj['custom_operators'], list):
-            errors.append("custom_operators must be array")
-    if 'data' in obj:
-        if not isinstance(obj['data'], dict):
-            errors.append("data must be object")
-    if 'datasets' in obj:
-        if not isinstance(obj['datasets'], dict):
-            errors.append("datasets must be object")
-    if 'environment' in obj:
-        if not isinstance(obj['environment'], dict):
-            errors.append("environment must be object")
-    if 'execution_mode' in obj:
-        if not isinstance(obj['execution_mode'], str):
-            errors.append("execution_mode must be string")
-    if 'fingerprint_frequency' in obj:
-        if not isinstance(obj['fingerprint_frequency'], int):
-            errors.append("fingerprint_frequency must be integer")
-    if 'global_batch_size' in obj:
-        if not isinstance(obj['global_batch_size'], int):
-            errors.append("global_batch_size must be integer")
-    if 'job_priority' in obj:
-        if not isinstance(obj['job_priority'], int):
-            errors.append("job_priority must be integer")
-    if 'model' in obj:
-        if not isinstance(obj['model'], dict):
-            errors.append("model must be object")
-    if 'optimizer' in obj:
-        if not isinstance(obj['optimizer'], dict):
-            errors.append("optimizer must be object")
-    if 'parallelism' in obj:
-        if not isinstance(obj['parallelism'], dict):
-            errors.append("parallelism must be object")
-    if 'pipeline_stages' in obj:
-        if not isinstance(obj['pipeline_stages'], list):
-            errors.append("pipeline_stages must be array")
-    if 'policy' in obj:
-        if not isinstance(obj['policy'], dict):
-            errors.append("policy must be object")
-    if 'policy_bundle' in obj:
-        if not isinstance(obj['policy_bundle'], dict):
-            errors.append("policy_bundle must be object")
-    if 'schema_mode' in obj:
-        if not isinstance(obj['schema_mode'], str):
-            errors.append("schema_mode must be string")
-    if 'security' in obj:
-        if not isinstance(obj['security'], dict):
-            errors.append("security must be object")
-    if 'seed' in obj:
-        if not isinstance(obj['seed'], int):
-            errors.append("seed must be integer")
-    if 'spec_version' in obj:
-        if not isinstance(obj['spec_version'], str):
-            errors.append("spec_version must be string")
-    if 'task_type' in obj:
-        if not isinstance(obj['task_type'], str):
-            errors.append("task_type must be string")
-    if 'tenant_id' in obj:
-        if not isinstance(obj['tenant_id'], str):
-            errors.append("tenant_id must be string")
-    return errors
-
 def validate_DataLineage_L2(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
@@ -1271,25 +1180,6 @@ def validate_TestVectorsCatalog_L3(obj: Any) -> List[str]:
     if 'vectors' in obj:
         if not isinstance(obj['vectors'], list):
             errors.append("vectors must be array")
-    return errors
-
-def validate_Glyphser_Test_Plan(obj: Any) -> List[str]:
-    errors: List[str] = []
-    if not isinstance(obj, dict):
-        return ["expected object"]
-    if 'tests' not in obj:
-        errors.append("missing tests")
-    if 'pass_criteria' not in obj:
-        errors.append("missing pass_criteria")
-    if 'coverage' in obj:
-        if not isinstance(obj['coverage'], str):
-            errors.append("coverage must be string")
-    if 'pass_criteria' in obj:
-        if not isinstance(obj['pass_criteria'], str):
-            errors.append("pass_criteria must be string")
-    if 'tests' in obj:
-        if not isinstance(obj['tests'], list):
-            errors.append("tests must be array")
     return errors
 
 def validate_APILifecycleAndDeprecationPolicy_L4(obj: Any) -> List[str]:

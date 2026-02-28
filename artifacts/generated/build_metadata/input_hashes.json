@@ -65,10 +65,6 @@
       "sha256": "8c5bf43707f0257bb78d2b01bea25e97650532bfe7931f08447edd32d2b6573a"
     },
     {
-      "path": "schemas/pilot/l2_config_schema.schema.json",
-      "sha256": "18c2ba252b270b7f26a1784edd91f61fc90af408a26673e4956cfea045afbdcc"
-    },
-    {
       "path": "schemas/pilot/l2_data-lineage.schema.json",
       "sha256": "e9bdec8a97d0e4f447c849f95bc4ea098ee4484de5c952a67b2c05472ad93c9b"
     },
@@ -191,10 +187,6 @@
     {
       "path": "schemas/pilot/l3_test-vectors-catalog.schema.json",
       "sha256": "92b0c20e2e24389465b0718204898bd06f6bc17191188a2e77c62cd7db151c80"
-    },
-    {
-      "path": "schemas/pilot/l3_test_plan.schema.json",
-      "sha256": "a8b79621f0783974d0a600e150039f391db3d7112beb090add52105bed76fa61"
     },
     {
       "path": "schemas/pilot/l4_api-lifecycle-and-deprecation-policy.schema.json",

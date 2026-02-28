@@ -8,7 +8,7 @@ from typing import Dict, List
 ROOT = Path(__file__).resolve().parents[1]
 API = ROOT / "specs" / "layers" / "L1-foundation" / "API-Interfaces.md"
 ERRORS = ROOT / "specs" / "layers" / "L1-foundation" / "Error-Codes.md"
-VEC_ROOT = ROOT / "tests" / "conformance" / "vectors" / "operators"
+VEC_ROOT = ROOT / "artifacts" / "inputs" / "vectors" / "conformance" / "operators"
 
 
 def _parse_api() -> Dict[str, List[str]]:

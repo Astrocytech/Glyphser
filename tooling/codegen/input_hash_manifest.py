@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tooling"))
 from path_config import generated_root
 
-OUT = generated_root() / "input_hashes.json"
+OUT = generated_root() / "build_metadata" / "input_hashes.json"
 
 
 def _sha256(path: Path) -> str:
@@ -18,6 +18,7 @@ def _sha256(path: Path) -> str:
 
 
 def main() -> int:
+    OUT.parent.mkdir(parents=True, exist_ok=True)
     inputs = []
     for path in sorted((ROOT / "schemas").rglob("*.schema.json")):
         inputs.append({"path": str(path.relative_to(ROOT)).replace("\\", "/"), "sha256": _sha256(path)})

@@ -2,31 +2,31 @@
   "generator": "tooling/codegen/generate.py",
   "operator_registry_root_hash": "d6c07c27e755cca8767ab62fb8106fead06055e90dc50c86ea015cde45e9fbc4",
   "outputs": [
-    "artifacts/generated/models.py",
-    "artifacts/generated/operators.py",
-    "artifacts/generated/validators.py",
-    "artifacts/generated/error.py",
-    "artifacts/generated/bindings.py"
+    "artifacts/generated/codegen/models.py",
+    "artifacts/generated/codegen/operators.py",
+    "artifacts/generated/codegen/validators.py",
+    "artifacts/generated/codegen/error.py",
+    "artifacts/generated/codegen/bindings.py"
   ],
   "outputs_with_hashes": [
     {
-      "path": "artifacts/generated/models.py",
-      "sha256": "edf5bffd2a98c154e501277f5f86e60817c4d18b2c7908efefe94a70430909d6"
+      "path": "artifacts/generated/codegen/models.py",
+      "sha256": "f3ffe91c3710fdea5a3dc1298f8ac473a2f76cb501dee2680ea868bb163a77df"
     },
     {
-      "path": "artifacts/generated/operators.py",
+      "path": "artifacts/generated/codegen/operators.py",
       "sha256": "f1fe9ce46ab862d74bec5b21926d0a1477e47400d8a5d2a56536d685fd6d4f8f"
     },
     {
-      "path": "artifacts/generated/validators.py",
-      "sha256": "f47fac14d5183d77cc80db5afd9fb2b77129a2f6ac5c937a5774c122767ce33f"
+      "path": "artifacts/generated/codegen/validators.py",
+      "sha256": "d02cf0b63db9262746bccd041fda36437bfcb7ac14729bfa97213c8a01a30d88"
     },
     {
-      "path": "artifacts/generated/error.py",
+      "path": "artifacts/generated/codegen/error.py",
       "sha256": "2e79ed68ad8e3a1547abf2700bfaa8de5f8e06d1ad14b46c73b19973357bec08"
     },
     {
-      "path": "artifacts/generated/bindings.py",
+      "path": "artifacts/generated/codegen/bindings.py",
       "sha256": "ccd5346a49a2839a2e7a40f2f94073e8463652d1748802a2e808890fe0a41a35"
     }
   ],
@@ -94,10 +94,6 @@
     {
       "path": "schemas/pilot/l2_config-schema.schema.json",
       "sha256": "8c5bf43707f0257bb78d2b01bea25e97650532bfe7931f08447edd32d2b6573a"
-    },
-    {
-      "path": "schemas/pilot/l2_config_schema.schema.json",
-      "sha256": "18c2ba252b270b7f26a1784edd91f61fc90af408a26673e4956cfea045afbdcc"
     },
     {
       "path": "schemas/pilot/l2_data-lineage.schema.json",
@@ -222,10 +218,6 @@
     {
       "path": "schemas/pilot/l3_test-vectors-catalog.schema.json",
       "sha256": "92b0c20e2e24389465b0718204898bd06f6bc17191188a2e77c62cd7db151c80"
-    },
-    {
-      "path": "schemas/pilot/l3_test_plan.schema.json",
-      "sha256": "a8b79621f0783974d0a600e150039f391db3d7112beb090add52105bed76fa61"
     },
     {
       "path": "schemas/pilot/l4_api-lifecycle-and-deprecation-policy.schema.json",
@@ -552,10 +544,6 @@
       "sha256": "8c5bf43707f0257bb78d2b01bea25e97650532bfe7931f08447edd32d2b6573a"
     },
     {
-      "path": "schemas/pilot/l2_config_schema.schema.json",
-      "sha256": "18c2ba252b270b7f26a1784edd91f61fc90af408a26673e4956cfea045afbdcc"
-    },
-    {
       "path": "schemas/pilot/l2_data-lineage.schema.json",
       "sha256": "e9bdec8a97d0e4f447c849f95bc4ea098ee4484de5c952a67b2c05472ad93c9b"
     },
@@ -678,10 +666,6 @@
     {
       "path": "schemas/pilot/l3_test-vectors-catalog.schema.json",
       "sha256": "92b0c20e2e24389465b0718204898bd06f6bc17191188a2e77c62cd7db151c80"
-    },
-    {
-      "path": "schemas/pilot/l3_test_plan.schema.json",
-      "sha256": "a8b79621f0783974d0a600e150039f391db3d7112beb090add52105bed76fa61"
     },
     {
       "path": "schemas/pilot/l4_api-lifecycle-and-deprecation-policy.schema.json",

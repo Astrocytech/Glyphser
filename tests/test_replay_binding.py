@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from artifacts.generated import bindings as gen_bindings
+from artifacts.generated.codegen import bindings as gen_bindings
 
 ROOT = Path(__file__).resolve().parents[1]
 TRACE = ROOT / "artifacts" / "inputs" / "fixtures" / "replay-determinism" / "trace.json"

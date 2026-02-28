@@ -1,0 +1,27 @@
+{
+  "checks": [
+    {
+      "name": "no_json_vectors_in_tests",
+      "status": "PASS",
+      "violations": []
+    },
+    {
+      "name": "runtime_boundary_no_governance_product_evidence",
+      "status": "PASS",
+      "violations": []
+    },
+    {
+      "name": "no_legacy_test_vector_paths",
+      "status": "PASS",
+      "violations": []
+    },
+    {
+      "forbidden_present": [],
+      "missing_dirs": [],
+      "missing_files": [],
+      "name": "generated_layout",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

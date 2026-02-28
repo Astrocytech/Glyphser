@@ -81,8 +81,8 @@ DONE (so far):
 	- Conventions documented in `schemas/SCHEMA_CONVENTIONS.txt`.
 	- Pilot artifacts created:
 		- `schemas/pilot/l1_error_codes.schema.json`
-		- `schemas/pilot/l2_config_schema.schema.json`
-		- `schemas/pilot/l3_test_plan.schema.json`
+		- `schemas/pilot/l2_config-schema.schema.json`
+		- `schemas/pilot/l3_test-plan.schema.json`
 	- Bootstrap schema gate implemented and executed:
 		- `tooling/schema_gate.py`
 		- Result: `PASS: validated 3 schema artifacts`.
@@ -229,7 +229,7 @@ Status: COMPLETE.
 DONE (so far):
 	- Generator pipeline implemented at `tooling/codegen/generate.py` consuming `specs/contracts/operator_registry.json` and `schemas/**/*.schema.json`.
 	- Templates added in `tooling/codegen/templates/` for data models, operator stubs, validators, error handling, and trace/checkpoint/WAL bindings.
-	- Generated outputs written to `artifacts/generated/` with `artifacts/generated/codegen_manifest.json` for input traceability.
+	- Generated outputs written to `artifacts/generated/codegen/` with `artifacts/generated/build_metadata/codegen_manifest.json` for input traceability.
 
 
 Milestone 9: Deployment-Ready Generation
@@ -390,7 +390,7 @@ Clarifications:
 	- Source of truth: `specs/layers/L1-foundation/API-Interfaces.md` + `specs/layers/L1-foundation/Error-Codes.md`.
 	- Required payload fields for error vectors: `code_id`, `message`, `context.operator_id`.
 	- Each `allowed_error_codes` entry must have at least one vector case.
-	- Vector storage: `tests/conformance/artifacts/inputs/vectors/operators/<OperatorId>.json`.
+	- Vector storage: `artifacts/inputs/vectors/conformance/operators/<OperatorId>.json`.
 	- Tests must reference vectors via `tests/test_operator_vectors.py` (no inline duplicates).
 	- Use exact match on error payloads; no partial matching.
 	- Error `message` must match the template in Error-Codes unless explicitly overridden in vectors.
@@ -432,10 +432,10 @@ Milestone 13: Codegen Diff Fidelity
 3. Gate: drift must be zero for all generated files.
 Deliverable: fully reproducible generated code outputs.
 Clarifications:
-	- Clean build directory: `artifacts/generated/clean_build/` (delete and re-create each run).
+	- Clean build directory: `artifacts/generated/codegen/clean_build/` (delete and re-create each run).
 	- Hash manifest required for comparison.
 	- No exceptions for drift are allowed.
-	- Comparison includes: `artifacts/generated/models.py`, `artifacts/generated/operators.py`, `artifacts/generated/validators.py`, `artifacts/generated/error.py`, `artifacts/generated/bindings.py`.
+	- Comparison includes: `artifacts/generated/codegen/models.py`, `artifacts/generated/codegen/operators.py`, `artifacts/generated/codegen/validators.py`, `artifacts/generated/codegen/error.py`, `artifacts/generated/codegen/bindings.py`.
 	- Line endings normalized to LF before hashing.
 	- Generator must emit deterministic file ordering within directories.
 	- Generated outputs must include a manifest of input hashes (schemas + registry + templates).
@@ -617,7 +617,7 @@ DONE:
 		- `evidence/recovery/checkpoint-backup.json`
 	- Added recovery tests and vectors:
 		- `tests/storage/test_state_store_recovery.py`
-		- `tests/conformance/artifacts/inputs/vectors/storage/state_recovery_vectors.json`
+		- `artifacts/inputs/vectors/conformance/storage/state_recovery_vectors.json`
 	- Verified gates:
 		- `python3 tooling/state_recovery_gate.py` -> PASS
 		- `python3 tooling/push_button.py` -> PASS with `STATE_RECOVERY_GATE: PASS`

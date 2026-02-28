@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tooling"))
 from path_config import generated_root
 
-CLEAN = generated_root() / "clean_build"
+CLEAN = generated_root() / "codegen" / "clean_build"
 
 FILES = [
     "models.py",
@@ -29,7 +29,7 @@ def main() -> int:
     missing = []
     drift = []
     for name in FILES:
-        a = generated_root() / name
+        a = generated_root() / "codegen" / name
         b = CLEAN / name
         if not a.exists() or not b.exists():
             missing.append(name)

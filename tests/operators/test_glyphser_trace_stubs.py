@@ -2,10 +2,10 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from artifacts.generated import operators as gen_ops
+from artifacts.generated.codegen import operators as gen_ops
 
 ROOT = Path(__file__).resolve().parents[2]
-VEC_ROOT = ROOT / "tests" / "conformance" / "vectors" / "operators"
+VEC_ROOT = ROOT / "artifacts" / "inputs" / "vectors" / "conformance" / "operators"
 
 def _load(op_id: str) -> dict:
     path = VEC_ROOT / (op_id.replace(".", "_") + ".json")

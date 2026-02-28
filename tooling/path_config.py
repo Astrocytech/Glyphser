@@ -34,6 +34,18 @@ def generated_root() -> Path:
     return rel("artifacts", "generated")
 
 
+def generated_codegen_root() -> Path:
+    return generated_root() / "codegen"
+
+
+def generated_build_metadata_root() -> Path:
+    return generated_root() / "build_metadata"
+
+
+def generated_runtime_state_root() -> Path:
+    return generated_root() / "runtime_state"
+
+
 def bundles_root() -> Path:
     return rel("artifacts", "bundles")
 

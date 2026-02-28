@@ -14,7 +14,7 @@ from tooling.codegen.clean_build import main as clean_build  # noqa: E402
 from tooling.codegen.generate import generate  # noqa: E402
 from path_config import generated_root  # noqa: E402
 
-CLEAN = generated_root() / "clean_build"
+CLEAN = generated_root() / "codegen" / "clean_build"
 
 
 def main() -> int:
@@ -22,7 +22,9 @@ def main() -> int:
     generate()
 
     # copy generated outputs into clean_build
-    outputs = json.loads((generated_root() / "codegen_manifest.json").read_text(encoding="utf-8"))["outputs"]
+    outputs = json.loads(
+        (generated_root() / "build_metadata" / "codegen_manifest.json").read_text(encoding="utf-8")
+    )["outputs"]
     for rel in outputs:
         src = ROOT / rel
         dst = CLEAN / Path(rel).name
