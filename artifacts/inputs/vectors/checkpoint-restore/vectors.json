@@ -1,0 +1,15 @@
+{
+  "vector_set_id": "checkpoint-restore-vectors-v1",
+  "vectors": [
+    {
+      "case_id": "checkpoint_write_stub",
+      "expected_ref": "artifacts/expected/goldens/checkpoint-restore/checkpoint_expected.json",
+      "input_ref": "artifacts/inputs/fixtures/checkpoint-restore/checkpoint_input.json"
+    },
+    {
+      "case_id": "checkpoint_restore_stub",
+      "expected_ref": "artifacts/expected/goldens/checkpoint-restore/restore_expected.json",
+      "input_ref": "artifacts/inputs/fixtures/checkpoint-restore/restore_request.json"
+    }
+  ]
+}

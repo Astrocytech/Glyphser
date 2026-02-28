@@ -24,6 +24,6 @@
     "layer": "L2",
     "prose_check": "relaxed",
     "schema_version": "0.1",
-    "source_doc": "docs/layer2-specs/Evaluation-Harness.md"
+    "source_doc": "specs/layers/L2-specs/Evaluation-Harness.md"
   }
 }

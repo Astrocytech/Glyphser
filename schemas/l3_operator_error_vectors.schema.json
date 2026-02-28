@@ -38,7 +38,7 @@
   },
   "x_glyphser": {
     "schema_id": "glyphser.schemas.l3.operator_error_vectors",
-    "source_doc": "docs/layer3-tests/Operator-Vectors.md",
+    "source_doc": "specs/layers/L3-tests/Operator-Vectors.md",
     "compatibility_policy": "MAJOR",
     "layer": "L3",
     "schema_version": "1.0.0",

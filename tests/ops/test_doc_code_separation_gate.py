@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 def test_doc_code_separation_gate_passes():
     proc = subprocess.run(
-        [sys.executable, "tools/doc_code_separation_gate.py"],
+        [sys.executable, "tooling/doc_code_separation_gate.py"],
         cwd=ROOT,
         check=False,
         text=True,

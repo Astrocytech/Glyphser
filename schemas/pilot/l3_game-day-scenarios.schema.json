@@ -21,6 +21,6 @@
     "layer": "L3",
     "prose_check": "relaxed",
     "schema_version": "0.1",
-    "source_doc": "docs/layer3-tests/Game-Day-Scenarios.md"
+    "source_doc": "specs/layers/L3-tests/Game-Day-Scenarios.md"
   }
 }

@@ -1,0 +1,27 @@
+{
+  "ir_version": 1,
+  "operators": [
+    {
+      "id": "input",
+      "op": "INPUT",
+      "shape": [
+        4
+      ]
+    },
+    {
+      "bias": 0.0,
+      "id": "dense",
+      "op": "DENSE",
+      "weights": [
+        0.1,
+        0.2,
+        0.3,
+        0.4
+      ]
+    },
+    {
+      "id": "output",
+      "op": "OUTPUT"
+    }
+  ]
+}

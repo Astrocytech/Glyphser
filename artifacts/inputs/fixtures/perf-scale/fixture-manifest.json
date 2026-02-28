@@ -1,0 +1,10 @@
+{
+  "files": [
+    {
+      "path": "artifacts/inputs/fixtures/perf-scale/batch.json",
+      "sha256": "253924a725b9418a632fec69af4bb09045fd26525b6321921af2247f997271cd",
+      "size_bytes": 8911
+    }
+  ],
+  "fixture_set_id": "perf-scale-fixtures-v1"
+}

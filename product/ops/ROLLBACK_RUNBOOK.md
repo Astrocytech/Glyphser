@@ -5,7 +5,7 @@ Validate deterministic rollback behavior for staging deployment state.
 
 ## Procedure
 1. Run deploy pipeline:
-   - `python tools/deploy/run_deployment_pipeline.py`
+   - `python tooling/deploy/run_deployment_pipeline.py`
 2. Inspect rollback report:
    - `evidence/deploy/rollback.json`
 3. Confirm `status` is `PASS`.

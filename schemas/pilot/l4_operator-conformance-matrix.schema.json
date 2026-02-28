@@ -11,6 +11,6 @@
     "layer": "L4",
     "prose_check": "relaxed",
     "schema_version": "0.1",
-    "source_doc": "docs/layer4-implementation/Operator-Conformance-Matrix.md"
+    "source_doc": "specs/layers/L4-implementation/Operator-Conformance-Matrix.md"
   }
 }

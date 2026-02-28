@@ -3,10 +3,9 @@ name: conformance-gate
 on:
   push:
     paths:
-      - "conformance/**"
       - "contracts/**"
       - "docs/**"
-      - "tools/**"
+      - "tooling/**"
       - "scripts/**"
       - "src/**"
       - "tests/**"
@@ -14,10 +13,9 @@ on:
       - "evidence/**"
   pull_request:
     paths:
-      - "conformance/**"
       - "contracts/**"
       - "docs/**"
-      - "tools/**"
+      - "tooling/**"
       - "scripts/**"
       - "src/**"
       - "tests/**"
@@ -37,8 +35,8 @@ jobs:
         run: pip install -e .
       - name: Run conformance
         run: |
-          python tools/conformance/cli.py run
-          python tools/conformance/cli.py report
+          python tooling/conformance/cli.py run
+          python tooling/conformance/cli.py report
 
   hello-core:
     runs-on: ubuntu-latest

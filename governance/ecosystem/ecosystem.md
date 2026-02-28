@@ -2,7 +2,7 @@
 
 This is the canonical portfolio master for ML2ML and is normative for portfolio governance, propagation, and validation.
 It implements EQC-ES v1.9 requirements as defined in:
-`document_guidelines/EquationCode/ECOSYSTEM.md`
+`governance/document_guidelines/EquationCode/ECOSYSTEM.md`
 
 ## 0.5 Quick Impact Analysis Procedure v1.0
 1. Open this file (`ecosystem.md`).
@@ -19,7 +19,7 @@ It implements EQC-ES v1.9 requirements as defined in:
 - Portfolio Name: `ML2ML`
 - Purpose: Single source of truth that makes every EQC document discoverable, version-compatible, and automatically updatable.
 - Spec Version: `EQC-ES-v1.9` | `2026-02-19` | `ML2ML Team`
-- Root Document: `document_guidelines/EquationCode/ECOSYSTEM.md`
+- Root Document: `governance/document_guidelines/EquationCode/ECOSYSTEM.md`
 - Governance Model: `central-root`
 
 ## 2. Document Registry (mandatory)
@@ -83,8 +83,8 @@ Rule:
 
 Portfolio layout:
 - `document_guidelines/`
-- `docs/layer1-foundation/`
-- `docs/layer2-specs/`
+- `specs/layers/L1-foundation/`
+- `specs/layers/L2-specs/`
 - `docs/layer3-tests/`
 - `docs/layer4-implementation/`
 
@@ -235,7 +235,7 @@ Tooling extensibility requirements:
   - active environment profiles
   - data registry
   - validation/log state
-- Atomic Checkpoint Hash must include hash of this `ecosystem.md` and governing `document_guidelines/EquationCode/ECOSYSTEM.md`.
+- Atomic Checkpoint Hash must include hash of this `ecosystem.md` and governing `governance/document_guidelines/EquationCode/ECOSYSTEM.md`.
 
 ## 10. Governance & Lifecycle
 Required flow:

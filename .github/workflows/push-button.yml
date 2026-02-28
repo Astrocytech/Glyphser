@@ -8,7 +8,7 @@ on:
       - "schemas/**"
       - "src/**"
       - "tests/**"
-      - "tools/**"
+      - "tooling/**"
       - "artifacts/**"
       - "evidence/**"
       - "runtime/**"
@@ -23,7 +23,7 @@ on:
       - "schemas/**"
       - "src/**"
       - "tests/**"
-      - "tools/**"
+      - "tooling/**"
       - "artifacts/**"
       - "evidence/**"
       - "runtime/**"
@@ -44,11 +44,11 @@ jobs:
       - name: Install dependencies
         run: pip install -e .
       - name: Run push-button pipeline
-        run: python tools/push_button.py
+        run: python tooling/push_button.py
       - name: Check codegen drift
         run: |
-          python tools/codegen/clean_build_generate.py
-          python tools/codegen/diff_fidelity.py
+          python tooling/codegen/clean_build_generate.py
+          python tooling/codegen/diff_fidelity.py
       - name: Upload release checksum
         uses: actions/upload-artifact@v4
         with:

@@ -5,9 +5,9 @@ Date: 2026-02-28
 Status: PASS
 
 ## Commands Executed
-- `python3 tools/deploy/run_deployment_pipeline.py`
+- `python3 tooling/deploy/run_deployment_pipeline.py`
 - `python3 -m pytest tests/deploy/test_deploy_pipeline_gate.py -q`
-- `python3 tools/push_button.py`
+- `python3 tooling/push_button.py`
 
 ## Result Summary
 - Deploy bundle generation: PASS

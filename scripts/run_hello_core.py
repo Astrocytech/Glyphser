@@ -8,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT / "tools"))
+sys.path.insert(0, str(ROOT / "tooling"))
 
 from src.glyphser.certificate.build import write_execution_certificate  # noqa: E402
 from src.glyphser.checkpoint.write import save_checkpoint  # noqa: E402
@@ -20,7 +20,7 @@ from src.glyphser.trace.trace_sidecar import write_trace  # noqa: E402
 from path_config import fixtures_root  # noqa: E402
 
 FIXTURES = fixtures_root() / "hello-core"
-GOLDEN = ROOT / "docs" / "examples" / "hello-core" / "hello-core-golden.json"
+GOLDEN = ROOT / "specs" / "examples" / "hello-core" / "hello-core-golden.json"
 
 
 def _canonical_json_bytes(obj) -> bytes:

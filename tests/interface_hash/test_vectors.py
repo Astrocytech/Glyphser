@@ -4,10 +4,10 @@ import json
 from pathlib import Path
 
 from src.glyphser.registry.interface_hash import compute_interface_hash
-from tools import materialize_doc_artifacts as mda
+from tooling import materialize_doc_artifacts as mda
 
-ROOT = Path(__file__).resolve().parents[1]
-VECTORS = ROOT / "conformance" / "vectors" / "interface_hash" / "vectors.json"
+ROOT = Path(__file__).resolve().parents[2]
+VECTORS = ROOT / "artifacts" / "inputs" / "vectors" / "conformance" / "interface_hash" / "vectors.json"
 
 
 def test_interface_hash_vectors():

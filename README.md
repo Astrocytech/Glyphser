@@ -17,10 +17,10 @@ Independent implementation; no official affiliation or certification claims are 
 ## Quick Start
 1. Ensure you have Python 3.12+
 2. Install dependencies: `pip install -e .`
-3. Run sanity checks: `python tools/validate_data_integrity.py`
-4. Run the full push-button pipeline: `python tools/push_button.py`
+3. Run sanity checks: `python tooling/validate_data_integrity.py`
+4. Run the full push-button pipeline: `python tooling/push_button.py`
 
 ## Structure
 * `contracts/`: CBOR/JSON source of truth for capabilities.
 * `docs/`: Layered specification architecture.
-* `tools/`: Automation and verification suite.
+* `tooling/`: Automation and verification suite.

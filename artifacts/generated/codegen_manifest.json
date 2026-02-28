@@ -1,0 +1,956 @@
+{
+  "generator": "tooling/codegen/generate.py",
+  "operator_registry_root_hash": "d6c07c27e755cca8767ab62fb8106fead06055e90dc50c86ea015cde45e9fbc4",
+  "outputs": [
+    "artifacts/generated/models.py",
+    "artifacts/generated/operators.py",
+    "artifacts/generated/validators.py",
+    "artifacts/generated/error.py",
+    "artifacts/generated/bindings.py"
+  ],
+  "outputs_with_hashes": [
+    {
+      "path": "artifacts/generated/models.py",
+      "sha256": "edf5bffd2a98c154e501277f5f86e60817c4d18b2c7908efefe94a70430909d6"
+    },
+    {
+      "path": "artifacts/generated/operators.py",
+      "sha256": "f1fe9ce46ab862d74bec5b21926d0a1477e47400d8a5d2a56536d685fd6d4f8f"
+    },
+    {
+      "path": "artifacts/generated/validators.py",
+      "sha256": "f47fac14d5183d77cc80db5afd9fb2b77129a2f6ac5c937a5774c122767ce33f"
+    },
+    {
+      "path": "artifacts/generated/error.py",
+      "sha256": "2e79ed68ad8e3a1547abf2700bfaa8de5f8e06d1ad14b46c73b19973357bec08"
+    },
+    {
+      "path": "artifacts/generated/bindings.py",
+      "sha256": "ccd5346a49a2839a2e7a40f2f94073e8463652d1748802a2e808890fe0a41a35"
+    }
+  ],
+  "schemas": [
+    {
+      "path": "schemas/l3_operator_error_vectors.schema.json",
+      "sha256": "72910fb8886fe2112ab8b1b2ceef984236477e3361df0fda1cafeb30b07caf09"
+    },
+    {
+      "path": "schemas/l3_operator_vectors.schema.json",
+      "sha256": "9698014f1bf4fb22be358af2bcafa8ffde81b76e41de97bd68485fe4da3e1e79"
+    },
+    {
+      "path": "schemas/pilot/l1_api_interfaces.schema.json",
+      "sha256": "cb2f07cf16b6ca113fbb4d3f68de86fe0e9d8d6342a591fc75511703aa950191"
+    },
+    {
+      "path": "schemas/pilot/l1_canonical_cbor_profile.schema.json",
+      "sha256": "20925b7e52641d26df5df88ad42ea12488b3ee10aa4f97dcb92d21e2c6fded05"
+    },
+    {
+      "path": "schemas/pilot/l1_data_structures.schema.json",
+      "sha256": "9b5baec31a2a4a42db351aa161f4f1c19179dd27a88ae65517e133f4ed1b9e33"
+    },
+    {
+      "path": "schemas/pilot/l1_dependency_lock_policy.schema.json",
+      "sha256": "3d86df58c2497c3ad0b54c04663ed1caa2e2874e44f2f88d258aff6eb5b7668c"
+    },
+    {
+      "path": "schemas/pilot/l1_determinism_profiles.schema.json",
+      "sha256": "948eb5f2b1c2d662914a918cc4f909b10f19b5a63f6bbf47c5c51b1189f866fd"
+    },
+    {
+      "path": "schemas/pilot/l1_digest_catalog.schema.json",
+      "sha256": "012f813ccf48aa20952ad7fe9d67fb2cd3e5604ff7ba82a7464ff9709307a993"
+    },
+    {
+      "path": "schemas/pilot/l1_environment_manifest.schema.json",
+      "sha256": "b9a9bb54e2985cf436db360300ec8599d301372073d657396573208b9fdbdef0"
+    },
+    {
+      "path": "schemas/pilot/l1_error_codes.schema.json",
+      "sha256": "32ffb170f1e4845389ba1ed0ac5ba938b4c9a6a26527e1d1cf6e92d085f082a2"
+    },
+    {
+      "path": "schemas/pilot/l1_normativity_legend.schema.json",
+      "sha256": "2db0d8e9c76483f3d9fb724466fc7d29d391782d0240e66af69d911dc97a125b"
+    },
+    {
+      "path": "schemas/pilot/l1_operator_registry_schema.schema.json",
+      "sha256": "c796313e008e69947874e557c9d27f5b8f1d0b75bdbdfeabf445b350b3230df2"
+    },
+    {
+      "path": "schemas/pilot/l1_redaction_policy.schema.json",
+      "sha256": "a6df1ccb3b1c63865cf0ddb8fb29933d81c2be553b5f16444d5a52e7c76bfa9b"
+    },
+    {
+      "path": "schemas/pilot/l2_authz-capability-matrix.schema.json",
+      "sha256": "e0b01804f51002bac357745ce8291b3bf486898d6631e14c42b7ccc83524dd34"
+    },
+    {
+      "path": "schemas/pilot/l2_checkpoint-schema.schema.json",
+      "sha256": "6d51b56b1bb0d3107b0630eb87e21ae8e81f3bb5c6e3fca8cc8f8eb139ccda53"
+    },
+    {
+      "path": "schemas/pilot/l2_config-schema.schema.json",
+      "sha256": "8c5bf43707f0257bb78d2b01bea25e97650532bfe7931f08447edd32d2b6573a"
+    },
+    {
+      "path": "schemas/pilot/l2_config_schema.schema.json",
+      "sha256": "18c2ba252b270b7f26a1784edd91f61fc90af408a26673e4956cfea045afbdcc"
+    },
+    {
+      "path": "schemas/pilot/l2_data-lineage.schema.json",
+      "sha256": "e9bdec8a97d0e4f447c849f95bc4ea098ee4484de5c952a67b2c05472ad93c9b"
+    },
+    {
+      "path": "schemas/pilot/l2_data-nextbatch.schema.json",
+      "sha256": "caa3d9d80634022245353df7e515544f18c00690e8579d88a111ed8a22259412"
+    },
+    {
+      "path": "schemas/pilot/l2_deployment-runbook.schema.json",
+      "sha256": "2fc97fee496c203645aa63b253f5714c231877bf98e7730530180de227ae1eea"
+    },
+    {
+      "path": "schemas/pilot/l2_differentialprivacy-apply.schema.json",
+      "sha256": "e73059a0bddef8011c3c2f032aaca38008eb83e87fce6f8996e6874fda7569ca"
+    },
+    {
+      "path": "schemas/pilot/l2_evaluation-harness.schema.json",
+      "sha256": "bb80ba4fad4d7a09ec6add98ae44754e6f04ab1cfa633bbe611b9b3bf4dd7ffa"
+    },
+    {
+      "path": "schemas/pilot/l2_execution-certificate.schema.json",
+      "sha256": "b73e613d6f0b9d26240c11041688fb0a7c29cf00d706ac524168de0339ae6e6a"
+    },
+    {
+      "path": "schemas/pilot/l2_experiment-tracking.schema.json",
+      "sha256": "ac7322fcc612a46b662788c87047580526f0cf9d8f47b393e086ed699d1f779e"
+    },
+    {
+      "path": "schemas/pilot/l2_glyphser-kernel-v3.22-os.schema.json",
+      "sha256": "48758751146b5d1d079daf270809ee7aeb0e5ad688a5b2eb1cc6b5e65a92d915"
+    },
+    {
+      "path": "schemas/pilot/l2_model-registry.schema.json",
+      "sha256": "a9a4a8bebe2685cfba24e02a09c931e3c06423d5db0663c7248d1e7405e8eb6f"
+    },
+    {
+      "path": "schemas/pilot/l2_modelir-executor.schema.json",
+      "sha256": "5928ebdf3712dcdf20e3e2effc22f807c08637398af9f70e84a22b34af1cb0ff"
+    },
+    {
+      "path": "schemas/pilot/l2_monitoring-policy.schema.json",
+      "sha256": "5e5acfaa8c16327ec9e43b6d14b6ccad90fccfb5d42630f14910b5f05b9a0eeb"
+    },
+    {
+      "path": "schemas/pilot/l2_pipeline-orchestrator.schema.json",
+      "sha256": "d640e2b121a74fc28ddd8e37fd3657c09ae29a9f8503e0880bb8b690512193b4"
+    },
+    {
+      "path": "schemas/pilot/l2_replay-determinism.schema.json",
+      "sha256": "79b56d019ed1e380bd6e077f140014e192796955387bbe05f07db89bd8140cdc"
+    },
+    {
+      "path": "schemas/pilot/l2_run-commit-wal.schema.json",
+      "sha256": "bb09a7476a45c5e239ff60e16b1eb47fb7eea8464b5f46bd611a4d7eff155a06"
+    },
+    {
+      "path": "schemas/pilot/l2_security-compliance-profile.schema.json",
+      "sha256": "e0f0bd183321e7c0d5a7ec8201a2d712fd508b7fc41b7998427c3c1d324e30b4"
+    },
+    {
+      "path": "schemas/pilot/l2_tmmu-allocation.schema.json",
+      "sha256": "8debda73127f753ef3cf9afcc866c2c901af4fe08801283e555782e5a785b8e1"
+    },
+    {
+      "path": "schemas/pilot/l2_trace-sidecar.schema.json",
+      "sha256": "61179996331404269579c84e68f4a3aa1791048a7c0f8459a9b6e04842f3a255"
+    },
+    {
+      "path": "schemas/pilot/l3_compatibility-test-matrix.schema.json",
+      "sha256": "b326e05fb9e5979b97c186e1886bb861540fe70cab4c4da55df0ffcadc3e9ca5"
+    },
+    {
+      "path": "schemas/pilot/l3_conformance-ci-pipeline.schema.json",
+      "sha256": "f833cf1124ef01fc27277e6091764558fa6566617d0b251455c6f32a443d5972"
+    },
+    {
+      "path": "schemas/pilot/l3_conformance-harness-guide.schema.json",
+      "sha256": "f85ed40e46d92463cebff5660d12e86e4d191d8a3d468207f20538ed47f279d6"
+    },
+    {
+      "path": "schemas/pilot/l3_coverage-targets.schema.json",
+      "sha256": "6e01ac0a32fb51e0ae7b514bfe0f24659f1627b771eeb43cddb286740500cc99"
+    },
+    {
+      "path": "schemas/pilot/l3_data-contract-fuzzing-guide.schema.json",
+      "sha256": "e08fa5f5c24b446d3e6349582daddd7b2b0a908a8ec13674fcb50c6c258922b0"
+    },
+    {
+      "path": "schemas/pilot/l3_failure-injection-index.schema.json",
+      "sha256": "dc8590dffe75dd69151960373b0e1758b9fbe9d69653192e993c2a2359c240a6"
+    },
+    {
+      "path": "schemas/pilot/l3_failure-injection-scenarios.schema.json",
+      "sha256": "46fe1c7f172e1656a25acf5ae77b423569dcf13d401fe5cc24359877f8376468"
+    },
+    {
+      "path": "schemas/pilot/l3_game-day-scenarios.schema.json",
+      "sha256": "3469a3189d22c5393c6f6a58aa4ce6e80b9d90f4146a35fd2ec09a21be6e7f61"
+    },
+    {
+      "path": "schemas/pilot/l3_integration-test-matrix.schema.json",
+      "sha256": "b33ddcd960331d7f0602d3e43ea9b46ecca15d5c7b0377001e70f5b5c0cdcd16"
+    },
+    {
+      "path": "schemas/pilot/l3_performance-plan.schema.json",
+      "sha256": "6ddfce66758442e112a67347a575a9542440cc69406b76f1b78ac4a2e9dbb69c"
+    },
+    {
+      "path": "schemas/pilot/l3_release-gates.schema.json",
+      "sha256": "fb494ff093e2573650d3c124e8b62cb5dba9a4344dd7c8fc8ff9e97620e29bd7"
+    },
+    {
+      "path": "schemas/pilot/l3_storage-recovery-test-matrix.schema.json",
+      "sha256": "865ec1917adf400a14d40279dbd426f93cc536e07e872c3bbae4483802cae2f7"
+    },
+    {
+      "path": "schemas/pilot/l3_test-plan.schema.json",
+      "sha256": "f7eca668a8406afe21e95089007696a791c17f8d4461d25d958753bf45830c64"
+    },
+    {
+      "path": "schemas/pilot/l3_test-vectors-catalog.schema.json",
+      "sha256": "92b0c20e2e24389465b0718204898bd06f6bc17191188a2e77c62cd7db151c80"
+    },
+    {
+      "path": "schemas/pilot/l3_test_plan.schema.json",
+      "sha256": "a8b79621f0783974d0a600e150039f391db3d7112beb090add52105bed76fa61"
+    },
+    {
+      "path": "schemas/pilot/l4_api-lifecycle-and-deprecation-policy.schema.json",
+      "sha256": "ebc1a625172371e8d6de54b130735dbd8e42250e30e5fe2513fa61bdec112da2"
+    },
+    {
+      "path": "schemas/pilot/l4_architecture-decisions-log.schema.json",
+      "sha256": "b6c7fc3193442afe7f445be696ae07d9d9d632eeca72af877944ef5a2fce47af"
+    },
+    {
+      "path": "schemas/pilot/l4_artifact-store-adapter-guide.schema.json",
+      "sha256": "758e2af32c2042e5e903ba893492e2cd2f67f0984512c9eb6a45f9f601051f3e"
+    },
+    {
+      "path": "schemas/pilot/l4_backend-adapter-guide.schema.json",
+      "sha256": "a355ae2a00453dbd9a15be0bef5b2a70c5c6b9315d24a455c549d5ae3264453b"
+    },
+    {
+      "path": "schemas/pilot/l4_backend-feature-matrix.schema.json",
+      "sha256": "4deb7659208996eed74311079660b91628903bde9a6ea378863cdb8a53d6e05a"
+    },
+    {
+      "path": "schemas/pilot/l4_benchmark-evidence-spec.schema.json",
+      "sha256": "0c5194d1534532bdd734c6aa859eafcb844f8c0bf487e57da9fe117281713c20"
+    },
+    {
+      "path": "schemas/pilot/l4_brownfield-deployment-guide.schema.json",
+      "sha256": "f7e3a325b8db8a3cf351ab4662d7d16f10467a8ee07084b4daebd30dcf0844dc"
+    },
+    {
+      "path": "schemas/pilot/l4_build-and-ci-matrix.schema.json",
+      "sha256": "6004c7828c97da54c8b443ee9c21e473044362873af7e55348a7c7350580172d"
+    },
+    {
+      "path": "schemas/pilot/l4_canonical-hashing-reference.schema.json",
+      "sha256": "b9e4ce367aa817c076473b7daa67ae6933ff10c2ee8b8b5e46d433f4b9bb0f96"
+    },
+    {
+      "path": "schemas/pilot/l4_change-control-playbook.schema.json",
+      "sha256": "138a514526dd4ea2d1e9be410a7efc25525a01355870ff26a10951dc9ef68a21"
+    },
+    {
+      "path": "schemas/pilot/l4_cli-command-profiles.schema.json",
+      "sha256": "78c7720c0f9f76b60e707bb7656777cd9c286cfa9b9e2126cf97b5d67070b295"
+    },
+    {
+      "path": "schemas/pilot/l4_code-generation-mapping.schema.json",
+      "sha256": "6e61660d1c445d5bb0dd6c5314701ca77cdc34de1a33b0cf6a5dd140155dd16a"
+    },
+    {
+      "path": "schemas/pilot/l4_coding-standards.schema.json",
+      "sha256": "f444fb423464010dfa369d8e2bb26da105407edeca7ac2b7707411ebd0e03bb6"
+    },
+    {
+      "path": "schemas/pilot/l4_command-reference.schema.json",
+      "sha256": "7fc99a30e7ff0eb7f338da5a609b8e9ecd5602078bc6190c7e52d2dc6906da7c"
+    },
+    {
+      "path": "schemas/pilot/l4_common-pitfalls-guide.schema.json",
+      "sha256": "5041dcb45fb46284150c35d651ee2c124bbf77309b091240d6e275e24e19a75a"
+    },
+    {
+      "path": "schemas/pilot/l4_community-governance-model.schema.json",
+      "sha256": "a58bb058fb3de488127de61986b7e5df0611dabcf716a415c5ccbf3a80e78756"
+    },
+    {
+      "path": "schemas/pilot/l4_contracts-artifact-lifecycle.schema.json",
+      "sha256": "086052dc52f87eb94a419266b0d7e90cfb60277637b53574d213edf0794ce1e4"
+    },
+    {
+      "path": "schemas/pilot/l4_contributing-workflow.schema.json",
+      "sha256": "69429dc30755047e3ee825792d0508cd67a2f0af260138d57b3473f18183028a"
+    },
+    {
+      "path": "schemas/pilot/l4_debugging-playbook.schema.json",
+      "sha256": "1d9647e206ac8764830a7af53f5c1ba0c882c99eafffb863e8e9d080ba7f0bd4"
+    },
+    {
+      "path": "schemas/pilot/l4_determinism-audit-playbook.schema.json",
+      "sha256": "24c13a084563ca30d59a3241db6c9acb9f5cbb97c394de68bd279a75e30a981a"
+    },
+    {
+      "path": "schemas/pilot/l4_determinism-debug-checklist.schema.json",
+      "sha256": "9e907c6afce894040f01945b539a3de1fcb180ec5a034694a07114c4fe073307"
+    },
+    {
+      "path": "schemas/pilot/l4_deterministic-rng-implementation-guide.schema.json",
+      "sha256": "f492e0c06d367bc90d9179f897273b05655802e2d5792554a6a41edd1a73779f"
+    },
+    {
+      "path": "schemas/pilot/l4_developer-setup.schema.json",
+      "sha256": "090e803a702252778264041799d8f54875be15c2a6ad656c56a90de8aec2a8af"
+    },
+    {
+      "path": "schemas/pilot/l4_developer-troubleshooting-faq.schema.json",
+      "sha256": "82b9cecf29e00578accb862fd7b85f95c68d1f5420ccc7e334f26c8264352cc5"
+    },
+    {
+      "path": "schemas/pilot/l4_disaster-recovery-operations-runbook.schema.json",
+      "sha256": "237c0e19695cf892d7c2523ead762d4365e8e4b6fd45c67a2a035318638b5a12"
+    },
+    {
+      "path": "schemas/pilot/l4_distributed-failure-recovery-guide.schema.json",
+      "sha256": "a7a2c4124c598623cc94a5b0503ef79ae5fa57276941c1e5c3fc12ec1d16d047"
+    },
+    {
+      "path": "schemas/pilot/l4_ecosystem-expansion-roadmap.schema.json",
+      "sha256": "891fcb40d232d8c0aba9a07daaaa6667b24bd8d63f32d578fac2322fe55639eb"
+    },
+    {
+      "path": "schemas/pilot/l4_eqc-ci-policy.schema.json",
+      "sha256": "85a37c0b37527ad0f4d7c5d412d0cbd05a9e1d656ededcc7b85dc9d392649eb6"
+    },
+    {
+      "path": "schemas/pilot/l4_evidence-catalog.schema.json",
+      "sha256": "8437658024b4eb13fbdcec86706cb3aabe586f1adf3ef649974f9dd87ff393fd"
+    },
+    {
+      "path": "schemas/pilot/l4_expansion-catalog-041-250.schema.json",
+      "sha256": "55fcd6aaace3d003f2e7b9c5d1fdb18a86ea25668a8489f22b3d7c51480a2e1b"
+    },
+    {
+      "path": "schemas/pilot/l4_external-interface-standard.schema.json",
+      "sha256": "4ec5bbe2463ddb1d5b1e9ae9570ee552c06e42fc2264dfa3459215bebb990ec2"
+    },
+    {
+      "path": "schemas/pilot/l4_fixtures-and-golden-data.schema.json",
+      "sha256": "a4f3a3885ae6576a9cffe1755c163dfa8ff71462ca739bbebc784b6b98f130e7"
+    },
+    {
+      "path": "schemas/pilot/l4_formal-verification-roadmap.schema.json",
+      "sha256": "27d99d2c25a7dbfa39c2bdae2082867a37e31bd736eece63bc037dc781edcb5d"
+    },
+    {
+      "path": "schemas/pilot/l4_gentle-introduction.schema.json",
+      "sha256": "1fa52127b62038f9c64f42f50b73e491dc6ba59917da4e87831773a14ea5ab94"
+    },
+    {
+      "path": "schemas/pilot/l4_hello-world-end-to-end-example.schema.json",
+      "sha256": "800908f4af3ded964855282bbaeb4186360e52165a704297511d70865db8d8c1"
+    },
+    {
+      "path": "schemas/pilot/l4_implementation-backlog.schema.json",
+      "sha256": "d7f2bdaf572f99cd156b72e8d82609cf8a57c5f9c74a58b596d140c93e4d8f9b"
+    },
+    {
+      "path": "schemas/pilot/l4_implementation-roadmap.schema.json",
+      "sha256": "72e2c5c9d3cba0b699b0beba5409ee0a8daeb20ef98e40f0db371c3097470504"
+    },
+    {
+      "path": "schemas/pilot/l4_incident-postmortem-template.schema.json",
+      "sha256": "5c16301b7c64ad834163d2ced40946d8dcd2e5c09c7093b22fdca4472013c53a"
+    },
+    {
+      "path": "schemas/pilot/l4_industry-productization-upgrade-plan.schema.json",
+      "sha256": "2023d21f10060c4ed001ae8b28e16cb09b094746911f5cfffcee85d6bde16162"
+    },
+    {
+      "path": "schemas/pilot/l4_interoperability-standards-bridge.schema.json",
+      "sha256": "30feeee2fb7055cc05050e3ff4a251c287032d1dd40a819069199a0a0956cb18"
+    },
+    {
+      "path": "schemas/pilot/l4_local-replay-runbook.schema.json",
+      "sha256": "3101c64554a5110252251b611e708415fd3352eaff826776b8de0117e776bc71"
+    },
+    {
+      "path": "schemas/pilot/l4_migration-execution-guide.schema.json",
+      "sha256": "a07e7ca201359479c875626eeb081f30e99fc54f23db1abd994a4809c6866588"
+    },
+    {
+      "path": "schemas/pilot/l4_module-scaffolding-guide.schema.json",
+      "sha256": "af198bfdf9df6e526989e26fd5739d78f2bf1e7338d682d674150a9154c78274"
+    },
+    {
+      "path": "schemas/pilot/l4_operator-conformance-matrix.schema.json",
+      "sha256": "2ab4a2268b16e5e1e237c3590da102413b4d46ebd4ae982f93ff10d875d085ed"
+    },
+    {
+      "path": "schemas/pilot/l4_operator-registry-cbor-contract.schema.json",
+      "sha256": "4047a0165d372ce4151a63bd7f3ce57bc155182903f3eb6d968c1ab1375cd525"
+    },
+    {
+      "path": "schemas/pilot/l4_operator-sdk-scaffold-template.schema.json",
+      "sha256": "c8786beb256e1e267e6ef3b363ccd0d0ac4b6c098b3d37000636adce52e09ca8"
+    },
+    {
+      "path": "schemas/pilot/l4_pr-review-checklist.schema.json",
+      "sha256": "a1a3ea258ffa207e8e22237c41db61b531a0030230cee2b2d1eea00cea49eba2"
+    },
+    {
+      "path": "schemas/pilot/l4_profiling-and-optimization-guide.schema.json",
+      "sha256": "0ec1019aff05fee190c77739fe518c8ff74013fd8216de4f40b89ab1263deb57"
+    },
+    {
+      "path": "schemas/pilot/l4_reference-implementations.schema.json",
+      "sha256": "f5be3c86f4e579ca5fe71b155187a6402b62566cc29c2c0a42d6833d1e17ea37"
+    },
+    {
+      "path": "schemas/pilot/l4_reference-stack-minimal.schema.json",
+      "sha256": "33479eedf22ee71973361b84100900b3fe44e3f779b77c14bbcbebe84591c9c6"
+    },
+    {
+      "path": "schemas/pilot/l4_release-evidence-assembler.schema.json",
+      "sha256": "1ab019bc59d7fd2e705cb742fe2d44de397c1e3e240483bd798380f2853605af"
+    },
+    {
+      "path": "schemas/pilot/l4_repo-layout-and-interfaces.schema.json",
+      "sha256": "4d8f7c968014a4e47cca2b50af1f54b956c7e574df6d0e705797591a5e1a2f34"
+    },
+    {
+      "path": "schemas/pilot/l4_research-extensions-roadmap.schema.json",
+      "sha256": "326845f411e66b1a7712a33c91a3f4cdf0aeefd909f8541874ebcfe4d1a3d8cc"
+    },
+    {
+      "path": "schemas/pilot/l4_runtime-state-machine-reference.schema.json",
+      "sha256": "8d6eacded03991ea51f2af72e739b2fb848cbb9ec28777507e6ad242044cfc45"
+    },
+    {
+      "path": "schemas/pilot/l4_schema-evolution-playbook.schema.json",
+      "sha256": "20a0d6aafae684df329ecd85a50d1a2e6c36f3a4c676631348812f7cf1a03c76"
+    },
+    {
+      "path": "schemas/pilot/l4_scope-and-non-goals.schema.json",
+      "sha256": "75178ef5f04c013b10c991aaa1aec90d52290a2b894c8563ff85cb3f4ed7dcf4"
+    },
+    {
+      "path": "schemas/pilot/l4_sdk-usage-guide.schema.json",
+      "sha256": "650dd743d30f37d0cce7ba2673fc9ef4da1e9e4085792af14d9d70abec6f4e6e"
+    },
+    {
+      "path": "schemas/pilot/l4_security-case-template.schema.json",
+      "sha256": "0dd75621ee081325b150f174ed2adf2f92e84c669d3cfbb7999b3d3e8c0cdef4"
+    },
+    {
+      "path": "schemas/pilot/l4_security-coding-checklist.schema.json",
+      "sha256": "54b554c3134467d02b4c5aad21cfa6cacded93e31461eb3da8f27f2b934f365f"
+    },
+    {
+      "path": "schemas/pilot/l4_spec-lint-implementation.schema.json",
+      "sha256": "2ab28a809055c085ac20f77e8c93f72c69fee0ff3789fc3b95ed9d0d69e2e3df"
+    },
+    {
+      "path": "schemas/pilot/l4_spec-lint-rules.schema.json",
+      "sha256": "e0261547c0fd159dbd3938f975de5776239b202fb7ef9dd54c9cc57ba996d161"
+    },
+    {
+      "path": "schemas/pilot/l4_sre-incident-triage-playbook.schema.json",
+      "sha256": "08e7d22bc953357f445fa3c15986b7e2b7b28af5cebc8356d2f1722eb4598296"
+    },
+    {
+      "path": "schemas/pilot/l4_test-harness-implementation.schema.json",
+      "sha256": "cf288e723ae062d70e5017b0d08fb6205250c4074c2bb5efba0805fbfefdfa86"
+    },
+    {
+      "path": "schemas/pilot/l4_third-party-operator-certification-program.schema.json",
+      "sha256": "50084b024c1999cf7899f0da79abadbb1a6639060e031b1003511956258508c4"
+    },
+    {
+      "path": "schemas/pilot/l4_threat-model-and-control-crosswalk.schema.json",
+      "sha256": "2705772ed52a4e2107745523bccc7171a6557e8bd7608a31b2f2af3ac0a6b74c"
+    },
+    {
+      "path": "schemas/pilot/l4_tooling-and-automation-suite.schema.json",
+      "sha256": "051ba840c39f4c5cff9b8825203ed73d9d5f39d22e115670ca9403b07770b6e3"
+    },
+    {
+      "path": "schemas/pilot/l4_tooling-suite.schema.json",
+      "sha256": "daf7732c62b29fafe1cc7f34047842b6017cdd466cea5c65a150028fdb0fb53e"
+    },
+    {
+      "path": "schemas/pilot/l1_api_interfaces.schema.json",
+      "sha256": "cb2f07cf16b6ca113fbb4d3f68de86fe0e9d8d6342a591fc75511703aa950191"
+    },
+    {
+      "path": "schemas/pilot/l1_canonical_cbor_profile.schema.json",
+      "sha256": "20925b7e52641d26df5df88ad42ea12488b3ee10aa4f97dcb92d21e2c6fded05"
+    },
+    {
+      "path": "schemas/pilot/l1_data_structures.schema.json",
+      "sha256": "9b5baec31a2a4a42db351aa161f4f1c19179dd27a88ae65517e133f4ed1b9e33"
+    },
+    {
+      "path": "schemas/pilot/l1_dependency_lock_policy.schema.json",
+      "sha256": "3d86df58c2497c3ad0b54c04663ed1caa2e2874e44f2f88d258aff6eb5b7668c"
+    },
+    {
+      "path": "schemas/pilot/l1_determinism_profiles.schema.json",
+      "sha256": "948eb5f2b1c2d662914a918cc4f909b10f19b5a63f6bbf47c5c51b1189f866fd"
+    },
+    {
+      "path": "schemas/pilot/l1_digest_catalog.schema.json",
+      "sha256": "012f813ccf48aa20952ad7fe9d67fb2cd3e5604ff7ba82a7464ff9709307a993"
+    },
+    {
+      "path": "schemas/pilot/l1_environment_manifest.schema.json",
+      "sha256": "b9a9bb54e2985cf436db360300ec8599d301372073d657396573208b9fdbdef0"
+    },
+    {
+      "path": "schemas/pilot/l1_error_codes.schema.json",
+      "sha256": "32ffb170f1e4845389ba1ed0ac5ba938b4c9a6a26527e1d1cf6e92d085f082a2"
+    },
+    {
+      "path": "schemas/pilot/l1_normativity_legend.schema.json",
+      "sha256": "2db0d8e9c76483f3d9fb724466fc7d29d391782d0240e66af69d911dc97a125b"
+    },
+    {
+      "path": "schemas/pilot/l1_operator_registry_schema.schema.json",
+      "sha256": "c796313e008e69947874e557c9d27f5b8f1d0b75bdbdfeabf445b350b3230df2"
+    },
+    {
+      "path": "schemas/pilot/l1_redaction_policy.schema.json",
+      "sha256": "a6df1ccb3b1c63865cf0ddb8fb29933d81c2be553b5f16444d5a52e7c76bfa9b"
+    },
+    {
+      "path": "schemas/pilot/l2_authz-capability-matrix.schema.json",
+      "sha256": "e0b01804f51002bac357745ce8291b3bf486898d6631e14c42b7ccc83524dd34"
+    },
+    {
+      "path": "schemas/pilot/l2_checkpoint-schema.schema.json",
+      "sha256": "6d51b56b1bb0d3107b0630eb87e21ae8e81f3bb5c6e3fca8cc8f8eb139ccda53"
+    },
+    {
+      "path": "schemas/pilot/l2_config-schema.schema.json",
+      "sha256": "8c5bf43707f0257bb78d2b01bea25e97650532bfe7931f08447edd32d2b6573a"
+    },
+    {
+      "path": "schemas/pilot/l2_config_schema.schema.json",
+      "sha256": "18c2ba252b270b7f26a1784edd91f61fc90af408a26673e4956cfea045afbdcc"
+    },
+    {
+      "path": "schemas/pilot/l2_data-lineage.schema.json",
+      "sha256": "e9bdec8a97d0e4f447c849f95bc4ea098ee4484de5c952a67b2c05472ad93c9b"
+    },
+    {
+      "path": "schemas/pilot/l2_data-nextbatch.schema.json",
+      "sha256": "caa3d9d80634022245353df7e515544f18c00690e8579d88a111ed8a22259412"
+    },
+    {
+      "path": "schemas/pilot/l2_deployment-runbook.schema.json",
+      "sha256": "2fc97fee496c203645aa63b253f5714c231877bf98e7730530180de227ae1eea"
+    },
+    {
+      "path": "schemas/pilot/l2_differentialprivacy-apply.schema.json",
+      "sha256": "e73059a0bddef8011c3c2f032aaca38008eb83e87fce6f8996e6874fda7569ca"
+    },
+    {
+      "path": "schemas/pilot/l2_evaluation-harness.schema.json",
+      "sha256": "bb80ba4fad4d7a09ec6add98ae44754e6f04ab1cfa633bbe611b9b3bf4dd7ffa"
+    },
+    {
+      "path": "schemas/pilot/l2_execution-certificate.schema.json",
+      "sha256": "b73e613d6f0b9d26240c11041688fb0a7c29cf00d706ac524168de0339ae6e6a"
+    },
+    {
+      "path": "schemas/pilot/l2_experiment-tracking.schema.json",
+      "sha256": "ac7322fcc612a46b662788c87047580526f0cf9d8f47b393e086ed699d1f779e"
+    },
+    {
+      "path": "schemas/pilot/l2_glyphser-kernel-v3.22-os.schema.json",
+      "sha256": "48758751146b5d1d079daf270809ee7aeb0e5ad688a5b2eb1cc6b5e65a92d915"
+    },
+    {
+      "path": "schemas/pilot/l2_model-registry.schema.json",
+      "sha256": "a9a4a8bebe2685cfba24e02a09c931e3c06423d5db0663c7248d1e7405e8eb6f"
+    },
+    {
+      "path": "schemas/pilot/l2_modelir-executor.schema.json",
+      "sha256": "5928ebdf3712dcdf20e3e2effc22f807c08637398af9f70e84a22b34af1cb0ff"
+    },
+    {
+      "path": "schemas/pilot/l2_monitoring-policy.schema.json",
+      "sha256": "5e5acfaa8c16327ec9e43b6d14b6ccad90fccfb5d42630f14910b5f05b9a0eeb"
+    },
+    {
+      "path": "schemas/pilot/l2_pipeline-orchestrator.schema.json",
+      "sha256": "d640e2b121a74fc28ddd8e37fd3657c09ae29a9f8503e0880bb8b690512193b4"
+    },
+    {
+      "path": "schemas/pilot/l2_replay-determinism.schema.json",
+      "sha256": "79b56d019ed1e380bd6e077f140014e192796955387bbe05f07db89bd8140cdc"
+    },
+    {
+      "path": "schemas/pilot/l2_run-commit-wal.schema.json",
+      "sha256": "bb09a7476a45c5e239ff60e16b1eb47fb7eea8464b5f46bd611a4d7eff155a06"
+    },
+    {
+      "path": "schemas/pilot/l2_security-compliance-profile.schema.json",
+      "sha256": "e0f0bd183321e7c0d5a7ec8201a2d712fd508b7fc41b7998427c3c1d324e30b4"
+    },
+    {
+      "path": "schemas/pilot/l2_tmmu-allocation.schema.json",
+      "sha256": "8debda73127f753ef3cf9afcc866c2c901af4fe08801283e555782e5a785b8e1"
+    },
+    {
+      "path": "schemas/pilot/l2_trace-sidecar.schema.json",
+      "sha256": "61179996331404269579c84e68f4a3aa1791048a7c0f8459a9b6e04842f3a255"
+    },
+    {
+      "path": "schemas/pilot/l3_compatibility-test-matrix.schema.json",
+      "sha256": "b326e05fb9e5979b97c186e1886bb861540fe70cab4c4da55df0ffcadc3e9ca5"
+    },
+    {
+      "path": "schemas/pilot/l3_conformance-ci-pipeline.schema.json",
+      "sha256": "f833cf1124ef01fc27277e6091764558fa6566617d0b251455c6f32a443d5972"
+    },
+    {
+      "path": "schemas/pilot/l3_conformance-harness-guide.schema.json",
+      "sha256": "f85ed40e46d92463cebff5660d12e86e4d191d8a3d468207f20538ed47f279d6"
+    },
+    {
+      "path": "schemas/pilot/l3_coverage-targets.schema.json",
+      "sha256": "6e01ac0a32fb51e0ae7b514bfe0f24659f1627b771eeb43cddb286740500cc99"
+    },
+    {
+      "path": "schemas/pilot/l3_data-contract-fuzzing-guide.schema.json",
+      "sha256": "e08fa5f5c24b446d3e6349582daddd7b2b0a908a8ec13674fcb50c6c258922b0"
+    },
+    {
+      "path": "schemas/pilot/l3_failure-injection-index.schema.json",
+      "sha256": "dc8590dffe75dd69151960373b0e1758b9fbe9d69653192e993c2a2359c240a6"
+    },
+    {
+      "path": "schemas/pilot/l3_failure-injection-scenarios.schema.json",
+      "sha256": "46fe1c7f172e1656a25acf5ae77b423569dcf13d401fe5cc24359877f8376468"
+    },
+    {
+      "path": "schemas/pilot/l3_game-day-scenarios.schema.json",
+      "sha256": "3469a3189d22c5393c6f6a58aa4ce6e80b9d90f4146a35fd2ec09a21be6e7f61"
+    },
+    {
+      "path": "schemas/pilot/l3_integration-test-matrix.schema.json",
+      "sha256": "b33ddcd960331d7f0602d3e43ea9b46ecca15d5c7b0377001e70f5b5c0cdcd16"
+    },
+    {
+      "path": "schemas/pilot/l3_performance-plan.schema.json",
+      "sha256": "6ddfce66758442e112a67347a575a9542440cc69406b76f1b78ac4a2e9dbb69c"
+    },
+    {
+      "path": "schemas/pilot/l3_release-gates.schema.json",
+      "sha256": "fb494ff093e2573650d3c124e8b62cb5dba9a4344dd7c8fc8ff9e97620e29bd7"
+    },
+    {
+      "path": "schemas/pilot/l3_storage-recovery-test-matrix.schema.json",
+      "sha256": "865ec1917adf400a14d40279dbd426f93cc536e07e872c3bbae4483802cae2f7"
+    },
+    {
+      "path": "schemas/pilot/l3_test-plan.schema.json",
+      "sha256": "f7eca668a8406afe21e95089007696a791c17f8d4461d25d958753bf45830c64"
+    },
+    {
+      "path": "schemas/pilot/l3_test-vectors-catalog.schema.json",
+      "sha256": "92b0c20e2e24389465b0718204898bd06f6bc17191188a2e77c62cd7db151c80"
+    },
+    {
+      "path": "schemas/pilot/l3_test_plan.schema.json",
+      "sha256": "a8b79621f0783974d0a600e150039f391db3d7112beb090add52105bed76fa61"
+    },
+    {
+      "path": "schemas/pilot/l4_api-lifecycle-and-deprecation-policy.schema.json",
+      "sha256": "ebc1a625172371e8d6de54b130735dbd8e42250e30e5fe2513fa61bdec112da2"
+    },
+    {
+      "path": "schemas/pilot/l4_architecture-decisions-log.schema.json",
+      "sha256": "b6c7fc3193442afe7f445be696ae07d9d9d632eeca72af877944ef5a2fce47af"
+    },
+    {
+      "path": "schemas/pilot/l4_artifact-store-adapter-guide.schema.json",
+      "sha256": "758e2af32c2042e5e903ba893492e2cd2f67f0984512c9eb6a45f9f601051f3e"
+    },
+    {
+      "path": "schemas/pilot/l4_backend-adapter-guide.schema.json",
+      "sha256": "a355ae2a00453dbd9a15be0bef5b2a70c5c6b9315d24a455c549d5ae3264453b"
+    },
+    {
+      "path": "schemas/pilot/l4_backend-feature-matrix.schema.json",
+      "sha256": "4deb7659208996eed74311079660b91628903bde9a6ea378863cdb8a53d6e05a"
+    },
+    {
+      "path": "schemas/pilot/l4_benchmark-evidence-spec.schema.json",
+      "sha256": "0c5194d1534532bdd734c6aa859eafcb844f8c0bf487e57da9fe117281713c20"
+    },
+    {
+      "path": "schemas/pilot/l4_brownfield-deployment-guide.schema.json",
+      "sha256": "f7e3a325b8db8a3cf351ab4662d7d16f10467a8ee07084b4daebd30dcf0844dc"
+    },
+    {
+      "path": "schemas/pilot/l4_build-and-ci-matrix.schema.json",
+      "sha256": "6004c7828c97da54c8b443ee9c21e473044362873af7e55348a7c7350580172d"
+    },
+    {
+      "path": "schemas/pilot/l4_canonical-hashing-reference.schema.json",
+      "sha256": "b9e4ce367aa817c076473b7daa67ae6933ff10c2ee8b8b5e46d433f4b9bb0f96"
+    },
+    {
+      "path": "schemas/pilot/l4_change-control-playbook.schema.json",
+      "sha256": "138a514526dd4ea2d1e9be410a7efc25525a01355870ff26a10951dc9ef68a21"
+    },
+    {
+      "path": "schemas/pilot/l4_cli-command-profiles.schema.json",
+      "sha256": "78c7720c0f9f76b60e707bb7656777cd9c286cfa9b9e2126cf97b5d67070b295"
+    },
+    {
+      "path": "schemas/pilot/l4_code-generation-mapping.schema.json",
+      "sha256": "6e61660d1c445d5bb0dd6c5314701ca77cdc34de1a33b0cf6a5dd140155dd16a"
+    },
+    {
+      "path": "schemas/pilot/l4_coding-standards.schema.json",
+      "sha256": "f444fb423464010dfa369d8e2bb26da105407edeca7ac2b7707411ebd0e03bb6"
+    },
+    {
+      "path": "schemas/pilot/l4_command-reference.schema.json",
+      "sha256": "7fc99a30e7ff0eb7f338da5a609b8e9ecd5602078bc6190c7e52d2dc6906da7c"
+    },
+    {
+      "path": "schemas/pilot/l4_common-pitfalls-guide.schema.json",
+      "sha256": "5041dcb45fb46284150c35d651ee2c124bbf77309b091240d6e275e24e19a75a"
+    },
+    {
+      "path": "schemas/pilot/l4_community-governance-model.schema.json",
+      "sha256": "a58bb058fb3de488127de61986b7e5df0611dabcf716a415c5ccbf3a80e78756"
+    },
+    {
+      "path": "schemas/pilot/l4_contracts-artifact-lifecycle.schema.json",
+      "sha256": "086052dc52f87eb94a419266b0d7e90cfb60277637b53574d213edf0794ce1e4"
+    },
+    {
+      "path": "schemas/pilot/l4_contributing-workflow.schema.json",
+      "sha256": "69429dc30755047e3ee825792d0508cd67a2f0af260138d57b3473f18183028a"
+    },
+    {
+      "path": "schemas/pilot/l4_debugging-playbook.schema.json",
+      "sha256": "1d9647e206ac8764830a7af53f5c1ba0c882c99eafffb863e8e9d080ba7f0bd4"
+    },
+    {
+      "path": "schemas/pilot/l4_determinism-audit-playbook.schema.json",
+      "sha256": "24c13a084563ca30d59a3241db6c9acb9f5cbb97c394de68bd279a75e30a981a"
+    },
+    {
+      "path": "schemas/pilot/l4_determinism-debug-checklist.schema.json",
+      "sha256": "9e907c6afce894040f01945b539a3de1fcb180ec5a034694a07114c4fe073307"
+    },
+    {
+      "path": "schemas/pilot/l4_deterministic-rng-implementation-guide.schema.json",
+      "sha256": "f492e0c06d367bc90d9179f897273b05655802e2d5792554a6a41edd1a73779f"
+    },
+    {
+      "path": "schemas/pilot/l4_developer-setup.schema.json",
+      "sha256": "090e803a702252778264041799d8f54875be15c2a6ad656c56a90de8aec2a8af"
+    },
+    {
+      "path": "schemas/pilot/l4_developer-troubleshooting-faq.schema.json",
+      "sha256": "82b9cecf29e00578accb862fd7b85f95c68d1f5420ccc7e334f26c8264352cc5"
+    },
+    {
+      "path": "schemas/pilot/l4_disaster-recovery-operations-runbook.schema.json",
+      "sha256": "237c0e19695cf892d7c2523ead762d4365e8e4b6fd45c67a2a035318638b5a12"
+    },
+    {
+      "path": "schemas/pilot/l4_distributed-failure-recovery-guide.schema.json",
+      "sha256": "a7a2c4124c598623cc94a5b0503ef79ae5fa57276941c1e5c3fc12ec1d16d047"
+    },
+    {
+      "path": "schemas/pilot/l4_ecosystem-expansion-roadmap.schema.json",
+      "sha256": "891fcb40d232d8c0aba9a07daaaa6667b24bd8d63f32d578fac2322fe55639eb"
+    },
+    {
+      "path": "schemas/pilot/l4_eqc-ci-policy.schema.json",
+      "sha256": "85a37c0b37527ad0f4d7c5d412d0cbd05a9e1d656ededcc7b85dc9d392649eb6"
+    },
+    {
+      "path": "schemas/pilot/l4_evidence-catalog.schema.json",
+      "sha256": "8437658024b4eb13fbdcec86706cb3aabe586f1adf3ef649974f9dd87ff393fd"
+    },
+    {
+      "path": "schemas/pilot/l4_expansion-catalog-041-250.schema.json",
+      "sha256": "55fcd6aaace3d003f2e7b9c5d1fdb18a86ea25668a8489f22b3d7c51480a2e1b"
+    },
+    {
+      "path": "schemas/pilot/l4_external-interface-standard.schema.json",
+      "sha256": "4ec5bbe2463ddb1d5b1e9ae9570ee552c06e42fc2264dfa3459215bebb990ec2"
+    },
+    {
+      "path": "schemas/pilot/l4_fixtures-and-golden-data.schema.json",
+      "sha256": "a4f3a3885ae6576a9cffe1755c163dfa8ff71462ca739bbebc784b6b98f130e7"
+    },
+    {
+      "path": "schemas/pilot/l4_formal-verification-roadmap.schema.json",
+      "sha256": "27d99d2c25a7dbfa39c2bdae2082867a37e31bd736eece63bc037dc781edcb5d"
+    },
+    {
+      "path": "schemas/pilot/l4_gentle-introduction.schema.json",
+      "sha256": "1fa52127b62038f9c64f42f50b73e491dc6ba59917da4e87831773a14ea5ab94"
+    },
+    {
+      "path": "schemas/pilot/l4_hello-world-end-to-end-example.schema.json",
+      "sha256": "800908f4af3ded964855282bbaeb4186360e52165a704297511d70865db8d8c1"
+    },
+    {
+      "path": "schemas/pilot/l4_implementation-backlog.schema.json",
+      "sha256": "d7f2bdaf572f99cd156b72e8d82609cf8a57c5f9c74a58b596d140c93e4d8f9b"
+    },
+    {
+      "path": "schemas/pilot/l4_implementation-roadmap.schema.json",
+      "sha256": "72e2c5c9d3cba0b699b0beba5409ee0a8daeb20ef98e40f0db371c3097470504"
+    },
+    {
+      "path": "schemas/pilot/l4_incident-postmortem-template.schema.json",
+      "sha256": "5c16301b7c64ad834163d2ced40946d8dcd2e5c09c7093b22fdca4472013c53a"
+    },
+    {
+      "path": "schemas/pilot/l4_industry-productization-upgrade-plan.schema.json",
+      "sha256": "2023d21f10060c4ed001ae8b28e16cb09b094746911f5cfffcee85d6bde16162"
+    },
+    {
+      "path": "schemas/pilot/l4_interoperability-standards-bridge.schema.json",
+      "sha256": "30feeee2fb7055cc05050e3ff4a251c287032d1dd40a819069199a0a0956cb18"
+    },
+    {
+      "path": "schemas/pilot/l4_local-replay-runbook.schema.json",
+      "sha256": "3101c64554a5110252251b611e708415fd3352eaff826776b8de0117e776bc71"
+    },
+    {
+      "path": "schemas/pilot/l4_migration-execution-guide.schema.json",
+      "sha256": "a07e7ca201359479c875626eeb081f30e99fc54f23db1abd994a4809c6866588"
+    },
+    {
+      "path": "schemas/pilot/l4_module-scaffolding-guide.schema.json",
+      "sha256": "af198bfdf9df6e526989e26fd5739d78f2bf1e7338d682d674150a9154c78274"
+    },
+    {
+      "path": "schemas/pilot/l4_operator-conformance-matrix.schema.json",
+      "sha256": "2ab4a2268b16e5e1e237c3590da102413b4d46ebd4ae982f93ff10d875d085ed"
+    },
+    {
+      "path": "schemas/pilot/l4_operator-registry-cbor-contract.schema.json",
+      "sha256": "4047a0165d372ce4151a63bd7f3ce57bc155182903f3eb6d968c1ab1375cd525"
+    },
+    {
+      "path": "schemas/pilot/l4_operator-sdk-scaffold-template.schema.json",
+      "sha256": "c8786beb256e1e267e6ef3b363ccd0d0ac4b6c098b3d37000636adce52e09ca8"
+    },
+    {
+      "path": "schemas/pilot/l4_pr-review-checklist.schema.json",
+      "sha256": "a1a3ea258ffa207e8e22237c41db61b531a0030230cee2b2d1eea00cea49eba2"
+    },
+    {
+      "path": "schemas/pilot/l4_profiling-and-optimization-guide.schema.json",
+      "sha256": "0ec1019aff05fee190c77739fe518c8ff74013fd8216de4f40b89ab1263deb57"
+    },
+    {
+      "path": "schemas/pilot/l4_reference-implementations.schema.json",
+      "sha256": "f5be3c86f4e579ca5fe71b155187a6402b62566cc29c2c0a42d6833d1e17ea37"
+    },
+    {
+      "path": "schemas/pilot/l4_reference-stack-minimal.schema.json",
+      "sha256": "33479eedf22ee71973361b84100900b3fe44e3f779b77c14bbcbebe84591c9c6"
+    },
+    {
+      "path": "schemas/pilot/l4_release-evidence-assembler.schema.json",
+      "sha256": "1ab019bc59d7fd2e705cb742fe2d44de397c1e3e240483bd798380f2853605af"
+    },
+    {
+      "path": "schemas/pilot/l4_repo-layout-and-interfaces.schema.json",
+      "sha256": "4d8f7c968014a4e47cca2b50af1f54b956c7e574df6d0e705797591a5e1a2f34"
+    },
+    {
+      "path": "schemas/pilot/l4_research-extensions-roadmap.schema.json",
+      "sha256": "326845f411e66b1a7712a33c91a3f4cdf0aeefd909f8541874ebcfe4d1a3d8cc"
+    },
+    {
+      "path": "schemas/pilot/l4_runtime-state-machine-reference.schema.json",
+      "sha256": "8d6eacded03991ea51f2af72e739b2fb848cbb9ec28777507e6ad242044cfc45"
+    },
+    {
+      "path": "schemas/pilot/l4_schema-evolution-playbook.schema.json",
+      "sha256": "20a0d6aafae684df329ecd85a50d1a2e6c36f3a4c676631348812f7cf1a03c76"
+    },
+    {
+      "path": "schemas/pilot/l4_scope-and-non-goals.schema.json",
+      "sha256": "75178ef5f04c013b10c991aaa1aec90d52290a2b894c8563ff85cb3f4ed7dcf4"
+    },
+    {
+      "path": "schemas/pilot/l4_sdk-usage-guide.schema.json",
+      "sha256": "650dd743d30f37d0cce7ba2673fc9ef4da1e9e4085792af14d9d70abec6f4e6e"
+    },
+    {
+      "path": "schemas/pilot/l4_security-case-template.schema.json",
+      "sha256": "0dd75621ee081325b150f174ed2adf2f92e84c669d3cfbb7999b3d3e8c0cdef4"
+    },
+    {
+      "path": "schemas/pilot/l4_security-coding-checklist.schema.json",
+      "sha256": "54b554c3134467d02b4c5aad21cfa6cacded93e31461eb3da8f27f2b934f365f"
+    },
+    {
+      "path": "schemas/pilot/l4_spec-lint-implementation.schema.json",
+      "sha256": "2ab28a809055c085ac20f77e8c93f72c69fee0ff3789fc3b95ed9d0d69e2e3df"
+    },
+    {
+      "path": "schemas/pilot/l4_spec-lint-rules.schema.json",
+      "sha256": "e0261547c0fd159dbd3938f975de5776239b202fb7ef9dd54c9cc57ba996d161"
+    },
+    {
+      "path": "schemas/pilot/l4_sre-incident-triage-playbook.schema.json",
+      "sha256": "08e7d22bc953357f445fa3c15986b7e2b7b28af5cebc8356d2f1722eb4598296"
+    },
+    {
+      "path": "schemas/pilot/l4_test-harness-implementation.schema.json",
+      "sha256": "cf288e723ae062d70e5017b0d08fb6205250c4074c2bb5efba0805fbfefdfa86"
+    },
+    {
+      "path": "schemas/pilot/l4_third-party-operator-certification-program.schema.json",
+      "sha256": "50084b024c1999cf7899f0da79abadbb1a6639060e031b1003511956258508c4"
+    },
+    {
+      "path": "schemas/pilot/l4_threat-model-and-control-crosswalk.schema.json",
+      "sha256": "2705772ed52a4e2107745523bccc7171a6557e8bd7608a31b2f2af3ac0a6b74c"
+    },
+    {
+      "path": "schemas/pilot/l4_tooling-and-automation-suite.schema.json",
+      "sha256": "051ba840c39f4c5cff9b8825203ed73d9d5f39d22e115670ca9403b07770b6e3"
+    },
+    {
+      "path": "schemas/pilot/l4_tooling-suite.schema.json",
+      "sha256": "daf7732c62b29fafe1cc7f34047842b6017cdd466cea5c65a150028fdb0fb53e"
+    }
+  ],
+  "template_bundle_hash": "5fffd703dfdede484d8b4ada5a757548fb03fb4198b992d32222776b032b44a4"
+}

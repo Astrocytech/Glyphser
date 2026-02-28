@@ -1,0 +1,10 @@
+{
+  "vector_set_id": "failure-injection-vectors-v1",
+  "vectors": [
+    {
+      "case_id": "savecheckpoint_missing_path",
+      "expected_ref": "artifacts/expected/goldens/failure-injection/faulty_expected.json",
+      "input_ref": "artifacts/inputs/fixtures/failure-injection/faulty_request.json"
+    }
+  ]
+}

@@ -20,7 +20,7 @@ def validate_api_signature(record: Dict[str, Any], allowed_ops: Iterable[str] | 
             raise ValueError(f"missing or invalid {key}")
 
     if allowed_ops is None:
-        api_path = Path(__file__).resolve().parents[3] / "docs" / "layer1-foundation" / "API-Interfaces.md"
+        api_path = Path(__file__).resolve().parents[3] / "specs" / "layers" / "L1-foundation" / "API-Interfaces.md"
         allowed_ops = [row.get("operator_id", "") for row in parse_api_interfaces(api_path)]
     else:
         allowed_ops = [

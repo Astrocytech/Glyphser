@@ -13,8 +13,8 @@
     - `portfolio-release-notes-template.md`
     - `ecosystem/tooling-manifest.yaml`
   - Reorganized markdown portfolio into layered folders:
-    - `docs/layer1-foundation/`
-    - `docs/layer2-specs/`
+    - `specs/layers/L1-foundation/`
+    - `specs/layers/L2-specs/`
     - `docs/layer3-tests/`
     - `docs/layer4-implementation/`
 - Strict Path Resolution status:
@@ -218,7 +218,7 @@
 - Date: 2026-02-19
 - Action: Canonical CBOR profile determinism hardening (`L1-002`).
 - Scope:
-  - Updated `docs/layer1-foundation/Canonical-CBOR-Profile.md` to remove context-dependent serialization behavior.
+  - Updated `specs/layers/L1-foundation/Canonical-CBOR-Profile.md` to remove context-dependent serialization behavior.
   - Enforced uniform float policy and uniform NaN/Inf policy.
   - Clarified map-key ordering wording and added explicit integer shortest-form rule.
   - Reordered Section 2 normative subsections to `II.F -> II.G -> II.H`.
@@ -233,7 +233,7 @@
 - Date: 2026-02-19
 - Action: Canonical CBOR profile refinement pass (context-free semantics and explicit primitive rules).
 - Scope:
-  - Strengthened `docs/layer1-foundation/Canonical-CBOR-Profile.md` with:
+  - Strengthened `specs/layers/L1-foundation/Canonical-CBOR-Profile.md` with:
     - explicit context-independence rule,
     - explicit integer shortest-form examples,
     - explicit simple-value byte rules (`false/true/null`),
@@ -252,7 +252,7 @@
 - Date: 2026-02-19
 - Action: Canonical CBOR profile completeness pass (data model + primitive semantics + commitment structure).
 - Scope:
-  - Updated `docs/layer1-foundation/Canonical-CBOR-Profile.md` with:
+  - Updated `specs/layers/L1-foundation/Canonical-CBOR-Profile.md` with:
     - explicit CBOR data-model input definition (RFC 8949 Section 2),
     - explicit bignum policy (forbidden by default; schema-gated tags 2/3 allowed with canonical encoding),
     - explicit non-boolean simple-value policy,
@@ -273,7 +273,7 @@
 - Date: 2026-02-19
 - Action: Canonical CBOR profile final determinism/interoperability clarification pass.
 - Scope:
-  - Updated `docs/layer1-foundation/Canonical-CBOR-Profile.md` with:
+  - Updated `specs/layers/L1-foundation/Canonical-CBOR-Profile.md` with:
     - explicit no-normalization UTF-8 key rule,
     - explicit float special-value bit patterns (`+Inf`, `-Inf`, canonical `NaN`) and signed-zero encoding,
     - explicit bignum canonical-content rule (no leading zero bytes) when schema-gated,
@@ -291,7 +291,7 @@
 - Date: 2026-02-19
 - Action: Canonical CBOR profile final semantic-precision pass (input float precision, error semantics, validation schema, duplicate-free input maps).
 - Scope:
-  - Updated `docs/layer1-foundation/Canonical-CBOR-Profile.md` with:
+  - Updated `specs/layers/L1-foundation/Canonical-CBOR-Profile.md` with:
     - explicit IEEE-754 binary64 input float requirement and bit-pattern preservation,
     - explicit deterministic failure signaling semantics for encode/validate operators,
     - explicit duplicate-free input-map requirement,
@@ -307,7 +307,7 @@
 - Date: 2026-02-19
 - Action: Canonical CBOR profile closing refinements (length shortest-form, input/validation semantics, encoder duplicate-key behavior).
 - Scope:
-  - Updated `docs/layer1-foundation/Canonical-CBOR-Profile.md` with:
+  - Updated `specs/layers/L1-foundation/Canonical-CBOR-Profile.md` with:
     - explicit preamble grounding inputs in CBOR data model (RFC 8949 Section 2),
     - explicit shortest-form length rules for definite-length arrays/maps and byte/text strings,
     - explicit encoder behavior on duplicate input keys (deterministic contract-violation error),
@@ -324,7 +324,7 @@
 - Date: 2026-02-19
 - Action: Canonical CBOR profile final consistency pass (UTF-8 validity, disallowed-tag rejection, fixed-length byte field checks, precise validation equality semantics).
 - Scope:
-  - Updated `docs/layer1-foundation/Canonical-CBOR-Profile.md` with:
+  - Updated `specs/layers/L1-foundation/Canonical-CBOR-Profile.md` with:
     - explicit UTF-8 validity requirement for text strings,
     - explicit encoder rejection for schema-disallowed tags,
     - explicit fixed-length byte-field length enforcement by encoder,
@@ -339,7 +339,7 @@
 - Date: 2026-02-19
 - Action: Canonical CBOR checklist closeout pass (operator-output consistency + conformance vector completeness).
 - Scope:
-  - Updated `docs/layer1-foundation/Canonical-CBOR-Profile.md` with:
+  - Updated `specs/layers/L1-foundation/Canonical-CBOR-Profile.md` with:
     - explicit separation of operator outputs in procedure flow (encode output vs validate report),
     - explicit required vectors for duplicate-key rejection and invalid UTF-8 rejection.
   - Updated registry hash for `L1-002` in `ecosystem-registry.yaml`.
@@ -352,7 +352,7 @@
 - Date: 2026-02-19
 - Action: Digest Catalog determinism hardening pass (version typing, canonical entry structure, label constraints, resolution semantics).
 - Scope:
-  - Updated `docs/layer1-foundation/Digest-Catalog.md` with:
+  - Updated `specs/layers/L1-foundation/Digest-Catalog.md` with:
     - explicit `catalog_version:uint32` definition and commitment typing,
     - canonical catalog object/entry schema with map-form records and no additional fields,
     - label constraints forbidding 64-hex labels reserved for inline digest refs,
@@ -370,7 +370,7 @@
 - Date: 2026-02-19
 - Action: Digest Catalog follow-up consistency pass (catalog_version semantics, output contract, inline-hex normalization).
 - Scope:
-  - Updated `docs/layer1-foundation/Digest-Catalog.md` with:
+  - Updated `specs/layers/L1-foundation/Digest-Catalog.md` with:
     - explicit positive-integer semantics for `catalog_version` (`uint32`, `>= 1`) and inclusion as catalog metadata,
     - corrected output section to remove undefined `catalog_report` and split operator outputs by operator,
     - strengthened entry-record structure wording (exact map fields, no extras/no omissions),
@@ -385,7 +385,7 @@
 - Date: 2026-02-19
 - Action: Digest Catalog clarity pass (init hash formula binding, canonical encoding reference, validation report contract, trace status enum).
 - Scope:
-  - Updated `docs/layer1-foundation/Digest-Catalog.md` with:
+  - Updated `specs/layers/L1-foundation/Digest-Catalog.md` with:
     - explicit Initialization step 4 bound to §II.H catalog-hash formula (not raw file bytes),
     - explicit authoritative canonical encoding reference to `Canonical-CBOR-Profile.md`,
     - defined `ValidateDigestCatalog` operator and minimal deterministic `validation_report` schema,
@@ -400,7 +400,7 @@
 - Date: 2026-02-19
 - Action: Digest Catalog editorial-precision pass (lint wording, shared error operator reference, stateless checkpoint semantics).
 - Scope:
-  - Updated `docs/layer1-foundation/Digest-Catalog.md` with:
+  - Updated `specs/layers/L1-foundation/Digest-Catalog.md` with:
     - clarified VII.A lint rules (catalog-internal constraints vs cross-document resolution checks),
     - explicit note that `Glyphser.Error.Emit` is shared and defined in core error contract,
     - checkpoint section updated to remove misleading `resolution cursor` state.
@@ -414,7 +414,7 @@
 - Date: 2026-02-19
 - Action: Error code contract consistency hardening (schema derivation, validator completeness, naming normalization).
 - Scope:
-  - Updated `docs/layer1-foundation/Error-Codes.md` with:
+  - Updated `specs/layers/L1-foundation/Error-Codes.md` with:
     - removal of irrelevant optimization semantics from static taxonomy contract,
     - clarified concurrency policy (deterministic ordering for summaries without record loss),
     - reduced irrelevant EQC numeric/stochastic boilerplate in 0.Z,
@@ -432,7 +432,7 @@
 - Date: 2026-02-19
 - Action: Data Structures contract consistency hardening (trace alignment, checkpoint hash derivation, schema meta-model, operator/output fixes).
 - Scope:
-  - Updated `docs/layer1-foundation/Data-Structures.md` with:
+  - Updated `specs/layers/L1-foundation/Data-Structures.md` with:
     - removed irrelevant optimization-tuple language in 0.A,
     - aligned outputs naming (`validation_report`, `canonical_bytes`, `struct_hash`) with procedure,
     - corrected `ValidateStruct` ordering/tie handling to `N/A`,
@@ -452,7 +452,7 @@
 - Date: 2026-02-19
 - Action: Data Structures secondary hard pass (enum normalization, trace scope cleanup, distributed error trace rank, sampling parameter documentation).
 - Scope:
-  - Updated `docs/layer1-foundation/Data-Structures.md` with:
+  - Updated `specs/layers/L1-foundation/Data-Structures.md` with:
     - normalized enum typing via named enums (`privacy_class`, `redaction_mode`, `metric_aggregation`),
     - added `rank:uint32` to `TraceErrorRecord` for distributed attribution,
     - documented `hash_gate_M`/`hash_gate_K` semantics and invariant (`0 <= K <= M`),
@@ -469,7 +469,7 @@
 - Date: 2026-02-19
 - Action: Data Structures final implementability pass (formal declaration language, E0 definition, lifecycle clarity, section normalization).
 - Scope:
-  - Updated `docs/layer1-foundation/Data-Structures.md` with:
+  - Updated `specs/layers/L1-foundation/Data-Structures.md` with:
     - explicit `replay_token` contract (`bytes32`, generation external),
     - explicit contract-level structure evolution model and `StructDecl.version` role,
     - condensed 0.Z to scope-relevant declarations only,
@@ -487,7 +487,7 @@
 - Date: 2026-02-19
 - Action: Data Structures completeness pass (remaining implementability and scope clarifications).
 - Scope:
-  - Updated `docs/layer1-foundation/Data-Structures.md` with:
+  - Updated `specs/layers/L1-foundation/Data-Structures.md` with:
     - explicit SHA-256 commitment-hash policy for `bytes32` fields in this contract,
     - explicit optional-field omission semantics vs explicit `null`,
     - deterministic `diagnostics` scalar constraints (type set + finite-float rule),
@@ -505,7 +505,7 @@
 - Date: 2026-02-19
 - Action: Data Structures foundational redesign pass (schema/instance separation and operator semantics split).
 - Scope:
-  - Updated `docs/layer1-foundation/Data-Structures.md` with:
+  - Updated `specs/layers/L1-foundation/Data-Structures.md` with:
     - explicit scope split between schema layer and instance layer,
     - expanded operator manifest to include `ValidateSchemaDecl` and `ValidateInstance`,
     - retained `ValidateStruct` as compatibility alias to schema-validation path,
@@ -523,7 +523,7 @@
 - Date: 2026-02-19
 - Action: Data Structures minor-issue closure pass (optionality/enums/scalar typing/dependency completeness).
 - Scope:
-  - Updated `docs/layer1-foundation/Data-Structures.md` with:
+  - Updated `specs/layers/L1-foundation/Data-Structures.md` with:
     - clarified optionality semantics (`required` is authoritative; legacy `optional<T>` normalization rule),
     - explicit enum representation rule (symbol-name string encoding),
     - defined reusable `diagnostics_scalar` and reused it for `trace_extensions`, `ErrorRecord.diagnostics`, and `PipelineTransitionRecord.diagnostics`,
@@ -540,7 +540,7 @@
 - Date: 2026-02-19
 - Action: Data Structures final minor-consistency pass (requiredness semantics, enum/scalar precision, sampling-hash definition, dependency gate).
 - Scope:
-  - Updated `docs/layer1-foundation/Data-Structures.md` with:
+  - Updated `specs/layers/L1-foundation/Data-Structures.md` with:
     - explicit requiredness rule (`required` normative; `required_fields` metadata consistency requirement),
     - explicit enum symbol-set rule for `enum(...)`,
     - default-value semantics split (instantiation MAY apply; validators/serializers MUST NOT materialize defaults in commitment paths),
@@ -558,7 +558,7 @@
 - Date: 2026-02-19
 - Action: Data Structures editorial consistency fix (FieldDecl default type alias).
 - Scope:
-  - Updated `docs/layer1-foundation/Data-Structures.md`:
+  - Updated `specs/layers/L1-foundation/Data-Structures.md`:
     - `FieldDecl.default` type changed from `scalar|string|bytes` to `diagnostics_scalar` to remove undefined/duplicative type naming.
   - Updated registry hash for `L1-003` in `ecosystem-registry.yaml`.
 - Validation:
@@ -570,7 +570,7 @@
 - Date: 2026-02-19
 - Action: Data Structures final safety/consistency tweaks (default compatibility, modulo guard, null-omission semantics, named enum usage).
 - Scope:
-  - Updated `docs/layer1-foundation/Data-Structures.md` with:
+  - Updated `specs/layers/L1-foundation/Data-Structures.md` with:
     - explicit default compatibility validation rules by declared field type,
     - hash-gate invariant tightened to prevent modulo-by-zero (`0 < M`, `0 <= K <= M`),
     - optionality rule simplified to strict omission (no implicit null allowance),
@@ -585,7 +585,7 @@
 - Date: 2026-02-19
 - Action: Operator Registry schema determinism/composition hardening pass.
 - Scope:
-  - Updated `docs/layer1-foundation/Operator-Registry-Schema.md` with:
+  - Updated `specs/layers/L1-foundation/Operator-Registry-Schema.md` with:
     - explicit `digest_ref` grammar + deterministic resolution path to bytes32,
     - added `method` to canonical operator record schema,
     - unified hash commitments: `operator_registry_root_hash` authoritative, `registry_hash` alias only,
@@ -604,7 +604,7 @@
 - Date: 2026-02-19
 - Action: Operator Registry schema deeper consistency pass (canonicalization anchor, unknown-field policy, digest-resolution failure semantics).
 - Scope:
-  - Updated `docs/layer1-foundation/Operator-Registry-Schema.md` with:
+  - Updated `specs/layers/L1-foundation/Operator-Registry-Schema.md` with:
     - explicit `CBOR_CANONICAL` normative anchor to `Canonical-CBOR-Profile.md`,
     - corrected numeric policy wording to distinguish textual `digest_ref` from resolved `bytes32`,
     - explicit top-level registry object schema declaration,
@@ -621,7 +621,7 @@
 - Date: 2026-02-19
 - Action: Operator Registry schema extended hard pass (validation/report completeness, type constraints, canonical strictness).
 - Scope:
-  - Updated `docs/layer1-foundation/Operator-Registry-Schema.md` with:
+  - Updated `specs/layers/L1-foundation/Operator-Registry-Schema.md` with:
     - minimum deterministic `validation_report` schema,
     - mandatory per-record `signature_digest` recomputation check,
     - explicit `error_code_id:string` typing and existence check,
@@ -644,7 +644,7 @@
 - Date: 2026-02-19
 - Action: Operator Registry schema closure pass (remaining critical consistency and implementability clauses).
 - Scope:
-  - Updated `docs/layer1-foundation/Operator-Registry-Schema.md` with:
+  - Updated `specs/layers/L1-foundation/Operator-Registry-Schema.md` with:
     - canonical-file storage requirement for `contracts/operator_registry.cbor`,
     - `signature_digest` field type tightened to `bytes32`,
     - global enum CBOR representation rule (enum symbols encoded as UTF-8 strings),
@@ -662,7 +662,7 @@
 - Date: 2026-02-19
 - Action: Operator Registry schema final determinism/inputs pass (enforceability and external-pinning closure).
 - Scope:
-  - Updated `docs/layer1-foundation/Operator-Registry-Schema.md` with:
+  - Updated `specs/layers/L1-foundation/Operator-Registry-Schema.md` with:
     - enforceable purity/stochastic compatibility via explicit `stochastic_declared:bool`,
     - explicit `replacement_operator_id` format constraint,
     - explicit external-catalog hash inputs and validation pinning (`digest/error/capability/schema` catalog hashes),
@@ -682,7 +682,7 @@
 - Date: 2026-02-19
 - Action: Operator Registry schema final todo-closure pass (file-order canonicality, version/tag consistency, trace encoding precision).
 - Scope:
-  - Updated `docs/layer1-foundation/Operator-Registry-Schema.md` with:
+  - Updated `specs/layers/L1-foundation/Operator-Registry-Schema.md` with:
     - explicit requirement that top-level `operator_records` are stored already sorted in-file per `0.D`,
     - explicit version/tag consistency check between `registry_schema_version` and `operator_registry_vN` domain tag,
     - explicit sorting-semantics tie-in for signature preimage array sorting,
@@ -698,7 +698,7 @@
 - Date: 2026-02-19
 - Action: Operator Registry schema final alignment pass (report catalog pins, trace status casing, cursor semantics).
 - Scope:
-  - Updated `docs/layer1-foundation/Operator-Registry-Schema.md` with:
+  - Updated `specs/layers/L1-foundation/Operator-Registry-Schema.md` with:
     - inclusion of pinned external catalog hashes in `validation_report` schema,
     - normalized trace status enum values to lowercase (`valid|invalid`),
     - diagnostics cursor schema changed to explicit 0-based last-processed index with `-1` sentinel.
@@ -712,7 +712,7 @@
 - Date: 2026-02-19
 - Action: Operator Registry schema todo-completion pass (explicit catalog inputs, deterministic report code set, side-effect enum cleanup).
 - Scope:
-  - Updated `docs/layer1-foundation/Operator-Registry-Schema.md` with:
+  - Updated `specs/layers/L1-foundation/Operator-Registry-Schema.md` with:
     - validation operator signature switched to explicit external catalog blobs as inputs,
     - catalog-hash pinning now derived from provided blobs and echoed in `validation_report`,
     - removed `stochastic_declared` field and simplified purity/stochastic rule to enforceable `rng_usage != "NONE"`,
@@ -730,7 +730,7 @@
 - Date: 2026-02-19
 - Action: Operator Registry schema final remaining-flaw closure (error taxonomy completeness, catalog pin semantics, cursor semantics).
 - Scope:
-  - Updated `docs/layer1-foundation/Operator-Registry-Schema.md` with:
+  - Updated `specs/layers/L1-foundation/Operator-Registry-Schema.md` with:
     - expanded deterministic validation `code_id` enum to cover remaining failure classes,
     - clarified catalog pinning semantics (derive hashes from catalog blobs; optional expected-hash verification with `CATALOG_HASH_MISMATCH`),
     - validation signature extended with optional expected catalog hashes input,
@@ -748,7 +748,7 @@
 - Date: 2026-02-19
 - Action: Operator Registry schema determinism-alignment cleanup (code-id consistency and duplicate-line correction).
 - Scope:
-  - Updated `docs/layer1-foundation/Operator-Registry-Schema.md` with:
+  - Updated `specs/layers/L1-foundation/Operator-Registry-Schema.md` with:
     - unified validation failure mapping to deterministic report codes (replaced lingering generic `CONTRACT_VIOLATION` cases with specific codes),
     - `digest_ref` resolution-cycle and unresolved-reference failures mapped to `DIGEST_RESOLUTION_FAILURE`,
     - unknown-field failures mapped to `UNKNOWN_FIELD`,
@@ -765,7 +765,7 @@
 - Date: 2026-02-19
 - Action: Operator Registry schema final wording normalization pass.
 - Scope:
-  - Updated `docs/layer1-foundation/Operator-Registry-Schema.md` to remove the last generic `CONTRACT_VIOLATION` wording in §II.H and bind it to explicit deterministic §5 error codes.
+  - Updated `specs/layers/L1-foundation/Operator-Registry-Schema.md` to remove the last generic `CONTRACT_VIOLATION` wording in §II.H and bind it to explicit deterministic §5 error codes.
   - Updated registry hash for `L1-009` in `ecosystem-registry.yaml`.
 - Validation:
   - Updated hash (`L1-009`): `b95dc88cacc8203c389e54ad4f37967ba6aca84601eb15887156795247cd6089`
@@ -776,7 +776,7 @@
 - Date: 2026-02-19
 - Action: Operator Registry schema replay/input-model completion pass.
 - Scope:
-  - Updated `docs/layer1-foundation/Operator-Registry-Schema.md` with:
+  - Updated `specs/layers/L1-foundation/Operator-Registry-Schema.md` with:
     - reproducibility tuple updated to include mandatory `expected_catalog_hashes`,
     - `I.B` corrected by removing derived catalog hashes from inputs and defining `expected_catalog_hashes` schema,
     - validator signature changed to require `expected_catalog_hashes` (empty map allowed),
@@ -794,7 +794,7 @@
 - Date: 2026-02-19
 - Action: Operator Registry schema final deterministic-catalog/error-path hardening pass.
 - Scope:
-  - Updated `docs/layer1-foundation/Operator-Registry-Schema.md` with:
+  - Updated `specs/layers/L1-foundation/Operator-Registry-Schema.md` with:
     - explicit lint rule for `CATALOG_PARSE_ERROR` on catalog decode failures at catalog root paths,
     - explicit handling of extra keys in `expected_catalog_hashes` (ignored; no validation impact),
     - explicit catalog-hash computation rule: SHA-256 over provided canonical-CBOR catalog blob bytes,
@@ -809,7 +809,7 @@
 - Date: 2026-02-19
 - Action: Operator Registry schema checkpoint-semantics closure pass.
 - Scope:
-  - Updated `docs/layer1-foundation/Operator-Registry-Schema.md` with:
+  - Updated `specs/layers/L1-foundation/Operator-Registry-Schema.md` with:
     - critical simplification of §10 from resumable incremental validation to final-result checkpoint only,
     - explicit note that interrupted validation must rerun from the beginning,
     - removal of redundant external enum cross-reference in `side_effects` field description.
@@ -823,7 +823,7 @@
 - Date: 2026-02-19
 - Action: Operator Registry schema naming consistency pass for error-codes catalog hash field.
 - Scope:
-  - Updated `docs/layer1-foundation/Operator-Registry-Schema.md`:
+  - Updated `specs/layers/L1-foundation/Operator-Registry-Schema.md`:
     - renamed `error_catalog_hash` to `error_codes_catalog_hash` in validation-report schema and catalog-hash computation wording to align with `error_codes_blob` and `expected_catalog_hashes.error_codes_catalog`.
   - Updated registry hash for `L1-009` in `ecosystem-registry.yaml`.
 - Validation:
@@ -835,7 +835,7 @@
 - Date: 2026-02-19
 - Action: Operator Registry schema catalog-source clarity pass.
 - Scope:
-  - Updated `docs/layer1-foundation/Operator-Registry-Schema.md` wording to make all catalog-dependent checks explicitly use provided input blobs:
+  - Updated `specs/layers/L1-foundation/Operator-Registry-Schema.md` wording to make all catalog-dependent checks explicitly use provided input blobs:
     - digest-label resolution uses `digest_catalog_blob`,
     - allowed error code existence uses `error_codes_blob`,
     - capability existence uses `capability_catalog_blob`,
@@ -850,7 +850,7 @@
 - Date: 2026-02-19
 - Action: API Interfaces consistency hardening pass.
 - Scope:
-  - Updated `docs/layer1-foundation/API-Interfaces.md` with:
+  - Updated `specs/layers/L1-foundation/API-Interfaces.md` with:
     - removal of contradictory optimization semantics in `0.A` (validation-only semantics retained),
     - clarifying note in `0.Z` that stochastic template declarations are non-operative for this deterministic contract,
     - digest alignment between `II.F` and `II.K` for overlapping operators:
@@ -872,7 +872,7 @@
 - Date: 2026-02-19
 - Action: API Interfaces completeness/clarity closure pass.
 - Scope:
-  - Updated `docs/layer1-foundation/API-Interfaces.md` with:
+  - Updated `specs/layers/L1-foundation/API-Interfaces.md` with:
     - sidecar mapping schema defined in `0.H`,
     - explicit numbering-convention note for EQC header/model subsection styles,
     - added `Glyphser.Error.Emit` row to `II.F` syscall registry,
@@ -890,7 +890,7 @@
 - Date: 2026-02-19
 - Action: Determinism Profiles full contract hardening pass.
 - Scope:
-  - Rewrote `docs/layer1-foundation/Determinism-Profiles.md` to resolve logical/structural/algorithmic gaps:
+  - Rewrote `specs/layers/L1-foundation/Determinism-Profiles.md` to resolve logical/structural/algorithmic gaps:
     - removed optimization-template semantics and aligned contract to validation/comparison behavior,
     - replaced undefined `policy_bundle_hash` dependency with deterministic profile/hash inputs,
     - defined `E0` and `E1` equivalence levels normatively,
@@ -913,7 +913,7 @@
 - Date: 2026-02-19
 - Action: Digest Catalog specification determinism/clarity hardening pass.
 - Scope:
-  - Updated `docs/layer1-foundation/Digest-Catalog.md` with:
+  - Updated `specs/layers/L1-foundation/Digest-Catalog.md` with:
     - removed optimization-template artifact from `0.A`,
     - added explicit fatal error emission semantics in `0.K`,
     - tightened label regex rendering and preserved inline-hex reservation constraints,
@@ -935,7 +935,7 @@
 - Date: 2026-02-19
 - Action: Digest Catalog follow-up consistency pass (abort/report semantics and domain_tag validation precision).
 - Scope:
-  - Updated `docs/layer1-foundation/Digest-Catalog.md` with:
+  - Updated `specs/layers/L1-foundation/Digest-Catalog.md` with:
     - separated failure policy by operator (`ResolveDigestRef` fatal on unresolved labels; `ValidateDigestCatalog` returns invalid report without abort),
     - explicit `domain_tag` validation constraints and byte-length unit (`<=256` UTF-8 bytes),
     - explicit `algorithm == sha256` validation in constraints/lint/operator definition,
@@ -951,7 +951,7 @@
 - Date: 2026-02-19
 - Action: Digest Catalog precision pass (replay/input minimalism, trace formalization, parsing/serialization strictness).
 - Scope:
-  - Updated `docs/layer1-foundation/Digest-Catalog.md` with:
+  - Updated `specs/layers/L1-foundation/Digest-Catalog.md` with:
     - simplified reproducibility input to `catalog_hash` only,
     - replaced ambiguous `Valid iff` phrasing with exhaustive validity condition set,
     - clarified `uint32` as value-domain constraint with canonical CBOR unsigned encoding,
@@ -973,7 +973,7 @@
 - Date: 2026-02-19
 - Action: Determinism Profiles ambiguity-closure pass (comparison semantics and schema strictness).
 - Scope:
-  - Updated `docs/layer1-foundation/Determinism-Profiles.md` with:
+  - Updated `specs/layers/L1-foundation/Determinism-Profiles.md` with:
     - default non-listed-field policy for `TOLERANCE` (`default_compare_policy = E0`),
     - symmetric missing-field definition and policy application,
     - explicit special float handling (`+/-inf`, signed zero) under tolerance,
@@ -997,7 +997,7 @@
 - Date: 2026-02-19
 - Action: Determinism Profiles closure pass (finite tolerances, backend hash enforcement, fingerprint canonicalization clarity).
 - Scope:
-  - Updated `docs/layer1-foundation/Determinism-Profiles.md` with:
+  - Updated `specs/layers/L1-foundation/Determinism-Profiles.md` with:
     - explicit `E0` wording for machine-readable report fields (removed ambiguous phrase),
     - `profile_rules.profile_id` consistency rule (`MUST equal determinism_profile_id`),
     - `ToleranceRule` strengthened to require non-negative finite float64 tolerance values,
@@ -1016,7 +1016,7 @@
 - Date: 2026-02-19
 - Action: Determinism Profiles final semantics pass (runtime metadata schema closure and enforceable BITWISE runtime checks).
 - Scope:
-  - Updated `docs/layer1-foundation/Determinism-Profiles.md` with:
+  - Updated `specs/layers/L1-foundation/Determinism-Profiles.md` with:
     - explicit unknown-profile behavior in failure semantics and operators (`PROFILE_NOT_FOUND` for validation, fatal divergence for comparison),
     - required `runtime_metadata` conformance to `DriverRuntimeFingerprint` schema with missing/extra fields as violations,
     - explicit external trace format dependency (`Glyphser.Trace.Format`) for deterministic path traversal,
@@ -1037,7 +1037,7 @@
 - Date: 2026-02-19
 - Action: Determinism Profiles enforceability pass (BITWISE runtime capture completeness and rules-version gating).
 - Scope:
-  - Updated `docs/layer1-foundation/Determinism-Profiles.md` with:
+  - Updated `specs/layers/L1-foundation/Determinism-Profiles.md` with:
     - runtime fingerprint extensions for enforceable BITWISE checks:
       - `primitive_allowlist_used_hash:bytes32`
       - `deterministic_kernels_enabled:bool`
@@ -1064,7 +1064,7 @@
 - Date: 2026-02-19
 - Action: Determinism Profiles determinism-closure pass (traversal/cursor/path and comparison-guard semantics).
 - Scope:
-  - Updated `docs/layer1-foundation/Determinism-Profiles.md` with:
+  - Updated `specs/layers/L1-foundation/Determinism-Profiles.md` with:
     - normative deterministic traversal order (map key bytewise order, array index order, depth-first walk),
     - explicit array-element path convention (`parent_path.i`),
     - explicit shape-mismatch path targeting at parent field,
@@ -1087,7 +1087,7 @@
 - Date: 2026-02-19
 - Action: Determinism Profiles schema consistency fix (`PROFILE_NOT_FOUND` compatibility for validation output).
 - Scope:
-  - Updated `docs/layer1-foundation/Determinism-Profiles.md`:
+  - Updated `specs/layers/L1-foundation/Determinism-Profiles.md`:
     - made `profile_report.determinism_profile_hash` optional with normative presence condition:
       - present iff selected profile is found and loaded.
     - this aligns report schema with `PROFILE_NOT_FOUND` outcome semantics.
@@ -1101,7 +1101,7 @@
 - Date: 2026-02-19
 - Action: Environment Manifest determinism/completeness rewrite.
 - Scope:
-  - Rewrote `docs/layer1-foundation/Environment-Manifest.md` to resolve logical and structural gaps:
+  - Rewrote `specs/layers/L1-foundation/Environment-Manifest.md` to resolve logical and structural gaps:
     - removed optimization-template leftovers from objective semantics,
     - defined full normative schema and exact-field closure (no extra keys),
     - added missing compatibility-critical `hardware_arch` field,
@@ -1125,7 +1125,7 @@
 - Date: 2026-02-19
 - Action: Environment Manifest deterministic-source and compatibility-semantics hardening pass.
 - Scope:
-  - Updated `docs/layer1-foundation/Environment-Manifest.md` with:
+  - Updated `specs/layers/L1-foundation/Environment-Manifest.md` with:
     - explicit normative dependency set and external error-contract linkage,
     - strict `required_manifest` semantics (same schema as 2.6, complete required fields),
     - backend adapter definition and deterministic metadata API expectations,
@@ -1150,7 +1150,7 @@
 - Date: 2026-02-19
 - Action: Environment Manifest ambiguity-elimination pass (toolchain parsing determinism, compatibility optional-baseline semantics, and trace/report closure).
 - Scope:
-  - Updated `docs/layer1-foundation/Environment-Manifest.md` with:
+  - Updated `specs/layers/L1-foundation/Environment-Manifest.md` with:
     - explicit dependency-failure rule for normative referenced documents (fatal `CONTRACT_VIOLATION`),
     - removed undefined “regulated/managed modes” branch from failure policy,
     - optional baseline support in `ValidateCompatibility` (`required_manifest?`) and `NOT_CHECKED` compatibility status,
@@ -1174,7 +1174,7 @@
 - Date: 2026-02-19
 - Action: Environment Manifest portability/runtime-environment pass.
 - Scope:
-  - Updated `docs/layer1-foundation/Environment-Manifest.md` with:
+  - Updated `specs/layers/L1-foundation/Environment-Manifest.md` with:
     - optional `required_manifest` handling (`required_manifest?`) and explicit `NOT_CHECKED` compatibility state,
     - deterministic dependency-failure semantics for referenced normative documents,
     - removal of undefined “regulated/managed modes” branch,
@@ -1198,7 +1198,7 @@
 - Date: 2026-02-19
 - Action: Environment Manifest final ambiguity cleanup (path resolution, parsing precision, report rendering semantics).
 - Scope:
-  - Updated `docs/layer1-foundation/Environment-Manifest.md` with:
+  - Updated `specs/layers/L1-foundation/Environment-Manifest.md` with:
     - explicit, executable-only `UNAME_CMD` resolution algorithm and deterministic fallback order,
     - removal of non-standard shell-like placeholder notation in source definitions,
     - concrete mutation-detection procedure for `os_version` fallback flow,
@@ -1219,7 +1219,7 @@
 - Date: 2026-02-19
 - Action: Environment Manifest final contract-clarity pass (tool override strictness and adapter determinism guarantees).
 - Scope:
-  - Updated `docs/layer1-foundation/Environment-Manifest.md` with:
+  - Updated `specs/layers/L1-foundation/Environment-Manifest.md` with:
     - explicit executable-path definition,
     - strict tool override rule parity with `UNAME_CMD` (`CC`/`CXX`/`LD`/`CMAKE_COMMAND` must be absolute+executable if set; otherwise abort),
     - explicit deterministic/stable behavior requirements for backend adapter APIs:
@@ -1237,7 +1237,7 @@
 - Date: 2026-02-19
 - Action: Environment Manifest closure pass (mutation detection algorithm, report rendering disambiguation, and trace ordering determinism).
 - Scope:
-  - Updated `docs/layer1-foundation/Environment-Manifest.md` with:
+  - Updated `specs/layers/L1-foundation/Environment-Manifest.md` with:
     - mandatory multi-file mutation detection algorithm (metadata pre/post checks with deterministic abort conditions),
     - mandatory `os_version` fallback re-read hash check (removed optional wording),
     - explicit `backend_adapter_version` non-empty requirement,
@@ -1256,7 +1256,7 @@
 - Date: 2026-02-19
 - Action: Environment Manifest final deterministic-behavior lock pass.
 - Scope:
-  - Updated `docs/layer1-foundation/Environment-Manifest.md` with:
+  - Updated `specs/layers/L1-foundation/Environment-Manifest.md` with:
     - mandatory (non-optional) re-read hash verification in both multi-file mutation detection and `os_version` fallback mutation checks,
     - symlink-target metadata tracking clarified for mutation detection,
     - explicit ECMAScript regex dialect declaration,
@@ -1276,7 +1276,7 @@
 - Date: 2026-02-19
 - Action: Environment Manifest micro-clarity pass.
 - Scope:
-  - Updated `docs/layer1-foundation/Environment-Manifest.md` with:
+  - Updated `specs/layers/L1-foundation/Environment-Manifest.md` with:
     - dependency inconsistency wording tightened to explicit version/section mismatch criterion,
     - explicit note acknowledging the theoretical undetectable symlink-target replacement edge case,
     - explicit statement that implementation (not adapter) is responsible for path normalization/validation before artifact hashing.
@@ -1290,7 +1290,7 @@
 - Date: 2026-02-19
 - Action: Environment Manifest final structural cleanup.
 - Scope:
-  - Updated `docs/layer1-foundation/Environment-Manifest.md` with:
+  - Updated `specs/layers/L1-foundation/Environment-Manifest.md` with:
     - explicit absolute-path requirement for `root_path` returned by `adapter.get_canonical_artifact_set()` (relative path => abort),
     - corrected duplicate numbering in C compiler parse rules (`4. else abort`).
   - Updated registry hash for `L1-007` in `ecosystem-registry.yaml`.
@@ -1303,7 +1303,7 @@
 - Date: 2026-02-19
 - Action: Environment Manifest final gap closure (path and command failure semantics).
 - Scope:
-  - Updated `docs/layer1-foundation/Environment-Manifest.md` with:
+  - Updated `specs/layers/L1-foundation/Environment-Manifest.md` with:
     - explicit abort rule for required command execution failure (non-zero exit / missing required output),
     - clarified multi-file mutation step to read resolved target files,
     - explicit requirement that `root_path` exists and is a directory,
@@ -1319,7 +1319,7 @@
 - Date: 2026-02-19
 - Action: Environment Manifest final algorithmic hardening pass.
 - Scope:
-  - Updated `docs/layer1-foundation/Environment-Manifest.md` with:
+  - Updated `specs/layers/L1-foundation/Environment-Manifest.md` with:
     - canonical `root_path` realpath resolution requirement (abort on failure),
     - symlink-aware `os_version` mutation detection (target-level metadata/hash checks),
     - fixed env-var size limit to 1 MiB with mandatory abort on exceed,
@@ -1335,7 +1335,7 @@
 - Date: 2026-02-19
 - Action: Environment Manifest final correctness patch (remaining algorithmic edge cases).
 - Scope:
-  - Updated `docs/layer1-foundation/Environment-Manifest.md` with:
+  - Updated `specs/layers/L1-foundation/Environment-Manifest.md` with:
     - mandatory symlink re-resolution in multi-file mutation detection step 3 (with resolved-path change abort),
     - step 5 clarified to re-read current resolved targets,
     - canonical `root_path` resolution failure wording clarified with concrete broken-symlink example,
@@ -1350,7 +1350,7 @@
 - Date: 2026-02-19
 - Action: Dependency lock policy determinism/completeness rewrite (`L1-004`).
 - Scope:
-  - Rewrote `docs/layer1-foundation/Dependency-Lock-Policy.md` to resolve logical, structural, and algorithmic gaps:
+  - Rewrote `specs/layers/L1-foundation/Dependency-Lock-Policy.md` to resolve logical, structural, and algorithmic gaps:
     - removed optimization/template artifacts and undefined EPS tie handling,
     - defined strict mode, policy schema, artifact index schema, upgrade proposal schema, and report schemas,
     - defined `runtime_env_hash`, `determinism_profile_hash`, `policy_bundle_hash`, and `artifact_index_hash`,
@@ -1368,7 +1368,7 @@
 - Date: 2026-02-19
 - Action: Dependency lock policy consistency/finality pass (`L1-004`).
 - Scope:
-  - Updated `docs/layer1-foundation/Dependency-Lock-Policy.md` to resolve remaining determinism and completeness gaps:
+  - Updated `specs/layers/L1-foundation/Dependency-Lock-Policy.md` to resolve remaining determinism and completeness gaps:
     - aligned reproducibility inputs with procedure (`toolchain_hash`, `runtime_env_hash`, `sbom_hash` as inputs),
     - removed unused `determinism_profile_hash` from replay contract,
     - fixed artifact verification purity semantics (`PURE` -> `IO`) and immutable content-addressed retrieval assumption,
@@ -1389,7 +1389,7 @@
 - Date: 2026-02-19
 - Action: Dependency lock policy final determinism clarifications (`L1-004`).
 - Scope:
-  - Updated `docs/layer1-foundation/Dependency-Lock-Policy.md` with additional normative fixes:
+  - Updated `specs/layers/L1-foundation/Dependency-Lock-Policy.md` with additional normative fixes:
     - defined source canonicalization mapping and canonical `allowed_sources` matching,
     - strengthened lockfile extraction rules per format and marker/extras coverage requirement,
     - added explicit mixed SemVer/non-SemVer invalid-case handling for upgrade comparisons,
@@ -1410,7 +1410,7 @@
 - Date: 2026-02-19
 - Action: Dependency lock policy closure pass for remaining determinism/specification gaps (`L1-004`).
 - Scope:
-  - Updated `docs/layer1-foundation/Dependency-Lock-Policy.md` with final normative corrections:
+  - Updated `specs/layers/L1-foundation/Dependency-Lock-Policy.md` with final normative corrections:
     - procedure step 5 now includes `sbom_hash` in dependency-lock commitment formation,
     - added explicit SemVer scope classification algorithm and non-SemVer disallow rule in v1,
     - strengthened source canonicalization (NFC + scheme/host normalization + canonical registry mapping),
@@ -1431,7 +1431,7 @@
 - Date: 2026-02-19
 - Action: Dependency lock policy final ambiguity-resolution pass (`L1-004`).
 - Scope:
-  - Updated `docs/layer1-foundation/Dependency-Lock-Policy.md` to resolve remaining determinism/clarity gaps:
+  - Updated `specs/layers/L1-foundation/Dependency-Lock-Policy.md` to resolve remaining determinism/clarity gaps:
     - made `requirements.txt` source derivation fully deterministic (top-to-bottom cumulative `--index-url`, most recent prior directive, standalone directive lines only),
     - removed ambiguous inline-comment parsing by forbidding inline comments on requirement lines,
     - tightened comparability guarantee to distinguish full-output comparability vs validation-only comparability,
@@ -1448,7 +1448,7 @@
 - Date: 2026-02-19
 - Action: Dependency lock policy determinism finalization for remaining edge-cases (`L1-004`).
 - Scope:
-  - Updated `docs/layer1-foundation/Dependency-Lock-Policy.md` with:
+  - Updated `specs/layers/L1-foundation/Dependency-Lock-Policy.md` with:
     - explicit mixed-scheme check in `EvaluateUpgradeRequest` (`VERSION_SCHEME_MISMATCH` disallow),
     - explicit empty-proposal behavior (`is_allowed=true`, `risk_class=LOW`),
     - `requirements.txt` hard constraints for v1 (no line continuations, forbid `--extra-index-url` and `--find-links`),
@@ -1465,7 +1465,7 @@
 - Date: 2026-02-19
 - Action: Dependency lock policy final edge-case closure (`L1-004`).
 - Scope:
-  - Updated `docs/layer1-foundation/Dependency-Lock-Policy.md` to close remaining determinism/completeness gaps:
+  - Updated `specs/layers/L1-foundation/Dependency-Lock-Policy.md` to close remaining determinism/completeness gaps:
     - comparability guarantee now includes `lockfile_hash` for both full-output and validation-only scopes,
     - deterministic trace rule now requires all three per-package checks always emitted, with explicit `ARTIFACT_HASH` pass/fail semantics for missing/mismatched artifacts,
     - `requirements.txt` parsing hardened by forbidding `-e` editable installs and `-r` include directives,
@@ -1483,7 +1483,7 @@
 - Date: 2026-02-19
 - Action: Dependency lock policy final review deltas (`L1-004`).
 - Scope:
-  - Updated `docs/layer1-foundation/Dependency-Lock-Policy.md` with final targeted clarifications:
+  - Updated `specs/layers/L1-foundation/Dependency-Lock-Policy.md` with final targeted clarifications:
     - `requirements.txt` now explicitly forbids environment markers (`;` outside quoted strings) in v1,
     - upgrade proposal tuple matching now explicitly uses exact `(name, source)` lookup before validating `from_version`.
   - Added matching lint rule for forbidden `requirements.txt` environment markers.
@@ -1498,7 +1498,7 @@
 - Date: 2026-02-19
 - Action: Dependency lock policy uniqueness/canonical-hash closure (`L1-004`).
 - Scope:
-  - Updated `docs/layer1-foundation/Dependency-Lock-Policy.md` with final determinism constraints:
+  - Updated `specs/layers/L1-foundation/Dependency-Lock-Policy.md` with final determinism constraints:
     - added invariant and lint rule forbidding multiple lock tuples with the same `(name, source)`,
     - added lint rule forbidding multiple `UpgradeProposal.changes` entries with the same `(name, source)`,
     - added lint rule forbidding duplicate `ArtifactRecord` entries by `(name, version, source)`,
@@ -1515,7 +1515,7 @@
 - Date: 2026-02-19
 - Action: Dependency lock policy expected-hash source clarification (`L1-004`).
 - Scope:
-  - Updated `docs/layer1-foundation/Dependency-Lock-Policy.md` in `Glyphser.DepLock.VerifyArtifactHashes` definition to remove expected-hash ambiguity:
+  - Updated `specs/layers/L1-foundation/Dependency-Lock-Policy.md` in `Glyphser.DepLock.VerifyArtifactHashes` definition to remove expected-hash ambiguity:
     - expected hash is now explicitly defined as lock tuple `integrity_hash`,
     - artifact index is used for tuple resolution and immutable location retrieval,
     - mismatch rule explicitly compares `observed_hash` (artifact bytes SHA-256) against lock tuple `integrity_hash`,
@@ -1531,7 +1531,7 @@
 - Date: 2026-02-19
 - Action: Redaction policy determinism/completeness rewrite (`L1-010`).
 - Scope:
-  - Rewrote `docs/layer1-foundation/Redaction-Policy.md` to resolve logical, structural, and algorithmic gaps:
+  - Rewrote `specs/layers/L1-foundation/Redaction-Policy.md` to resolve logical, structural, and algorithmic gaps:
     - unified operator/procedure inputs around `redaction_policy_hash` (policy loaded by hash),
     - defined deterministic bucketization algorithm, float boundary behavior, and canonical bucket output format,
     - defined canonical nested field-path representation and traversal order,
@@ -1553,7 +1553,7 @@
 - Date: 2026-02-19
 - Action: Redaction policy final rigor pass (`L1-010`).
 - Scope:
-  - Updated `docs/layer1-foundation/Redaction-Policy.md` to address remaining logical/algorithmic gaps:
+  - Updated `specs/layers/L1-foundation/Redaction-Policy.md` to address remaining logical/algorithmic gaps:
     - defined canonical `record_blob` format (canonical CBOR),
     - defined leaf/composite semantics and composite-whole transform behavior,
     - corrected canonical path ordering to bytewise sort on canonical CBOR path bytes,
@@ -1582,7 +1582,7 @@
 - Date: 2026-02-20
 - Action: Redaction policy determinism-closure pass (`L1-010`).
 - Scope:
-  - Updated `docs/layer1-foundation/Redaction-Policy.md` to close remaining deterministic/structural gaps:
+  - Updated `specs/layers/L1-foundation/Redaction-Policy.md` to close remaining deterministic/structural gaps:
     - formalized canonical CBOR profile constraints (RFC 8949 deterministic + float64 + canonical map-key ordering),
     - expanded fatal reason codes (`KEY_NOT_AUTHORIZED`, `BUCKET_VALUE_NAN`, `NULL_VALUE_FOR_BUCKET`, `INVALID_PREIMAGE_FORMAT`),
     - defined `key_policy.allowed_key_ids` and enforced key authorization in initialization/procedure,
@@ -1603,7 +1603,7 @@
 - Date: 2026-02-20
 - Action: Redaction policy edge-case closure pass (`L1-010`).
 - Scope:
-  - Updated `docs/layer1-foundation/Redaction-Policy.md` to close remaining logical/algorithmic gaps:
+  - Updated `specs/layers/L1-foundation/Redaction-Policy.md` to close remaining logical/algorithmic gaps:
     - upgraded transform-conflict rule from explicit-map-only to effective-transform conflict detection,
     - added explicit real-number comparison semantics for bucketization across integer/float numeric encodings,
     - enforced audit `record_id` extraction from original input and added `record_id` to mandatory unredacted top-level fields,
@@ -1621,7 +1621,7 @@
 - Date: 2026-02-20
 - Action: Redaction policy input-validation closure pass (`L1-010`).
 - Scope:
-  - Updated `docs/layer1-foundation/Redaction-Policy.md` to close remaining validation determinism gaps:
+  - Updated `specs/layers/L1-foundation/Redaction-Policy.md` to close remaining validation determinism gaps:
     - added fatal reason codes for basic input validation (`INVALID_REDACTION_MODE`, `SCHEMA_NOT_FOUND`, `INVALID_CBOR`),
     - made `forbidden_raw_field_count` definition explicit via effective-transform `!= NONE` redactable criterion,
     - made `coverage_report.errors` ordering deterministic (lexicographic) and success state explicit (`errors=[]`),
@@ -1641,7 +1641,7 @@
 - Date: 2026-02-20
 - Action: Redaction policy enum/runtime-validation completion pass (`L1-010`).
 - Scope:
-  - Updated `docs/layer1-foundation/Redaction-Policy.md` to finalize remaining deterministic validation gaps:
+  - Updated `specs/layers/L1-foundation/Redaction-Policy.md` to finalize remaining deterministic validation gaps:
     - added fatal reason codes `INVALID_TRANSFORM_VALUE` and `INVALID_VALUE_TYPE`,
     - constrained `coverage_report.errors` to 0.K fatal reason codes with lexicographic ordering,
     - added explicit validation that all `field_transform_map` values are within allowed transform enum,
@@ -1658,7 +1658,7 @@
 - Date: 2026-02-20
 - Action: Redaction policy canonical-output encoding closure (`L1-010`).
 - Scope:
-  - Updated `docs/layer1-foundation/Redaction-Policy.md` to add explicit requirement that `redacted_record` is encoded as canonical CBOR using the same profile as Section 0.B.
+  - Updated `specs/layers/L1-foundation/Redaction-Policy.md` to add explicit requirement that `redacted_record` is encoded as canonical CBOR using the same profile as Section 0.B.
   - Updated registry record `L1-010` hash in `ecosystem-registry.yaml`.
 - Validation:
   - Updated hash (`L1-010`): `2900726e34ce0db966cfc7e2ed95050313e7e89a104045ce42c919843bb52802`
@@ -1670,8 +1670,8 @@
 - Date: 2026-02-20
 - Action: Layer1 EQC structural alignment audit and normalization (`L1-007`).
 - Scope:
-  - Audited all files under `docs/layer1-foundation/` against `document_guidelines/EquationCode/EQC.md` required block structure.
-  - Updated `docs/layer1-foundation/Environment-Manifest.md` with structural-only EQC alignment while preserving all existing normative content:
+  - Audited all files under `specs/layers/L1-foundation/` against `governance/document_guidelines/EquationCode/EQC.md` required block structure.
+  - Updated `specs/layers/L1-foundation/Environment-Manifest.md` with structural-only EQC alignment while preserving all existing normative content:
     - added `0.Z EQC Mandatory Declarations Addendum`,
     - normalized Section 2 subheadings to explicit `I.A`–`I.E` forms,
     - added `10) EQC Alignment Notes` cross-mapping section,
@@ -1688,18 +1688,18 @@
 - Action: Layer1 cross-document wiring reconciliation (requested 10-file EQC consistency pass).
 - Scope:
   - Audited target Layer1 contracts:
-    - `docs/layer1-foundation/Canonical-CBOR-Profile.md`
-    - `docs/layer1-foundation/Digest-Catalog.md`
-    - `docs/layer1-foundation/Error-Codes.md`
-    - `docs/layer1-foundation/Data-Structures.md`
-    - `docs/layer1-foundation/Operator-Registry-Schema.md`
-    - `docs/layer1-foundation/API-Interfaces.md`
-    - `docs/layer1-foundation/Determinism-Profiles.md`
-    - `docs/layer1-foundation/Environment-Manifest.md`
-    - `docs/layer1-foundation/Dependency-Lock-Policy.md`
-    - `docs/layer1-foundation/Redaction-Policy.md`
+    - `specs/layers/L1-foundation/Canonical-CBOR-Profile.md`
+    - `specs/layers/L1-foundation/Digest-Catalog.md`
+    - `specs/layers/L1-foundation/Error-Codes.md`
+    - `specs/layers/L1-foundation/Data-Structures.md`
+    - `specs/layers/L1-foundation/Operator-Registry-Schema.md`
+    - `specs/layers/L1-foundation/API-Interfaces.md`
+    - `specs/layers/L1-foundation/Determinism-Profiles.md`
+    - `specs/layers/L1-foundation/Environment-Manifest.md`
+    - `specs/layers/L1-foundation/Dependency-Lock-Policy.md`
+    - `specs/layers/L1-foundation/Redaction-Policy.md`
   - Reconciled ecosystem wiring and path consistency:
-    - fixed root guideline path references in `ecosystem.md` to `document_guidelines/EquationCode/ECOSYSTEM.md`,
+    - fixed root guideline path references in `ecosystem.md` to `governance/document_guidelines/EquationCode/ECOSYSTEM.md`,
     - fixed core guideline node paths in `ecosystem-graph.yaml` (`CORE-ES-001`, `CORE-BASE-001`),
     - added missing `REFERENCES` edges in `ecosystem-graph.yaml` for Layer1 cross-doc links inferred from normative references,
     - corrected registry hash drift for `L1-006` (`Digest-Catalog.md`),
@@ -1716,8 +1716,8 @@
 - Scope:
   - Audited all registered documents and sidecars for path existence, registry-hash integrity, and graph-reference wiring consistency.
   - Reconciled ecosystem root/core guideline paths to actual files:
-    - `document_guidelines/EquationCode/ECOSYSTEM.md`
-    - `document_guidelines/EquationCode/EQC.md`
+    - `governance/document_guidelines/EquationCode/ECOSYSTEM.md`
+    - `governance/document_guidelines/EquationCode/EQC.md`
   - Normalized ecosystem references in `ecosystem.md` to the same canonical core path.
   - Added missing `REFERENCES` edges in `ecosystem-graph.yaml` for unresolved cross-document references (including Layer1 set and broader portfolio references).
   - Refreshed `ecosystem-registry.yaml` hash chain values (`SHA256Hash`/`PreviousSHA256`) to actual file hashes for all resolvable records.
@@ -1751,11 +1751,11 @@
 - Date: 2026-02-20
 - Action: Layer2 residual correctness patch (`L2-005`, `L2-020`).
 - Scope:
-  - Updated `docs/layer2-specs/Data-NextBatch.md` cursor update semantics to avoid over-advancing at epoch tail:
+  - Updated `specs/layers/L2-specs/Data-NextBatch.md` cursor update semantics to avoid over-advancing at epoch tail:
     - compute `produced_global_count` from remaining epoch capacity,
     - advance `cursor.global_index` by produced count (not unconditional `global_batch_size`),
     - preserve deterministic epoch rollover with `epoch_limit_for_advance`.
-  - Updated `docs/layer2-specs/Glyphser-Kernel-v3.22-OS.md` loop/procedure semantics:
+  - Updated `specs/layers/L2-specs/Glyphser-Kernel-v3.22-OS.md` loop/procedure semantics:
     - consume `Termination.Check` result with explicit `if terminated: break`,
     - replaced ambiguous `noisy_grads or grads` with explicit `update_grads` selection,
     - aligned DP operator signature to include `t`,
@@ -1771,25 +1771,25 @@
 - Date: 2026-02-20
 - Action: Layer2 follow-up closure pass for residual definition and wiring gaps.
 - Scope:
-  - Updated `docs/layer2-specs/AuthZ-Capability-Matrix.md`:
+  - Updated `specs/layers/L2-specs/AuthZ-Capability-Matrix.md`:
     - added explicit `verdict_enum` values (`ALLOW`, `DENY`) in deterministic verdict-hash section.
-  - Updated `docs/layer2-specs/Checkpoint-Schema.md`:
+  - Updated `specs/layers/L2-specs/Checkpoint-Schema.md`:
     - added explicit computation rules for `weights_manifest_hash`, `optimizer_manifest_hash`, and `dp_accountant_manifest_hash`.
-    - corrected Layer1 data-structure reference path to `docs/layer1-foundation/Data-Structures.md`.
-  - Updated `docs/layer2-specs/Data-Lineage.md`:
+    - corrected Layer1 data-structure reference path to `specs/layers/L1-foundation/Data-Structures.md`.
+  - Updated `specs/layers/L2-specs/Data-Lineage.md`:
     - defined `world_size_policy` and `epoch_seed_rule` used by `data_access_plan_hash`.
-  - Updated `docs/layer2-specs/Data-NextBatch.md`:
+  - Updated `specs/layers/L2-specs/Data-NextBatch.md`:
     - made `drop_last` full-batch framing explicit via `num_full_batches` declaration while preserving strict epoch-limit handling.
-  - Updated `docs/layer2-specs/DifferentialPrivacy-Apply.md`:
+  - Updated `specs/layers/L2-specs/DifferentialPrivacy-Apply.md`:
     - added explicit derivation steps for `effective_batch_size` and `dataset_cardinality`.
     - replaced implicit `derive_stddev_map` helper with explicit per-group formula.
-  - Updated `docs/layer2-specs/TMMU-Allocation.md`:
+  - Updated `specs/layers/L2-specs/TMMU-Allocation.md`:
     - added explicit definition of `execution_order_hash` used in `tmmu_plan_hash`.
   - Updated Layer1 wiring references to existing canonical files:
-    - `docs/layer2-specs/Monitoring-Policy.md` (`Data-Structures.md`),
-    - `docs/layer2-specs/Config-Schema.md` (`Environment-Manifest.md`),
-    - `docs/layer2-specs/Glyphser-Kernel-v3.22-OS.md` (Environment/Data-Structures/Dependency-Lock-Policy canonical paths),
-    - `docs/layer2-specs/Replay-Determinism.md` (`Environment-Manifest.md`).
+    - `specs/layers/L2-specs/Monitoring-Policy.md` (`Data-Structures.md`),
+    - `specs/layers/L2-specs/Config-Schema.md` (`Environment-Manifest.md`),
+    - `specs/layers/L2-specs/Glyphser-Kernel-v3.22-OS.md` (Environment/Data-Structures/Dependency-Lock-Policy canonical paths),
+    - `specs/layers/L2-specs/Replay-Determinism.md` (`Environment-Manifest.md`).
   - Refreshed registry hashes for modified Layer2 records (`L2-001`, `L2-002`, `L2-003`, `L2-004`, `L2-005`, `L2-007`, `L2-013`, `L2-015`, `L2-018`, `L2-020`).
 - Validation:
   - Broken Layer1 `/00-Core.md` reference scan in Layer2 docs: pass (none remain).
@@ -1800,9 +1800,9 @@
 - Date: 2026-02-20
 - Action: Layer2 signature/operational consistency hardening pass.
 - Scope:
-  - `docs/layer2-specs/Security-Compliance-Profile.md`:
+  - `specs/layers/L2-specs/Security-Compliance-Profile.md`:
     - aligned `VerifyCertificate` input contract to accept canonical certificate object or path (`certificate_input`) with deterministic load semantics.
-  - `docs/layer2-specs/Glyphser-Kernel-v3.22-OS.md`:
+  - `specs/layers/L2-specs/Glyphser-Kernel-v3.22-OS.md`:
     - made pipeline dispatch arguments explicit via `current_step` tracking and explicit `Dispatch(manifest.pipeline_stages, current_step)` calls,
     - made `checkpoint_due` rule deterministic from `checkpoint_frequency` and stage exit flag,
     - passed explicit `stage_type` to `NextBatch`,
@@ -1810,15 +1810,15 @@
     - added deterministic per-step resource ledger + quota-abort rule,
     - integrated WAL commit protocol hooks (`WALAppend(PREPARE/CERT_SIGNED/FINALIZE)`, `FinalizeRunCommit`),
     - clarified `SaveCheckpoint` payload requirements to include DP/rng/cursor critical state.
-  - `docs/layer2-specs/DifferentialPrivacy-Apply.md`:
+  - `specs/layers/L2-specs/DifferentialPrivacy-Apply.md`:
     - replaced heuristic projected-epsilon branch with deterministic abort,
     - added explicit DP metric formulas,
     - retained explicit propagation of `amplification_factor` and `delta_eps` into accountant update.
-  - `docs/layer2-specs/Monitoring-Policy.md`:
+  - `specs/layers/L2-specs/Monitoring-Policy.md`:
     - added explicit PSI formula and deterministic KS tie-order rule.
-  - `docs/layer2-specs/TMMU-Allocation.md`:
+  - `specs/layers/L2-specs/TMMU-Allocation.md`:
     - added canonical definition for `shard_spec_hash`.
-  - `docs/layer2-specs/Checkpoint-Schema.md`:
+  - `specs/layers/L2-specs/Checkpoint-Schema.md`:
     - added `rng_state_hash` and `data_cursors_hash` commitments and corresponding container/state artifacts.
   - Refreshed registry hashes for touched Layer2 records (`L2-001`, `L2-002`, `L2-003`, `L2-004`, `L2-005`, `L2-007`, `L2-013`, `L2-015`, `L2-017`, `L2-018`, `L2-020`).
 - Validation:
@@ -1830,7 +1830,7 @@
 - Date: 2026-02-20
 - Action: Kernel quota-error code normalization (`L2-020`).
 - Scope:
-  - Updated `docs/layer2-specs/Glyphser-Kernel-v3.22-OS.md` to use existing canonical error code `CONTRACT_VIOLATION` for quota-breach abort path (replacing non-catalog `QUOTA_EXCEEDED`).
+  - Updated `specs/layers/L2-specs/Glyphser-Kernel-v3.22-OS.md` to use existing canonical error code `CONTRACT_VIOLATION` for quota-breach abort path (replacing non-catalog `QUOTA_EXCEEDED`).
   - Refreshed `L2-020` hash in `ecosystem-registry.yaml`.
 - Validation:
   - `L2-020` registry hash alignment: pass.
@@ -2294,7 +2294,7 @@
   - Re-ran registry/file digest parity validation.
 
 ## 2026-02-20 — Layer1 EQC Structural Conformance and Wiring Pass
-- Scope: `docs/layer1-foundation/*` audited against `document_guidelines/EquationCode/EQC.md` mandatory block structure and operator-manifest/definition consistency.
+- Scope: `specs/layers/L1-foundation/*` audited against `governance/document_guidelines/EquationCode/EQC.md` mandatory block structure and operator-manifest/definition consistency.
 - Changes applied (additive/non-destructive):
   - Standardized missing `0.C Numeric Policy` headings while preserving existing numeric+extended semantics in:
     - `Dependency-Lock-Policy.md`
@@ -2333,15 +2333,15 @@
 
 ## Scope
 - Applied canonicalization/ordering/normativity hardening updates requested for:
-  - `docs/layer1-foundation/API-Interfaces.md`
-  - `docs/layer1-foundation/Canonical-CBOR-Profile.md`
-  - `docs/layer1-foundation/Operator-Registry-Schema.md`
+  - `specs/layers/L1-foundation/API-Interfaces.md`
+  - `specs/layers/L1-foundation/Canonical-CBOR-Profile.md`
+  - `specs/layers/L1-foundation/Operator-Registry-Schema.md`
   - `docs/layer4-implementation/Operator-Registry-CBOR-Contract.md`
   - `docs/layer4-implementation/Industry-Productization-Upgrade-Plan.md`
   - `docs/layer4-implementation/Implementation-Roadmap.md`
 
 ## Additions
-- Added `docs/layer1-foundation/Normativity-Legend.md`.
+- Added `specs/layers/L1-foundation/Normativity-Legend.md`.
 - Added `docs/START-HERE.md`.
 - Added `docs/layer4-implementation/Tooling-Suite.md`.
 - Added onboarding fixture artifacts:
@@ -2373,13 +2373,13 @@
 - `docs/layer4-implementation/Implementation-Backlog.md`
   - standardized profile naming in invariants and `EPIC_profiles` to `core/enterprise/regulated`,
   - expanded `EPIC_archival_notarization` tasks/done criteria to full deterministic, hash-bound requirements.
-- `docs/layer1-foundation/Data-Structures.md`
+- `specs/layers/L1-foundation/Data-Structures.md`
   - replaced ambiguous “non-normalized” wording with explicit NFC requirement pattern.
 - `docs/START-HERE.md`
   - removed duplicate informative mirror procedure; retained single canonical `## 6) Procedure`.
-- `docs/layer1-foundation/Normativity-Legend.md`
+- `specs/layers/L1-foundation/Normativity-Legend.md`
   - removed duplicate procedure section; retained single canonical `## 6) Procedure`.
-- `docs/layer1-foundation/Operator-Registry-Schema.md`
+- `specs/layers/L1-foundation/Operator-Registry-Schema.md`
   - `ComputeRegistryHash` definition now explicitly states canonical preimage and ordering basis.
 - `docs/layer4-implementation/Operator-Registry-CBOR-Contract.md`
   - clarified inherited numeric version ordering (`version_num`) and canonical profile binding for hash preimage.
@@ -2470,9 +2470,9 @@
   - `vectors-manifest.json`
 
 ## Tooling Added
-- `tools/materialize_doc_artifacts.py`
+- `tooling/materialize_doc_artifacts.py`
   - deterministic CBOR/JSON materialization of contracts/artifacts/inputs/fixtures/artifacts/expected/goldens/vectors and manifest hashes.
-- `tools/verify_doc_artifacts.py`
+- `tooling/verify_doc_artifacts.py`
   - deterministic hash/size verification for all pinned manifests.
 
 ## Docs Updated
@@ -2486,7 +2486,7 @@
   - added pinned gate input manifests and deterministic verification command.
 
 ## Verification Snapshot
-- `python tools/verify_doc_artifacts.py` => `PASS`
+- `python tooling/verify_doc_artifacts.py` => `PASS`
 
 # 2026-02-21 — Commitment Preimage Normalization + Path Escaping Pass
 
@@ -2495,13 +2495,13 @@
 - Eliminated path-delimiter ambiguity in determinism comparison by replacing assumption text with explicit escaping semantics.
 
 ## Normative Contract Updates
-- `docs/layer1-foundation/Canonical-CBOR-Profile.md`
+- `specs/layers/L1-foundation/Canonical-CBOR-Profile.md`
   - added canonical helper `CommitHash(domain_tag, data_object)`.
   - added explicit prohibition for non-2-element commitment arrays (`CONTRACT_VIOLATION`).
   - added explicit distinction between `CommitHash` (domain-separated) and `ObjectDigest` (plain digest).
 - `docs/layer4-implementation/Spec-Lint-Rules.md`
   - added blocker rule `EQC.HASH.COMMIT.SHAPE` for commitment preimage shape.
-- `docs/layer1-foundation/Determinism-Profiles.md`
+- `specs/layers/L1-foundation/Determinism-Profiles.md`
   - replaced prior path delimiter assumption with normative escape/decode rules (`.` delimiter, `\\` escape, `\\.` and `\\\\` only) and round-trip invariant.
 
 ## Mechanical Formula Rewrites
@@ -2519,13 +2519,13 @@
 ## Additional Alignment
 - `docs/layer4-implementation/Canonical-Hashing-Reference.md`
   - updated digest definition to explicit two-element preimage (`[domain_tag, normalized_preimage]`).
-- `docs/layer1-foundation/API-Interfaces.md`
+- `specs/layers/L1-foundation/API-Interfaces.md`
   - normalized API conformance catalog hash to domain-separated tagged commitment.
-- `docs/layer1-foundation/Data-Structures.md`
+- `specs/layers/L1-foundation/Data-Structures.md`
   - added explicit hash identity class definitions (`CommitHash` vs `ObjectDigest`).
 
 ## Verification Snapshot
-- `python tools/verify_doc_artifacts.py` => `PASS`.
+- `python tooling/verify_doc_artifacts.py` => `PASS`.
 - old delimiter-assumption phrase search => not present.
 - domain-tagged `SHA-256(CBOR_CANONICAL([ ... ]))` formulas with non-2 outer elements => `0`.
 
@@ -2539,7 +2539,7 @@
 - Enforced single-form commitment formulas and explicit hash typing in checkpoint contract.
 
 ## Changes
-- `docs/layer2-specs/Checkpoint-Schema.md`
+- `specs/layers/L2-specs/Checkpoint-Schema.md`
   - replaced empty-root untagged forms with tagged commitments:
     - `CommitHash("tensors_root", [])`
     - `CommitHash("optimizer_root", [])`
@@ -2548,12 +2548,12 @@
     - `CommitHash(tag, data)`
     - `ObjectDigest(obj)`
   - labeled checkpoint object hashes (`checkpoint_header_hash`, `checkpoint_manifest_hash`, `weights_manifest_hash`, `optimizer_manifest_hash`, `dp_accountant_manifest_hash`, `rng_state_hash`, `data_cursors_hash`) as `ObjectDigest`.
-- `tools/merged_docs.txt`
+- `tooling/merged_docs.txt`
   - regenerated from current docs to remove stale pre-fix formulas.
 
 ## Verification
 - Search for known bad forms in docs and merged snapshot: none found.
-- `python tools/verify_doc_artifacts.py` => `PASS`.
+- `python tooling/verify_doc_artifacts.py` => `PASS`.
 
 # 2026-02-21 — Operator Manifest Resolution Pass
 
@@ -2586,7 +2586,7 @@
 
 ## Verification
 - Regenerated merged snapshot:
-  - `python tools/merge_markdown_to_txt.py docs -o tools/merged_docs.txt`
+  - `python tooling/merge_markdown_to_txt.py docs -o tooling/merged_docs.txt`
 - Normative-manifest unresolved symbol count:
   - `normative_manifest_unresolved = 0`
 - Core requested definitions present:
@@ -2597,4 +2597,4 @@
   - `LoadDocSet`: true
   - `AggregateLintVerdict`: true
 - Artifact verification:
-  - `python tools/verify_doc_artifacts.py` => `PASS`
+  - `python tooling/verify_doc_artifacts.py` => `PASS`

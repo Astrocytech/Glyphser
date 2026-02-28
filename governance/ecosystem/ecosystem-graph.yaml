@@ -3,131 +3,131 @@ nodes:
 - DocID: CORE-ES-001
   Layer: 0
   Type: core-guidelines
-  Path: document_guidelines/EquationCode/ECOSYSTEM.md
+  Path: governance/document_guidelines/EquationCode/ECOSYSTEM.md
 - DocID: CORE-BASE-001
   Layer: 0
   Type: core-guidelines
-  Path: document_guidelines/EquationCode/EQC.md
+  Path: governance/document_guidelines/EquationCode/EQC.md
 - DocID: L1-001
   Layer: 1
   Type: operator-library
-  Path: docs/layer1-foundation/API-Interfaces.md
+  Path: specs/layers/L1-foundation/API-Interfaces.md
 - DocID: L1-002
   Layer: 1
   Type: operator-library
-  Path: docs/layer1-foundation/Canonical-CBOR-Profile.md
+  Path: specs/layers/L1-foundation/Canonical-CBOR-Profile.md
 - DocID: L1-003
   Layer: 1
   Type: operator-library
-  Path: docs/layer1-foundation/Data-Structures.md
+  Path: specs/layers/L1-foundation/Data-Structures.md
 - DocID: L1-004
   Layer: 1
   Type: external-dependency
-  Path: docs/layer1-foundation/Dependency-Lock-Policy.md
+  Path: specs/layers/L1-foundation/Dependency-Lock-Policy.md
 - DocID: L1-005
   Layer: 1
   Type: operator-library
-  Path: docs/layer1-foundation/Determinism-Profiles.md
+  Path: specs/layers/L1-foundation/Determinism-Profiles.md
 - DocID: L1-006
   Layer: 1
   Type: operator-library
-  Path: docs/layer1-foundation/Digest-Catalog.md
+  Path: specs/layers/L1-foundation/Digest-Catalog.md
 - DocID: L1-007
   Layer: 1
   Type: external-dependency
-  Path: docs/layer1-foundation/Environment-Manifest.md
+  Path: specs/layers/L1-foundation/Environment-Manifest.md
 - DocID: L1-008
   Layer: 1
   Type: operator-library
-  Path: docs/layer1-foundation/Error-Codes.md
+  Path: specs/layers/L1-foundation/Error-Codes.md
 - DocID: L1-009
   Layer: 1
   Type: operator-library
-  Path: docs/layer1-foundation/Operator-Registry-Schema.md
+  Path: specs/layers/L1-foundation/Operator-Registry-Schema.md
 - DocID: L1-010
   Layer: 1
   Type: operator-library
-  Path: docs/layer1-foundation/Redaction-Policy.md
+  Path: specs/layers/L1-foundation/Redaction-Policy.md
 - DocID: L2-001
   Layer: 2
   Type: algorithm-spec
-  Path: docs/layer2-specs/AuthZ-Capability-Matrix.md
+  Path: specs/layers/L2-specs/AuthZ-Capability-Matrix.md
 - DocID: L2-002
   Layer: 2
   Type: checkpoint-schema
-  Path: docs/layer2-specs/Checkpoint-Schema.md
+  Path: specs/layers/L2-specs/Checkpoint-Schema.md
 - DocID: L2-003
   Layer: 2
   Type: algorithm-spec
-  Path: docs/layer2-specs/Config-Schema.md
+  Path: specs/layers/L2-specs/Config-Schema.md
 - DocID: L2-004
   Layer: 2
   Type: data-registry
-  Path: docs/layer2-specs/Data-Lineage.md
+  Path: specs/layers/L2-specs/Data-Lineage.md
 - DocID: L2-005
   Layer: 2
   Type: algorithm-spec
-  Path: docs/layer2-specs/Data-NextBatch.md
+  Path: specs/layers/L2-specs/Data-NextBatch.md
 - DocID: L2-006
   Layer: 2
   Type: algorithm-spec
-  Path: docs/layer2-specs/Deployment-Runbook.md
+  Path: specs/layers/L2-specs/Deployment-Runbook.md
 - DocID: L2-007
   Layer: 2
   Type: algorithm-spec
-  Path: docs/layer2-specs/DifferentialPrivacy-Apply.md
+  Path: specs/layers/L2-specs/DifferentialPrivacy-Apply.md
 - DocID: L2-008
   Layer: 2
   Type: algorithm-spec
-  Path: docs/layer2-specs/Evaluation-Harness.md
+  Path: specs/layers/L2-specs/Evaluation-Harness.md
 - DocID: L2-009
   Layer: 2
   Type: algorithm-spec
-  Path: docs/layer2-specs/Execution-Certificate.md
+  Path: specs/layers/L2-specs/Execution-Certificate.md
 - DocID: L2-010
   Layer: 2
   Type: algorithm-spec
-  Path: docs/layer2-specs/Experiment-Tracking.md
+  Path: specs/layers/L2-specs/Experiment-Tracking.md
 - DocID: L2-011
   Layer: 2
   Type: algorithm-spec
-  Path: docs/layer2-specs/Model-Registry.md
+  Path: specs/layers/L2-specs/Model-Registry.md
 - DocID: L2-012
   Layer: 2
   Type: algorithm-spec
-  Path: docs/layer2-specs/ModelIR-Executor.md
+  Path: specs/layers/L2-specs/ModelIR-Executor.md
 - DocID: L2-013
   Layer: 2
   Type: algorithm-spec
-  Path: docs/layer2-specs/Monitoring-Policy.md
+  Path: specs/layers/L2-specs/Monitoring-Policy.md
 - DocID: L2-014
   Layer: 2
   Type: algorithm-spec
-  Path: docs/layer2-specs/Pipeline-Orchestrator.md
+  Path: specs/layers/L2-specs/Pipeline-Orchestrator.md
 - DocID: L2-015
   Layer: 2
   Type: algorithm-spec
-  Path: docs/layer2-specs/Replay-Determinism.md
+  Path: specs/layers/L2-specs/Replay-Determinism.md
 - DocID: L2-016
   Layer: 2
   Type: algorithm-spec
-  Path: docs/layer2-specs/Run-Commit-WAL.md
+  Path: specs/layers/L2-specs/Run-Commit-WAL.md
 - DocID: L2-017
   Layer: 2
   Type: algorithm-spec
-  Path: docs/layer2-specs/Security-Compliance-Profile.md
+  Path: specs/layers/L2-specs/Security-Compliance-Profile.md
 - DocID: L2-018
   Layer: 2
   Type: algorithm-spec
-  Path: docs/layer2-specs/TMMU-Allocation.md
+  Path: specs/layers/L2-specs/TMMU-Allocation.md
 - DocID: L2-019
   Layer: 2
   Type: algorithm-spec
-  Path: docs/layer2-specs/Trace-Sidecar.md
+  Path: specs/layers/L2-specs/Trace-Sidecar.md
 - DocID: L2-020
   Layer: 2
   Type: algorithm-spec
-  Path: docs/layer2-specs/Glyphser-Kernel-v3.22-OS.md
+  Path: specs/layers/L2-specs/Glyphser-Kernel-v3.22-OS.md
 - DocID: L3-001
   Layer: 3
   Type: test-suite
@@ -439,7 +439,7 @@ nodes:
 - DocID: L1-011
   Layer: 1
   Type: core-guidelines
-  Path: docs/layer1-foundation/Normativity-Legend.md
+  Path: specs/layers/L1-foundation/Normativity-Legend.md
 - DocID: L4-062
   Layer: 4
   Type: derived-impl

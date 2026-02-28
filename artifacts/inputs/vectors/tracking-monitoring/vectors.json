@@ -1,0 +1,10 @@
+{
+  "vector_set_id": "tracking-monitoring-vectors-v1",
+  "vectors": [
+    {
+      "case_id": "tracking_metric_log_stub",
+      "expected_ref": "artifacts/expected/goldens/tracking-monitoring/metric_log_expected.json",
+      "input_ref": "artifacts/inputs/fixtures/tracking-monitoring/run_event.json"
+    }
+  ]
+}

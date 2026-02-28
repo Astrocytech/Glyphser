@@ -9,13 +9,13 @@ Status: PUBLIC-READY
 
 ## Verification
 - Reproducibility guide: `docs/VERIFY.md`
-- Single command: `python tools/verify_release.py`
+- Single command: `python tooling/verify_release.py`
 
 ## Quick Verify (External, <=5 steps)
 1. Clone repository and checkout the release commit/tag.
 2. Create and activate a virtual environment.
 3. Install runtime dependencies: `python -m pip install -e .`
-4. Run `python tools/verify_release.py`.
+4. Run `python tooling/verify_release.py`.
 5. Confirm `VERIFY_RELEASE: PASS`.
 
 ## Known-Good Hash Table

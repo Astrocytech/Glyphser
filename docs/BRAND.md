@@ -11,4 +11,4 @@
 
 ## Repository Mapping
 * `/src/glyphser`: Public API and User Tooling.
-* `/docs/layer2-specs/Glyphser-Kernel...`: Internal engine specifications.
+* `/specs/layers/L2-specs/Glyphser-Kernel...`: Internal engine specifications.

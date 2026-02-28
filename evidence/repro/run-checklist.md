@@ -9,7 +9,7 @@
 ## Host A Steps
 1. Verify clean repo and correct commit.
 2. Record OS, CPU, Python version.
-3. Run: `python3 tools/push_button.py`.
+3. Run: `python3 tooling/push_button.py`.
 4. Save:
    - `artifacts/bundles/hello-core-bundle.sha256`
    - `evidence/conformance/reports/latest.json`
@@ -19,7 +19,7 @@
 ## Host B Steps
 1. Verify clean repo and correct commit.
 2. Record OS, CPU, Python version.
-3. Run: `python3 tools/push_button.py`.
+3. Run: `python3 tooling/push_button.py`.
 4. Save:
    - `artifacts/bundles/hello-core-bundle.sha256`
    - `evidence/conformance/reports/latest.json`

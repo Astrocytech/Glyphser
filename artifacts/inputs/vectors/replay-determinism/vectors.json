@@ -1,0 +1,10 @@
+{
+  "vector_set_id": "replay-determinism-vectors-v1",
+  "vectors": [
+    {
+      "case_id": "replay_compare_stub",
+      "expected_ref": "artifacts/expected/goldens/replay-determinism/replay_expected.json",
+      "input_ref": "artifacts/inputs/fixtures/replay-determinism/trace.json"
+    }
+  ]
+}

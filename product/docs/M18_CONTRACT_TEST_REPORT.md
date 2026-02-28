@@ -5,7 +5,7 @@ Date: 2026-02-28
 Status: PASS
 
 ## Commands Executed
-- `python3 tools/api_contract_gate.py`
+- `python3 tooling/api_contract_gate.py`
 - `python3 -m pytest tests/api/test_runtime_api.py tests/api/test_api_cli.py tests/api/test_api_contract_gate.py -q`
 
 ## Result
@@ -14,8 +14,8 @@ Status: PASS
 
 ## Evidence Artifacts
 - `contracts/openapi_public_api_v1.yaml`
-- `tools/api_cli.py`
-- `tools/api_contract_gate.py`
+- `tooling/api_cli.py`
+- `tooling/api_contract_gate.py`
 - `docs/product/API_REFERENCE_v1.md`
 - `docs/product/API_CLI_COMMANDS.md`
 - `docs/product/API_LIFECYCLE_POLICY.md`

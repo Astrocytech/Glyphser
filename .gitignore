@@ -4,7 +4,6 @@ __pycache__/
 *.class
 .venv/
 build/
-dist/
 .coverage
 coverage.xml
 htmlcov/
@@ -16,22 +15,10 @@ htmlcov/
 .cache/
 
 # Project Specific
-temp/
-semantic_lint_report.txt
-semantic_lint_high_confidence.txt
-merged_docs.txt
-reports/
+/temp/
+/*.local
 output/
-artifacts/
 *.log
-conformance/results/
-conformance/reports/
-
-# Private / internal docs and planning
-docs/ip/
-docs/INTERPRETATION_LOG.md
-docs/WEEKLY_REVIEW_TEMPLATE.md
-milestones.txt
 
 # Secrets / local config
 .env

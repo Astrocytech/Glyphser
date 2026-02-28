@@ -7,4 +7,4 @@ Evidence:
 - Public key: `docs/release/RELEASE_PUBKEY.asc`
 - GA gate report: `evidence/ga/latest.json`
 - RC verification: `evidence/ga/release_candidate_verification.json`
-- Push-button full regression: `python3 tools/push_button.py` (PASS)
+- Push-button full regression: `python3 tooling/push_button.py` (PASS)

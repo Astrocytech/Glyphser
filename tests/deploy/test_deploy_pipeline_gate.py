@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 def test_deploy_pipeline_gate_passes():
     proc = subprocess.run(
-        [sys.executable, "tools/deploy/run_deployment_pipeline.py"],
+        [sys.executable, "tooling/deploy/run_deployment_pipeline.py"],
         cwd=ROOT,
         check=False,
         text=True,

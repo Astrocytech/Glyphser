@@ -1,6 +1,6 @@
 # API CLI Command Reference (Milestone 18)
 
-Tool: `python tools/api_cli.py`
+Tool: `python tooling/api_cli.py`
 
 ## Global Options
 - `--state-path PATH`: optional local state file path.
@@ -9,7 +9,7 @@ Tool: `python tools/api_cli.py`
 
 ### Submit
 ```bash
-python tools/api_cli.py submit \
+python tooling/api_cli.py submit \
   --payload-file payload.json \
   --token demo-token \
   --scope jobs:write \
@@ -18,7 +18,7 @@ python tools/api_cli.py submit \
 
 ### Status
 ```bash
-python tools/api_cli.py status \
+python tooling/api_cli.py status \
   --job-id <JOB_ID> \
   --token demo-token \
   --scope jobs:read
@@ -26,7 +26,7 @@ python tools/api_cli.py status \
 
 ### Evidence
 ```bash
-python tools/api_cli.py evidence \
+python tooling/api_cli.py evidence \
   --job-id <JOB_ID> \
   --token demo-token \
   --scope evidence:read
@@ -34,7 +34,7 @@ python tools/api_cli.py evidence \
 
 ### Replay
 ```bash
-python tools/api_cli.py replay \
+python tooling/api_cli.py replay \
   --job-id <JOB_ID> \
   --token demo-token \
   --scope replay:run

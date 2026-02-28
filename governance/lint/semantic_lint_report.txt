@@ -1,0 +1,349 @@
+Semantic Lint Report
+====================
+
+Docs scanned: 104
+Operators referenced: 444
+Operators defined: 303
+Undefined operator refs: 141
+Base-name version drift groups: 0
+Heuristic contract/procedure issues: 49
+
+A) Undefined operator references
+-------------------------------
+- Glyphser.API.LifecyclePolicy
+  refs: 1 first: docs/layer4-implementation/API-Lifecycle-and-Deprecation-Policy.md
+- Glyphser.Architecture.DecisionLog
+  refs: 1 first: docs/layer4-implementation/Architecture-Decisions-Log.md
+- Glyphser.Backend.AdapterContract
+  refs: 1 first: docs/layer4-implementation/Backend-Adapter-Guide.md
+- Glyphser.Backend.FeatureMatrix
+  refs: 1 first: docs/layer4-implementation/Backend-Feature-Matrix.md
+- Glyphser.Certificate.ExecutionCertificate
+  refs: 1 first: specs/layers/L2-specs/Execution-Certificate.md
+- Glyphser.Checkpoint.CheckpointMigrate
+  refs: 3 first: specs/layers/L1-foundation/API-Interfaces.md
+- Glyphser.Checkpoint.SchemaContract
+  refs: 1 first: specs/layers/L2-specs/Checkpoint-Schema.md
+- Glyphser.Checkpoint.Write
+  refs: 1 first: docs/layer4-implementation/Reference-Stack-Minimal.md
+- Glyphser.Commit.RunCommitWAL
+  refs: 1 first: specs/layers/L2-specs/Run-Commit-WAL.md
+- Glyphser.Config.SchemaValidator
+  refs: 1 first: specs/layers/L2-specs/Config-Schema.md
+- Glyphser.Data.Lineage
+  refs: 1 first: specs/layers/L2-specs/Data-Lineage.md
+- Glyphser.Environment.Manifest
+  refs: 1 first: specs/layers/L1-foundation/Environment-Manifest.md
+- Glyphser.Error.CodeRegistry
+  refs: 1 first: specs/layers/L1-foundation/Error-Codes.md
+- Glyphser.Eval.Harness
+  refs: 1 first: specs/layers/L2-specs/Evaluation-Harness.md
+- Glyphser.Governance.CommunityModel
+  refs: 1 first: docs/layer4-implementation/Community-Governance-Model.md
+- Glyphser.IO.WriteTrainingCertificate
+  refs: 1 first: specs/layers/L2-specs/Glyphser-Kernel-v3.22-OS.md
+- Glyphser.Implementation.APIInterfaceContract
+  refs: 1 first: specs/layers/L1-foundation/API-Interfaces.md
+- Glyphser.Implementation.AggregateLintVerdict
+  refs: 1 first: docs/layer4-implementation/Spec-Lint-Implementation.md
+- Glyphser.Implementation.Backlog
+  refs: 1 first: docs/layer4-implementation/Implementation-Backlog.md
+- Glyphser.Implementation.BindExpansionToBacklog
+  refs: 1 first: docs/layer4-implementation/Expansion-Catalog-041-250.md
+- Glyphser.Implementation.BrownfieldAdoption
+  refs: 1 first: docs/layer4-implementation/Brownfield-Deployment-Guide.md
+- Glyphser.Implementation.BuildCIMatrix
+  refs: 1 first: docs/layer4-implementation/Build-and-CI-Matrix.md
+- Glyphser.Implementation.CLICommandProfiles
+  refs: 1 first: docs/layer4-implementation/CLI-Command-Profiles.md
+- Glyphser.Implementation.ChangeControlPlaybook
+  refs: 1 first: docs/layer4-implementation/Change-Control-Playbook.md
+- Glyphser.Implementation.CodeGenerationMapping
+  refs: 1 first: docs/layer4-implementation/Code-Generation-Mapping.md
+- Glyphser.Implementation.CodingStandards
+  refs: 1 first: docs/layer4-implementation/Coding-Standards.md
+- Glyphser.Implementation.CommandReference
+  refs: 1 first: docs/layer4-implementation/Command-Reference.md
+- Glyphser.Implementation.ConformanceCIPipeline
+  refs: 1 first: docs/layer3-tests/Conformance-CI-Pipeline.md
+- Glyphser.Implementation.ConformanceHarnessGuide
+  refs: 1 first: docs/layer3-tests/Conformance-Harness-Guide.md
+- Glyphser.Implementation.ContractsArtifactLifecycle
+  refs: 1 first: docs/layer4-implementation/Contracts-Artifact-Lifecycle.md
+- Glyphser.Implementation.ContributingWorkflow
+  refs: 1 first: docs/layer4-implementation/Contributing-Workflow.md
+- Glyphser.Implementation.DataStructureContract
+  refs: 1 first: specs/layers/L1-foundation/Data-Structures.md
+- Glyphser.Implementation.DebuggingPlaybook
+  refs: 1 first: docs/layer4-implementation/Debugging-Playbook.md
+- Glyphser.Implementation.DependencyLockPolicy
+  refs: 1 first: specs/layers/L1-foundation/Dependency-Lock-Policy.md
+- Glyphser.Implementation.DeploymentRunbook
+  refs: 1 first: specs/layers/L2-specs/Deployment-Runbook.md
+- Glyphser.Implementation.DeterminismDebugChecklist
+  refs: 1 first: docs/layer4-implementation/Determinism-Debug-Checklist.md
+- Glyphser.Implementation.DeterministicRNGGuide
+  refs: 1 first: docs/layer4-implementation/Deterministic-RNG-Implementation-Guide.md
+- Glyphser.Implementation.DeveloperSetup
+  refs: 1 first: docs/layer4-implementation/Developer-Setup.md
+- Glyphser.Implementation.EQCCIPolicy
+  refs: 1 first: docs/layer4-implementation/EQC-CI-Policy.md
+- Glyphser.Implementation.EcosystemExpansionRoadmap
+  refs: 1 first: docs/layer4-implementation/Ecosystem-Expansion-Roadmap.md
+- Glyphser.Implementation.EmitExpansionCatalogReport
+  refs: 1 first: docs/layer4-implementation/Expansion-Catalog-041-250.md
+- Glyphser.Implementation.EmitExpansionReport
+  refs: 1 first: docs/layer4-implementation/Ecosystem-Expansion-Roadmap.md
+- Glyphser.Implementation.EvaluateRuleSet
+  refs: 1 first: docs/layer4-implementation/Spec-Lint-Rules.md
+- Glyphser.Implementation.EvaluateWorkstreamReadiness
+  refs: 1 first: docs/layer4-implementation/Ecosystem-Expansion-Roadmap.md
+- Glyphser.Implementation.ExpansionCatalog041_250
+  refs: 1 first: docs/layer4-implementation/Expansion-Catalog-041-250.md
+- Glyphser.Implementation.IndustryProductizationPlan
+  refs: 1 first: docs/layer4-implementation/Industry-Productization-Upgrade-Plan.md
+- Glyphser.Implementation.LoadDocSet
+  refs: 1 first: docs/layer4-implementation/Spec-Lint-Implementation.md
+- Glyphser.Implementation.LoadOperatorRegistry
+  refs: 1 first: docs/layer4-implementation/Operator-Conformance-Matrix.md
+- Glyphser.Implementation.LoadRuleCatalog
+  refs: 1 first: docs/layer4-implementation/Spec-Lint-Rules.md
+- Glyphser.Implementation.LocalReplayRunbook
+  refs: 1 first: docs/layer4-implementation/Local-Replay-Runbook.md
+- Glyphser.Implementation.MigrationExecutionGuide
+  refs: 1 first: docs/layer4-implementation/Migration-Execution-Guide.md
+- Glyphser.Implementation.ModuleScaffold
+  refs: 1 first: docs/layer4-implementation/Module-Scaffolding-Guide.md
+- Glyphser.Implementation.OperatorConformanceMatrix
+  refs: 1 first: docs/layer4-implementation/Operator-Conformance-Matrix.md
+- Glyphser.Implementation.OperatorSDKScaffold
+  refs: 1 first: docs/layer4-implementation/Operator-SDK-Scaffold-Template.md
+- Glyphser.Implementation.PRReviewChecklist
+  refs: 1 first: docs/layer4-implementation/PR-Review-Checklist.md
+- Glyphser.Implementation.PerformanceGovernance
+  refs: 1 first: docs/layer3-tests/Performance-Plan.md
+- Glyphser.Implementation.PlanWorkstream
+  refs: 1 first: docs/layer4-implementation/Ecosystem-Expansion-Roadmap.md
+- Glyphser.Implementation.ProfilingOptimizationGuide
+  refs: 1 first: docs/layer4-implementation/Profiling-and-Optimization-Guide.md
+- Glyphser.Implementation.ReferenceImplementations
+  refs: 1 first: docs/layer4-implementation/Reference-Implementations.md
+- Glyphser.Implementation.RegisterExpansionIdea
+  refs: 1 first: docs/layer4-implementation/Expansion-Catalog-041-250.md
+- Glyphser.Implementation.ReleaseGates
+  refs: 1 first: docs/layer3-tests/Release-Gates.md
+- Glyphser.Implementation.ReplayDeterminismContract
+  refs: 1 first: specs/layers/L2-specs/Replay-Determinism.md
+- Glyphser.Implementation.RepoLayoutInterfaces
+  refs: 1 first: docs/layer4-implementation/Repo-Layout-and-Interfaces.md
+- Glyphser.Implementation.RoadmapPlanner
+  refs: 1 first: docs/layer4-implementation/Implementation-Roadmap.md
+- Glyphser.Implementation.SchemaEvolutionPlaybook
+  refs: 1 first: docs/layer4-implementation/Schema-Evolution-Playbook.md
+- Glyphser.Implementation.ScoreExpansionIdea
+  refs: 1 first: docs/layer4-implementation/Expansion-Catalog-041-250.md
+- Glyphser.Implementation.SpecLintRules
+  refs: 1 first: docs/layer4-implementation/Spec-Lint-Rules.md
+- Glyphser.Implementation.SpecLint
+  refs: 3 first: docs/layer4-implementation/Operator-Registry-CBOR-Contract.md
+- Glyphser.Implementation.TestPlanOrchestrator
+  refs: 1 first: docs/layer3-tests/Test-Plan.md
+- Glyphser.Implementation.ToolingSuite
+  refs: 1 first: docs/layer4-implementation/Tooling-and-Automation-Suite.md
+- Glyphser.Implementation.TroubleshootingFAQ
+  refs: 1 first: docs/layer4-implementation/Developer-Troubleshooting-FAQ.md
+- Glyphser.Implementation.ValidateOwnershipMap
+  refs: 1 first: docs/layer4-implementation/Repo-Layout-and-Interfaces.md
+- Glyphser.Implementation.ValidateScaffoldHooks
+  refs: 1 first: docs/layer4-implementation/Operator-SDK-Scaffold-Template.md
+- Glyphser.Implementation.VerifyMigrationEquivalence
+  refs: 1 first: docs/layer4-implementation/Schema-Evolution-Playbook.md
+- Glyphser.Import.LegacyFramework
+  refs: 3 first: specs/layers/L1-foundation/API-Interfaces.md
+- Glyphser.Interop.StandardsBridge
+  refs: 1 first: docs/layer4-implementation/Interoperability-Standards-Bridge.md
+- Glyphser.Marketplace.OperatorCertification
+  refs: 1 first: docs/layer4-implementation/Third-Party-Operator-Certification-Program.md
+- Glyphser.Monitoring.Policy
+  refs: 1 first: specs/layers/L2-specs/Monitoring-Policy.md
+- Glyphser.Operations.ClassifyIncident
+  refs: 1 first: docs/layer4-implementation/SRE-Incident-Triage-Playbook.md
+- Glyphser.Operations.DisasterRecovery
+  refs: 1 first: docs/layer4-implementation/Disaster-Recovery-Operations-Runbook.md
+- Glyphser.Operations.EmitRemediationPlan
+  refs: 1 first: docs/layer4-implementation/SRE-Incident-Triage-Playbook.md
+- Glyphser.Operations.SREIncidentTriage
+  refs: 1 first: docs/layer4-implementation/SRE-Incident-Triage-Playbook.md
+- Glyphser.Perf.CaptureProfileWindow
+  refs: 1 first: docs/layer4-implementation/Profiling-and-Optimization-Guide.md
+- Glyphser.Pipeline.Orchestrator
+  refs: 1 first: specs/layers/L2-specs/Pipeline-Orchestrator.md
+- Glyphser.Product.BuildCertificationBundle
+  refs: 1 first: docs/layer4-implementation/Industry-Productization-Upgrade-Plan.md
+- Glyphser.Product.EmitObservabilityMapping
+  refs: 1 first: docs/layer4-implementation/Industry-Productization-Upgrade-Plan.md
+- Glyphser.Product.EmitSecurityCase
+  refs: 1 first: docs/layer4-implementation/Industry-Productization-Upgrade-Plan.md
+- Glyphser.Product.EvaluatePerformanceTier
+  refs: 1 first: docs/layer4-implementation/Industry-Productization-Upgrade-Plan.md
+- Glyphser.Product.GenerateExternalInterfaces
+  refs: 1 first: docs/layer4-implementation/Industry-Productization-Upgrade-Plan.md
+- Glyphser.Product.ResolveProfile
+  refs: 1 first: docs/layer4-implementation/Industry-Productization-Upgrade-Plan.md
+- Glyphser.Product.RunChaosProofPack
+  refs: 1 first: docs/layer4-implementation/Industry-Productization-Upgrade-Plan.md
+- Glyphser.Product.ValidateEvolutionPolicy
+  refs: 1 first: docs/layer4-implementation/Industry-Productization-Upgrade-Plan.md
+- Glyphser.Product.ValidateReferenceStack
+  refs: 1 first: docs/layer4-implementation/Industry-Productization-Upgrade-Plan.md
+- Glyphser.Random.ConsumeDeterministic
+  refs: 1 first: docs/layer4-implementation/Deterministic-RNG-Implementation-Guide.md
+- Glyphser.Random.InitializePRNG
+  refs: 1 first: docs/layer4-implementation/Deterministic-RNG-Implementation-Guide.md
+- Glyphser.ReferenceExample.HelloWorld
+  refs: 1 first: docs/layer4-implementation/Hello-World-End-to-End-Example.md
+- Glyphser.ReferenceStack.Minimal
+  refs: 1 first: docs/layer4-implementation/Reference-Stack-Minimal.md
+- Glyphser.Registry.BuildOperatorRegistryArtifact
+  refs: 1 first: docs/layer4-implementation/Operator-Registry-CBOR-Contract.md
+- Glyphser.Registry.DigestCatalog
+  refs: 1 first: specs/layers/L1-foundation/Digest-Catalog.md
+- Glyphser.Registry.ModelRegistry
+  refs: 1 first: specs/layers/L2-specs/Model-Registry.md
+- Glyphser.Registry.OperatorRegistryCBOR
+  refs: 1 first: docs/layer4-implementation/Operator-Registry-CBOR-Contract.md
+- Glyphser.Registry.OperatorRegistrySchema
+  refs: 1 first: specs/layers/L1-foundation/Operator-Registry-Schema.md
+- Glyphser.Registry.ValidateOperatorRegistryArtifact
+  refs: 1 first: docs/layer4-implementation/Operator-Registry-CBOR-Contract.md
+- Glyphser.Release.CollectEvidenceRefs
+  refs: 1 first: docs/layer4-implementation/Release-Evidence-Assembler.md
+- Glyphser.Release.EvidenceAssembler
+  refs: 1 first: docs/layer4-implementation/Release-Evidence-Assembler.md
+- Glyphser.Release.ValidateEvidenceBundle
+  refs: 1 first: docs/layer4-implementation/Release-Evidence-Assembler.md
+- Glyphser.Replay.CheckBackendProfile
+  refs: 1 first: docs/layer4-implementation/Determinism-Debug-Checklist.md
+- Glyphser.Replay.CheckRNGProgression
+  refs: 1 first: docs/layer4-implementation/Determinism-Debug-Checklist.md
+- Glyphser.Replay.DeterminismProfiles
+  refs: 1 first: specs/layers/L1-foundation/Determinism-Profiles.md
+- Glyphser.Runtime.DistributedFailureRecovery
+  refs: 1 first: docs/layer4-implementation/Distributed-Failure-Recovery-Guide.md
+- Glyphser.Runtime.EmitTransitionTrace
+  refs: 1 first: docs/layer4-implementation/Runtime-State-Machine-Reference.md
+- Glyphser.Runtime.StateMachineReference
+  refs: 1 first: docs/layer4-implementation/Runtime-State-Machine-Reference.md
+- Glyphser.SDK.UsageGuide
+  refs: 1 first: docs/layer4-implementation/SDK-Usage-Guide.md
+- Glyphser.Security.AuthZCapabilityMatrix
+  refs: 1 first: specs/layers/L2-specs/AuthZ-Capability-Matrix.md
+- Glyphser.Security.CodingChecklist
+  refs: 1 first: docs/layer4-implementation/Security-Coding-Checklist.md
+- Glyphser.Security.ComplianceProfile
+  refs: 1 first: specs/layers/L2-specs/Security-Compliance-Profile.md
+- Glyphser.Security.RedactionPolicy
+  refs: 1 first: specs/layers/L1-foundation/Redaction-Policy.md
+- Glyphser.Security.RunStaticSecurityChecks
+  refs: 1 first: docs/layer4-implementation/Security-Coding-Checklist.md
+- Glyphser.Security.ThreatModelCrosswalk
+  refs: 1 first: docs/layer4-implementation/Threat-Model-and-Control-Crosswalk.md
+- Glyphser.Serialization.CanonicalCBORProfile
+  refs: 1 first: specs/layers/L1-foundation/Canonical-CBOR-Profile.md
+- Glyphser.Serialization.CanonicalHashingReference
+  refs: 1 first: docs/layer4-implementation/Canonical-Hashing-Reference.md
+- Glyphser.Storage.ArtifactStoreAdapterGuide
+  refs: 1 first: docs/layer4-implementation/Artifact-Store-Adapter-Guide.md
+- Glyphser.Structural.Addendum
+  refs: 19 first: docs/layer3-tests/Game-Day-Scenarios.md
+- Glyphser.Test.AggregateHarnessReport
+  refs: 1 first: docs/layer4-implementation/Test-Harness-Implementation.md
+- Glyphser.Test.CompatibilityMatrix
+  refs: 1 first: docs/layer3-tests/Compatibility-Test-Matrix.md
+- Glyphser.Test.CoverageTargets
+  refs: 1 first: docs/layer3-tests/Coverage-Targets.md
+- Glyphser.Test.DataContractFuzzing
+  refs: 1 first: docs/layer3-tests/Data-Contract-Fuzzing-Guide.md
+- Glyphser.Test.ExecuteVector
+  refs: 1 first: docs/layer4-implementation/Test-Harness-Implementation.md
+- Glyphser.Test.FailureInjection
+  refs: 1 first: docs/layer3-tests/Failure-Injection-Scenarios.md
+- Glyphser.Test.FixturesGoldenData
+  refs: 1 first: docs/layer4-implementation/Fixtures-and-Golden-Data.md
+- Glyphser.Test.GameDayScenarios
+  refs: 1 first: docs/layer3-tests/Game-Day-Scenarios.md
+- Glyphser.Test.HarnessImplementation
+  refs: 1 first: docs/layer4-implementation/Test-Harness-Implementation.md
+- Glyphser.Test.IntegrationMatrix
+  refs: 1 first: docs/layer3-tests/Integration-Test-Matrix.md
+- Glyphser.Test.LoadVectorSet
+  refs: 1 first: docs/layer4-implementation/Test-Harness-Implementation.md
+- Glyphser.Test.StorageRecoveryMatrix
+  refs: 1 first: docs/layer3-tests/Storage-Recovery-Test-Matrix.md
+- Glyphser.Test.VectorsCatalog
+  refs: 1 first: docs/layer3-tests/Test-Vectors-Catalog.md
+- Glyphser.Trace.Format
+  refs: 1 first: specs/layers/L1-foundation/Determinism-Profiles.md
+- Glyphser.Trace.SidecarSchema
+  refs: 2 first: specs/layers/L2-specs/Config-Schema.md
+- Glyphser.Trace.TraceMigrate
+  refs: 3 first: specs/layers/L1-foundation/API-Interfaces.md
+- Glyphser.Tracking.ExperimentTracking
+  refs: 1 first: specs/layers/L2-specs/Experiment-Tracking.md
+- Glyphser.Verification.FormalRoadmap
+  refs: 1 first: docs/layer4-implementation/Formal-Verification-Roadmap.md
+
+B) Version drift by base operator
+---------------------------------
+
+C) Heuristic reproducibility/procedure mismatches
+-------------------------------------------------
+- specs/layers/L1-foundation/API-Interfaces.md :: outputs_not_explicit_in_procedure :: ['interface_hash', 'validation_report']
+- specs/layers/L1-foundation/Digest-Catalog.md :: outputs_not_explicit_in_procedure :: ['resolved_digest', 'validation_report']
+- specs/layers/L1-foundation/Error-Codes.md :: outputs_not_explicit_in_procedure :: ['error_record', 'serialized_error']
+- specs/layers/L1-foundation/Operator-Registry-Schema.md :: outputs_not_explicit_in_procedure :: ['validation_report']
+- specs/layers/L1-foundation/Redaction-Policy.md :: outputs_not_explicit_in_procedure :: ['map']
+- specs/layers/L2-specs/AuthZ-Capability-Matrix.md :: outputs_not_explicit_in_procedure :: ['authz_report', 'authz_verdict']
+- specs/layers/L2-specs/Config-Schema.md :: outputs_not_explicit_in_procedure :: ['normalized_manifest', 'validation_report']
+- specs/layers/L2-specs/Deployment-Runbook.md :: outputs_not_explicit_in_procedure :: ['normative']
+- specs/layers/L2-specs/DifferentialPrivacy-Apply.md :: outputs_not_explicit_in_procedure :: ['updated_budget']
+- specs/layers/L2-specs/Execution-Certificate.md :: outputs_not_explicit_in_procedure :: ['execution_certificate', 'verification_report']
+- specs/layers/L2-specs/Experiment-Tracking.md :: outputs_not_explicit_in_procedure :: ['artifact_index_hash']
+- specs/layers/L2-specs/Model-Registry.md :: outputs_not_explicit_in_procedure :: ['gate_report', 'registry_event']
+- specs/layers/L2-specs/Monitoring-Policy.md :: outputs_not_explicit_in_procedure :: ['alert_stream', 'monitor_report']
+- specs/layers/L2-specs/Replay-Determinism.md :: outputs_not_explicit_in_procedure :: ['divergence_summary']
+- specs/layers/L2-specs/Run-Commit-WAL.md :: outputs_not_explicit_in_procedure :: ['commit_record_hash', 'commit_status', 'wal_terminal_hash']
+- specs/layers/L2-specs/Trace-Sidecar.md :: outputs_not_explicit_in_procedure :: ['trace_final_hash']
+- docs/layer3-tests/Coverage-Targets.md :: outputs_not_explicit_in_procedure :: ['aggregation', 'and', 'coverage_verdict', 'deterministic', 'is']
+- docs/layer3-tests/Data-Contract-Fuzzing-Guide.md :: outputs_not_explicit_in_procedure :: ['fuzz_seed', 'harness_version', 'iteration_budget', 'target_schema_hash']
+- docs/layer3-tests/Failure-Injection-Scenarios.md :: outputs_not_explicit_in_procedure :: ['evidence_bundle_hash', 'injection_point', 'recovery_verdict', 'runtime_profile', 'scenario_id', 'seed']
+- docs/layer3-tests/Performance-Plan.md :: outputs_not_explicit_in_procedure :: ['metric_snapshot_hash']
+- docs/layer3-tests/Test-Plan.md :: outputs_not_explicit_in_procedure :: ['test_report']
+- docs/layer4-implementation/Backend-Feature-Matrix.md :: outputs_not_explicit_in_procedure :: ['capability_report', 'compatibility_verdict']
+- docs/layer4-implementation/Build-and-CI-Matrix.md :: outputs_not_explicit_in_procedure :: ['gate_verdict']
+- docs/layer4-implementation/Canonical-Hashing-Reference.md :: outputs_not_explicit_in_procedure :: ['digest_table', 'validation_report']
+- docs/layer4-implementation/Code-Generation-Mapping.md :: outputs_not_explicit_in_procedure :: ['generated_artifacts', 'mapping_table']
+- docs/layer4-implementation/Debugging-Playbook.md :: outputs_not_explicit_in_procedure :: ['root_cause_class']
+- docs/layer4-implementation/Determinism-Debug-Checklist.md :: outputs_not_explicit_in_procedure :: ['remediation_actions', 'root_cause']
+- docs/layer4-implementation/Deterministic-RNG-Implementation-Guide.md :: outputs_not_explicit_in_procedure :: ['offset_audit', 'rng_report']
+- docs/layer4-implementation/Developer-Setup.md :: outputs_not_explicit_in_procedure :: ['env_manifest_hash']
+- docs/layer4-implementation/Developer-Troubleshooting-FAQ.md :: outputs_not_explicit_in_procedure :: ['faq_resolution_report']
+- docs/layer4-implementation/Ecosystem-Expansion-Roadmap.md :: outputs_not_explicit_in_procedure :: ['expansion_evidence_hash', 'expansion_report', 'readiness_by_workstream', 'release_blockers']
+- docs/layer4-implementation/Expansion-Catalog-041-250.md :: outputs_not_explicit_in_procedure :: ['blocked_items', 'catalog_hash', 'catalog_report', 'prioritized_queue']
+- docs/layer4-implementation/Fixtures-and-Golden-Data.md :: outputs_not_explicit_in_procedure :: ['fixture_report', 'golden_report']
+- docs/layer4-implementation/Industry-Productization-Upgrade-Plan.md :: outputs_not_explicit_in_procedure :: ['certification_evidence_bundle_hash', 'productization_report', 'profile_bundle_hash', 'upgrade_gate_verdict']
+- docs/layer4-implementation/Migration-Execution-Guide.md :: outputs_not_explicit_in_procedure :: ['migration_certificate_hash']
+- docs/layer4-implementation/Module-Scaffolding-Guide.md :: outputs_not_explicit_in_procedure :: ['generated_paths']
+- docs/layer4-implementation/Operator-Conformance-Matrix.md :: outputs_not_explicit_in_procedure :: ['blockers', 'conformance_matrix', 'conformance_summary']
+- docs/layer4-implementation/Operator-Registry-CBOR-Contract.md :: outputs_not_explicit_in_procedure :: ['operator_id', 'operator_registry_cbor', 'operator_registry_root_hash', 'validation_report', 'version']
+- docs/layer4-implementation/Operator-SDK-Scaffold-Template.md :: outputs_not_explicit_in_procedure :: ['scaffold_files', 'scaffold_validation_report']
+- docs/layer4-implementation/Profiling-and-Optimization-Guide.md :: outputs_not_explicit_in_procedure :: ['gate_verdict', 'perf_regression_report', 'perf_snapshot']
+- docs/layer4-implementation/Reference-Stack-Minimal.md :: outputs_not_explicit_in_procedure :: ['certificate_hash', 'checkpoint_hash', 'replay_verdict', 'run_report', 'trace_final_hash']
+- docs/layer4-implementation/Release-Evidence-Assembler.md :: outputs_not_explicit_in_procedure :: ['evidence_bundle_hash', 'evidence_bundle_ref', 'validation_report']
+- docs/layer4-implementation/Runtime-State-Machine-Reference.md :: outputs_not_explicit_in_procedure :: ['new_state', 'state_metrics', 'transition_record']
+- docs/layer4-implementation/SRE-Incident-Triage-Playbook.md :: outputs_not_explicit_in_procedure :: ['incident_report', 'remediation_plan', 'triage_verdict']
+- docs/layer4-implementation/Schema-Evolution-Playbook.md :: outputs_not_explicit_in_procedure :: ['equivalence_report', 'migrated_hashes']
+- docs/layer4-implementation/Security-Coding-Checklist.md :: outputs_not_explicit_in_procedure :: ['security_findings', 'security_gate', 'security_metrics']
+- docs/layer4-implementation/Spec-Lint-Implementation.md :: outputs_not_explicit_in_procedure :: ['lint_metrics', 'lint_report', 'lint_verdict']
+- docs/layer4-implementation/Spec-Lint-Rules.md :: outputs_not_explicit_in_procedure :: ['findings', 'lint_metrics', 'verdict']
+- docs/layer4-implementation/Test-Harness-Implementation.md :: outputs_not_explicit_in_procedure :: ['harness_report', 'harness_verdict', 'suite_results']

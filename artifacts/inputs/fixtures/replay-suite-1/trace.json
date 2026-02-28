@@ -1,0 +1,17 @@
+{
+  "checkpoint": {
+    "checkpoint_id": "ckpt-suite-1",
+    "global_step": 2
+  },
+  "records": [
+    {
+      "event": "A",
+      "step": 1
+    },
+    {
+      "event": "B",
+      "step": 2
+    }
+  ],
+  "run_id": "suite-1"
+}

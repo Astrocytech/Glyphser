@@ -1,6 +1,6 @@
 {
   "budget_alarm_usd_monthly": 250,
-  "bundle_hash": "8071fc7404fc492a45407d5e637edc18372f92c0e497d701e730dd82ce2fd882",
+  "bundle_hash": "3b14739240a650fefe4156eaa6218a2443c18b44a106d421a06996755a07fbf0",
   "deployment_target": "staging",
   "manifest_path": "artifacts/generated/deploy/managed/bundle_manifest.json",
   "max_parallel_rollout_percent": 25,

@@ -10,12 +10,12 @@ Status: COMPLETE (CI-safe, compatibility preserved)
 - `artifacts/artifacts/generated/` (was `artifacts/generated/`)
 - `artifacts/bundles/` (was `artifacts/bundles/`)
 - `evidence/` (was `evidence/`)
-- `evidence/conformance/reports/` (was `conformance/reports/`)
+- `evidence/conformance/reports/` (was `evidence/conformance/reports/`)
 - `evidence/conformance/results/` (was `evidence/conformance/results/`)
 
 ## Compatibility Layer
 
-Legacy paths are preserved as symlinks so current tests/tools/workflows continue to run unchanged:
+Legacy paths are preserved as symlinks so current tests/tooling/workflows continue to run unchanged:
 
 - `fixtures -> artifacts/inputs/fixtures`
 - `vectors -> artifacts/inputs/vectors`
@@ -29,7 +29,7 @@ Legacy paths are preserved as symlinks so current tests/tools/workflows continue
 ## Validation
 
 - `python3 -m pytest -q` -> PASS
-- `python3 tools/push_button.py` -> PASS
+- `python3 tooling/push_button.py` -> PASS
 
 ## Notes
 

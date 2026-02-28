@@ -1,0 +1,10 @@
+{
+  "files": [
+    {
+      "path": "artifacts/inputs/fixtures/failure-injection/faulty_request.json",
+      "sha256": "02c4a861f23ad37a1aedd19958fc3df78b47fb7e2293076461857201f2046116",
+      "size_bytes": 67
+    }
+  ],
+  "fixture_set_id": "failure-injection-fixtures-v1"
+}

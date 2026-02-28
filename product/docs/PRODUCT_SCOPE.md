@@ -17,7 +17,7 @@ Glyphser is a deterministic execution and verification platform that produces re
 
 ## Primary User Journeys
 - First 30 minutes:
-- Clone repo, create virtual environment, run `python tools/verify_release.py`, confirm `VERIFY_RELEASE: PASS`.
+- Clone repo, create virtual environment, run `python tooling/verify_release.py`, confirm `VERIFY_RELEASE: PASS`.
 - Review release notes hash table and verify signed checksum file.
 - Execute profile-specific quickstart for local or production profile.
 - Ongoing usage:

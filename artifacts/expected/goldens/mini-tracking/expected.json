@@ -1,0 +1,12 @@
+{
+  "run_create": {
+    "run_id": "mini-run-1",
+    "status": "OK"
+  },
+  "metric_log": {
+    "status": "OK"
+  },
+  "monitor_emit": {
+    "status": "OK"
+  }
+}

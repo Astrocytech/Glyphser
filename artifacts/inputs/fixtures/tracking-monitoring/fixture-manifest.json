@@ -1,0 +1,10 @@
+{
+  "files": [
+    {
+      "path": "artifacts/inputs/fixtures/tracking-monitoring/run_event.json",
+      "sha256": "655634936518ca59d7550a273e539f02803271035b00d8080703c1735856a869",
+      "size_bytes": 59
+    }
+  ],
+  "fixture_set_id": "tracking-monitoring-fixtures-v1"
+}

@@ -4,7 +4,7 @@
 **Algorithm:** `Glyphser.Onboarding.StartHereCore`  
 **Purpose (1 sentence):** Provide the minimum deterministic onboarding path for first successful Core profile execution.  
 **Spec Version:** `Glyphser.Onboarding.StartHereCore` | 2026-02-21 | Authors: Olejar Damir  
-**Normativity Legend:** `docs/layer1-foundation/Normativity-Legend.md`
+**Normativity Legend:** `specs/layers/L1-foundation/Normativity-Legend.md`
 
 ---
 ## 1) Header & Global Semantics
@@ -26,10 +26,10 @@
 ## 3) Required File Set (Normative)
 - `docs/layer4-implementation/Reference-Stack-Minimal.md`
 - `docs/layer4-implementation/Hello-World-End-to-End-Example.md`
-- `docs/layer2-specs/Glyphser-Kernel-v3.22-OS.md`
-- `docs/layer2-specs/Run-Commit-WAL.md`
-- `docs/layer2-specs/Trace-Sidecar.md`
-- `docs/layer2-specs/Execution-Certificate.md`
+- `specs/layers/L2-specs/Glyphser-Kernel-v3.22-OS.md`
+- `specs/layers/L2-specs/Run-Commit-WAL.md`
+- `specs/layers/L2-specs/Trace-Sidecar.md`
+- `specs/layers/L2-specs/Execution-Certificate.md`
 - `docs/examples/hello-core/manifest.core.yaml`
 - `docs/examples/hello-core/hello-core-golden.json`
 
@@ -64,10 +64,10 @@
 - Required verifier refs:
   - `docs/layer4-implementation/Evidence-Catalog.md`
   - `docs/layer4-implementation/Determinism-Audit-Playbook.md`
-  - `tools/verify_doc_artifacts.py`
+  - `tooling/verify_doc_artifacts.py`
 
 ## 8) Artifact Verification Command (Normative)
 - Verification command:
-  - `python tools/verify_doc_artifacts.py`
+  - `python tooling/verify_doc_artifacts.py`
 - Result policy:
   - PASS is required before profile onboarding can be considered complete.

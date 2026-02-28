@@ -43,6 +43,6 @@
     "layer": "L1",
     "prose_check": "relaxed",
     "schema_version": "0.1",
-    "source_doc": "docs/layer1-foundation/Canonical-CBOR-Profile.md"
+    "source_doc": "specs/layers/L1-foundation/Canonical-CBOR-Profile.md"
   }
 }

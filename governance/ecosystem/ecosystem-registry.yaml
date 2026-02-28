@@ -7,7 +7,7 @@ records:
   Title: EQC Ecosystem Specification
   Type: core-guidelines
   Layer: 0
-  FilePath: document_guidelines/EquationCode/ECOSYSTEM.md
+  FilePath: governance/document_guidelines/EquationCode/ECOSYSTEM.md
   CurrentVersion: EQC-ES-v1.9.1
   Status: active
   LastUpdated: '2026-02-19'
@@ -26,7 +26,7 @@ records:
   Title: EQC Base Guidelines
   Type: core-guidelines
   Layer: 0
-  FilePath: document_guidelines/EquationCode/EQC.md
+  FilePath: governance/document_guidelines/EquationCode/EQC.md
   CurrentVersion: EQC-v1.1
   Status: active
   LastUpdated: '2026-02-19'
@@ -45,7 +45,7 @@ records:
   Title: API Interfaces
   Type: operator-library
   Layer: 1
-  FilePath: docs/layer1-foundation/API-Interfaces.md
+  FilePath: specs/layers/L1-foundation/API-Interfaces.md
   CurrentVersion: '`Glyphser.Implementation.APIInterfaceContract` | 2026-02-18 |
     Authors: Olejar Damir'
   Status: active
@@ -65,7 +65,7 @@ records:
   Title: Canonical CBOR Profile
   Type: operator-library
   Layer: 1
-  FilePath: docs/layer1-foundation/Canonical-CBOR-Profile.md
+  FilePath: specs/layers/L1-foundation/Canonical-CBOR-Profile.md
   CurrentVersion: '`Glyphser.Serialization.CanonicalCBORProfile` | 2026-02-19 | Authors:
     Olejar Damir'
   Status: active
@@ -85,7 +85,7 @@ records:
   Title: Data Structures
   Type: operator-library
   Layer: 1
-  FilePath: docs/layer1-foundation/Data-Structures.md
+  FilePath: specs/layers/L1-foundation/Data-Structures.md
   CurrentVersion: '`Glyphser.Implementation.DataStructureContract` | 2026-02-18 |
     Authors: Olejar Damir'
   Status: active
@@ -105,7 +105,7 @@ records:
   Title: Dependency Lock Policy
   Type: external-dependency
   Layer: 1
-  FilePath: docs/layer1-foundation/Dependency-Lock-Policy.md
+  FilePath: specs/layers/L1-foundation/Dependency-Lock-Policy.md
   CurrentVersion: '`Glyphser.Implementation.DependencyLockPolicy` | 2026-02-19 |
     Authors: Olejar Damir'
   Status: active
@@ -125,7 +125,7 @@ records:
   Title: Determinism Profiles
   Type: operator-library
   Layer: 1
-  FilePath: docs/layer1-foundation/Determinism-Profiles.md
+  FilePath: specs/layers/L1-foundation/Determinism-Profiles.md
   CurrentVersion: '`Glyphser.Replay.DeterminismProfiles` | 2026-02-19 | Authors:
     Olejar Damir'
   Status: active
@@ -145,7 +145,7 @@ records:
   Title: Digest Catalog
   Type: operator-library
   Layer: 1
-  FilePath: docs/layer1-foundation/Digest-Catalog.md
+  FilePath: specs/layers/L1-foundation/Digest-Catalog.md
   CurrentVersion: '`Glyphser.Registry.DigestCatalog` | 2026-02-19 | Authors: Olejar
     Damir'
   Status: active
@@ -165,7 +165,7 @@ records:
   Title: Environment Manifest
   Type: external-dependency
   Layer: 1
-  FilePath: docs/layer1-foundation/Environment-Manifest.md
+  FilePath: specs/layers/L1-foundation/Environment-Manifest.md
   CurrentVersion: '`Glyphser.Environment.Manifest` | 2026-02-20 | Authors: Olejar
     Damir'
   Status: active
@@ -185,7 +185,7 @@ records:
   Title: Error Codes
   Type: operator-library
   Layer: 1
-  FilePath: docs/layer1-foundation/Error-Codes.md
+  FilePath: specs/layers/L1-foundation/Error-Codes.md
   CurrentVersion: '`Glyphser.Error.CodeRegistry` | 2026-02-18 | Authors: Olejar Damir'
   Status: active
   LastUpdated: '2026-02-21'
@@ -204,7 +204,7 @@ records:
   Title: Operator Registry Schema
   Type: operator-library
   Layer: 1
-  FilePath: docs/layer1-foundation/Operator-Registry-Schema.md
+  FilePath: specs/layers/L1-foundation/Operator-Registry-Schema.md
   CurrentVersion: '`Glyphser.Registry.OperatorRegistrySchema` | 2026-02-19 | Authors:
     Olejar Damir'
   Status: active
@@ -224,7 +224,7 @@ records:
   Title: Redaction Policy
   Type: operator-library
   Layer: 1
-  FilePath: docs/layer1-foundation/Redaction-Policy.md
+  FilePath: specs/layers/L1-foundation/Redaction-Policy.md
   CurrentVersion: '`Glyphser.Security.RedactionPolicy` | 2026-02-20 | Authors: Olejar
     Damir'
   Status: active
@@ -244,7 +244,7 @@ records:
   Title: AuthZ Capability Matrix
   Type: algorithm-spec
   Layer: 2
-  FilePath: docs/layer2-specs/AuthZ-Capability-Matrix.md
+  FilePath: specs/layers/L2-specs/AuthZ-Capability-Matrix.md
   CurrentVersion: '`Glyphser.Security.AuthZCapabilityMatrix` | 2026-02-19 | Authors:
     Olejar Damir'
   Status: active
@@ -264,7 +264,7 @@ records:
   Title: Checkpoint Schema
   Type: checkpoint-schema
   Layer: 2
-  FilePath: docs/layer2-specs/Checkpoint-Schema.md
+  FilePath: specs/layers/L2-specs/Checkpoint-Schema.md
   CurrentVersion: '`Glyphser.Checkpoint.SchemaContract` | 2026-02-18 | Authors: Olejar
     Damir'
   Status: active
@@ -284,7 +284,7 @@ records:
   Title: Config Schema
   Type: algorithm-spec
   Layer: 2
-  FilePath: docs/layer2-specs/Config-Schema.md
+  FilePath: specs/layers/L2-specs/Config-Schema.md
   CurrentVersion: '`Glyphser.Config.SchemaValidator` | 2026-02-18 | Authors: Olejar
     Damir'
   Status: active
@@ -304,7 +304,7 @@ records:
   Title: Data Lineage
   Type: data-registry
   Layer: 2
-  FilePath: docs/layer2-specs/Data-Lineage.md
+  FilePath: specs/layers/L2-specs/Data-Lineage.md
   CurrentVersion: '`Glyphser.Data.Lineage` | 2026-02-18 | Authors: Olejar Damir'
   Status: active
   LastUpdated: '2026-02-21'
@@ -323,7 +323,7 @@ records:
   Title: Data NextBatch
   Type: algorithm-spec
   Layer: 2
-  FilePath: docs/layer2-specs/Data-NextBatch.md
+  FilePath: specs/layers/L2-specs/Data-NextBatch.md
   CurrentVersion: '`Glyphser.Data.NextBatch` | 2026-02-18 | Authors: Olejar Damir
     (with EQC team improvements)'
   Status: active
@@ -343,7 +343,7 @@ records:
   Title: Deployment Runbook
   Type: algorithm-spec
   Layer: 2
-  FilePath: docs/layer2-specs/Deployment-Runbook.md
+  FilePath: specs/layers/L2-specs/Deployment-Runbook.md
   CurrentVersion: '`Glyphser.Implementation.DeploymentRunbook` | 2026-02-18 | Authors:
     Olejar Damir'
   Status: active
@@ -363,7 +363,7 @@ records:
   Title: DifferentialPrivacy Apply
   Type: algorithm-spec
   Layer: 2
-  FilePath: docs/layer2-specs/DifferentialPrivacy-Apply.md
+  FilePath: specs/layers/L2-specs/DifferentialPrivacy-Apply.md
   CurrentVersion: '`Glyphser.DifferentialPrivacy.Apply` | 2026-02-18 | Authors: Olejar
     Damir (with EQC team improvements)'
   Status: active
@@ -383,7 +383,7 @@ records:
   Title: Evaluation Harness
   Type: algorithm-spec
   Layer: 2
-  FilePath: docs/layer2-specs/Evaluation-Harness.md
+  FilePath: specs/layers/L2-specs/Evaluation-Harness.md
   CurrentVersion: '`Glyphser.Eval.Harness` | 2026-02-18 | Authors: Olejar Damir'
   Status: active
   LastUpdated: '2026-02-21'
@@ -402,7 +402,7 @@ records:
   Title: Execution Certificate
   Type: algorithm-spec
   Layer: 2
-  FilePath: docs/layer2-specs/Execution-Certificate.md
+  FilePath: specs/layers/L2-specs/Execution-Certificate.md
   CurrentVersion: '`Glyphser.Certificate.ExecutionCertificate` | 2026-02-18 | Authors:
     Olejar Damir'
   Status: active
@@ -422,7 +422,7 @@ records:
   Title: Experiment Tracking
   Type: algorithm-spec
   Layer: 2
-  FilePath: docs/layer2-specs/Experiment-Tracking.md
+  FilePath: specs/layers/L2-specs/Experiment-Tracking.md
   CurrentVersion: '`Glyphser.Tracking.ExperimentTracking` | 2026-02-18 | Authors:
     Olejar Damir'
   Status: active
@@ -442,7 +442,7 @@ records:
   Title: Model Registry
   Type: algorithm-spec
   Layer: 2
-  FilePath: docs/layer2-specs/Model-Registry.md
+  FilePath: specs/layers/L2-specs/Model-Registry.md
   CurrentVersion: '`Glyphser.Registry.ModelRegistry` | 2026-02-18 | Authors: Olejar
     Damir'
   Status: active
@@ -462,7 +462,7 @@ records:
   Title: ModelIR Executor
   Type: algorithm-spec
   Layer: 2
-  FilePath: docs/layer2-specs/ModelIR-Executor.md
+  FilePath: specs/layers/L2-specs/ModelIR-Executor.md
   CurrentVersion: '`Glyphser.Model.ModelIR_Executor` | 2026-02-18 | Authors: Olejar
     Damir (with EQC team improvements)'
   Status: active
@@ -482,7 +482,7 @@ records:
   Title: Monitoring Policy
   Type: algorithm-spec
   Layer: 2
-  FilePath: docs/layer2-specs/Monitoring-Policy.md
+  FilePath: specs/layers/L2-specs/Monitoring-Policy.md
   CurrentVersion: '`Glyphser.Monitoring.Policy` | 2026-02-18 | Authors: Olejar Damir'
   Status: active
   LastUpdated: '2026-02-21'
@@ -501,7 +501,7 @@ records:
   Title: Pipeline Orchestrator
   Type: algorithm-spec
   Layer: 2
-  FilePath: docs/layer2-specs/Pipeline-Orchestrator.md
+  FilePath: specs/layers/L2-specs/Pipeline-Orchestrator.md
   CurrentVersion: '`Glyphser.Pipeline.Orchestrator` | 2026-02-18 | Authors: Olejar
     Damir'
   Status: active
@@ -521,7 +521,7 @@ records:
   Title: Replay Determinism
   Type: algorithm-spec
   Layer: 2
-  FilePath: docs/layer2-specs/Replay-Determinism.md
+  FilePath: specs/layers/L2-specs/Replay-Determinism.md
   CurrentVersion: '`Glyphser.Implementation.ReplayDeterminismContract` | 2026-02-18
     | Authors: Olejar Damir'
   Status: active
@@ -541,7 +541,7 @@ records:
   Title: Run Commit WAL
   Type: algorithm-spec
   Layer: 2
-  FilePath: docs/layer2-specs/Run-Commit-WAL.md
+  FilePath: specs/layers/L2-specs/Run-Commit-WAL.md
   CurrentVersion: '`Glyphser.Commit.RunCommitWAL` | 2026-02-19 | Authors: Olejar
     Damir'
   Status: active
@@ -561,7 +561,7 @@ records:
   Title: Security Compliance Profile
   Type: algorithm-spec
   Layer: 2
-  FilePath: docs/layer2-specs/Security-Compliance-Profile.md
+  FilePath: specs/layers/L2-specs/Security-Compliance-Profile.md
   CurrentVersion: '`Glyphser.Security.ComplianceProfile` | 2026-02-18 | Authors:
     Olejar Damir'
   Status: active
@@ -581,7 +581,7 @@ records:
   Title: TMMU Allocation
   Type: algorithm-spec
   Layer: 2
-  FilePath: docs/layer2-specs/TMMU-Allocation.md
+  FilePath: specs/layers/L2-specs/TMMU-Allocation.md
   CurrentVersion: '`Glyphser.TMMU.PrepareMemory` | 2026-02-17 | Authors: Olejar Damir
     (with EQC team improvements)'
   Status: active
@@ -601,7 +601,7 @@ records:
   Title: Trace Sidecar
   Type: algorithm-spec
   Layer: 2
-  FilePath: docs/layer2-specs/Trace-Sidecar.md
+  FilePath: specs/layers/L2-specs/Trace-Sidecar.md
   CurrentVersion: '`Glyphser.Trace.SidecarSchema` | 2026-02-18 | Authors: Olejar
     Damir'
   Status: active
@@ -621,7 +621,7 @@ records:
   Title: Glyphser Kernel v3.22 OS
   Type: algorithm-spec
   Layer: 2
-  FilePath: docs/layer2-specs/Glyphser-Kernel-v3.22-OS.md
+  FilePath: specs/layers/L2-specs/Glyphser-Kernel-v3.22-OS.md
   CurrentVersion: 'Glyphser-v3.22-OS | 2026-02-17 | Authors: Olejar Damir'
   Status: active
   LastUpdated: '2026-02-21'
@@ -2171,7 +2171,7 @@ records:
   Title: Glyphser Normativity Legend
   Type: core-guidelines
   Layer: 1
-  FilePath: docs/layer1-foundation/Normativity-Legend.md
+  FilePath: specs/layers/L1-foundation/Normativity-Legend.md
   CurrentVersion: '`Glyphser.Governance.NormativityLegend` | 2026-02-21 | Authors:
     Olejar Damir'
   Status: active

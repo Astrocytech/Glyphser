@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 def test_observability_gate_passes():
     proc = subprocess.run(
-        [sys.executable, "tools/observability_gate.py"],
+        [sys.executable, "tooling/observability_gate.py"],
         cwd=ROOT,
         check=False,
         text=True,

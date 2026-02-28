@@ -1,0 +1,31 @@
+{
+  "records": [
+    {
+      "batch": {
+        "x": [
+          0.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "y": 1.0
+      },
+      "event_hash": "684f093376a244b693d3f020e6465e1f6942c504cebc3d6aea425fbc56ed22f3",
+      "operator_id": "Glyphser.Data.NextBatch",
+      "step": 1
+    },
+    {
+      "event_hash": "48f52e3ddf5a1d4f332fdbeff63b980f296435275c72cd11b7b79a0b53a63ced",
+      "inputs": [
+        0.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "operator_id": "Glyphser.Model.ModelIR_Executor",
+      "outputs": null,
+      "step": 1
+    }
+  ],
+  "run_id": "hello-core-run-v1"
+}

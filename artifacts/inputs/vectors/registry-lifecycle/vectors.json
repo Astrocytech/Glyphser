@@ -1,0 +1,15 @@
+{
+  "vector_set_id": "registry-lifecycle-vectors-v1",
+  "vectors": [
+    {
+      "case_id": "registry_version_create_stub",
+      "expected_ref": "artifacts/expected/goldens/registry-lifecycle/version_create_expected.json",
+      "input_ref": "artifacts/inputs/fixtures/registry-lifecycle/version_create.json"
+    },
+    {
+      "case_id": "registry_stage_transition_stub",
+      "expected_ref": "artifacts/expected/goldens/registry-lifecycle/stage_transition_expected.json",
+      "input_ref": "artifacts/inputs/fixtures/registry-lifecycle/stage_transition.json"
+    }
+  ]
+}

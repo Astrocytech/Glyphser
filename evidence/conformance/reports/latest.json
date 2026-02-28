@@ -1,0 +1,19 @@
+{
+  "error_codes_ref": "contracts/error_codes.json",
+  "results": [
+    {
+      "check": "verify_doc_artifacts",
+      "status": "PASS"
+    },
+    {
+      "check": "build_operator_registry",
+      "status": "PASS"
+    },
+    {
+      "check": "hello_core",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS",
+  "suite": "Glyphser Conformance"
+}

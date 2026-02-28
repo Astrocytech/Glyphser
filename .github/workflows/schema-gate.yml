@@ -5,12 +5,12 @@ on:
     paths:
       - "schemas/**"
       - "docs/**"
-      - "tools/schema_gate.py"
+      - "tooling/schema_gate.py"
   pull_request:
     paths:
       - "schemas/**"
       - "docs/**"
-      - "tools/schema_gate.py"
+      - "tooling/schema_gate.py"
 
 jobs:
   schema-gate:
@@ -22,4 +22,4 @@ jobs:
         with:
           python-version: "3.12"
       - name: Run schema gate
-        run: python tools/schema_gate.py
+        run: python tooling/schema_gate.py

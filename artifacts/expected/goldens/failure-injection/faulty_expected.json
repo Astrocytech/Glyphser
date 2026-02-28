@@ -1,0 +1,9 @@
+{
+  "error": {
+    "code_id": "INPUT_MISSING",
+    "context": {
+      "operator_id": "Glyphser.IO.SaveCheckpoint"
+    },
+    "message": "missing path"
+  }
+}

@@ -1,3 +1,3 @@
 # Tooling
 
-Tooling domain. Phase 1 keeps automation in legacy `tools/` path; future phases will relocate into this domain.
+Tooling domain. Phase 1 keeps automation in legacy `tooling/` path; future phases will relocate into this domain.

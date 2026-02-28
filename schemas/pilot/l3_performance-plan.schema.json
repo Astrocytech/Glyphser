@@ -24,6 +24,6 @@
     "layer": "L3",
     "prose_check": "relaxed",
     "schema_version": "0.1",
-    "source_doc": "docs/layer3-tests/Performance-Plan.md"
+    "source_doc": "specs/layers/L3-tests/Performance-Plan.md"
   }
 }

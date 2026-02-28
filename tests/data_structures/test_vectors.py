@@ -11,7 +11,7 @@ from src.glyphser.data_structures.validate_struct import (
 )
 
 ROOT = Path(__file__).resolve().parents[2]
-VECTORS = ROOT / "conformance" / "vectors" / "struct_validation" / "vectors.json"
+VECTORS = ROOT / "artifacts" / "inputs" / "vectors" / "conformance" / "struct_validation" / "vectors.json"
 
 
 def _validate(struct: str, obj) -> None:

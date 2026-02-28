@@ -1,0 +1,17 @@
+{
+  "vector_set_id": "hello-core-vectors-v1",
+  "vectors": [
+    {
+      "expected_ref": "artifacts/expected/goldens/hello-core/trace_snippet.json",
+      "input_ref": "artifacts/inputs/fixtures/hello-core/tiny_synth_dataset.jsonl",
+      "operator_id": "Glyphser.Data.NextBatch",
+      "vector_id": "vector_nextbatch_001"
+    },
+    {
+      "expected_error_code": "CONTRACT_VIOLATION",
+      "input_ref": "contracts/operator_registry.cbor",
+      "operator_id": "Glyphser.Registry.ValidateOperatorRegistry",
+      "vector_id": "vector_registry_validate_001"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "vector_set_id": "registry-lifecycle-vectors-v1",
+  "vectors_file": "artifacts/inputs/vectors/registry-lifecycle/vectors.json",
+  "vectors_file_sha256": "bd590e778d8673c2d7efb3644e270053233a4187b27ae13f13d519a69d0f518d"
+}

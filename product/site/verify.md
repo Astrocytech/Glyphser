@@ -3,10 +3,10 @@
 Status: DRAFT
 
 ## Local Verification
-- `python tools/verify_doc_artifacts.py`
-- `python tools/conformance/cli.py run`
-- `python tools/conformance/cli.py verify`
-- `python tools/conformance/cli.py report`
+- `python tooling/verify_doc_artifacts.py`
+- `python tooling/conformance/cli.py run`
+- `python tooling/conformance/cli.py verify`
+- `python tooling/conformance/cli.py report`
 - `python scripts/run_hello_core.py`
 
 ## Expected Result

@@ -1,0 +1,10 @@
+{
+  "vector_set_id": "perf-scale-vectors-v1",
+  "vectors": [
+    {
+      "case_id": "model_forward_scale",
+      "expected_ref": "artifacts/expected/goldens/perf-scale/forward_expected.json",
+      "input_ref": "artifacts/inputs/fixtures/perf-scale/batch.json"
+    }
+  ]
+}

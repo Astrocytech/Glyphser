@@ -1,0 +1,182 @@
+High-Confidence Semantic Issues
+==============================
+
+A) Operator Manifest vs Section 5 Definition Gaps
+--------------------------------------------------
+- specs/layers/L1-foundation/API-Interfaces.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L1-foundation/Canonical-CBOR-Profile.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L1-foundation/Data-Structures.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L1-foundation/Dependency-Lock-Policy.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L1-foundation/Determinism-Profiles.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L1-foundation/Digest-Catalog.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L1-foundation/Environment-Manifest.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L1-foundation/Operator-Registry-Schema.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L1-foundation/Redaction-Policy.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L2-specs/AuthZ-Capability-Matrix.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L2-specs/Checkpoint-Schema.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L2-specs/Config-Schema.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L2-specs/Data-Lineage.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L2-specs/Data-NextBatch.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L2-specs/Deployment-Runbook.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L2-specs/DifferentialPrivacy-Apply.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L2-specs/Evaluation-Harness.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L2-specs/Execution-Certificate.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L2-specs/Experiment-Tracking.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L2-specs/Model-Registry.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L2-specs/ModelIR-Executor.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L2-specs/Monitoring-Policy.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L2-specs/Pipeline-Orchestrator.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L2-specs/Replay-Determinism.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L2-specs/Run-Commit-WAL.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L2-specs/Security-Compliance-Profile.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L2-specs/TMMU-Allocation.md
+  - missing def: Glyphser.Error.Emit
+- specs/layers/L2-specs/Glyphser-Kernel-v3.22-OS.md
+  - missing def: Glyphser.Commit.FinalizeRunCommit
+  - missing def: Glyphser.Commit.WALAppend
+  - missing def: Glyphser.Error.Emit
+- docs/layer3-tests/Compatibility-Test-Matrix.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer3-tests/Conformance-CI-Pipeline.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer3-tests/Conformance-Harness-Guide.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer3-tests/Coverage-Targets.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer3-tests/Data-Contract-Fuzzing-Guide.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer3-tests/Failure-Injection-Scenarios.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer3-tests/Integration-Test-Matrix.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer3-tests/Performance-Plan.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer3-tests/Release-Gates.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer3-tests/Storage-Recovery-Test-Matrix.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer3-tests/Test-Plan.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer3-tests/Test-Vectors-Catalog.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/Architecture-Decisions-Log.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/Artifact-Store-Adapter-Guide.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/Backend-Adapter-Guide.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/Backend-Feature-Matrix.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/Build-and-CI-Matrix.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/CLI-Command-Profiles.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/Canonical-Hashing-Reference.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/Code-Generation-Mapping.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/Coding-Standards.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/Command-Reference.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/Contributing-Workflow.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/Debugging-Playbook.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/Determinism-Debug-Checklist.md
+  - missing def: Glyphser.Error.Emit
+  - missing def: Glyphser.Replay.CheckBackendProfile
+  - missing def: Glyphser.Replay.CheckRNGProgression
+- docs/layer4-implementation/Deterministic-RNG-Implementation-Guide.md
+  - missing def: Glyphser.Error.Emit
+  - missing def: Glyphser.Random.ConsumeDeterministic
+  - missing def: Glyphser.Random.InitializePRNG
+- docs/layer4-implementation/Developer-Setup.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/Developer-Troubleshooting-FAQ.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/Distributed-Failure-Recovery-Guide.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/Fixtures-and-Golden-Data.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/Implementation-Backlog.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/Implementation-Roadmap.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/Local-Replay-Runbook.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/Migration-Execution-Guide.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/Module-Scaffolding-Guide.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/Operator-Conformance-Matrix.md
+  - missing def: Glyphser.Error.Emit
+  - missing def: Glyphser.Implementation.LoadOperatorRegistry
+- docs/layer4-implementation/Operator-SDK-Scaffold-Template.md
+  - missing def: Glyphser.Error.Emit
+  - missing def: Glyphser.Implementation.ValidateScaffoldHooks
+- docs/layer4-implementation/PR-Review-Checklist.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/Profiling-and-Optimization-Guide.md
+  - missing def: Glyphser.Error.Emit
+  - missing def: Glyphser.Perf.CaptureProfileWindow
+- docs/layer4-implementation/Release-Evidence-Assembler.md
+  - missing def: Glyphser.Error.Emit
+  - missing def: Glyphser.Release.CollectEvidenceRefs
+  - missing def: Glyphser.Release.ValidateEvidenceBundle
+- docs/layer4-implementation/Repo-Layout-and-Interfaces.md
+  - missing def: Glyphser.Error.Emit
+  - missing def: Glyphser.Implementation.ValidateOwnershipMap
+- docs/layer4-implementation/Runtime-State-Machine-Reference.md
+  - missing def: Glyphser.Error.Emit
+  - missing def: Glyphser.Runtime.EmitTransitionTrace
+- docs/layer4-implementation/SDK-Usage-Guide.md
+  - missing def: Glyphser.Error.Emit
+- docs/layer4-implementation/SRE-Incident-Triage-Playbook.md
+  - missing def: Glyphser.Error.Emit
+  - missing def: Glyphser.Operations.ClassifyIncident
+  - missing def: Glyphser.Operations.EmitRemediationPlan
+- docs/layer4-implementation/Schema-Evolution-Playbook.md
+  - missing def: Glyphser.Error.Emit
+  - missing def: Glyphser.Implementation.VerifyMigrationEquivalence
+- docs/layer4-implementation/Security-Coding-Checklist.md
+  - missing def: Glyphser.Error.Emit
+  - missing def: Glyphser.Security.RunStaticSecurityChecks
+- docs/layer4-implementation/Spec-Lint-Implementation.md
+  - missing def: Glyphser.Error.Emit
+  - missing def: Glyphser.Implementation.AggregateLintVerdict
+  - missing def: Glyphser.Implementation.LoadDocSet
+- docs/layer4-implementation/Test-Harness-Implementation.md
+  - missing def: Glyphser.Error.Emit
+  - missing def: Glyphser.Test.AggregateHarnessReport
+  - missing def: Glyphser.Test.ExecuteVector
+  - missing def: Glyphser.Test.LoadVectorSet
+
+B) Declared Outputs Not Reflected in Procedure
+----------------------------------------------

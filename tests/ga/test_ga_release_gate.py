@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 def test_ga_release_gate_passes():
     proc = subprocess.run(
-        [sys.executable, "tools/ga_release_gate.py"],
+        [sys.executable, "tooling/ga_release_gate.py"],
         cwd=ROOT,
         check=False,
         text=True,

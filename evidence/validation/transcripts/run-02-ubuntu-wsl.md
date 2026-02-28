@@ -6,7 +6,7 @@
 - Mode: guided (not blind)
 
 ## Commands
-- `python tools/push_button.py`
+- `python tooling/push_button.py`
 - `sha256sum evidence/conformance/reports/latest.json`
 - `cat artifacts/bundles/hello-core-bundle.sha256`
 - `cat evidence/repro/hashes.txt`

@@ -9,14 +9,14 @@
 2. Checkout the target release tag or commit.
 3. Create and activate a virtual environment.
 4. Install project runtime dependencies: `python -m pip install -e .`
-5. Run one command: `python tools/verify_release.py`
+5. Run one command: `python tooling/verify_release.py`
 
 ## Single Command
 ```bash
-python tools/verify_release.py
+python tooling/verify_release.py
 ```
 
 ## What It Checks
-- Runs `tools/push_button.py` end-to-end.
+- Runs `tooling/push_button.py` end-to-end.
 - Verifies release artifact hashes against `docs/release/CHECKSUMS_v0.1.0.sha256`.
 - Returns exit code `0` only when all checks pass.

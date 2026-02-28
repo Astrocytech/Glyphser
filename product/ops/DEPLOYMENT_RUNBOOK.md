@@ -2,7 +2,7 @@
 
 ## One-Command Deploy Validation
 ```bash
-python tools/deploy/run_deployment_pipeline.py
+python tooling/deploy/run_deployment_pipeline.py
 ```
 
 Expected output includes:
