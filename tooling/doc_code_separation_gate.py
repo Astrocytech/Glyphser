@@ -9,8 +9,16 @@ OUT = ROOT / "evidence" / "structure"
 
 DOC_EXTS = {".md", ".txt", ".rst"}
 CODE_EXTS = {".py", ".sh", ".bash", ".zsh", ".js", ".ts", ".go", ".rs", ".java", ".c", ".cc", ".cpp"}
-CODE_DIRS = ("src", "tools", "scripts", "tests", "conformance", "generated", "artifacts/generated")
-DOC_DIRS = ("docs", "document_guidelines")
+CODE_DIRS = (
+    "src",
+    "tooling/codegen",
+    "tooling/conformance",
+    "tooling/deploy",
+    "tooling/scripts",
+    "tests",
+    "artifacts/generated",
+)
+DOC_DIRS = ("docs", "specs", "governance", "product")
 ALLOWED_ROOT_DOCS = {
     "README.md",
     "CONTRIBUTING.md",
@@ -18,12 +26,6 @@ ALLOWED_ROOT_DOCS = {
     "SECURITY.md",
     "VERSIONING.md",
     "RELEASE_NOTES_v0.1.0.md",
-    "ecosystem.md",
-    "ecosystem-validation-log.md",
-    "portfolio-release-notes-template.md",
-    "milestones.txt",
-    "semantic_lint_high_confidence.txt",
-    "semantic_lint_report.txt",
 }
 
 

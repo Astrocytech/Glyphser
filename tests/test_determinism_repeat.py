@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 ARTIFACT_PATHS = [
-    ROOT / "contracts" / "catalog-manifest.json",
+    ROOT / "specs" / "contracts" / "catalog-manifest.json",
     ROOT / "artifacts" / "inputs" / "fixtures" / "hello-core" / "fixture-manifest.json",
     ROOT / "artifacts" / "inputs" / "fixtures" / "hello-core" / "manifest.core.yaml",
     ROOT / "artifacts" / "expected" / "goldens" / "hello-core" / "golden-manifest.json",

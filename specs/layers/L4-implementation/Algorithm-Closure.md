@@ -16,7 +16,7 @@ This document records the closure of remaining algorithmic ambiguity for codegen
 - Reference pseudocode mapping: `docs/layer4-implementation/Reference-Implementations.md`
 - Model IR executor semantics: `specs/layers/L2-specs/ModelIR-Executor.md`
 - TMMU allocation and liveness semantics: `specs/layers/L2-specs/TMMU-Allocation.md`
-- Determinism profile tie-breaks and numeric policy: `docs/contracts/DETERMINISM_PROFILE_v0.1.md`
+- Determinism profile tie-breaks and numeric policy: `specs/contracts_docs/DETERMINISM_PROFILE_v0.1.md`
 
 ## Numeric Policy (Frozen)
 - Floating-point format: IEEE-754 binary64.

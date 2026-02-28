@@ -17,7 +17,7 @@ See `specs/layers/L1-foundation/Determinism-Profiles.md` for technical details.
 - If two keys encode to identical bytes (should be impossible for distinct keys), treat as a determinism violation and reject.
 
 ## Numeric Edge-Case Policy
-- Non-finite values (NaN, +/-Infinity) are disallowed unless explicitly stated in `docs/contracts/NUMERIC_POLICY_v0.1.md`.
+- Non-finite values (NaN, +/-Infinity) are disallowed unless explicitly stated in `specs/contracts_docs/NUMERIC_POLICY_v0.1.md`.
 - Floating-point values must be encoded in the shortest canonical CBOR form that preserves their value.
 - Any numeric conversion MUST be explicit in the runtime and logged as a deterministic transformation in the trace.
 

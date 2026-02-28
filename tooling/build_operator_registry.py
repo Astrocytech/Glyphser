@@ -35,7 +35,7 @@ def main() -> int:
 
     registry = build_operator_registry_from_list(api_records, catalogs["digest_map"])
 
-    contracts_dir = ROOT / "contracts"
+    contracts_dir = ROOT / "specs" / "contracts"
     contracts_dir.mkdir(parents=True, exist_ok=True)
 
     src_path = contracts_dir / "operator_registry_source.json"

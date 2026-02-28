@@ -27,7 +27,7 @@ Implement the minimal deterministic hello-core reference stack required to repro
 - Target file: `src/glyphser/certificate/build.py`.
 
 ## Step 6: Runner Script
-- Create `scripts/run_hello_core.py` following `docs/START-HERE.md`.
+- Create `tooling/scripts/run_hello_core.py` following `docs/START-HERE.md`.
 
 ## Gate
 - Must reproduce `docs/examples/hello-core/hello-core-golden.json` hashes.

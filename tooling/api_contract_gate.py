@@ -7,7 +7,7 @@ from typing import Any, Dict
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-CONTRACT = ROOT / "contracts" / "openapi_public_api_v1.yaml"
+CONTRACT = ROOT / "specs" / "contracts" / "openapi_public_api_v1.yaml"
 STYLE_GUIDE = ROOT / "product" / "docs" / "API_STYLE_GUIDE.md"
 LIFECYCLE = ROOT / "product" / "docs" / "API_LIFECYCLE_POLICY.md"
 

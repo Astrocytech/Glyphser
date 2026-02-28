@@ -52,7 +52,7 @@
 
 ### 0.H Namespacing and Packaging
 - Namespace: `Glyphser.Environment.*`
-- Canonical manifest artifact path: `contracts/environment_manifest.cbor`
+- Canonical manifest artifact path: `specs/contracts/environment_manifest.cbor`
 
 ### 0.I Outputs and Metric Schema
 - Outputs: `(env_manifest, env_manifest_hash, compatibility_report)`.

@@ -2,7 +2,7 @@
 
 Company: **Astrocytech**
 
-![Glyphser logo](assets/glyphser3.svg)
+![Glyphser logo](product/site/assets/glyphser3.svg)
 
 Conformance: PASS (local)
 Hello-core: PASS (local)
@@ -21,6 +21,6 @@ Independent implementation; no official affiliation or certification claims are 
 4. Run the full push-button pipeline: `python tooling/push_button.py`
 
 ## Structure
-* `contracts/`: CBOR/JSON source of truth for capabilities.
+* `specs/contracts/`: CBOR/JSON source of truth for capabilities.
 * `docs/`: Layered specification architecture.
 * `tooling/`: Automation and verification suite.

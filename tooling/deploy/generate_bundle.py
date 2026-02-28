@@ -13,7 +13,7 @@ sys.path.insert(0, str(ROOT / "tooling"))
 from path_config import generated_root
 
 OUT_DIR = generated_root() / "deploy"
-CATALOG_MANIFEST = ROOT / "contracts" / "catalog-manifest.json"
+CATALOG_MANIFEST = ROOT / "specs" / "contracts" / "catalog-manifest.json"
 
 
 def _sha256_hex(data: bytes) -> str:

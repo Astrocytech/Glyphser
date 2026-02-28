@@ -2,7 +2,7 @@
   "actions": [
     "No schema digest changes detected"
   ],
-  "current_manifest": "contracts/catalog-manifest.json",
+  "current_manifest": "specs/contracts/catalog-manifest.json",
   "previous_manifest": "",
   "rollback": [
     "No rollback needed"

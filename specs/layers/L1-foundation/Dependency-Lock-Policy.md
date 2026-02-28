@@ -56,7 +56,7 @@
 
 ### 0.H Namespacing and Packaging
 - Operators are fully-qualified and versioned.
-- Canonical lock-policy location: `contracts/dependency_lock_policy.cbor`.
+- Canonical lock-policy location: `specs/contracts/dependency_lock_policy.cbor`.
 
 ### 0.I Outputs and Metric Schema
 - Outputs: `(lock_verdict, upgrade_report?)`.

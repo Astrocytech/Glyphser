@@ -240,7 +240,7 @@ def write_text(path: Path, text: str) -> None:
 
 
 def materialize() -> None:
-    contracts_dir = ROOT / "contracts"
+    contracts_dir = ROOT / "specs" / "contracts"
     fixtures_dir = fixtures_root() / "hello-core"
     goldens_dir = goldens_root() / "hello-core"
     vectors_dir = vectors_root() / "hello-core"
@@ -431,7 +431,7 @@ def materialize() -> None:
             {
                 "vector_id": "vector_registry_validate_001",
                 "operator_id": "Glyphser.Registry.ValidateOperatorRegistry",
-                "input_ref": "contracts/operator_registry.cbor",
+                "input_ref": "specs/contracts/operator_registry.cbor",
                 "expected_error_code": "CONTRACT_VIOLATION",
             },
         ],
@@ -449,7 +449,7 @@ def materialize() -> None:
 if __name__ == "__main__":
     materialize()
     print("Materialized deterministic doc-phase artifacts:")
-    print(f"  - contracts: {ROOT / 'contracts'}")
+    print(f"  - contracts: {ROOT / "specs" / "contracts"}")
     print(f"  - fixtures:  {fixtures_root() / 'hello-core'}")
     print(f"  - goldens:   {goldens_root() / 'hello-core'}")
     print(f"  - vectors:   {vectors_root() / 'hello-core'}")

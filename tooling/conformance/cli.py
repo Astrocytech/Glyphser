@@ -25,7 +25,7 @@ def _write_json(path: Path, payload: dict) -> None:
 
 def _run_hello_core() -> bool:
     proc = subprocess.run(
-        [sys.executable, str(ROOT / "scripts" / "run_hello_core.py")],
+        [sys.executable, str(ROOT / "tooling" / "scripts" / "run_hello_core.py")],
         cwd=str(ROOT),
         capture_output=True,
         text=True,

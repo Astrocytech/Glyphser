@@ -12,8 +12,8 @@
 ## 1) Target Decisions (Normative)
 ### 1.1 Primary Generation Targets
 - **Language/runtime:** Python 3.12.
-- **Packaging:** importable `glyphser` package in `src/`, with script entrypoints in `scripts/`.
-- **Artifacts:** JSON and CBOR artifacts under `contracts/`, `artifacts/inputs/fixtures/`, `artifacts/expected/goldens/`, and `artifacts/inputs/vectors/`.
+- **Packaging:** importable `glyphser` package in `src/`, with script entrypoints in `tooling/scripts/`.
+- **Artifacts:** JSON and CBOR artifacts under `specs/contracts/`, `artifacts/inputs/fixtures/`, `artifacts/expected/goldens/`, and `artifacts/inputs/vectors/`.
 - **Scope:** CPU-only, single-node runtime for the reference implementation.
 
 ### 1.2 Secondary Targets (Deferred)
@@ -36,7 +36,7 @@
 
 ### 2.3 AuthZ and Capability Enforcement
 - Capability checks follow `specs/layers/L2-specs/AuthZ-Capability-Matrix.md`.
-- Generated wrappers must enforce `required_capabilities` in `contracts/operator_registry.cbor`.
+- Generated wrappers must enforce `required_capabilities` in `specs/contracts/operator_registry.cbor`.
 
 ### 2.4 Persistence and Artifact Stores
 - Local filesystem persistence is the default for the reference implementation.
@@ -49,7 +49,7 @@
 - Registry gate: `python tooling/registry_gate.py`
 - Conformance suite: `python tooling/conformance/cli.py run`
 - Conformance report: `python tooling/conformance/cli.py report`
-- Hello-core runnable: `python scripts/run_hello_core.py`
+- Hello-core runnable: `python tooling/scripts/run_hello_core.py`
 
 ### 3.2 CI Entry Points
 - CI must execute the same commands as local entrypoints.

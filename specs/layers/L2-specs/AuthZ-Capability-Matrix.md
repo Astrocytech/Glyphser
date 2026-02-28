@@ -33,7 +33,7 @@
 - `Glyphser.Security.EvaluateAuthorization`
 - `Glyphser.Error.Emit`
 ### 0.H Namespacing and Packaging
-- Canonical matrix source: `contracts/operator_registry.cbor`.
+- Canonical matrix source: `specs/contracts/operator_registry.cbor`.
 ### 0.I Outputs and Metric Schema
 - Outputs: `(authz_verdict, authz_query_hash, authz_decision_hash, authz_report)`.
 ### 0.J Spec Lifecycle Governance

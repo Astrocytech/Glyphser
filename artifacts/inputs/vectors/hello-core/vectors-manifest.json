@@ -1,5 +1,5 @@
 {
   "vector_set_id": "hello-core-vectors-v1",
   "vectors_file": "artifacts/inputs/vectors/hello-core/vectors.json",
-  "vectors_file_sha256": "74ff0864ec39206f18aca371803f8e4d1707dc24bbff298fba0a6b41978ac9dc"
+  "vectors_file_sha256": "5728ba9b09c96dae3425d930a8579c76bd5d9a36f93b780e3653a8099fa6e8fd"
 }

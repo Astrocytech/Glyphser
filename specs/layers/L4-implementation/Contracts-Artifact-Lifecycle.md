@@ -11,9 +11,9 @@
 ---
 ## 1) Scope
 Applies to contract artifacts including:
-- `contracts/operator_registry.cbor`
-- `contracts/digest_catalog.cbor`
-- `contracts/determinism_profiles.cbor`
+- `specs/contracts/operator_registry.cbor`
+- `specs/contracts/digest_catalog.cbor`
+- `specs/contracts/determinism_profiles.cbor`
 - versioned migration and compatibility sidecar artifacts.
 
 ---

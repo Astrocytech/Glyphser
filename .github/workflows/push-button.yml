@@ -3,7 +3,7 @@ name: push-button
 on:
   push:
     paths:
-      - "contracts/**"
+      - "specs/contracts/**"
       - "docs/**"
       - "schemas/**"
       - "src/**"
@@ -11,14 +11,13 @@ on:
       - "tooling/**"
       - "artifacts/**"
       - "evidence/**"
-      - "runtime/**"
       - "specs/**"
       - "governance/**"
       - "product/**"
       - "distribution/**"
   pull_request:
     paths:
-      - "contracts/**"
+      - "specs/contracts/**"
       - "docs/**"
       - "schemas/**"
       - "src/**"
@@ -26,7 +25,6 @@ on:
       - "tooling/**"
       - "artifacts/**"
       - "evidence/**"
-      - "runtime/**"
       - "specs/**"
       - "governance/**"
       - "product/**"

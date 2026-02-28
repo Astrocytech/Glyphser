@@ -465,7 +465,7 @@
       "sha256": "daf7732c62b29fafe1cc7f34047842b6017cdd466cea5c65a150028fdb0fb53e"
     },
     {
-      "path": "contracts/operator_registry.json",
+      "path": "specs/contracts/operator_registry.json",
       "sha256": "65e51992ad9e50f5654a8c9cb5ebdf68fd6555160b8cd5dac2ddd75c6d8415ca"
     },
     {

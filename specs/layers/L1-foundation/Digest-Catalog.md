@@ -35,7 +35,7 @@
 - `Glyphser.Error.Emit`
   - Note: `Glyphser.Error.Emit` is a shared runtime error operator defined in the core error contract (`specs/layers/L1-foundation/Error-Codes.md`), not redefined in this document.
 ### 0.H Namespacing and Packaging
-- Canonical location: `contracts/digest_catalog.cbor`.
+- Canonical location: `specs/contracts/digest_catalog.cbor`.
 ### 0.I Outputs and Metric Schema
 - `ResolveDigestRef` output: `(resolved_digest)`.
 - `ValidateDigestCatalog` output: `(validation_report)`.

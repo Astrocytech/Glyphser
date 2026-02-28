@@ -3,24 +3,24 @@ name: conformance-gate
 on:
   push:
     paths:
-      - "contracts/**"
+      - "specs/contracts/**"
       - "docs/**"
       - "tooling/**"
-      - "scripts/**"
       - "src/**"
       - "tests/**"
       - "artifacts/**"
       - "evidence/**"
+      - "specs/**"
   pull_request:
     paths:
-      - "contracts/**"
+      - "specs/contracts/**"
       - "docs/**"
       - "tooling/**"
-      - "scripts/**"
       - "src/**"
       - "tests/**"
       - "artifacts/**"
       - "evidence/**"
+      - "specs/**"
 
 jobs:
   conformance:
@@ -49,4 +49,4 @@ jobs:
       - name: Install dependencies
         run: pip install -e .
       - name: Run hello-core
-        run: python scripts/run_hello_core.py
+        run: python tooling/scripts/run_hello_core.py

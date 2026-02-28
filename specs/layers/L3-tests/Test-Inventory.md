@@ -24,7 +24,7 @@ Status: ACTIVE
 
 ## Replay / Checkpoint
 - Trace hash-chain: `tests/trace/test_compute_trace_hash.py`
-- Checkpoint/certificate hashes: `scripts/run_hello_core.py` (golden verification)
+- Checkpoint/certificate hashes: `tooling/scripts/run_hello_core.py` (golden verification)
 - Mini tracking fixture: `tests/artifacts/inputs/fixtures/test_mini_tracking_fixture.py`
 
 ## Fuzz / Property

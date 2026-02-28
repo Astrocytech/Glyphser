@@ -123,7 +123,7 @@ Numbering convention note:
 
 ### II.F Syscall Interface Registry (Concrete, Authoritative)
 Canonical display note:
-- `allowed_error_codes` values in this rendered table are shown in canonical ordered-array form from `contracts/operator_registry.cbor`.
+- `allowed_error_codes` values in this rendered table are shown in canonical ordered-array form from `specs/contracts/operator_registry.cbor`.
 - Signature computation always uses the canonical ordered array representation.
 - `request_schema_digest` and `response_schema_digest` cells are `digest_ref` renderings; canonical signature preimage uses resolved bytes32 values.
 - `Glyphser.Error.Emit` is included as a syscall operator because it is callable and listed in the operator manifest.
@@ -141,7 +141,7 @@ Canonical display note:
 
 ### II.G Service API Registry (Concrete, Authoritative)
 Canonical display note:
-- `allowed_error_codes` values in this rendered table are shown in canonical ordered-array form from `contracts/operator_registry.cbor`.
+- `allowed_error_codes` values in this rendered table are shown in canonical ordered-array form from `specs/contracts/operator_registry.cbor`.
 | surface | name | version | method | request_schema_digest | response_schema_digest | idempotent | side_effects | allowed_error_codes | signature_digest |
 |---|---|---|---|---|---|---|---|---|---|
 | `SERVICE` | `Glyphser.Tracking.RunCreate` | v1 | service | `sha256:79f63d036b91c33bbd5a0a64468f93107f79b755e73810824d3877aeb6561fc1` | `sha256:658a3e66ec1cf259a71244bc535d7d4efa5fc648ca4aedf8686e50e2bfd29dad` | false | `["PERFORMS_IO"]` | `["CONTRACT_VIOLATION"]` | `sha256:f9912032a083a24960b3fce71bef84b6b6669bd4f1455143b793abd46c61d979` |
@@ -174,13 +174,13 @@ Canonical display note:
   - no implementation-specific metadata fields.
 
 ### II.I Canonical Operator Registry Binding (Normative)
-- `contracts/operator_registry.cbor` is authoritative for interface metadata.
+- `specs/contracts/operator_registry.cbor` is authoritative for interface metadata.
 - Every row in syscall/service registries must match the corresponding artifact record exactly for:
   - `surface`, `request_schema_digest`, `response_schema_digest`, `signature_digest`,
   - `side_effects`, `allowed_error_codes`, `purity_class`, `required_capabilities`.
 - This document is a rendered view; edits that are not reflected in the artifact are invalid.
 - Rendered-table note:
-  - `purity_class` and `required_capabilities` are authoritative in `contracts/operator_registry.cbor` but omitted in rendered tables here for readability.
+  - `purity_class` and `required_capabilities` are authoritative in `specs/contracts/operator_registry.cbor` but omitted in rendered tables here for readability.
 
 ### II.J Capability/RBAC Binding (Normative)
 - Every callable operator must declare `required_capabilities` in the canonical operator registry.
@@ -192,7 +192,7 @@ Canonical display note:
 ### II.K Kernel Syscall Registry (Kernel Subset View)
 - This table is the kernel syscall subset view and must match `specs/layers/L2-specs/Glyphser-Kernel-v3.22-OS.md` section 4 (1:1 operator membership).
 - For any operator also present in `II.F`, digest fields MUST be byte-identical to `II.F`.
-- Each listed operator must resolve to concrete request/response schema digests and signature digest in `contracts/operator_registry.cbor`.
+- Each listed operator must resolve to concrete request/response schema digests and signature digest in `specs/contracts/operator_registry.cbor`.
 | name | method | request_schema_digest | response_schema_digest | signature_digest |
 |---|---|---|---|---|
 | `Glyphser.OS.Bootstrap` | syscall | `sha256:6b95add4346e37b63e64c7e208a7df8f4965e372878b8b9fd4fed7c5bbd403b7` | `sha256:d9625678d8addcaf15db3e69d1ffa9e954a64bb290d4981087a5837bce2c87af` | `sha256:08c1cb8901ce5f30ec8015c5eed6efd43061269ef899e03f8a493b54f4a335c7` |

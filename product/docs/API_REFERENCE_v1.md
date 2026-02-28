@@ -1,6 +1,6 @@
 # API Reference v1
 
-Source contract: `contracts/openapi_public_api_v1.yaml`
+Source contract: `specs/contracts/openapi_public_api_v1.yaml`
 
 ## Endpoints
 - `POST /v1/jobs`: submit job request (supports `X-Idempotency-Key`).

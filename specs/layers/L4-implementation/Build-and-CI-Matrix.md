@@ -97,7 +97,7 @@
 ```
 
 Required pipeline (normative):
-- `tooling/push_button.py` must run in CI for all changes to contracts/specs/tooling.
+- `tooling/push_button.py` must run in CI for all changes to `specs/contracts/`, `specs/`, or `tooling/`.
 
 ---
 ## 7) Trace & Metrics

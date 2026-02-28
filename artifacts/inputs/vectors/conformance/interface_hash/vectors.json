@@ -3,7 +3,7 @@
     {
       "expected_interface_hash": "d6c07c27e755cca8767ab62fb8106fead06055e90dc50c86ea015cde45e9fbc4",
       "id": "operator-registry-interface-hash",
-      "operator_registry_ref": "contracts/operator_registry.cbor"
+      "operator_registry_ref": "specs/contracts/operator_registry.cbor"
     }
   ],
   "version": 1

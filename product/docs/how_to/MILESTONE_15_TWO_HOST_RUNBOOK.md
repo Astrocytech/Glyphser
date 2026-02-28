@@ -49,7 +49,7 @@ Goal: Run the full push-button pipeline on two **independent** hosts that differ
 ## C. Capture Host Metadata (Both Hosts)
 
 1. Run the host metadata helper:
-   - `python3 scripts/repro/host_meta.py`
+   - `python3 tooling/scripts/repro/host_meta.py`
 2. Save output for the comparison report.
 
 ## D. Run the Pipeline (Both Hosts)

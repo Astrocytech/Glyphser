@@ -190,7 +190,7 @@ DONE (so far):
 		- `src/glyphser/trace/trace_sidecar.py`
 		- `src/glyphser/checkpoint/write.py`
 		- `src/glyphser/certificate/build.py`
-	- Added and validated end-to-end runner `scripts/run_hello_core.py`.
+	- Added and validated end-to-end runner `tooling/scripts/run_hello_core.py`.
 	- Conformance run verifies hello-core outputs against golden identities.
 
 
@@ -227,7 +227,7 @@ Deliverable:
 - End-to-end code generator producing compilable projects validated by pre-defined tests.
 Status: COMPLETE.
 DONE (so far):
-	- Generator pipeline implemented at `tooling/codegen/generate.py` consuming `contracts/operator_registry.json` and `schemas/**/*.schema.json`.
+	- Generator pipeline implemented at `tooling/codegen/generate.py` consuming `specs/contracts/operator_registry.json` and `schemas/**/*.schema.json`.
 	- Templates added in `tooling/codegen/templates/` for data models, operator stubs, validators, error handling, and trace/checkpoint/WAL bindings.
 	- Generated outputs written to `artifacts/generated/` with `artifacts/generated/codegen_manifest.json` for input traceability.
 
@@ -285,7 +285,7 @@ Definitions (to avoid ambiguity):
 4. "Domain fixture" = multi-operator fixture set (inputs + goldens + manifests).
 
 Rules (must always hold):
-1. If an operator exists in `contracts/operator_registry.json`, it must have vectors and tests.
+1. If an operator exists in `specs/contracts/operator_registry.json`, it must have vectors and tests.
 2. Vectors are authored before code changes for that operator.
 3. Generators must never require manual edits to pass tests.
 4. Any change to vectors or goldens requires a rationale and a deterministic re-materialization step.
@@ -297,7 +297,7 @@ Phase 0: Test Infrastructure Expansion
 Deliverable: test harness that enumerates all operators and requires vectors.
 
 Phase 1: Operator Test Coverage
-1. Write deterministic vectors for every operator in `contracts/operator_registry.json`.
+1. Write deterministic vectors for every operator in `specs/contracts/operator_registry.json`.
 2. For each operator:
 	- A minimal valid request vector.
 	- Deterministic error vector for unimplemented stub.
@@ -459,7 +459,7 @@ Clarifications:
 	- Vectors must be added before implementation changes.
 	- All updates must keep `docs/layer4-implementation/Algorithm-Closure.md` consistent.
 	- Each operator implementation must add/adjust at least one vector that hits an edge case.
-	- Any spec changes require updating `schemas/` and `contracts/` artifacts.
+	- Any spec changes require updating `schemas/` and `specs/contracts/` artifacts.
 	- Require a per-operator changelog entry in `docs/layer4-implementation/Implementation-Backlog.md` for semantic changes.
 	- Add an “operator readiness checklist” for each operator.
 	- Each operator must declare a canonical example in `docs/examples/` with expected outputs.
@@ -489,7 +489,7 @@ Prep:
 	- Added `evidence/repro/compare-template.md`.
 	- Added `evidence/repro/run-checklist.md`.
 	- Added `requirements.lock` and `evidence/repro/dependency-lock.sha256`.
-	- Added `scripts/repro/host_meta.py` for consistent host metadata capture.
+	- Added `tooling/scripts/repro/host_meta.py` for consistent host metadata capture.
 
 Milestone 16: Public Release Readiness
 1. Publish release notes and conformance report.
@@ -542,7 +542,7 @@ Milestone 18: Stable Runtime API and CLI
 3. Gate: API schema + CLI behavior are contract-tested and semver-governed.
 Deliverable: external-facing API/CLI suitable for integrators.
 Clarifications:
-	- Add OpenAPI (or equivalent) under `contracts/` and generate reference docs.
+	- Add OpenAPI (or equivalent) under `specs/contracts/` and generate reference docs.
 	- Add compatibility tests for backward-compatible vs breaking API changes.
 	- Add deprecation policy and minimum support windows.
 	- Define authentication/authorization model in API contracts (tokens/scopes/expiry).
@@ -562,7 +562,7 @@ Execution Governance:
 	- Dependencies: requires Milestone 17 complete; blocks Milestones 19 and 23.
 Status: COMPLETE.
 DONE:
-	- Added versioned API contract `contracts/openapi_public_api_v1.yaml`.
+	- Added versioned API contract `specs/contracts/openapi_public_api_v1.yaml`.
 	- Added stable CLI wrapper `tooling/api_cli.py` for submit/status/evidence/replay.
 	- Added runtime API implementation `src/glyphser/api/runtime_api.py`.
 	- Added semver governance gate `tooling/api_contract_gate.py` and wired it into `tooling/push_button.py`.

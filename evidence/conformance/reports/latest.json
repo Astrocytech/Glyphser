@@ -1,5 +1,5 @@
 {
-  "error_codes_ref": "contracts/error_codes.json",
+  "error_codes_ref": "specs/contracts/error_codes.json",
   "results": [
     {
       "check": "verify_doc_artifacts",

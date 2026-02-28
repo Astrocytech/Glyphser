@@ -150,13 +150,13 @@
 
 ## 13) Canonical Artifact Inputs (Normative)
 - Canonical contracts and catalogs for doc-phase verifiable assembly:
-  - `contracts/operator_registry.cbor`
-  - `contracts/digest_catalog.cbor`
-  - `contracts/error_codes.cbor`
-  - `contracts/capability_catalog.cbor`
-  - `contracts/schema_catalog.cbor`
-  - `contracts/vectors_catalog.cbor`
-  - `contracts/catalog-manifest.json`
+  - `specs/contracts/operator_registry.cbor`
+  - `specs/contracts/digest_catalog.cbor`
+  - `specs/contracts/error_codes.cbor`
+  - `specs/contracts/capability_catalog.cbor`
+  - `specs/contracts/schema_catalog.cbor`
+  - `specs/contracts/vectors_catalog.cbor`
+  - `specs/contracts/catalog-manifest.json`
 - Minimal pinned fixture/evidence inputs:
   - `artifacts/inputs/fixtures/hello-core/fixture-manifest.json`
   - `artifacts/expected/goldens/hello-core/golden-manifest.json`

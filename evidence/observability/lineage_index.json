@@ -2,7 +2,7 @@
   "entries": [
     {
       "path": "evidence/conformance/reports/latest.json",
-      "sha256": "86de4a5d30cab3a12ead92ae207bcb17fd09f7c8b498419728f7041f14e56ffe"
+      "sha256": "ddcf43446c4d9e49adeb55ae8f6990cf6e58ee97da8835d67d0770cbafaa8861"
     },
     {
       "path": "evidence/deploy/latest.json",

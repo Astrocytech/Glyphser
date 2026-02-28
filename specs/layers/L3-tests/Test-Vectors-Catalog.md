@@ -102,7 +102,7 @@
 - These vectors are mandatory for conformance of hashing/signature-related operators.
 
 ### II.H `vectors_catalog.cbor` Schema (Normative)
-- Authoritative machine-readable artifact: `contracts/vectors_catalog.cbor`.
+- Authoritative machine-readable artifact: `specs/contracts/vectors_catalog.cbor`.
 - Schema:
   - `catalog_version:string`
   - `operators: map<string, array<map>>`, where each vector map contains:

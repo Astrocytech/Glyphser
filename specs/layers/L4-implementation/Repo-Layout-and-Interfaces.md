@@ -87,10 +87,10 @@
 - `artifacts/inputs/vectors/<operator_id>/`.
 - `schemas/` for config/trace/checkpoint/api schemas.
 - `tooling/spec_lint.py` mandatory linter entrypoint for cross-file contract consistency.
-- `contracts/operator_registry.cbor` canonical machine-readable operator registry artifact.
+- `specs/contracts/operator_registry.cbor` canonical machine-readable operator registry artifact.
 - Additional authoritative contract artifacts:
-  - `contracts/digest_catalog.cbor`
-  - `contracts/determinism_profiles.cbor`
+  - `specs/contracts/digest_catalog.cbor`
+  - `specs/contracts/determinism_profiles.cbor`
   - `wal/run_commit/<tenant_id>/<run_id>/records/<wal_seq>.cbor`
   - `runs/<tenant_id>/<run_id>/COMMITTED` (conditional commit pointer object)
 
@@ -104,7 +104,7 @@
 - `governance team`: `src/registry/*`
 
 ### II.H Operator Registry Artifact (Normative)
-- `contracts/operator_registry.cbor` is the single source of truth for operator interface metadata.
+- `specs/contracts/operator_registry.cbor` is the single source of truth for operator interface metadata.
 - construction and validation contract: `docs/layer4-implementation/Operator-Registry-CBOR-Contract.md`.
 - Required fields per operator record:
   - `operator_id`, `version`, `surface`,

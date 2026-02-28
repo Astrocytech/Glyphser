@@ -56,10 +56,10 @@ def main() -> int:
     bundle = DIST / "hello-core-bundle.tar.gz"
 
     paths = [
-        ROOT / "contracts" / "catalog-manifest.json",
-        ROOT / "contracts" / "operator_registry.cbor",
-        ROOT / "contracts" / "operator_registry.json",
-        ROOT / "contracts" / "interface_hash.json",
+        ROOT / "specs" / "contracts" / "catalog-manifest.json",
+        ROOT / "specs" / "contracts" / "operator_registry.cbor",
+        ROOT / "specs" / "contracts" / "operator_registry.json",
+        ROOT / "specs" / "contracts" / "interface_hash.json",
         fixtures_root() / "hello-core",
         goldens_root() / "hello-core",
         conformance_results_root() / "latest.json",

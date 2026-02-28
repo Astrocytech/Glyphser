@@ -3,9 +3,9 @@
 Goal: keep narrative/process documentation physically separate from executable code.
 
 Rules:
-- Documentation files (`.md`, `.txt`, `.rst`) live under `docs/` or `document_guidelines/`.
-- Executable code (`.py`, shell scripts, and source files) does not live under `docs/` or `document_guidelines/`.
-- Code directories (`src/`, `tooling/`, `scripts/`, `tests/`, `conformance/`, `artifacts/generated/`) must not contain documentation files.
+- Documentation files (`.md`, `.txt`, `.rst`) live under `docs/`, `specs/`, `governance/`, or `product/`.
+- Executable code (`.py`, shell scripts, and source files) does not live under documentation domains.
+- Code directories (`src/`, `tooling/`, `tests/`, `artifacts/generated/`) must not contain documentation files.
 - Root-level docs are restricted to governance/community files only.
 
 Enforcement:

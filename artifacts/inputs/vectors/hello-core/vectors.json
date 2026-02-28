@@ -9,7 +9,7 @@
     },
     {
       "expected_error_code": "CONTRACT_VIOLATION",
-      "input_ref": "contracts/operator_registry.cbor",
+      "input_ref": "specs/contracts/operator_registry.cbor",
       "operator_id": "Glyphser.Registry.ValidateOperatorRegistry",
       "vector_id": "vector_registry_validate_001"
     }

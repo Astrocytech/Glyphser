@@ -2,7 +2,7 @@
 **EQC Compliance:** Merged single-file EQC v1.1 Option A.
 
 **Algorithm:** `Glyphser.Registry.OperatorRegistrySchema`  
-**Purpose (1 sentence):** Define the authoritative machine-readable schema for `contracts/operator_registry.cbor` and its deterministic validation rules.  
+**Purpose (1 sentence):** Define the authoritative machine-readable schema for `specs/contracts/operator_registry.cbor` and its deterministic validation rules.  
 **Spec Version:** `Glyphser.Registry.OperatorRegistrySchema` | 2026-02-19 | Authors: Olejar Damir  
 **Normativity Legend:** `specs/layers/L1-foundation/Normativity-Legend.md`
 
@@ -37,7 +37,7 @@
 - `Glyphser.Registry.ComputeRegistryHash`
 - `Glyphser.Error.Emit`
 ### 0.H Namespacing and Packaging
-- Registry file path: `contracts/operator_registry.cbor`.
+- Registry file path: `specs/contracts/operator_registry.cbor`.
 - Registry file MUST be stored in canonical CBOR form as defined by `CBOR_CANONICAL` (not only logically decodable to canonical form).
 ### 0.I Outputs and Metric Schema
 - Outputs: `(validation_report, operator_registry_root_hash)`.
@@ -174,7 +174,7 @@
 
 ---
 ## 3) Initialization
-1. Load `contracts/operator_registry.cbor`.
+1. Load `specs/contracts/operator_registry.cbor`.
 2. Decode canonical CBOR.
 3. If CBOR decoding fails or canonical-form checks fail, emit deterministic `MALFORMED_CBOR` and abort.
 4. Initialize validation diagnostics.

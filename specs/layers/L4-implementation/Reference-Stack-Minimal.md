@@ -81,8 +81,8 @@
   - `artifacts/expected/goldens/hello-core/trace_snippet.json`
   - `artifacts/expected/goldens/hello-core/checkpoint_header.json`
   - `artifacts/expected/goldens/hello-core/execution_certificate.json`
-  - `contracts/operator_registry.cbor`
-  - `contracts/catalog-manifest.json`
+  - `specs/contracts/operator_registry.cbor`
+  - `specs/contracts/catalog-manifest.json`
   - `artifacts/inputs/vectors/hello-core/vectors.json`
   - `artifacts/inputs/vectors/hello-core/vectors-manifest.json`
 
@@ -90,7 +90,7 @@
 - Before claiming runnable-reference conformance, run:
   - `python tooling/verify_doc_artifacts.py`
 - Hash identities used by this contract are the values in:
-  - `contracts/catalog-manifest.json`
+  - `specs/contracts/catalog-manifest.json`
   - `artifacts/inputs/fixtures/hello-core/fixture-manifest.json`
   - `artifacts/expected/goldens/hello-core/golden-manifest.json`
 

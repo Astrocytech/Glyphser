@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Dict, List
 
 ROOT = Path(__file__).resolve().parents[1]
-REGISTRY = ROOT / "contracts" / "operator_registry.json"
+REGISTRY = ROOT / "specs" / "contracts" / "operator_registry.json"
 OUT = ROOT / "evidence" / "coverage" / "operator_coverage.json"
 
 

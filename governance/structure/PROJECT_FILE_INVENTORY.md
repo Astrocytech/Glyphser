@@ -1035,20 +1035,20 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `artifacts/inputs/vectors/replay-suites/index.json` | Deterministic input/output/generated artifact. |
 | `artifacts/inputs/vectors/tracking-monitoring/vectors-manifest.json` | Deterministic input/output/generated artifact. |
 | `artifacts/inputs/vectors/tracking-monitoring/vectors.json` | Deterministic input/output/generated artifact. |
-| `assets/glyphser3.png` | Project artifact for `glyphser3`. |
-| `assets/glyphser3.svg` | Project artifact for `glyphser3`. |
-| `contracts/capability_catalog.cbor` | Machine-readable contract/interface artifact. |
-| `contracts/catalog-manifest.json` | Machine-readable contract/interface artifact. |
-| `contracts/digest_catalog.cbor` | Machine-readable contract/interface artifact. |
-| `contracts/error_codes.cbor` | Machine-readable contract/interface artifact. |
-| `contracts/error_codes.json` | Machine-readable contract/interface artifact. |
-| `contracts/interface_hash.json` | Machine-readable contract/interface artifact. |
-| `contracts/openapi_public_api_v1.yaml` | Machine-readable contract/interface artifact. |
-| `contracts/operator_registry.cbor` | Machine-readable contract/interface artifact. |
-| `contracts/operator_registry.json` | Machine-readable contract/interface artifact. |
-| `contracts/operator_registry_source.json` | Machine-readable contract/interface artifact. |
-| `contracts/schema_catalog.cbor` | Machine-readable contract/interface artifact. |
-| `contracts/vectors_catalog.cbor` | Machine-readable contract/interface artifact. |
+| `product/site/assets/glyphser3.png` | Project artifact for `glyphser3`. |
+| `product/site/assets/glyphser3.svg` | Project artifact for `glyphser3`. |
+| `specs/contracts/capability_catalog.cbor` | Machine-readable contract/interface artifact. |
+| `specs/contracts/catalog-manifest.json` | Machine-readable contract/interface artifact. |
+| `specs/contracts/digest_catalog.cbor` | Machine-readable contract/interface artifact. |
+| `specs/contracts/error_codes.cbor` | Machine-readable contract/interface artifact. |
+| `specs/contracts/error_codes.json` | Machine-readable contract/interface artifact. |
+| `specs/contracts/interface_hash.json` | Machine-readable contract/interface artifact. |
+| `specs/contracts/openapi_public_api_v1.yaml` | Machine-readable contract/interface artifact. |
+| `specs/contracts/operator_registry.cbor` | Machine-readable contract/interface artifact. |
+| `specs/contracts/operator_registry.json` | Machine-readable contract/interface artifact. |
+| `specs/contracts/operator_registry_source.json` | Machine-readable contract/interface artifact. |
+| `specs/contracts/schema_catalog.cbor` | Machine-readable contract/interface artifact. |
+| `specs/contracts/vectors_catalog.cbor` | Machine-readable contract/interface artifact. |
 | `distribution/release/CHECKSUMS_v0.1.0.sha256` | Release and distribution artifact. |
 | `distribution/release/CHECKSUMS_v0.1.0.sha256.asc` | Release and distribution artifact. |
 | `distribution/release/RELEASE_NOTES_v0.1.0.md` | Release and distribution artifact. |
@@ -1308,8 +1308,8 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `schemas/pilot/l4_threat-model-and-control-crosswalk.schema.json` | Schema/meta-schema validation artifact. |
 | `schemas/pilot/l4_tooling-and-automation-suite.schema.json` | Schema/meta-schema validation artifact. |
 | `schemas/pilot/l4_tooling-suite.schema.json` | Schema/meta-schema validation artifact. |
-| `scripts/repro/host_meta.py` | Operational helper script. |
-| `scripts/run_hello_core.py` | Operational helper script. |
+| `tooling/scripts/repro/host_meta.py` | Operational helper script. |
+| `tooling/scripts/run_hello_core.py` | Operational helper script. |
 | `specs/README.md` | Normative specification artifact. |
 | `specs/compatibility/CERTIFICATION_DELIVERABLES.md` | Normative specification artifact. |
 | `specs/compatibility/COMPATIBILITY_CRITERIA_v0.1.md` | Normative specification artifact. |

@@ -21,7 +21,7 @@ def main() -> int:
     inputs = []
     for path in sorted((ROOT / "schemas").rglob("*.schema.json")):
         inputs.append({"path": str(path.relative_to(ROOT)).replace("\\", "/"), "sha256": _sha256(path)})
-    reg = ROOT / "contracts" / "operator_registry.json"
+    reg = ROOT / "specs" / "contracts" / "operator_registry.json"
     if reg.exists():
         inputs.append({"path": str(reg.relative_to(ROOT)).replace("\\", "/"), "sha256": _sha256(reg)})
     for path in sorted((ROOT / "tooling" / "codegen" / "templates").glob("*.tpl")):

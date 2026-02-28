@@ -48,7 +48,7 @@
 - `Glyphser.Error.Emit`
 
 ### 0.H Namespacing and Packaging
-- Profile registry path: `contracts/determinism_profiles.cbor`.
+- Profile registry path: `specs/contracts/determinism_profiles.cbor`.
 
 ### 0.I Outputs and Metric Schema
 - Outputs: `(profile_report, comparison_report)`.

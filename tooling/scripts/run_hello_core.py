@@ -6,7 +6,7 @@ import json
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "tooling"))
 
@@ -95,7 +95,7 @@ def main() -> int:
 
     manifest_hash = _sha256_hex((FIXTURES / "manifest.core.yaml").read_bytes())
     operator_registry_root_hash = json.loads(
-        (ROOT / "contracts" / "catalog-manifest.json").read_text(encoding="utf-8")
+        (ROOT / "specs" / "contracts" / "catalog-manifest.json").read_text(encoding="utf-8")
     )["derived_identities"]["operator_registry_root_hash"]
 
     checkpoint_header = {
@@ -121,7 +121,7 @@ def main() -> int:
     certificate_hash = _sha256_hex(_canonical_json_bytes(execution_certificate))
 
     interface_hash = json.loads(
-        (ROOT / "contracts" / "interface_hash.json").read_text(encoding="utf-8")
+        (ROOT / "specs" / "contracts" / "interface_hash.json").read_text(encoding="utf-8")
     )["interface_hash"]
 
     golden = json.loads(GOLDEN.read_text(encoding="utf-8"))

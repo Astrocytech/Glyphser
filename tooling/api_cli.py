@@ -13,7 +13,7 @@ from src.glyphser.api.runtime_api import RuntimeApiConfig, RuntimeApiService  # 
 
 
 def _service(state_path: str | None) -> RuntimeApiService:
-    path = Path(state_path) if state_path else ROOT / "temp" / "api" / "state.json"
+    path = Path(state_path) if state_path else ROOT / "artifacts" / "generated" / "runtime" / "api" / "state.json"
     return RuntimeApiService(RuntimeApiConfig(root=ROOT, state_path=path))
 
 
@@ -76,4 +76,3 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

@@ -33,7 +33,7 @@
 - `Glyphser.Implementation.SpecLint`
 - `Glyphser.Error.Emit`
 ### 0.H Namespacing and Packaging
-- Canonical artifact path: `contracts/operator_registry.cbor`.
+- Canonical artifact path: `specs/contracts/operator_registry.cbor`.
 ### 0.I Outputs and Metric Schema
 - Outputs: `(operator_registry_cbor, operator_registry_root_hash, validation_report)`.
 ### 0.J Spec Lifecycle Governance
@@ -61,7 +61,7 @@
 
 ### II.F Canonical Artifact Schema (Normative)
 - Authoritative schema is defined in `specs/layers/L1-foundation/Operator-Registry-Schema.md` (Section `II.F Canonical Operator Record Schema`).
-- This contract MUST NOT redefine required fields, names, or top-level layout for `contracts/operator_registry.cbor`.
+- This contract MUST NOT redefine required fields, names, or top-level layout for `specs/contracts/operator_registry.cbor`.
 - Optional non-authoritative build metadata (for example `generated_at`) may be emitted in sidecar documentation artifacts only; it is not part of the canonical registry object.
 
 ### II.G Artifact Hash (Normative)

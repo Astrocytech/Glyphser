@@ -49,7 +49,7 @@ def verify_file_list_manifest(manifest_path: Path) -> list[str]:
 
 def main() -> int:
     checks = [
-        (ROOT / "contracts" / "catalog-manifest.json", verify_manifest),
+        (ROOT / "specs" / "contracts" / "catalog-manifest.json", verify_manifest),
     ]
 
     for path in fixtures_root().rglob("fixture-manifest.json"):

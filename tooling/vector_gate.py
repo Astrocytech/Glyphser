@@ -17,7 +17,7 @@ from tooling.operator_vectors import (  # noqa: E402
     load_vectors_file,
     validate_vectors_payload,
 )
-REGISTRY = ROOT / "contracts" / "operator_registry.json"
+REGISTRY = ROOT / "specs" / "contracts" / "operator_registry.json"
 
 
 def _load_registry_ops() -> List[str]:

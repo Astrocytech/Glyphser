@@ -37,7 +37,7 @@
 ### 0.K Failure and Error Semantics
 - Mismatched canonicalization is deterministic failure.
 ### 0.L Input/Data Provenance
-- Source-of-truth inputs: `specs/layers/L1-foundation/API-Interfaces.md`, `contracts/operator_registry.cbor`.
+- Source-of-truth inputs: `specs/layers/L1-foundation/API-Interfaces.md`, `specs/contracts/operator_registry.cbor`.
 
 ## 2) Derivation Rules (Normative)
 - OpenAPI/Protobuf/SDK artifacts MUST be generated only from canonical operator registry + API interface contract.

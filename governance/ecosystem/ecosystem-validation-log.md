@@ -15,14 +15,14 @@
   - Reorganized markdown portfolio into layered folders:
     - `specs/layers/L1-foundation/`
     - `specs/layers/L2-specs/`
-    - `docs/layer3-tests/`
-    - `docs/layer4-implementation/`
+    - `specs/layers/L3-tests/`
+    - `specs/layers/L4-implementation/`
 - Strict Path Resolution status:
   - Registry file paths resolve and files are non-empty.
   - Current versions captured from document version strings.
 - Notes:
-  - `document_guidelines/EQC_ECOSYSTEM.md` is used as portfolio root governance document.
-  - `document_guidelines/EQC_GUIDELINES.md` is retained as additional core-guideline reference.
+  - `governance/document_guidelines/EquationCode/ECOSYSTEM.md` is used as portfolio root governance document.
+  - `governance/document_guidelines/EquationCode/EQC.md` is retained as additional core-guideline reference.
 
 ---
 
@@ -48,7 +48,7 @@
 - Date: 2026-02-19
 - Action: Full markdown wiring audit and closure.
 - Scope:
-  - Audited all `*.md` files under project root, including `docs/**` and `document_guidelines/**`.
+  - Audited all `*.md` files under project root, including `docs/**` and `governance/document_guidelines/**`.
   - Added registry coverage for:
     - `ecosystem-validation-log.md` (`AUX-LOG-001`)
     - `portfolio-release-notes-template.md` (`AUX-TEMPLATE-001`)
@@ -162,13 +162,13 @@
 - Action: Added coding governance subdocuments and wired them into ecosystem.
 - Scope:
   - Added:
-    - `docs/layer4-implementation/Operator-Registry-CBOR-Contract.md`
-    - `docs/layer4-implementation/Spec-Lint-Rules.md`
-    - `docs/layer4-implementation/Change-Control-Playbook.md`
+    - `specs/layers/L4-implementation/Operator-Registry-CBOR-Contract.md`
+    - `specs/layers/L4-implementation/Spec-Lint-Rules.md`
+    - `specs/layers/L4-implementation/Change-Control-Playbook.md`
   - Updated references in:
-    - `docs/layer4-implementation/Spec-Lint-Implementation.md`
-    - `docs/layer4-implementation/Repo-Layout-and-Interfaces.md`
-    - `docs/layer4-implementation/Implementation-Roadmap.md`
+    - `specs/layers/L4-implementation/Spec-Lint-Implementation.md`
+    - `specs/layers/L4-implementation/Repo-Layout-and-Interfaces.md`
+    - `specs/layers/L4-implementation/Implementation-Roadmap.md`
   - Synced registry hashes and added `L4-038..L4-040`.
   - Regenerated graph wiring from actual references and root-recognizes policy.
 - Validation:
@@ -190,12 +190,12 @@
 - Action: Added optional coding governance subdocuments and completed full wiring.
 - Scope:
   - Added:
-    - `docs/layer4-implementation/Contracts-Artifact-Lifecycle.md`
-    - `docs/layer4-implementation/EQC-CI-Policy.md`
+    - `specs/layers/L4-implementation/Contracts-Artifact-Lifecycle.md`
+    - `specs/layers/L4-implementation/EQC-CI-Policy.md`
   - Updated:
-    - `docs/layer4-implementation/Build-and-CI-Matrix.md`
-    - `docs/layer4-implementation/Release-Evidence-Assembler.md`
-    - `docs/layer4-implementation/Change-Control-Playbook.md`
+    - `specs/layers/L4-implementation/Build-and-CI-Matrix.md`
+    - `specs/layers/L4-implementation/Release-Evidence-Assembler.md`
+    - `specs/layers/L4-implementation/Change-Control-Playbook.md`
   - Added registry entries:
     - `L4-041` (Contracts Artifact Lifecycle)
     - `L4-042` (EQC CI Policy)
@@ -645,7 +645,7 @@
 - Action: Operator Registry schema closure pass (remaining critical consistency and implementability clauses).
 - Scope:
   - Updated `specs/layers/L1-foundation/Operator-Registry-Schema.md` with:
-    - canonical-file storage requirement for `contracts/operator_registry.cbor`,
+    - canonical-file storage requirement for `specs/contracts/operator_registry.cbor`,
     - `signature_digest` field type tightened to `bytes32`,
     - global enum CBOR representation rule (enum symbols encoded as UTF-8 strings),
     - capability-set validation rule against authoritative security policy catalog,
@@ -2059,7 +2059,7 @@
   - `Glyphser-Kernel-v3.22-OS.md`: defined `probe_outputs_bytes` as canonical CBOR serialization in deterministic probe order.
 - Registry maintenance:
   - Re-synced `ecosystem-registry.yaml` hash chain entries for all currently modified governed docs and `AUX-LOG-001`.
-  - Also corrected one pre-existing stale registry digest for `L4-042` (`docs/layer4-implementation/EQC-CI-Policy.md`) to restore full parity.
+  - Also corrected one pre-existing stale registry digest for `L4-042` (`specs/layers/L4-implementation/EQC-CI-Policy.md`) to restore full parity.
 - Validation:
   - Executed full registry/file digest parity check and confirmed `REGISTRY_PARITY_OK`.
 
@@ -2257,7 +2257,7 @@
   - Re-synced registry hash chain entries and re-ran full parity verification.
 
 ## 2026-02-20 — Layer3 Test-Spec Consistency Pass
-- Applied comprehensive `docs/layer3-tests/` consistency fixes across all test-spec files:
+- Applied comprehensive `specs/layers/L3-tests/` consistency fixes across all test-spec files:
   - added missing operator definitions where manifests referenced undefined operators (compatibility, CI, conformance harness, fuzzing, storage recovery, vectors catalog),
   - resolved reproducibility/input mismatches (added/clarified required hash commitments and seeds/test-report references),
   - aligned procedure steps with declared outputs and operator signatures,
@@ -2274,7 +2274,7 @@
   - Re-synced registry hash chain entries and re-ran full parity verification.
 
 ## 2026-02-20 — Layer3 EQC Determinism/Consistency Completion Pass
-- Scope: `docs/layer3-tests/*` deterministic completeness and cross-file alignment hardening.
+- Scope: `specs/layers/L3-tests/*` deterministic completeness and cross-file alignment hardening.
 - Changes applied:
   - Added missing `0.Z EQC Mandatory Declarations Addendum` blocks to all previously missing Layer3 test specs (`L3-001`, `L3-002`, `L3-003`, `L3-004`, `L3-005`, `L3-006`, `L3-007`, `L3-009`, `L3-010`).
   - Reproducibility/input alignment fixes:
@@ -2336,17 +2336,17 @@
   - `specs/layers/L1-foundation/API-Interfaces.md`
   - `specs/layers/L1-foundation/Canonical-CBOR-Profile.md`
   - `specs/layers/L1-foundation/Operator-Registry-Schema.md`
-  - `docs/layer4-implementation/Operator-Registry-CBOR-Contract.md`
-  - `docs/layer4-implementation/Industry-Productization-Upgrade-Plan.md`
-  - `docs/layer4-implementation/Implementation-Roadmap.md`
+  - `specs/layers/L4-implementation/Operator-Registry-CBOR-Contract.md`
+  - `specs/layers/L4-implementation/Industry-Productization-Upgrade-Plan.md`
+  - `specs/layers/L4-implementation/Implementation-Roadmap.md`
 
 ## Additions
 - Added `specs/layers/L1-foundation/Normativity-Legend.md`.
 - Added `docs/START-HERE.md`.
-- Added `docs/layer4-implementation/Tooling-Suite.md`.
+- Added `specs/layers/L4-implementation/Tooling-Suite.md`.
 - Added onboarding fixture artifacts:
-  - `docs/examples/hello-core/manifest.core.yaml`
-  - `docs/examples/hello-core/hello-core-golden.json`
+  - `artifacts/inputs/fixtures/hello-core/manifest.core.yaml`
+  - `specs/examples/hello-core/hello-core-golden.json`
 
 ## Ecosystem Wiring
 - Added registry records:
@@ -2370,7 +2370,7 @@
   - duplicate procedure blocks.
 
 ## Applied Changes
-- `docs/layer4-implementation/Implementation-Backlog.md`
+- `specs/layers/L4-implementation/Implementation-Backlog.md`
   - standardized profile naming in invariants and `EPIC_profiles` to `core/enterprise/regulated`,
   - expanded `EPIC_archival_notarization` tasks/done criteria to full deterministic, hash-bound requirements.
 - `specs/layers/L1-foundation/Data-Structures.md`
@@ -2381,7 +2381,7 @@
   - removed duplicate procedure section; retained single canonical `## 6) Procedure`.
 - `specs/layers/L1-foundation/Operator-Registry-Schema.md`
   - `ComputeRegistryHash` definition now explicitly states canonical preimage and ordering basis.
-- `docs/layer4-implementation/Operator-Registry-CBOR-Contract.md`
+- `specs/layers/L4-implementation/Operator-Registry-CBOR-Contract.md`
   - clarified inherited numeric version ordering (`version_num`) and canonical profile binding for hash preimage.
 
 ## Ecosystem Integrity
@@ -2404,27 +2404,27 @@
   - determinism audit playbook.
 
 ## New Documents
-- `docs/layer4-implementation/Evidence-Catalog.md`
-- `docs/layer4-implementation/External-Interface-Standard.md`
-- `docs/layer4-implementation/Security-Case-Template.md`
-- `docs/layer3-tests/Failure-Injection-Index.md`
-- `docs/layer4-implementation/Benchmark-Evidence-Spec.md`
-- `docs/layer4-implementation/Determinism-Audit-Playbook.md`
+- `specs/layers/L4-implementation/Evidence-Catalog.md`
+- `specs/layers/L4-implementation/External-Interface-Standard.md`
+- `specs/layers/L4-implementation/Security-Case-Template.md`
+- `specs/layers/L3-tests/Failure-Injection-Index.md`
+- `specs/layers/L4-implementation/Benchmark-Evidence-Spec.md`
+- `specs/layers/L4-implementation/Determinism-Audit-Playbook.md`
 
 ## Existing Docs Upgraded
 - `docs/START-HERE.md`:
   - added deterministic golden demo evidence bundle section with identity rule.
-- `docs/layer4-implementation/Industry-Productization-Upgrade-Plan.md`:
+- `specs/layers/L4-implementation/Industry-Productization-Upgrade-Plan.md`:
   - linked new 10/10 references.
-- `docs/layer3-tests/Release-Gates.md`:
+- `specs/layers/L3-tests/Release-Gates.md`:
   - linked evidence catalog / benchmark / security-case references.
-- `docs/layer4-implementation/Interoperability-Standards-Bridge.md`:
+- `specs/layers/L4-implementation/Interoperability-Standards-Bridge.md`:
   - linked authoritative external interface contract.
-- `docs/layer4-implementation/Threat-Model-and-Control-Crosswalk.md`:
+- `specs/layers/L4-implementation/Threat-Model-and-Control-Crosswalk.md`:
   - linked security case template.
-- `docs/layer3-tests/Failure-Injection-Scenarios.md`:
+- `specs/layers/L3-tests/Failure-Injection-Scenarios.md`:
   - linked scenario index reference.
-- `docs/layer3-tests/Performance-Plan.md`:
+- `specs/layers/L3-tests/Performance-Plan.md`:
   - linked benchmark evidence spec reference.
 
 ## Ecosystem Wiring
@@ -2446,7 +2446,7 @@
 - Closed remaining documentation-executability gaps by materializing canonical artifact directories and pinned manifests referenced by docs.
 
 ## Created Artifact Sets
-- `contracts/`
+- `specs/contracts/`
   - `operator_registry.cbor`
   - `digest_catalog.cbor`
   - `error_codes.cbor`
@@ -2471,18 +2471,18 @@
 
 ## Tooling Added
 - `tooling/materialize_doc_artifacts.py`
-  - deterministic CBOR/JSON materialization of contracts/artifacts/inputs/fixtures/artifacts/expected/goldens/vectors and manifest hashes.
+  - deterministic CBOR/JSON materialization of `specs/contracts/`, `artifacts/inputs/fixtures/`, `artifacts/expected/goldens/`, and `artifacts/inputs/vectors/`, plus manifest hashes.
 - `tooling/verify_doc_artifacts.py`
   - deterministic hash/size verification for all pinned manifests.
 
 ## Docs Updated
 - `docs/START-HERE.md`
   - switched fixture/golden refs to root artifact directories and added verification command section.
-- `docs/layer4-implementation/Reference-Stack-Minimal.md`
+- `specs/layers/L4-implementation/Reference-Stack-Minimal.md`
   - added explicit required artifact paths and hash-verification references.
-- `docs/layer4-implementation/Release-Evidence-Assembler.md`
+- `specs/layers/L4-implementation/Release-Evidence-Assembler.md`
   - added canonical artifact input list and pinned manifests.
-- `docs/layer3-tests/Release-Gates.md`
+- `specs/layers/L3-tests/Release-Gates.md`
   - added pinned gate input manifests and deterministic verification command.
 
 ## Verification Snapshot
@@ -2499,7 +2499,7 @@
   - added canonical helper `CommitHash(domain_tag, data_object)`.
   - added explicit prohibition for non-2-element commitment arrays (`CONTRACT_VIOLATION`).
   - added explicit distinction between `CommitHash` (domain-separated) and `ObjectDigest` (plain digest).
-- `docs/layer4-implementation/Spec-Lint-Rules.md`
+- `specs/layers/L4-implementation/Spec-Lint-Rules.md`
   - added blocker rule `EQC.HASH.COMMIT.SHAPE` for commitment preimage shape.
 - `specs/layers/L1-foundation/Determinism-Profiles.md`
   - replaced prior path delimiter assumption with normative escape/decode rules (`.` delimiter, `\\` escape, `\\.` and `\\\\` only) and round-trip invariant.
@@ -2517,7 +2517,7 @@
   - replay/seed/token and evidence commitments.
 
 ## Additional Alignment
-- `docs/layer4-implementation/Canonical-Hashing-Reference.md`
+- `specs/layers/L4-implementation/Canonical-Hashing-Reference.md`
   - updated digest definition to explicit two-element preimage (`[domain_tag, normalized_preimage]`).
 - `specs/layers/L1-foundation/API-Interfaces.md`
   - normalized API conformance catalog hash to domain-separated tagged commitment.
@@ -2561,18 +2561,18 @@
 - Closed normative unresolved-operator blocker for layer4 implementation docs by enforcing explicit resolution policy and converting roadmap-only manifests to template-only where appropriate.
 
 ## Normative Rule Added
-- `docs/layer4-implementation/Spec-Lint-Rules.md`
+- `specs/layers/L4-implementation/Spec-Lint-Rules.md`
   - added blocker rule `OP_MANIFEST_UNRESOLVED_SYMBOL`:
     - any `Glyphser.*_vN` listed under Operator Manifest / Referenced Operators must resolve to exactly one `**Operator:**` definition, unless explicitly declared as external reference.
 
 ## Core Definition Fixes
-- `docs/layer4-implementation/Determinism-Audit-Playbook.md`
+- `specs/layers/L4-implementation/Determinism-Audit-Playbook.md`
   - added `**Operator:** Glyphser.Replay.VerifyReplayToken`
   - added `**Operator:** Glyphser.Certificate.VerifyBoundHashes`
-- `docs/layer4-implementation/Determinism-Debug-Checklist.md`
+- `specs/layers/L4-implementation/Determinism-Debug-Checklist.md`
   - added `**Operator:** Glyphser.Replay.CheckRNGProgression`
   - added `**Operator:** Glyphser.Replay.CheckBackendProfile`
-- `docs/layer4-implementation/Spec-Lint-Implementation.md`
+- `specs/layers/L4-implementation/Spec-Lint-Implementation.md`
   - added `**Operator:** Glyphser.Implementation.LoadDocSet`
   - added `**Operator:** Glyphser.Implementation.AggregateLintVerdict`
 

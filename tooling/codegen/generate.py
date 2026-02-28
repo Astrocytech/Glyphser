@@ -16,8 +16,8 @@ from path_config import generated_root
 TEMPLATES = ROOT / "tooling" / "codegen" / "templates"
 OUT_DIR = generated_root()
 SCHEMA_ROOTS = [ROOT / "schemas", ROOT / "schemas" / "pilot"]
-REGISTRY_JSON = ROOT / "contracts" / "operator_registry.json"
-CATALOG_MANIFEST = ROOT / "contracts" / "catalog-manifest.json"
+REGISTRY_JSON = ROOT / "specs" / "contracts" / "operator_registry.json"
+CATALOG_MANIFEST = ROOT / "specs" / "contracts" / "catalog-manifest.json"
 
 
 @dataclass

@@ -87,7 +87,7 @@
 - `Glyphser.TMMU.PrepareMemory(ir_dag, execution_order, mode, arena_config) -> (tensor_map, metrics)`
 - `Glyphser.Replay.CompareTrace(trace_a, trace_b, replay_mode) -> divergence_report`
 - `Glyphser.Certificate.EvidenceValidate(manifest, trace, checkpoint, replay_ctx) -> validation_report`
-- All signatures must be derived from `contracts/operator_registry.cbor`; manual signature drift is forbidden.
+- All signatures must be derived from `specs/contracts/operator_registry.cbor`; manual signature drift is forbidden.
 - Alias note: short helper names may appear in pseudocode, but normative identity is always the fully-qualified operator id.
 
 ### II.G Normative Reference Pseudocode (Required)

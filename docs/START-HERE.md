@@ -24,14 +24,14 @@
 
 ---
 ## 3) Required File Set (Normative)
-- `docs/layer4-implementation/Reference-Stack-Minimal.md`
-- `docs/layer4-implementation/Hello-World-End-to-End-Example.md`
+- `specs/layers/L4-implementation/Reference-Stack-Minimal.md`
+- `specs/layers/L4-implementation/Hello-World-End-to-End-Example.md`
 - `specs/layers/L2-specs/Glyphser-Kernel-v3.22-OS.md`
 - `specs/layers/L2-specs/Run-Commit-WAL.md`
 - `specs/layers/L2-specs/Trace-Sidecar.md`
 - `specs/layers/L2-specs/Execution-Certificate.md`
-- `docs/examples/hello-core/manifest.core.yaml`
-- `docs/examples/hello-core/hello-core-golden.json`
+- `artifacts/inputs/fixtures/hello-core/manifest.core.yaml`
+- `specs/examples/hello-core/hello-core-golden.json`
 
 ---
 ## 4) Expected Deterministic Outputs (Normative)
@@ -39,15 +39,15 @@
   - `trace_final_hash`
   - `certificate_hash`
   - `interface_hash`
-- The expected values are sourced from `docs/examples/hello-core/hello-core-golden.json`.
+- The expected values are sourced from `specs/examples/hello-core/hello-core-golden.json`.
 - Any mismatch is a deterministic onboarding failure for this profile fixture.
 
 ## 6) Procedure
 ```text
-1. Load Core fixture manifest: docs/examples/hello-core/manifest.core.yaml.
+1. Load Core fixture manifest: artifacts/inputs/fixtures/hello-core/manifest.core.yaml.
 2. Execute minimal reference stack workflow (WAL -> trace -> checkpoint -> certificate -> replay check).
 3. Compute trace_final_hash, certificate_hash, interface_hash via canonical CBOR hashing rules.
-4. Compare emitted values against docs/examples/hello-core/hello-core-golden.json.
+4. Compare emitted values against specs/examples/hello-core/hello-core-golden.json.
 5. Emit deterministic onboarding verdict.
 ```
 
@@ -60,10 +60,10 @@
   - `fixture_manifest_ref = artifacts/inputs/fixtures/hello-core/fixture-manifest.json`
   - `golden_identity_ref = artifacts/expected/goldens/hello-core/golden-identities.json`
   - `golden_manifest_ref = artifacts/expected/goldens/hello-core/golden-manifest.json`
-  - `catalog_manifest_ref = contracts/catalog-manifest.json`
+  - `catalog_manifest_ref = specs/contracts/catalog-manifest.json`
 - Required verifier refs:
-  - `docs/layer4-implementation/Evidence-Catalog.md`
-  - `docs/layer4-implementation/Determinism-Audit-Playbook.md`
+  - `specs/layers/L4-implementation/Evidence-Catalog.md`
+  - `specs/layers/L4-implementation/Determinism-Audit-Playbook.md`
   - `tooling/verify_doc_artifacts.py`
 
 ## 8) Artifact Verification Command (Normative)

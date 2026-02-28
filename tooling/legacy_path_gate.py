@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "evidence" / "structure"
 
-TARGET_DIRS = ["src", "tooling", "scripts", "tests", ".github"]
+TARGET_DIRS = ["src", "tooling", "tests", ".github"]
 EXTS = {".py", ".yml", ".yaml", ".toml", ".md", ".json"}
 
 LEGACY_PATTERNS = [

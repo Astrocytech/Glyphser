@@ -13,7 +13,7 @@ Status: PASS
 - `5 passed` in API contract/CLI/runtime test suite.
 
 ## Evidence Artifacts
-- `contracts/openapi_public_api_v1.yaml`
+- `specs/contracts/openapi_public_api_v1.yaml`
 - `tooling/api_cli.py`
 - `tooling/api_contract_gate.py`
 - `docs/product/API_REFERENCE_v1.md`

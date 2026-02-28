@@ -16,7 +16,7 @@ def load_json(path: Path) -> dict:
 
 def main() -> int:
     api_path = ROOT / "specs" / "layers" / "L1-foundation" / "API-Interfaces.md"
-    reg_path = ROOT / "contracts" / "operator_registry.json"
+    reg_path = ROOT / "specs" / "contracts" / "operator_registry.json"
     err_doc = ROOT / "specs" / "layers" / "L1-foundation" / "Error-Codes.md"
 
     if not reg_path.exists():
