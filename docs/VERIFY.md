@@ -2,17 +2,21 @@
 
 ## Requirements
 - Python 3.12+
+- `git`
 
-## Steps
-1. Verify deterministic artifacts:
-   - `python tools/verify_doc_artifacts.py`
-2. Run conformance suite:
-   - `python tools/conformance/cli.py run`
-   - `python tools/conformance/cli.py verify`
-   - `python tools/conformance/cli.py report`
-3. Run hello-core end-to-end:
-   - `python scripts/run_hello_core.py`
+## Quick Verify (<=5 steps)
+1. Clone and enter repository.
+2. Checkout the target release tag or commit.
+3. Create and activate a virtual environment.
+4. Install project runtime dependencies: `python -m pip install -e .`
+5. Run one command: `python tools/verify_release.py`
 
-## Expected Result
-- All commands exit with status 0.
-- The output of `scripts/run_hello_core.py` matches `docs/examples/hello-core/hello-core-golden.json`.
+## Single Command
+```bash
+python tools/verify_release.py
+```
+
+## What It Checks
+- Runs `tools/push_button.py` end-to-end.
+- Verifies release artifact hashes against `docs/release/CHECKSUMS_v0.1.0.sha256`.
+- Returns exit code `0` only when all checks pass.
