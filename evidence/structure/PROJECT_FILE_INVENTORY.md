@@ -1,6 +1,6 @@
 # Project File Inventory
 
-Generated: 2026-02-28 17:10:55 UTC
+Generated: 2026-02-28 17:20:54 UTC
 
 Scope: Full repository tree excluding transient local cache directories (`.git`, `.venv`, `.pytest_cache`, `__pycache__`, lint/type caches).
 
@@ -52,43 +52,37 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │       │   └── metric_log_expected.json
 │   │       └── golden_inventory.json
 │   ├── generated
-│   │   ├── build_metadata
-│   │   │   ├── codegen_manifest.json
-│   │   │   └── input_hashes.json
-│   │   ├── codegen
-│   │   │   ├── cleanroom_validation
-│   │   │   │   ├── bindings.py
-│   │   │   │   ├── error.py
-│   │   │   │   ├── models.py
-│   │   │   │   ├── operators.py
-│   │   │   │   └── validators.py
-│   │   │   ├── __init__.py
-│   │   │   ├── bindings.py
-│   │   │   ├── error.py
-│   │   │   ├── models.py
-│   │   │   ├── operators.py
-│   │   │   └── validators.py
-│   │   ├── deploy
-│   │   │   ├── confidential
-│   │   │   │   ├── bundle_manifest.json
-│   │   │   │   ├── policy_bindings.json
-│   │   │   │   └── runtime_config.json
-│   │   │   ├── managed
-│   │   │   │   ├── bundle_manifest.json
-│   │   │   │   ├── policy_bindings.json
-│   │   │   │   └── runtime_config.json
-│   │   │   ├── overlays
-│   │   │   │   ├── dev.json
-│   │   │   │   ├── index.json
-│   │   │   │   ├── prod.json
-│   │   │   │   └── staging.json
-│   │   │   ├── regulated
-│   │   │   │   ├── bundle_manifest.json
-│   │   │   │   ├── policy_bindings.json
-│   │   │   │   └── runtime_config.json
-│   │   │   ├── env_manifest.json
-│   │   │   └── migration_plan.json
-│   │   └── __init__.py
+│   │   └── build
+│   │       ├── codegen
+│   │       │   └── cleanroom_validation
+│   │       │       ├── bindings.py
+│   │       │       ├── error.py
+│   │       │       ├── models.py
+│   │       │       ├── operators.py
+│   │       │       └── validators.py
+│   │       ├── deploy
+│   │       │   ├── confidential
+│   │       │   │   ├── bundle_manifest.json
+│   │       │   │   ├── policy_bindings.json
+│   │       │   │   └── runtime_config.json
+│   │       │   ├── managed
+│   │       │   │   ├── bundle_manifest.json
+│   │       │   │   ├── policy_bindings.json
+│   │       │   │   └── runtime_config.json
+│   │       │   ├── overlays
+│   │       │   │   ├── dev.json
+│   │       │   │   ├── index.json
+│   │       │   │   ├── prod.json
+│   │       │   │   └── staging.json
+│   │       │   ├── regulated
+│   │       │   │   ├── bundle_manifest.json
+│   │       │   │   ├── policy_bindings.json
+│   │       │   │   └── runtime_config.json
+│   │       │   ├── env_manifest.json
+│   │       │   └── migration_plan.json
+│   │       └── metadata
+│   │           ├── codegen_manifest.json
+│   │           └── input_hashes.json
 │   ├── inputs
 │   │   ├── fixtures
 │   │   │   ├── checkpoint-restore
@@ -192,7 +186,6 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │       │   ├── vectors-manifest.json
 │   │       │   └── vectors.json
 │   │       └── catalog.json
-│   ├── __init__.py
 │   └── README.md
 ├── distribution
 │   ├── release
@@ -216,9 +209,6 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   ├── coverage
 │   │   └── operator_coverage.json
 │   ├── deploy
-│   │   ├── state
-│   │   │   ├── staging_active.json
-│   │   │   └── staging_previous.json
 │   │   ├── drift.json
 │   │   ├── latest.json
 │   │   ├── parity.json
@@ -245,12 +235,6 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   ├── dependency-lock.sha256
 │   │   ├── hashes.txt
 │   │   └── run-checklist.md
-│   ├── runtime_state
-│   │   ├── checkpoint-restore
-│   │   │   └── ckpt-1.json
-│   │   └── deploy
-│   │       ├── staging_active.json
-│   │       └── staging_previous.json
 │   ├── security
 │   │   ├── audit.log.jsonl
 │   │   ├── build_provenance.json
@@ -396,6 +380,12 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   ├── services.md
 │   │   └── verify.md
 │   └── README.md
+├── runtime_state
+│   ├── checkpoint-restore
+│   │   └── ckpt-1.json
+│   └── deploy
+│       ├── staging_active.json
+│       └── staging_previous.json
 ├── specs
 │   ├── compatibility
 │   │   ├── CERTIFICATION_DELIVERABLES.md
@@ -712,6 +702,13 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │       │   └── emit.py
 │       ├── fingerprint
 │       │   └── state_fingerprint.py
+│       ├── generated
+│       │   ├── __init__.py
+│       │   ├── bindings.py
+│       │   ├── error.py
+│       │   ├── models.py
+│       │   ├── operators.py
+│       │   └── validators.py
 │       ├── legacy_import
 │       │   └── legacy_framework.py
 │       ├── model
@@ -840,6 +837,61 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   ├── test_replay_suite.py
 │   └── test_smoke.py
 ├── tooling
+│   ├── artifacts
+│   │   ├── expected
+│   │   │   └── goldens
+│   │   │       └── hello-core
+│   │   │           ├── checkpoint_header.json
+│   │   │           ├── execution_certificate.json
+│   │   │           ├── golden-identities.json
+│   │   │           ├── golden-manifest.json
+│   │   │           └── trace_snippet.json
+│   │   ├── generated
+│   │   │   └── build
+│   │   │       ├── codegen
+│   │   │       │   └── cleanroom_validation
+│   │   │       │       ├── bindings.py
+│   │   │       │       ├── error.py
+│   │   │       │       ├── models.py
+│   │   │       │       ├── operators.py
+│   │   │       │       └── validators.py
+│   │   │       ├── deploy
+│   │   │       │   ├── confidential
+│   │   │       │   │   ├── bundle_manifest.json
+│   │   │       │   │   ├── policy_bindings.json
+│   │   │       │   │   └── runtime_config.json
+│   │   │       │   ├── managed
+│   │   │       │   │   ├── bundle_manifest.json
+│   │   │       │   │   ├── policy_bindings.json
+│   │   │       │   │   └── runtime_config.json
+│   │   │       │   ├── overlays
+│   │   │       │   │   ├── dev.json
+│   │   │       │   │   ├── index.json
+│   │   │       │   │   ├── prod.json
+│   │   │       │   │   └── staging.json
+│   │   │       │   ├── regulated
+│   │   │       │   │   ├── bundle_manifest.json
+│   │   │       │   │   ├── policy_bindings.json
+│   │   │       │   │   └── runtime_config.json
+│   │   │       │   ├── env_manifest.json
+│   │   │       │   └── migration_plan.json
+│   │   │       └── metadata
+│   │   │           ├── codegen_manifest.json
+│   │   │           └── input_hashes.json
+│   │   └── inputs
+│   │       ├── fixtures
+│   │       │   └── hello-core
+│   │       │       ├── checkpoint.json
+│   │       │       ├── execution_certificate.json
+│   │       │       ├── fixture-manifest.json
+│   │       │       ├── manifest.core.yaml
+│   │       │       ├── model_ir.json
+│   │       │       ├── tiny_synth_dataset.jsonl
+│   │       │       └── trace.json
+│   │       └── vectors
+│   │           └── hello-core
+│   │               ├── vectors-manifest.json
+│   │               └── vectors.json
 │   ├── cli
 │   │   ├── __init__.py
 │   │   ├── api_cli.py
@@ -859,6 +911,9 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   ├── generate.py
 │   │   ├── input_hash_manifest.py
 │   │   └── run_and_test.py
+│   ├── commands
+│   │   ├── __init__.py
+│   │   └── push_button.py
 │   ├── conformance
 │   │   ├── __init__.py
 │   │   ├── cli.py
@@ -884,6 +939,22 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   ├── materialize_doc_artifacts.py
 │   │   ├── merge_markdown_to_txt.py
 │   │   └── verify_doc_artifacts.py
+│   ├── evidence
+│   │   ├── deploy
+│   │   │   ├── drift.json
+│   │   │   ├── latest.json
+│   │   │   ├── parity.json
+│   │   │   └── rollback.json
+│   │   ├── security
+│   │   │   ├── audit.log.jsonl
+│   │   │   ├── build_provenance.json
+│   │   │   ├── latest.json
+│   │   │   └── sbom.json
+│   │   └── validation
+│   │       ├── runs
+│   │       ├── scorecards
+│   │       ├── independent_verification_summary.json
+│   │       └── latest.json
 │   ├── gates
 │   │   ├── __init__.py
 │   │   ├── api_contract_gate.py
@@ -903,6 +974,9 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   ├── state_recovery_gate.py
 │   │   ├── structural_invariants_gate.py
 │   │   └── vector_gate.py
+│   ├── lib
+│   │   ├── __init__.py
+│   │   └── path_config.py
 │   ├── registry
 │   │   ├── __init__.py
 │   │   ├── build_operator_registry.py
@@ -914,6 +988,10 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   ├── release_evidence_gate.py
 │   │   ├── reproducibility_check.py
 │   │   └── verify_release.py
+│   ├── runtime_state
+│   │   └── deploy
+│   │       ├── staging_active.json
+│   │       └── staging_previous.json
 │   ├── scripts
 │   │   ├── repro
 │   │   │   └── host_meta.py
@@ -958,7 +1036,6 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `SECURITY.md` | Repository-level configuration or supporting documentation. |
 | `VERSIONING.md` | Repository-level configuration or supporting documentation. |
 | `artifacts/README.md` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/__init__.py` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
 | `artifacts/bundles/hello-core-bundle.sha256` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
 | `artifacts/bundles/hello-core-bundle.tar.gz` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
 | `artifacts/expected/goldens/checkpoint-restore/checkpoint_expected.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
@@ -984,35 +1061,28 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `artifacts/expected/goldens/replay-suite-1/trace_expected.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
 | `artifacts/expected/goldens/tracking-monitoring/golden-manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
 | `artifacts/expected/goldens/tracking-monitoring/metric_log_expected.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/__init__.py` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/build_metadata/codegen_manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/build_metadata/input_hashes.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/codegen/__init__.py` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/codegen/bindings.py` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/codegen/cleanroom_validation/bindings.py` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/codegen/cleanroom_validation/error.py` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/codegen/cleanroom_validation/models.py` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/codegen/cleanroom_validation/operators.py` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/codegen/cleanroom_validation/validators.py` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/codegen/error.py` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/codegen/models.py` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/codegen/operators.py` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/codegen/validators.py` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/deploy/confidential/bundle_manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/deploy/confidential/policy_bindings.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/deploy/confidential/runtime_config.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/deploy/env_manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/deploy/managed/bundle_manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/deploy/managed/policy_bindings.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/deploy/managed/runtime_config.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/deploy/migration_plan.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/deploy/overlays/dev.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/deploy/overlays/index.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/deploy/overlays/prod.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/deploy/overlays/staging.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/deploy/regulated/bundle_manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/deploy/regulated/policy_bindings.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/deploy/regulated/runtime_config.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/build/codegen/cleanroom_validation/bindings.py` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/build/codegen/cleanroom_validation/error.py` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/build/codegen/cleanroom_validation/models.py` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/build/codegen/cleanroom_validation/operators.py` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/build/codegen/cleanroom_validation/validators.py` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/build/deploy/confidential/bundle_manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/build/deploy/confidential/policy_bindings.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/build/deploy/confidential/runtime_config.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/build/deploy/env_manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/build/deploy/managed/bundle_manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/build/deploy/managed/policy_bindings.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/build/deploy/managed/runtime_config.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/build/deploy/migration_plan.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/build/deploy/overlays/dev.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/build/deploy/overlays/index.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/build/deploy/overlays/prod.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/build/deploy/overlays/staging.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/build/deploy/regulated/bundle_manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/build/deploy/regulated/policy_bindings.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/build/deploy/regulated/runtime_config.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/build/metadata/codegen_manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/build/metadata/input_hashes.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
 | `artifacts/inputs/fixtures/checkpoint-restore/checkpoint_input.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
 | `artifacts/inputs/fixtures/checkpoint-restore/fixture-manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
 | `artifacts/inputs/fixtures/checkpoint-restore/restore_request.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
@@ -1107,8 +1177,6 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `evidence/deploy/latest.json` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/deploy/parity.json` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/deploy/rollback.json` | Generated verification evidence, reports, and audit outputs. |
-| `evidence/deploy/state/staging_active.json` | Generated verification evidence, reports, and audit outputs. |
-| `evidence/deploy/state/staging_previous.json` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/ga/latest.json` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/ga/release_candidate_verification.json` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/observability/alert_test.json` | Generated verification evidence, reports, and audit outputs. |
@@ -1127,9 +1195,6 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `evidence/repro/dependency-lock.sha256` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/hashes.txt` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/run-checklist.md` | Generated verification evidence, reports, and audit outputs. |
-| `evidence/runtime_state/checkpoint-restore/ckpt-1.json` | Generated verification evidence, reports, and audit outputs. |
-| `evidence/runtime_state/deploy/staging_active.json` | Generated verification evidence, reports, and audit outputs. |
-| `evidence/runtime_state/deploy/staging_previous.json` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/security/audit.log.jsonl` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/security/build_provenance.json` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/security/latest.json` | Generated verification evidence, reports, and audit outputs. |
@@ -1250,6 +1315,9 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `product/site/verify.md` | Product-facing documentation, operations guides, and public artifacts. |
 | `pyproject.toml` | Repository-level configuration or supporting documentation. |
 | `requirements.lock` | Repository-level configuration or supporting documentation. |
+| `runtime_state/checkpoint-restore/ckpt-1.json` | Repository-level configuration or supporting documentation. |
+| `runtime_state/deploy/staging_active.json` | Repository-level configuration or supporting documentation. |
+| `runtime_state/deploy/staging_previous.json` | Repository-level configuration or supporting documentation. |
 | `specs/README.md` | Normative specification, contracts, and layer documentation. |
 | `specs/compatibility/CERTIFICATION_DELIVERABLES.md` | Normative specification, contracts, and layer documentation. |
 | `specs/compatibility/COMPATIBILITY_CRITERIA_v0.1.md` | Normative specification, contracts, and layer documentation. |
@@ -1534,6 +1602,12 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `src/glyphser/dp/apply.py` | Runtime source code and importable application modules. |
 | `src/glyphser/error/emit.py` | Runtime source code and importable application modules. |
 | `src/glyphser/fingerprint/state_fingerprint.py` | Runtime source code and importable application modules. |
+| `src/glyphser/generated/__init__.py` | Runtime source code and importable application modules. |
+| `src/glyphser/generated/bindings.py` | Runtime source code and importable application modules. |
+| `src/glyphser/generated/error.py` | Runtime source code and importable application modules. |
+| `src/glyphser/generated/models.py` | Runtime source code and importable application modules. |
+| `src/glyphser/generated/operators.py` | Runtime source code and importable application modules. |
+| `src/glyphser/generated/validators.py` | Runtime source code and importable application modules. |
 | `src/glyphser/legacy_import/legacy_framework.py` | Runtime source code and importable application modules. |
 | `src/glyphser/model/build_grad_dependency_order.py` | Runtime source code and importable application modules. |
 | `src/glyphser/model/collect_gradients.py` | Runtime source code and importable application modules. |
@@ -1635,6 +1709,42 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `tests/validation/test_external_validation_gate.py` | Automated test coverage across unit/integration/conformance domains. |
 | `tooling/README.md` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/__init__.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/expected/goldens/hello-core/checkpoint_header.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/expected/goldens/hello-core/execution_certificate.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/expected/goldens/hello-core/golden-identities.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/expected/goldens/hello-core/golden-manifest.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/expected/goldens/hello-core/trace_snippet.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/generated/build/codegen/cleanroom_validation/bindings.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/generated/build/codegen/cleanroom_validation/error.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/generated/build/codegen/cleanroom_validation/models.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/generated/build/codegen/cleanroom_validation/operators.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/generated/build/codegen/cleanroom_validation/validators.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/generated/build/deploy/confidential/bundle_manifest.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/generated/build/deploy/confidential/policy_bindings.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/generated/build/deploy/confidential/runtime_config.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/generated/build/deploy/env_manifest.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/generated/build/deploy/managed/bundle_manifest.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/generated/build/deploy/managed/policy_bindings.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/generated/build/deploy/managed/runtime_config.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/generated/build/deploy/migration_plan.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/generated/build/deploy/overlays/dev.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/generated/build/deploy/overlays/index.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/generated/build/deploy/overlays/prod.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/generated/build/deploy/overlays/staging.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/generated/build/deploy/regulated/bundle_manifest.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/generated/build/deploy/regulated/policy_bindings.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/generated/build/deploy/regulated/runtime_config.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/generated/build/metadata/codegen_manifest.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/generated/build/metadata/input_hashes.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/inputs/fixtures/hello-core/checkpoint.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/inputs/fixtures/hello-core/execution_certificate.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/inputs/fixtures/hello-core/fixture-manifest.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/inputs/fixtures/hello-core/manifest.core.yaml` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/inputs/fixtures/hello-core/model_ir.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/inputs/fixtures/hello-core/tiny_synth_dataset.jsonl` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/inputs/fixtures/hello-core/trace.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/inputs/vectors/hello-core/vectors-manifest.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/artifacts/inputs/vectors/hello-core/vectors.json` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/cli/__init__.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/cli/api_cli.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/cli/conformance_cli.py` | Automation, gate, build, release, or developer tooling script. |
@@ -1651,6 +1761,8 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `tooling/codegen/templates/models.py.tpl` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/codegen/templates/operators.py.tpl` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/codegen/templates/validators.py.tpl` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/commands/__init__.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/commands/push_button.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/conformance/__init__.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/conformance/cli.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/conformance/report_template.json` | Automation, gate, build, release, or developer tooling script. |
@@ -1671,6 +1783,16 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `tooling/docs/materialize_doc_artifacts.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/docs/merge_markdown_to_txt.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/docs/verify_doc_artifacts.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/evidence/deploy/drift.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/evidence/deploy/latest.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/evidence/deploy/parity.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/evidence/deploy/rollback.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/evidence/security/audit.log.jsonl` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/evidence/security/build_provenance.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/evidence/security/latest.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/evidence/security/sbom.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/evidence/validation/independent_verification_summary.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/evidence/validation/latest.json` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/gates/__init__.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/gates/api_contract_gate.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/gates/coverage_report.py` | Automation, gate, build, release, or developer tooling script. |
@@ -1689,6 +1811,8 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `tooling/gates/state_recovery_gate.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/gates/structural_invariants_gate.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/gates/vector_gate.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/lib/__init__.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/lib/path_config.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/path_config.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/push_button.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/registry/__init__.py` | Automation, gate, build, release, or developer tooling script. |
@@ -1700,6 +1824,8 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `tooling/release/release_evidence_gate.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/release/reproducibility_check.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/release/verify_release.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/runtime_state/deploy/staging_active.json` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/runtime_state/deploy/staging_previous.json` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/scripts/repro/host_meta.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/scripts/run_hello_core.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/security/__init__.py` | Automation, gate, build, release, or developer tooling script. |

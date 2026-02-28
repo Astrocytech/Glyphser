@@ -12,4 +12,4 @@ Automation entrypoint for gates, code generation, conformance, deployment, and r
 - `tooling/validation/`: validation utilities (including inventory generation).
 
 ## Primary Command
-- `python tooling/push_button.py`
+- `python tooling/commands/push_button.py`

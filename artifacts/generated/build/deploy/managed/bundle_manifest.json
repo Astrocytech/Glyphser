@@ -1,15 +1,15 @@
 {
   "artifacts": [
     {
-      "path": "artifacts/generated/deploy/managed/runtime_config.json",
+      "path": "artifacts/generated/build/deploy/managed/runtime_config.json",
       "sha256": "224a4a4a4ed88a5e513ab4dff13f63bd2417cc418a12f027ca95419fe027b9c6"
     },
     {
-      "path": "artifacts/generated/deploy/managed/policy_bindings.json",
+      "path": "artifacts/generated/build/deploy/managed/policy_bindings.json",
       "sha256": "8163f557e7b59480221cef7c68c656327f3190786a1c981e4415fedc34ec01d7"
     }
   ],
-  "bundle_hash": "3b14739240a650fefe4156eaa6218a2443c18b44a106d421a06996755a07fbf0",
+  "bundle_hash": "871e94b6fd96502e180da95e6bb5da32816dc7a5a943e625d348717387847703",
   "catalog_digest": "b18d515a42abf201cd615865f04f25df6558df2d9eac632e54f8245330d91315",
   "profile": "managed"
 }

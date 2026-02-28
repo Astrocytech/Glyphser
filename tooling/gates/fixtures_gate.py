@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[2]
 import sys
 
 sys.path.insert(0, str(ROOT))
-from tooling.path_config import fixtures_root, goldens_root, vectors_root
+from tooling.lib.path_config import fixtures_root, goldens_root, vectors_root
 
 
 def _check_manifests(root: Path, manifest_name: str) -> List[str]:

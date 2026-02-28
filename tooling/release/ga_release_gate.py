@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "evidence" / "ga"
 sys.path.insert(0, str(ROOT))
 
-from tooling.path_config import bundles_root, conformance_reports_root, evidence_root, first_existing, rel
+from tooling.lib.path_config import bundles_root, conformance_reports_root, evidence_root, first_existing, rel
 
 
 def _load_json(path: Path) -> Dict[str, Any]:

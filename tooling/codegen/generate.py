@@ -11,10 +11,10 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from tooling.path_config import generated_root
+from tooling.lib.path_config import generated_root
 
 TEMPLATES = ROOT / "tooling" / "codegen" / "templates"
-OUT_DIR = generated_root() / "codegen"
+OUT_DIR = ROOT / "src" / "glyphser" / "generated"
 SCHEMA_ROOTS = [ROOT / "specs" / "schemas"]
 REGISTRY_JSON = ROOT / "specs" / "contracts" / "operator_registry.json"
 CATALOG_MANIFEST = ROOT / "specs" / "contracts" / "catalog-manifest.json"
@@ -461,7 +461,7 @@ def _registry_root_hash() -> str:
 
 def generate() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    (generated_root() / "build_metadata").mkdir(parents=True, exist_ok=True)
+    (generated_root() / "metadata").mkdir(parents=True, exist_ok=True)
 
     schema_infos = _collect_schemas()
     registry = _read_json(REGISTRY_JSON)
@@ -496,11 +496,11 @@ def generate() -> None:
     output_hashes = [
         {"path": path, "sha256": _sha256_hex_path(ROOT / path)}
         for path in [
-            "artifacts/generated/codegen/models.py",
-            "artifacts/generated/codegen/operators.py",
-            "artifacts/generated/codegen/validators.py",
-            "artifacts/generated/codegen/error.py",
-            "artifacts/generated/codegen/bindings.py",
+            "src/glyphser/generated/models.py",
+            "src/glyphser/generated/operators.py",
+            "src/glyphser/generated/validators.py",
+            "src/glyphser/generated/error.py",
+            "src/glyphser/generated/bindings.py",
         ]
     ]
 
@@ -510,15 +510,15 @@ def generate() -> None:
         "template_bundle_hash": _template_bundle_hash(),
         "schemas": _schema_manifest(),
         "outputs": [
-            "artifacts/generated/codegen/models.py",
-            "artifacts/generated/codegen/operators.py",
-            "artifacts/generated/codegen/validators.py",
-            "artifacts/generated/codegen/error.py",
-            "artifacts/generated/codegen/bindings.py",
+            "src/glyphser/generated/models.py",
+            "src/glyphser/generated/operators.py",
+            "src/glyphser/generated/validators.py",
+            "src/glyphser/generated/error.py",
+            "src/glyphser/generated/bindings.py",
         ],
         "outputs_with_hashes": output_hashes,
     }
-    (generated_root() / "build_metadata" / "codegen_manifest.json").write_text(
+    (generated_root() / "metadata" / "codegen_manifest.json").write_text(
         json.dumps(manifest, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )

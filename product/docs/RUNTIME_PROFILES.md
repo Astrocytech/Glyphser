@@ -36,7 +36,7 @@ Define runtime profile matrix with explicit constraints, supported features, dep
 | Profile ID | Required test/gate set |
 | --- | --- |
 | `P1_LOCAL_DEV` | `python tooling/release/verify_release.py`; core conformance suite; deterministic artifact checks |
-| `P2_SINGLE_NODE_PROD` | `python tooling/push_button.py`; release evidence gate; reproducibility check; deployment smoke and rollback drill |
+| `P2_SINGLE_NODE_PROD` | `python tooling/commands/push_button.py`; release evidence gate; reproducibility check; deployment smoke and rollback drill |
 | `P3_MULTI_NODE_REGULATED` | All `P2` gates plus RBAC negative tests, audit integrity checks, recovery drills, compliance policy validation, external reproducibility confirmation |
 
 ## Profile Gate Criteria

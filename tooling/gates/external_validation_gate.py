@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 import sys
 
 sys.path.insert(0, str(ROOT))
-from tooling.path_config import evidence_root
+from tooling.lib.path_config import evidence_root
 
 BASE = evidence_root() / "validation"
 RUNS = BASE / "runs"

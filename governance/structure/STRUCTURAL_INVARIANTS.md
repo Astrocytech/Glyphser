@@ -10,10 +10,10 @@ These invariants define non-negotiable repository structure boundaries.
 - Operator conformance vectors are canonical under `artifacts/inputs/vectors/conformance/operators/`.
 - Specs operator examples under `specs/examples/operators/` are illustrative-only and must not be referenced by test/tooling execution paths.
 - Generated artifacts must remain partitioned under:
-  - `artifacts/generated/codegen/`
-  - `artifacts/generated/deploy/`
-  - `evidence/runtime_state/`
-  - `artifacts/generated/build_metadata/`
+  - `src/glyphser/generated/`
+  - `artifacts/generated/build/deploy/`
+  - `runtime_state/`
+  - `artifacts/generated/build/metadata/`
 - Legacy generated locations are forbidden:
   - `artifacts/generated/models.py`, `operators.py`, `validators.py`, `error.py`, `bindings.py`
   - `artifacts/generated/codegen/clean_build/`
@@ -35,4 +35,4 @@ These invariants define non-negotiable repository structure boundaries.
 - Evidence report: `evidence/structure/domain_dependency_gate.json`
 - Evidence report: `evidence/structure/spec_schema_map.json`
 - Evidence report: `evidence/structure/spec_link_gate.json`
-- Pipeline integration: `tooling/push_button.py`
+- Pipeline integration: `tooling/commands/push_button.py`

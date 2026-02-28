@@ -9,9 +9,9 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from tooling.path_config import generated_root
+from tooling.lib.path_config import generated_root
 
-MANIFEST = generated_root() / "build_metadata" / "codegen_manifest.json"
+MANIFEST = generated_root() / "metadata" / "codegen_manifest.json"
 
 
 def _sha256(path: Path) -> str:

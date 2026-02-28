@@ -229,7 +229,7 @@ Status: COMPLETE.
 DONE (so far):
 	- Generator pipeline implemented at `tooling/codegen/generate.py` consuming `specs/contracts/operator_registry.json` and `specs/schemas/**/*.schema.json`.
 	- Templates added in `tooling/codegen/templates/` for data models, operator stubs, validators, error handling, and trace/checkpoint/WAL bindings.
-	- Generated outputs written to `artifacts/generated/codegen/` with `artifacts/generated/build_metadata/codegen_manifest.json` for input traceability.
+	- Generated outputs written to `src/glyphser/generated/` with `artifacts/generated/build/metadata/codegen_manifest.json` for input traceability.
 
 
 Milestone 9: Deployment-Ready Generation
@@ -267,7 +267,7 @@ Next tasks:
 	- Expand fixture sets beyond hello-core to cover checkpoint/restore and replay determinism on new operators.
 Status: COMPLETE.
 DONE (so far):
-	- One-command pipeline implemented at `tooling/push_button.py`.
+	- One-command pipeline implemented at `tooling/commands/push_button.py`.
 	- Pipeline runs schema/registry gates, conformance, codegen, tests, deployment bundle generation, and release bundle assembly.
 	- Push-button run completes cleanly on current fixtures and golden artifacts.
 
@@ -362,7 +362,7 @@ Exit Criteria for Full Product
 Refinements (Post-Plan)
 -----------------------
 1. Cross-environment reproducibility:
-	- Run `tooling/push_button.py` on a second host, compare `evidence/repro/hashes.txt`.
+	- Run `tooling/commands/push_button.py` on a second host, compare `evidence/repro/hashes.txt`.
 2. CI hardening:
 	- Add a CI job to upload `artifacts/bundles/hello-core-bundle.sha256` as a build artifact.
 3. Vector completeness:
@@ -432,10 +432,10 @@ Milestone 13: Codegen Diff Fidelity
 3. Gate: drift must be zero for all generated files.
 Deliverable: fully reproducible generated code outputs.
 Clarifications:
-	- Clean build directory: `artifacts/generated/codegen/cleanroom_validation/` (delete and re-create each run).
+	- Clean build directory: `artifacts/generated/build/codegen/cleanroom_validation/` (delete and re-create each run).
 	- Hash manifest required for comparison.
 	- No exceptions for drift are allowed.
-	- Comparison includes: `artifacts/generated/codegen/models.py`, `artifacts/generated/codegen/operators.py`, `artifacts/generated/codegen/validators.py`, `artifacts/generated/codegen/error.py`, `artifacts/generated/codegen/bindings.py`.
+	- Comparison includes: `src/glyphser/generated/models.py`, `src/glyphser/generated/operators.py`, `src/glyphser/generated/validators.py`, `src/glyphser/generated/error.py`, `src/glyphser/generated/bindings.py`.
 	- Line endings normalized to LF before hashing.
 	- Generator must emit deterministic file ordering within directories.
 	- Generated outputs must include a manifest of input hashes (schemas + registry + templates).
@@ -565,7 +565,7 @@ DONE:
 	- Added versioned API contract `specs/contracts/openapi_public_api_v1.yaml`.
 	- Added stable CLI wrapper `tooling/cli/api_cli.py` for submit/status/evidence/replay.
 	- Added runtime API implementation `src/glyphser/api/runtime_api.py`.
-	- Added semver governance gate `tooling/gates/api_contract_gate.py` and wired it into `tooling/push_button.py`.
+	- Added semver governance gate `tooling/gates/api_contract_gate.py` and wired it into `tooling/commands/push_button.py`.
 	- Added API reference and policy docs:
 		- `docs/product/API_REFERENCE_v1.md`
 		- `docs/product/API_CLI_COMMANDS.md`
@@ -605,7 +605,7 @@ Execution Governance:
 Status: COMPLETE.
 DONE:
 	- Added durable state store implementation `src/glyphser/storage/state_store.py` with WAL replay, checkpointing, backup, restore, and corruption quarantine.
-	- Added recovery gate `tooling/gates/state_recovery_gate.py` and wired it into `tooling/push_button.py`.
+	- Added recovery gate `tooling/gates/state_recovery_gate.py` and wired it into `tooling/commands/push_button.py`.
 	- Added persistence/schema contract docs:
 		- `docs/product/PERSISTENT_STORAGE_ADAPTER_CONTRACT.md`
 		- `docs/product/PERSISTENCE_SCHEMA_v1.md`
@@ -620,7 +620,7 @@ DONE:
 		- `artifacts/inputs/vectors/conformance/storage/state_recovery_vectors.json`
 	- Verified gates:
 		- `python3 tooling/gates/state_recovery_gate.py` -> PASS
-		- `python3 tooling/push_button.py` -> PASS with `STATE_RECOVERY_GATE: PASS`
+		- `python3 tooling/commands/push_button.py` -> PASS with `STATE_RECOVERY_GATE: PASS`
 
 Milestone 20: Security Hardening and Access Control
 1. Implement authentication, authorization, and audit logging for all control surfaces.
@@ -658,7 +658,7 @@ DONE:
 		- secret scanning
 		- RBAC checks
 		- audit tamper-detection checks
-	- Wired security gates into `tooling/push_button.py`:
+	- Wired security gates into `tooling/commands/push_button.py`:
 		- `tooling/security/security_artifacts.py`
 		- `tooling/security/security_baseline_gate.py`
 	- Added security docs:
@@ -671,7 +671,7 @@ DONE:
 	- Added evidence report `docs/product/M20_SECURITY_TEST_REPORT.md`.
 	- Verified gates:
 		- `python3 tooling/security/security_baseline_gate.py` -> PASS
-		- `python3 tooling/push_button.py` -> PASS with `SECURITY_BASELINE_GATE: PASS`
+		- `python3 tooling/commands/push_button.py` -> PASS with `SECURITY_BASELINE_GATE: PASS`
 
 Milestone 21: Multi-Environment Deployment and Ops
 1. Provide reproducible deployment bundles (container + manifests).
@@ -706,7 +706,7 @@ DONE:
 		- `tooling/deploy/generate_overlays.py`
 	- Added staging deployment + rollback validation gate:
 		- `tooling/deploy/deploy_rollback_gate.py`
-		- outputs `evidence/deploy/latest.json`, `evidence/deploy/rollback.json`, `evidence/deploy/drift.json`, `evidence/deploy/parity.json`, and `evidence/runtime_state/deploy/staging_active.json`
+		- outputs `evidence/deploy/latest.json`, `evidence/deploy/rollback.json`, `evidence/deploy/drift.json`, `evidence/deploy/parity.json`, and `runtime_state/deploy/staging_active.json`
 	- Updated deployment pipeline wiring:
 		- `tooling/deploy/run_deployment_pipeline.py` now runs overlay generation and deploy/rollback gate.
 	- Added operational runbooks:
@@ -718,7 +718,7 @@ DONE:
 		- `docs/product/M21_DEPLOYMENT_TEST_REPORT.md`
 	- Verified gates:
 		- `python3 tooling/deploy/run_deployment_pipeline.py` -> `DEPLOY_ROLLBACK_GATE: PASS`
-		- `python3 tooling/push_button.py` -> PASS with `DEPLOY_ROLLBACK_GATE: PASS`
+		- `python3 tooling/commands/push_button.py` -> PASS with `DEPLOY_ROLLBACK_GATE: PASS`
 
 Milestone 22: Observability and SLO Enforcement
 1. Add metrics, structured logs, traces, and evidence lineage dashboards.
@@ -755,12 +755,12 @@ DONE:
 		- outputs `evidence/observability/latest.json`, `slo_status.json`, `alert_test.json`, `incident_drill.json`, `dashboard_inventory.json`, `lineage_index.json`, `synthetic_probe.json`
 	- Added observability gate test:
 		- `tests/ops/test_observability_gate.py`
-	- Wired observability gate into `tooling/push_button.py`.
+	- Wired observability gate into `tooling/commands/push_button.py`.
 	- Added milestone evidence report:
 		- `docs/product/M22_OBSERVABILITY_REPORT.md`
 	- Verified gates:
 		- `python3 tooling/gates/observability_gate.py` -> PASS
-		- `python3 tooling/push_button.py` -> PASS with `OBSERVABILITY_GATE: PASS`
+		- `python3 tooling/commands/push_button.py` -> PASS with `OBSERVABILITY_GATE: PASS`
 
 Milestone 23: External Validation Program
 1. Run clean-room verification by external users on fresh environments.
@@ -807,12 +807,12 @@ DONE:
 		- `evidence/validation/external_security_review.md`
 	- Added gate test:
 		- `tests/validation/test_external_validation_gate.py`
-	- Wired external validation gate into `tooling/push_button.py`.
+	- Wired external validation gate into `tooling/commands/push_button.py`.
 	- Added milestone evidence report:
 		- `docs/product/M23_EXTERNAL_VALIDATION_REPORT.md`
 	- Verified gates:
 		- `python3 tooling/gates/external_validation_gate.py` -> PASS
-		- `python3 tooling/push_button.py` -> PASS with `EXTERNAL_VALIDATION_GATE: PASS`
+		- `python3 tooling/commands/push_button.py` -> PASS with `EXTERNAL_VALIDATION_GATE: PASS`
 
 Milestone 24: GA Release and Support Model
 1. Publish GA release with signed artifacts and long-term version policy.
@@ -848,7 +848,7 @@ Execution Governance:
 	- Dependencies: requires Milestones 17-23 complete and approved.
 Status: COMPLETE.
 DONE:
-	- Added GA release gate `tooling/release/ga_release_gate.py` and wired it into `tooling/push_button.py`.
+	- Added GA release gate `tooling/release/ga_release_gate.py` and wired it into `tooling/commands/push_button.py`.
 	- Added GA support and governance documentation:
 		- `docs/product/GA_SUPPORT_MATRIX.md`
 		- `docs/product/GA_MIGRATION_GUIDE.md`
@@ -874,4 +874,4 @@ DONE:
 	- Removed env-gated skip behavior from `tests/conftest.py`; test suite now runs fully by default (no skip markers applied at collection time).
 	- Verified gates:
 		- `python3 tooling/release/ga_release_gate.py` -> PASS
-		- `python3 tooling/push_button.py` -> PASS with `GA_RELEASE_GATE: PASS`
+		- `python3 tooling/commands/push_button.py` -> PASS with `GA_RELEASE_GATE: PASS`

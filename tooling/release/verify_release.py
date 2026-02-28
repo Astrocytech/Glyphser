@@ -41,7 +41,7 @@ def main() -> int:
         return 1
 
     print("STEP 1: running push-button pipeline")
-    rc = subprocess.run([sys.executable, "tooling/push_button.py"], cwd=ROOT).returncode
+    rc = subprocess.run([sys.executable, "tooling/commands/push_button.py"], cwd=ROOT).returncode
     if rc != 0:
         return rc
 

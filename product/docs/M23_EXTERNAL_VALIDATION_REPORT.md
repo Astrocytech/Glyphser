@@ -7,7 +7,7 @@ Status: PASS
 ## Commands Executed
 - `python3 tooling/gates/external_validation_gate.py`
 - `python3 -m pytest tests/validation/test_external_validation_gate.py -q`
-- `python3 tooling/push_button.py`
+- `python3 tooling/commands/push_button.py`
 
 ## Result Summary
 - 3 independent external validation runs recorded: PASS

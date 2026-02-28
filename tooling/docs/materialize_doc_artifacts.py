@@ -16,7 +16,7 @@ from src.glyphser.registry.registry_builder import (  # noqa: E402
     build_operator_registry_from_list,
     parse_api_interfaces,
 )
-from tooling.path_config import fixtures_root, goldens_root, vectors_root  # noqa: E402
+from tooling.lib.path_config import fixtures_root, goldens_root, vectors_root  # noqa: E402
 
 
 def sha256_hex(data: bytes) -> str:

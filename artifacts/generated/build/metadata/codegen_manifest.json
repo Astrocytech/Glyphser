@@ -2,31 +2,31 @@
   "generator": "tooling/codegen/generate.py",
   "operator_registry_root_hash": "d6c07c27e755cca8767ab62fb8106fead06055e90dc50c86ea015cde45e9fbc4",
   "outputs": [
-    "artifacts/generated/codegen/models.py",
-    "artifacts/generated/codegen/operators.py",
-    "artifacts/generated/codegen/validators.py",
-    "artifacts/generated/codegen/error.py",
-    "artifacts/generated/codegen/bindings.py"
+    "src/glyphser/generated/models.py",
+    "src/glyphser/generated/operators.py",
+    "src/glyphser/generated/validators.py",
+    "src/glyphser/generated/error.py",
+    "src/glyphser/generated/bindings.py"
   ],
   "outputs_with_hashes": [
     {
-      "path": "artifacts/generated/codegen/models.py",
+      "path": "src/glyphser/generated/models.py",
       "sha256": "d74e48d76e1a6d76057b2e748cf5cdc01cea19a9f27dd75f70f4cb75b33fd9eb"
     },
     {
-      "path": "artifacts/generated/codegen/operators.py",
+      "path": "src/glyphser/generated/operators.py",
       "sha256": "f1fe9ce46ab862d74bec5b21926d0a1477e47400d8a5d2a56536d685fd6d4f8f"
     },
     {
-      "path": "artifacts/generated/codegen/validators.py",
+      "path": "src/glyphser/generated/validators.py",
       "sha256": "ef4f13581c15d49847af1bef40edd84593794f8110e46c104c2bd2a78b31c879"
     },
     {
-      "path": "artifacts/generated/codegen/error.py",
+      "path": "src/glyphser/generated/error.py",
       "sha256": "2e79ed68ad8e3a1547abf2700bfaa8de5f8e06d1ad14b46c73b19973357bec08"
     },
     {
-      "path": "artifacts/generated/codegen/bindings.py",
+      "path": "src/glyphser/generated/bindings.py",
       "sha256": "ccd5346a49a2839a2e7a40f2f94073e8463652d1748802a2e808890fe0a41a35"
     }
   ],

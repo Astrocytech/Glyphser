@@ -1,15 +1,15 @@
 {
   "artifacts": [
     {
-      "path": "artifacts/generated/deploy/confidential/runtime_config.json",
+      "path": "artifacts/generated/build/deploy/confidential/runtime_config.json",
       "sha256": "c0f53ce0955010e092c3056d7eff241b4cde10da7d57dfa9c8437748b1b87040"
     },
     {
-      "path": "artifacts/generated/deploy/confidential/policy_bindings.json",
+      "path": "artifacts/generated/build/deploy/confidential/policy_bindings.json",
       "sha256": "5938dbc14fe3d8283347faea56a23535bcd849155100693f57785eb3921b7e53"
     }
   ],
-  "bundle_hash": "8884be849f30a7fafcd2e38403644e1ba60910fac8d7cf8800cbb0f7864693be",
+  "bundle_hash": "cd936e1615e1476b0cd4016cfbbd2672bc4cc343dce2f7b94ff4bdee33830c16",
   "catalog_digest": "b18d515a42abf201cd615865f04f25df6558df2d9eac632e54f8245330d91315",
   "profile": "confidential"
 }

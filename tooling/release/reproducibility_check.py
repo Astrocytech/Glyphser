@@ -7,7 +7,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from tooling.path_config import bundles_root, evidence_root
+from tooling.lib.path_config import bundles_root, evidence_root
 
 OUT = evidence_root() / "repro" / "hashes.txt"
 

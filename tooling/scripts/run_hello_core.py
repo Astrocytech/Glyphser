@@ -17,7 +17,7 @@ from src.glyphser.model.model_ir_executor import execute  # noqa: E402
 from src.glyphser.trace.compute_trace_hash import compute_trace_hash  # noqa: E402
 from src.glyphser.serialization.canonical_cbor import encode_canonical  # noqa: E402
 from src.glyphser.trace.trace_sidecar import write_trace  # noqa: E402
-from tooling.path_config import fixtures_root  # noqa: E402
+from tooling.lib.path_config import fixtures_root  # noqa: E402
 
 FIXTURES = fixtures_root() / "hello-core"
 GOLDEN = ROOT / "specs" / "examples" / "hello-core" / "hello-core-golden.json"

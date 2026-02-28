@@ -18,7 +18,7 @@ Independent implementation; no official affiliation or certification claims are 
 1. Ensure you have Python 3.12+
 2. Install dependencies: `pip install -e .`
 3. Run sanity checks: `python tooling/validation/validate_data_integrity.py`
-4. Run the full push-button pipeline: `python tooling/push_button.py`
+4. Run the full push-button pipeline: `python tooling/commands/push_button.py`
 
 ## You Are Here
 - `src/`: runtime Python package (`glyphser`).

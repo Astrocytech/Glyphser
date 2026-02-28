@@ -55,7 +55,7 @@ Goal: Run the full push-button pipeline on two **independent** hosts that differ
 ## D. Run the Pipeline (Both Hosts)
 
 1. Run the full pipeline:
-   - `python3 tooling/push_button.py`
+   - `python3 tooling/commands/push_button.py`
 2. Collect the following artifacts:
    - `artifacts/bundles/hello-core-bundle.sha256`
    - `evidence/conformance/reports/latest.json`
@@ -73,7 +73,7 @@ If any mismatch occurs:
 
 ## F. Third Verification Run (Host A)
 
-1. Re-run `python3 tooling/push_button.py` on Host A.
+1. Re-run `python3 tooling/commands/push_button.py` on Host A.
 2. Ensure all hashes match Host A’s first run.
 
 ## G. Fill the Comparison Report

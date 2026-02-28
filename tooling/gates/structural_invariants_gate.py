@@ -117,10 +117,10 @@ def _check_operator_vectors_source_of_truth() -> Dict[str, object]:
 
 def _check_generated_layout() -> Dict[str, object]:
     req_dirs = [
-        ROOT / "artifacts" / "generated" / "codegen",
-        ROOT / "artifacts" / "generated" / "deploy",
-        ROOT / "artifacts" / "generated" / "build_metadata",
-        ROOT / "evidence" / "runtime_state",
+        ROOT / "artifacts" / "generated" / "build" / "codegen",
+        ROOT / "artifacts" / "generated" / "build" / "deploy",
+        ROOT / "artifacts" / "generated" / "build" / "metadata",
+        ROOT / "runtime_state",
     ]
     missing_dirs = [str(p.relative_to(ROOT)).replace("\\", "/") for p in req_dirs if not p.exists()]
 
@@ -132,6 +132,9 @@ def _check_generated_layout() -> Dict[str, object]:
         ROOT / "artifacts" / "generated" / "bindings.py",
         ROOT / "artifacts" / "generated" / "clean_build",
         ROOT / "artifacts" / "generated" / "codegen" / "clean_build",
+        ROOT / "artifacts" / "generated" / "build_metadata",
+        ROOT / "artifacts" / "generated" / "codegen",
+        ROOT / "artifacts" / "generated" / "deploy",
         ROOT / "artifacts" / "generated" / "codegen_manifest.json",
         ROOT / "artifacts" / "generated" / "input_hashes.json",
         ROOT / "artifacts" / "generated" / "runtime",
@@ -140,13 +143,13 @@ def _check_generated_layout() -> Dict[str, object]:
     forbidden_present = [str(p.relative_to(ROOT)).replace("\\", "/") for p in forbidden if p.exists()]
 
     required_files = [
-        ROOT / "artifacts" / "generated" / "codegen" / "models.py",
-        ROOT / "artifacts" / "generated" / "codegen" / "operators.py",
-        ROOT / "artifacts" / "generated" / "codegen" / "validators.py",
-        ROOT / "artifacts" / "generated" / "codegen" / "error.py",
-        ROOT / "artifacts" / "generated" / "codegen" / "bindings.py",
-        ROOT / "artifacts" / "generated" / "build_metadata" / "codegen_manifest.json",
-        ROOT / "artifacts" / "generated" / "build_metadata" / "input_hashes.json",
+        ROOT / "src" / "glyphser" / "generated" / "models.py",
+        ROOT / "src" / "glyphser" / "generated" / "operators.py",
+        ROOT / "src" / "glyphser" / "generated" / "validators.py",
+        ROOT / "src" / "glyphser" / "generated" / "error.py",
+        ROOT / "src" / "glyphser" / "generated" / "bindings.py",
+        ROOT / "artifacts" / "generated" / "build" / "metadata" / "codegen_manifest.json",
+        ROOT / "artifacts" / "generated" / "build" / "metadata" / "input_hashes.json",
     ]
     missing_files = [str(p.relative_to(ROOT)).replace("\\", "/") for p in required_files if not p.exists()]
 

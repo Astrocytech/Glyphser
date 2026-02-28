@@ -9,7 +9,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from tooling.path_config import (
+from tooling.lib.path_config import (
     bundles_root,
     conformance_reports_root,
     conformance_results_root,

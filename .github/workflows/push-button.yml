@@ -42,7 +42,7 @@ jobs:
       - name: Install dependencies
         run: pip install -e .
       - name: Run push-button pipeline
-        run: python tooling/push_button.py
+        run: python tooling/commands/push_button.py
       - name: Check codegen drift
         run: |
           python tooling/codegen/cleanroom_validation_generate.py

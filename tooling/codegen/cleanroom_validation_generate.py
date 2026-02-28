@@ -11,7 +11,7 @@ sys.path.insert(0, str(ROOT))
 
 from tooling.codegen.cleanroom_validation import main as clean_build  # noqa: E402
 from tooling.codegen.generate import generate  # noqa: E402
-from tooling.path_config import generated_root  # noqa: E402
+from tooling.lib.path_config import generated_root  # noqa: E402
 
 CLEAN = generated_root() / "codegen" / "cleanroom_validation"
 
@@ -22,7 +22,7 @@ def main() -> int:
 
     # copy generated outputs into cleanroom validation directory
     outputs = json.loads(
-        (generated_root() / "build_metadata" / "codegen_manifest.json").read_text(encoding="utf-8")
+        (generated_root() / "metadata" / "codegen_manifest.json").read_text(encoding="utf-8")
     )["outputs"]
     for rel in outputs:
         src = ROOT / rel

@@ -17,6 +17,6 @@ python tooling/release/verify_release.py
 ```
 
 ## What It Checks
-- Runs `tooling/push_button.py` end-to-end.
+- Runs `tooling/commands/push_button.py` end-to-end.
 - Verifies release artifact hashes against `docs/release/CHECKSUMS_v0.1.0.sha256`.
 - Returns exit code `0` only when all checks pass.

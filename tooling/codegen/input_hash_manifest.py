@@ -8,9 +8,9 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from tooling.path_config import generated_root
+from tooling.lib.path_config import generated_root
 
-OUT = generated_root() / "build_metadata" / "input_hashes.json"
+OUT = generated_root() / "metadata" / "input_hashes.json"
 
 
 def _sha256(path: Path) -> str:

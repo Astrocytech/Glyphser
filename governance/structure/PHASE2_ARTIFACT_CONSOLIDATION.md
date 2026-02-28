@@ -29,7 +29,7 @@ Legacy paths are preserved as symlinks so current tests/tooling/workflows contin
 ## Validation
 
 - `python3 -m pytest -q` -> PASS
-- `python3 tooling/push_button.py` -> PASS
+- `python3 tooling/commands/push_button.py` -> PASS
 
 ## Notes
 

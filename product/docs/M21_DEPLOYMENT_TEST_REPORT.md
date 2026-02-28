@@ -7,7 +7,7 @@ Status: PASS
 ## Commands Executed
 - `python3 tooling/deploy/run_deployment_pipeline.py`
 - `python3 -m pytest tests/deploy/test_deploy_pipeline_gate.py -q`
-- `python3 tooling/push_button.py`
+- `python3 tooling/commands/push_button.py`
 
 ## Result Summary
 - Deploy bundle generation: PASS
@@ -20,7 +20,7 @@ Status: PASS
 - `evidence/deploy/rollback.json`
 - `evidence/deploy/drift.json`
 - `evidence/deploy/parity.json`
-- `evidence/runtime_state/deploy/staging_active.json`
+- `runtime_state/deploy/staging_active.json`
 
 ## Operational Docs
 - `docs/ops/DEPLOYMENT_RUNBOOK.md`

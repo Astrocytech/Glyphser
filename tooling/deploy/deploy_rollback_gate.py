@@ -9,7 +9,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from tooling.path_config import evidence_root, evidence_runtime_state_root, generated_root
+from tooling.lib.path_config import evidence_root, evidence_runtime_state_root, generated_root
 
 GEN = generated_root() / "deploy"
 OUT = evidence_root() / "deploy"

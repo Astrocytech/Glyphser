@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "evidence" / "observability"
 sys.path.insert(0, str(ROOT))
 
-from tooling.path_config import conformance_reports_root, evidence_root, first_existing, rel
+from tooling.lib.path_config import conformance_reports_root, evidence_root, first_existing, rel
 
 
 def _sha256(path: Path) -> str:

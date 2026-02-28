@@ -11,4 +11,4 @@ Rules:
 Enforcement:
 - Gate command: `python3 tooling/gates/doc_code_separation_gate.py`
 - Report output: `evidence/structure/latest.json`
-- Pipeline integration: `tooling/push_button.py`
+- Pipeline integration: `tooling/commands/push_button.py`
