@@ -36,7 +36,7 @@
 - `Glyphser.Implementation.ValidateOwnershipMap`
 - `Glyphser.Error.Emit`
 ### 0.H Namespacing and Packaging
-- namespace roots: `src/`, `tests/`, `artifacts/inputs/vectors/`, `schemas/`, `ops/`.
+- namespace roots: `src/`, `tests/`, `artifacts/inputs/vectors/`, `specs/schemas/`, `ops/`.
 ### 0.I Outputs and Metric Schema
 - outputs: `(layout_report, boundary_report, ownership_report)`.
 ### 0.J Spec Lifecycle Governance
@@ -85,7 +85,7 @@
 - `src/data`, `src/model`, `src/dp`, `src/tmmu`, `src/replay`, `src/trace`, `src/checkpoint`, `src/backend`, `src/security`, `src/registry`, `src/tracking`, `src/monitor`, `src/cert`.
 - `tests/unit`, `tests/integration`, `tests/replay`, `tests/perf`.
 - `artifacts/inputs/vectors/<operator_id>/`.
-- `schemas/` for config/trace/checkpoint/api schemas.
+- `specs/schemas/` for config/trace/checkpoint/api schemas.
 - `tooling/gates/spec_lint.py` mandatory linter entrypoint for cross-file contract consistency.
 - `specs/contracts/operator_registry.cbor` canonical machine-readable operator registry artifact.
 - Additional authoritative contract artifacts:

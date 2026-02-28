@@ -1,0 +1,19 @@
+{
+  "checked_files": [
+    "product/docs/API_CLI_COMMANDS.md",
+    "product/docs/API_LIFECYCLE_POLICY.md",
+    "product/docs/API_REFERENCE_v1.md",
+    "product/docs/API_STYLE_GUIDE.md",
+    "product/docs/PERSISTENCE_SCHEMA_v1.md",
+    "product/docs/PERSISTENT_STORAGE_ADAPTER_CONTRACT.md",
+    "product/docs/RUNTIME_PROFILES.md",
+    "product/site/services.md",
+    "product/site/verify.md"
+  ],
+  "markers": [
+    "specs/",
+    "specs/schemas/"
+  ],
+  "missing_spec_links": [],
+  "status": "PASS"
+}

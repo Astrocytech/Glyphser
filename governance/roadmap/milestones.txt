@@ -76,13 +76,13 @@ Milestone 1: Machine-Readable Contract Layer
 		- Pilot artifacts preserve all contract fields and constraints from source docs.
 		- CI gate enforces format validity and deterministic schema hashing.
 DONE (so far):
-	- Format decision frozen in `schemas/SCHEMA_FORMAT_DECISION.txt`.
-	- Meta-schema created in `schemas/contract_schema_meta.json`.
-	- Conventions documented in `schemas/SCHEMA_CONVENTIONS.txt`.
+	- Format decision frozen in `specs/schemas/SCHEMA_FORMAT_DECISION.txt`.
+	- Meta-schema created in `specs/schemas/contract_schema_meta.json`.
+	- Conventions documented in `specs/schemas/SCHEMA_CONVENTIONS.txt`.
 	- Pilot artifacts created:
-		- `schemas/layers/L1/l1_error_codes.schema.json`
-		- `schemas/layers/L2/l2_config-schema.schema.json`
-		- `schemas/layers/L3/l3_test-plan.schema.json`
+		- `specs/schemas/layers/L1/l1_error_codes.schema.json`
+		- `specs/schemas/layers/L2/l2_config-schema.schema.json`
+		- `specs/schemas/layers/L3/l3_test-plan.schema.json`
 	- Bootstrap schema gate implemented and executed:
 		- `tooling/gates/schema_gate.py`
 		- Result: `PASS: validated 3 schema artifacts`.
@@ -227,7 +227,7 @@ Deliverable:
 - End-to-end code generator producing compilable projects validated by pre-defined tests.
 Status: COMPLETE.
 DONE (so far):
-	- Generator pipeline implemented at `tooling/codegen/generate.py` consuming `specs/contracts/operator_registry.json` and `schemas/**/*.schema.json`.
+	- Generator pipeline implemented at `tooling/codegen/generate.py` consuming `specs/contracts/operator_registry.json` and `specs/schemas/**/*.schema.json`.
 	- Templates added in `tooling/codegen/templates/` for data models, operator stubs, validators, error handling, and trace/checkpoint/WAL bindings.
 	- Generated outputs written to `artifacts/generated/codegen/` with `artifacts/generated/build_metadata/codegen_manifest.json` for input traceability.
 
@@ -396,12 +396,12 @@ Clarifications:
 	- Error `message` must match the template in Error-Codes unless explicitly overridden in vectors.
 	- Context must include all required fields listed in Error-Codes for that code_id.
 	- Each operator must include at least one retryable and one non-retryable error if defined.
-	- Introduce a minimal schema for error vectors under `schemas/` and enforce via vector gate.
+	- Introduce a minimal schema for error vectors under `specs/schemas/` and enforce via vector gate.
 	- Error-code vectors must include one “missing field” case and one “type mismatch” case.
 Status: COMPLETE.
 DONE (so far):
 	- Added exhaustive error vectors per operator (base + missing_field + type_mismatch).
-	- Added error vector schema `schemas/layers/L3/l3_operator_error_vectors.schema.json`.
+	- Added error vector schema `specs/schemas/layers/L3/l3_operator_error_vectors.schema.json`.
 	- Added `tooling/gates/error_code_gate.py` and wired into push-button pipeline.
 	- Updated generator to support `force_error` and required error context fields.
 
@@ -459,7 +459,7 @@ Clarifications:
 	- Vectors must be added before implementation changes.
 	- All updates must keep `docs/layer4-implementation/Algorithm-Closure.md` consistent.
 	- Each operator implementation must add/adjust at least one vector that hits an edge case.
-	- Any spec changes require updating `schemas/` and `specs/contracts/` artifacts.
+	- Any spec changes require updating `specs/schemas/` and `specs/contracts/` artifacts.
 	- Require a per-operator changelog entry in `docs/layer4-implementation/Implementation-Backlog.md` for semantic changes.
 	- Add an “operator readiness checklist” for each operator.
 	- Each operator must declare a canonical example in `docs/examples/` with expected outputs.
@@ -706,7 +706,7 @@ DONE:
 		- `tooling/deploy/generate_overlays.py`
 	- Added staging deployment + rollback validation gate:
 		- `tooling/deploy/deploy_rollback_gate.py`
-		- outputs `evidence/deploy/latest.json`, `evidence/deploy/rollback.json`, `evidence/deploy/drift.json`, `evidence/deploy/parity.json`, and `evidence/deploy/state/staging_active.json`
+		- outputs `evidence/deploy/latest.json`, `evidence/deploy/rollback.json`, `evidence/deploy/drift.json`, `evidence/deploy/parity.json`, and `evidence/runtime_state/deploy/staging_active.json`
 	- Updated deployment pipeline wiring:
 		- `tooling/deploy/run_deployment_pipeline.py` now runs overlay generation and deploy/rollback gate.
 	- Added operational runbooks:

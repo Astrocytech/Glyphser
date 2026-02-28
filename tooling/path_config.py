@@ -43,7 +43,8 @@ def generated_build_metadata_root() -> Path:
 
 
 def generated_runtime_state_root() -> Path:
-    return generated_root() / "runtime_state"
+    # Backward-compatible alias kept for existing callers.
+    return evidence_runtime_state_root()
 
 
 def bundles_root() -> Path:
@@ -52,6 +53,10 @@ def bundles_root() -> Path:
 
 def evidence_root() -> Path:
     return rel("evidence")
+
+
+def evidence_runtime_state_root() -> Path:
+    return evidence_root() / "runtime_state"
 
 
 def conformance_reports_root() -> Path:

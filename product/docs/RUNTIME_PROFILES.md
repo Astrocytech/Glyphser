@@ -60,3 +60,4 @@ Milestone 17 gate is met only when all profile rows are complete and approved.
 - Rationale in changelog/review note.
 - Evidence that required profile tests still pass.
 
+Canonical source references: `specs/` and `specs/schemas/` define normative behavior for this document.

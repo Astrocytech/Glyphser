@@ -39,3 +39,5 @@ python tooling/cli/api_cli.py replay \
   --token demo-token \
   --scope replay:run
 ```
+
+Canonical source references: `specs/` and `specs/schemas/` define normative behavior for this document.

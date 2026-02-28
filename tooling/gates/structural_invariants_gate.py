@@ -80,12 +80,47 @@ def _check_no_legacy_test_vector_paths() -> Dict[str, object]:
     }
 
 
+def _check_operator_vectors_source_of_truth() -> Dict[str, object]:
+    violations: List[Dict[str, object]] = []
+    targets = [ROOT / "tests", ROOT / "tooling", ROOT / ".github"]
+    allowlist = {
+        "tooling/gates/structural_invariants_gate.py",
+        "governance/structure/STRUCTURAL_INVARIANTS.md",
+        "specs/examples/operators/README.md",
+    }
+    for base in targets:
+        for path in _scan_text_files(base, {".py", ".md", ".txt", ".rst", ".yml", ".yaml", ".json", ".toml"}):
+            rel = str(path.relative_to(ROOT)).replace("\\", "/")
+            if rel in allowlist:
+                continue
+            lines = path.read_text(encoding="utf-8", errors="ignore").splitlines()
+            for i, line in enumerate(lines, start=1):
+                if "specs/examples/operators" in line:
+                    violations.append(
+                        {
+                            "file": rel,
+                            "line": i,
+                            "text": line.strip()[:200],
+                        }
+                    )
+    canonical_dir = ROOT / "artifacts" / "inputs" / "vectors" / "conformance" / "operators"
+    has_canonical_vectors = canonical_dir.exists() and any(canonical_dir.glob("*.json"))
+    status = "PASS" if not violations and has_canonical_vectors else "FAIL"
+    return {
+        "name": "operator_vectors_source_of_truth",
+        "status": status,
+        "violations": violations,
+        "canonical_dir": str(canonical_dir.relative_to(ROOT)).replace("\\", "/"),
+        "has_canonical_vectors": has_canonical_vectors,
+    }
+
+
 def _check_generated_layout() -> Dict[str, object]:
     req_dirs = [
         ROOT / "artifacts" / "generated" / "codegen",
         ROOT / "artifacts" / "generated" / "deploy",
-        ROOT / "artifacts" / "generated" / "runtime_state",
         ROOT / "artifacts" / "generated" / "build_metadata",
+        ROOT / "evidence" / "runtime_state",
     ]
     missing_dirs = [str(p.relative_to(ROOT)).replace("\\", "/") for p in req_dirs if not p.exists()]
 
@@ -100,6 +135,7 @@ def _check_generated_layout() -> Dict[str, object]:
         ROOT / "artifacts" / "generated" / "codegen_manifest.json",
         ROOT / "artifacts" / "generated" / "input_hashes.json",
         ROOT / "artifacts" / "generated" / "runtime",
+        ROOT / "artifacts" / "generated" / "runtime_state",
     ]
     forbidden_present = [str(p.relative_to(ROOT)).replace("\\", "/") for p in forbidden if p.exists()]
 
@@ -124,22 +160,28 @@ def _check_generated_layout() -> Dict[str, object]:
     }
 
 
-def main() -> int:
+def evaluate() -> Dict[str, object]:
     OUT.parent.mkdir(parents=True, exist_ok=True)
     checks = [
         _check_no_json_vectors_in_tests(),
         _check_runtime_import_boundaries(),
         _check_no_legacy_test_vector_paths(),
+        _check_operator_vectors_source_of_truth(),
         _check_generated_layout(),
     ]
     status = "PASS" if all(c["status"] == "PASS" for c in checks) else "FAIL"
     payload = {"status": status, "checks": checks}
     OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    if status == "PASS":
+    return payload
+
+
+def main() -> int:
+    payload = evaluate()
+    if payload["status"] == "PASS":
         print("STRUCTURAL_INVARIANTS_GATE: PASS")
         return 0
     print("STRUCTURAL_INVARIANTS_GATE: FAIL")
-    for c in checks:
+    for c in payload["checks"]:
         if c["status"] == "FAIL":
             print(f" - {c['name']}: FAIL")
     return 1

@@ -120,7 +120,7 @@ def _lineage_index() -> Dict[str, Any]:
     return {"status": "PASS" if entries else "FAIL", "entries": entries}
 
 
-def main() -> int:
+def evaluate() -> Dict[str, Any]:
     OUT.mkdir(parents=True, exist_ok=True)
     required_docs = [
         first_existing([rel("product", "ops", "SLOs.md"), rel("docs", "ops", "SLOs.md")]),
@@ -162,7 +162,12 @@ def main() -> int:
         "lineage_index": lineage["status"],
     }
     _write(OUT / "latest.json", latest)
-    if overall:
+    return latest
+
+
+def main() -> int:
+    latest = evaluate()
+    if latest["status"] == "PASS":
         print("OBSERVABILITY_GATE: PASS")
         return 0
     print("OBSERVABILITY_GATE: FAIL")

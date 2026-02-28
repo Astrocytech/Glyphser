@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "required_globs": [
+    "product/docs/API*.md",
+    "product/docs/PERSIST*.md",
+    "product/docs/RUNTIME_PROFILES.md",
+    "product/site/services.md",
+    "product/site/verify.md"
+  ],
+  "reference_markers": [
+    "specs/",
+    "specs/schemas/"
+  ]
+}

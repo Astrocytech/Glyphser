@@ -1,6 +1,6 @@
 {
   "format": "glyphser-sbom-v1",
-  "git_commit": "1f3de7f579cd7808691cde87f8c98a5cfc65dd84",
+  "git_commit": "35ac7ef49509617fff8a96f9230a9cec7518910c",
   "lockfile_hash": "ff8d7ca61a478017944504b804a5c2eaf48958dd83eafb612f78ac1aae2d538b",
   "packages": [
     {

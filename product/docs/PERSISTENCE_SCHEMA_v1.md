@@ -38,3 +38,4 @@ Each line:
 - Any incompatible field/semantic change requires schema version increment.
 - Restore/migrate path must be explicit for non-current schema versions.
 
+Canonical source references: `specs/` and `specs/schemas/` define normative behavior for this document.

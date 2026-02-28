@@ -9,11 +9,11 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from tooling.path_config import evidence_root, generated_root
+from tooling.path_config import evidence_root, evidence_runtime_state_root, generated_root
 
 GEN = generated_root() / "deploy"
 OUT = evidence_root() / "deploy"
-STATE_DIR = OUT / "state"
+STATE_DIR = evidence_runtime_state_root() / "deploy"
 
 
 def _sha256(path: Path) -> str:
@@ -136,6 +136,7 @@ def main() -> int:
         "rollback": rollback_report,
         "parity": parity_report,
         "candidate": candidate,
+        "runtime_state_dir": str(STATE_DIR.relative_to(ROOT)).replace("\\", "/"),
     }
     _write_json(OUT / "latest.json", latest)
     if overall:

@@ -15,7 +15,7 @@ from tooling.path_config import generated_root
 
 TEMPLATES = ROOT / "tooling" / "codegen" / "templates"
 OUT_DIR = generated_root() / "codegen"
-SCHEMA_ROOTS = [ROOT / "schemas"]
+SCHEMA_ROOTS = [ROOT / "specs" / "schemas"]
 REGISTRY_JSON = ROOT / "specs" / "contracts" / "operator_registry.json"
 CATALOG_MANIFEST = ROOT / "specs" / "contracts" / "catalog-manifest.json"
 

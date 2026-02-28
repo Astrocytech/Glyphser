@@ -9,3 +9,5 @@ Status: DRAFT
 
 ## Contact
 - Provide a contact method on the public site.
+
+Canonical source references: `specs/` and `specs/schemas/` define normative behavior for this document.

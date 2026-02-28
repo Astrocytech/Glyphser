@@ -12,7 +12,7 @@ Validate deterministic rollback behavior for staging deployment state.
 4. Confirm drift report:
    - `evidence/deploy/drift.json`
 5. Confirm active staging state exists:
-   - `evidence/deploy/state/staging_active.json`
+   - `evidence/runtime_state/deploy/staging_active.json`
 
 ## Rollback Trigger Threshold
 - Use overlay threshold:

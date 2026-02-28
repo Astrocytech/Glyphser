@@ -128,7 +128,7 @@
 - Contract lifecycle classes:
   - `stable`, `lts`, `experimental`.
 - LTS guarantees:
-  - LTS-tagged schemas/operators remain supported for at least one MAJOR + four MINOR releases.
+  - LTS-tagged specs/schemas/operators remain supported for at least one MAJOR + four MINOR releases.
 - Compatibility statement MUST declare:
   - forward-read window,
   - backward-read window,

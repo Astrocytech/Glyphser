@@ -11,3 +11,5 @@ Status: DRAFT
 
 ## Expected Result
 All commands exit with status 0 and match `docs/examples/hello-core/hello-core-golden.json`.
+
+Canonical source references: `specs/` and `specs/schemas/` define normative behavior for this document.

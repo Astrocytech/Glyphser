@@ -31,5 +31,6 @@
     "mode": "restore-previous",
     "status": "PASS"
   },
+  "runtime_state_dir": "evidence/runtime_state/deploy",
   "status": "PASS"
 }

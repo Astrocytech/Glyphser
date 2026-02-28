@@ -1,0 +1,580 @@
+{
+  "mapped_count": 114,
+  "mappings": [
+    {
+      "schema": "specs/schemas/layers/L1/l1_api_interfaces.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L1-foundation/API-Interfaces.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L1/l1_canonical_cbor_profile.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L1-foundation/Canonical-CBOR-Profile.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L1/l1_data_structures.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L1-foundation/Data-Structures.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L1/l1_dependency_lock_policy.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L1-foundation/Dependency-Lock-Policy.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L1/l1_determinism_profiles.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L1-foundation/Determinism-Profiles.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L1/l1_digest_catalog.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L1-foundation/Digest-Catalog.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L1/l1_environment_manifest.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L1-foundation/Environment-Manifest.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L1/l1_error_codes.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L1-foundation/Error-Codes.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L1/l1_normativity_legend.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L1-foundation/Normativity-Legend.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L1/l1_operator_registry_schema.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L1-foundation/Operator-Registry-Schema.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L1/l1_redaction_policy.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L1-foundation/Redaction-Policy.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L2/l2_authz-capability-matrix.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L2-specs/AuthZ-Capability-Matrix.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L2/l2_checkpoint-schema.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L2-specs/Checkpoint-Schema.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L2/l2_config-schema.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L2-specs/Config-Schema.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L2/l2_data-lineage.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L2-specs/Data-Lineage.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L2/l2_data-nextbatch.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L2-specs/Data-NextBatch.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L2/l2_deployment-runbook.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L2-specs/Deployment-Runbook.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L2/l2_differentialprivacy-apply.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L2-specs/DifferentialPrivacy-Apply.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L2/l2_evaluation-harness.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L2-specs/Evaluation-Harness.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L2/l2_execution-certificate.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L2-specs/Execution-Certificate.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L2/l2_experiment-tracking.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L2-specs/Experiment-Tracking.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L2/l2_glyphser-kernel-v3.22-os.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L2-specs/Glyphser-Kernel-v3.22-OS.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L2/l2_model-registry.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L2-specs/Model-Registry.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L2/l2_modelir-executor.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L2-specs/ModelIR-Executor.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L2/l2_monitoring-policy.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L2-specs/Monitoring-Policy.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L2/l2_pipeline-orchestrator.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L2-specs/Pipeline-Orchestrator.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L2/l2_replay-determinism.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L2-specs/Replay-Determinism.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L2/l2_run-commit-wal.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L2-specs/Run-Commit-WAL.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L2/l2_security-compliance-profile.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L2-specs/Security-Compliance-Profile.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L2/l2_tmmu-allocation.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L2-specs/TMMU-Allocation.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L2/l2_trace-sidecar.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L2-specs/Trace-Sidecar.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L3/l3_compatibility-test-matrix.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L3-tests/Compatibility-Test-Matrix.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L3/l3_conformance-ci-pipeline.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L3-tests/Conformance-CI-Pipeline.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L3/l3_conformance-harness-guide.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L3-tests/Conformance-Harness-Guide.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L3/l3_coverage-targets.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L3-tests/Coverage-Targets.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L3/l3_data-contract-fuzzing-guide.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L3-tests/Data-Contract-Fuzzing-Guide.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L3/l3_failure-injection-index.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L3-tests/Failure-Injection-Index.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L3/l3_failure-injection-scenarios.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L3-tests/Failure-Injection-Scenarios.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L3/l3_game-day-scenarios.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L3-tests/Game-Day-Scenarios.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L3/l3_integration-test-matrix.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L3-tests/Integration-Test-Matrix.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L3/l3_operator_error_vectors.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L3-tests/Operator-Vectors.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L3/l3_operator_vectors.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L3-tests/Operator-Vectors.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L3/l3_performance-plan.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L3-tests/Performance-Plan.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L3/l3_release-gates.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L3-tests/Release-Gates.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L3/l3_storage-recovery-test-matrix.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L3-tests/Storage-Recovery-Test-Matrix.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L3/l3_test-plan.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L3-tests/Test-Plan.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L3/l3_test-vectors-catalog.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L3-tests/Test-Vectors-Catalog.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_api-lifecycle-and-deprecation-policy.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/API-Lifecycle-and-Deprecation-Policy.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_architecture-decisions-log.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Architecture-Decisions-Log.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_artifact-store-adapter-guide.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Artifact-Store-Adapter-Guide.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_backend-adapter-guide.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Backend-Adapter-Guide.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_backend-feature-matrix.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Backend-Feature-Matrix.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_benchmark-evidence-spec.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Benchmark-Evidence-Spec.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_brownfield-deployment-guide.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Brownfield-Deployment-Guide.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_build-and-ci-matrix.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Build-and-CI-Matrix.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_canonical-hashing-reference.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Canonical-Hashing-Reference.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_change-control-playbook.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Change-Control-Playbook.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_cli-command-profiles.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/CLI-Command-Profiles.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_code-generation-mapping.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Code-Generation-Mapping.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_coding-standards.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Coding-Standards.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_command-reference.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Command-Reference.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_common-pitfalls-guide.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Common-Pitfalls-Guide.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_community-governance-model.schema.json",
+      "source": "manual_override",
+      "spec": "governance/process/Community-Governance-Model.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_contracts-artifact-lifecycle.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Contracts-Artifact-Lifecycle.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_contributing-workflow.schema.json",
+      "source": "manual_override",
+      "spec": "governance/process/Contributing-Workflow.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_debugging-playbook.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Debugging-Playbook.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_determinism-audit-playbook.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Determinism-Audit-Playbook.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_determinism-debug-checklist.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Determinism-Debug-Checklist.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_deterministic-rng-implementation-guide.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Deterministic-RNG-Implementation-Guide.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_developer-setup.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Developer-Setup.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_developer-troubleshooting-faq.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Developer-Troubleshooting-FAQ.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_disaster-recovery-operations-runbook.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Disaster-Recovery-Operations-Runbook.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_distributed-failure-recovery-guide.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Distributed-Failure-Recovery-Guide.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_ecosystem-expansion-roadmap.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Ecosystem-Expansion-Roadmap.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_eqc-ci-policy.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/EQC-CI-Policy.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_evidence-catalog.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Evidence-Catalog.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_expansion-catalog-041-250.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Expansion-Catalog-041-250.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_external-interface-standard.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/External-Interface-Standard.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_fixtures-and-golden-data.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Fixtures-and-Golden-Data.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_formal-verification-roadmap.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Formal-Verification-Roadmap.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_gentle-introduction.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Gentle-Introduction.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_hello-world-end-to-end-example.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Hello-World-End-to-End-Example.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_implementation-backlog.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Implementation-Backlog.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_implementation-roadmap.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Implementation-Roadmap.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_incident-postmortem-template.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Incident-Postmortem-Template.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_industry-productization-upgrade-plan.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Industry-Productization-Upgrade-Plan.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_interoperability-standards-bridge.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Interoperability-Standards-Bridge.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_local-replay-runbook.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Local-Replay-Runbook.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_migration-execution-guide.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Migration-Execution-Guide.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_module-scaffolding-guide.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Module-Scaffolding-Guide.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_operator-conformance-matrix.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Operator-Conformance-Matrix.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_operator-registry-cbor-contract.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Operator-Registry-CBOR-Contract.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_operator-sdk-scaffold-template.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Operator-SDK-Scaffold-Template.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_pr-review-checklist.schema.json",
+      "source": "manual_override",
+      "spec": "governance/process/PR-Review-Checklist.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_profiling-and-optimization-guide.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Profiling-and-Optimization-Guide.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_reference-implementations.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Reference-Implementations.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_reference-stack-minimal.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Reference-Stack-Minimal.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_release-evidence-assembler.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Release-Evidence-Assembler.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_repo-layout-and-interfaces.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Repo-Layout-and-Interfaces.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_research-extensions-roadmap.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Research-Extensions-Roadmap.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_runtime-state-machine-reference.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Runtime-State-Machine-Reference.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_schema-evolution-playbook.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Schema-Evolution-Playbook.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_scope-and-non-goals.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Scope-and-Non-Goals.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_sdk-usage-guide.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/SDK-Usage-Guide.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_security-case-template.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Security-Case-Template.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_security-coding-checklist.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Security-Coding-Checklist.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_spec-lint-implementation.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Spec-Lint-Implementation.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_spec-lint-rules.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Spec-Lint-Rules.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_sre-incident-triage-playbook.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/SRE-Incident-Triage-Playbook.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_test-harness-implementation.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Test-Harness-Implementation.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_third-party-operator-certification-program.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Third-Party-Operator-Certification-Program.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_threat-model-and-control-crosswalk.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Threat-Model-and-Control-Crosswalk.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_tooling-and-automation-suite.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Tooling-and-Automation-Suite.md"
+    },
+    {
+      "schema": "specs/schemas/layers/L4/l4_tooling-suite.schema.json",
+      "source": "derived",
+      "spec": "specs/layers/L4-implementation/Tooling-Suite.md"
+    }
+  ],
+  "missing_layer_mapping": [],
+  "missing_spec_targets": [],
+  "schema_count": 114,
+  "status": "PASS",
+  "unmapped_schemas": []
+}

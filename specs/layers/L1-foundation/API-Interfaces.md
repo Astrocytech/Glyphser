@@ -166,7 +166,7 @@ Canonical display note:
 ### II.H Schema/Signature Digest Rules (Normative)
 - `SchemaDigest = SHA-256(CBOR_CANONICAL(schema_ast_normalized))`.
 - `SignatureDigest` is defined normatively in `specs/layers/L1-foundation/Operator-Registry-Schema.md` (`sig` preimage with resolved bytes32 digests).
-- Canonical schema sources must be stored under `schemas/` and used as the single source for digest generation in build/codegen.
+- Canonical schema sources must be stored under `specs/schemas/` and used as the single source for digest generation in build/codegen.
 - `schema_ast_normalized` (normative):
   - schema parsed into AST with resolved type aliases,
   - canonical field ordering (bytewise UTF-8 lexicographic by field name),

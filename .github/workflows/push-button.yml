@@ -5,7 +5,7 @@ on:
     paths:
       - "specs/contracts/**"
       - "docs/**"
-      - "schemas/**"
+      - "specs/schemas/**"
       - "src/**"
       - "tests/**"
       - "tooling/**"
@@ -19,7 +19,7 @@ on:
     paths:
       - "specs/contracts/**"
       - "docs/**"
-      - "schemas/**"
+      - "specs/schemas/**"
       - "src/**"
       - "tests/**"
       - "tooling/**"

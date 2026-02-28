@@ -22,3 +22,5 @@
 
 ## Traceability
 - Every request/response pair must carry a deterministic trace identifier.
+
+Canonical source references: `specs/` and `specs/schemas/` define normative behavior for this document.

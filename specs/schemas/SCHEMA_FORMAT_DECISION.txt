@@ -1,0 +1,25 @@
+Schema Format Decision
+======================
+
+Decision
+--------
+We will use JSON Schema (2020-12) as the canonical, machine-readable format for Glyphser contracts.
+
+Rationale
+---------
+- Human-readable and widely supported.
+- Can be validated with standard tooling.
+- Works well for deterministic hashing when normalized.
+
+Encoding + Hashing
+------------------
+- Canonical JSON: UTF-8, no whitespace, sorted object keys, no trailing zeros in numbers.
+- Schema hash: SHA-256 of canonical JSON bytes.
+
+Scope
+-----
+All contract schemas for layers 1-4 must be expressed in this format.
+
+Examples
+--------
+See specs/schemas/layers/L1/*.schema.json through specs/schemas/layers/L4/*.schema.json for initial examples.

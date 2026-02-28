@@ -3,12 +3,12 @@ name: schema-gate
 on:
   push:
     paths:
-      - "schemas/**"
+      - "specs/schemas/**"
       - "docs/**"
       - "tooling/gates/schema_gate.py"
   pull_request:
     paths:
-      - "schemas/**"
+      - "specs/schemas/**"
       - "docs/**"
       - "tooling/gates/schema_gate.py"
 

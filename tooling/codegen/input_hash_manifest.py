@@ -20,7 +20,7 @@ def _sha256(path: Path) -> str:
 def main() -> int:
     OUT.parent.mkdir(parents=True, exist_ok=True)
     inputs = []
-    for path in sorted((ROOT / "schemas").rglob("*.schema.json")):
+    for path in sorted((ROOT / "specs" / "schemas").rglob("*.schema.json")):
         inputs.append({"path": str(path.relative_to(ROOT)).replace("\\", "/"), "sha256": _sha256(path)})
     reg = ROOT / "specs" / "contracts" / "operator_registry.json"
     if reg.exists():

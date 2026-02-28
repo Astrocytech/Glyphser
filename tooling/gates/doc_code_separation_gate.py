@@ -33,7 +33,7 @@ def _rel(path: Path) -> str:
     return str(path.relative_to(ROOT)).replace("\\", "/")
 
 
-def main() -> int:
+def evaluate() -> dict:
     OUT.mkdir(parents=True, exist_ok=True)
     doc_in_code: list[str] = []
     code_in_docs: list[str] = []
@@ -55,16 +55,19 @@ def main() -> int:
         if p.suffix.lower() in DOC_EXTS and p.name not in ALLOWED_ROOT_DOCS:
             unexpected_root_docs.append(p.name)
 
-    ok = not doc_in_code and not code_in_docs and not unexpected_root_docs
     latest = {
-        "status": "PASS" if ok else "FAIL",
+        "status": "PASS" if not doc_in_code and not code_in_docs and not unexpected_root_docs else "FAIL",
         "doc_files_in_code_dirs": sorted(doc_in_code),
         "code_files_in_doc_dirs": sorted(code_in_docs),
         "unexpected_root_doc_files": sorted(unexpected_root_docs),
     }
     (OUT / "latest.json").write_text(json.dumps(latest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    return latest
 
-    if ok:
+
+def main() -> int:
+    report = evaluate()
+    if report["status"] == "PASS":
         print("DOC_CODE_SEPARATION_GATE: PASS")
         return 0
     print("DOC_CODE_SEPARATION_GATE: FAIL")

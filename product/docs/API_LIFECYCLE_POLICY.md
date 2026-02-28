@@ -18,3 +18,5 @@
 - Changes classified as breaking must either:
 - move to next major API version, or
 - be rejected by contract gate.
+
+Canonical source references: `specs/` and `specs/schemas/` define normative behavior for this document.

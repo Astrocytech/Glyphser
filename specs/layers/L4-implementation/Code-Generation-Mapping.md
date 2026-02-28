@@ -123,7 +123,7 @@ Signature lock invariant:
   - `syscalls/*` generated for `surface=SYSCALL` interfaces (no network transport).
   - `services/*` generated for `surface=SERVICE` interfaces (network/auth/retry/idempotency policy applied).
 - Digest generation invariant:
-  - request/response schema digests and signature digests are derived from canonical schema AST files (`schemas/*`) using `SchemaDigest` and `SignatureDigest` from `specs/layers/L1-foundation/API-Interfaces.md`; placeholders are forbidden in generated artifacts.
+  - request/response schema digests and signature digests are derived from canonical schema AST files (`specs/schemas/*`) using `SchemaDigest` and `SignatureDigest` from `specs/layers/L1-foundation/API-Interfaces.md`; placeholders are forbidden in generated artifacts.
 
 Canonical registry consumption invariant:
 - `specs/contracts/operator_registry.cbor` is the authoritative input for mapping resolution and stub generation.

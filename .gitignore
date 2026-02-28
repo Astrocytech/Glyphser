@@ -40,3 +40,9 @@ output/
 
 # Packaging artifacts
 *.egg-info/
+
+# Additional OS/editor/node junk
+Thumbs.db
+desktop.ini
+._*
+node_modules/

@@ -3,7 +3,7 @@ import pathlib
 import hashlib
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-SCHEMA_DIR = ROOT / "schemas"
+SCHEMA_DIR = ROOT / "specs" / "schemas"
 META_SCHEMA_PATH = SCHEMA_DIR / "contract_schema_meta.json"
 
 
@@ -51,7 +51,7 @@ def validate_schema(schema):
     for ref in find_refs(schema):
         if ref.startswith("#"):
             continue
-        ref_path = (ROOT / ref).resolve() if not ref.startswith("schemas/") else (ROOT / ref).resolve()
+        ref_path = (ROOT / ref).resolve() if not ref.startswith("specs/schemas/") else (ROOT / ref).resolve()
         if not ref_path.exists():
             raise ValueError(f"$ref target not found: {ref}")
 
@@ -72,7 +72,7 @@ def validate_schema(schema):
 
 def main():
     if not SCHEMA_DIR.exists():
-        raise SystemExit("schemas/ directory missing")
+        raise SystemExit("specs/schemas/ directory missing")
     meta = load_json(META_SCHEMA_PATH)
     _ = meta  # placeholder to ensure meta is readable
     schema_paths = sorted(SCHEMA_DIR.rglob("*.schema.json"))

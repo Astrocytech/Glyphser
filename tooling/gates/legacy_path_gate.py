@@ -73,7 +73,7 @@ def _scan_file(path: Path) -> list[dict[str, object]]:
     return findings
 
 
-def main() -> int:
+def evaluate() -> dict:
     OUT.mkdir(parents=True, exist_ok=True)
     findings: list[dict[str, object]] = []
     for rel in TARGET_DIRS:
@@ -89,14 +89,18 @@ def main() -> int:
                 continue
             findings.extend(_scan_file(path))
 
-    status = "PASS" if not findings else "FAIL"
-    report = {"status": status, "findings": findings}
+    report = {"status": "PASS" if not findings else "FAIL", "findings": findings}
     (OUT / "legacy_path_gate.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    if status == "PASS":
+    return report
+
+
+def main() -> int:
+    report = evaluate()
+    if report["status"] == "PASS":
         print("LEGACY_PATH_GATE: PASS")
         return 0
     print("LEGACY_PATH_GATE: FAIL")
-    for f in findings[:20]:
+    for f in report["findings"][:20]:
         print(f" - {f['file']}:{f['line']} matches {f['pattern']}")
     return 1
 

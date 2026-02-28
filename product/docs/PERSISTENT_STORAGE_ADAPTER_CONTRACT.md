@@ -29,3 +29,4 @@ Define deterministic persistence and recovery requirements for run-state storage
 - Persisted state/checkpoint transport and storage must be encrypted in supported prod profiles.
 - Residency, retention, and key custody controls are profile-governed.
 
+Canonical source references: `specs/` and `specs/schemas/` define normative behavior for this document.

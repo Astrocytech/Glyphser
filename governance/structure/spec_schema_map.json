@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "layer_spec_dirs": {
+    "L1": "specs/layers/L1-foundation",
+    "L2": "specs/layers/L2-specs",
+    "L3": "specs/layers/L3-tests",
+    "L4": "specs/layers/L4-implementation"
+  },
+  "manual_overrides": {
+    "specs/schemas/layers/L4/l4_community-governance-model.schema.json": "governance/process/Community-Governance-Model.md",
+    "specs/schemas/layers/L4/l4_contributing-workflow.schema.json": "governance/process/Contributing-Workflow.md",
+    "specs/schemas/layers/L4/l4_pr-review-checklist.schema.json": "governance/process/PR-Review-Checklist.md"
+  },
+  "acronyms": {
+    "api": "API",
+    "authz": "AuthZ",
+    "cbor": "CBOR",
+    "ci": "CI",
+    "cli": "CLI",
+    "dp": "DP",
+    "eqc": "EQC",
+    "ga": "GA",
+    "io": "IO",
+    "ir": "IR",
+    "os": "OS",
+    "pr": "PR",
+    "sdk": "SDK",
+    "sla": "SLA",
+    "sre": "SRE",
+    "tmmu": "TMMU"
+  }
+}
