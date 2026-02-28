@@ -1,0 +1,15 @@
+{
+  "backup_checkpoint_file": "checkpoint-d00aa492ed2db6f2.json",
+  "backup_restore_ok": true,
+  "checkpoint_hash_initial": "9713a3219a5a18132b8d8e0ac68ddead47985db23d63f2c5170400746b6ce913",
+  "quarantine_ok": true,
+  "restart_ok": true,
+  "rpo_target_seconds": 300,
+  "rto_target_seconds": 300,
+  "schema_version": 1,
+  "state_hash_after_corruption_recovery": "1f6bc4c9d9782079fe3f7e3336efc60df0bf62c9bd1de600e79248743ea94e6c",
+  "state_hash_after_restart": "1f6bc4c9d9782079fe3f7e3336efc60df0bf62c9bd1de600e79248743ea94e6c",
+  "state_hash_after_restore": "1f6bc4c9d9782079fe3f7e3336efc60df0bf62c9bd1de600e79248743ea94e6c",
+  "state_hash_initial": "1f6bc4c9d9782079fe3f7e3336efc60df0bf62c9bd1de600e79248743ea94e6c",
+  "status": "PASS"
+}

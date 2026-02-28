@@ -1,0 +1,6 @@
+{
+  "runs_success": 3,
+  "runs_total": 3,
+  "status": "PASS",
+  "summary": "External validation completed with diversity, blind/docs-only, and negative-path checks."
+}

@@ -1,0 +1,11 @@
+{
+  "scenario": "simulated_alert_triage",
+  "status": "PASS",
+  "steps": [
+    "detect_alert",
+    "classify_severity",
+    "collect_artifacts",
+    "mitigate_or_rollback",
+    "publish_postmortem_stub"
+  ]
+}

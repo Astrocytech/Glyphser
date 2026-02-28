@@ -1,0 +1,2 @@
+{"event":{"actor":"role:operator","op":"submit"},"hash":"4617f353109c88523fbfa82b9bcf7480ad45b391520b683ffcb0498a9df76ce6","prev_hash":""}
+{"event":{"actor":"role:auditor","op":"tampered"},"hash":"a770631b3c3eb65bd0c5c5a90ccb347af2ee16b0b894abd09480f80b03f94955","prev_hash":"4617f353109c88523fbfa82b9bcf7480ad45b391520b683ffcb0498a9df76ce6"}

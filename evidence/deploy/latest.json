@@ -1,0 +1,35 @@
+{
+  "candidate": {
+    "budget_alarm_usd_monthly": 250,
+    "bundle_hash": "a9c3597fb3214d0c0588df25fc4b73464beedb0eef134041a0105d7611bee54a",
+    "deployment_target": "staging",
+    "manifest_path": "generated/deploy/managed/bundle_manifest.json",
+    "max_parallel_rollout_percent": 25,
+    "overlay_path": "generated/deploy/overlays/staging.json",
+    "quota_jobs_per_hour": 500,
+    "rollback_error_rate_threshold": 0.02,
+    "rollout_strategy": "canary"
+  },
+  "health": {
+    "failures": [],
+    "status": "PASS"
+  },
+  "parity": {
+    "profiles_present": [
+      "dev",
+      "prod",
+      "staging"
+    ],
+    "status": "PASS"
+  },
+  "readiness": {
+    "missing": [],
+    "status": "PASS"
+  },
+  "rollback": {
+    "active_bundle_hash": "a9c3597fb3214d0c0588df25fc4b73464beedb0eef134041a0105d7611bee54a",
+    "mode": "restore-previous",
+    "status": "PASS"
+  },
+  "status": "PASS"
+}

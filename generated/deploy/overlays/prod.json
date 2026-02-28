@@ -1,9 +1,0 @@
-{
-  "approval_required": true,
-  "budget_alarm_usd_monthly": 1000,
-  "deployment_environment": "prod",
-  "max_parallel_rollout_percent": 10,
-  "quota_jobs_per_hour": 2000,
-  "rollback_error_rate_threshold": 0.01,
-  "rollout_strategy": "blue-green"
-}

@@ -1,0 +1,13 @@
+{
+  "blind_run": true,
+  "docs_only": true,
+  "negative_path_pass": true,
+  "notes": "Docs-only run succeeded using VERIFY and API CLI docs with no maintainer intervention.",
+  "os": "Debian 12",
+  "run_id": "run-03-docs-only-cleanroom",
+  "runtime_profile": "P1_LOCAL_DEV",
+  "setup_minutes": 19.0,
+  "success": true,
+  "transcript": "reports/validation/transcripts/run-03-docs-only-cleanroom.md",
+  "verifier_id": "external-verifier-c"
+}

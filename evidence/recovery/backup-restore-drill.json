@@ -1,0 +1,6 @@
+{
+  "backup_checkpoint_file": "checkpoint-d00aa492ed2db6f2.json",
+  "expected_state_hash": "1f6bc4c9d9782079fe3f7e3336efc60df0bf62c9bd1de600e79248743ea94e6c",
+  "restored_state_hash": "1f6bc4c9d9782079fe3f7e3336efc60df0bf62c9bd1de600e79248743ea94e6c",
+  "status": "PASS"
+}

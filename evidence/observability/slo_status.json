@@ -1,0 +1,12 @@
+{
+  "availability": {
+    "status": "PASS"
+  },
+  "correctness": {
+    "status": "PASS"
+  },
+  "overall_status": "PASS",
+  "recovery": {
+    "status": "PASS"
+  }
+}

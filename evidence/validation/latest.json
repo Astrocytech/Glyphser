@@ -1,0 +1,35 @@
+{
+  "avg_supportability_score": 4.43,
+  "checks": {
+    "all_runs_success": true,
+    "blind_run": true,
+    "docs_only_run": true,
+    "external_security_review_present": true,
+    "failure_rate_budget": true,
+    "missing_requirements": true,
+    "negative_path": true,
+    "no_unresolved_critical": true,
+    "os_diversity": true,
+    "profile_diversity": true,
+    "runs_count": true,
+    "scorecards_present": true,
+    "setup_time_spread_budget": true,
+    "supportability_threshold": true
+  },
+  "failure_rate": 0.0,
+  "missing": [],
+  "os_diversity": [
+    "Debian 12",
+    "Linux Mint 22.1",
+    "Ubuntu 24.04 (WSL2)"
+  ],
+  "runs_success": 3,
+  "runs_total": 3,
+  "runtime_profile_diversity": [
+    "P1_LOCAL_DEV",
+    "P2_SINGLE_NODE_PROD"
+  ],
+  "setup_time_spread_minutes": 7.0,
+  "status": "PASS",
+  "unresolved_critical_issues": []
+}

@@ -1,0 +1,34 @@
+{
+  "audit_checks": {
+    "initial": {
+      "events": 2,
+      "status": "PASS",
+      "tip_hash": "a770631b3c3eb65bd0c5c5a90ccb347af2ee16b0b894abd09480f80b03f94955"
+    },
+    "status": "PASS",
+    "tampered": {
+      "index": 1,
+      "reason": "hash_mismatch",
+      "status": "FAIL"
+    }
+  },
+  "dast": {
+    "status": "PASS"
+  },
+  "missing_required": [],
+  "rbac_checks": {
+    "failures": [],
+    "status": "PASS"
+  },
+  "sast": {
+    "status": "PASS"
+  },
+  "sca": {
+    "status": "PASS"
+  },
+  "secret_scan": {
+    "findings": [],
+    "status": "PASS"
+  },
+  "status": "PASS"
+}

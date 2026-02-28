@@ -1,0 +1,13 @@
+{
+  "blind_run": false,
+  "docs_only": false,
+  "negative_path_pass": true,
+  "notes": "Independent WSL host reproduced bundle, conformance hash, and repro hash exactly.",
+  "os": "Ubuntu 24.04 (WSL2)",
+  "run_id": "run-02-ubuntu-wsl",
+  "runtime_profile": "P2_SINGLE_NODE_PROD",
+  "setup_minutes": 26.0,
+  "success": true,
+  "transcript": "reports/validation/transcripts/run-02-ubuntu-wsl.md",
+  "verifier_id": "external-verifier-b"
+}

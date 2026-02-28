@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "state": {
+    "events": [
+      {
+        "event": {
+          "op": "run_create",
+          "run_id": "run-001"
+        },
+        "event_hash": "4167552faedafd482e58645225ecd070ccc4f9a92d463aae86289a5e97af5119",
+        "schema_version": 1
+      },
+      {
+        "event": {
+          "op": "run_start",
+          "run_id": "run-001"
+        },
+        "event_hash": "e872971aa8ee9466b6a28ba261c392c4d4fcf6d55b85c1a87387ca7dc17dfae4",
+        "schema_version": 1
+      },
+      {
+        "event": {
+          "op": "run_end",
+          "run_id": "run-001"
+        },
+        "event_hash": "ba91bc910f22f6214270ceff8a9b2e416492aeb6ac17586d183d6b04ccef4c14",
+        "schema_version": 1
+      }
+    ],
+    "last_event_hash": "ba91bc910f22f6214270ceff8a9b2e416492aeb6ac17586d183d6b04ccef4c14"
+  },
+  "state_hash": "1f6bc4c9d9782079fe3f7e3336efc60df0bf62c9bd1de600e79248743ea94e6c"
+}

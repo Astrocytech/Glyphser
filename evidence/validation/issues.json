@@ -1,0 +1,16 @@
+{
+  "issues": [
+    {
+      "id": "VAL-001",
+      "severity": "medium",
+      "status": "closed",
+      "summary": "Clarified venv setup order in verify docs."
+    },
+    {
+      "id": "VAL-002",
+      "severity": "low",
+      "status": "closed",
+      "summary": "Added explicit API CLI auth token examples."
+    }
+  ]
+}

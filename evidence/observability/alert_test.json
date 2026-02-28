@@ -1,0 +1,6 @@
+{
+  "alerts_emitted": [
+    "ALERT_TEST_HEARTBEAT"
+  ],
+  "status": "PASS"
+}

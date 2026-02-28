@@ -1,0 +1,17 @@
+{
+  "dashboards": [
+    "golden_signals",
+    "error_budget",
+    "deploy_health",
+    "security_baseline",
+    "recovery_health"
+  ],
+  "owners": {
+    "deploy_health": "sre",
+    "error_budget": "reliability",
+    "golden_signals": "reliability",
+    "recovery_health": "runtime",
+    "security_baseline": "security"
+  },
+  "status": "PASS"
+}

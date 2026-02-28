@@ -1,0 +1,256 @@
+{
+  "coverage": [
+    {
+      "operator_id": "Glyphser.Backend.LoadDriver",
+      "tests": [
+        "tests/operators/test_glyphser_backend_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Backend_LoadDriver.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Certificate.EvidenceValidate",
+      "tests": [
+        "tests/operators/test_glyphser_certificate_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Certificate_EvidenceValidate.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Checkpoint.CheckpointMigrate",
+      "tests": [
+        "tests/operators/test_glyphser_checkpoint_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Checkpoint_CheckpointMigrate.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Checkpoint.Restore",
+      "tests": [
+        "tests/operators/test_glyphser_checkpoint_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Checkpoint_Restore.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Config.ManifestMigrate",
+      "tests": [
+        "tests/operators/test_glyphser_config_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Config_ManifestMigrate.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Data.NextBatch",
+      "tests": [
+        "tests/api/test_validate_signature.py",
+        "tests/data_structures/test_validate_struct.py",
+        "tests/operators/test_glyphser_data_stubs.py",
+        "tests/trace/test_compute_trace_hash.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Data_NextBatch.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.DifferentialPrivacy.Apply",
+      "tests": [
+        "tests/operators/test_glyphser_differentialprivacy_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_DifferentialPrivacy_Apply.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Error.Emit",
+      "tests": [
+        "tests/operators/test_glyphser_error_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Error_Emit.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.IO.SaveCheckpoint",
+      "tests": [
+        "tests/operators/test_glyphser_io_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_IO_SaveCheckpoint.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Import.LegacyFramework",
+      "tests": [
+        "tests/operators/test_glyphser_import_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Import_LegacyFramework.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Model.Forward",
+      "tests": [
+        "tests/operators/test_glyphser_model_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Model_Forward.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Model.ModelIR_Executor",
+      "tests": [
+        "tests/operators/test_glyphser_model_stubs.py",
+        "tests/trace/test_compute_trace_hash.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Model_ModelIR_Executor.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Monitor.DriftCompute",
+      "tests": [
+        "tests/operators/test_glyphser_monitor_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Monitor_DriftCompute.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Monitor.Emit",
+      "tests": [
+        "tests/operators/test_glyphser_monitor_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Monitor_Emit.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Monitor.Register",
+      "tests": [
+        "tests/operators/test_glyphser_monitor_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Monitor_Register.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Registry.StageTransition",
+      "tests": [
+        "tests/operators/test_glyphser_registry_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Registry_StageTransition.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Registry.VersionCreate",
+      "tests": [
+        "tests/operators/test_glyphser_registry_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Registry_VersionCreate.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.TMMU.PrepareMemory",
+      "tests": [
+        "tests/operators/test_glyphser_tmmu_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_TMMU_PrepareMemory.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Trace.TraceMigrate",
+      "tests": [
+        "tests/operators/test_glyphser_trace_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Trace_TraceMigrate.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Tracking.ArtifactGet",
+      "tests": [
+        "tests/operators/test_glyphser_tracking_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Tracking_ArtifactGet.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Tracking.ArtifactList",
+      "tests": [
+        "tests/operators/test_glyphser_tracking_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Tracking_ArtifactList.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Tracking.ArtifactPut",
+      "tests": [
+        "tests/operators/test_glyphser_tracking_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Tracking_ArtifactPut.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Tracking.ArtifactTombstone",
+      "tests": [
+        "tests/operators/test_glyphser_tracking_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Tracking_ArtifactTombstone.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Tracking.MetricLog",
+      "tests": [
+        "tests/operators/test_glyphser_tracking_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Tracking_MetricLog.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Tracking.RunCreate",
+      "tests": [
+        "tests/operators/test_glyphser_tracking_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Tracking_RunCreate.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Tracking.RunEnd",
+      "tests": [
+        "tests/operators/test_glyphser_tracking_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Tracking_RunEnd.json"
+      ]
+    },
+    {
+      "operator_id": "Glyphser.Tracking.RunStart",
+      "tests": [
+        "tests/operators/test_glyphser_tracking_stubs.py"
+      ],
+      "vectors": [
+        "tests/conformance/vectors/operators/Glyphser_Tracking_RunStart.json"
+      ]
+    }
+  ],
+  "summary": {
+    "missing_tests": [],
+    "missing_vectors": [],
+    "operator_count": 27
+  }
+}
