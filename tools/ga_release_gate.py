@@ -7,9 +7,9 @@ from pathlib import Path
 from typing import Any, Dict
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "reports" / "ga"
+OUT = ROOT / "evidence" / "ga"
 
-from path_config import first_existing, rel
+from path_config import conformance_reports_root, evidence_root, first_existing, rel
 
 
 def _load_json(path: Path) -> Dict[str, Any]:
@@ -60,12 +60,12 @@ def main() -> int:
     missing_artifacts = [str(p.relative_to(ROOT)).replace("\\", "/") for p in required_artifacts if not p.exists()]
 
     gate_checks = {
-        "security": _status_ok(ROOT / "reports" / "security" / "latest.json"),
-        "recovery": _status_ok(ROOT / "reports" / "recovery" / "latest.json"),
-        "deploy": _status_ok(ROOT / "reports" / "deploy" / "latest.json"),
-        "observability": _status_ok(ROOT / "reports" / "observability" / "latest.json"),
-        "external_validation": _status_ok(ROOT / "reports" / "validation" / "latest.json"),
-        "conformance": _status_ok(ROOT / "conformance" / "reports" / "latest.json"),
+        "security": _status_ok(evidence_root() / "security" / "latest.json"),
+        "recovery": _status_ok(evidence_root() / "recovery" / "latest.json"),
+        "deploy": _status_ok(evidence_root() / "deploy" / "latest.json"),
+        "observability": _status_ok(evidence_root() / "observability" / "latest.json"),
+        "external_validation": _status_ok(evidence_root() / "validation" / "latest.json"),
+        "conformance": _status_ok(conformance_reports_root() / "latest.json"),
     }
     signatures = {
         "checksum_signed": first_existing([rel("distribution", "release", "CHECKSUMS_v0.1.0.sha256.asc"), rel("docs", "release", "CHECKSUMS_v0.1.0.sha256.asc")]).exists(),
@@ -73,7 +73,7 @@ def main() -> int:
     }
 
     bundle_path = first_existing([rel("distribution", "bundles", "hello-core-bundle.tar.gz"), rel("dist", "hello-core-bundle.tar.gz")])
-    conformance_report_path = ROOT / "conformance" / "reports" / "latest.json"
+    conformance_report_path = conformance_reports_root() / "latest.json"
     checksums_path = first_existing([rel("distribution", "release", "CHECKSUMS_v0.1.0.sha256"), rel("docs", "release", "CHECKSUMS_v0.1.0.sha256")])
 
     rc_report = {
@@ -108,7 +108,7 @@ def main() -> int:
         "missing_artifacts": missing_artifacts,
         "gate_checks": gate_checks,
         "signatures": signatures,
-        "release_candidate_report": "reports/ga/release_candidate_verification.json",
+        "release_candidate_report": "evidence/ga/release_candidate_verification.json",
     }
     (OUT / "latest.json").write_text(json.dumps(latest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     if overall:

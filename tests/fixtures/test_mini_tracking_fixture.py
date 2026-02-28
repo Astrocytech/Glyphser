@@ -11,8 +11,8 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 def test_mini_tracking_fixture():
-    inputs = json.loads((ROOT / "fixtures" / "mini-tracking" / "inputs.json").read_text(encoding="utf-8"))
-    expected = json.loads((ROOT / "goldens" / "mini-tracking" / "expected.json").read_text(encoding="utf-8"))
+    inputs = json.loads((ROOT / "artifacts" / "inputs" / "fixtures" / "mini-tracking" / "inputs.json").read_text(encoding="utf-8"))
+    expected = json.loads((ROOT / "artifacts" / "expected" / "goldens" / "mini-tracking" / "expected.json").read_text(encoding="utf-8"))
 
     run_resp = run_create(inputs["run"])
     metric_resp = metric_log(inputs["metric"])

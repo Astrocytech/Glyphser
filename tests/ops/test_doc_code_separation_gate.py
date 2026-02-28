@@ -17,5 +17,5 @@ def test_doc_code_separation_gate_passes():
         capture_output=True,
     )
     assert proc.returncode == 0, proc.stdout + proc.stderr
-    latest = json.loads((ROOT / "reports" / "structure" / "latest.json").read_text(encoding="utf-8"))
+    latest = json.loads((ROOT / "evidence" / "structure" / "latest.json").read_text(encoding="utf-8"))
     assert latest["status"] == "PASS"

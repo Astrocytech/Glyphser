@@ -10,13 +10,13 @@ ROOT = Path(__file__).resolve().parents[1]
 
 ARTIFACT_PATHS = [
     ROOT / "contracts" / "catalog-manifest.json",
-    ROOT / "fixtures" / "hello-core" / "fixture-manifest.json",
-    ROOT / "fixtures" / "hello-core" / "manifest.core.yaml",
-    ROOT / "goldens" / "hello-core" / "golden-manifest.json",
-    ROOT / "goldens" / "hello-core" / "golden-identities.json",
-    ROOT / "goldens" / "hello-core" / "trace_snippet.json",
-    ROOT / "vectors" / "hello-core" / "vectors-manifest.json",
-    ROOT / "vectors" / "hello-core" / "vectors.json",
+    ROOT / "artifacts" / "inputs" / "fixtures" / "hello-core" / "fixture-manifest.json",
+    ROOT / "artifacts" / "inputs" / "fixtures" / "hello-core" / "manifest.core.yaml",
+    ROOT / "artifacts" / "expected" / "goldens" / "hello-core" / "golden-manifest.json",
+    ROOT / "artifacts" / "expected" / "goldens" / "hello-core" / "golden-identities.json",
+    ROOT / "artifacts" / "expected" / "goldens" / "hello-core" / "trace_snippet.json",
+    ROOT / "artifacts" / "inputs" / "vectors" / "hello-core" / "vectors-manifest.json",
+    ROOT / "artifacts" / "inputs" / "vectors" / "hello-core" / "vectors.json",
 ]
 
 

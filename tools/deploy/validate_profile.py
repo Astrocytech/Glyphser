@@ -3,9 +3,13 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import sys
 
 ROOT = Path(__file__).resolve().parents[2]
-DEPLOY_DIR = ROOT / "generated" / "deploy"
+sys.path.insert(0, str(ROOT / "tools"))
+from path_config import generated_root
+
+DEPLOY_DIR = generated_root() / "deploy"
 
 
 REQUIRED_FILES = ["runtime_config.json", "policy_bindings.json", "bundle_manifest.json"]

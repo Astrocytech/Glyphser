@@ -7,7 +7,12 @@ from statistics import mean
 from typing import Any, Dict, List
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = ROOT / "reports" / "validation"
+import sys
+
+sys.path.insert(0, str(ROOT / "tools"))
+from path_config import evidence_root
+
+BASE = evidence_root() / "validation"
 RUNS = BASE / "runs"
 SCORECARDS = BASE / "scorecards"
 
@@ -111,4 +116,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

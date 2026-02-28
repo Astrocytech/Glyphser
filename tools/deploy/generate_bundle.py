@@ -5,10 +5,14 @@ import hashlib
 import json
 from pathlib import Path
 from typing import Dict, List
+import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 TEMPLATES = ROOT / "tools" / "deploy" / "templates"
-OUT_DIR = ROOT / "generated" / "deploy"
+sys.path.insert(0, str(ROOT / "tools"))
+from path_config import generated_root
+
+OUT_DIR = generated_root() / "deploy"
 CATALOG_MANIFEST = ROOT / "contracts" / "catalog-manifest.json"
 
 

@@ -4,10 +4,14 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
+import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 IN_DIR = ROOT / "tools" / "deploy" / "overlays"
-OUT_DIR = ROOT / "generated" / "deploy" / "overlays"
+sys.path.insert(0, str(ROOT / "tools"))
+from path_config import generated_root
+
+OUT_DIR = generated_root() / "deploy" / "overlays"
 
 
 def _sha256(path: Path) -> str:
@@ -38,4 +42,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

@@ -9,9 +9,13 @@ on:
       - "src/**"
       - "tests/**"
       - "tools/**"
-      - "vectors/**"
-      - "fixtures/**"
-      - "goldens/**"
+      - "artifacts/**"
+      - "evidence/**"
+      - "runtime/**"
+      - "specs/**"
+      - "governance/**"
+      - "product/**"
+      - "distribution/**"
   pull_request:
     paths:
       - "contracts/**"
@@ -20,9 +24,13 @@ on:
       - "src/**"
       - "tests/**"
       - "tools/**"
-      - "vectors/**"
-      - "fixtures/**"
-      - "goldens/**"
+      - "artifacts/**"
+      - "evidence/**"
+      - "runtime/**"
+      - "specs/**"
+      - "governance/**"
+      - "product/**"
+      - "distribution/**"
 
 jobs:
   push-button:
@@ -45,9 +53,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: hello-core-bundle-sha256
-          path: dist/hello-core-bundle.sha256
-      - name: Upload release checksum
-        uses: actions/upload-artifact@v4
-        with:
-          name: hello-core-bundle-sha256
-          path: dist/hello-core-bundle.sha256
+          path: artifacts/bundles/hello-core-bundle.sha256

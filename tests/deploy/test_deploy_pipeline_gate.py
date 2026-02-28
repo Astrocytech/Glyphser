@@ -17,9 +17,8 @@ def test_deploy_pipeline_gate_passes():
         capture_output=True,
     )
     assert proc.returncode == 0, proc.stdout + proc.stderr
-    latest = json.loads((ROOT / "reports" / "deploy" / "latest.json").read_text(encoding="utf-8"))
+    latest = json.loads((ROOT / "evidence" / "deploy" / "latest.json").read_text(encoding="utf-8"))
     assert latest["status"] == "PASS"
     assert latest["health"]["status"] == "PASS"
     assert latest["readiness"]["status"] == "PASS"
     assert latest["rollback"]["status"] == "PASS"
-

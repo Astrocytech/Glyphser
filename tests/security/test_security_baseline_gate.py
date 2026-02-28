@@ -18,6 +18,5 @@ def test_security_baseline_gate_passes():
         capture_output=True,
     )
     assert proc.returncode == 0, proc.stdout + proc.stderr
-    report = json.loads((ROOT / "reports" / "security" / "latest.json").read_text(encoding="utf-8"))
+    report = json.loads((ROOT / "evidence" / "security" / "latest.json").read_text(encoding="utf-8"))
     assert report["status"] == "PASS"
-

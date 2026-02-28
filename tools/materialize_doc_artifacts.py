@@ -425,8 +425,8 @@ def materialize() -> None:
             {
                 "vector_id": "vector_nextbatch_001",
                 "operator_id": "Glyphser.Data.NextBatch",
-                "input_ref": "fixtures/hello-core/tiny_synth_dataset.jsonl",
-                "expected_ref": "goldens/hello-core/trace_snippet.json",
+                "input_ref": "artifacts/inputs/fixtures/hello-core/tiny_synth_dataset.jsonl",
+                "expected_ref": "artifacts/expected/goldens/hello-core/trace_snippet.json",
             },
             {
                 "vector_id": "vector_registry_validate_001",

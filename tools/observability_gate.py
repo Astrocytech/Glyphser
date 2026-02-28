@@ -8,9 +8,9 @@ from pathlib import Path
 from typing import Any, Dict
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "reports" / "observability"
+OUT = ROOT / "evidence" / "observability"
 
-from path_config import first_existing, rel
+from path_config import conformance_reports_root, evidence_root, first_existing, rel
 
 
 def _sha256(path: Path) -> str:
@@ -28,7 +28,7 @@ def _write(path: Path, payload: Dict[str, Any]) -> None:
 
 def _synthetic_probe() -> Dict[str, Any]:
     started = time.perf_counter()
-    target = ROOT / "conformance" / "reports" / "latest.json"
+    target = conformance_reports_root() / "latest.json"
     ok = target.exists()
     latency_ms = (time.perf_counter() - started) * 1000.0
     return {
@@ -40,10 +40,11 @@ def _synthetic_probe() -> Dict[str, Any]:
 
 
 def _slo_eval() -> Dict[str, Any]:
-    conf = _load_json(ROOT / "conformance" / "reports" / "latest.json")
-    deploy = _load_json(ROOT / "reports" / "deploy" / "latest.json")
-    security = _load_json(ROOT / "reports" / "security" / "latest.json")
-    recovery = _load_json(ROOT / "reports" / "recovery" / "latest.json")
+    ev = evidence_root()
+    conf = _load_json(conformance_reports_root() / "latest.json")
+    deploy = _load_json(ev / "deploy" / "latest.json")
+    security = _load_json(ev / "security" / "latest.json")
+    recovery = _load_json(ev / "recovery" / "latest.json")
     correctness_ok = conf.get("status") == "PASS"
     availability_ok = deploy.get("status") == "PASS" and security.get("status") == "PASS"
     recovery_ok = recovery.get("status") == "PASS"
@@ -103,11 +104,12 @@ def _dashboard_inventory() -> Dict[str, Any]:
 
 
 def _lineage_index() -> Dict[str, Any]:
+    ev = evidence_root()
     sources = [
-        ROOT / "conformance" / "reports" / "latest.json",
-        ROOT / "reports" / "deploy" / "latest.json",
-        ROOT / "reports" / "security" / "latest.json",
-        ROOT / "reports" / "recovery" / "latest.json",
+        conformance_reports_root() / "latest.json",
+        ev / "deploy" / "latest.json",
+        ev / "security" / "latest.json",
+        ev / "recovery" / "latest.json",
     ]
     entries = []
     for p in sources:

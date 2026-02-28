@@ -7,7 +7,7 @@ from typing import Dict, List
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "contracts" / "operator_registry.json"
-OUT = ROOT / "reports" / "coverage" / "operator_coverage.json"
+OUT = ROOT / "evidence" / "coverage" / "operator_coverage.json"
 
 
 def _load_registry_ops() -> List[str]:

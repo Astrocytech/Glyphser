@@ -4,9 +4,13 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
+import sys
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT = ROOT / "generated" / "input_hashes.json"
+sys.path.insert(0, str(ROOT / "tools"))
+from path_config import generated_root
+
+OUT = generated_root() / "input_hashes.json"
 
 
 def _sha256(path: Path) -> str:

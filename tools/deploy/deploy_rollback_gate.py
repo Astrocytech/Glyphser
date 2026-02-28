@@ -5,10 +5,14 @@ import hashlib
 import json
 from pathlib import Path
 from typing import Any, Dict, List
+import sys
 
 ROOT = Path(__file__).resolve().parents[2]
-GEN = ROOT / "generated" / "deploy"
-OUT = ROOT / "reports" / "deploy"
+sys.path.insert(0, str(ROOT / "tools"))
+from path_config import evidence_root, generated_root
+
+GEN = generated_root() / "deploy"
+OUT = evidence_root() / "deploy"
 STATE_DIR = OUT / "state"
 
 
@@ -72,8 +76,8 @@ def main() -> int:
     candidate = {
         "deployment_target": "staging",
         "bundle_hash": manifest.get("bundle_hash", ""),
-        "manifest_path": "generated/deploy/managed/bundle_manifest.json",
-        "overlay_path": "generated/deploy/overlays/staging.json",
+        "manifest_path": str((GEN / "managed" / "bundle_manifest.json").relative_to(ROOT)).replace("\\", "/"),
+        "overlay_path": str((GEN / "overlays" / "staging.json").relative_to(ROOT)).replace("\\", "/"),
         "rollout_strategy": overlay.get("rollout_strategy"),
         "max_parallel_rollout_percent": overlay.get("max_parallel_rollout_percent"),
         "rollback_error_rate_threshold": overlay.get("rollback_error_rate_threshold"),
@@ -143,4 +147,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

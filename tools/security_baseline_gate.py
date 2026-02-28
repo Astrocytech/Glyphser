@@ -12,10 +12,9 @@ sys.path.insert(0, str(ROOT))
 from src.glyphser.security.audit import append_event, verify_chain
 from src.glyphser.security.authz import authorize
 sys.path.insert(0, str(ROOT / "tools"))
-from path_config import first_existing, rel
+from path_config import evidence_root, first_existing, rel
 
-
-OUT = ROOT / "reports" / "security"
+OUT = evidence_root() / "security"
 
 SECRET_PATTERNS = [
     re.compile(r"-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----"),
@@ -32,7 +31,7 @@ def _secret_scan() -> dict:
         rel = path.relative_to(ROOT).as_posix()
         if rel.startswith(".git/") or rel.startswith(".venv/"):
             continue
-        if rel.startswith("reports/security/"):
+        if rel.startswith("evidence/security/") or rel.startswith("reports/security/"):
             continue
         if path.suffix in {".png", ".jpg", ".jpeg", ".gif", ".pdf", ".cbor"}:
             continue

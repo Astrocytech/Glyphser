@@ -6,13 +6,16 @@ import shutil
 import sys
 import tempfile
 from pathlib import Path
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+from path_config import evidence_root
 sys.path.insert(0, str(ROOT))
 
 from src.glyphser.storage.state_store import DurableStateStore, SCHEMA_VERSION
 
-OUT_DIR = ROOT / "reports" / "recovery"
+OUT_DIR = evidence_root() / "recovery"
 
 
 def _write(path: Path, payload: dict) -> None:

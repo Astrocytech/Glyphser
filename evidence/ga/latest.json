@@ -9,7 +9,7 @@
   },
   "missing_artifacts": [],
   "missing_docs": [],
-  "release_candidate_report": "reports/ga/release_candidate_verification.json",
+  "release_candidate_report": "evidence/ga/release_candidate_verification.json",
   "signatures": {
     "checksum_signed": true,
     "pubkey_present": true

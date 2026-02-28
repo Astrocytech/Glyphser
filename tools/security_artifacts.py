@@ -8,7 +8,10 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "reports" / "security"
+sys.path.insert(0, str(ROOT / "tools"))
+from path_config import evidence_root
+
+OUT = evidence_root() / "security"
 
 
 def _sha256(path: Path) -> str:
@@ -63,4 +66,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

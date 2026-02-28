@@ -9,7 +9,15 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
-from path_config import bundles_root, fixtures_root, goldens_root, first_existing, rel
+from path_config import (
+    bundles_root,
+    conformance_reports_root,
+    conformance_results_root,
+    fixtures_root,
+    goldens_root,
+    first_existing,
+    rel,
+)
 
 DIST = bundles_root()
 
@@ -54,8 +62,8 @@ def main() -> int:
         ROOT / "contracts" / "interface_hash.json",
         fixtures_root() / "hello-core",
         goldens_root() / "hello-core",
-        ROOT / "conformance" / "results" / "latest.json",
-        ROOT / "conformance" / "reports" / "latest.json",
+        conformance_results_root() / "latest.json",
+        conformance_reports_root() / "latest.json",
         first_existing([rel("docs", "VERIFY.md"), rel("product", "docs", "VERIFY.md")]),
     ]
 

@@ -1,10 +1,10 @@
 {
   "budget_alarm_usd_monthly": 250,
-  "bundle_hash": "a9c3597fb3214d0c0588df25fc4b73464beedb0eef134041a0105d7611bee54a",
+  "bundle_hash": "8071fc7404fc492a45407d5e637edc18372f92c0e497d701e730dd82ce2fd882",
   "deployment_target": "staging",
-  "manifest_path": "generated/deploy/managed/bundle_manifest.json",
+  "manifest_path": "artifacts/generated/deploy/managed/bundle_manifest.json",
   "max_parallel_rollout_percent": 25,
-  "overlay_path": "generated/deploy/overlays/staging.json",
+  "overlay_path": "artifacts/generated/deploy/overlays/staging.json",
   "quota_jobs_per_hour": 500,
   "rollback_error_rate_threshold": 0.02,
   "rollout_strategy": "canary"

@@ -17,5 +17,5 @@ def test_ga_release_gate_passes():
         capture_output=True,
     )
     assert proc.returncode == 0, proc.stdout + proc.stderr
-    latest = json.loads((ROOT / "reports" / "ga" / "latest.json").read_text(encoding="utf-8"))
+    latest = json.loads((ROOT / "evidence" / "ga" / "latest.json").read_text(encoding="utf-8"))
     assert latest["status"] == "PASS"

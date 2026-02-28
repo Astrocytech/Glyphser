@@ -10,7 +10,8 @@ on:
       - "scripts/**"
       - "src/**"
       - "tests/**"
-      - "vectors/**"
+      - "artifacts/**"
+      - "evidence/**"
   pull_request:
     paths:
       - "conformance/**"
@@ -20,7 +21,8 @@ on:
       - "scripts/**"
       - "src/**"
       - "tests/**"
-      - "vectors/**"
+      - "artifacts/**"
+      - "evidence/**"
 
 jobs:
   conformance:

@@ -1,19 +1,19 @@
 {
   "entries": [
     {
-      "path": "conformance/reports/latest.json",
+      "path": "evidence/conformance/reports/latest.json",
       "sha256": "86de4a5d30cab3a12ead92ae207bcb17fd09f7c8b498419728f7041f14e56ffe"
     },
     {
-      "path": "reports/deploy/latest.json",
-      "sha256": "e1698d395436685848b92214ac24cb56378f18d4c77386a90dac53809bae0bcd"
+      "path": "evidence/deploy/latest.json",
+      "sha256": "5edd55288bb0231fd940ff8b30af47a3a92e03d6bca8b545f03709394a66274a"
     },
     {
-      "path": "reports/security/latest.json",
+      "path": "evidence/security/latest.json",
       "sha256": "3fb731e409bced67533ffddd875b8a9ad4730716f95e794147168a5ede99513b"
     },
     {
-      "path": "reports/recovery/latest.json",
+      "path": "evidence/recovery/latest.json",
       "sha256": "f9ef97fc68b21ce1673142ae855b9e8c71b9d24a197babc2fc897773d228a016"
     }
   ],

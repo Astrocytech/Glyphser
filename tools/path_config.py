@@ -40,3 +40,11 @@ def bundles_root() -> Path:
 
 def evidence_root() -> Path:
     return first_existing([rel("evidence"), rel("reports")])
+
+
+def conformance_reports_root() -> Path:
+    return first_existing([rel("evidence", "conformance", "reports"), rel("conformance", "reports")])
+
+
+def conformance_results_root() -> Path:
+    return first_existing([rel("evidence", "conformance", "results"), rel("conformance", "results")])

@@ -6,8 +6,8 @@ from pathlib import Path
 from generated import bindings as gen_bindings
 
 ROOT = Path(__file__).resolve().parents[1]
-TRACE = ROOT / "fixtures" / "replay-determinism" / "trace.json"
-EXPECTED = ROOT / "goldens" / "replay-determinism" / "replay_expected.json"
+TRACE = ROOT / "artifacts" / "inputs" / "fixtures" / "replay-determinism" / "trace.json"
+EXPECTED = ROOT / "artifacts" / "expected" / "goldens" / "replay-determinism" / "replay_expected.json"
 
 
 def test_replay_compare_trace_matches():

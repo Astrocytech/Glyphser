@@ -5,11 +5,11 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "reports" / "structure"
+OUT = ROOT / "evidence" / "structure"
 
 DOC_EXTS = {".md", ".txt", ".rst"}
 CODE_EXTS = {".py", ".sh", ".bash", ".zsh", ".js", ".ts", ".go", ".rs", ".java", ".c", ".cc", ".cpp"}
-CODE_DIRS = ("src", "tools", "scripts", "tests", "conformance", "generated")
+CODE_DIRS = ("src", "tools", "scripts", "tests", "conformance", "generated", "artifacts/generated")
 DOC_DIRS = ("docs", "document_guidelines")
 ALLOWED_ROOT_DOCS = {
     "README.md",

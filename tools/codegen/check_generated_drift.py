@@ -5,9 +5,13 @@ import json
 import hashlib
 from pathlib import Path
 from typing import Dict
+import sys
 
 ROOT = Path(__file__).resolve().parents[2]
-MANIFEST = ROOT / "generated" / "codegen_manifest.json"
+sys.path.insert(0, str(ROOT / "tools"))
+from path_config import generated_root
+
+MANIFEST = generated_root() / "codegen_manifest.json"
 
 
 def _sha256(path: Path) -> str:

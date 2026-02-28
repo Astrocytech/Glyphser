@@ -4,8 +4,8 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SUITE = ROOT / "fixtures" / "replay-suite-1" / "trace.json"
-EXPECTED = ROOT / "goldens" / "replay-suite-1" / "trace_expected.json"
+SUITE = ROOT / "artifacts" / "inputs" / "fixtures" / "replay-suite-1" / "trace.json"
+EXPECTED = ROOT / "artifacts" / "expected" / "goldens" / "replay-suite-1" / "trace_expected.json"
 
 
 def test_replay_suite_1():

@@ -17,7 +17,6 @@ def test_observability_gate_passes():
         capture_output=True,
     )
     assert proc.returncode == 0, proc.stdout + proc.stderr
-    latest = json.loads((ROOT / "reports" / "observability" / "latest.json").read_text(encoding="utf-8"))
+    latest = json.loads((ROOT / "evidence" / "observability" / "latest.json").read_text(encoding="utf-8"))
     assert latest["status"] == "PASS"
     assert latest["slo_overall"] == "PASS"
-

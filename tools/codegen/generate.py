@@ -7,10 +7,14 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional
+import sys
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "tools"))
+from path_config import generated_root
+
 TEMPLATES = ROOT / "tools" / "codegen" / "templates"
-OUT_DIR = ROOT / "generated"
+OUT_DIR = generated_root()
 SCHEMA_ROOTS = [ROOT / "schemas", ROOT / "schemas" / "pilot"]
 REGISTRY_JSON = ROOT / "contracts" / "operator_registry.json"
 CATALOG_MANIFEST = ROOT / "contracts" / "catalog-manifest.json"
@@ -491,11 +495,11 @@ def generate() -> None:
     output_hashes = [
         {"path": path, "sha256": _sha256_hex_path(ROOT / path)}
         for path in [
-            "generated/models.py",
-            "generated/operators.py",
-            "generated/validators.py",
-            "generated/error.py",
-            "generated/bindings.py",
+            "artifacts/generated/models.py",
+            "artifacts/generated/operators.py",
+            "artifacts/generated/validators.py",
+            "artifacts/generated/error.py",
+            "artifacts/generated/bindings.py",
         ]
     ]
 
@@ -505,11 +509,11 @@ def generate() -> None:
         "template_bundle_hash": _template_bundle_hash(),
         "schemas": _schema_manifest(),
         "outputs": [
-            "generated/models.py",
-            "generated/operators.py",
-            "generated/validators.py",
-            "generated/error.py",
-            "generated/bindings.py",
+            "artifacts/generated/models.py",
+            "artifacts/generated/operators.py",
+            "artifacts/generated/validators.py",
+            "artifacts/generated/error.py",
+            "artifacts/generated/bindings.py",
         ],
         "outputs_with_hashes": output_hashes,
     }

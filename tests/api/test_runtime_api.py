@@ -22,13 +22,13 @@ def test_submit_idempotency_and_status(tmp_path: Path):
 
 def test_evidence_and_replay(tmp_path: Path):
     root = tmp_path / "repo"
-    (root / "conformance" / "reports").mkdir(parents=True)
-    (root / "dist").mkdir(parents=True)
-    (root / "reports" / "repro").mkdir(parents=True)
-    (root / "conformance" / "reports" / "latest.json").write_text(json.dumps({"status": "PASS"}) + "\n", encoding="utf-8")
+    (root / "evidence" / "conformance" / "reports").mkdir(parents=True)
+    (root / "artifacts" / "bundles").mkdir(parents=True)
+    (root / "evidence" / "repro").mkdir(parents=True)
+    (root / "evidence" / "conformance" / "reports" / "latest.json").write_text(json.dumps({"status": "PASS"}) + "\n", encoding="utf-8")
     line = "abc123  hello-core-bundle.tar.gz\n"
-    (root / "dist" / "hello-core-bundle.sha256").write_text(line, encoding="utf-8")
-    (root / "reports" / "repro" / "hashes.txt").write_text(line, encoding="utf-8")
+    (root / "artifacts" / "bundles" / "hello-core-bundle.sha256").write_text(line, encoding="utf-8")
+    (root / "evidence" / "repro" / "hashes.txt").write_text(line, encoding="utf-8")
     svc = RuntimeApiService(RuntimeApiConfig(root=root, state_path=tmp_path / "state.json"))
     job = svc.submit_job(payload={"payload": {"n": 1}}, token="token-a", scope="jobs:write")
     ev = svc.evidence(job["job_id"], token="token-a", scope="evidence:read")

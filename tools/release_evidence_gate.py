@@ -6,14 +6,14 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
-from path_config import bundles_root
+from path_config import bundles_root, conformance_reports_root, conformance_results_root
 
 
 def main() -> int:
     bundles = bundles_root()
     required = [
-        ROOT / "conformance" / "results" / "latest.json",
-        ROOT / "conformance" / "reports" / "latest.json",
+        conformance_results_root() / "latest.json",
+        conformance_reports_root() / "latest.json",
         bundles / "hello-core-bundle.tar.gz",
         bundles / "hello-core-bundle.sha256",
     ]

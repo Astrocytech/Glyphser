@@ -5,9 +5,13 @@ import hashlib
 import json
 import platform
 from pathlib import Path
+import sys
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT = ROOT / "generated" / "deploy" / "env_manifest.json"
+sys.path.insert(0, str(ROOT / "tools"))
+from path_config import generated_root
+
+OUT = generated_root() / "deploy" / "env_manifest.json"
 
 
 def _sha256_hex(data: bytes) -> str:
