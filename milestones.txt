@@ -871,6 +871,7 @@ DONE:
 		- `docs/product/GA_SUPPORT_OPERATIONS_READINESS.md`
 	- Added GA gate test `tests/ga/test_ga_release_gate.py`.
 	- Added milestone evidence report `docs/product/M24_GA_RELEASE_REPORT.md`.
+	- Removed env-gated skip behavior from `tests/conftest.py`; test suite now runs fully by default (no skip markers applied at collection time).
 	- Verified gates:
 		- `python3 tools/ga_release_gate.py` -> PASS
 		- `python3 tools/push_button.py` -> PASS with `GA_RELEASE_GATE: PASS`
