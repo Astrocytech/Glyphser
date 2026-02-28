@@ -1,0 +1,17 @@
+[
+  {
+    "scenario_id": "restart_recovery_basic",
+    "description": "Recover identical state hash after process restart",
+    "expected_verdict": "PASS"
+  },
+  {
+    "scenario_id": "corruption_quarantine_replay",
+    "description": "Quarantine corrupt state and recover deterministically from WAL",
+    "expected_verdict": "PASS"
+  },
+  {
+    "scenario_id": "backup_restore_drill",
+    "description": "Restore from backup checkpoint with identical state hash",
+    "expected_verdict": "PASS"
+  }
+]

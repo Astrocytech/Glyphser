@@ -602,6 +602,25 @@ Execution Governance:
 	- Approver role: Engineering Lead + SRE Lead.
 	- Checkpoint cadence: weekly, with mandatory crash/recovery drill each iteration.
 	- Dependencies: requires Milestone 18 complete; blocks Milestones 21, 23, and 24.
+Status: COMPLETE.
+DONE:
+	- Added durable state store implementation `src/glyphser/storage/state_store.py` with WAL replay, checkpointing, backup, restore, and corruption quarantine.
+	- Added recovery gate `tools/state_recovery_gate.py` and wired it into `tools/push_button.py`.
+	- Added persistence/schema contract docs:
+		- `docs/product/PERSISTENT_STORAGE_ADAPTER_CONTRACT.md`
+		- `docs/product/PERSISTENCE_SCHEMA_v1.md`
+	- Added Milestone 19 evidence report `docs/product/M19_RECOVERY_TEST_REPORT.md`.
+	- Generated recovery evidence artifacts:
+		- `reports/recovery/latest.json`
+		- `reports/recovery/replay-proof.txt`
+		- `reports/recovery/backup-restore-drill.json`
+		- `reports/recovery/checkpoint-backup.json`
+	- Added recovery tests and vectors:
+		- `tests/storage/test_state_store_recovery.py`
+		- `tests/conformance/vectors/storage/state_recovery_vectors.json`
+	- Verified gates:
+		- `python3 tools/state_recovery_gate.py` -> PASS
+		- `python3 tools/push_button.py` -> PASS with `STATE_RECOVERY_GATE: PASS`
 
 Milestone 20: Security Hardening and Access Control
 1. Implement authentication, authorization, and audit logging for all control surfaces.
