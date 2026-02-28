@@ -75,24 +75,24 @@
 ## 4) Validation
 - Required deliverable: runnable script that reproduces identical lifecycle hashes on every supported host profile.
 - Required artifacts:
-  - `fixtures/hello-core/manifest.core.yaml`
-  - `fixtures/hello-core/model_ir.json`
-  - `fixtures/hello-core/tiny_synth_dataset.jsonl`
-  - `goldens/hello-core/trace_snippet.json`
-  - `goldens/hello-core/checkpoint_header.json`
-  - `goldens/hello-core/execution_certificate.json`
+  - `artifacts/inputs/fixtures/hello-core/manifest.core.yaml`
+  - `artifacts/inputs/fixtures/hello-core/model_ir.json`
+  - `artifacts/inputs/fixtures/hello-core/tiny_synth_dataset.jsonl`
+  - `artifacts/expected/goldens/hello-core/trace_snippet.json`
+  - `artifacts/expected/goldens/hello-core/checkpoint_header.json`
+  - `artifacts/expected/goldens/hello-core/execution_certificate.json`
   - `contracts/operator_registry.cbor`
   - `contracts/catalog-manifest.json`
-  - `vectors/hello-core/vectors.json`
-  - `vectors/hello-core/vectors-manifest.json`
+  - `artifacts/inputs/vectors/hello-core/vectors.json`
+  - `artifacts/inputs/vectors/hello-core/vectors-manifest.json`
 
 ## 4.A Artifact Identity Verification (Normative)
 - Before claiming runnable-reference conformance, run:
   - `python tools/verify_doc_artifacts.py`
 - Hash identities used by this contract are the values in:
   - `contracts/catalog-manifest.json`
-  - `fixtures/hello-core/fixture-manifest.json`
-  - `goldens/hello-core/golden-manifest.json`
+  - `artifacts/inputs/fixtures/hello-core/fixture-manifest.json`
+  - `artifacts/expected/goldens/hello-core/golden-manifest.json`
 
 ---
 ## 5) Related Contracts

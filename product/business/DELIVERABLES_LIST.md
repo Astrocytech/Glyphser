@@ -10,7 +10,7 @@ Each engagement produces a concise, reproducible evidence package that a third p
 - Issue list (if any): reproducible steps, affected contract sections, severity.
 
 ## Artifact Set
-- Conformance report (`reports/`) with deterministic results.
+- Conformance report (`evidence/`) with deterministic results.
 - Verification inputs/outputs (manifest, vectors, trace hash, certificate hash).
 - Repro instructions (exact commands + environment notes).
 

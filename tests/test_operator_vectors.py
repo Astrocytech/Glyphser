@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from generated import operators as gen_ops
+from artifacts.generated import operators as gen_ops
 
 ROOT = Path(__file__).resolve().parents[1]
 VEC_ROOT = ROOT / "tests" / "conformance" / "vectors" / "operators"

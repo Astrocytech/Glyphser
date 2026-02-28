@@ -11,9 +11,9 @@
 2. Record OS, CPU, Python version.
 3. Run: `python3 tools/push_button.py`.
 4. Save:
-   - `dist/hello-core-bundle.sha256`
-   - `conformance/reports/latest.json`
-   - `reports/repro/hashes.txt`
+   - `artifacts/bundles/hello-core-bundle.sha256`
+   - `evidence/conformance/reports/latest.json`
+   - `evidence/repro/hashes.txt`
 5. Record run timestamp.
 
 ## Host B Steps
@@ -21,17 +21,17 @@
 2. Record OS, CPU, Python version.
 3. Run: `python3 tools/push_button.py`.
 4. Save:
-   - `dist/hello-core-bundle.sha256`
-   - `conformance/reports/latest.json`
-   - `reports/repro/hashes.txt`
+   - `artifacts/bundles/hello-core-bundle.sha256`
+   - `evidence/conformance/reports/latest.json`
+   - `evidence/repro/hashes.txt`
 5. Record run timestamp.
 
 ## Comparison
 1. Compare bundle hashes and conformance report hashes.
-2. If mismatch, attach diff of `conformance/reports/latest.json`.
-3. Fill `reports/repro/compare-template.md`.
+2. If mismatch, attach diff of `evidence/conformance/reports/latest.json`.
+3. Fill `evidence/repro/compare-template.md`.
 4. Re-run on Host A to rule out drift (same day).
 
 ## Exit Criteria
 - Hashes match exactly.
-- Signed comparison report committed to `reports/repro/`.
+- Signed comparison report committed to `evidence/repro/`.

@@ -31,7 +31,7 @@ def _secret_scan() -> dict:
         rel = path.relative_to(ROOT).as_posix()
         if rel.startswith(".git/") or rel.startswith(".venv/"):
             continue
-        if rel.startswith("evidence/security/") or rel.startswith("reports/security/"):
+        if rel.startswith("evidence/security/"):
             continue
         if path.suffix in {".png", ".jpg", ".jpeg", ".gif", ".pdf", ".cbor"}:
             continue

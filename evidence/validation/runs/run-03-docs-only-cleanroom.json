@@ -8,6 +8,6 @@
   "runtime_profile": "P1_LOCAL_DEV",
   "setup_minutes": 19.0,
   "success": true,
-  "transcript": "reports/validation/transcripts/run-03-docs-only-cleanroom.md",
+  "transcript": "evidence/validation/transcripts/run-03-docs-only-cleanroom.md",
   "verifier_id": "external-verifier-c"
 }

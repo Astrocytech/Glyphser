@@ -16,11 +16,11 @@ Status: PASS
 - Full push-button pipeline: PASS
 
 ## Evidence Artifacts
-- `reports/deploy/latest.json`
-- `reports/deploy/rollback.json`
-- `reports/deploy/drift.json`
-- `reports/deploy/parity.json`
-- `reports/deploy/state/staging_active.json`
+- `evidence/deploy/latest.json`
+- `evidence/deploy/rollback.json`
+- `evidence/deploy/drift.json`
+- `evidence/deploy/parity.json`
+- `evidence/deploy/state/staging_active.json`
 
 ## Operational Docs
 - `docs/ops/DEPLOYMENT_RUNBOOK.md`

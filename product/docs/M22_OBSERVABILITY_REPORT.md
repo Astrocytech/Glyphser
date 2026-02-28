@@ -17,12 +17,12 @@ Status: PASS
 - Full push-button pipeline: PASS
 
 ## Evidence Artifacts
-- `reports/observability/latest.json`
-- `reports/observability/slo_status.json`
-- `reports/observability/alert_test.json`
-- `reports/observability/incident_drill.json`
-- `reports/observability/dashboard_inventory.json`
-- `reports/observability/lineage_index.json`
+- `evidence/observability/latest.json`
+- `evidence/observability/slo_status.json`
+- `evidence/observability/alert_test.json`
+- `evidence/observability/incident_drill.json`
+- `evidence/observability/dashboard_inventory.json`
+- `evidence/observability/lineage_index.json`
 
 ## Operational Docs
 - `docs/ops/SLOs.md`

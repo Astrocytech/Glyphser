@@ -911,14 +911,14 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `assets/glyphser3.png` | Static project asset `glyphser3.png`. |
 | `assets/glyphser3.svg` | Static project asset `glyphser3.svg`. |
 | `conformance/.gitkeep` | Conformance artifact for `.gitkeep` execution/reporting. |
-| `conformance/reports/latest.json` | Conformance artifact for `latest` execution/reporting. |
-| `conformance/results/latest.json` | Conformance artifact for `latest` execution/reporting. |
-| `conformance/vectors/canonical_cbor/.gitkeep` | Conformance artifact for `.gitkeep` execution/reporting. |
-| `conformance/vectors/canonical_cbor/vectors.json` | Conformance artifact for `vectors` execution/reporting. |
-| `conformance/vectors/interface_hash/.gitkeep` | Conformance artifact for `.gitkeep` execution/reporting. |
-| `conformance/vectors/interface_hash/vectors.json` | Conformance artifact for `vectors` execution/reporting. |
-| `conformance/vectors/struct_validation/.gitkeep` | Conformance artifact for `.gitkeep` execution/reporting. |
-| `conformance/vectors/struct_validation/vectors.json` | Conformance artifact for `vectors` execution/reporting. |
+| `evidence/conformance/reports/latest.json` | Conformance artifact for `latest` execution/reporting. |
+| `evidence/conformance/results/latest.json` | Conformance artifact for `latest` execution/reporting. |
+| `conformance/artifacts/inputs/vectors/canonical_cbor/.gitkeep` | Conformance artifact for `.gitkeep` execution/reporting. |
+| `conformance/artifacts/inputs/vectors/canonical_cbor/vectors.json` | Conformance artifact for `vectors` execution/reporting. |
+| `conformance/artifacts/inputs/vectors/interface_hash/.gitkeep` | Conformance artifact for `.gitkeep` execution/reporting. |
+| `conformance/artifacts/inputs/vectors/interface_hash/vectors.json` | Conformance artifact for `vectors` execution/reporting. |
+| `conformance/artifacts/inputs/vectors/struct_validation/.gitkeep` | Conformance artifact for `.gitkeep` execution/reporting. |
+| `conformance/artifacts/inputs/vectors/struct_validation/vectors.json` | Conformance artifact for `vectors` execution/reporting. |
 | `contracts/capability_catalog.cbor` | Machine-readable contract/interface artifact for `capability catalog`. |
 | `contracts/catalog-manifest.json` | Machine-readable contract/interface artifact for `catalog manifest`. |
 | `contracts/digest_catalog.cbor` | Machine-readable contract/interface artifact for `digest catalog`. |
@@ -932,8 +932,8 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `contracts/schema_catalog.cbor` | Machine-readable contract/interface artifact for `schema catalog`. |
 | `contracts/vectors_catalog.cbor` | Machine-readable contract/interface artifact for `vectors catalog`. |
 | `data-registry.yaml` | Root-level project artifact `data-registry.yaml` used by repository workflows. |
-| `dist/hello-core-bundle.sha256` | Release distribution artifact `hello-core-bundle.sha256` used for publish/verification. |
-| `dist/hello-core-bundle.tar.gz` | Release distribution artifact `hello-core-bundle.tar.gz` used for publish/verification. |
+| `artifacts/bundles/hello-core-bundle.sha256` | Release distribution artifact `hello-core-bundle.sha256` used for publish/verification. |
+| `artifacts/bundles/hello-core-bundle.tar.gz` | Release distribution artifact `hello-core-bundle.tar.gz` used for publish/verification. |
 | `docs/BRAND.md` | Documentation artifact describing `BRAND`. |
 | `docs/HELLO_CORE_NEXT_STEPS.md` | Documentation artifact describing `HELLO CORE NEXT STEPS`. |
 | `docs/INTERPRETATION_LOG.md` | Documentation artifact describing `INTERPRETATION LOG`. |
@@ -1149,10 +1149,10 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `docs/release/CHECKSUMS_v0.1.0.sha256.asc` | Documentation artifact describing `CHECKSUMS v0.1.0.sha256`. |
 | `docs/release/RELEASE_PUBKEY.asc` | Documentation artifact describing `RELEASE PUBKEY`. |
 | `docs/release/SIGNING.md` | Documentation artifact describing `SIGNING`. |
-| `docs/reports/CONFORMANCE_REPORT_TEMPLATE.md` | Documentation artifact describing `CONFORMANCE REPORT TEMPLATE`. |
-| `docs/reports/INTEGRATION_REPORT_TEMPLATE.md` | Documentation artifact describing `INTEGRATION REPORT TEMPLATE`. |
-| `docs/reports/OUTREACH_2026-02-27.md` | Documentation artifact describing `OUTREACH 2026 02 27`. |
-| `docs/reports/merged_docs.txt` | Documentation artifact describing `merged docs`. |
+| `docs/evidence/CONFORMANCE_REPORT_TEMPLATE.md` | Documentation artifact describing `CONFORMANCE REPORT TEMPLATE`. |
+| `docs/evidence/INTEGRATION_REPORT_TEMPLATE.md` | Documentation artifact describing `INTEGRATION REPORT TEMPLATE`. |
+| `docs/evidence/OUTREACH_2026-02-27.md` | Documentation artifact describing `OUTREACH 2026 02 27`. |
+| `docs/evidence/merged_docs.txt` | Documentation artifact describing `merged docs`. |
 | `docs/security/OPERATIONS.md` | Documentation artifact describing `OPERATIONS`. |
 | `docs/security/THREAT_MODEL.md` | Documentation artifact describing `THREAT MODEL`. |
 | `docs/site/services.md` | Documentation artifact describing `services`. |
@@ -1172,127 +1172,127 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `ecosystem-validation-log.md` | Validation log for ecosystem governance updates. |
 | `ecosystem.md` | Ecosystem index and governance/control mapping. |
 | `ecosystem/tooling-manifest.yaml` | Ecosystem support artifact `tooling-manifest.yaml`. |
-| `fixtures/checkpoint-restore/checkpoint_input.json` | Input fixture artifact used for deterministic test scenarios (`checkpoint-restore`). |
-| `fixtures/checkpoint-restore/fixture-manifest.json` | Input fixture artifact used for deterministic test scenarios (`checkpoint-restore`). |
-| `fixtures/checkpoint-restore/restore_request.json` | Input fixture artifact used for deterministic test scenarios (`checkpoint-restore`). |
-| `fixtures/failure-injection/faulty_request.json` | Input fixture artifact used for deterministic test scenarios (`failure-injection`). |
-| `fixtures/failure-injection/fixture-manifest.json` | Input fixture artifact used for deterministic test scenarios (`failure-injection`). |
-| `fixtures/hello-core/checkpoint.json` | Input fixture artifact used for deterministic test scenarios (`hello-core`). |
-| `fixtures/hello-core/execution_certificate.json` | Input fixture artifact used for deterministic test scenarios (`hello-core`). |
-| `fixtures/hello-core/fixture-manifest.json` | Input fixture artifact used for deterministic test scenarios (`hello-core`). |
-| `fixtures/hello-core/manifest.core.yaml` | Input fixture artifact used for deterministic test scenarios (`hello-core`). |
-| `fixtures/hello-core/model_ir.json` | Input fixture artifact used for deterministic test scenarios (`hello-core`). |
-| `fixtures/hello-core/tiny_synth_dataset.jsonl` | Input fixture artifact used for deterministic test scenarios (`hello-core`). |
-| `fixtures/hello-core/trace.json` | Input fixture artifact used for deterministic test scenarios (`hello-core`). |
-| `fixtures/mini-tracking/inputs.json` | Input fixture artifact used for deterministic test scenarios (`mini-tracking`). |
-| `fixtures/perf-scale/batch.json` | Input fixture artifact used for deterministic test scenarios (`perf-scale`). |
-| `fixtures/perf-scale/fixture-manifest.json` | Input fixture artifact used for deterministic test scenarios (`perf-scale`). |
-| `fixtures/registry-lifecycle/fixture-manifest.json` | Input fixture artifact used for deterministic test scenarios (`registry-lifecycle`). |
-| `fixtures/registry-lifecycle/stage_transition.json` | Input fixture artifact used for deterministic test scenarios (`registry-lifecycle`). |
-| `fixtures/registry-lifecycle/version_create.json` | Input fixture artifact used for deterministic test scenarios (`registry-lifecycle`). |
-| `fixtures/replay-determinism/fixture-manifest.json` | Input fixture artifact used for deterministic test scenarios (`replay-determinism`). |
-| `fixtures/replay-determinism/trace.json` | Input fixture artifact used for deterministic test scenarios (`replay-determinism`). |
-| `fixtures/replay-suite-1/fixture-manifest.json` | Input fixture artifact used for deterministic test scenarios (`replay-suite-1`). |
-| `fixtures/replay-suite-1/trace.json` | Input fixture artifact used for deterministic test scenarios (`replay-suite-1`). |
-| `fixtures/tracking-monitoring/fixture-manifest.json` | Input fixture artifact used for deterministic test scenarios (`tracking-monitoring`). |
-| `fixtures/tracking-monitoring/run_event.json` | Input fixture artifact used for deterministic test scenarios (`tracking-monitoring`). |
-| `generated/bindings.py` | Code generation output artifact for `bindings`. |
-| `generated/clean_build/bindings.py` | Code generation output artifact for `bindings`. |
-| `generated/clean_build/error.py` | Code generation output artifact for `error`. |
-| `generated/clean_build/models.py` | Code generation output artifact for `models`. |
-| `generated/clean_build/operators.py` | Code generation output artifact for `operators`. |
-| `generated/clean_build/validators.py` | Code generation output artifact for `validators`. |
-| `generated/codegen_manifest.json` | Code generation output artifact for `codegen manifest`. |
-| `generated/deploy/confidential/bundle_manifest.json` | Code generation output artifact for `bundle manifest`. |
-| `generated/deploy/confidential/policy_bindings.json` | Code generation output artifact for `policy bindings`. |
-| `generated/deploy/confidential/runtime_config.json` | Code generation output artifact for `runtime config`. |
-| `generated/deploy/env_manifest.json` | Code generation output artifact for `env manifest`. |
-| `generated/deploy/managed/bundle_manifest.json` | Code generation output artifact for `bundle manifest`. |
-| `generated/deploy/managed/policy_bindings.json` | Code generation output artifact for `policy bindings`. |
-| `generated/deploy/managed/runtime_config.json` | Code generation output artifact for `runtime config`. |
-| `generated/deploy/migration_plan.json` | Code generation output artifact for `migration plan`. |
-| `generated/deploy/overlays/dev.json` | Code generation output artifact for `dev`. |
-| `generated/deploy/overlays/index.json` | Code generation output artifact for `index`. |
-| `generated/deploy/overlays/prod.json` | Code generation output artifact for `prod`. |
-| `generated/deploy/overlays/staging.json` | Code generation output artifact for `staging`. |
-| `generated/deploy/regulated/bundle_manifest.json` | Code generation output artifact for `bundle manifest`. |
-| `generated/deploy/regulated/policy_bindings.json` | Code generation output artifact for `policy bindings`. |
-| `generated/deploy/regulated/runtime_config.json` | Code generation output artifact for `runtime config`. |
-| `generated/error.py` | Code generation output artifact for `error`. |
-| `generated/input_hashes.json` | Code generation output artifact for `input hashes`. |
-| `generated/models.py` | Code generation output artifact for `models`. |
-| `generated/operators.py` | Code generation output artifact for `operators`. |
-| `generated/validators.py` | Code generation output artifact for `validators`. |
-| `goldens/checkpoint-restore/checkpoint_expected.json` | Golden expected output artifact for `checkpoint-restore` comparisons. |
-| `goldens/checkpoint-restore/golden-manifest.json` | Golden expected output artifact for `checkpoint-restore` comparisons. |
-| `goldens/checkpoint-restore/restore_expected.json` | Golden expected output artifact for `checkpoint-restore` comparisons. |
-| `goldens/failure-injection/faulty_expected.json` | Golden expected output artifact for `failure-injection` comparisons. |
-| `goldens/failure-injection/golden-manifest.json` | Golden expected output artifact for `failure-injection` comparisons. |
-| `goldens/golden_inventory.json` | Golden expected output artifact for `golden_inventory.json` comparisons. |
-| `goldens/hello-core/checkpoint_header.json` | Golden expected output artifact for `hello-core` comparisons. |
-| `goldens/hello-core/execution_certificate.json` | Golden expected output artifact for `hello-core` comparisons. |
-| `goldens/hello-core/golden-identities.json` | Golden expected output artifact for `hello-core` comparisons. |
-| `goldens/hello-core/golden-manifest.json` | Golden expected output artifact for `hello-core` comparisons. |
-| `goldens/hello-core/trace_snippet.json` | Golden expected output artifact for `hello-core` comparisons. |
-| `goldens/mini-tracking/expected.json` | Golden expected output artifact for `mini-tracking` comparisons. |
-| `goldens/perf-scale/forward_expected.json` | Golden expected output artifact for `perf-scale` comparisons. |
-| `goldens/perf-scale/golden-manifest.json` | Golden expected output artifact for `perf-scale` comparisons. |
-| `goldens/registry-lifecycle/golden-manifest.json` | Golden expected output artifact for `registry-lifecycle` comparisons. |
-| `goldens/registry-lifecycle/stage_transition_expected.json` | Golden expected output artifact for `registry-lifecycle` comparisons. |
-| `goldens/registry-lifecycle/version_create_expected.json` | Golden expected output artifact for `registry-lifecycle` comparisons. |
-| `goldens/replay-determinism/golden-manifest.json` | Golden expected output artifact for `replay-determinism` comparisons. |
-| `goldens/replay-determinism/replay_expected.json` | Golden expected output artifact for `replay-determinism` comparisons. |
-| `goldens/replay-suite-1/golden-manifest.json` | Golden expected output artifact for `replay-suite-1` comparisons. |
-| `goldens/replay-suite-1/trace_expected.json` | Golden expected output artifact for `replay-suite-1` comparisons. |
-| `goldens/tracking-monitoring/golden-manifest.json` | Golden expected output artifact for `tracking-monitoring` comparisons. |
-| `goldens/tracking-monitoring/metric_log_expected.json` | Golden expected output artifact for `tracking-monitoring` comparisons. |
+| `artifacts/inputs/fixtures/checkpoint-restore/checkpoint_input.json` | Input fixture artifact used for deterministic test scenarios (`checkpoint-restore`). |
+| `artifacts/inputs/fixtures/checkpoint-restore/fixture-manifest.json` | Input fixture artifact used for deterministic test scenarios (`checkpoint-restore`). |
+| `artifacts/inputs/fixtures/checkpoint-restore/restore_request.json` | Input fixture artifact used for deterministic test scenarios (`checkpoint-restore`). |
+| `artifacts/inputs/fixtures/failure-injection/faulty_request.json` | Input fixture artifact used for deterministic test scenarios (`failure-injection`). |
+| `artifacts/inputs/fixtures/failure-injection/fixture-manifest.json` | Input fixture artifact used for deterministic test scenarios (`failure-injection`). |
+| `artifacts/inputs/fixtures/hello-core/checkpoint.json` | Input fixture artifact used for deterministic test scenarios (`hello-core`). |
+| `artifacts/inputs/fixtures/hello-core/execution_certificate.json` | Input fixture artifact used for deterministic test scenarios (`hello-core`). |
+| `artifacts/inputs/fixtures/hello-core/fixture-manifest.json` | Input fixture artifact used for deterministic test scenarios (`hello-core`). |
+| `artifacts/inputs/fixtures/hello-core/manifest.core.yaml` | Input fixture artifact used for deterministic test scenarios (`hello-core`). |
+| `artifacts/inputs/fixtures/hello-core/model_ir.json` | Input fixture artifact used for deterministic test scenarios (`hello-core`). |
+| `artifacts/inputs/fixtures/hello-core/tiny_synth_dataset.jsonl` | Input fixture artifact used for deterministic test scenarios (`hello-core`). |
+| `artifacts/inputs/fixtures/hello-core/trace.json` | Input fixture artifact used for deterministic test scenarios (`hello-core`). |
+| `artifacts/inputs/fixtures/mini-tracking/inputs.json` | Input fixture artifact used for deterministic test scenarios (`mini-tracking`). |
+| `artifacts/inputs/fixtures/perf-scale/batch.json` | Input fixture artifact used for deterministic test scenarios (`perf-scale`). |
+| `artifacts/inputs/fixtures/perf-scale/fixture-manifest.json` | Input fixture artifact used for deterministic test scenarios (`perf-scale`). |
+| `artifacts/inputs/fixtures/registry-lifecycle/fixture-manifest.json` | Input fixture artifact used for deterministic test scenarios (`registry-lifecycle`). |
+| `artifacts/inputs/fixtures/registry-lifecycle/stage_transition.json` | Input fixture artifact used for deterministic test scenarios (`registry-lifecycle`). |
+| `artifacts/inputs/fixtures/registry-lifecycle/version_create.json` | Input fixture artifact used for deterministic test scenarios (`registry-lifecycle`). |
+| `artifacts/inputs/fixtures/replay-determinism/fixture-manifest.json` | Input fixture artifact used for deterministic test scenarios (`replay-determinism`). |
+| `artifacts/inputs/fixtures/replay-determinism/trace.json` | Input fixture artifact used for deterministic test scenarios (`replay-determinism`). |
+| `artifacts/inputs/fixtures/replay-suite-1/fixture-manifest.json` | Input fixture artifact used for deterministic test scenarios (`replay-suite-1`). |
+| `artifacts/inputs/fixtures/replay-suite-1/trace.json` | Input fixture artifact used for deterministic test scenarios (`replay-suite-1`). |
+| `artifacts/inputs/fixtures/tracking-monitoring/fixture-manifest.json` | Input fixture artifact used for deterministic test scenarios (`tracking-monitoring`). |
+| `artifacts/inputs/fixtures/tracking-monitoring/run_event.json` | Input fixture artifact used for deterministic test scenarios (`tracking-monitoring`). |
+| `artifacts/generated/bindings.py` | Code generation output artifact for `bindings`. |
+| `artifacts/generated/clean_build/bindings.py` | Code generation output artifact for `bindings`. |
+| `artifacts/generated/clean_build/error.py` | Code generation output artifact for `error`. |
+| `artifacts/generated/clean_build/models.py` | Code generation output artifact for `models`. |
+| `artifacts/generated/clean_build/operators.py` | Code generation output artifact for `operators`. |
+| `artifacts/generated/clean_build/validators.py` | Code generation output artifact for `validators`. |
+| `artifacts/generated/codegen_manifest.json` | Code generation output artifact for `codegen manifest`. |
+| `artifacts/generated/deploy/confidential/bundle_manifest.json` | Code generation output artifact for `bundle manifest`. |
+| `artifacts/generated/deploy/confidential/policy_bindings.json` | Code generation output artifact for `policy bindings`. |
+| `artifacts/generated/deploy/confidential/runtime_config.json` | Code generation output artifact for `runtime config`. |
+| `artifacts/generated/deploy/env_manifest.json` | Code generation output artifact for `env manifest`. |
+| `artifacts/generated/deploy/managed/bundle_manifest.json` | Code generation output artifact for `bundle manifest`. |
+| `artifacts/generated/deploy/managed/policy_bindings.json` | Code generation output artifact for `policy bindings`. |
+| `artifacts/generated/deploy/managed/runtime_config.json` | Code generation output artifact for `runtime config`. |
+| `artifacts/generated/deploy/migration_plan.json` | Code generation output artifact for `migration plan`. |
+| `artifacts/generated/deploy/overlays/dev.json` | Code generation output artifact for `dev`. |
+| `artifacts/generated/deploy/overlays/index.json` | Code generation output artifact for `index`. |
+| `artifacts/generated/deploy/overlays/prod.json` | Code generation output artifact for `prod`. |
+| `artifacts/generated/deploy/overlays/staging.json` | Code generation output artifact for `staging`. |
+| `artifacts/generated/deploy/regulated/bundle_manifest.json` | Code generation output artifact for `bundle manifest`. |
+| `artifacts/generated/deploy/regulated/policy_bindings.json` | Code generation output artifact for `policy bindings`. |
+| `artifacts/generated/deploy/regulated/runtime_config.json` | Code generation output artifact for `runtime config`. |
+| `artifacts/generated/error.py` | Code generation output artifact for `error`. |
+| `artifacts/generated/input_hashes.json` | Code generation output artifact for `input hashes`. |
+| `artifacts/generated/models.py` | Code generation output artifact for `models`. |
+| `artifacts/generated/operators.py` | Code generation output artifact for `operators`. |
+| `artifacts/generated/validators.py` | Code generation output artifact for `validators`. |
+| `artifacts/expected/goldens/checkpoint-restore/checkpoint_expected.json` | Golden expected output artifact for `checkpoint-restore` comparisons. |
+| `artifacts/expected/goldens/checkpoint-restore/golden-manifest.json` | Golden expected output artifact for `checkpoint-restore` comparisons. |
+| `artifacts/expected/goldens/checkpoint-restore/restore_expected.json` | Golden expected output artifact for `checkpoint-restore` comparisons. |
+| `artifacts/expected/goldens/failure-injection/faulty_expected.json` | Golden expected output artifact for `failure-injection` comparisons. |
+| `artifacts/expected/goldens/failure-injection/golden-manifest.json` | Golden expected output artifact for `failure-injection` comparisons. |
+| `artifacts/expected/goldens/golden_inventory.json` | Golden expected output artifact for `golden_inventory.json` comparisons. |
+| `artifacts/expected/goldens/hello-core/checkpoint_header.json` | Golden expected output artifact for `hello-core` comparisons. |
+| `artifacts/expected/goldens/hello-core/execution_certificate.json` | Golden expected output artifact for `hello-core` comparisons. |
+| `artifacts/expected/goldens/hello-core/golden-identities.json` | Golden expected output artifact for `hello-core` comparisons. |
+| `artifacts/expected/goldens/hello-core/golden-manifest.json` | Golden expected output artifact for `hello-core` comparisons. |
+| `artifacts/expected/goldens/hello-core/trace_snippet.json` | Golden expected output artifact for `hello-core` comparisons. |
+| `artifacts/expected/goldens/mini-tracking/expected.json` | Golden expected output artifact for `mini-tracking` comparisons. |
+| `artifacts/expected/goldens/perf-scale/forward_expected.json` | Golden expected output artifact for `perf-scale` comparisons. |
+| `artifacts/expected/goldens/perf-scale/golden-manifest.json` | Golden expected output artifact for `perf-scale` comparisons. |
+| `artifacts/expected/goldens/registry-lifecycle/golden-manifest.json` | Golden expected output artifact for `registry-lifecycle` comparisons. |
+| `artifacts/expected/goldens/registry-lifecycle/stage_transition_expected.json` | Golden expected output artifact for `registry-lifecycle` comparisons. |
+| `artifacts/expected/goldens/registry-lifecycle/version_create_expected.json` | Golden expected output artifact for `registry-lifecycle` comparisons. |
+| `artifacts/expected/goldens/replay-determinism/golden-manifest.json` | Golden expected output artifact for `replay-determinism` comparisons. |
+| `artifacts/expected/goldens/replay-determinism/replay_expected.json` | Golden expected output artifact for `replay-determinism` comparisons. |
+| `artifacts/expected/goldens/replay-suite-1/golden-manifest.json` | Golden expected output artifact for `replay-suite-1` comparisons. |
+| `artifacts/expected/goldens/replay-suite-1/trace_expected.json` | Golden expected output artifact for `replay-suite-1` comparisons. |
+| `artifacts/expected/goldens/tracking-monitoring/golden-manifest.json` | Golden expected output artifact for `tracking-monitoring` comparisons. |
+| `artifacts/expected/goldens/tracking-monitoring/metric_log_expected.json` | Golden expected output artifact for `tracking-monitoring` comparisons. |
 | `migration-plan-template.yaml` | Root-level project artifact `migration-plan-template.yaml` used by repository workflows. |
 | `milestones.txt` | Milestone roadmap, completion evidence, and delivery status. |
 | `portfolio-release-notes-template.md` | Template for portfolio-level release notes. |
 | `pyproject.toml` | Python project metadata and test/tool configuration. |
-| `reports/coverage/operator_coverage.json` | Generated evidence/report artifact for `coverage`. |
-| `reports/deploy/drift.json` | Generated evidence/report artifact for `deploy`. |
-| `reports/deploy/latest.json` | Generated evidence/report artifact for `deploy`. |
-| `reports/deploy/parity.json` | Generated evidence/report artifact for `deploy`. |
-| `reports/deploy/rollback.json` | Generated evidence/report artifact for `deploy`. |
-| `reports/deploy/state/staging_active.json` | Generated evidence/report artifact for `deploy`. |
-| `reports/deploy/state/staging_previous.json` | Generated evidence/report artifact for `deploy`. |
-| `reports/ga/latest.json` | Generated evidence/report artifact for `ga`. |
-| `reports/ga/release_candidate_verification.json` | Generated evidence/report artifact for `ga`. |
-| `reports/observability/alert_test.json` | Generated evidence/report artifact for `observability`. |
-| `reports/observability/dashboard_inventory.json` | Generated evidence/report artifact for `observability`. |
-| `reports/observability/incident_drill.json` | Generated evidence/report artifact for `observability`. |
-| `reports/observability/latest.json` | Generated evidence/report artifact for `observability`. |
-| `reports/observability/lineage_index.json` | Generated evidence/report artifact for `observability`. |
-| `reports/observability/slo_status.json` | Generated evidence/report artifact for `observability`. |
-| `reports/observability/synthetic_probe.json` | Generated evidence/report artifact for `observability`. |
-| `reports/recovery/backup-restore-drill.json` | Generated evidence/report artifact for `recovery`. |
-| `reports/recovery/checkpoint-backup.json` | Generated evidence/report artifact for `recovery`. |
-| `reports/recovery/latest.json` | Generated evidence/report artifact for `recovery`. |
-| `reports/recovery/replay-proof.txt` | Generated evidence/report artifact for `recovery`. |
-| `reports/repro/compare-20260228.md` | Generated evidence/report artifact for `repro`. |
-| `reports/repro/compare-template.md` | Generated evidence/report artifact for `repro`. |
-| `reports/repro/dependency-lock.sha256` | Generated evidence/report artifact for `repro`. |
-| `reports/repro/hashes.txt` | Generated evidence/report artifact for `repro`. |
-| `reports/repro/run-checklist.md` | Generated evidence/report artifact for `repro`. |
-| `reports/security/audit.log.jsonl` | Generated evidence/report artifact for `security`. |
-| `reports/security/build_provenance.json` | Generated evidence/report artifact for `security`. |
-| `reports/security/latest.json` | Generated evidence/report artifact for `security`. |
-| `reports/security/sbom.json` | Generated evidence/report artifact for `security`. |
-| `reports/structure/latest.json` | Generated evidence/report artifact for `structure`. |
-| `reports/validation/external_security_review.md` | Generated evidence/report artifact for `validation`. |
-| `reports/validation/independent_verification_summary.json` | Generated evidence/report artifact for `validation`. |
-| `reports/validation/issues.json` | Generated evidence/report artifact for `validation`. |
-| `reports/validation/latest.json` | Generated evidence/report artifact for `validation`. |
-| `reports/validation/runs/run-01-linux-mint.json` | Generated evidence/report artifact for `validation`. |
-| `reports/validation/runs/run-02-ubuntu-wsl.json` | Generated evidence/report artifact for `validation`. |
-| `reports/validation/runs/run-03-docs-only-cleanroom.json` | Generated evidence/report artifact for `validation`. |
-| `reports/validation/scorecards/run-01-linux-mint.json` | Generated evidence/report artifact for `validation`. |
-| `reports/validation/scorecards/run-02-ubuntu-wsl.json` | Generated evidence/report artifact for `validation`. |
-| `reports/validation/scorecards/run-03-docs-only-cleanroom.json` | Generated evidence/report artifact for `validation`. |
-| `reports/validation/transcripts/run-01-linux-mint.md` | Generated evidence/report artifact for `validation`. |
-| `reports/validation/transcripts/run-02-ubuntu-wsl.md` | Generated evidence/report artifact for `validation`. |
-| `reports/validation/transcripts/run-03-docs-only-cleanroom.md` | Generated evidence/report artifact for `validation`. |
+| `evidence/coverage/operator_coverage.json` | Generated evidence/report artifact for `coverage`. |
+| `evidence/deploy/drift.json` | Generated evidence/report artifact for `deploy`. |
+| `evidence/deploy/latest.json` | Generated evidence/report artifact for `deploy`. |
+| `evidence/deploy/parity.json` | Generated evidence/report artifact for `deploy`. |
+| `evidence/deploy/rollback.json` | Generated evidence/report artifact for `deploy`. |
+| `evidence/deploy/state/staging_active.json` | Generated evidence/report artifact for `deploy`. |
+| `evidence/deploy/state/staging_previous.json` | Generated evidence/report artifact for `deploy`. |
+| `evidence/ga/latest.json` | Generated evidence/report artifact for `ga`. |
+| `evidence/ga/release_candidate_verification.json` | Generated evidence/report artifact for `ga`. |
+| `evidence/observability/alert_test.json` | Generated evidence/report artifact for `observability`. |
+| `evidence/observability/dashboard_inventory.json` | Generated evidence/report artifact for `observability`. |
+| `evidence/observability/incident_drill.json` | Generated evidence/report artifact for `observability`. |
+| `evidence/observability/latest.json` | Generated evidence/report artifact for `observability`. |
+| `evidence/observability/lineage_index.json` | Generated evidence/report artifact for `observability`. |
+| `evidence/observability/slo_status.json` | Generated evidence/report artifact for `observability`. |
+| `evidence/observability/synthetic_probe.json` | Generated evidence/report artifact for `observability`. |
+| `evidence/recovery/backup-restore-drill.json` | Generated evidence/report artifact for `recovery`. |
+| `evidence/recovery/checkpoint-backup.json` | Generated evidence/report artifact for `recovery`. |
+| `evidence/recovery/latest.json` | Generated evidence/report artifact for `recovery`. |
+| `evidence/recovery/replay-proof.txt` | Generated evidence/report artifact for `recovery`. |
+| `evidence/repro/compare-20260228.md` | Generated evidence/report artifact for `repro`. |
+| `evidence/repro/compare-template.md` | Generated evidence/report artifact for `repro`. |
+| `evidence/repro/dependency-lock.sha256` | Generated evidence/report artifact for `repro`. |
+| `evidence/repro/hashes.txt` | Generated evidence/report artifact for `repro`. |
+| `evidence/repro/run-checklist.md` | Generated evidence/report artifact for `repro`. |
+| `evidence/security/audit.log.jsonl` | Generated evidence/report artifact for `security`. |
+| `evidence/security/build_provenance.json` | Generated evidence/report artifact for `security`. |
+| `evidence/security/latest.json` | Generated evidence/report artifact for `security`. |
+| `evidence/security/sbom.json` | Generated evidence/report artifact for `security`. |
+| `evidence/structure/latest.json` | Generated evidence/report artifact for `structure`. |
+| `evidence/validation/external_security_review.md` | Generated evidence/report artifact for `validation`. |
+| `evidence/validation/independent_verification_summary.json` | Generated evidence/report artifact for `validation`. |
+| `evidence/validation/issues.json` | Generated evidence/report artifact for `validation`. |
+| `evidence/validation/latest.json` | Generated evidence/report artifact for `validation`. |
+| `evidence/validation/runs/run-01-linux-mint.json` | Generated evidence/report artifact for `validation`. |
+| `evidence/validation/runs/run-02-ubuntu-wsl.json` | Generated evidence/report artifact for `validation`. |
+| `evidence/validation/runs/run-03-docs-only-cleanroom.json` | Generated evidence/report artifact for `validation`. |
+| `evidence/validation/scorecards/run-01-linux-mint.json` | Generated evidence/report artifact for `validation`. |
+| `evidence/validation/scorecards/run-02-ubuntu-wsl.json` | Generated evidence/report artifact for `validation`. |
+| `evidence/validation/scorecards/run-03-docs-only-cleanroom.json` | Generated evidence/report artifact for `validation`. |
+| `evidence/validation/transcripts/run-01-linux-mint.md` | Generated evidence/report artifact for `validation`. |
+| `evidence/validation/transcripts/run-02-ubuntu-wsl.md` | Generated evidence/report artifact for `validation`. |
+| `evidence/validation/transcripts/run-03-docs-only-cleanroom.md` | Generated evidence/report artifact for `validation`. |
 | `requirements.lock` | Pinned dependency lock file for reproducible environments. |
 | `schemas/SCHEMA_CONVENTIONS.txt` | Schema/meta-schema artifact for `SCHEMA CONVENTIONS` validation. |
 | `schemas/SCHEMA_FORMAT_DECISION.txt` | Schema/meta-schema artifact for `SCHEMA FORMAT DECISION` validation. |
@@ -1480,41 +1480,41 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `tests/canonical_cbor/test_vectors.py` | Automated test artifact validating `test vectors` behavior. |
 | `tests/canonical_cbor/vector_loader.py` | Automated test artifact validating `vector loader` behavior. |
 | `tests/chaos/test_distributed_chaos.py` | Automated test artifact validating `test distributed chaos` behavior. |
-| `tests/conformance/vectors/interface_hash/vectors.json` | Automated test artifact validating `vectors` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Backend_LoadDriver.json` | Automated test artifact validating `Glyphser Backend LoadDriver` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Certificate_EvidenceValidate.json` | Automated test artifact validating `Glyphser Certificate EvidenceValidate` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Checkpoint_CheckpointMigrate.json` | Automated test artifact validating `Glyphser Checkpoint CheckpointMigrate` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Checkpoint_Restore.json` | Automated test artifact validating `Glyphser Checkpoint Restore` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Config_ManifestMigrate.json` | Automated test artifact validating `Glyphser Config ManifestMigrate` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Data_NextBatch.json` | Automated test artifact validating `Glyphser Data NextBatch` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_DifferentialPrivacy_Apply.json` | Automated test artifact validating `Glyphser DifferentialPrivacy Apply` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Error_Emit.json` | Automated test artifact validating `Glyphser Error Emit` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_IO_SaveCheckpoint.json` | Automated test artifact validating `Glyphser IO SaveCheckpoint` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Import_LegacyFramework.json` | Automated test artifact validating `Glyphser Import LegacyFramework` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Model_Forward.json` | Automated test artifact validating `Glyphser Model Forward` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Model_ModelIR_Executor.json` | Automated test artifact validating `Glyphser Model ModelIR Executor` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Monitor_DriftCompute.json` | Automated test artifact validating `Glyphser Monitor DriftCompute` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Monitor_Emit.json` | Automated test artifact validating `Glyphser Monitor Emit` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Monitor_Register.json` | Automated test artifact validating `Glyphser Monitor Register` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Registry_StageTransition.json` | Automated test artifact validating `Glyphser Registry StageTransition` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Registry_VersionCreate.json` | Automated test artifact validating `Glyphser Registry VersionCreate` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_TMMU_PrepareMemory.json` | Automated test artifact validating `Glyphser TMMU PrepareMemory` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Trace_TraceMigrate.json` | Automated test artifact validating `Glyphser Trace TraceMigrate` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Tracking_ArtifactGet.json` | Automated test artifact validating `Glyphser Tracking ArtifactGet` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Tracking_ArtifactList.json` | Automated test artifact validating `Glyphser Tracking ArtifactList` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Tracking_ArtifactPut.json` | Automated test artifact validating `Glyphser Tracking ArtifactPut` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Tracking_ArtifactTombstone.json` | Automated test artifact validating `Glyphser Tracking ArtifactTombstone` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Tracking_MetricLog.json` | Automated test artifact validating `Glyphser Tracking MetricLog` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Tracking_RunCreate.json` | Automated test artifact validating `Glyphser Tracking RunCreate` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Tracking_RunEnd.json` | Automated test artifact validating `Glyphser Tracking RunEnd` behavior. |
-| `tests/conformance/vectors/operators/Glyphser_Tracking_RunStart.json` | Automated test artifact validating `Glyphser Tracking RunStart` behavior. |
-| `tests/conformance/vectors/storage/state_recovery_vectors.json` | Automated test artifact validating `state recovery vectors` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/interface_hash/vectors.json` | Automated test artifact validating `vectors` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Backend_LoadDriver.json` | Automated test artifact validating `Glyphser Backend LoadDriver` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Certificate_EvidenceValidate.json` | Automated test artifact validating `Glyphser Certificate EvidenceValidate` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Checkpoint_CheckpointMigrate.json` | Automated test artifact validating `Glyphser Checkpoint CheckpointMigrate` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Checkpoint_Restore.json` | Automated test artifact validating `Glyphser Checkpoint Restore` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Config_ManifestMigrate.json` | Automated test artifact validating `Glyphser Config ManifestMigrate` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Data_NextBatch.json` | Automated test artifact validating `Glyphser Data NextBatch` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_DifferentialPrivacy_Apply.json` | Automated test artifact validating `Glyphser DifferentialPrivacy Apply` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Error_Emit.json` | Automated test artifact validating `Glyphser Error Emit` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_IO_SaveCheckpoint.json` | Automated test artifact validating `Glyphser IO SaveCheckpoint` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Import_LegacyFramework.json` | Automated test artifact validating `Glyphser Import LegacyFramework` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Model_Forward.json` | Automated test artifact validating `Glyphser Model Forward` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Model_ModelIR_Executor.json` | Automated test artifact validating `Glyphser Model ModelIR Executor` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Monitor_DriftCompute.json` | Automated test artifact validating `Glyphser Monitor DriftCompute` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Monitor_Emit.json` | Automated test artifact validating `Glyphser Monitor Emit` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Monitor_Register.json` | Automated test artifact validating `Glyphser Monitor Register` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Registry_StageTransition.json` | Automated test artifact validating `Glyphser Registry StageTransition` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Registry_VersionCreate.json` | Automated test artifact validating `Glyphser Registry VersionCreate` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_TMMU_PrepareMemory.json` | Automated test artifact validating `Glyphser TMMU PrepareMemory` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Trace_TraceMigrate.json` | Automated test artifact validating `Glyphser Trace TraceMigrate` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Tracking_ArtifactGet.json` | Automated test artifact validating `Glyphser Tracking ArtifactGet` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Tracking_ArtifactList.json` | Automated test artifact validating `Glyphser Tracking ArtifactList` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Tracking_ArtifactPut.json` | Automated test artifact validating `Glyphser Tracking ArtifactPut` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Tracking_ArtifactTombstone.json` | Automated test artifact validating `Glyphser Tracking ArtifactTombstone` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Tracking_MetricLog.json` | Automated test artifact validating `Glyphser Tracking MetricLog` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Tracking_RunCreate.json` | Automated test artifact validating `Glyphser Tracking RunCreate` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Tracking_RunEnd.json` | Automated test artifact validating `Glyphser Tracking RunEnd` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/operators/Glyphser_Tracking_RunStart.json` | Automated test artifact validating `Glyphser Tracking RunStart` behavior. |
+| `tests/conformance/artifacts/inputs/vectors/storage/state_recovery_vectors.json` | Automated test artifact validating `state recovery vectors` behavior. |
 | `tests/conftest.py` | Automated test artifact validating `conftest` behavior. |
 | `tests/data_structures/__init__.py` | Automated test artifact validating `init` behavior. |
 | `tests/data_structures/test_validate_struct.py` | Automated test artifact validating `test validate struct` behavior. |
 | `tests/data_structures/test_vectors.py` | Automated test artifact validating `test vectors` behavior. |
 | `tests/deploy/test_deploy_pipeline_gate.py` | Automated test artifact validating `test deploy pipeline gate` behavior. |
-| `tests/fixtures/test_mini_tracking_fixture.py` | Automated test artifact validating `test mini tracking fixture` behavior. |
+| `tests/artifacts/inputs/fixtures/test_mini_tracking_fixture.py` | Automated test artifact validating `test mini tracking fixture` behavior. |
 | `tests/fuzz/test_checkpoint_decode_fuzz.py` | Automated test artifact validating `test checkpoint decode fuzz` behavior. |
 | `tests/fuzz/test_ir_validation_fuzz.py` | Automated test artifact validating `test ir validation fuzz` behavior. |
 | `tests/fuzz/test_manifest_parser_fuzz.py` | Automated test artifact validating `test manifest parser fuzz` behavior. |
@@ -1522,7 +1522,7 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `tests/fuzz/test_tmmu_planner_invariants.py` | Automated test artifact validating `test tmmu planner invariants` behavior. |
 | `tests/fuzz/test_trace_parser_fuzz.py` | Automated test artifact validating `test trace parser fuzz` behavior. |
 | `tests/ga/test_ga_release_gate.py` | Automated test artifact validating `test ga release gate` behavior. |
-| `tests/goldens/test_golden_inventory.py` | Automated test artifact validating `test golden inventory` behavior. |
+| `tests/artifacts/expected/goldens/test_golden_inventory.py` | Automated test artifact validating `test golden inventory` behavior. |
 | `tests/interface_hash/__init__.py` | Automated test artifact validating `init` behavior. |
 | `tests/interface_hash/test_vectors.py` | Automated test artifact validating `test vectors` behavior. |
 | `tests/operators/__init__.py` | Automated test artifact validating `init` behavior. |
@@ -1613,21 +1613,21 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `tools/vector_gate.py` | Automation or gate script for `vector gate` in the push-button pipeline. |
 | `tools/verify_doc_artifacts.py` | Automation or gate script for `verify doc artifacts` in the push-button pipeline. |
 | `tools/verify_release.py` | Automation or gate script for `verify release` in the push-button pipeline. |
-| `vectors/catalog.json` | Deterministic vector artifact for `catalog.json` validation. |
-| `vectors/checkpoint-restore/vectors-manifest.json` | Deterministic vector artifact for `checkpoint-restore` validation. |
-| `vectors/checkpoint-restore/vectors.json` | Deterministic vector artifact for `checkpoint-restore` validation. |
-| `vectors/failure-injection/vectors-manifest.json` | Deterministic vector artifact for `failure-injection` validation. |
-| `vectors/failure-injection/vectors.json` | Deterministic vector artifact for `failure-injection` validation. |
-| `vectors/hello-core/vectors-manifest.json` | Deterministic vector artifact for `hello-core` validation. |
-| `vectors/hello-core/vectors.json` | Deterministic vector artifact for `hello-core` validation. |
-| `vectors/perf-scale/vectors-manifest.json` | Deterministic vector artifact for `perf-scale` validation. |
-| `vectors/perf-scale/vectors.json` | Deterministic vector artifact for `perf-scale` validation. |
-| `vectors/registry-lifecycle/vectors-manifest.json` | Deterministic vector artifact for `registry-lifecycle` validation. |
-| `vectors/registry-lifecycle/vectors.json` | Deterministic vector artifact for `registry-lifecycle` validation. |
-| `vectors/replay-determinism/vectors-manifest.json` | Deterministic vector artifact for `replay-determinism` validation. |
-| `vectors/replay-determinism/vectors.json` | Deterministic vector artifact for `replay-determinism` validation. |
-| `vectors/replay-suite-1/vectors-manifest.json` | Deterministic vector artifact for `replay-suite-1` validation. |
-| `vectors/replay-suite-1/vectors.json` | Deterministic vector artifact for `replay-suite-1` validation. |
-| `vectors/replay-suites/index.json` | Deterministic vector artifact for `replay-suites` validation. |
-| `vectors/tracking-monitoring/vectors-manifest.json` | Deterministic vector artifact for `tracking-monitoring` validation. |
-| `vectors/tracking-monitoring/vectors.json` | Deterministic vector artifact for `tracking-monitoring` validation. |
+| `artifacts/inputs/vectors/catalog.json` | Deterministic vector artifact for `catalog.json` validation. |
+| `artifacts/inputs/vectors/checkpoint-restore/vectors-manifest.json` | Deterministic vector artifact for `checkpoint-restore` validation. |
+| `artifacts/inputs/vectors/checkpoint-restore/vectors.json` | Deterministic vector artifact for `checkpoint-restore` validation. |
+| `artifacts/inputs/vectors/failure-injection/vectors-manifest.json` | Deterministic vector artifact for `failure-injection` validation. |
+| `artifacts/inputs/vectors/failure-injection/vectors.json` | Deterministic vector artifact for `failure-injection` validation. |
+| `artifacts/inputs/vectors/hello-core/vectors-manifest.json` | Deterministic vector artifact for `hello-core` validation. |
+| `artifacts/inputs/vectors/hello-core/vectors.json` | Deterministic vector artifact for `hello-core` validation. |
+| `artifacts/inputs/vectors/perf-scale/vectors-manifest.json` | Deterministic vector artifact for `perf-scale` validation. |
+| `artifacts/inputs/vectors/perf-scale/vectors.json` | Deterministic vector artifact for `perf-scale` validation. |
+| `artifacts/inputs/vectors/registry-lifecycle/vectors-manifest.json` | Deterministic vector artifact for `registry-lifecycle` validation. |
+| `artifacts/inputs/vectors/registry-lifecycle/vectors.json` | Deterministic vector artifact for `registry-lifecycle` validation. |
+| `artifacts/inputs/vectors/replay-determinism/vectors-manifest.json` | Deterministic vector artifact for `replay-determinism` validation. |
+| `artifacts/inputs/vectors/replay-determinism/vectors.json` | Deterministic vector artifact for `replay-determinism` validation. |
+| `artifacts/inputs/vectors/replay-suite-1/vectors-manifest.json` | Deterministic vector artifact for `replay-suite-1` validation. |
+| `artifacts/inputs/vectors/replay-suite-1/vectors.json` | Deterministic vector artifact for `replay-suite-1` validation. |
+| `artifacts/inputs/vectors/replay-suites/index.json` | Deterministic vector artifact for `replay-suites` validation. |
+| `artifacts/inputs/vectors/tracking-monitoring/vectors-manifest.json` | Deterministic vector artifact for `tracking-monitoring` validation. |
+| `artifacts/inputs/vectors/tracking-monitoring/vectors.json` | Deterministic vector artifact for `tracking-monitoring` validation. |

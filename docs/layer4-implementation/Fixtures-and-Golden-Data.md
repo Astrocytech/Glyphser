@@ -33,7 +33,7 @@
 - `Glyphser.Test.UpdateGolden`
 - `Glyphser.Error.Emit`
 ### 0.H Namespacing and Packaging
-- `fixtures/`, `goldens/`, `vectors/` canonical roots.
+- `artifacts/inputs/fixtures/`, `artifacts/expected/goldens/`, `artifacts/inputs/vectors/` canonical roots.
 ### 0.I Outputs and Metric Schema
 - Outputs: `(fixture_report, golden_report)`
 - Metrics: `fixtures_total`, `goldens_total`, `mismatches`

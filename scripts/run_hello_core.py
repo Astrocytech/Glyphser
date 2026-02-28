@@ -52,7 +52,7 @@ def main() -> int:
     dataset_path = FIXTURES / "tiny_synth_dataset.jsonl"
     model_ir_path = FIXTURES / "model_ir.json"
     if not dataset_path.exists() or not model_ir_path.exists():
-        print("missing fixture inputs in fixtures/hello-core")
+        print("missing fixture inputs in artifacts/inputs/fixtures/hello-core")
         return 1
 
     dataset = _load_dataset(dataset_path)

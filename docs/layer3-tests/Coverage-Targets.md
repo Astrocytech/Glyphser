@@ -34,7 +34,7 @@
 - `Glyphser.Test.EmitCoverageVerdict`
 - `Glyphser.Error.Emit`
 ### 0.H Namespacing and Packaging
-- Coverage artifacts under `reports/coverage/`.
+- Coverage artifacts under `evidence/coverage/`.
 ### 0.I Outputs and Metric Schema
 - Outputs: `(coverage_report, coverage_verdict)`
 - Metrics: `line_cov`, `branch_cov`, `integration_cov`, `replay_cov`

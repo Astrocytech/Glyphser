@@ -9,7 +9,7 @@ from typing import Any, Dict
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "evidence" / "ga"
 
-from path_config import conformance_reports_root, evidence_root, first_existing, rel
+from path_config import bundles_root, conformance_reports_root, evidence_root, first_existing, rel
 
 
 def _load_json(path: Path) -> Dict[str, Any]:
@@ -52,9 +52,9 @@ def main() -> int:
         first_existing([rel("distribution", "release", "CHECKSUMS_v0.1.0.sha256.asc"), rel("docs", "release", "CHECKSUMS_v0.1.0.sha256.asc")]),
         first_existing([rel("distribution", "release", "RELEASE_PUBKEY.asc"), rel("docs", "release", "RELEASE_PUBKEY.asc")]),
         first_existing([rel("distribution", "release", "RELEASE_NOTES_v0.1.0.md"), rel("RELEASE_NOTES_v0.1.0.md")]),
-        ROOT / "conformance" / "reports" / "latest.json",
-        first_existing([rel("distribution", "bundles", "hello-core-bundle.tar.gz"), rel("dist", "hello-core-bundle.tar.gz")]),
-        first_existing([rel("distribution", "bundles", "hello-core-bundle.sha256"), rel("dist", "hello-core-bundle.sha256")]),
+        conformance_reports_root() / "latest.json",
+        bundles_root() / "hello-core-bundle.tar.gz",
+        bundles_root() / "hello-core-bundle.sha256",
     ]
     missing_docs = [str(p.relative_to(ROOT)).replace("\\", "/") for p in required_docs if not p.exists()]
     missing_artifacts = [str(p.relative_to(ROOT)).replace("\\", "/") for p in required_artifacts if not p.exists()]
@@ -72,7 +72,7 @@ def main() -> int:
         "pubkey_present": first_existing([rel("distribution", "release", "RELEASE_PUBKEY.asc"), rel("docs", "release", "RELEASE_PUBKEY.asc")]).exists(),
     }
 
-    bundle_path = first_existing([rel("distribution", "bundles", "hello-core-bundle.tar.gz"), rel("dist", "hello-core-bundle.tar.gz")])
+    bundle_path = bundles_root() / "hello-core-bundle.tar.gz"
     conformance_report_path = conformance_reports_root() / "latest.json"
     checksums_path = first_existing([rel("distribution", "release", "CHECKSUMS_v0.1.0.sha256"), rel("docs", "release", "CHECKSUMS_v0.1.0.sha256")])
 

@@ -18,10 +18,10 @@ Status: PASS
 - External security review artifact: present
 
 ## Evidence Artifacts
-- `reports/validation/latest.json`
-- `reports/validation/independent_verification_summary.json`
-- `reports/validation/issues.json`
-- `reports/validation/external_security_review.md`
-- `reports/validation/runs/*.json`
-- `reports/validation/transcripts/*.md`
-- `reports/validation/scorecards/*.json`
+- `evidence/validation/latest.json`
+- `evidence/validation/independent_verification_summary.json`
+- `evidence/validation/issues.json`
+- `evidence/validation/external_security_review.md`
+- `evidence/validation/runs/*.json`
+- `evidence/validation/transcripts/*.md`
+- `evidence/validation/scorecards/*.json`

@@ -3,29 +3,29 @@
 Status: ACTIVE
 
 ## Unit Vectors
-- Canonical CBOR: `conformance/vectors/canonical_cbor/vectors.json`
-- Struct validation: `conformance/vectors/struct_validation/vectors.json`
-- Interface hash: `conformance/vectors/interface_hash/vectors.json`
+- Canonical CBOR: `conformance/artifacts/inputs/vectors/canonical_cbor/vectors.json`
+- Struct validation: `conformance/artifacts/inputs/vectors/struct_validation/vectors.json`
+- Interface hash: `conformance/artifacts/inputs/vectors/interface_hash/vectors.json`
 
 ## Integration Vectors
-- Hello-core: `vectors/hello-core/vectors.json`
-- Checkpoint/restore: `vectors/checkpoint-restore/vectors.json`
-- Replay determinism: `vectors/replay-determinism/vectors.json`
-- Registry lifecycle: `vectors/registry-lifecycle/vectors.json`
-- Tracking/monitoring: `vectors/tracking-monitoring/vectors.json`
-- Failure injection: `vectors/failure-injection/vectors.json`
-- Perf/scale: `vectors/perf-scale/vectors.json`
-- Failure injection: `vectors/failure-injection/vectors.json`
-- Perf/scale: `vectors/perf-scale/vectors.json`
-- Checkpoint/restore: `vectors/checkpoint-restore/vectors.json`
-- Replay determinism: `vectors/replay-determinism/vectors.json`
-- Registry lifecycle: `vectors/registry-lifecycle/vectors.json`
-- Tracking/monitoring: `vectors/tracking-monitoring/vectors.json`
+- Hello-core: `artifacts/inputs/vectors/hello-core/vectors.json`
+- Checkpoint/restore: `artifacts/inputs/vectors/checkpoint-restore/vectors.json`
+- Replay determinism: `artifacts/inputs/vectors/replay-determinism/vectors.json`
+- Registry lifecycle: `artifacts/inputs/vectors/registry-lifecycle/vectors.json`
+- Tracking/monitoring: `artifacts/inputs/vectors/tracking-monitoring/vectors.json`
+- Failure injection: `artifacts/inputs/vectors/failure-injection/vectors.json`
+- Perf/scale: `artifacts/inputs/vectors/perf-scale/vectors.json`
+- Failure injection: `artifacts/inputs/vectors/failure-injection/vectors.json`
+- Perf/scale: `artifacts/inputs/vectors/perf-scale/vectors.json`
+- Checkpoint/restore: `artifacts/inputs/vectors/checkpoint-restore/vectors.json`
+- Replay determinism: `artifacts/inputs/vectors/replay-determinism/vectors.json`
+- Registry lifecycle: `artifacts/inputs/vectors/registry-lifecycle/vectors.json`
+- Tracking/monitoring: `artifacts/inputs/vectors/tracking-monitoring/vectors.json`
 
 ## Replay / Checkpoint
 - Trace hash-chain: `tests/trace/test_compute_trace_hash.py`
 - Checkpoint/certificate hashes: `scripts/run_hello_core.py` (golden verification)
-- Mini tracking fixture: `tests/fixtures/test_mini_tracking_fixture.py`
+- Mini tracking fixture: `tests/artifacts/inputs/fixtures/test_mini_tracking_fixture.py`
 
 ## Fuzz / Property
 - IR validation fuzz: `tests/fuzz/test_ir_validation_fuzz.py`
@@ -39,7 +39,7 @@ Status: ACTIVE
 
 ## Evidence / Hash Link
 - `docs/examples/hello-core/hello-core-golden.json`
-- `goldens/hello-core/golden-identities.json`
+- `artifacts/expected/goldens/hello-core/golden-identities.json`
 
 ## CI Gates
 - Conformance: `tools/conformance/cli.py`
@@ -48,8 +48,8 @@ Status: ACTIVE
 - Spec lint: `tools/spec_lint.py`
 
 ## Golden Inventory
-- Golden inventory: `goldens/golden_inventory.json`
-- Golden inventory test: `tests/goldens/test_golden_inventory.py`
+- Golden inventory: `artifacts/expected/goldens/golden_inventory.json`
+- Golden inventory test: `tests/artifacts/expected/goldens/test_golden_inventory.py`
 
 ## Determinism Regression Matrix
 - Matrix scaffolds: `tests/replay/test_determinism_regression_matrix.py` (toggle with `GLYPHSER_ENABLE_REGRESSION_MATRIX=1`)

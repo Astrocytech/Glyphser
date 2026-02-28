@@ -2454,24 +2454,24 @@
   - `schema_catalog.cbor`
   - `vectors_catalog.cbor`
   - `catalog-manifest.json`
-- `fixtures/hello-core/`
+- `artifacts/inputs/fixtures/hello-core/`
   - `manifest.core.yaml`
   - `tiny_synth_dataset.jsonl`
   - `model_ir.json`
   - `fixture-manifest.json`
-- `goldens/hello-core/`
+- `artifacts/expected/goldens/hello-core/`
   - `trace_snippet.json`
   - `checkpoint_header.json`
   - `execution_certificate.json`
   - `golden-identities.json`
   - `golden-manifest.json`
-- `vectors/hello-core/`
+- `artifacts/inputs/vectors/hello-core/`
   - `vectors.json`
   - `vectors-manifest.json`
 
 ## Tooling Added
 - `tools/materialize_doc_artifacts.py`
-  - deterministic CBOR/JSON materialization of contracts/fixtures/goldens/vectors and manifest hashes.
+  - deterministic CBOR/JSON materialization of contracts/artifacts/inputs/fixtures/artifacts/expected/goldens/vectors and manifest hashes.
 - `tools/verify_doc_artifacts.py`
   - deterministic hash/size verification for all pinned manifests.
 

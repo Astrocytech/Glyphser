@@ -44,7 +44,7 @@ Goal: Run the full push-button pipeline on two **independent** hosts that differ
 
 7. Verify dependency lock hash
    - `sha256sum requirements.lock`
-   - Compare to `reports/repro/dependency-lock.sha256` in the repo.
+   - Compare to `evidence/repro/dependency-lock.sha256` in the repo.
 
 ## C. Capture Host Metadata (Both Hosts)
 
@@ -57,19 +57,19 @@ Goal: Run the full push-button pipeline on two **independent** hosts that differ
 1. Run the full pipeline:
    - `python3 tools/push_button.py`
 2. Collect the following artifacts:
-   - `dist/hello-core-bundle.sha256`
-   - `conformance/reports/latest.json`
-   - `reports/repro/hashes.txt`
+   - `artifacts/bundles/hello-core-bundle.sha256`
+   - `evidence/conformance/reports/latest.json`
+   - `evidence/repro/hashes.txt`
 
 ## E. Compare Results
 
-1. Compare `dist/hello-core-bundle.sha256` between Host A and Host B.
-2. Compare hash of `conformance/reports/latest.json` between hosts:
-   - `sha256sum conformance/reports/latest.json`
-3. Compare `reports/repro/hashes.txt` between hosts.
+1. Compare `artifacts/bundles/hello-core-bundle.sha256` between Host A and Host B.
+2. Compare hash of `evidence/conformance/reports/latest.json` between hosts:
+   - `sha256sum evidence/conformance/reports/latest.json`
+3. Compare `evidence/repro/hashes.txt` between hosts.
 
 If any mismatch occurs:
-- Attach a diff of `conformance/reports/latest.json` to the report.
+- Attach a diff of `evidence/conformance/reports/latest.json` to the report.
 
 ## F. Third Verification Run (Host A)
 
@@ -78,8 +78,8 @@ If any mismatch occurs:
 
 ## G. Fill the Comparison Report
 
-1. Copy `reports/repro/compare-template.md` to a new file:
-   - Example: `reports/repro/compare-YYYYMMDD.md`
+1. Copy `evidence/repro/compare-template.md` to a new file:
+   - Example: `evidence/repro/compare-YYYYMMDD.md`
 2. Fill in:
    - Host metadata
    - Hashes from both hosts
@@ -88,7 +88,7 @@ If any mismatch occurs:
 ## H. Sign and Commit
 
 1. Add a signature line in the report (manual signature or PGP if desired).
-2. Commit the report into `reports/repro/`.
+2. Commit the report into `evidence/repro/`.
 
 ## I. Milestone 15 Completion Criteria
 

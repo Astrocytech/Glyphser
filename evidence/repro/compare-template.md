@@ -32,13 +32,13 @@ Prepared by:
 - Run timestamp (local): 
 
 ## Artifacts Compared
-- `dist/hello-core-bundle.sha256`:
+- `artifacts/bundles/hello-core-bundle.sha256`:
   - Host A: 
   - Host B: 
-- `conformance/reports/latest.json`:
+- `evidence/conformance/reports/latest.json`:
   - Host A hash: 
   - Host B hash: 
-- `reports/repro/hashes.txt`:
+- `evidence/repro/hashes.txt`:
   - Host A: 
   - Host B: 
 

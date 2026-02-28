@@ -22,10 +22,10 @@ Status: PUBLIC-READY
 
 | Artifact | SHA-256 |
 | --- | --- |
-| `conformance/reports/latest.json` | `86de4a5d30cab3a12ead92ae207bcb17fd09f7c8b498419728f7041f14e56ffe` |
-| `dist/hello-core-bundle.tar.gz` | `a612ab112515b189f7647153bf5a92c6b1c76a35703ae74f8a67f0c0c708922c` |
-| `dist/hello-core-bundle.sha256` | `1a992ebd1018a8b6a8c2185a19f88e345a458f4b587283b0da48fcb401df3008` |
-| `reports/repro/hashes.txt` | `1a992ebd1018a8b6a8c2185a19f88e345a458f4b587283b0da48fcb401df3008` |
+| `evidence/conformance/reports/latest.json` | `86de4a5d30cab3a12ead92ae207bcb17fd09f7c8b498419728f7041f14e56ffe` |
+| `artifacts/bundles/hello-core-bundle.tar.gz` | `a612ab112515b189f7647153bf5a92c6b1c76a35703ae74f8a67f0c0c708922c` |
+| `artifacts/bundles/hello-core-bundle.sha256` | `1a992ebd1018a8b6a8c2185a19f88e345a458f4b587283b0da48fcb401df3008` |
+| `evidence/repro/hashes.txt` | `1a992ebd1018a8b6a8c2185a19f88e345a458f4b587283b0da48fcb401df3008` |
 
 Checksum source file: `docs/release/CHECKSUMS_v0.1.0.sha256`  
 Signed checksum (to publish): `docs/release/CHECKSUMS_v0.1.0.sha256.asc`
@@ -47,6 +47,6 @@ Not supported:
 - Disclosure policy: `SECURITY.md`
 
 ## Artifact Summary
-- Conformance results: `conformance/results/latest.json`
-- Conformance report: `conformance/reports/latest.json`
-- Release bundle: `dist/hello-core-bundle.tar.gz`
+- Conformance results: `evidence/conformance/results/latest.json`
+- Conformance report: `evidence/conformance/reports/latest.json`
+- Release bundle: `artifacts/bundles/hello-core-bundle.tar.gz`

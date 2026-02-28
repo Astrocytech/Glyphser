@@ -28,6 +28,6 @@
 
 ## Vulnerability and Remediation Policy
 - Vulnerability remediation SLA is severity-based (see `THREAT_MODEL.md`).
-- Security gate output is tracked in `reports/security/latest.json`.
+- Security gate output is tracked in `evidence/security/latest.json`.
 - Independent security review cadence: annual minimum.
 

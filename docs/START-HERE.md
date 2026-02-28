@@ -56,10 +56,10 @@
 - Bundle identity:
   - `hello_core_demo_bundle_hash = SHA-256(CBOR_CANONICAL(["hello_core_demo", [fixture_ids, expected_identities]]))`.
 - Required fixture bindings:
-  - `manifest_fixture_ref = fixtures/hello-core/manifest.core.yaml`
-  - `fixture_manifest_ref = fixtures/hello-core/fixture-manifest.json`
-  - `golden_identity_ref = goldens/hello-core/golden-identities.json`
-  - `golden_manifest_ref = goldens/hello-core/golden-manifest.json`
+  - `manifest_fixture_ref = artifacts/inputs/fixtures/hello-core/manifest.core.yaml`
+  - `fixture_manifest_ref = artifacts/inputs/fixtures/hello-core/fixture-manifest.json`
+  - `golden_identity_ref = artifacts/expected/goldens/hello-core/golden-identities.json`
+  - `golden_manifest_ref = artifacts/expected/goldens/hello-core/golden-manifest.json`
   - `catalog_manifest_ref = contracts/catalog-manifest.json`
 - Required verifier refs:
   - `docs/layer4-implementation/Evidence-Catalog.md`

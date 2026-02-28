@@ -18,6 +18,7 @@ def _steps() -> Iterable[List[str]]:
     return [
         [sys.executable, "tools/materialize_doc_artifacts.py"],
         [sys.executable, "tools/doc_code_separation_gate.py"],
+        [sys.executable, "tools/legacy_path_gate.py"],
         [sys.executable, "tools/schema_gate.py"],
         [sys.executable, "tools/registry_gate.py"],
         [sys.executable, "tools/api_contract_gate.py"],

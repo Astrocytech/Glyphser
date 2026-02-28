@@ -19,11 +19,11 @@ Define deterministic incident handling flow for alert-triggered failures in corr
 5. Publish postmortem summary with corrective actions.
 
 ## Mandatory Incident Artifacts
-- `reports/observability/latest.json`
-- `reports/observability/alert_test.json`
-- `reports/observability/incident_drill.json`
+- `evidence/observability/latest.json`
+- `evidence/observability/alert_test.json`
+- `evidence/observability/incident_drill.json`
 - relevant source gate reports (deploy/security/recovery/conformance)
 
 ## Drill Requirement
-- Run at least one alert triage drill per milestone iteration and store report in `reports/observability/`.
+- Run at least one alert triage drill per milestone iteration and store report in `evidence/observability/`.
 

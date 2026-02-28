@@ -8,6 +8,6 @@
   "runtime_profile": "P2_SINGLE_NODE_PROD",
   "setup_minutes": 24.0,
   "success": true,
-  "transcript": "reports/validation/transcripts/run-01-linux-mint.md",
+  "transcript": "evidence/validation/transcripts/run-01-linux-mint.md",
   "verifier_id": "external-verifier-a"
 }

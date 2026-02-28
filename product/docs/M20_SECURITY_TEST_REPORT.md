@@ -17,9 +17,9 @@ Status: PASS
 - Full push-button pipeline with security gates: PASS
 
 ## Security Evidence Artifacts
-- `reports/security/sbom.json`
-- `reports/security/build_provenance.json`
-- `reports/security/latest.json`
+- `evidence/security/sbom.json`
+- `evidence/security/build_provenance.json`
+- `evidence/security/latest.json`
 
 ## Security Docs
 - `docs/security/THREAT_MODEL.md`

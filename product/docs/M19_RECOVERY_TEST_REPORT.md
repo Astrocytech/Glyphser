@@ -9,10 +9,10 @@ Status: PASS
 - `python3 -m pytest tests/storage/test_state_store_recovery.py -q`
 
 ## Artifacts
-- `reports/recovery/latest.json`
-- `reports/recovery/replay-proof.txt`
-- `reports/recovery/backup-restore-drill.json`
-- `reports/recovery/checkpoint-backup.json`
+- `evidence/recovery/latest.json`
+- `evidence/recovery/replay-proof.txt`
+- `evidence/recovery/backup-restore-drill.json`
+- `evidence/recovery/checkpoint-backup.json`
 
 ## Result Summary
 - Restart recovery: PASS

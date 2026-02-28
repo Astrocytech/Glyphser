@@ -4,14 +4,14 @@ Status: COMPLETE (CI-safe, compatibility preserved)
 
 ## Canonical Paths
 
-- `artifacts/inputs/fixtures/` (was `fixtures/`)
-- `artifacts/inputs/vectors/` (was `vectors/`)
-- `artifacts/expected/goldens/` (was `goldens/`)
-- `artifacts/generated/` (was `generated/`)
-- `artifacts/bundles/` (was `dist/`)
-- `evidence/` (was `reports/`)
+- `artifacts/inputs/fixtures/` (was `artifacts/inputs/fixtures/`)
+- `artifacts/inputs/vectors/` (was `artifacts/inputs/vectors/`)
+- `artifacts/expected/goldens/` (was `artifacts/expected/goldens/`)
+- `artifacts/artifacts/generated/` (was `artifacts/generated/`)
+- `artifacts/bundles/` (was `artifacts/bundles/`)
+- `evidence/` (was `evidence/`)
 - `evidence/conformance/reports/` (was `conformance/reports/`)
-- `evidence/conformance/results/` (was `conformance/results/`)
+- `evidence/conformance/results/` (was `evidence/conformance/results/`)
 
 ## Compatibility Layer
 

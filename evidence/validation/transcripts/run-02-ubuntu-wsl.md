@@ -7,9 +7,9 @@
 
 ## Commands
 - `python tools/push_button.py`
-- `sha256sum conformance/reports/latest.json`
-- `cat dist/hello-core-bundle.sha256`
-- `cat reports/repro/hashes.txt`
+- `sha256sum evidence/conformance/reports/latest.json`
+- `cat artifacts/bundles/hello-core-bundle.sha256`
+- `cat evidence/repro/hashes.txt`
 
 ## Outcome
 - Pipeline: PASS

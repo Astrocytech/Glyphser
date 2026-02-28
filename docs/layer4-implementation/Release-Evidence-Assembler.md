@@ -158,6 +158,6 @@
   - `contracts/vectors_catalog.cbor`
   - `contracts/catalog-manifest.json`
 - Minimal pinned fixture/evidence inputs:
-  - `fixtures/hello-core/fixture-manifest.json`
-  - `goldens/hello-core/golden-manifest.json`
-  - `vectors/hello-core/vectors-manifest.json`
+  - `artifacts/inputs/fixtures/hello-core/fixture-manifest.json`
+  - `artifacts/expected/goldens/hello-core/golden-manifest.json`
+  - `artifacts/inputs/vectors/hello-core/vectors-manifest.json`

@@ -19,32 +19,32 @@ def first_existing(candidates: Iterable[Path]) -> Path:
 
 
 def fixtures_root() -> Path:
-    return first_existing([rel("artifacts", "inputs", "fixtures"), rel("fixtures")])
+    return rel("artifacts", "inputs", "fixtures")
 
 
 def vectors_root() -> Path:
-    return first_existing([rel("artifacts", "inputs", "vectors"), rel("vectors")])
+    return rel("artifacts", "inputs", "vectors")
 
 
 def goldens_root() -> Path:
-    return first_existing([rel("artifacts", "expected", "goldens"), rel("goldens")])
+    return rel("artifacts", "expected", "goldens")
 
 
 def generated_root() -> Path:
-    return first_existing([rel("artifacts", "generated"), rel("generated")])
+    return rel("artifacts", "generated")
 
 
 def bundles_root() -> Path:
-    return first_existing([rel("artifacts", "bundles"), rel("dist")])
+    return rel("artifacts", "bundles")
 
 
 def evidence_root() -> Path:
-    return first_existing([rel("evidence"), rel("reports")])
+    return rel("evidence")
 
 
 def conformance_reports_root() -> Path:
-    return first_existing([rel("evidence", "conformance", "reports"), rel("conformance", "reports")])
+    return rel("evidence", "conformance", "reports")
 
 
 def conformance_results_root() -> Path:
-    return first_existing([rel("evidence", "conformance", "results"), rel("conformance", "results")])
+    return rel("evidence", "conformance", "results")

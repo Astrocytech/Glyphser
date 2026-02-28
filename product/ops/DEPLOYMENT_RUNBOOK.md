@@ -23,7 +23,7 @@ Expected output includes:
 - Candidate bundle hash is persisted in deployment reports.
 
 ## Required Evidence
-- `reports/deploy/latest.json`
-- `reports/deploy/rollback.json`
-- `reports/deploy/drift.json`
-- `reports/deploy/parity.json`
+- `evidence/deploy/latest.json`
+- `evidence/deploy/rollback.json`
+- `evidence/deploy/drift.json`
+- `evidence/deploy/parity.json`

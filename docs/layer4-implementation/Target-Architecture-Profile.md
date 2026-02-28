@@ -13,7 +13,7 @@
 ### 1.1 Primary Generation Targets
 - **Language/runtime:** Python 3.12.
 - **Packaging:** importable `glyphser` package in `src/`, with script entrypoints in `scripts/`.
-- **Artifacts:** JSON and CBOR artifacts under `contracts/`, `fixtures/`, `goldens/`, and `vectors/`.
+- **Artifacts:** JSON and CBOR artifacts under `contracts/`, `artifacts/inputs/fixtures/`, `artifacts/expected/goldens/`, and `artifacts/inputs/vectors/`.
 - **Scope:** CPU-only, single-node runtime for the reference implementation.
 
 ### 1.2 Secondary Targets (Deferred)

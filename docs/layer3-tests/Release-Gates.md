@@ -179,8 +179,8 @@
 ## 13) Pinned Gate Fixture Inputs (Normative)
 - Release-gate dry-run pin set:
   - `contracts/catalog-manifest.json`
-  - `fixtures/hello-core/fixture-manifest.json`
-  - `goldens/hello-core/golden-manifest.json`
-  - `vectors/hello-core/vectors-manifest.json`
+  - `artifacts/inputs/fixtures/hello-core/fixture-manifest.json`
+  - `artifacts/expected/goldens/hello-core/golden-manifest.json`
+  - `artifacts/inputs/vectors/hello-core/vectors-manifest.json`
 - Deterministic verification command:
   - `python tools/verify_doc_artifacts.py`
