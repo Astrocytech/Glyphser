@@ -745,6 +745,22 @@ Execution Governance:
 	- Approver role: SRE Lead + Product/Operations leadership.
 	- Checkpoint cadence: weekly, with error-budget review checkpoint.
 	- Dependencies: requires Milestone 21 baseline deployment observability; blocks Milestones 23 and 24.
+Status: COMPLETE.
+DONE:
+	- Added observability/SLO runbooks:
+		- `docs/ops/SLOs.md`
+		- `docs/ops/INCIDENT_RESPONSE.md`
+	- Added observability enforcement gate:
+		- `tools/observability_gate.py`
+		- outputs `reports/observability/latest.json`, `slo_status.json`, `alert_test.json`, `incident_drill.json`, `dashboard_inventory.json`, `lineage_index.json`, `synthetic_probe.json`
+	- Added observability gate test:
+		- `tests/ops/test_observability_gate.py`
+	- Wired observability gate into `tools/push_button.py`.
+	- Added milestone evidence report:
+		- `docs/product/M22_OBSERVABILITY_REPORT.md`
+	- Verified gates:
+		- `python3 tools/observability_gate.py` -> PASS
+		- `python3 tools/push_button.py` -> PASS with `OBSERVABILITY_GATE: PASS`
 
 Milestone 23: External Validation Program
 1. Run clean-room verification by external users on fresh environments.
