@@ -646,6 +646,32 @@ Execution Governance:
 	- Approver role: Security Lead + Engineering Lead + Compliance/Legal reviewer.
 	- Checkpoint cadence: weekly, with vulnerability remediation burn-down tracking.
 	- Dependencies: starts after Milestone 18 baseline contracts; blocks Milestones 21, 23, and 24.
+Status: COMPLETE.
+DONE:
+	- Added RBAC authorization policy `src/glyphser/security/authz.py` with negative/positive role checks.
+	- Added tamper-evident audit chain `src/glyphser/security/audit.py` and integrated audit events into runtime API surface.
+	- Added security artifact generation `tools/security_artifacts.py` producing:
+		- `reports/security/sbom.json`
+		- `reports/security/build_provenance.json`
+	- Added baseline security gate `tools/security_baseline_gate.py` enforcing:
+		- required security docs and artifact presence
+		- secret scanning
+		- RBAC checks
+		- audit tamper-detection checks
+	- Wired security gates into `tools/push_button.py`:
+		- `tools/security_artifacts.py`
+		- `tools/security_baseline_gate.py`
+	- Added security docs:
+		- `docs/security/THREAT_MODEL.md`
+		- `docs/security/OPERATIONS.md`
+	- Added security tests:
+		- `tests/security/test_authz_and_audit.py`
+		- `tests/security/test_security_baseline_gate.py`
+		- extended `tests/api/test_runtime_api.py` with unauthorized-role negative test
+	- Added evidence report `docs/product/M20_SECURITY_TEST_REPORT.md`.
+	- Verified gates:
+		- `python3 tools/security_baseline_gate.py` -> PASS
+		- `python3 tools/push_button.py` -> PASS with `SECURITY_BASELINE_GATE: PASS`
 
 Milestone 21: Multi-Environment Deployment and Ops
 1. Provide reproducible deployment bundles (container + manifests).

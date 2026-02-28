@@ -36,3 +36,11 @@ def test_evidence_and_replay(tmp_path: Path):
     replay = svc.replay(job["job_id"], token="token-a", scope="replay:run")
     assert replay["replay_verdict"] == "PASS"
 
+
+def test_submit_rejects_unauthorized_role(tmp_path: Path):
+    svc = RuntimeApiService(RuntimeApiConfig(root=ROOT, state_path=tmp_path / "state.json"))
+    try:
+        svc.submit_job(payload={"payload": {"x": 1}}, token="role:viewer", scope="jobs:write")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "unauthorized action" in str(exc)

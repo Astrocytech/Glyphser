@@ -1,17 +1,33 @@
-[
-  {
-    "scenario_id": "restart_recovery_basic",
-    "description": "Recover identical state hash after process restart",
-    "expected_verdict": "PASS"
-  },
-  {
-    "scenario_id": "corruption_quarantine_replay",
-    "description": "Quarantine corrupt state and recover deterministically from WAL",
-    "expected_verdict": "PASS"
-  },
-  {
-    "scenario_id": "backup_restore_drill",
-    "description": "Restore from backup checkpoint with identical state hash",
-    "expected_verdict": "PASS"
-  }
-]
+{
+  "operator_id": "Glyphser.Test.StateRecovery",
+  "signature_digest": "sha256:schema.request.state_recovery",
+  "vectors": [
+    {
+      "name": "restart_recovery_basic",
+      "input": {
+        "scenario_id": "restart_recovery_basic"
+      },
+      "expected": {
+        "verdict": "PASS"
+      }
+    },
+    {
+      "name": "corruption_quarantine_replay",
+      "input": {
+        "scenario_id": "corruption_quarantine_replay"
+      },
+      "expected": {
+        "verdict": "PASS"
+      }
+    },
+    {
+      "name": "backup_restore_drill",
+      "input": {
+        "scenario_id": "backup_restore_drill"
+      },
+      "expected": {
+        "verdict": "PASS"
+      }
+    }
+  ]
+}
