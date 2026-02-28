@@ -35,7 +35,7 @@ def generated_root() -> Path:
 
 
 def generated_codegen_root() -> Path:
-    return generated_root() / "codegen"
+    return generated_tmp_root() / "codegen"
 
 
 def generated_build_metadata_root() -> Path:
@@ -64,7 +64,7 @@ def evidence_runtime_state_root() -> Path:
 
 
 def runtime_state_root() -> Path:
-    return rel("artifacts", "inputs", "state_snapshots")
+    return rel("artifacts", "inputs", "reference_states")
 
 
 def conformance_reports_root() -> Path:

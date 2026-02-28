@@ -35,6 +35,16 @@ def _tree_lines(base: Path, prefix: str = "") -> List[str]:
 
 
 def _purpose(rel: str) -> str:
+    if rel.startswith("artifacts/generated/stable/codegen/"):
+        return "Stable generated codegen index and canonical runtime generated module digests."
+    if rel.startswith("artifacts/generated/stable/metadata/"):
+        return "Stable generated metadata and manifests for reproducibility checks."
+    if rel.startswith("artifacts/generated/stable/deploy/"):
+        return "Stable generated deployment outputs and environment/profile manifests."
+    if rel.startswith("artifacts/generated/tmp/"):
+        return "Transient generated scratch outputs used during validation workflows."
+    if rel.startswith("artifacts/inputs/reference_states/"):
+        return "Deterministic reference state fixtures used for recovery/deploy tests."
     if rel.startswith("runtime/"):
         return "Runtime source code and importable application modules."
     if rel.startswith("specs/"):

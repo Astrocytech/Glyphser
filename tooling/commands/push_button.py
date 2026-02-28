@@ -17,7 +17,6 @@ def _run(cmd: List[str]) -> int:
 def _steps() -> Iterable[List[str]]:
     return [
         [sys.executable, "tooling/docs/materialize_doc_artifacts.py"],
-        [sys.executable, "tooling/validation/generate_project_inventory.py"],
         [sys.executable, "tooling/quality_gates/doc_code_separation_gate.py"],
         [sys.executable, "tooling/quality_gates/legacy_path_gate.py"],
         [sys.executable, "tooling/quality_gates/structural_invariants_gate.py"],
@@ -49,6 +48,7 @@ def _steps() -> Iterable[List[str]]:
         [sys.executable, "tooling/release/reproducibility_check.py"],
         [sys.executable, "tooling/quality_gates/state_recovery_gate.py"],
         [sys.executable, "tooling/release/ga_release_gate.py"],
+        [sys.executable, "tooling/validation/generate_project_inventory.py"],
     ]
 
 

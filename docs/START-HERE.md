@@ -17,6 +17,12 @@
 ### 0.A Objective Semantics
 - Ensure a new user can deterministically produce core evidence identities on first successful run.
 
+### 0.B Documentation Routing
+- Use `docs/` for repository navigation and first-run verification.
+- Use `specs/` for normative technical behavior and schema/contract truth.
+- Use `product/handbook/` for product-facing operational policy and guides.
+- Use `governance/` for project process, structure policy, and roadmap controls.
+
 ---
 ## 2) Scope (Normative)
 - This document defines the minimal file set and expected deterministic identities for first-run Core profile validation.

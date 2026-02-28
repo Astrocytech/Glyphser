@@ -432,7 +432,7 @@ Milestone 13: Codegen Diff Fidelity
 3. Gate: drift must be zero for all generated files.
 Deliverable: fully reproducible generated code outputs.
 Clarifications:
-	- Clean build directory: `artifacts/generated/stable/codegen_staging/cleanroom_validation/` (delete and re-create each run).
+	- Clean build directory: `artifacts/generated/tmp/codegen_staging/cleanroom_validation/` (delete and re-create each run).
 	- Hash manifest required for comparison.
 	- No exceptions for drift are allowed.
 	- Comparison includes: `runtime/glyphser/_generated/models.py`, `runtime/glyphser/_generated/operators.py`, `runtime/glyphser/_generated/validators.py`, `runtime/glyphser/_generated/error.py`, `runtime/glyphser/_generated/bindings.py`.
@@ -706,7 +706,7 @@ DONE:
 		- `tooling/deploy/generate_overlays.py`
 	- Added staging deployment + rollback validation gate:
 		- `tooling/deploy/deploy_rollback_gate.py`
-		- outputs `evidence/deploy/latest.json`, `evidence/deploy/rollback.json`, `evidence/deploy/drift.json`, `evidence/deploy/parity.json`, and `artifacts/inputs/state_snapshots/deploy/staging_active.json`
+		- outputs `evidence/deploy/latest.json`, `evidence/deploy/rollback.json`, `evidence/deploy/drift.json`, `evidence/deploy/parity.json`, and `artifacts/inputs/reference_states/deploy/staging_active.json`
 	- Updated deployment pipeline wiring:
 		- `tooling/deploy/run_deployment_pipeline.py` now runs overlay generation and deploy/rollback gate.
 	- Added operational runbooks:

@@ -117,10 +117,11 @@ def _check_operator_vectors_source_of_truth() -> Dict[str, object]:
 
 def _check_generated_layout() -> Dict[str, object]:
     req_dirs = [
+        ROOT / "artifacts" / "generated" / "stable" / "codegen",
         ROOT / "artifacts" / "generated" / "stable" / "deploy",
         ROOT / "artifacts" / "generated" / "stable" / "metadata",
         ROOT / "artifacts" / "generated" / "tmp",
-        ROOT / "artifacts" / "inputs" / "state_snapshots",
+        ROOT / "artifacts" / "inputs" / "reference_states",
     ]
     missing_dirs = [str(p.relative_to(ROOT)).replace("\\", "/") for p in req_dirs if not p.exists()]
 
@@ -149,6 +150,7 @@ def _check_generated_layout() -> Dict[str, object]:
         ROOT / "runtime" / "glyphser" / "_generated" / "validators.py",
         ROOT / "runtime" / "glyphser" / "_generated" / "error.py",
         ROOT / "runtime" / "glyphser" / "_generated" / "bindings.py",
+        ROOT / "artifacts" / "generated" / "stable" / "codegen" / "index.json",
         ROOT / "artifacts" / "generated" / "stable" / "metadata" / "codegen_manifest.json",
         ROOT / "artifacts" / "generated" / "stable" / "metadata" / "input_hashes.json",
     ]
@@ -163,6 +165,44 @@ def _check_generated_layout() -> Dict[str, object]:
         "missing_files": missing_files,
     }
 
+
+def _check_generated_stable_contract() -> Dict[str, object]:
+    stable_root = ROOT / "artifacts" / "generated" / "stable"
+    allowed_top = {"codegen", "deploy", "metadata"}
+    unexpected_top: List[str] = []
+    non_json_files: List[str] = []
+
+    if stable_root.exists():
+        for p in sorted(stable_root.iterdir()):
+            if p.name not in allowed_top:
+                unexpected_top.append(str(p.relative_to(ROOT)).replace("\\", "/"))
+        for f in stable_root.rglob("*"):
+            if f.is_file() and f.suffix.lower() != ".json":
+                non_json_files.append(str(f.relative_to(ROOT)).replace("\\", "/"))
+
+    status = "PASS" if not unexpected_top and not non_json_files else "FAIL"
+    return {
+        "name": "generated_stable_contract",
+        "status": status,
+        "unexpected_top_level_entries": unexpected_top,
+        "non_json_files": non_json_files,
+    }
+
+
+def _check_evidence_write_contract() -> Dict[str, object]:
+    evidence_root = ROOT / "evidence"
+    forbidden_exts = {".py", ".sh", ".bash", ".ps1", ".js", ".ts"}
+    violations: List[str] = []
+    if evidence_root.exists():
+        for f in evidence_root.rglob("*"):
+            if f.is_file() and f.suffix.lower() in forbidden_exts:
+                violations.append(str(f.relative_to(ROOT)).replace("\\", "/"))
+    return {
+        "name": "evidence_write_contract",
+        "status": "PASS" if not violations else "FAIL",
+        "violations": violations,
+    }
+
 def evaluate() -> Dict[str, object]:
     OUT.parent.mkdir(parents=True, exist_ok=True)
     checks = [
@@ -171,6 +211,8 @@ def evaluate() -> Dict[str, object]:
         _check_no_legacy_test_vector_paths(),
         _check_operator_vectors_source_of_truth(),
         _check_generated_layout(),
+        _check_generated_stable_contract(),
+        _check_evidence_write_contract(),
     ]
     status = "PASS" if all(c["status"] == "PASS" for c in checks) else "FAIL"
     payload = {"status": status, "checks": checks}

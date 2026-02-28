@@ -31,6 +31,6 @@
     "mode": "restore-previous",
     "status": "PASS"
   },
-  "runtime_state_dir": "artifacts/inputs/state_snapshots/deploy",
+  "runtime_state_dir": "artifacts/inputs/reference_states/deploy",
   "status": "PASS"
 }

@@ -11,11 +11,16 @@ These invariants define non-negotiable repository structure boundaries.
 - Specs operator examples under `specs/examples/operators/` are illustrative-only and must not be referenced by test/tooling execution paths.
 - Generated artifacts must remain partitioned under:
   - `runtime/glyphser/_generated/`
+  - `artifacts/generated/stable/codegen/index.json`
   - `artifacts/generated/stable/deploy/`
-  - `artifacts/inputs/state_snapshots/`
+  - `artifacts/inputs/reference_states/`
   - `artifacts/generated/stable/metadata/`
 - `artifacts/generated/tmp/` is local-only temporary output and must not be committed (except `.gitkeep`).
-- Runtime generated stubs are canonical under `runtime/glyphser/_generated/`; cleanroom validation copies are transient under `artifacts/generated/tmp/codegen_staging/cleanroom_validation/`.
+- Runtime generated stubs are canonical under `runtime/glyphser/_generated/`.
+- `artifacts/generated/stable/codegen/index.json` is the canonical pointer and hash index for runtime generated outputs.
+- Cleanroom validation writes transient hash snapshots under `artifacts/generated/tmp/codegen_staging/cleanroom_validation/`.
+- `artifacts/generated/stable/` must contain only `codegen/`, `deploy/`, `metadata/`, and JSON files.
+- `evidence/` is run-output only and must not contain executable source files.
 - Legacy generated locations are forbidden:
   - `artifacts/generated/models.py`, `operators.py`, `validators.py`, `error.py`, `bindings.py`
   - `artifacts/generated/codegen/clean_build/`

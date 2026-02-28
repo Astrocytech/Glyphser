@@ -1,6 +1,6 @@
 # Project File Inventory
 
-Generated: 2026-02-28 22:09:33 UTC
+Generated: 2026-02-28 22:44:34 UTC
 
 Scope: Full repository tree excluding transient local cache directories (`.git`, `.venv`, `.pytest_cache`, `__pycache__`, lint/type caches).
 
@@ -54,6 +54,7 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   ├── generated
 │   │   ├── stable
 │   │   │   ├── codegen
+│   │   │   │   └── index.json
 │   │   │   ├── deploy
 │   │   │   │   ├── confidential
 │   │   │   │   │   ├── bundle_manifest.json
@@ -78,6 +79,9 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   │       ├── codegen_manifest.json
 │   │   │       └── input_hashes.json
 │   │   └── tmp
+│   │       ├── codegen_staging
+│   │       │   └── cleanroom_validation
+│   │       │       └── hashes.json
 │   │       └── .gitkeep
 │   ├── inputs
 │   │   ├── conformance
@@ -183,7 +187,7 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   │   └── tracking-monitoring
 │   │   │       ├── fixture-manifest.json
 │   │   │       └── run_event.json
-│   │   ├── state_snapshots
+│   │   ├── reference_states
 │   │   │   ├── checkpoint-restore
 │   │   │   │   └── ckpt-1.json
 │   │   │   └── deploy
@@ -994,24 +998,26 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `artifacts/expected/goldens/replay-suite-1/trace_expected.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
 | `artifacts/expected/goldens/tracking-monitoring/golden-manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
 | `artifacts/expected/goldens/tracking-monitoring/metric_log_expected.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/stable/deploy/confidential/bundle_manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/stable/deploy/confidential/policy_bindings.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/stable/deploy/confidential/runtime_config.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/stable/deploy/env_manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/stable/deploy/managed/bundle_manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/stable/deploy/managed/policy_bindings.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/stable/deploy/managed/runtime_config.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/stable/deploy/migration_plan.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/stable/deploy/overlays/dev.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/stable/deploy/overlays/index.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/stable/deploy/overlays/prod.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/stable/deploy/overlays/staging.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/stable/deploy/regulated/bundle_manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/stable/deploy/regulated/policy_bindings.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/stable/deploy/regulated/runtime_config.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/stable/metadata/codegen_manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/stable/metadata/input_hashes.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/generated/tmp/.gitkeep` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/generated/stable/codegen/index.json` | Stable generated codegen index and canonical runtime generated module digests. |
+| `artifacts/generated/stable/deploy/confidential/bundle_manifest.json` | Stable generated deployment outputs and environment/profile manifests. |
+| `artifacts/generated/stable/deploy/confidential/policy_bindings.json` | Stable generated deployment outputs and environment/profile manifests. |
+| `artifacts/generated/stable/deploy/confidential/runtime_config.json` | Stable generated deployment outputs and environment/profile manifests. |
+| `artifacts/generated/stable/deploy/env_manifest.json` | Stable generated deployment outputs and environment/profile manifests. |
+| `artifacts/generated/stable/deploy/managed/bundle_manifest.json` | Stable generated deployment outputs and environment/profile manifests. |
+| `artifacts/generated/stable/deploy/managed/policy_bindings.json` | Stable generated deployment outputs and environment/profile manifests. |
+| `artifacts/generated/stable/deploy/managed/runtime_config.json` | Stable generated deployment outputs and environment/profile manifests. |
+| `artifacts/generated/stable/deploy/migration_plan.json` | Stable generated deployment outputs and environment/profile manifests. |
+| `artifacts/generated/stable/deploy/overlays/dev.json` | Stable generated deployment outputs and environment/profile manifests. |
+| `artifacts/generated/stable/deploy/overlays/index.json` | Stable generated deployment outputs and environment/profile manifests. |
+| `artifacts/generated/stable/deploy/overlays/prod.json` | Stable generated deployment outputs and environment/profile manifests. |
+| `artifacts/generated/stable/deploy/overlays/staging.json` | Stable generated deployment outputs and environment/profile manifests. |
+| `artifacts/generated/stable/deploy/regulated/bundle_manifest.json` | Stable generated deployment outputs and environment/profile manifests. |
+| `artifacts/generated/stable/deploy/regulated/policy_bindings.json` | Stable generated deployment outputs and environment/profile manifests. |
+| `artifacts/generated/stable/deploy/regulated/runtime_config.json` | Stable generated deployment outputs and environment/profile manifests. |
+| `artifacts/generated/stable/metadata/codegen_manifest.json` | Stable generated metadata and manifests for reproducibility checks. |
+| `artifacts/generated/stable/metadata/input_hashes.json` | Stable generated metadata and manifests for reproducibility checks. |
+| `artifacts/generated/tmp/.gitkeep` | Transient generated scratch outputs used during validation workflows. |
+| `artifacts/generated/tmp/codegen_staging/cleanroom_validation/hashes.json` | Transient generated scratch outputs used during validation workflows. |
 | `artifacts/inputs/README.md` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
 | `artifacts/inputs/conformance/catalog.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
 | `artifacts/inputs/conformance/primitive_vectors/canonical_cbor/.gitkeep` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
@@ -1089,9 +1095,9 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `artifacts/inputs/fixtures/replay-suite-1/trace.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
 | `artifacts/inputs/fixtures/tracking-monitoring/fixture-manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
 | `artifacts/inputs/fixtures/tracking-monitoring/run_event.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/state_snapshots/checkpoint-restore/ckpt-1.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/state_snapshots/deploy/staging_active.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/state_snapshots/deploy/staging_previous.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/reference_states/checkpoint-restore/ckpt-1.json` | Deterministic reference state fixtures used for recovery/deploy tests. |
+| `artifacts/inputs/reference_states/deploy/staging_active.json` | Deterministic reference state fixtures used for recovery/deploy tests. |
+| `artifacts/inputs/reference_states/deploy/staging_previous.json` | Deterministic reference state fixtures used for recovery/deploy tests. |
 | `distribution/README.md` | Release, packaging, signing, and distribution-facing assets. |
 | `distribution/release/CHECKSUMS_v0.1.0.sha256` | Release, packaging, signing, and distribution-facing assets. |
 | `distribution/release/CHECKSUMS_v0.1.0.sha256.asc` | Release, packaging, signing, and distribution-facing assets. |

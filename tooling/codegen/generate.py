@@ -462,6 +462,7 @@ def _registry_root_hash() -> str:
 def generate() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     (generated_root() / "metadata").mkdir(parents=True, exist_ok=True)
+    (generated_root() / "codegen").mkdir(parents=True, exist_ok=True)
 
     schema_infos = _collect_schemas()
     registry = _read_json(REGISTRY_JSON)
@@ -520,6 +521,15 @@ def generate() -> None:
     }
     (generated_root() / "metadata" / "codegen_manifest.json").write_text(
         json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+    codegen_index = {
+        "canonical_runtime_generated_root": "runtime/glyphser/_generated",
+        "runtime_generated_outputs": output_hashes,
+    }
+    (generated_root() / "codegen" / "index.json").write_text(
+        json.dumps(codegen_index, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
 

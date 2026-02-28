@@ -28,6 +28,17 @@
       "missing_files": [],
       "name": "generated_layout",
       "status": "PASS"
+    },
+    {
+      "name": "generated_stable_contract",
+      "non_json_files": [],
+      "status": "PASS",
+      "unexpected_top_level_entries": []
+    },
+    {
+      "name": "evidence_write_contract",
+      "status": "PASS",
+      "violations": []
     }
   ],
   "status": "PASS"

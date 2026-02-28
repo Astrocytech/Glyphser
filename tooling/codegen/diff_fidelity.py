@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 from pathlib import Path
 import sys
 
@@ -9,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 from tooling.lib.path_config import generated_tmp_root
 
-CLEAN = generated_tmp_root() / "codegen_staging" / "cleanroom_validation"
+SNAPSHOT = generated_tmp_root() / "codegen_staging" / "cleanroom_validation" / "hashes.json"
 
 FILES = [
     "models.py",
@@ -26,15 +27,20 @@ def _sha256(path: Path) -> str:
 
 
 def main() -> int:
+    if not SNAPSHOT.exists():
+        print("CODEGEN_DIFF: FAIL")
+        print(f"missing: {SNAPSHOT}")
+        return 1
+    snap = json.loads(SNAPSHOT.read_text(encoding="utf-8"))
+    hashes = snap.get("hashes", {})
     missing = []
     drift = []
     for name in FILES:
         a = ROOT / "runtime" / "glyphser" / "_generated" / name
-        b = CLEAN / name
-        if not a.exists() or not b.exists():
+        if not a.exists() or name not in hashes:
             missing.append(name)
             continue
-        if _sha256(a) != _sha256(b):
+        if _sha256(a) != hashes[name]:
             drift.append(name)
 
     if missing or drift:

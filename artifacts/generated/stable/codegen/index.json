@@ -1,0 +1,25 @@
+{
+  "canonical_runtime_generated_root": "runtime/glyphser/_generated",
+  "runtime_generated_outputs": [
+    {
+      "path": "runtime/glyphser/_generated/models.py",
+      "sha256": "d74e48d76e1a6d76057b2e748cf5cdc01cea19a9f27dd75f70f4cb75b33fd9eb"
+    },
+    {
+      "path": "runtime/glyphser/_generated/operators.py",
+      "sha256": "2214121f16f0b4e0f73b90de40f3eeed97de0ada6febf485718582dad05288fc"
+    },
+    {
+      "path": "runtime/glyphser/_generated/validators.py",
+      "sha256": "ef4f13581c15d49847af1bef40edd84593794f8110e46c104c2bd2a78b31c879"
+    },
+    {
+      "path": "runtime/glyphser/_generated/error.py",
+      "sha256": "9418d387061cef18eda7e8592d9f75ec5cdb83e2154b02501d4f98940e9b48c4"
+    },
+    {
+      "path": "runtime/glyphser/_generated/bindings.py",
+      "sha256": "fe67e8b820d9240624619114f34e3ee1d5e5f865dd0e8829711e38d13473a6dc"
+    }
+  ]
+}

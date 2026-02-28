@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import json
-import shutil
+import hashlib
 import sys
 from pathlib import Path
 
@@ -16,18 +16,24 @@ from tooling.lib.path_config import generated_root, generated_tmp_root  # noqa: 
 CLEAN = generated_tmp_root() / "codegen_staging" / "cleanroom_validation"
 
 
+def _norm_sha256(path: Path) -> str:
+    data = path.read_text(encoding="utf-8").replace("\r\n", "\n").encode("utf-8")
+    return hashlib.sha256(data).hexdigest()
+
+
 def main() -> int:
     clean_build()
     generate()
 
-    # copy generated outputs into cleanroom validation directory
+    # Persist a cleanroom hash snapshot; do not persist duplicate generated modules.
     outputs = json.loads(
         (generated_root() / "metadata" / "codegen_manifest.json").read_text(encoding="utf-8")
     )["outputs"]
-    for rel in outputs:
-        src = ROOT / rel
-        dst = CLEAN / Path(rel).name
-        shutil.copy2(src, dst)
+    snapshot = {
+        "source_manifest": "artifacts/generated/stable/metadata/codegen_manifest.json",
+        "hashes": {Path(rel).name: _norm_sha256(ROOT / rel) for rel in outputs},
+    }
+    (CLEAN / "hashes.json").write_text(json.dumps(snapshot, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return 0
 
 

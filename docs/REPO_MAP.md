@@ -11,6 +11,24 @@
 | `tooling/` | Generators, validators, gates, and automation entrypoints. |
 | `distribution/` | Release/signing distribution material. |
 
+## Canonical Generated Code
+- Canonical runtime generated modules live only under `runtime/glyphser/_generated/`.
+- Canonical pointer/hash index for generated modules is `artifacts/generated/stable/codegen/index.json`.
+- Transient cleanroom comparison output is written under `artifacts/generated/tmp/` only.
+
+## Docs vs Specs
+- `docs/` answers how to use and navigate this repository.
+- `specs/` defines what the system is (normative technical truth).
+
+## Documentation Audiences
+| Location | Primary Audience | Use |
+|---|---|---|
+| `docs/` | New contributors and operators | Navigation, quickstart, verification entrypoints. |
+| `specs/` | Implementers and conformance engineers | Normative behavior, contracts, schemas, test-layer specs. |
+| `product/handbook/` | Product, support, and customer-facing teams | Operational policies, guides, milestone reports. |
+| `governance/` | Maintainers and project leads | Process controls, roadmap, structure policy, ecosystem governance. |
+| `evidence/` | Auditors and release reviewers | Generated run evidence and gate reports only. |
+
 ## Placement Rules
 - If runtime imports it, it belongs in `runtime/`.
 - If conformance depends on it as normative truth, it belongs in `specs/`.
