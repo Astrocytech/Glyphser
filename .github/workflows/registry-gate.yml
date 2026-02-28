@@ -6,13 +6,13 @@ on:
       - "specs/layers/L1-foundation/API-Interfaces.md"
       - "specs/contracts/operator_registry.json"
       - "specs/contracts/error_codes.json"
-      - "tooling/gates/registry_gate.py"
+      - "tooling/quality_gates/registry_gate.py"
   pull_request:
     paths:
       - "specs/layers/L1-foundation/API-Interfaces.md"
       - "specs/contracts/operator_registry.json"
       - "specs/contracts/error_codes.json"
-      - "tooling/gates/registry_gate.py"
+      - "tooling/quality_gates/registry_gate.py"
 
 jobs:
   registry-gate:
@@ -24,4 +24,4 @@ jobs:
         with:
           python-version: "3.12"
       - name: Run registry gate
-        run: python tooling/gates/registry_gate.py
+        run: python tooling/quality_gates/registry_gate.py

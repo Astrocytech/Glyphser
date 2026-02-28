@@ -2465,13 +2465,13 @@
   - `execution_certificate.json`
   - `golden-identities.json`
   - `golden-manifest.json`
-- `artifacts/inputs/vectors/suites/hello-core/`
+- `artifacts/inputs/conformance/suites/hello-core/`
   - `vectors.json`
   - `vectors-manifest.json`
 
 ## Tooling Added
 - `tooling/docs/materialize_doc_artifacts.py`
-  - deterministic CBOR/JSON materialization of `specs/contracts/`, `artifacts/inputs/fixtures/`, `artifacts/expected/goldens/`, and `artifacts/inputs/vectors/`, plus manifest hashes.
+  - deterministic CBOR/JSON materialization of `specs/contracts/`, `artifacts/inputs/fixtures/`, `artifacts/expected/goldens/`, and `artifacts/inputs/conformance/`, plus manifest hashes.
 - `tooling/docs/verify_doc_artifacts.py`
   - deterministic hash/size verification for all pinned manifests.
 

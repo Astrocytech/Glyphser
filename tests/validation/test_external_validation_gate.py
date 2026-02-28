@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 def test_external_validation_gate_passes():
     proc = subprocess.run(
-        [sys.executable, "tooling/gates/external_validation_gate.py"],
+        [sys.executable, "tooling/quality_gates/external_validation_gate.py"],
         cwd=ROOT,
         check=False,
         text=True,

@@ -84,7 +84,7 @@ DONE (so far):
 		- `specs/schemas/layers/L2/l2_config-schema.schema.json`
 		- `specs/schemas/layers/L3/l3_test-plan.schema.json`
 	- Bootstrap schema gate implemented and executed:
-		- `tooling/gates/schema_gate.py`
+		- `tooling/quality_gates/schema_gate.py`
 		- Result: `PASS: validated 3 schema artifacts`.
 	- Pilot coverage expanded to all Layer1 contracts (13 total schema artifacts validated).
 	- Pilot coverage added for all Layer2 and Layer3 contracts (schemas populated with initial fields).
@@ -229,7 +229,7 @@ Status: COMPLETE.
 DONE (so far):
 	- Generator pipeline implemented at `tooling/codegen/generate.py` consuming `specs/contracts/operator_registry.json` and `specs/schemas/**/*.schema.json`.
 	- Templates added in `tooling/codegen/templates/` for data models, operator stubs, validators, error handling, and trace/checkpoint/WAL bindings.
-	- Generated outputs written to `runtime/glyphser/generated/` with `artifacts/generated/build/metadata/codegen_manifest.json` for input traceability.
+	- Generated outputs written to `runtime/glyphser/_generated/` with `artifacts/generated/outputs/metadata/codegen_manifest.json` for input traceability.
 
 
 Milestone 9: Deployment-Ready Generation
@@ -293,7 +293,7 @@ Rules (must always hold):
 Phase 0: Test Infrastructure Expansion
 1. Create per-operator conformance vector schema and storage layout.
 2. Add vector loader + validator for operator-specific vectors.
-3. Add CI gate: fail if any operator lacks artifacts/inputs/vectors/tests.
+3. Add CI gate: fail if any operator lacks artifacts/inputs/conformance/tests.
 Deliverable: test harness that enumerates all operators and requires vectors.
 
 Phase 1: Operator Test Coverage
@@ -346,8 +346,8 @@ Phase 5: Production Hardening
 Deliverable: production-grade deterministic suite.
 Status: COMPLETE.
 DONE (so far):
-	- Added failure-injection fixture set with artifacts/inputs/vectors/manifests.
-	- Added perf/scale fixture set with artifacts/inputs/vectors/manifests.
+	- Added failure-injection fixture set with artifacts/inputs/conformance/manifests.
+	- Added perf/scale fixture set with artifacts/inputs/conformance/manifests.
 	- Added release evidence gate in `tooling/release/release_evidence_gate.py`.
 	- Added reproducibility hash snapshot in `tooling/release/reproducibility_check.py`.
 	- Updated push-button pipeline to enforce release evidence + reproducibility.
@@ -390,7 +390,7 @@ Clarifications:
 	- Source of truth: `specs/layers/L1-foundation/API-Interfaces.md` + `specs/layers/L1-foundation/Error-Codes.md`.
 	- Required payload fields for error vectors: `code_id`, `message`, `context.operator_id`.
 	- Each `allowed_error_codes` entry must have at least one vector case.
-	- Vector storage: `artifacts/inputs/vectors/primitives/operators/<OperatorId>.json`.
+	- Vector storage: `artifacts/inputs/conformance/primitives/operators/<OperatorId>.json`.
 	- Tests must reference vectors via `tests/test_operator_vectors.py` (no inline duplicates).
 	- Use exact match on error payloads; no partial matching.
 	- Error `message` must match the template in Error-Codes unless explicitly overridden in vectors.
@@ -402,7 +402,7 @@ Status: COMPLETE.
 DONE (so far):
 	- Added exhaustive error vectors per operator (base + missing_field + type_mismatch).
 	- Added error vector schema `specs/schemas/layers/L3/l3_operator_error_vectors.schema.json`.
-	- Added `tooling/gates/error_code_gate.py` and wired into push-button pipeline.
+	- Added `tooling/quality_gates/error_code_gate.py` and wired into push-button pipeline.
 	- Updated generator to support `force_error` and required error context fields.
 
 Milestone 12: Golden Replay Suite
@@ -414,16 +414,16 @@ Clarifications:
 	- Each suite must include at least 3 operators across 2 domains.
 	- Required artifacts per suite: fixture manifest, vector manifest, golden manifest, trace, checkpoint, certificate.
 	- Replay input must include replay token, manifest hash, and operator registry root hash.
-	- Suites stored under `artifacts/inputs/fixtures/<suite>/`, `artifacts/expected/goldens/<suite>/`, `artifacts/inputs/vectors/<suite>/`.
+	- Suites stored under `artifacts/inputs/fixtures/<suite>/`, `artifacts/expected/goldens/<suite>/`, `artifacts/inputs/conformance/<suite>/`.
 	- Replay comparison must use canonical CBOR where specified by contract, otherwise canonical JSON.
 	- Gate requires bitwise identical hashes for trace and certificate.
 	- Each suite must include at least one failure-path replay case.
-	- Add a suite index file: `artifacts/inputs/vectors/suites/replay-suites/index.json` listing all suites.
+	- Add a suite index file: `artifacts/inputs/conformance/suites/replay-suites/index.json` listing all suites.
 	- Suite index must include hash of each suite’s vector manifest.
 Status: COMPLETE.
 DONE (so far):
 	- Added replay suite fixture set `replay-suite-1` with vectors and goldens.
-	- Added suite index `artifacts/inputs/vectors/suites/replay-suites/index.json` with manifest hash.
+	- Added suite index `artifacts/inputs/conformance/suites/replay-suites/index.json` with manifest hash.
 	- Added replay suite test `tests/test_replay_suite.py`.
 
 Milestone 13: Codegen Diff Fidelity
@@ -432,10 +432,10 @@ Milestone 13: Codegen Diff Fidelity
 3. Gate: drift must be zero for all generated files.
 Deliverable: fully reproducible generated code outputs.
 Clarifications:
-	- Clean build directory: `artifacts/generated/build/codegen_staging/cleanroom_validation/` (delete and re-create each run).
+	- Clean build directory: `artifacts/generated/outputs/codegen_staging/cleanroom_validation/` (delete and re-create each run).
 	- Hash manifest required for comparison.
 	- No exceptions for drift are allowed.
-	- Comparison includes: `runtime/glyphser/generated/models.py`, `runtime/glyphser/generated/operators.py`, `runtime/glyphser/generated/validators.py`, `runtime/glyphser/generated/error.py`, `runtime/glyphser/generated/bindings.py`.
+	- Comparison includes: `runtime/glyphser/_generated/models.py`, `runtime/glyphser/_generated/operators.py`, `runtime/glyphser/_generated/validators.py`, `runtime/glyphser/_generated/error.py`, `runtime/glyphser/_generated/bindings.py`.
 	- Line endings normalized to LF before hashing.
 	- Generator must emit deterministic file ordering within directories.
 	- Generated outputs must include a manifest of input hashes (schemas + registry + templates).
@@ -565,7 +565,7 @@ DONE:
 	- Added versioned API contract `specs/contracts/openapi_public_api_v1.yaml`.
 	- Added stable CLI wrapper `tooling/cli/api_cli.py` for submit/status/evidence/replay.
 	- Added runtime API implementation `runtime/glyphser/api/runtime_api.py`.
-	- Added semver governance gate `tooling/gates/api_contract_gate.py` and wired it into `tooling/commands/push_button.py`.
+	- Added semver governance gate `tooling/quality_gates/api_contract_gate.py` and wired it into `tooling/commands/push_button.py`.
 	- Added API reference and policy docs:
 		- `docs/product/API_REFERENCE_v1.md`
 		- `docs/product/API_CLI_COMMANDS.md`
@@ -605,7 +605,7 @@ Execution Governance:
 Status: COMPLETE.
 DONE:
 	- Added durable state store implementation `runtime/glyphser/storage/state_store.py` with WAL replay, checkpointing, backup, restore, and corruption quarantine.
-	- Added recovery gate `tooling/gates/state_recovery_gate.py` and wired it into `tooling/commands/push_button.py`.
+	- Added recovery gate `tooling/quality_gates/state_recovery_gate.py` and wired it into `tooling/commands/push_button.py`.
 	- Added persistence/schema contract docs:
 		- `docs/product/PERSISTENT_STORAGE_ADAPTER_CONTRACT.md`
 		- `docs/product/PERSISTENCE_SCHEMA_v1.md`
@@ -617,9 +617,9 @@ DONE:
 		- `evidence/recovery/checkpoint-backup.json`
 	- Added recovery tests and vectors:
 		- `tests/storage/test_state_store_recovery.py`
-		- `artifacts/inputs/vectors/primitives/storage/state_recovery_vectors.json`
+		- `artifacts/inputs/conformance/primitives/storage/state_recovery_vectors.json`
 	- Verified gates:
-		- `python3 tooling/gates/state_recovery_gate.py` -> PASS
+		- `python3 tooling/quality_gates/state_recovery_gate.py` -> PASS
 		- `python3 tooling/commands/push_button.py` -> PASS with `STATE_RECOVERY_GATE: PASS`
 
 Milestone 20: Security Hardening and Access Control
@@ -706,7 +706,7 @@ DONE:
 		- `tooling/deploy/generate_overlays.py`
 	- Added staging deployment + rollback validation gate:
 		- `tooling/deploy/deploy_rollback_gate.py`
-		- outputs `evidence/deploy/latest.json`, `evidence/deploy/rollback.json`, `evidence/deploy/drift.json`, `evidence/deploy/parity.json`, and `evidence/state/deploy/staging_active.json`
+		- outputs `evidence/deploy/latest.json`, `evidence/deploy/rollback.json`, `evidence/deploy/drift.json`, `evidence/deploy/parity.json`, and `artifacts/state_snapshots/deploy/staging_active.json`
 	- Updated deployment pipeline wiring:
 		- `tooling/deploy/run_deployment_pipeline.py` now runs overlay generation and deploy/rollback gate.
 	- Added operational runbooks:
@@ -751,7 +751,7 @@ DONE:
 		- `docs/ops/SLOs.md`
 		- `docs/ops/INCIDENT_RESPONSE.md`
 	- Added observability enforcement gate:
-		- `tooling/gates/observability_gate.py`
+		- `tooling/quality_gates/observability_gate.py`
 		- outputs `evidence/observability/latest.json`, `slo_status.json`, `alert_test.json`, `incident_drill.json`, `dashboard_inventory.json`, `lineage_index.json`, `synthetic_probe.json`
 	- Added observability gate test:
 		- `tests/gates/test_observability_gate.py`
@@ -759,7 +759,7 @@ DONE:
 	- Added milestone evidence report:
 		- `docs/product/M22_OBSERVABILITY_REPORT.md`
 	- Verified gates:
-		- `python3 tooling/gates/observability_gate.py` -> PASS
+		- `python3 tooling/quality_gates/observability_gate.py` -> PASS
 		- `python3 tooling/commands/push_button.py` -> PASS with `OBSERVABILITY_GATE: PASS`
 
 Milestone 23: External Validation Program
@@ -788,7 +788,7 @@ Execution Governance:
 Status: COMPLETE.
 DONE:
 	- Added external validation gate:
-		- `tooling/gates/external_validation_gate.py`
+		- `tooling/quality_gates/external_validation_gate.py`
 		- outputs `evidence/validation/latest.json` and `evidence/validation/independent_verification_summary.json`
 	- Added 3 external run records with diversity and success outcomes:
 		- `evidence/validation/runs/run-01-linux-mint.json`
@@ -811,7 +811,7 @@ DONE:
 	- Added milestone evidence report:
 		- `docs/product/M23_EXTERNAL_VALIDATION_REPORT.md`
 	- Verified gates:
-		- `python3 tooling/gates/external_validation_gate.py` -> PASS
+		- `python3 tooling/quality_gates/external_validation_gate.py` -> PASS
 		- `python3 tooling/commands/push_button.py` -> PASS with `EXTERNAL_VALIDATION_GATE: PASS`
 
 Milestone 24: GA Release and Support Model

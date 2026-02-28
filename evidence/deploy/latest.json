@@ -1,11 +1,11 @@
 {
   "candidate": {
     "budget_alarm_usd_monthly": 250,
-    "bundle_hash": "871e94b6fd96502e180da95e6bb5da32816dc7a5a943e625d348717387847703",
+    "bundle_hash": "6fe7348b3c603022ce76d8edf48f37786683f4e43b635c5c5b67a139c9b75f0c",
     "deployment_target": "staging",
-    "manifest_path": "artifacts/generated/build/deploy/managed/bundle_manifest.json",
+    "manifest_path": "artifacts/generated/outputs/deploy/managed/bundle_manifest.json",
     "max_parallel_rollout_percent": 25,
-    "overlay_path": "artifacts/generated/build/deploy/overlays/staging.json",
+    "overlay_path": "artifacts/generated/outputs/deploy/overlays/staging.json",
     "quota_jobs_per_hour": 500,
     "rollback_error_rate_threshold": 0.02,
     "rollout_strategy": "canary"
@@ -27,10 +27,10 @@
     "status": "PASS"
   },
   "rollback": {
-    "active_bundle_hash": "871e94b6fd96502e180da95e6bb5da32816dc7a5a943e625d348717387847703",
+    "active_bundle_hash": "6fe7348b3c603022ce76d8edf48f37786683f4e43b635c5c5b67a139c9b75f0c",
     "mode": "restore-previous",
     "status": "PASS"
   },
-  "runtime_state_dir": "evidence/state/deploy",
+  "runtime_state_dir": "artifacts/state_snapshots/deploy",
   "status": "PASS"
 }

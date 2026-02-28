@@ -36,7 +36,7 @@
 - `Glyphser.Implementation.ValidateOwnershipMap`
 - `Glyphser.Error.Emit`
 ### 0.H Namespacing and Packaging
-- namespace roots: `runtime/`, `tests/`, `artifacts/inputs/vectors/`, `specs/schemas/`, `ops/`.
+- namespace roots: `runtime/`, `tests/`, `artifacts/inputs/conformance/`, `specs/schemas/`, `ops/`.
 ### 0.I Outputs and Metric Schema
 - outputs: `(layout_report, boundary_report, ownership_report)`.
 ### 0.J Spec Lifecycle Governance
@@ -84,9 +84,9 @@
 ### II.F Canonical Layout (Normative)
 - `runtime/data`, `runtime/model`, `runtime/dp`, `runtime/tmmu`, `runtime/replay`, `runtime/trace`, `runtime/checkpoint`, `runtime/backend`, `runtime/security`, `runtime/registry`, `runtime/tracking`, `runtime/monitor`, `runtime/cert`.
 - `tests/unit`, `tests/integration`, `tests/replay`, `tests/perf`.
-- `artifacts/inputs/vectors/<operator_id>/`.
+- `artifacts/inputs/conformance/<operator_id>/`.
 - `specs/schemas/` for config/trace/checkpoint/api schemas.
-- `tooling/gates/spec_lint.py` mandatory linter entrypoint for cross-file contract consistency.
+- `tooling/quality_gates/spec_lint.py` mandatory linter entrypoint for cross-file contract consistency.
 - `specs/contracts/operator_registry.cbor` canonical machine-readable operator registry artifact.
 - Additional authoritative contract artifacts:
   - `specs/contracts/digest_catalog.cbor`

@@ -7,7 +7,7 @@
 **Normativity Legend:** `specs/layers/L1-foundation/Normativity-Legend.md`
 
 **Domain / Problem Class:** Golden-vector governance.  
-**Catalog (active):** `artifacts/inputs/vectors/catalog.json`
+**Catalog (active):** `artifacts/inputs/conformance/catalog.json`
 
 ---
 ## 1) Header & Global Semantics
@@ -38,7 +38,7 @@
 - `Glyphser.Test.VectorVerify`
 - `Glyphser.Error.Emit`
 ### 0.H Namespacing and Packaging
-- `artifacts/inputs/vectors/<operator>/<vector_id>.cbor`.
+- `artifacts/inputs/conformance/<operator>/<vector_id>.cbor`.
 ### 0.I Outputs and Metric Schema
 - outputs: `(verification_report)` and mismatch diagnostics.
 ### 0.J Spec Lifecycle Governance

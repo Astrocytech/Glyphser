@@ -23,7 +23,7 @@ Stage order is fixed and deterministic.
 - `eqc-es validate`
 - `eqc-es impact --change DOCID@vX.Y.Z`
 - `eqc-es regenerate-sidecars`
-- `python3 tooling/gates/spec_lint.py`
+- `python3 tooling/quality_gates/spec_lint.py`
 
 ---
 ## 3) Gate Mapping Rules

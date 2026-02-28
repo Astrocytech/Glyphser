@@ -1,5 +1,0 @@
-{
-  "vector_set_id": "failure-injection-vectors-v1",
-  "vectors_file": "artifacts/inputs/vectors/suites/failure-injection/vectors.json",
-  "vectors_file_sha256": "aa8c76ddc13aee01ccd275e70b0b9d4361e5e2ae5fc7bf812e8bef6e9285dba6"
-}

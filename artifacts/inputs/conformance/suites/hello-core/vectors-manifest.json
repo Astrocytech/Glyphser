@@ -1,0 +1,5 @@
+{
+  "vector_set_id": "hello-core-vectors-v1",
+  "vectors_file": "artifacts/inputs/conformance/suites/hello-core/vectors.json",
+  "vectors_file_sha256": "5728ba9b09c96dae3425d930a8579c76bd5d9a36f93b780e3653a8099fa6e8fd"
+}

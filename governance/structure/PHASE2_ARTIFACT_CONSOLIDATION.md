@@ -5,7 +5,7 @@ Status: COMPLETE (CI-safe, compatibility preserved)
 ## Canonical Paths
 
 - `artifacts/inputs/fixtures/` (was `artifacts/inputs/fixtures/`)
-- `artifacts/inputs/vectors/` (was `artifacts/inputs/vectors/`)
+- `artifacts/inputs/conformance/` (was `artifacts/inputs/conformance/`)
 - `artifacts/expected/goldens/` (was `artifacts/expected/goldens/`)
 - `artifacts/artifacts/generated/` (was `artifacts/generated/`)
 - `artifacts/bundles/` (was `artifacts/bundles/`)
@@ -18,7 +18,7 @@ Status: COMPLETE (CI-safe, compatibility preserved)
 Legacy paths are preserved as symlinks so current tests/tooling/workflows continue to run unchanged:
 
 - `fixtures -> artifacts/inputs/fixtures`
-- `vectors -> artifacts/inputs/vectors`
+- `vectors -> artifacts/inputs/conformance`
 - `goldens -> artifacts/expected/goldens`
 - `generated -> artifacts/generated`
 - `dist -> artifacts/bundles`

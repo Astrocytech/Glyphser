@@ -6,7 +6,7 @@
         "tests/operators/test_glyphser_backend_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Backend_LoadDriver.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Backend_LoadDriver.json"
       ]
     },
     {
@@ -15,7 +15,7 @@
         "tests/operators/test_glyphser_certificate_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Certificate_EvidenceValidate.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Certificate_EvidenceValidate.json"
       ]
     },
     {
@@ -24,7 +24,7 @@
         "tests/operators/test_glyphser_checkpoint_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Checkpoint_CheckpointMigrate.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Checkpoint_CheckpointMigrate.json"
       ]
     },
     {
@@ -33,7 +33,7 @@
         "tests/operators/test_glyphser_checkpoint_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Checkpoint_Restore.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Checkpoint_Restore.json"
       ]
     },
     {
@@ -42,7 +42,7 @@
         "tests/operators/test_glyphser_config_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Config_ManifestMigrate.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Config_ManifestMigrate.json"
       ]
     },
     {
@@ -54,7 +54,7 @@
         "tests/trace/test_compute_trace_hash.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Data_NextBatch.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Data_NextBatch.json"
       ]
     },
     {
@@ -63,7 +63,7 @@
         "tests/operators/test_glyphser_differentialprivacy_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_DifferentialPrivacy_Apply.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_DifferentialPrivacy_Apply.json"
       ]
     },
     {
@@ -72,7 +72,7 @@
         "tests/operators/test_glyphser_error_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Error_Emit.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Error_Emit.json"
       ]
     },
     {
@@ -81,7 +81,7 @@
         "tests/operators/test_glyphser_io_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_IO_SaveCheckpoint.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_IO_SaveCheckpoint.json"
       ]
     },
     {
@@ -90,7 +90,7 @@
         "tests/operators/test_glyphser_import_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Import_LegacyFramework.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Import_LegacyFramework.json"
       ]
     },
     {
@@ -99,7 +99,7 @@
         "tests/operators/test_glyphser_model_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Model_Forward.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Model_Forward.json"
       ]
     },
     {
@@ -109,7 +109,7 @@
         "tests/trace/test_compute_trace_hash.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Model_ModelIR_Executor.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Model_ModelIR_Executor.json"
       ]
     },
     {
@@ -118,7 +118,7 @@
         "tests/operators/test_glyphser_monitor_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Monitor_DriftCompute.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Monitor_DriftCompute.json"
       ]
     },
     {
@@ -127,7 +127,7 @@
         "tests/operators/test_glyphser_monitor_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Monitor_Emit.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Monitor_Emit.json"
       ]
     },
     {
@@ -136,7 +136,7 @@
         "tests/operators/test_glyphser_monitor_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Monitor_Register.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Monitor_Register.json"
       ]
     },
     {
@@ -145,7 +145,7 @@
         "tests/operators/test_glyphser_registry_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Registry_StageTransition.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Registry_StageTransition.json"
       ]
     },
     {
@@ -154,7 +154,7 @@
         "tests/operators/test_glyphser_registry_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Registry_VersionCreate.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Registry_VersionCreate.json"
       ]
     },
     {
@@ -163,7 +163,7 @@
         "tests/operators/test_glyphser_tmmu_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_TMMU_PrepareMemory.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_TMMU_PrepareMemory.json"
       ]
     },
     {
@@ -172,7 +172,7 @@
         "tests/operators/test_glyphser_trace_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Trace_TraceMigrate.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Trace_TraceMigrate.json"
       ]
     },
     {
@@ -181,7 +181,7 @@
         "tests/operators/test_glyphser_tracking_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Tracking_ArtifactGet.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Tracking_ArtifactGet.json"
       ]
     },
     {
@@ -190,7 +190,7 @@
         "tests/operators/test_glyphser_tracking_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Tracking_ArtifactList.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Tracking_ArtifactList.json"
       ]
     },
     {
@@ -199,7 +199,7 @@
         "tests/operators/test_glyphser_tracking_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Tracking_ArtifactPut.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Tracking_ArtifactPut.json"
       ]
     },
     {
@@ -208,7 +208,7 @@
         "tests/operators/test_glyphser_tracking_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Tracking_ArtifactTombstone.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Tracking_ArtifactTombstone.json"
       ]
     },
     {
@@ -217,7 +217,7 @@
         "tests/operators/test_glyphser_tracking_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Tracking_MetricLog.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Tracking_MetricLog.json"
       ]
     },
     {
@@ -226,7 +226,7 @@
         "tests/operators/test_glyphser_tracking_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Tracking_RunCreate.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Tracking_RunCreate.json"
       ]
     },
     {
@@ -235,7 +235,7 @@
         "tests/operators/test_glyphser_tracking_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Tracking_RunEnd.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Tracking_RunEnd.json"
       ]
     },
     {
@@ -244,7 +244,7 @@
         "tests/operators/test_glyphser_tracking_stubs.py"
       ],
       "vectors": [
-        "artifacts/inputs/vectors/primitives/operators/Glyphser_Tracking_RunStart.json"
+        "artifacts/inputs/conformance/primitives/operators/Glyphser_Tracking_RunStart.json"
       ]
     }
   ],

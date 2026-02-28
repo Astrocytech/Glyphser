@@ -20,7 +20,7 @@ This playbook governs any code or specification change affecting documents, side
    - `eqc-es impact --change DOCID@vX.Y.Z`
 4. Run lint and wiring verification:
    - `eqc-es validate`
-   - `python3 tooling/gates/spec_lint.py` (or equivalent contract linter)
+   - `python3 tooling/quality_gates/spec_lint.py` (or equivalent contract linter)
 5. Update sidecars:
    - `eqc-es regenerate-sidecars`
 6. Re-run deterministic hard pass checks.

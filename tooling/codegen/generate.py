@@ -14,7 +14,7 @@ sys.path.insert(0, str(ROOT))
 from tooling.lib.path_config import generated_root
 
 TEMPLATES = ROOT / "tooling" / "codegen" / "templates"
-OUT_DIR = ROOT / "runtime" / "glyphser" / "generated"
+OUT_DIR = ROOT / "runtime" / "glyphser" / "_generated"
 SCHEMA_ROOTS = [ROOT / "specs" / "schemas"]
 REGISTRY_JSON = ROOT / "specs" / "contracts" / "operator_registry.json"
 CATALOG_MANIFEST = ROOT / "specs" / "contracts" / "catalog-manifest.json"
@@ -496,11 +496,11 @@ def generate() -> None:
     output_hashes = [
         {"path": path, "sha256": _sha256_hex_path(ROOT / path)}
         for path in [
-            "runtime/glyphser/generated/models.py",
-            "runtime/glyphser/generated/operators.py",
-            "runtime/glyphser/generated/validators.py",
-            "runtime/glyphser/generated/error.py",
-            "runtime/glyphser/generated/bindings.py",
+            "runtime/glyphser/_generated/models.py",
+            "runtime/glyphser/_generated/operators.py",
+            "runtime/glyphser/_generated/validators.py",
+            "runtime/glyphser/_generated/error.py",
+            "runtime/glyphser/_generated/bindings.py",
         ]
     ]
 
@@ -510,11 +510,11 @@ def generate() -> None:
         "template_bundle_hash": _template_bundle_hash(),
         "schemas": _schema_manifest(),
         "outputs": [
-            "runtime/glyphser/generated/models.py",
-            "runtime/glyphser/generated/operators.py",
-            "runtime/glyphser/generated/validators.py",
-            "runtime/glyphser/generated/error.py",
-            "runtime/glyphser/generated/bindings.py",
+            "runtime/glyphser/_generated/models.py",
+            "runtime/glyphser/_generated/operators.py",
+            "runtime/glyphser/_generated/validators.py",
+            "runtime/glyphser/_generated/error.py",
+            "runtime/glyphser/_generated/bindings.py",
         ],
         "outputs_with_hashes": output_hashes,
     }

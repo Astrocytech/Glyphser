@@ -1,0 +1,19 @@
+{
+  "profiles": [
+    {
+      "path": "artifacts/generated/outputs/deploy/overlays/dev.json",
+      "profile": "dev",
+      "sha256": "35335ee033d45e7a2183c256986d8eac686840feffb46bd1ad0be571286bb060"
+    },
+    {
+      "path": "artifacts/generated/outputs/deploy/overlays/staging.json",
+      "profile": "staging",
+      "sha256": "e5c963f7087f3667e56c2110daa4251645f8accc3a41ac1317872706f9928698"
+    },
+    {
+      "path": "artifacts/generated/outputs/deploy/overlays/prod.json",
+      "profile": "prod",
+      "sha256": "4f2706e99db33800bbf78b0d57f3d09b7692283c2efa2bc604d38755d97cd6ad"
+    }
+  ]
+}

@@ -3,24 +3,24 @@
 Status: ACTIVE
 
 ## Unit Vectors
-- Canonical CBOR: `conformance/artifacts/inputs/vectors/canonical_cbor/vectors.json`
-- Struct validation: `conformance/artifacts/inputs/vectors/struct_validation/vectors.json`
-- Interface hash: `conformance/artifacts/inputs/vectors/interface_hash/vectors.json`
+- Canonical CBOR: `conformance/artifacts/inputs/conformance/canonical_cbor/vectors.json`
+- Struct validation: `artifacts/inputs/conformance/primitives/data_structures/vectors.json`
+- Interface hash: `conformance/artifacts/inputs/conformance/interface_hash/vectors.json`
 
 ## Integration Vectors
-- Hello-core: `artifacts/inputs/vectors/suites/hello-core/vectors.json`
-- Checkpoint/restore: `artifacts/inputs/vectors/suites/checkpoint-restore/vectors.json`
-- Replay determinism: `artifacts/inputs/vectors/suites/replay-determinism/vectors.json`
-- Registry lifecycle: `artifacts/inputs/vectors/suites/registry-lifecycle/vectors.json`
-- Tracking/monitoring: `artifacts/inputs/vectors/suites/tracking-monitoring/vectors.json`
-- Failure injection: `artifacts/inputs/vectors/suites/failure-injection/vectors.json`
-- Perf/scale: `artifacts/inputs/vectors/suites/perf-scale/vectors.json`
-- Failure injection: `artifacts/inputs/vectors/suites/failure-injection/vectors.json`
-- Perf/scale: `artifacts/inputs/vectors/suites/perf-scale/vectors.json`
-- Checkpoint/restore: `artifacts/inputs/vectors/suites/checkpoint-restore/vectors.json`
-- Replay determinism: `artifacts/inputs/vectors/suites/replay-determinism/vectors.json`
-- Registry lifecycle: `artifacts/inputs/vectors/suites/registry-lifecycle/vectors.json`
-- Tracking/monitoring: `artifacts/inputs/vectors/suites/tracking-monitoring/vectors.json`
+- Hello-core: `artifacts/inputs/conformance/suites/hello-core/vectors.json`
+- Checkpoint/restore: `artifacts/inputs/conformance/suites/checkpoint-restore/vectors.json`
+- Replay determinism: `artifacts/inputs/conformance/suites/replay-determinism/vectors.json`
+- Registry lifecycle: `artifacts/inputs/conformance/suites/registry-lifecycle/vectors.json`
+- Tracking/monitoring: `artifacts/inputs/conformance/suites/tracking-monitoring/vectors.json`
+- Failure injection: `artifacts/inputs/conformance/suites/failure-injection/vectors.json`
+- Perf/scale: `artifacts/inputs/conformance/suites/perf-scale/vectors.json`
+- Failure injection: `artifacts/inputs/conformance/suites/failure-injection/vectors.json`
+- Perf/scale: `artifacts/inputs/conformance/suites/perf-scale/vectors.json`
+- Checkpoint/restore: `artifacts/inputs/conformance/suites/checkpoint-restore/vectors.json`
+- Replay determinism: `artifacts/inputs/conformance/suites/replay-determinism/vectors.json`
+- Registry lifecycle: `artifacts/inputs/conformance/suites/registry-lifecycle/vectors.json`
+- Tracking/monitoring: `artifacts/inputs/conformance/suites/tracking-monitoring/vectors.json`
 
 ## Replay / Checkpoint
 - Trace hash-chain: `tests/trace/test_compute_trace_hash.py`
@@ -43,9 +43,9 @@ Status: ACTIVE
 
 ## CI Gates
 - Conformance: `tooling/conformance/cli.py`
-- Schema gate: `tooling/gates/schema_gate.py`
-- Registry gate: `tooling/gates/registry_gate.py`
-- Spec lint: `tooling/gates/spec_lint.py`
+- Schema gate: `tooling/quality_gates/schema_gate.py`
+- Registry gate: `tooling/quality_gates/registry_gate.py`
+- Spec lint: `tooling/quality_gates/spec_lint.py`
 
 ## Golden Inventory
 - Golden inventory: `artifacts/expected/goldens/golden_inventory.json`

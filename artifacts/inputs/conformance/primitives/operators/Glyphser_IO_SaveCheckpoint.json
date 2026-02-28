@@ -1,0 +1,102 @@
+{
+  "operator_id": "Glyphser.IO.SaveCheckpoint",
+  "vectors": [
+    {
+      "case_id": "Glyphser.IO.SaveCheckpoint.ok",
+      "expected": {
+        "response": {
+          "checkpoint_hash": "fe63b994c626b093cac6b71396067a4bd614fd7c4ed261119733f2f8f9320ec9"
+        }
+      },
+      "request": {
+        "path": "artifacts/state_snapshots/checkpoint-restore/ckpt-1.json",
+        "state": {
+          "checkpoint_id": "ckpt-1",
+          "global_step": 1,
+          "payload": {
+            "w": [
+              0.1,
+              0.2
+            ]
+          }
+        }
+      }
+    },
+    {
+      "case_id": "Glyphser.IO.SaveCheckpoint.invalid_request",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.IO.SaveCheckpoint",
+            "replay_token": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "CONTRACT_VIOLATION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.IO.SaveCheckpoint.CONTRACT_VIOLATION.error",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.IO.SaveCheckpoint",
+            "replay_token": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "CONTRACT_VIOLATION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.IO.SaveCheckpoint.CONTRACT_VIOLATION.missing_field",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.IO.SaveCheckpoint",
+            "replay_token": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "CONTRACT_VIOLATION",
+        "force_error": true
+      }
+    },
+    {
+      "case_id": "Glyphser.IO.SaveCheckpoint.CONTRACT_VIOLATION.type_mismatch",
+      "expected": {
+        "error": {
+          "code_id": "CONTRACT_VIOLATION",
+          "context": {
+            "failure_operator": "placeholder",
+            "operator_id": "Glyphser.IO.SaveCheckpoint",
+            "replay_token": "placeholder",
+            "t": "placeholder"
+          },
+          "message": "invalid request"
+        }
+      },
+      "request": {
+        "error_code": "CONTRACT_VIOLATION",
+        "force_error": true
+      }
+    }
+  ]
+}

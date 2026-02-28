@@ -10,4 +10,4 @@ Deterministic input assets used by runtime validation and conformance tooling.
 
 ## Rules
 - Inputs are data-only (no importable runtime code).
-- Vector manifests must reference paths under `artifacts/inputs/vectors/`.
+- Vector manifests must reference paths under `artifacts/inputs/conformance/`.

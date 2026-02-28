@@ -1,0 +1,5 @@
+{
+  "vector_set_id": "replay-suite-1-vectors-v1",
+  "vectors_file": "artifacts/inputs/conformance/suites/replay-suite-1/vectors.json",
+  "vectors_file_sha256": "f191226dd15fae99b766afdad3ce9981cc6738456b4268558ca311cb9397f2fe"
+}

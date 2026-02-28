@@ -11,4 +11,4 @@ Machine-readable schemas aligned with the layered spec model.
 ## Governance
 Schema-to-spec mapping is enforced by:
 - `governance/structure/spec_schema_map.json`
-- `tooling/gates/spec_schema_map_gate.py`
+- `tooling/quality_gates/spec_schema_map_gate.py`

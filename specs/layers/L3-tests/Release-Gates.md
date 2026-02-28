@@ -181,6 +181,6 @@
   - `specs/contracts/catalog-manifest.json`
   - `artifacts/inputs/fixtures/hello-core/fixture-manifest.json`
   - `artifacts/expected/goldens/hello-core/golden-manifest.json`
-  - `artifacts/inputs/vectors/suites/hello-core/vectors-manifest.json`
+  - `artifacts/inputs/conformance/suites/hello-core/vectors-manifest.json`
 - Deterministic verification command:
   - `python tooling/docs/verify_doc_artifacts.py`

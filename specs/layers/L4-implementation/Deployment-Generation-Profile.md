@@ -10,11 +10,11 @@
 
 ---
 ## 1) Output Artifacts (Normative)
-- `artifacts/generated/build/deploy/<profile>/runtime_config.json`
-- `artifacts/generated/build/deploy/<profile>/policy_bindings.json`
-- `artifacts/generated/build/deploy/<profile>/bundle_manifest.json`
-- `artifacts/generated/build/deploy/env_manifest.json`
-- `artifacts/generated/build/deploy/migration_plan.json`
+- `artifacts/generated/outputs/deploy/<profile>/runtime_config.json`
+- `artifacts/generated/outputs/deploy/<profile>/policy_bindings.json`
+- `artifacts/generated/outputs/deploy/<profile>/bundle_manifest.json`
+- `artifacts/generated/outputs/deploy/env_manifest.json`
+- `artifacts/generated/outputs/deploy/migration_plan.json`
 
 Profiles: `managed`, `confidential`, `regulated`.
 

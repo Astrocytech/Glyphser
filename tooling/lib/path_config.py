@@ -23,7 +23,7 @@ def fixtures_root() -> Path:
 
 
 def vectors_root() -> Path:
-    return rel("artifacts", "inputs", "vectors")
+    return rel("artifacts", "inputs", "conformance")
 
 
 def goldens_root() -> Path:
@@ -31,7 +31,7 @@ def goldens_root() -> Path:
 
 
 def generated_root() -> Path:
-    return rel("artifacts", "generated", "build")
+    return rel("artifacts", "generated", "outputs")
 
 
 def generated_codegen_root() -> Path:
@@ -60,7 +60,7 @@ def evidence_runtime_state_root() -> Path:
 
 
 def runtime_state_root() -> Path:
-    return rel("evidence", "state")
+    return rel("artifacts", "state_snapshots")
 
 
 def conformance_reports_root() -> Path:

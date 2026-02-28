@@ -31,7 +31,7 @@
 - `Glyphser.Implementation.AggregateLintVerdict`
 - `Glyphser.Error.Emit`
 ### 0.H Namespacing and Packaging
-- linter entrypoint: `tooling/gates/spec_lint.py`.
+- linter entrypoint: `tooling/quality_gates/spec_lint.py`.
 - normative rule catalog: `docs/layer4-implementation/Spec-Lint-Rules.md`.
 ### 0.I Outputs and Metric Schema
 - outputs: `(lint_report, lint_verdict, lint_metrics)`.

@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-VECTORS_PATH = ROOT / "artifacts" / "inputs" / "vectors" / "primitives" / "canonical_cbor" / "vectors.json"
+VECTORS_PATH = ROOT / "artifacts" / "inputs" / "conformance" / "primitives" / "canonical_cbor" / "vectors.json"
 
 
 def load_vectors() -> dict:

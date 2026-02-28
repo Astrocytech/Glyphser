@@ -13,7 +13,7 @@
 ### 1.1 Primary Generation Targets
 - **Language/runtime:** Python 3.12.
 - **Packaging:** importable `glyphser` package in `runtime/`, with script entrypoints in `tooling/scripts/`.
-- **Artifacts:** JSON and CBOR artifacts under `specs/contracts/`, `artifacts/inputs/fixtures/`, `artifacts/expected/goldens/`, and `artifacts/inputs/vectors/`.
+- **Artifacts:** JSON and CBOR artifacts under `specs/contracts/`, `artifacts/inputs/fixtures/`, `artifacts/expected/goldens/`, and `artifacts/inputs/conformance/`.
 - **Scope:** CPU-only, single-node runtime for the reference implementation.
 
 ### 1.2 Secondary Targets (Deferred)
@@ -45,8 +45,8 @@
 ---
 ## 3) Build/Test Scripts (Normative)
 ### 3.1 Required Local Entry Points
-- Schema gate: `python tooling/gates/schema_gate.py`
-- Registry gate: `python tooling/gates/registry_gate.py`
+- Schema gate: `python tooling/quality_gates/schema_gate.py`
+- Registry gate: `python tooling/quality_gates/registry_gate.py`
 - Conformance suite: `python tooling/conformance/cli.py run`
 - Conformance report: `python tooling/conformance/cli.py report`
 - Hello-core runnable: `python tooling/scripts/run_hello_core.py`

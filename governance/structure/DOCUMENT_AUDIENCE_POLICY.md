@@ -15,6 +15,6 @@ This policy defines canonical audience boundaries to prevent cross-domain drift.
 - Evidence must never be treated as source-of-truth specification.
 
 ## Enforcement
-- `tooling/gates/spec_link_gate.py`
-- `tooling/gates/spec_schema_map_gate.py`
-- `tooling/gates/domain_dependency_gate.py`
+- `tooling/quality_gates/spec_link_gate.py`
+- `tooling/quality_gates/spec_schema_map_gate.py`
+- `tooling/quality_gates/domain_dependency_gate.py`

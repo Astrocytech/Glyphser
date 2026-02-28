@@ -29,7 +29,7 @@ def main() -> int:
     missing = []
     drift = []
     for name in FILES:
-        a = ROOT / "runtime" / "glyphser" / "generated" / name
+        a = ROOT / "runtime" / "glyphser" / "_generated" / name
         b = CLEAN / name
         if not a.exists() or not b.exists():
             missing.append(name)
