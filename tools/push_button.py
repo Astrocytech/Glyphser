@@ -36,6 +36,7 @@ def _steps() -> Iterable[List[str]]:
         [sys.executable, "tools/security_baseline_gate.py"],
         [sys.executable, "tools/deploy/run_deployment_pipeline.py"],
         [sys.executable, "tools/observability_gate.py"],
+        [sys.executable, "tools/external_validation_gate.py"],
         [sys.executable, "tools/build_release_bundle.py"],
         [sys.executable, "tools/release_evidence_gate.py"],
         [sys.executable, "tools/reproducibility_check.py"],

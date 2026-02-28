@@ -785,6 +785,34 @@ Execution Governance:
 	- Approver role: Product Lead + Engineering Lead.
 	- Checkpoint cadence: biweekly, with participant cohort review.
 	- Dependencies: requires Milestones 18-22 substantially complete; blocks Milestone 24.
+Status: COMPLETE.
+DONE:
+	- Added external validation gate:
+		- `tools/external_validation_gate.py`
+		- outputs `reports/validation/latest.json` and `reports/validation/independent_verification_summary.json`
+	- Added 3 external run records with diversity and success outcomes:
+		- `reports/validation/runs/run-01-linux-mint.json`
+		- `reports/validation/runs/run-02-ubuntu-wsl.json`
+		- `reports/validation/runs/run-03-docs-only-cleanroom.json`
+	- Added validation transcripts:
+		- `reports/validation/transcripts/run-01-linux-mint.md`
+		- `reports/validation/transcripts/run-02-ubuntu-wsl.md`
+		- `reports/validation/transcripts/run-03-docs-only-cleanroom.md`
+	- Added supportability scorecards:
+		- `reports/validation/scorecards/run-01-linux-mint.json`
+		- `reports/validation/scorecards/run-02-ubuntu-wsl.json`
+		- `reports/validation/scorecards/run-03-docs-only-cleanroom.json`
+	- Added issue resolution log and external security review evidence:
+		- `reports/validation/issues.json`
+		- `reports/validation/external_security_review.md`
+	- Added gate test:
+		- `tests/validation/test_external_validation_gate.py`
+	- Wired external validation gate into `tools/push_button.py`.
+	- Added milestone evidence report:
+		- `docs/product/M23_EXTERNAL_VALIDATION_REPORT.md`
+	- Verified gates:
+		- `python3 tools/external_validation_gate.py` -> PASS
+		- `python3 tools/push_button.py` -> PASS with `EXTERNAL_VALIDATION_GATE: PASS`
 
 Milestone 24: GA Release and Support Model
 1. Publish GA release with signed artifacts and long-term version policy.
