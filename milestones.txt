@@ -560,6 +560,22 @@ Execution Governance:
 	- Approver role: Engineering Lead + Product Lead.
 	- Checkpoint cadence: weekly, with API freeze checkpoint before implementation close.
 	- Dependencies: requires Milestone 17 complete; blocks Milestones 19 and 23.
+Status: COMPLETE.
+DONE:
+	- Added versioned API contract `contracts/openapi_public_api_v1.yaml`.
+	- Added stable CLI wrapper `tools/api_cli.py` for submit/status/evidence/replay.
+	- Added runtime API implementation `src/glyphser/api/runtime_api.py`.
+	- Added semver governance gate `tools/api_contract_gate.py` and wired it into `tools/push_button.py`.
+	- Added API reference and policy docs:
+		- `docs/product/API_REFERENCE_v1.md`
+		- `docs/product/API_CLI_COMMANDS.md`
+		- `docs/product/API_LIFECYCLE_POLICY.md`
+		- `docs/product/API_STYLE_GUIDE.md`
+	- Added contract/CLI/runtime tests:
+		- `tests/api/test_runtime_api.py`
+		- `tests/api/test_api_cli.py`
+		- `tests/api/test_api_contract_gate.py`
+	- Added execution evidence report `docs/product/M18_CONTRACT_TEST_REPORT.md`.
 
 Milestone 19: Stateful Execution and Recovery
 1. Implement durable run state persistence and restart-safe recovery.

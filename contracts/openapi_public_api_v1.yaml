@@ -1,0 +1,159 @@
+openapi: 3.0.3
+info:
+  title: Glyphser Public Runtime API
+  version: 1.0.0
+  description: >
+    Versioned public API for job submission, status, evidence retrieval, and replay checks.
+  x-semver-policy:
+    major_breaking_requires_new_version: true
+    deprecation_window_releases: 2
+    minimum_support_window_months: 12
+  x-style-guide-ref: docs/product/API_STYLE_GUIDE.md
+servers:
+  - url: https://api.example.glyphser/v1
+security:
+  - bearerAuth: []
+paths:
+  /v1/jobs:
+    post:
+      operationId: submitJob
+      summary: Submit a deterministic job request.
+      parameters:
+        - in: header
+          name: X-Idempotency-Key
+          schema:
+            type: string
+          required: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubmitRequest'
+      responses:
+        '200':
+          description: Accepted or idempotent replay of prior submission.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatus'
+  /v1/jobs/{job_id}:
+    get:
+      operationId: getJobStatus
+      summary: Fetch status for a submitted job.
+      parameters:
+        - in: path
+          name: job_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Status result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatus'
+  /v1/jobs/{job_id}/evidence:
+    get:
+      operationId: getJobEvidence
+      summary: Fetch evidence pointers and hashes for a job.
+      parameters:
+        - in: path
+          name: job_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Evidence summary.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvidenceResponse'
+  /v1/jobs/{job_id}/replay:
+    post:
+      operationId: replayJob
+      summary: Execute replay-verdict check for a job.
+      parameters:
+        - in: path
+          name: job_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Replay verdict.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReplayResponse'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    SubmitRequest:
+      type: object
+      additionalProperties: true
+      required:
+        - payload
+      properties:
+        payload:
+          type: object
+        trace_id:
+          type: string
+          description: Optional caller-provided trace identifier.
+    JobStatus:
+      type: object
+      required:
+        - api_version
+        - job_id
+        - status
+        - trace_id
+      properties:
+        api_version:
+          type: string
+        job_id:
+          type: string
+        status:
+          type: string
+          enum: [accepted, running, complete, failed]
+        trace_id:
+          type: string
+        payload_hash:
+          type: string
+    EvidenceResponse:
+      type: object
+      required:
+        - api_version
+        - job_id
+      properties:
+        api_version:
+          type: string
+        job_id:
+          type: string
+        conformance_report_hash:
+          type: string
+        bundle_manifest_line:
+          type: string
+        repro_hash_line:
+          type: string
+    ReplayResponse:
+      type: object
+      required:
+        - api_version
+        - job_id
+        - replay_verdict
+      properties:
+        api_version:
+          type: string
+        job_id:
+          type: string
+        replay_verdict:
+          type: string
+          enum: [PASS, FAIL]
+        reason:
+          type: string
