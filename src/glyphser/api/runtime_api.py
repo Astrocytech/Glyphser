@@ -10,6 +10,13 @@ from typing import Any, Dict
 from src.glyphser.security.audit import append_event
 from src.glyphser.security.authz import authorize
 
+
+def _first_existing(candidates: list[Path]) -> Path:
+    for path in candidates:
+        if path.exists():
+            return path
+    return candidates[0]
+
 def _canonical_json(obj: Any) -> str:
     return json.dumps(obj, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
 
@@ -79,8 +86,10 @@ class RuntimeApiService:
         _ = self.status(job_id, token=token, scope=scope)
         root = self._config.root
         conformance = root / "conformance" / "reports" / "latest.json"
-        bundle_manifest = root / "dist" / "hello-core-bundle.sha256"
-        repro = root / "reports" / "repro" / "hashes.txt"
+        bundle_manifest = _first_existing(
+            [root / "artifacts" / "bundles" / "hello-core-bundle.sha256", root / "dist" / "hello-core-bundle.sha256"]
+        )
+        repro = _first_existing([root / "evidence" / "repro" / "hashes.txt", root / "reports" / "repro" / "hashes.txt"])
         out = {
             "job_id": job_id,
             "api_version": self._config.api_version,

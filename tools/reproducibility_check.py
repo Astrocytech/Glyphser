@@ -3,9 +3,13 @@ from __future__ import annotations
 
 import hashlib
 from pathlib import Path
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "reports" / "repro" / "hashes.txt"
+sys.path.insert(0, str(ROOT / "tools"))
+from path_config import bundles_root, evidence_root
+
+OUT = evidence_root() / "repro" / "hashes.txt"
 
 
 def _sha256(path: Path) -> str:
@@ -13,7 +17,7 @@ def _sha256(path: Path) -> str:
 
 
 def main() -> int:
-    target = ROOT / "dist" / "hello-core-bundle.tar.gz"
+    target = bundles_root() / "hello-core-bundle.tar.gz"
     if not target.exists():
         print("missing bundle to hash")
         return 1

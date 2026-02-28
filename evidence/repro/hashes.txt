@@ -1,1 +1,1 @@
-a612ab112515b189f7647153bf5a92c6b1c76a35703ae74f8a67f0c0c708922c  hello-core-bundle.tar.gz
+515c648897c48b5186850f9a8a1e4ee4a44ed24aaefb33cb91a293cb99cc29f3  hello-core-bundle.tar.gz

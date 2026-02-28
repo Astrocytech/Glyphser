@@ -7,6 +7,8 @@ from pathlib import Path
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+from path_config import fixtures_root, goldens_root, vectors_root
 
 
 def sha256_hex(path: Path) -> str:
@@ -50,10 +52,10 @@ def main() -> int:
         (ROOT / "contracts" / "catalog-manifest.json", verify_manifest),
     ]
 
-    for path in (ROOT / "fixtures").rglob("fixture-manifest.json"):
+    for path in fixtures_root().rglob("fixture-manifest.json"):
         checks.append((path, verify_file_list_manifest))
 
-    for path in (ROOT / "goldens").rglob("golden-manifest.json"):
+    for path in goldens_root().rglob("golden-manifest.json"):
         checks.append((path, verify_file_list_manifest))
 
     all_errors: list[str] = []
@@ -64,7 +66,7 @@ def main() -> int:
         errs = fn(path)
         all_errors.extend(errs)
 
-    for vmanifest in (ROOT / "vectors").rglob("vectors-manifest.json"):
+    for vmanifest in vectors_root().rglob("vectors-manifest.json"):
         vm = json.loads(vmanifest.read_text(encoding="utf-8"))
         vf = ROOT / vm["vectors_file"]
         if not vf.exists():

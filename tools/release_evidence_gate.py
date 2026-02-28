@@ -2,16 +2,20 @@
 from __future__ import annotations
 
 from pathlib import Path
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+from path_config import bundles_root
 
 
 def main() -> int:
+    bundles = bundles_root()
     required = [
         ROOT / "conformance" / "results" / "latest.json",
         ROOT / "conformance" / "reports" / "latest.json",
-        ROOT / "dist" / "hello-core-bundle.tar.gz",
-        ROOT / "dist" / "hello-core-bundle.sha256",
+        bundles / "hello-core-bundle.tar.gz",
+        bundles / "hello-core-bundle.sha256",
     ]
 
     missing = [str(p) for p in required if not p.exists()]

@@ -10,11 +10,13 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "tools"))
 
 from src.glyphser.registry.registry_builder import (  # noqa: E402
     build_operator_registry_from_list,
     parse_api_interfaces,
 )
+from path_config import fixtures_root, goldens_root, vectors_root  # noqa: E402
 
 
 def sha256_hex(data: bytes) -> str:
@@ -239,9 +241,9 @@ def write_text(path: Path, text: str) -> None:
 
 def materialize() -> None:
     contracts_dir = ROOT / "contracts"
-    fixtures_dir = ROOT / "fixtures" / "hello-core"
-    goldens_dir = ROOT / "goldens" / "hello-core"
-    vectors_dir = ROOT / "vectors" / "hello-core"
+    fixtures_dir = fixtures_root() / "hello-core"
+    goldens_dir = goldens_root() / "hello-core"
+    vectors_dir = vectors_root() / "hello-core"
 
     catalogs = build_catalogs()
     digest_catalog = catalogs["digest_catalog"]
@@ -448,9 +450,9 @@ if __name__ == "__main__":
     materialize()
     print("Materialized deterministic doc-phase artifacts:")
     print(f"  - contracts: {ROOT / 'contracts'}")
-    print(f"  - fixtures:  {ROOT / 'fixtures' / 'hello-core'}")
-    print(f"  - goldens:   {ROOT / 'goldens' / 'hello-core'}")
-    print(f"  - vectors:   {ROOT / 'vectors' / 'hello-core'}")
+    print(f"  - fixtures:  {fixtures_root() / 'hello-core'}")
+    print(f"  - goldens:   {goldens_root() / 'hello-core'}")
+    print(f"  - vectors:   {vectors_root() / 'hello-core'}")
     catalogs = build_catalogs()
     operator_registry = build_operator_registry(catalogs["digest_map"])
     op_root_preimage = cbor_encode([

@@ -6,6 +6,10 @@ from pathlib import Path
 from typing import List
 
 ROOT = Path(__file__).resolve().parents[1]
+import sys
+
+sys.path.insert(0, str(ROOT / "tools"))
+from path_config import fixtures_root, goldens_root, vectors_root
 
 
 def _check_manifests(root: Path, manifest_name: str) -> List[str]:
@@ -40,9 +44,9 @@ def _check_vectors_manifests(root: Path) -> List[str]:
 
 def main() -> int:
     errors: List[str] = []
-    errors.extend(_check_manifests(ROOT / "fixtures", "fixture-manifest.json"))
-    errors.extend(_check_manifests(ROOT / "goldens", "golden-manifest.json"))
-    errors.extend(_check_vectors_manifests(ROOT / "vectors"))
+    errors.extend(_check_manifests(fixtures_root(), "fixture-manifest.json"))
+    errors.extend(_check_manifests(goldens_root(), "golden-manifest.json"))
+    errors.extend(_check_vectors_manifests(vectors_root()))
 
     if errors:
         print("FIXTURE_GATE: FAIL")

@@ -5,9 +5,13 @@ import hashlib
 import gzip
 import tarfile
 from pathlib import Path
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-DIST = ROOT / "dist"
+sys.path.insert(0, str(ROOT / "tools"))
+from path_config import bundles_root, fixtures_root, goldens_root, first_existing, rel
+
+DIST = bundles_root()
 
 
 def sha256_hex(path: Path) -> str:
@@ -48,11 +52,11 @@ def main() -> int:
         ROOT / "contracts" / "operator_registry.cbor",
         ROOT / "contracts" / "operator_registry.json",
         ROOT / "contracts" / "interface_hash.json",
-        ROOT / "fixtures" / "hello-core",
-        ROOT / "goldens" / "hello-core",
+        fixtures_root() / "hello-core",
+        goldens_root() / "hello-core",
         ROOT / "conformance" / "results" / "latest.json",
         ROOT / "conformance" / "reports" / "latest.json",
-        ROOT / "docs" / "VERIFY.md",
+        first_existing([rel("docs", "VERIFY.md"), rel("product", "docs", "VERIFY.md")]),
     ]
 
     files = _iter_bundle_files(paths)

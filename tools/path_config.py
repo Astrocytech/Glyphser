@@ -16,3 +16,27 @@ def first_existing(candidates: Iterable[Path]) -> Path:
         if path.exists():
             return path
     return items[0]
+
+
+def fixtures_root() -> Path:
+    return first_existing([rel("artifacts", "inputs", "fixtures"), rel("fixtures")])
+
+
+def vectors_root() -> Path:
+    return first_existing([rel("artifacts", "inputs", "vectors"), rel("vectors")])
+
+
+def goldens_root() -> Path:
+    return first_existing([rel("artifacts", "expected", "goldens"), rel("goldens")])
+
+
+def generated_root() -> Path:
+    return first_existing([rel("artifacts", "generated"), rel("generated")])
+
+
+def bundles_root() -> Path:
+    return first_existing([rel("artifacts", "bundles"), rel("dist")])
+
+
+def evidence_root() -> Path:
+    return first_existing([rel("evidence"), rel("reports")])
