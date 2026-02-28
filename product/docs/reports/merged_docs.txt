@@ -66,11 +66,11 @@ FILE: START-HERE.md
 - Required verifier refs:
   - `docs/layer4-implementation/Evidence-Catalog.md`
   - `docs/layer4-implementation/Determinism-Audit-Playbook.md`
-  - `tooling/verify_doc_artifacts.py`
+  - `tooling/docs/verify_doc_artifacts.py`
 
 ## 8) Artifact Verification Command (Normative)
 - Verification command:
-  - `python tooling/verify_doc_artifacts.py`
+  - `python tooling/docs/verify_doc_artifacts.py`
 - Result policy:
   - PASS is required before profile onboarding can be considered complete.
 
@@ -6909,7 +6909,7 @@ External operator reference: `Glyphser.Error.Emit` in `specs/layers/L1-foundatio
     - registry-root/hash provenance,
     - deprecation/support window declaration.
 - Governance reference:
-  - `docs/layer4-implementation/Community-Governance-Model.md`.
+  - `governance/process/Community-Governance-Model.md`.
 
 FILE: layer2-specs/ModelIR-Executor.md
 ======================================
@@ -12202,7 +12202,7 @@ FILE: layer3-tests/Release-Gates.md
   - `artifacts/expected/goldens/hello-core/golden-manifest.json`
   - `artifacts/inputs/vectors/hello-core/vectors-manifest.json`
 - Deterministic verification command:
-  - `python tooling/verify_doc_artifacts.py`
+  - `python tooling/docs/verify_doc_artifacts.py`
 
 FILE: layer3-tests/Storage-Recovery-Test-Matrix.md
 ==================================================
@@ -12497,7 +12497,7 @@ FILE: layer3-tests/Test-Plan.md
   - E1 fields must remain within declared per-field tolerance bands.
 
 ### II.K Spec Lint Gate (Normative)
-- `tooling/spec_lint.py` is a mandatory pre-test CI gate and must run before unit/integration/replay/performance suites.
+- `tooling/gates/spec_lint.py` is a mandatory pre-test CI gate and must run before unit/integration/replay/performance suites.
 - `spec_lint` must verify at minimum:
   - operator reference completeness across kernel/orchestrator/reference docs against canonical operator registry artifact,
   - interface digest completeness (`request_schema_digest`, `response_schema_digest`, `signature_digest`, `side_effects`, `allowed_error_codes`, `required_capabilities`),
@@ -14155,7 +14155,7 @@ This playbook governs any code or specification change affecting documents, side
    - `eqc-es impact --change DOCID@vX.Y.Z`
 4. Run lint and wiring verification:
    - `eqc-es validate`
-   - `python3 tooling/spec_lint.py` (or equivalent contract linter)
+   - `python3 tooling/gates/spec_lint.py` (or equivalent contract linter)
 5. Update sidecars:
    - `eqc-es regenerate-sidecars`
 6. Re-run deterministic hard pass checks.
@@ -16045,7 +16045,7 @@ Stage order is fixed and deterministic.
 - `eqc-es validate`
 - `eqc-es impact --change DOCID@vX.Y.Z`
 - `eqc-es regenerate-sidecars`
-- `python3 tooling/spec_lint.py`
+- `python3 tooling/gates/spec_lint.py`
 
 ---
 ## 3) Gate Mapping Rules
@@ -17329,7 +17329,7 @@ FILE: layer4-implementation/Implementation-Roadmap.md
 Deterministic gate evaluation:
 - Gates evaluate a fixed ordered checklist with boolean outcomes.
 - Final gate verdict is lexical reduction over checklist items (`fail` dominates `pass`), independent of runtime execution ordering.
-- Mandatory pre-gate: `tooling/spec_lint.py` pass for every phase boundary after `P2_registries`.
+- Mandatory pre-gate: `tooling/gates/spec_lint.py` pass for every phase boundary after `P2_registries`.
 
 ### II.G Compatibility Contract (Normative)
 - Deprecation lifecycle: announce -> warning phase -> removal.
@@ -17353,7 +17353,7 @@ Deterministic gate evaluation:
   - `docs/layer4-implementation/Tooling-and-Automation-Suite.md`
   - `docs/layer4-implementation/Formal-Verification-Roadmap.md`
   - `docs/layer4-implementation/Interoperability-Standards-Bridge.md`
-  - `docs/layer4-implementation/Community-Governance-Model.md`
+  - `governance/process/Community-Governance-Model.md`
   - `docs/layer4-implementation/Disaster-Recovery-Operations-Runbook.md`
   - `docs/layer4-implementation/Research-Extensions-Roadmap.md`
   - `docs/layer4-implementation/Ecosystem-Expansion-Roadmap.md`
@@ -19057,7 +19057,7 @@ FILE: layer4-implementation/Reference-Stack-Minimal.md
 
 ## 4.A Artifact Identity Verification (Normative)
 - Before claiming runnable-reference conformance, run:
-  - `python tooling/verify_doc_artifacts.py`
+  - `python tooling/docs/verify_doc_artifacts.py`
 - Hash identities used by this contract are the values in:
   - `contracts/catalog-manifest.json`
   - `artifacts/inputs/fixtures/hello-core/fixture-manifest.json`
@@ -19334,7 +19334,7 @@ FILE: layer4-implementation/Repo-Layout-and-Interfaces.md
 - `tests/unit`, `tests/integration`, `tests/replay`, `tests/perf`.
 - `artifacts/inputs/vectors/<operator_id>/`.
 - `schemas/` for config/trace/checkpoint/api schemas.
-- `tooling/spec_lint.py` mandatory linter entrypoint for cross-file contract consistency.
+- `tooling/gates/spec_lint.py` mandatory linter entrypoint for cross-file contract consistency.
 - `contracts/operator_registry.cbor` canonical machine-readable operator registry artifact.
 - Additional authoritative contract artifacts:
   - `contracts/digest_catalog.cbor`
@@ -20243,7 +20243,7 @@ FILE: layer4-implementation/Spec-Lint-Implementation.md
 - `Glyphser.Implementation.AggregateLintVerdict`
 - `Glyphser.Error.Emit`
 ### 0.H Namespacing and Packaging
-- linter entrypoint: `tooling/spec_lint.py`.
+- linter entrypoint: `tooling/gates/spec_lint.py`.
 - normative rule catalog: `docs/layer4-implementation/Spec-Lint-Rules.md`.
 ### 0.I Outputs and Metric Schema
 - outputs: `(lint_report, lint_verdict, lint_metrics)`.
@@ -20344,7 +20344,7 @@ FILE: layer4-implementation/Spec-Lint-Rules.md
 ## 1) Header & Global Semantics
 ### 0.0 Identity
 - **Algorithm:** `Glyphser.Implementation.SpecLintRules`
-- **Purpose (1 sentence):** Deterministic rule catalog for `tooling/spec_lint.py`.
+- **Purpose (1 sentence):** Deterministic rule catalog for `tooling/gates/spec_lint.py`.
 ### 0.A Objective Semantics
 - Maximize contract coherence and eliminate silent cross-file drift.
 ### 0.B Reproducibility Contract

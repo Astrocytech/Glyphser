@@ -6,10 +6,10 @@ Status: DRAFT
 Provide a self-service verification checklist for vendors.
 
 ## Steps
-1. Run `python tooling/verify_doc_artifacts.py`.
+1. Run `python tooling/docs/verify_doc_artifacts.py`.
 2. Run `python tooling/conformance/cli.py run`.
 3. Run `python tooling/scripts/run_hello_core.py`.
-4. Bundle artifacts and hashes via `python tooling/build_release_bundle.py`.
+4. Bundle artifacts and hashes via `python tooling/release/build_release_bundle.py`.
 
 ## Submission
 - Provide conformance report, bundle hash, and environment manifest.

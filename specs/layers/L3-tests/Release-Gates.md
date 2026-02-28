@@ -183,4 +183,4 @@
   - `artifacts/expected/goldens/hello-core/golden-manifest.json`
   - `artifacts/inputs/vectors/hello-core/vectors-manifest.json`
 - Deterministic verification command:
-  - `python tooling/verify_doc_artifacts.py`
+  - `python tooling/docs/verify_doc_artifacts.py`

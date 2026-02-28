@@ -3,7 +3,7 @@
 Status: DRAFT
 
 ## Local Verification
-- `python tooling/verify_doc_artifacts.py`
+- `python tooling/docs/verify_doc_artifacts.py`
 - `python tooling/conformance/cli.py run`
 - `python tooling/conformance/cli.py verify`
 - `python tooling/conformance/cli.py report`

@@ -10,12 +10,12 @@ from typing import Any, Dict, Iterable, List, Optional
 import sys
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / "tooling"))
-from path_config import generated_root
+sys.path.insert(0, str(ROOT))
+from tooling.path_config import generated_root
 
 TEMPLATES = ROOT / "tooling" / "codegen" / "templates"
 OUT_DIR = generated_root() / "codegen"
-SCHEMA_ROOTS = [ROOT / "schemas", ROOT / "schemas" / "pilot"]
+SCHEMA_ROOTS = [ROOT / "schemas"]
 REGISTRY_JSON = ROOT / "specs" / "contracts" / "operator_registry.json"
 CATALOG_MANIFEST = ROOT / "specs" / "contracts" / "catalog-manifest.json"
 

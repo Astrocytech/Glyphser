@@ -159,7 +159,7 @@
   - E1 fields must remain within declared per-field tolerance bands.
 
 ### II.K Spec Lint Gate (Normative)
-- `tooling/spec_lint.py` is a mandatory pre-test CI gate and must run before unit/integration/replay/performance suites.
+- `tooling/gates/spec_lint.py` is a mandatory pre-test CI gate and must run before unit/integration/replay/performance suites.
 - `spec_lint` must verify at minimum:
   - operator reference completeness across kernel/orchestrator/reference docs against canonical operator registry artifact,
   - interface digest completeness (`request_schema_digest`, `response_schema_digest`, `signature_digest`, `side_effects`, `allowed_error_codes`, `required_capabilities`),

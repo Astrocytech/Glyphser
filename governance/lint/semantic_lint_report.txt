@@ -39,7 +39,7 @@ A) Undefined operator references
 - Glyphser.Eval.Harness
   refs: 1 first: specs/layers/L2-specs/Evaluation-Harness.md
 - Glyphser.Governance.CommunityModel
-  refs: 1 first: docs/layer4-implementation/Community-Governance-Model.md
+  refs: 1 first: governance/process/Community-Governance-Model.md
 - Glyphser.IO.WriteTrainingCertificate
   refs: 1 first: specs/layers/L2-specs/Glyphser-Kernel-v3.22-OS.md
 - Glyphser.Implementation.APIInterfaceContract
@@ -71,7 +71,7 @@ A) Undefined operator references
 - Glyphser.Implementation.ContractsArtifactLifecycle
   refs: 1 first: docs/layer4-implementation/Contracts-Artifact-Lifecycle.md
 - Glyphser.Implementation.ContributingWorkflow
-  refs: 1 first: docs/layer4-implementation/Contributing-Workflow.md
+  refs: 1 first: governance/process/Contributing-Workflow.md
 - Glyphser.Implementation.DataStructureContract
   refs: 1 first: specs/layers/L1-foundation/Data-Structures.md
 - Glyphser.Implementation.DebuggingPlaybook
@@ -119,7 +119,7 @@ A) Undefined operator references
 - Glyphser.Implementation.OperatorSDKScaffold
   refs: 1 first: docs/layer4-implementation/Operator-SDK-Scaffold-Template.md
 - Glyphser.Implementation.PRReviewChecklist
-  refs: 1 first: docs/layer4-implementation/PR-Review-Checklist.md
+  refs: 1 first: governance/process/PR-Review-Checklist.md
 - Glyphser.Implementation.PerformanceGovernance
   refs: 1 first: docs/layer3-tests/Performance-Plan.md
 - Glyphser.Implementation.PlanWorkstream

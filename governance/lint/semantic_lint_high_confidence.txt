@@ -105,7 +105,7 @@ A) Operator Manifest vs Section 5 Definition Gaps
   - missing def: Glyphser.Error.Emit
 - docs/layer4-implementation/Command-Reference.md
   - missing def: Glyphser.Error.Emit
-- docs/layer4-implementation/Contributing-Workflow.md
+- governance/process/Contributing-Workflow.md
   - missing def: Glyphser.Error.Emit
 - docs/layer4-implementation/Debugging-Playbook.md
   - missing def: Glyphser.Error.Emit
@@ -141,7 +141,7 @@ A) Operator Manifest vs Section 5 Definition Gaps
 - docs/layer4-implementation/Operator-SDK-Scaffold-Template.md
   - missing def: Glyphser.Error.Emit
   - missing def: Glyphser.Implementation.ValidateScaffoldHooks
-- docs/layer4-implementation/PR-Review-Checklist.md
+- governance/process/PR-Review-Checklist.md
   - missing def: Glyphser.Error.Emit
 - docs/layer4-implementation/Profiling-and-Optimization-Guide.md
   - missing def: Glyphser.Error.Emit

@@ -8,8 +8,8 @@ from typing import Any, Dict, List
 import sys
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / "tooling"))
-from path_config import evidence_root, generated_root
+sys.path.insert(0, str(ROOT))
+from tooling.path_config import evidence_root, generated_root
 
 GEN = generated_root() / "deploy"
 OUT = evidence_root() / "deploy"

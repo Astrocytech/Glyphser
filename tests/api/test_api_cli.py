@@ -7,7 +7,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-CLI = ROOT / "tooling" / "api_cli.py"
+CLI = ROOT / "tooling" / "cli" / "api_cli.py"
 
 
 def _run(*args: str) -> subprocess.CompletedProcess[str]:

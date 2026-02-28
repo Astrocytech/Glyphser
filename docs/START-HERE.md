@@ -64,10 +64,10 @@
 - Required verifier refs:
   - `specs/layers/L4-implementation/Evidence-Catalog.md`
   - `specs/layers/L4-implementation/Determinism-Audit-Playbook.md`
-  - `tooling/verify_doc_artifacts.py`
+  - `tooling/docs/verify_doc_artifacts.py`
 
 ## 8) Artifact Verification Command (Normative)
 - Verification command:
-  - `python tooling/verify_doc_artifacts.py`
+  - `python tooling/docs/verify_doc_artifacts.py`
 - Result policy:
   - PASS is required before profile onboarding can be considered complete.

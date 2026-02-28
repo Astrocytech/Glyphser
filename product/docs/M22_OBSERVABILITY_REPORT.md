@@ -5,7 +5,7 @@ Date: 2026-02-28
 Status: PASS
 
 ## Commands Executed
-- `python3 tooling/observability_gate.py`
+- `python3 tooling/gates/observability_gate.py`
 - `python3 -m pytest tests/ops/test_observability_gate.py -q`
 - `python3 tooling/push_button.py`
 

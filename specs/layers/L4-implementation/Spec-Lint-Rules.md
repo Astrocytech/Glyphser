@@ -12,7 +12,7 @@
 ## 1) Header & Global Semantics
 ### 0.0 Identity
 - **Algorithm:** `Glyphser.Implementation.SpecLintRules`
-- **Purpose (1 sentence):** Deterministic rule catalog for `tooling/spec_lint.py`.
+- **Purpose (1 sentence):** Deterministic rule catalog for `tooling/gates/spec_lint.py`.
 ### 0.A Objective Semantics
 - Maximize contract coherence and eliminate silent cross-file drift.
 ### 0.B Reproducibility Contract

@@ -88,7 +88,7 @@
 
 ## 4.A Artifact Identity Verification (Normative)
 - Before claiming runnable-reference conformance, run:
-  - `python tooling/verify_doc_artifacts.py`
+  - `python tooling/docs/verify_doc_artifacts.py`
 - Hash identities used by this contract are the values in:
   - `specs/contracts/catalog-manifest.json`
   - `artifacts/inputs/fixtures/hello-core/fixture-manifest.json`

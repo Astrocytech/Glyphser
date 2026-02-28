@@ -5,7 +5,7 @@ Date: 2026-02-28
 Status: PASS
 
 ## Commands Executed
-- `python3 tooling/state_recovery_gate.py`
+- `python3 tooling/gates/state_recovery_gate.py`
 - `python3 -m pytest tests/storage/test_state_store_recovery.py -q`
 
 ## Artifacts

@@ -4,7 +4,7 @@ import importlib.util
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-MOD_PATH = ROOT / "tooling" / "api_contract_gate.py"
+MOD_PATH = ROOT / "tooling" / "gates" / "api_contract_gate.py"
 SPEC = importlib.util.spec_from_file_location("api_contract_gate", MOD_PATH)
 assert SPEC and SPEC.loader
 MOD = importlib.util.module_from_spec(SPEC)

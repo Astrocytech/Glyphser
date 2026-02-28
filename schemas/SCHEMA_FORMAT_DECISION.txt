@@ -22,4 +22,4 @@ All contract schemas for layers 1-4 must be expressed in this format.
 
 Examples
 --------
-See schemas/pilot/*.schema.json for initial examples.
+See schemas/layers/L1/*.schema.json through schemas/layers/L4/*.schema.json for initial examples.

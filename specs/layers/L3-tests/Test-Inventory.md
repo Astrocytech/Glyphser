@@ -43,9 +43,9 @@ Status: ACTIVE
 
 ## CI Gates
 - Conformance: `tooling/conformance/cli.py`
-- Schema gate: `tooling/schema_gate.py`
-- Registry gate: `tooling/registry_gate.py`
-- Spec lint: `tooling/spec_lint.py`
+- Schema gate: `tooling/gates/schema_gate.py`
+- Registry gate: `tooling/gates/registry_gate.py`
+- Spec lint: `tooling/gates/spec_lint.py`
 
 ## Golden Inventory
 - Golden inventory: `artifacts/expected/goldens/golden_inventory.json`

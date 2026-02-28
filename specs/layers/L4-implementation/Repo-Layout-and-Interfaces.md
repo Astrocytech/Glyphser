@@ -86,7 +86,7 @@
 - `tests/unit`, `tests/integration`, `tests/replay`, `tests/perf`.
 - `artifacts/inputs/vectors/<operator_id>/`.
 - `schemas/` for config/trace/checkpoint/api schemas.
-- `tooling/spec_lint.py` mandatory linter entrypoint for cross-file contract consistency.
+- `tooling/gates/spec_lint.py` mandatory linter entrypoint for cross-file contract consistency.
 - `specs/contracts/operator_registry.cbor` canonical machine-readable operator registry artifact.
 - Additional authoritative contract artifacts:
   - `specs/contracts/digest_catalog.cbor`

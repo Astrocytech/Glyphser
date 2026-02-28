@@ -6,10 +6,10 @@
 - Mode: blind + docs-only
 
 ## Commands (from docs only)
-- `python tooling/verify_release.py`
-- `python tooling/api_cli.py submit --payload-file payload.json --token role:operator --scope jobs:write`
-- `python tooling/api_cli.py status --job-id <job_id> --token role:auditor --scope jobs:read`
-- `python tooling/api_cli.py replay --job-id <job_id> --token role:operator --scope replay:run`
+- `python tooling/release/verify_release.py`
+- `python tooling/cli/api_cli.py submit --payload-file payload.json --token role:operator --scope jobs:write`
+- `python tooling/cli/api_cli.py status --job-id <job_id> --token role:auditor --scope jobs:read`
+- `python tooling/cli/api_cli.py replay --job-id <job_id> --token role:operator --scope replay:run`
 
 ## Outcome
 - Verify flow: PASS

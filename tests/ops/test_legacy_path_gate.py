@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 def test_legacy_path_gate_passes() -> None:
     proc = subprocess.run(
-        [sys.executable, "tooling/legacy_path_gate.py"],
+        [sys.executable, "tooling/gates/legacy_path_gate.py"],
         cwd=ROOT,
         check=False,
         text=True,

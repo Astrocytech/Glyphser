@@ -9,6 +9,6 @@ Rules:
 - Root-level docs are restricted to governance/community files only.
 
 Enforcement:
-- Gate command: `python3 tooling/doc_code_separation_gate.py`
+- Gate command: `python3 tooling/gates/doc_code_separation_gate.py`
 - Report output: `evidence/structure/latest.json`
 - Pipeline integration: `tooling/push_button.py`

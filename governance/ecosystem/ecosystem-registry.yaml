@@ -1080,7 +1080,7 @@ records:
   Title: Contributing Workflow
   Type: derived-impl
   Layer: 4
-  FilePath: docs/layer4-implementation/Contributing-Workflow.md
+  FilePath: governance/process/Contributing-Workflow.md
   CurrentVersion: '`Glyphser.Implementation.ContributingWorkflow` | 2026-02-19 |
     Authors: Olejar Damir'
   Status: active
@@ -1380,7 +1380,7 @@ records:
   Title: PR Review Checklist
   Type: derived-impl
   Layer: 4
-  FilePath: docs/layer4-implementation/PR-Review-Checklist.md
+  FilePath: governance/process/PR-Review-Checklist.md
   CurrentVersion: '`Glyphser.Implementation.PRReviewChecklist` | 2026-02-19 | Authors:
     Olejar Damir'
   Status: active
@@ -1855,7 +1855,7 @@ records:
   Title: Glyphser Community Governance Model
   Type: derived-impl
   Layer: 4
-  FilePath: docs/layer4-implementation/Community-Governance-Model.md
+  FilePath: governance/process/Community-Governance-Model.md
   CurrentVersion: '`Glyphser.Governance.CommunityModel` | 2026-02-20 | Authors: Olejar
     Damir'
   Status: active

@@ -108,7 +108,7 @@
 Deterministic gate evaluation:
 - Gates evaluate a fixed ordered checklist with boolean outcomes.
 - Final gate verdict is lexical reduction over checklist items (`fail` dominates `pass`), independent of runtime execution ordering.
-- Mandatory pre-gate: `tooling/spec_lint.py` pass for every phase boundary after `P2_registries`.
+- Mandatory pre-gate: `tooling/gates/spec_lint.py` pass for every phase boundary after `P2_registries`.
 
 ### II.G Compatibility Contract (Normative)
 - Deprecation lifecycle: announce -> warning phase -> removal.
@@ -132,7 +132,7 @@ Deterministic gate evaluation:
   - `docs/layer4-implementation/Tooling-and-Automation-Suite.md`
   - `docs/layer4-implementation/Formal-Verification-Roadmap.md`
   - `docs/layer4-implementation/Interoperability-Standards-Bridge.md`
-  - `docs/layer4-implementation/Community-Governance-Model.md`
+  - `governance/process/Community-Governance-Model.md`
   - `docs/layer4-implementation/Disaster-Recovery-Operations-Runbook.md`
   - `docs/layer4-implementation/Research-Extensions-Roadmap.md`
   - `docs/layer4-implementation/Ecosystem-Expansion-Roadmap.md`

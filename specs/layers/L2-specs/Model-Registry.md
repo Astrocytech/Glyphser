@@ -228,4 +228,4 @@ External operator reference: `Glyphser.Error.Emit` in `specs/layers/L1-foundatio
     - registry-root/hash provenance,
     - deprecation/support window declaration.
 - Governance reference:
-  - `docs/layer4-implementation/Community-Governance-Model.md`.
+  - `governance/process/Community-Governance-Model.md`.

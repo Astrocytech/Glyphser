@@ -6,10 +6,10 @@ from pathlib import Path
 import sys
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / "tooling"))
-from path_config import generated_root
+sys.path.insert(0, str(ROOT))
+from tooling.path_config import generated_root
 
-CLEAN = generated_root() / "codegen" / "clean_build"
+CLEAN = generated_root() / "codegen" / "cleanroom_validation"
 
 FILES = [
     "models.py",

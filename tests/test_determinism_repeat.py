@@ -26,7 +26,7 @@ def sha256_hex(path: Path) -> str:
 
 def run_materialize() -> str:
     proc = subprocess.run(
-        [sys.executable, str(ROOT / "tooling" / "materialize_doc_artifacts.py")],
+        [sys.executable, str(ROOT / "tooling" / "docs" / "materialize_doc_artifacts.py")],
         cwd=str(ROOT),
         check=True,
         capture_output=True,
@@ -37,7 +37,7 @@ def run_materialize() -> str:
 
 def run_verify() -> str:
     proc = subprocess.run(
-        [sys.executable, str(ROOT / "tooling" / "verify_doc_artifacts.py")],
+        [sys.executable, str(ROOT / "tooling" / "docs" / "verify_doc_artifacts.py")],
         cwd=str(ROOT),
         check=True,
         capture_output=True,

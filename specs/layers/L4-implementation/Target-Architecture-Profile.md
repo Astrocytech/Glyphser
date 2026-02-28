@@ -45,8 +45,8 @@
 ---
 ## 3) Build/Test Scripts (Normative)
 ### 3.1 Required Local Entry Points
-- Schema gate: `python tooling/schema_gate.py`
-- Registry gate: `python tooling/registry_gate.py`
+- Schema gate: `python tooling/gates/schema_gate.py`
+- Registry gate: `python tooling/gates/registry_gate.py`
 - Conformance suite: `python tooling/conformance/cli.py run`
 - Conformance report: `python tooling/conformance/cli.py report`
 - Hello-core runnable: `python tooling/scripts/run_hello_core.py`

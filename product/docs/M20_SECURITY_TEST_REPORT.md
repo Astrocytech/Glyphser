@@ -5,8 +5,8 @@ Date: 2026-02-28
 Status: PASS
 
 ## Commands Executed
-- `python3 tooling/security_artifacts.py`
-- `python3 tooling/security_baseline_gate.py`
+- `python3 tooling/security/security_artifacts.py`
+- `python3 tooling/security/security_baseline_gate.py`
 - `python3 -m pytest tests/security/test_authz_and_audit.py tests/security/test_security_baseline_gate.py -q`
 - `python3 tooling/push_button.py`
 

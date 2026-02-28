@@ -219,7 +219,7 @@ nodes:
 - DocID: L4-011
   Layer: 4
   Type: derived-impl
-  Path: docs/layer4-implementation/Contributing-Workflow.md
+  Path: governance/process/Contributing-Workflow.md
 - DocID: L4-012
   Layer: 4
   Type: derived-impl
@@ -279,7 +279,7 @@ nodes:
 - DocID: L4-026
   Layer: 4
   Type: derived-impl
-  Path: docs/layer4-implementation/PR-Review-Checklist.md
+  Path: governance/process/PR-Review-Checklist.md
 - DocID: L4-027
   Layer: 4
   Type: derived-impl
@@ -375,7 +375,7 @@ nodes:
 - DocID: L4-046
   Layer: 4
   Type: derived-impl
-  Path: docs/layer4-implementation/Community-Governance-Model.md
+  Path: governance/process/Community-Governance-Model.md
 - DocID: L4-047
   Layer: 4
   Type: derived-impl

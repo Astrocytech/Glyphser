@@ -45,7 +45,7 @@ jobs:
         run: python tooling/push_button.py
       - name: Check codegen drift
         run: |
-          python tooling/codegen/clean_build_generate.py
+          python tooling/codegen/cleanroom_validation_generate.py
           python tooling/codegen/diff_fidelity.py
       - name: Upload release checksum
         uses: actions/upload-artifact@v4

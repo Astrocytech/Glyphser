@@ -9,7 +9,7 @@ IDs
 Files
 -----
 - Filenames: <contract_name>.schema.json
-- Pilots live under schemas/pilot/
+- Layer schemas live under schemas/layers/L1 through schemas/layers/L4.
 
 x_glyphser Block
 ----------------

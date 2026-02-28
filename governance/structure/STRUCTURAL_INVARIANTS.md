@@ -14,12 +14,12 @@ These invariants define non-negotiable repository structure boundaries.
   - `artifacts/generated/build_metadata/`
 - Legacy generated locations are forbidden:
   - `artifacts/generated/models.py`, `operators.py`, `validators.py`, `error.py`, `bindings.py`
-  - `artifacts/generated/clean_build/`
+  - `artifacts/generated/codegen/clean_build/`
   - `artifacts/generated/codegen_manifest.json`
   - `artifacts/generated/input_hashes.json`
   - `artifacts/generated/runtime/`
 
 ## Enforcement
-- Gate command: `python3 tooling/structural_invariants_gate.py`
+- Gate command: `python3 tooling/gates/structural_invariants_gate.py`
 - Evidence report: `evidence/structure/structural_invariants.json`
 - Pipeline integration: `tooling/push_button.py`

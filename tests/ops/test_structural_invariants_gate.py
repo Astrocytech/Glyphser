@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 def test_structural_invariants_gate_passes() -> None:
     proc = subprocess.run(
-        [sys.executable, "tooling/structural_invariants_gate.py"],
+        [sys.executable, "tooling/gates/structural_invariants_gate.py"],
         cwd=ROOT,
         check=False,
         text=True,

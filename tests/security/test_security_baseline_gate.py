@@ -9,9 +9,9 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 def test_security_baseline_gate_passes():
-    subprocess.run([sys.executable, "tooling/security_artifacts.py"], cwd=ROOT, check=True)
+    subprocess.run([sys.executable, "tooling/security/security_artifacts.py"], cwd=ROOT, check=True)
     proc = subprocess.run(
-        [sys.executable, "tooling/security_baseline_gate.py"],
+        [sys.executable, "tooling/security/security_baseline_gate.py"],
         cwd=ROOT,
         check=False,
         text=True,

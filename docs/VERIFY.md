@@ -9,11 +9,11 @@
 2. Checkout the target release tag or commit.
 3. Create and activate a virtual environment.
 4. Install project runtime dependencies: `python -m pip install -e .`
-5. Run one command: `python tooling/verify_release.py`
+5. Run one command: `python tooling/release/verify_release.py`
 
 ## Single Command
 ```bash
-python tooling/verify_release.py
+python tooling/release/verify_release.py
 ```
 
 ## What It Checks

@@ -2470,9 +2470,9 @@
   - `vectors-manifest.json`
 
 ## Tooling Added
-- `tooling/materialize_doc_artifacts.py`
+- `tooling/docs/materialize_doc_artifacts.py`
   - deterministic CBOR/JSON materialization of `specs/contracts/`, `artifacts/inputs/fixtures/`, `artifacts/expected/goldens/`, and `artifacts/inputs/vectors/`, plus manifest hashes.
-- `tooling/verify_doc_artifacts.py`
+- `tooling/docs/verify_doc_artifacts.py`
   - deterministic hash/size verification for all pinned manifests.
 
 ## Docs Updated
@@ -2486,7 +2486,7 @@
   - added pinned gate input manifests and deterministic verification command.
 
 ## Verification Snapshot
-- `python tooling/verify_doc_artifacts.py` => `PASS`
+- `python tooling/docs/verify_doc_artifacts.py` => `PASS`
 
 # 2026-02-21 — Commitment Preimage Normalization + Path Escaping Pass
 
@@ -2525,7 +2525,7 @@
   - added explicit hash identity class definitions (`CommitHash` vs `ObjectDigest`).
 
 ## Verification Snapshot
-- `python tooling/verify_doc_artifacts.py` => `PASS`.
+- `python tooling/docs/verify_doc_artifacts.py` => `PASS`.
 - old delimiter-assumption phrase search => not present.
 - domain-tagged `SHA-256(CBOR_CANONICAL([ ... ]))` formulas with non-2 outer elements => `0`.
 
@@ -2553,7 +2553,7 @@
 
 ## Verification
 - Search for known bad forms in docs and merged snapshot: none found.
-- `python tooling/verify_doc_artifacts.py` => `PASS`.
+- `python tooling/docs/verify_doc_artifacts.py` => `PASS`.
 
 # 2026-02-21 — Operator Manifest Resolution Pass
 
@@ -2586,7 +2586,7 @@
 
 ## Verification
 - Regenerated merged snapshot:
-  - `python tooling/merge_markdown_to_txt.py docs -o tooling/merged_docs.txt`
+  - `python tooling/docs/merge_markdown_to_txt.py docs -o tooling/merged_docs.txt`
 - Normative-manifest unresolved symbol count:
   - `normative_manifest_unresolved = 0`
 - Core requested definitions present:
@@ -2597,4 +2597,4 @@
   - `LoadDocSet`: true
   - `AggregateLintVerdict`: true
 - Artifact verification:
-  - `python tooling/verify_doc_artifacts.py` => `PASS`
+  - `python tooling/docs/verify_doc_artifacts.py` => `PASS`
