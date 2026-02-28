@@ -160,4 +160,4 @@
 - Minimal pinned fixture/evidence inputs:
   - `artifacts/inputs/fixtures/hello-core/fixture-manifest.json`
   - `artifacts/expected/goldens/hello-core/golden-manifest.json`
-  - `artifacts/inputs/vectors/hello-core/vectors-manifest.json`
+  - `artifacts/inputs/vectors/suites/hello-core/vectors-manifest.json`

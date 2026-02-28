@@ -243,7 +243,7 @@ def materialize() -> None:
     contracts_dir = ROOT / "specs" / "contracts"
     fixtures_dir = fixtures_root() / "hello-core"
     goldens_dir = goldens_root() / "hello-core"
-    vectors_dir = vectors_root() / "hello-core"
+    vectors_dir = vectors_root() / "suites" / "hello-core"
 
     catalogs = build_catalogs()
     digest_catalog = catalogs["digest_catalog"]
@@ -452,7 +452,7 @@ if __name__ == "__main__":
     print(f"  - contracts: {ROOT / "specs" / "contracts"}")
     print(f"  - fixtures:  {fixtures_root() / 'hello-core'}")
     print(f"  - goldens:   {goldens_root() / 'hello-core'}")
-    print(f"  - vectors:   {vectors_root() / 'hello-core'}")
+    print(f"  - vectors:   {vectors_root() / 'suites' / 'hello-core'}")
     catalogs = build_catalogs()
     operator_registry = build_operator_registry(catalogs["digest_map"])
     op_root_preimage = cbor_encode([

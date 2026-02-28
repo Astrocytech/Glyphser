@@ -18,7 +18,7 @@
 - `ecosystem-graph.yaml` -> `governance/ecosystem/ecosystem-graph.yaml`
 - `semantic_lint_report.txt` -> `governance/lint/semantic_lint_report.txt`
 - `semantic_lint_high_confidence.txt` -> `governance/lint/semantic_lint_high_confidence.txt`
-- `portfolio-release-notes-template.md` -> `product/docs/portfolio-release-notes-template.md`
+- `portfolio-release-notes-template.md` -> `product/handbook/portfolio-release-notes-template.md`
 - `RELEASE_NOTES_v0.1.0.md` -> `distribution/release/RELEASE_NOTES_v0.1.0.md`
 
 Compatibility stubs were left at original paths to avoid CI breakage.

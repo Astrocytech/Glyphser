@@ -1,6 +1,6 @@
 # Project File Inventory
 
-Generated: 2026-02-28 17:36:46 UTC
+Generated: 2026-02-28 21:28:48 UTC
 
 Scope: Full repository tree excluding transient local cache directories (`.git`, `.venv`, `.pytest_cache`, `__pycache__`, lint/type caches).
 
@@ -119,74 +119,76 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   │   └── tracking-monitoring
 │   │   │       ├── fixture-manifest.json
 │   │   │       └── run_event.json
-│   │   └── vectors
-│   │       ├── checkpoint-restore
-│   │       │   ├── vectors-manifest.json
-│   │       │   └── vectors.json
-│   │       ├── conformance
-│   │       │   ├── canonical_cbor
-│   │       │   │   ├── .gitkeep
-│   │       │   │   └── vectors.json
-│   │       │   ├── interface_hash
-│   │       │   │   ├── .gitkeep
-│   │       │   │   └── vectors.json
-│   │       │   ├── operators
-│   │       │   │   ├── Glyphser_Backend_LoadDriver.json
-│   │       │   │   ├── Glyphser_Certificate_EvidenceValidate.json
-│   │       │   │   ├── Glyphser_Checkpoint_CheckpointMigrate.json
-│   │       │   │   ├── Glyphser_Checkpoint_Restore.json
-│   │       │   │   ├── Glyphser_Config_ManifestMigrate.json
-│   │       │   │   ├── Glyphser_Data_NextBatch.json
-│   │       │   │   ├── Glyphser_DifferentialPrivacy_Apply.json
-│   │       │   │   ├── Glyphser_Error_Emit.json
-│   │       │   │   ├── Glyphser_Import_LegacyFramework.json
-│   │       │   │   ├── Glyphser_IO_SaveCheckpoint.json
-│   │       │   │   ├── Glyphser_Model_Forward.json
-│   │       │   │   ├── Glyphser_Model_ModelIR_Executor.json
-│   │       │   │   ├── Glyphser_Monitor_DriftCompute.json
-│   │       │   │   ├── Glyphser_Monitor_Emit.json
-│   │       │   │   ├── Glyphser_Monitor_Register.json
-│   │       │   │   ├── Glyphser_Registry_StageTransition.json
-│   │       │   │   ├── Glyphser_Registry_VersionCreate.json
-│   │       │   │   ├── Glyphser_TMMU_PrepareMemory.json
-│   │       │   │   ├── Glyphser_Trace_TraceMigrate.json
-│   │       │   │   ├── Glyphser_Tracking_ArtifactGet.json
-│   │       │   │   ├── Glyphser_Tracking_ArtifactList.json
-│   │       │   │   ├── Glyphser_Tracking_ArtifactPut.json
-│   │       │   │   ├── Glyphser_Tracking_ArtifactTombstone.json
-│   │       │   │   ├── Glyphser_Tracking_MetricLog.json
-│   │       │   │   ├── Glyphser_Tracking_RunCreate.json
-│   │       │   │   ├── Glyphser_Tracking_RunEnd.json
-│   │       │   │   └── Glyphser_Tracking_RunStart.json
-│   │       │   ├── storage
-│   │       │   │   └── state_recovery_vectors.json
-│   │       │   └── struct_validation
-│   │       │       ├── .gitkeep
-│   │       │       └── vectors.json
-│   │       ├── failure-injection
-│   │       │   ├── vectors-manifest.json
-│   │       │   └── vectors.json
-│   │       ├── hello-core
-│   │       │   ├── vectors-manifest.json
-│   │       │   └── vectors.json
-│   │       ├── perf-scale
-│   │       │   ├── vectors-manifest.json
-│   │       │   └── vectors.json
-│   │       ├── registry-lifecycle
-│   │       │   ├── vectors-manifest.json
-│   │       │   └── vectors.json
-│   │       ├── replay-determinism
-│   │       │   ├── vectors-manifest.json
-│   │       │   └── vectors.json
-│   │       ├── replay-suite-1
-│   │       │   ├── vectors-manifest.json
-│   │       │   └── vectors.json
-│   │       ├── replay-suites
-│   │       │   └── index.json
-│   │       ├── tracking-monitoring
-│   │       │   ├── vectors-manifest.json
-│   │       │   └── vectors.json
-│   │       └── catalog.json
+│   │   ├── vectors
+│   │   │   ├── primitives
+│   │   │   │   ├── canonical_cbor
+│   │   │   │   │   ├── .gitkeep
+│   │   │   │   │   └── vectors.json
+│   │   │   │   ├── interface_hash
+│   │   │   │   │   ├── .gitkeep
+│   │   │   │   │   └── vectors.json
+│   │   │   │   ├── operators
+│   │   │   │   │   ├── Glyphser_Backend_LoadDriver.json
+│   │   │   │   │   ├── Glyphser_Certificate_EvidenceValidate.json
+│   │   │   │   │   ├── Glyphser_Checkpoint_CheckpointMigrate.json
+│   │   │   │   │   ├── Glyphser_Checkpoint_Restore.json
+│   │   │   │   │   ├── Glyphser_Config_ManifestMigrate.json
+│   │   │   │   │   ├── Glyphser_Data_NextBatch.json
+│   │   │   │   │   ├── Glyphser_DifferentialPrivacy_Apply.json
+│   │   │   │   │   ├── Glyphser_Error_Emit.json
+│   │   │   │   │   ├── Glyphser_Import_LegacyFramework.json
+│   │   │   │   │   ├── Glyphser_IO_SaveCheckpoint.json
+│   │   │   │   │   ├── Glyphser_Model_Forward.json
+│   │   │   │   │   ├── Glyphser_Model_ModelIR_Executor.json
+│   │   │   │   │   ├── Glyphser_Monitor_DriftCompute.json
+│   │   │   │   │   ├── Glyphser_Monitor_Emit.json
+│   │   │   │   │   ├── Glyphser_Monitor_Register.json
+│   │   │   │   │   ├── Glyphser_Registry_StageTransition.json
+│   │   │   │   │   ├── Glyphser_Registry_VersionCreate.json
+│   │   │   │   │   ├── Glyphser_TMMU_PrepareMemory.json
+│   │   │   │   │   ├── Glyphser_Trace_TraceMigrate.json
+│   │   │   │   │   ├── Glyphser_Tracking_ArtifactGet.json
+│   │   │   │   │   ├── Glyphser_Tracking_ArtifactList.json
+│   │   │   │   │   ├── Glyphser_Tracking_ArtifactPut.json
+│   │   │   │   │   ├── Glyphser_Tracking_ArtifactTombstone.json
+│   │   │   │   │   ├── Glyphser_Tracking_MetricLog.json
+│   │   │   │   │   ├── Glyphser_Tracking_RunCreate.json
+│   │   │   │   │   ├── Glyphser_Tracking_RunEnd.json
+│   │   │   │   │   └── Glyphser_Tracking_RunStart.json
+│   │   │   │   ├── storage
+│   │   │   │   │   └── state_recovery_vectors.json
+│   │   │   │   └── struct_validation
+│   │   │   │       ├── .gitkeep
+│   │   │   │       └── vectors.json
+│   │   │   ├── suites
+│   │   │   │   ├── checkpoint-restore
+│   │   │   │   │   ├── vectors-manifest.json
+│   │   │   │   │   └── vectors.json
+│   │   │   │   ├── failure-injection
+│   │   │   │   │   ├── vectors-manifest.json
+│   │   │   │   │   └── vectors.json
+│   │   │   │   ├── hello-core
+│   │   │   │   │   ├── vectors-manifest.json
+│   │   │   │   │   └── vectors.json
+│   │   │   │   ├── perf-scale
+│   │   │   │   │   ├── vectors-manifest.json
+│   │   │   │   │   └── vectors.json
+│   │   │   │   ├── registry-lifecycle
+│   │   │   │   │   ├── vectors-manifest.json
+│   │   │   │   │   └── vectors.json
+│   │   │   │   ├── replay-determinism
+│   │   │   │   │   ├── vectors-manifest.json
+│   │   │   │   │   └── vectors.json
+│   │   │   │   ├── replay-suite-1
+│   │   │   │   │   ├── vectors-manifest.json
+│   │   │   │   │   └── vectors.json
+│   │   │   │   ├── replay-suites
+│   │   │   │   │   └── index.json
+│   │   │   │   └── tracking-monitoring
+│   │   │   │       ├── vectors-manifest.json
+│   │   │   │       └── vectors.json
+│   │   │   └── catalog.json
+│   │   └── README.md
 │   └── README.md
 ├── distribution
 │   ├── release
@@ -332,7 +334,7 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   ├── LOCAL_NETWORK.md
 │   │   ├── OFFERS.md
 │   │   └── STRUCTURE_TRACK.md
-│   ├── docs
+│   ├── handbook
 │   │   ├── how_to
 │   │   │   └── MILESTONE_15_TWO_HOST_RUNBOOK.md
 │   │   ├── reports
@@ -485,6 +487,7 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   ├── operator_registry.cbor
 │   │   ├── operator_registry.json
 │   │   ├── operator_registry_source.json
+│   │   ├── README.md
 │   │   ├── schema_catalog.cbor
 │   │   └── vectors_catalog.cbor
 │   ├── examples
@@ -625,7 +628,8 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   ├── CONFORMANCE_SUITE_v0.1.md
 │   │   ├── DETERMINISM_PROFILE_v0.1.md
 │   │   ├── ERROR_CODES.md
-│   │   └── NUMERIC_POLICY_v0.1.md
+│   │   ├── NUMERIC_POLICY_v0.1.md
+│   │   └── README.md
 │   ├── schemas
 │   │   ├── layers
 │   │   │   ├── L1
@@ -786,6 +790,14 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   └── test_trace_parser_fuzz.py
 │   ├── ga
 │   │   └── test_ga_release_gate.py
+│   ├── gates
+│   │   ├── test_doc_code_separation_gate.py
+│   │   ├── test_domain_dependency_gate.py
+│   │   ├── test_legacy_path_gate.py
+│   │   ├── test_observability_gate.py
+│   │   ├── test_spec_link_gate.py
+│   │   ├── test_spec_schema_map_gate.py
+│   │   └── test_structural_invariants_gate.py
 │   ├── goldens
 │   │   └── test_golden_inventory.py
 │   ├── interface_hash
@@ -808,14 +820,6 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   ├── test_glyphser_tmmu_stubs.py
 │   │   ├── test_glyphser_trace_stubs.py
 │   │   └── test_glyphser_tracking_stubs.py
-│   ├── ops
-│   │   ├── test_doc_code_separation_gate.py
-│   │   ├── test_domain_dependency_gate.py
-│   │   ├── test_legacy_path_gate.py
-│   │   ├── test_observability_gate.py
-│   │   ├── test_spec_link_gate.py
-│   │   ├── test_spec_schema_map_gate.py
-│   │   └── test_structural_invariants_gate.py
 │   ├── replay
 │   │   ├── test_determinism_regression_matrix.py
 │   │   └── test_replay_divergence.py
@@ -932,7 +936,6 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   ├── generate_project_inventory.py
 │   │   └── validate_data_integrity.py
 │   ├── __init__.py
-│   ├── path_config.py
 │   ├── push_button.py
 │   └── README.md
 ├── .gitignore
@@ -1010,6 +1013,7 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `artifacts/generated/build/deploy/regulated/runtime_config.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
 | `artifacts/generated/build/metadata/codegen_manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
 | `artifacts/generated/build/metadata/input_hashes.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/README.md` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
 | `artifacts/inputs/fixtures/checkpoint-restore/checkpoint_input.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
 | `artifacts/inputs/fixtures/checkpoint-restore/fixture-manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
 | `artifacts/inputs/fixtures/checkpoint-restore/restore_request.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
@@ -1035,57 +1039,57 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `artifacts/inputs/fixtures/tracking-monitoring/fixture-manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
 | `artifacts/inputs/fixtures/tracking-monitoring/run_event.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
 | `artifacts/inputs/vectors/catalog.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/checkpoint-restore/vectors-manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/checkpoint-restore/vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/canonical_cbor/.gitkeep` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/canonical_cbor/vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/interface_hash/.gitkeep` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/interface_hash/vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Backend_LoadDriver.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Certificate_EvidenceValidate.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Checkpoint_CheckpointMigrate.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Checkpoint_Restore.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Config_ManifestMigrate.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Data_NextBatch.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_DifferentialPrivacy_Apply.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Error_Emit.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_IO_SaveCheckpoint.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Import_LegacyFramework.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Model_Forward.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Model_ModelIR_Executor.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Monitor_DriftCompute.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Monitor_Emit.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Monitor_Register.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Registry_StageTransition.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Registry_VersionCreate.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_TMMU_PrepareMemory.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Trace_TraceMigrate.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Tracking_ArtifactGet.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Tracking_ArtifactList.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Tracking_ArtifactPut.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Tracking_ArtifactTombstone.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Tracking_MetricLog.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Tracking_RunCreate.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Tracking_RunEnd.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/operators/Glyphser_Tracking_RunStart.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/storage/state_recovery_vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/struct_validation/.gitkeep` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/conformance/struct_validation/vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/failure-injection/vectors-manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/failure-injection/vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/hello-core/vectors-manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/hello-core/vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/perf-scale/vectors-manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/perf-scale/vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/registry-lifecycle/vectors-manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/registry-lifecycle/vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/replay-determinism/vectors-manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/replay-determinism/vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/replay-suite-1/vectors-manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/replay-suite-1/vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/replay-suites/index.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/tracking-monitoring/vectors-manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
-| `artifacts/inputs/vectors/tracking-monitoring/vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/canonical_cbor/.gitkeep` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/canonical_cbor/vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/interface_hash/.gitkeep` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/interface_hash/vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Backend_LoadDriver.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Certificate_EvidenceValidate.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Checkpoint_CheckpointMigrate.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Checkpoint_Restore.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Config_ManifestMigrate.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Data_NextBatch.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_DifferentialPrivacy_Apply.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Error_Emit.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_IO_SaveCheckpoint.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Import_LegacyFramework.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Model_Forward.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Model_ModelIR_Executor.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Monitor_DriftCompute.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Monitor_Emit.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Monitor_Register.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Registry_StageTransition.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Registry_VersionCreate.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_TMMU_PrepareMemory.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Trace_TraceMigrate.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Tracking_ArtifactGet.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Tracking_ArtifactList.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Tracking_ArtifactPut.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Tracking_ArtifactTombstone.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Tracking_MetricLog.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Tracking_RunCreate.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Tracking_RunEnd.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/operators/Glyphser_Tracking_RunStart.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/storage/state_recovery_vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/struct_validation/.gitkeep` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/primitives/struct_validation/vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/suites/checkpoint-restore/vectors-manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/suites/checkpoint-restore/vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/suites/failure-injection/vectors-manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/suites/failure-injection/vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/suites/hello-core/vectors-manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/suites/hello-core/vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/suites/perf-scale/vectors-manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/suites/perf-scale/vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/suites/registry-lifecycle/vectors-manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/suites/registry-lifecycle/vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/suites/replay-determinism/vectors-manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/suites/replay-determinism/vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/suites/replay-suite-1/vectors-manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/suites/replay-suite-1/vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/suites/replay-suites/index.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/suites/tracking-monitoring/vectors-manifest.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
+| `artifacts/inputs/vectors/suites/tracking-monitoring/vectors.json` | Deterministic inputs, expected outputs, bundles, or generated artifacts. |
 | `distribution/README.md` | Release, packaging, signing, and distribution-facing assets. |
 | `distribution/release/CHECKSUMS_v0.1.0.sha256` | Release, packaging, signing, and distribution-facing assets. |
 | `distribution/release/CHECKSUMS_v0.1.0.sha256.asc` | Release, packaging, signing, and distribution-facing assets. |
@@ -1194,47 +1198,47 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `product/business/LOCAL_NETWORK.md` | Product-facing documentation, operations guides, and public artifacts. |
 | `product/business/OFFERS.md` | Product-facing documentation, operations guides, and public artifacts. |
 | `product/business/STRUCTURE_TRACK.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/ACCESSIBILITY_REVIEW.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/ANNUAL_SECURITY_REVIEW_POLICY.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/API_CLI_COMMANDS.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/API_LIFECYCLE_POLICY.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/API_REFERENCE_v1.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/API_STYLE_GUIDE.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/CHANGE_COMMUNICATION_SLA.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/COMPLIANCE_EVIDENCE_INDEX.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/DEPENDENCY_LICENSE_REVIEW.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/DOCS_VERSIONING_POLICY.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/GA_COMPATIBILITY_GUARANTEES.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/GA_CONTRACTUAL_SUPPORT_SLA.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/GA_GO_NO_GO_CHECKLIST.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/GA_MIGRATION_GUIDE.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/GA_RELEASE_TRAIN_POLICY.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/GA_SIGNOFF.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/GA_STATUS_INCIDENT_COMMUNICATION.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/GA_SUPPORT_LIFECYCLE.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/GA_SUPPORT_MATRIX.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/GA_SUPPORT_OPERATIONS_READINESS.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/M17_APPROVAL.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/M18_CONTRACT_TEST_REPORT.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/M19_RECOVERY_TEST_REPORT.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/M20_SECURITY_TEST_REPORT.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/M21_DEPLOYMENT_TEST_REPORT.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/M22_OBSERVABILITY_REPORT.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/M23_EXTERNAL_VALIDATION_REPORT.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/M24_GA_RELEASE_REPORT.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/PERSISTENCE_SCHEMA_v1.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/PERSISTENT_STORAGE_ADAPTER_CONTRACT.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/POST_GA_GOVERNANCE.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/PRIVACY_IMPACT_ASSESSMENT_WORKFLOW.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/PRODUCT_SCOPE.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/RUNTIME_PROFILES.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/SUPPLY_CHAIN_TRUST_POLICY.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/how_to/MILESTONE_15_TWO_HOST_RUNBOOK.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/portfolio-release-notes-template.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/reports/CONFORMANCE_REPORT_TEMPLATE.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/reports/INTEGRATION_REPORT_TEMPLATE.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/reports/OUTREACH_2026-02-27.md` | Product-facing documentation, operations guides, and public artifacts. |
-| `product/docs/reports/merged_docs.txt` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/ACCESSIBILITY_REVIEW.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/ANNUAL_SECURITY_REVIEW_POLICY.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/API_CLI_COMMANDS.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/API_LIFECYCLE_POLICY.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/API_REFERENCE_v1.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/API_STYLE_GUIDE.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/CHANGE_COMMUNICATION_SLA.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/COMPLIANCE_EVIDENCE_INDEX.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/DEPENDENCY_LICENSE_REVIEW.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/DOCS_VERSIONING_POLICY.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/GA_COMPATIBILITY_GUARANTEES.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/GA_CONTRACTUAL_SUPPORT_SLA.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/GA_GO_NO_GO_CHECKLIST.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/GA_MIGRATION_GUIDE.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/GA_RELEASE_TRAIN_POLICY.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/GA_SIGNOFF.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/GA_STATUS_INCIDENT_COMMUNICATION.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/GA_SUPPORT_LIFECYCLE.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/GA_SUPPORT_MATRIX.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/GA_SUPPORT_OPERATIONS_READINESS.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/M17_APPROVAL.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/M18_CONTRACT_TEST_REPORT.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/M19_RECOVERY_TEST_REPORT.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/M20_SECURITY_TEST_REPORT.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/M21_DEPLOYMENT_TEST_REPORT.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/M22_OBSERVABILITY_REPORT.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/M23_EXTERNAL_VALIDATION_REPORT.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/M24_GA_RELEASE_REPORT.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/PERSISTENCE_SCHEMA_v1.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/PERSISTENT_STORAGE_ADAPTER_CONTRACT.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/POST_GA_GOVERNANCE.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/PRIVACY_IMPACT_ASSESSMENT_WORKFLOW.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/PRODUCT_SCOPE.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/RUNTIME_PROFILES.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/SUPPLY_CHAIN_TRUST_POLICY.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/how_to/MILESTONE_15_TWO_HOST_RUNBOOK.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/portfolio-release-notes-template.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/reports/CONFORMANCE_REPORT_TEMPLATE.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/reports/INTEGRATION_REPORT_TEMPLATE.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/reports/OUTREACH_2026-02-27.md` | Product-facing documentation, operations guides, and public artifacts. |
+| `product/handbook/reports/merged_docs.txt` | Product-facing documentation, operations guides, and public artifacts. |
 | `product/ops/DEPLOYMENT_RUNBOOK.md` | Product-facing documentation, operations guides, and public artifacts. |
 | `product/ops/INCIDENT_RESPONSE.md` | Product-facing documentation, operations guides, and public artifacts. |
 | `product/ops/ROLLBACK_RUNBOOK.md` | Product-facing documentation, operations guides, and public artifacts. |
@@ -1305,6 +1309,7 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `specs/compatibility/CERTIFICATION_DELIVERABLES.md` | Normative specification, contracts, and layer documentation. |
 | `specs/compatibility/COMPATIBILITY_CRITERIA_v0.1.md` | Normative specification, contracts, and layer documentation. |
 | `specs/compatibility/VENDOR_SELF_TEST_KIT.md` | Normative specification, contracts, and layer documentation. |
+| `specs/contracts/README.md` | Normative specification, contracts, and layer documentation. |
 | `specs/contracts/capability_catalog.cbor` | Normative specification, contracts, and layer documentation. |
 | `specs/contracts/catalog-manifest.json` | Normative specification, contracts, and layer documentation. |
 | `specs/contracts/digest_catalog.cbor` | Normative specification, contracts, and layer documentation. |
@@ -1447,6 +1452,7 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `specs/policies/DETERMINISM_PROFILE_v0.1.md` | Normative specification, contracts, and layer documentation. |
 | `specs/policies/ERROR_CODES.md` | Normative specification, contracts, and layer documentation. |
 | `specs/policies/NUMERIC_POLICY_v0.1.md` | Normative specification, contracts, and layer documentation. |
+| `specs/policies/README.md` | Normative specification, contracts, and layer documentation. |
 | `specs/schemas/README.md` | Normative specification, contracts, and layer documentation. |
 | `specs/schemas/SCHEMA_CONVENTIONS.txt` | Normative specification, contracts, and layer documentation. |
 | `specs/schemas/SCHEMA_FORMAT_DECISION.txt` | Normative specification, contracts, and layer documentation. |
@@ -1593,6 +1599,13 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `tests/fuzz/test_tmmu_planner_invariants.py` | Automated test coverage across unit/integration/conformance domains. |
 | `tests/fuzz/test_trace_parser_fuzz.py` | Automated test coverage across unit/integration/conformance domains. |
 | `tests/ga/test_ga_release_gate.py` | Automated test coverage across unit/integration/conformance domains. |
+| `tests/gates/test_doc_code_separation_gate.py` | Automated test coverage across unit/integration/conformance domains. |
+| `tests/gates/test_domain_dependency_gate.py` | Automated test coverage across unit/integration/conformance domains. |
+| `tests/gates/test_legacy_path_gate.py` | Automated test coverage across unit/integration/conformance domains. |
+| `tests/gates/test_observability_gate.py` | Automated test coverage across unit/integration/conformance domains. |
+| `tests/gates/test_spec_link_gate.py` | Automated test coverage across unit/integration/conformance domains. |
+| `tests/gates/test_spec_schema_map_gate.py` | Automated test coverage across unit/integration/conformance domains. |
+| `tests/gates/test_structural_invariants_gate.py` | Automated test coverage across unit/integration/conformance domains. |
 | `tests/goldens/test_golden_inventory.py` | Automated test coverage across unit/integration/conformance domains. |
 | `tests/interface_hash/__init__.py` | Automated test coverage across unit/integration/conformance domains. |
 | `tests/interface_hash/test_vectors.py` | Automated test coverage across unit/integration/conformance domains. |
@@ -1612,13 +1625,6 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `tests/operators/test_glyphser_tmmu_stubs.py` | Automated test coverage across unit/integration/conformance domains. |
 | `tests/operators/test_glyphser_trace_stubs.py` | Automated test coverage across unit/integration/conformance domains. |
 | `tests/operators/test_glyphser_tracking_stubs.py` | Automated test coverage across unit/integration/conformance domains. |
-| `tests/ops/test_doc_code_separation_gate.py` | Automated test coverage across unit/integration/conformance domains. |
-| `tests/ops/test_domain_dependency_gate.py` | Automated test coverage across unit/integration/conformance domains. |
-| `tests/ops/test_legacy_path_gate.py` | Automated test coverage across unit/integration/conformance domains. |
-| `tests/ops/test_observability_gate.py` | Automated test coverage across unit/integration/conformance domains. |
-| `tests/ops/test_spec_link_gate.py` | Automated test coverage across unit/integration/conformance domains. |
-| `tests/ops/test_spec_schema_map_gate.py` | Automated test coverage across unit/integration/conformance domains. |
-| `tests/ops/test_structural_invariants_gate.py` | Automated test coverage across unit/integration/conformance domains. |
 | `tests/replay/test_determinism_regression_matrix.py` | Automated test coverage across unit/integration/conformance domains. |
 | `tests/replay/test_replay_divergence.py` | Automated test coverage across unit/integration/conformance domains. |
 | `tests/security/test_authz_and_audit.py` | Automated test coverage across unit/integration/conformance domains. |
@@ -1694,7 +1700,6 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `tooling/gates/vector_gate.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/lib/__init__.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/lib/path_config.py` | Automation, gate, build, release, or developer tooling script. |
-| `tooling/path_config.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/push_button.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/registry/__init__.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/registry/build_operator_registry.py` | Automation, gate, build, release, or developer tooling script. |

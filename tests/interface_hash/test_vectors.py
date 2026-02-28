@@ -7,7 +7,7 @@ from runtime.glyphser.registry.interface_hash import compute_interface_hash
 from tooling.docs import materialize_doc_artifacts as mda
 
 ROOT = Path(__file__).resolve().parents[2]
-VECTORS = ROOT / "artifacts" / "inputs" / "vectors" / "conformance" / "interface_hash" / "vectors.json"
+VECTORS = ROOT / "artifacts" / "inputs" / "vectors" / "primitives" / "interface_hash" / "vectors.json"
 
 
 def test_interface_hash_vectors():

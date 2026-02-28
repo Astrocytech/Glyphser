@@ -2465,7 +2465,7 @@
   - `execution_certificate.json`
   - `golden-identities.json`
   - `golden-manifest.json`
-- `artifacts/inputs/vectors/hello-core/`
+- `artifacts/inputs/vectors/suites/hello-core/`
   - `vectors.json`
   - `vectors-manifest.json`
 

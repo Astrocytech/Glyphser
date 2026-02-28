@@ -8,19 +8,19 @@ Status: ACTIVE
 - Interface hash: `conformance/artifacts/inputs/vectors/interface_hash/vectors.json`
 
 ## Integration Vectors
-- Hello-core: `artifacts/inputs/vectors/hello-core/vectors.json`
-- Checkpoint/restore: `artifacts/inputs/vectors/checkpoint-restore/vectors.json`
-- Replay determinism: `artifacts/inputs/vectors/replay-determinism/vectors.json`
-- Registry lifecycle: `artifacts/inputs/vectors/registry-lifecycle/vectors.json`
-- Tracking/monitoring: `artifacts/inputs/vectors/tracking-monitoring/vectors.json`
-- Failure injection: `artifacts/inputs/vectors/failure-injection/vectors.json`
-- Perf/scale: `artifacts/inputs/vectors/perf-scale/vectors.json`
-- Failure injection: `artifacts/inputs/vectors/failure-injection/vectors.json`
-- Perf/scale: `artifacts/inputs/vectors/perf-scale/vectors.json`
-- Checkpoint/restore: `artifacts/inputs/vectors/checkpoint-restore/vectors.json`
-- Replay determinism: `artifacts/inputs/vectors/replay-determinism/vectors.json`
-- Registry lifecycle: `artifacts/inputs/vectors/registry-lifecycle/vectors.json`
-- Tracking/monitoring: `artifacts/inputs/vectors/tracking-monitoring/vectors.json`
+- Hello-core: `artifacts/inputs/vectors/suites/hello-core/vectors.json`
+- Checkpoint/restore: `artifacts/inputs/vectors/suites/checkpoint-restore/vectors.json`
+- Replay determinism: `artifacts/inputs/vectors/suites/replay-determinism/vectors.json`
+- Registry lifecycle: `artifacts/inputs/vectors/suites/registry-lifecycle/vectors.json`
+- Tracking/monitoring: `artifacts/inputs/vectors/suites/tracking-monitoring/vectors.json`
+- Failure injection: `artifacts/inputs/vectors/suites/failure-injection/vectors.json`
+- Perf/scale: `artifacts/inputs/vectors/suites/perf-scale/vectors.json`
+- Failure injection: `artifacts/inputs/vectors/suites/failure-injection/vectors.json`
+- Perf/scale: `artifacts/inputs/vectors/suites/perf-scale/vectors.json`
+- Checkpoint/restore: `artifacts/inputs/vectors/suites/checkpoint-restore/vectors.json`
+- Replay determinism: `artifacts/inputs/vectors/suites/replay-determinism/vectors.json`
+- Registry lifecycle: `artifacts/inputs/vectors/suites/registry-lifecycle/vectors.json`
+- Tracking/monitoring: `artifacts/inputs/vectors/suites/tracking-monitoring/vectors.json`
 
 ## Replay / Checkpoint
 - Trace hash-chain: `tests/trace/test_compute_trace_hash.py`

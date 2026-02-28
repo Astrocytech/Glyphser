@@ -103,7 +103,7 @@ def _check_operator_vectors_source_of_truth() -> Dict[str, object]:
                             "text": line.strip()[:200],
                         }
                     )
-    canonical_dir = ROOT / "artifacts" / "inputs" / "vectors" / "conformance" / "operators"
+    canonical_dir = ROOT / "artifacts" / "inputs" / "vectors" / "primitives" / "operators"
     has_canonical_vectors = canonical_dir.exists() and any(canonical_dir.glob("*.json"))
     status = "PASS" if not violations and has_canonical_vectors else "FAIL"
     return {

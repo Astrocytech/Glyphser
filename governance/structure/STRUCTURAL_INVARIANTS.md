@@ -7,7 +7,7 @@ These invariants define non-negotiable repository structure boundaries.
 - Test code must not store vector JSON files under `tests/`.
 - Runtime code in `runtime/` must not import or reference `governance/`, `product/`, or `evidence/` paths.
 - Legacy vector path `tests/conformance/vectors/` must not appear in active references.
-- Operator conformance vectors are canonical under `artifacts/inputs/vectors/conformance/operators/`.
+- Operator conformance vectors are canonical under `artifacts/inputs/vectors/primitives/operators/`.
 - Specs operator examples under `specs/examples/operators/` are illustrative-only and must not be referenced by test/tooling execution paths.
 - Generated artifacts must remain partitioned under:
   - `runtime/glyphser/generated/`

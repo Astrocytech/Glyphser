@@ -6,7 +6,7 @@ Status: PASS
 
 ## Commands Executed
 - `python3 tooling/gates/observability_gate.py`
-- `python3 -m pytest tests/ops/test_observability_gate.py -q`
+- `python3 -m pytest tests/gates/test_observability_gate.py -q`
 - `python3 tooling/commands/push_button.py`
 
 ## Result Summary

@@ -15,8 +15,8 @@ ARTIFACT_PATHS = [
     ROOT / "artifacts" / "expected" / "goldens" / "hello-core" / "golden-manifest.json",
     ROOT / "artifacts" / "expected" / "goldens" / "hello-core" / "golden-identities.json",
     ROOT / "artifacts" / "expected" / "goldens" / "hello-core" / "trace_snippet.json",
-    ROOT / "artifacts" / "inputs" / "vectors" / "hello-core" / "vectors-manifest.json",
-    ROOT / "artifacts" / "inputs" / "vectors" / "hello-core" / "vectors.json",
+    ROOT / "artifacts" / "inputs" / "vectors" / "suites" / "hello-core" / "vectors-manifest.json",
+    ROOT / "artifacts" / "inputs" / "vectors" / "suites" / "hello-core" / "vectors.json",
 ]
 
 

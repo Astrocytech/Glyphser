@@ -83,8 +83,8 @@
   - `artifacts/expected/goldens/hello-core/execution_certificate.json`
   - `specs/contracts/operator_registry.cbor`
   - `specs/contracts/catalog-manifest.json`
-  - `artifacts/inputs/vectors/hello-core/vectors.json`
-  - `artifacts/inputs/vectors/hello-core/vectors-manifest.json`
+  - `artifacts/inputs/vectors/suites/hello-core/vectors.json`
+  - `artifacts/inputs/vectors/suites/hello-core/vectors-manifest.json`
 
 ## 4.A Artifact Identity Verification (Normative)
 - Before claiming runnable-reference conformance, run:

@@ -12200,7 +12200,7 @@ FILE: layer3-tests/Release-Gates.md
   - `contracts/catalog-manifest.json`
   - `artifacts/inputs/fixtures/hello-core/fixture-manifest.json`
   - `artifacts/expected/goldens/hello-core/golden-manifest.json`
-  - `artifacts/inputs/vectors/hello-core/vectors-manifest.json`
+  - `artifacts/inputs/vectors/suites/hello-core/vectors-manifest.json`
 - Deterministic verification command:
   - `python tooling/docs/verify_doc_artifacts.py`
 
@@ -19052,8 +19052,8 @@ FILE: layer4-implementation/Reference-Stack-Minimal.md
   - `artifacts/expected/goldens/hello-core/execution_certificate.json`
   - `contracts/operator_registry.cbor`
   - `contracts/catalog-manifest.json`
-  - `artifacts/inputs/vectors/hello-core/vectors.json`
-  - `artifacts/inputs/vectors/hello-core/vectors-manifest.json`
+  - `artifacts/inputs/vectors/suites/hello-core/vectors.json`
+  - `artifacts/inputs/vectors/suites/hello-core/vectors-manifest.json`
 
 ## 4.A Artifact Identity Verification (Normative)
 - Before claiming runnable-reference conformance, run:
@@ -19242,7 +19242,7 @@ FILE: layer4-implementation/Release-Evidence-Assembler.md
 - Minimal pinned fixture/evidence inputs:
   - `artifacts/inputs/fixtures/hello-core/fixture-manifest.json`
   - `artifacts/expected/goldens/hello-core/golden-manifest.json`
-  - `artifacts/inputs/vectors/hello-core/vectors-manifest.json`
+  - `artifacts/inputs/vectors/suites/hello-core/vectors-manifest.json`
 
 FILE: layer4-implementation/Repo-Layout-and-Interfaces.md
 =========================================================

@@ -64,7 +64,7 @@ def main() -> int:
         goldens_root() / "hello-core",
         conformance_results_root() / "latest.json",
         conformance_reports_root() / "latest.json",
-        first_existing([rel("docs", "VERIFY.md"), rel("product", "docs", "VERIFY.md")]),
+        first_existing([rel("docs", "VERIFY.md"), rel("product", "handbook", "VERIFY.md")]),
     ]
 
     files = _iter_bundle_files(paths)

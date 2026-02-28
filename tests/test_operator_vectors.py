@@ -6,7 +6,7 @@ from pathlib import Path
 from runtime.glyphser.generated import operators as gen_ops
 
 ROOT = Path(__file__).resolve().parents[1]
-VEC_ROOT = ROOT / "artifacts" / "inputs" / "vectors" / "conformance" / "operators"
+VEC_ROOT = ROOT / "artifacts" / "inputs" / "vectors" / "primitives" / "operators"
 
 
 def test_operator_vectors_stub_errors():

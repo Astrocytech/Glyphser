@@ -5,7 +5,7 @@ from pathlib import Path
 from runtime.glyphser.generated import operators as gen_ops
 
 ROOT = Path(__file__).resolve().parents[2]
-VEC_ROOT = ROOT / "artifacts" / "inputs" / "vectors" / "conformance" / "operators"
+VEC_ROOT = ROOT / "artifacts" / "inputs" / "vectors" / "primitives" / "operators"
 
 def _load(op_id: str) -> dict:
     path = VEC_ROOT / (op_id.replace(".", "_") + ".json")

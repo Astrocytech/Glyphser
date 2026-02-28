@@ -8,8 +8,8 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
 CONTRACT = ROOT / "specs" / "contracts" / "openapi_public_api_v1.yaml"
-STYLE_GUIDE = ROOT / "product" / "docs" / "API_STYLE_GUIDE.md"
-LIFECYCLE = ROOT / "product" / "docs" / "API_LIFECYCLE_POLICY.md"
+STYLE_GUIDE = ROOT / "product" / "handbook" / "API_STYLE_GUIDE.md"
+LIFECYCLE = ROOT / "product" / "handbook" / "API_LIFECYCLE_POLICY.md"
 
 
 def load_contract(path: Path = CONTRACT) -> Dict[str, Any]:
@@ -58,4 +58,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

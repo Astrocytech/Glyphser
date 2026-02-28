@@ -390,7 +390,7 @@ Clarifications:
 	- Source of truth: `specs/layers/L1-foundation/API-Interfaces.md` + `specs/layers/L1-foundation/Error-Codes.md`.
 	- Required payload fields for error vectors: `code_id`, `message`, `context.operator_id`.
 	- Each `allowed_error_codes` entry must have at least one vector case.
-	- Vector storage: `artifacts/inputs/vectors/conformance/operators/<OperatorId>.json`.
+	- Vector storage: `artifacts/inputs/vectors/primitives/operators/<OperatorId>.json`.
 	- Tests must reference vectors via `tests/test_operator_vectors.py` (no inline duplicates).
 	- Use exact match on error payloads; no partial matching.
 	- Error `message` must match the template in Error-Codes unless explicitly overridden in vectors.
@@ -418,12 +418,12 @@ Clarifications:
 	- Replay comparison must use canonical CBOR where specified by contract, otherwise canonical JSON.
 	- Gate requires bitwise identical hashes for trace and certificate.
 	- Each suite must include at least one failure-path replay case.
-	- Add a suite index file: `artifacts/inputs/vectors/replay-suites/index.json` listing all suites.
+	- Add a suite index file: `artifacts/inputs/vectors/suites/replay-suites/index.json` listing all suites.
 	- Suite index must include hash of each suite’s vector manifest.
 Status: COMPLETE.
 DONE (so far):
 	- Added replay suite fixture set `replay-suite-1` with vectors and goldens.
-	- Added suite index `artifacts/inputs/vectors/replay-suites/index.json` with manifest hash.
+	- Added suite index `artifacts/inputs/vectors/suites/replay-suites/index.json` with manifest hash.
 	- Added replay suite test `tests/test_replay_suite.py`.
 
 Milestone 13: Codegen Diff Fidelity
@@ -617,7 +617,7 @@ DONE:
 		- `evidence/recovery/checkpoint-backup.json`
 	- Added recovery tests and vectors:
 		- `tests/storage/test_state_store_recovery.py`
-		- `artifacts/inputs/vectors/conformance/storage/state_recovery_vectors.json`
+		- `artifacts/inputs/vectors/primitives/storage/state_recovery_vectors.json`
 	- Verified gates:
 		- `python3 tooling/gates/state_recovery_gate.py` -> PASS
 		- `python3 tooling/commands/push_button.py` -> PASS with `STATE_RECOVERY_GATE: PASS`
@@ -754,7 +754,7 @@ DONE:
 		- `tooling/gates/observability_gate.py`
 		- outputs `evidence/observability/latest.json`, `slo_status.json`, `alert_test.json`, `incident_drill.json`, `dashboard_inventory.json`, `lineage_index.json`, `synthetic_probe.json`
 	- Added observability gate test:
-		- `tests/ops/test_observability_gate.py`
+		- `tests/gates/test_observability_gate.py`
 	- Wired observability gate into `tooling/commands/push_button.py`.
 	- Added milestone evidence report:
 		- `docs/product/M22_OBSERVABILITY_REPORT.md`
