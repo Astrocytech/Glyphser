@@ -13,7 +13,7 @@ sys.path.insert(0, str(ROOT))
 from tooling.lib.path_config import evidence_root
 sys.path.insert(0, str(ROOT))
 
-from src.glyphser.storage.state_store import DurableStateStore, SCHEMA_VERSION
+from runtime.glyphser.storage.state_store import DurableStateStore, SCHEMA_VERSION
 
 OUT_DIR = evidence_root() / "recovery"
 

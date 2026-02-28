@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Dict, List
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT = ROOT / "evidence" / "structure" / "structural_invariants.json"
+OUT = ROOT / "evidence" / "gates" / "structure" / "structural_invariants.json"
 
 
 def _scan_text_files(base: Path, exts: set[str]) -> List[Path]:
@@ -33,7 +33,7 @@ def _check_runtime_import_boundaries() -> Dict[str, object]:
     import_pat = re.compile(r"^\s*(from|import)\s+(governance|product|evidence)(\.|\b)")
     path_pat = re.compile(r"(governance/|product/|evidence/)")
     violations: List[Dict[str, object]] = []
-    for path in _scan_text_files(ROOT / "src", {".py"}):
+    for path in _scan_text_files(ROOT / "runtime", {".py"}):
         lines = path.read_text(encoding="utf-8", errors="ignore").splitlines()
         for i, line in enumerate(lines, start=1):
             if import_pat.search(line) or path_pat.search(line):
@@ -118,9 +118,10 @@ def _check_operator_vectors_source_of_truth() -> Dict[str, object]:
 def _check_generated_layout() -> Dict[str, object]:
     req_dirs = [
         ROOT / "artifacts" / "generated" / "build" / "codegen",
+        ROOT / "artifacts" / "generated" / "build" / "codegen_staging",
         ROOT / "artifacts" / "generated" / "build" / "deploy",
         ROOT / "artifacts" / "generated" / "build" / "metadata",
-        ROOT / "runtime_state",
+        ROOT / "evidence/state",
     ]
     missing_dirs = [str(p.relative_to(ROOT)).replace("\\", "/") for p in req_dirs if not p.exists()]
 
@@ -143,11 +144,11 @@ def _check_generated_layout() -> Dict[str, object]:
     forbidden_present = [str(p.relative_to(ROOT)).replace("\\", "/") for p in forbidden if p.exists()]
 
     required_files = [
-        ROOT / "src" / "glyphser" / "generated" / "models.py",
-        ROOT / "src" / "glyphser" / "generated" / "operators.py",
-        ROOT / "src" / "glyphser" / "generated" / "validators.py",
-        ROOT / "src" / "glyphser" / "generated" / "error.py",
-        ROOT / "src" / "glyphser" / "generated" / "bindings.py",
+        ROOT / "runtime" / "glyphser" / "generated" / "models.py",
+        ROOT / "runtime" / "glyphser" / "generated" / "operators.py",
+        ROOT / "runtime" / "glyphser" / "generated" / "validators.py",
+        ROOT / "runtime" / "glyphser" / "generated" / "error.py",
+        ROOT / "runtime" / "glyphser" / "generated" / "bindings.py",
         ROOT / "artifacts" / "generated" / "build" / "metadata" / "codegen_manifest.json",
         ROOT / "artifacts" / "generated" / "build" / "metadata" / "input_hashes.json",
     ]

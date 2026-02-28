@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Dict, List
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT = ROOT / "evidence" / "structure" / "domain_dependency_gate.json"
+OUT = ROOT / "evidence" / "gates" / "structure" / "domain_dependency_gate.json"
 
 IMPORT_PAT = re.compile(r"^\s*(?:from|import)\s+([a-zA-Z0-9_\.]+)")
 
@@ -18,11 +18,11 @@ def _scan_python(base: Path) -> List[Path]:
     return sorted(p for p in base.rglob("*.py") if p.is_file())
 
 
-def _violations_for_src() -> List[Dict[str, object]]:
+def _violations_for_runtime() -> List[Dict[str, object]]:
     forbidden_import_roots = {"tooling", "artifacts", "evidence", "governance", "product", "specs", "tests"}
     forbidden_path_tokens = ("/tooling/", "/artifacts/", "/evidence/", "/governance/", "/product/", "/specs/")
     violations: List[Dict[str, object]] = []
-    for path in _scan_python(ROOT / "src"):
+    for path in _scan_python(ROOT / "runtime"):
         rel = str(path.relative_to(ROOT)).replace("\\", "/")
         for i, line in enumerate(path.read_text(encoding="utf-8", errors="ignore").splitlines(), start=1):
             m = IMPORT_PAT.search(line)
@@ -52,12 +52,16 @@ def _violations_for_tooling() -> List[Dict[str, object]]:
 
 
 def evaluate() -> Dict[str, object]:
-    src_violations = _violations_for_src()
+    runtime_violations = _violations_for_runtime()
     tooling_violations = _violations_for_tooling()
     payload: Dict[str, object] = {
-        "status": "PASS" if not src_violations and not tooling_violations else "FAIL",
+        "status": "PASS" if not runtime_violations and not tooling_violations else "FAIL",
         "checks": [
-            {"name": "src_domain_dependencies", "status": "PASS" if not src_violations else "FAIL", "violations": src_violations},
+            {
+                "name": "runtime_domain_dependencies",
+                "status": "PASS" if not runtime_violations else "FAIL",
+                "violations": runtime_violations,
+            },
             {
                 "name": "tooling_domain_dependencies",
                 "status": "PASS" if not tooling_violations else "FAIL",

@@ -5,31 +5,31 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Dict
 
-from src.glyphser.error.emit import emit_error
-from src.glyphser.checkpoint.write import save_checkpoint
-from src.glyphser.checkpoint.restore import restore_checkpoint
-from src.glyphser.checkpoint.migrate_checkpoint import checkpoint_migrate
-from src.glyphser.trace.migrate_trace import migrate_trace
-from src.glyphser.registry.version_create import version_create
-from src.glyphser.registry.stage_transition import stage_transition
-from src.glyphser.tracking.run_create import run_create
-from src.glyphser.tracking.run_start import run_start
-from src.glyphser.tracking.run_end import run_end
-from src.glyphser.tracking.metric_log import metric_log
-from src.glyphser.tracking.artifact_put import artifact_put
-from src.glyphser.tracking.artifact_get import artifact_get
-from src.glyphser.tracking.artifact_list import artifact_list
-from src.glyphser.tracking.artifact_tombstone import artifact_tombstone
-from src.glyphser.monitor.register import monitor_register
-from src.glyphser.monitor.emit import monitor_emit
-from src.glyphser.monitor.drift_compute import drift_compute
-from src.glyphser.backend.load_driver import load_driver
-from src.glyphser.dp.apply import dp_apply
-from src.glyphser.model.forward import forward
-from src.glyphser.model.model_ir_executor import execute as model_ir_execute
-from src.glyphser.tmmu.prepare_memory import prepare_memory
-from src.glyphser.cert.evidence_validate import evidence_validate
-from src.glyphser.config.migrate_manifest import manifest_migrate
-from src.glyphser.legacy_import.legacy_framework import legacy_framework_import
+from runtime.glyphser.error.emit import emit_error
+from runtime.glyphser.checkpoint.write import save_checkpoint
+from runtime.glyphser.checkpoint.restore import restore_checkpoint
+from runtime.glyphser.checkpoint.migrate_checkpoint import checkpoint_migrate
+from runtime.glyphser.trace.migrate_trace import migrate_trace
+from runtime.glyphser.registry.version_create import version_create
+from runtime.glyphser.registry.stage_transition import stage_transition
+from runtime.glyphser.tracking.run_create import run_create
+from runtime.glyphser.tracking.run_start import run_start
+from runtime.glyphser.tracking.run_end import run_end
+from runtime.glyphser.tracking.metric_log import metric_log
+from runtime.glyphser.tracking.artifact_put import artifact_put
+from runtime.glyphser.tracking.artifact_get import artifact_get
+from runtime.glyphser.tracking.artifact_list import artifact_list
+from runtime.glyphser.tracking.artifact_tombstone import artifact_tombstone
+from runtime.glyphser.monitor.register import monitor_register
+from runtime.glyphser.monitor.emit import monitor_emit
+from runtime.glyphser.monitor.drift_compute import drift_compute
+from runtime.glyphser.backend.load_driver import load_driver
+from runtime.glyphser.dp.apply import dp_apply
+from runtime.glyphser.model.forward import forward
+from runtime.glyphser.model.model_ir_executor import execute as model_ir_execute
+from runtime.glyphser.tmmu.prepare_memory import prepare_memory
+from runtime.glyphser.cert.evidence_validate import evidence_validate
+from runtime.glyphser.config.migrate_manifest import manifest_migrate
+from runtime.glyphser.legacy_import.legacy_framework import legacy_framework_import
 
 {stub_blocks}

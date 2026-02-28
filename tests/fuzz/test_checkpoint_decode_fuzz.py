@@ -5,7 +5,7 @@ import random
 
 import pytest
 
-from src.glyphser.checkpoint.restore import restore_checkpoint
+from runtime.glyphser.checkpoint.restore import restore_checkpoint
 
 
 def _random_checkpoint(seed: int) -> dict:

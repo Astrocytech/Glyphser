@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import List
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT = ROOT / "evidence" / "structure" / "PROJECT_FILE_INVENTORY.md"
+OUT = ROOT / "evidence" / "gates" / "structure" / "PROJECT_FILE_INVENTORY.md"
 
 EXCLUDE_DIRS = {".git", ".venv", ".pytest_cache", "__pycache__", ".mypy_cache", ".ruff_cache"}
 
@@ -35,7 +35,7 @@ def _tree_lines(base: Path, prefix: str = "") -> List[str]:
 
 
 def _purpose(rel: str) -> str:
-    if rel.startswith("src/"):
+    if rel.startswith("runtime/"):
         return "Runtime source code and importable application modules."
     if rel.startswith("specs/"):
         return "Normative specification, contracts, and layer documentation."

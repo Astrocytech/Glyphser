@@ -185,11 +185,11 @@ Deliverable:
 Status: COMPLETE.
 DONE (so far):
 	- Implemented minimal deterministic reference operators used by hello-core:
-		- `src/glyphser/data/next_batch.py`
-		- `src/glyphser/model/model_ir_executor.py`
-		- `src/glyphser/trace/trace_sidecar.py`
-		- `src/glyphser/checkpoint/write.py`
-		- `src/glyphser/certificate/build.py`
+		- `runtime/glyphser/data/next_batch.py`
+		- `runtime/glyphser/model/model_ir_executor.py`
+		- `runtime/glyphser/trace/trace_sidecar.py`
+		- `runtime/glyphser/checkpoint/write.py`
+		- `runtime/glyphser/certificate/build.py`
 	- Added and validated end-to-end runner `tooling/scripts/run_hello_core.py`.
 	- Conformance run verifies hello-core outputs against golden identities.
 
@@ -229,7 +229,7 @@ Status: COMPLETE.
 DONE (so far):
 	- Generator pipeline implemented at `tooling/codegen/generate.py` consuming `specs/contracts/operator_registry.json` and `specs/schemas/**/*.schema.json`.
 	- Templates added in `tooling/codegen/templates/` for data models, operator stubs, validators, error handling, and trace/checkpoint/WAL bindings.
-	- Generated outputs written to `src/glyphser/generated/` with `artifacts/generated/build/metadata/codegen_manifest.json` for input traceability.
+	- Generated outputs written to `runtime/glyphser/generated/` with `artifacts/generated/build/metadata/codegen_manifest.json` for input traceability.
 
 
 Milestone 9: Deployment-Ready Generation
@@ -432,10 +432,10 @@ Milestone 13: Codegen Diff Fidelity
 3. Gate: drift must be zero for all generated files.
 Deliverable: fully reproducible generated code outputs.
 Clarifications:
-	- Clean build directory: `artifacts/generated/build/codegen/cleanroom_validation/` (delete and re-create each run).
+	- Clean build directory: `artifacts/generated/build/codegen_staging/cleanroom_validation/` (delete and re-create each run).
 	- Hash manifest required for comparison.
 	- No exceptions for drift are allowed.
-	- Comparison includes: `src/glyphser/generated/models.py`, `src/glyphser/generated/operators.py`, `src/glyphser/generated/validators.py`, `src/glyphser/generated/error.py`, `src/glyphser/generated/bindings.py`.
+	- Comparison includes: `runtime/glyphser/generated/models.py`, `runtime/glyphser/generated/operators.py`, `runtime/glyphser/generated/validators.py`, `runtime/glyphser/generated/error.py`, `runtime/glyphser/generated/bindings.py`.
 	- Line endings normalized to LF before hashing.
 	- Generator must emit deterministic file ordering within directories.
 	- Generated outputs must include a manifest of input hashes (schemas + registry + templates).
@@ -564,7 +564,7 @@ Status: COMPLETE.
 DONE:
 	- Added versioned API contract `specs/contracts/openapi_public_api_v1.yaml`.
 	- Added stable CLI wrapper `tooling/cli/api_cli.py` for submit/status/evidence/replay.
-	- Added runtime API implementation `src/glyphser/api/runtime_api.py`.
+	- Added runtime API implementation `runtime/glyphser/api/runtime_api.py`.
 	- Added semver governance gate `tooling/gates/api_contract_gate.py` and wired it into `tooling/commands/push_button.py`.
 	- Added API reference and policy docs:
 		- `docs/product/API_REFERENCE_v1.md`
@@ -604,7 +604,7 @@ Execution Governance:
 	- Dependencies: requires Milestone 18 complete; blocks Milestones 21, 23, and 24.
 Status: COMPLETE.
 DONE:
-	- Added durable state store implementation `src/glyphser/storage/state_store.py` with WAL replay, checkpointing, backup, restore, and corruption quarantine.
+	- Added durable state store implementation `runtime/glyphser/storage/state_store.py` with WAL replay, checkpointing, backup, restore, and corruption quarantine.
 	- Added recovery gate `tooling/gates/state_recovery_gate.py` and wired it into `tooling/commands/push_button.py`.
 	- Added persistence/schema contract docs:
 		- `docs/product/PERSISTENT_STORAGE_ADAPTER_CONTRACT.md`
@@ -648,8 +648,8 @@ Execution Governance:
 	- Dependencies: starts after Milestone 18 baseline contracts; blocks Milestones 21, 23, and 24.
 Status: COMPLETE.
 DONE:
-	- Added RBAC authorization policy `src/glyphser/security/authz.py` with negative/positive role checks.
-	- Added tamper-evident audit chain `src/glyphser/security/audit.py` and integrated audit events into runtime API surface.
+	- Added RBAC authorization policy `runtime/glyphser/security/authz.py` with negative/positive role checks.
+	- Added tamper-evident audit chain `runtime/glyphser/security/audit.py` and integrated audit events into runtime API surface.
 	- Added security artifact generation `tooling/security/security_artifacts.py` producing:
 		- `evidence/security/sbom.json`
 		- `evidence/security/build_provenance.json`
@@ -706,7 +706,7 @@ DONE:
 		- `tooling/deploy/generate_overlays.py`
 	- Added staging deployment + rollback validation gate:
 		- `tooling/deploy/deploy_rollback_gate.py`
-		- outputs `evidence/deploy/latest.json`, `evidence/deploy/rollback.json`, `evidence/deploy/drift.json`, `evidence/deploy/parity.json`, and `runtime_state/deploy/staging_active.json`
+		- outputs `evidence/deploy/latest.json`, `evidence/deploy/rollback.json`, `evidence/deploy/drift.json`, `evidence/deploy/parity.json`, and `evidence/state/deploy/staging_active.json`
 	- Updated deployment pipeline wiring:
 		- `tooling/deploy/run_deployment_pipeline.py` now runs overlay generation and deploy/rollback gate.
 	- Added operational runbooks:

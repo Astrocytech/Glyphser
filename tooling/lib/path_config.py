@@ -60,7 +60,7 @@ def evidence_runtime_state_root() -> Path:
 
 
 def runtime_state_root() -> Path:
-    return rel("runtime_state")
+    return rel("evidence", "state")
 
 
 def conformance_reports_root() -> Path:

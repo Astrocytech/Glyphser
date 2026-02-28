@@ -10,5 +10,5 @@
 3.  **Casing:** Always use **Astrocytech** and **Glyphser** (PascalCase). Lowercase `glyphser` is reserved for CLI/tool IDs and telemetry attributes. Environment variables must be uppercase (for example, `GLYPHSER_ROOT`).
 
 ## Repository Mapping
-* `/src/glyphser`: Public API and User Tooling.
+* `/runtime/glyphser`: Public API and User Tooling.
 * `/specs/layers/L2-specs/Glyphser-Kernel...`: Internal engine specifications.

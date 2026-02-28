@@ -2,7 +2,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from src.glyphser.generated import operators as gen_ops
+from runtime.glyphser.generated import operators as gen_ops
 
 ROOT = Path(__file__).resolve().parents[2]
 VEC_ROOT = ROOT / "artifacts" / "inputs" / "vectors" / "conformance" / "operators"

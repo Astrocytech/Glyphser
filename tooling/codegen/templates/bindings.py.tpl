@@ -6,8 +6,8 @@ import json
 from pathlib import Path
 from typing import Any, Dict, Iterable, List
 
-from src.glyphser.checkpoint.write import save_checkpoint
-from src.glyphser.trace.trace_sidecar import write_trace
+from runtime.glyphser.checkpoint.write import save_checkpoint
+from runtime.glyphser.trace.trace_sidecar import write_trace
 
 
 def write_trace_records(records: Iterable[Dict[str, Any]], path: Path) -> str:

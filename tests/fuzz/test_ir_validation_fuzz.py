@@ -4,7 +4,7 @@ import random
 
 import pytest
 
-from src.glyphser.model.ir_schema import IRValidationError, validate_ir_dag
+from runtime.glyphser.model.ir_schema import IRValidationError, validate_ir_dag
 
 
 def _make_ir(seed: int, nodes: int) -> dict:

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any, Dict
 
-from src.glyphser.error.emit import emit_error
+from runtime.glyphser.error.emit import emit_error
 
 
 def error_payload(code_id: str, message: str, **context: Any) -> Dict[str, Any]:

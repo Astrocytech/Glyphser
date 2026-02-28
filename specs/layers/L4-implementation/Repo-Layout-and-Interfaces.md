@@ -36,7 +36,7 @@
 - `Glyphser.Implementation.ValidateOwnershipMap`
 - `Glyphser.Error.Emit`
 ### 0.H Namespacing and Packaging
-- namespace roots: `src/`, `tests/`, `artifacts/inputs/vectors/`, `specs/schemas/`, `ops/`.
+- namespace roots: `runtime/`, `tests/`, `artifacts/inputs/vectors/`, `specs/schemas/`, `ops/`.
 ### 0.I Outputs and Metric Schema
 - outputs: `(layout_report, boundary_report, ownership_report)`.
 ### 0.J Spec Lifecycle Governance
@@ -82,7 +82,7 @@
 - ownership coverage complete for mapped operators.
 
 ### II.F Canonical Layout (Normative)
-- `src/data`, `src/model`, `src/dp`, `src/tmmu`, `src/replay`, `src/trace`, `src/checkpoint`, `src/backend`, `src/security`, `src/registry`, `src/tracking`, `src/monitor`, `src/cert`.
+- `runtime/data`, `runtime/model`, `runtime/dp`, `runtime/tmmu`, `runtime/replay`, `runtime/trace`, `runtime/checkpoint`, `runtime/backend`, `runtime/security`, `runtime/registry`, `runtime/tracking`, `runtime/monitor`, `runtime/cert`.
 - `tests/unit`, `tests/integration`, `tests/replay`, `tests/perf`.
 - `artifacts/inputs/vectors/<operator_id>/`.
 - `specs/schemas/` for config/trace/checkpoint/api schemas.
@@ -95,13 +95,13 @@
   - `runs/<tenant_id>/<run_id>/COMMITTED` (conditional commit pointer object)
 
 ### II.G Ownership Map (Normative)
-- `data team`: `src/data/*`
-- `model team`: `src/model/*`
-- `privacy team`: `src/dp/*`
-- `runtime team`: `src/tmmu/*`, `src/checkpoint/*`
-- `platform team`: `src/tracking/*`, `src/monitor/*`, `src/config/*`
-- `security team`: `src/security/*`, `src/cert/*`
-- `governance team`: `src/registry/*`
+- `data team`: `runtime/data/*`
+- `model team`: `runtime/model/*`
+- `privacy team`: `runtime/dp/*`
+- `runtime team`: `runtime/tmmu/*`, `runtime/checkpoint/*`
+- `platform team`: `runtime/tracking/*`, `runtime/monitor/*`, `runtime/config/*`
+- `security team`: `runtime/security/*`, `runtime/cert/*`
+- `governance team`: `runtime/registry/*`
 
 ### II.H Operator Registry Artifact (Normative)
 - `specs/contracts/operator_registry.cbor` is the single source of truth for operator interface metadata.

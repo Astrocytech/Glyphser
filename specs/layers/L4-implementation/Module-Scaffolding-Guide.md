@@ -33,7 +33,7 @@
 - `Glyphser.Scaffold.BindTests`
 - `Glyphser.Error.Emit`
 ### 0.H Namespacing and Packaging
-- `src/<subsystem>/<operator>.py` + tests + vectors.
+- `runtime/<subsystem>/<operator>.py` + tests + vectors.
 ### 0.I Outputs and Metric Schema
 - Outputs: `(scaffold_report, generated_paths)`
 - Metrics: `files_generated`, `validation_failures`

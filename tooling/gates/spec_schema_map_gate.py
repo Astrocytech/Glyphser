@@ -8,7 +8,7 @@ from typing import Dict, List, Optional
 
 ROOT = Path(__file__).resolve().parents[2]
 CONFIG = ROOT / "governance" / "structure" / "spec_schema_map.json"
-OUT = ROOT / "evidence" / "structure" / "spec_schema_map.json"
+OUT = ROOT / "evidence" / "gates" / "structure" / "spec_schema_map.json"
 
 
 def _rel(path: Path) -> str:

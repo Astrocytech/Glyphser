@@ -6,7 +6,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT = ROOT / "evidence" / "structure"
+OUT = ROOT / "evidence" / "gates" / "structure"
 
 TARGET_DIRS = ["src", "tooling", "tests", ".github"]
 EXTS = {".py", ".yml", ".yaml", ".toml", ".md", ".json"}

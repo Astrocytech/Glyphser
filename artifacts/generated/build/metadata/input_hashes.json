@@ -462,11 +462,11 @@
     },
     {
       "path": "tooling/codegen/templates/bindings.py.tpl",
-      "sha256": "492fe596d2277e2e8a72bf2a3be130b9bac563dd851703269eb4b271135b556d"
+      "sha256": "ce6bd000ec570327d17d7777c85e895eadcfe4b9083e8d4fbdafd8dc8e90a838"
     },
     {
       "path": "tooling/codegen/templates/error.py.tpl",
-      "sha256": "d3547332f85da8783c23961fd85bfb9d26ff7fc63f1d1aecd80f598afadd5e7f"
+      "sha256": "313dcee79ec29fc49f219750c52ccad7c5d3ca251ede85b73259c6acef19a556"
     },
     {
       "path": "tooling/codegen/templates/models.py.tpl",
@@ -474,7 +474,7 @@
     },
     {
       "path": "tooling/codegen/templates/operators.py.tpl",
-      "sha256": "c744748a088c337f2c84f607eda0711eebe5b356ee1a1d2f9e9772fb65fb5d3d"
+      "sha256": "3a7b8c3747a748b7b7071cf57d487515bfd5d3c98eb111b60dd7870d45cc1637"
     },
     {
       "path": "tooling/codegen/templates/validators.py.tpl",

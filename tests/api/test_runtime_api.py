@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from src.glyphser.api.runtime_api import RuntimeApiConfig, RuntimeApiService
+from runtime.glyphser.api.runtime_api import RuntimeApiConfig, RuntimeApiService
 
 
 ROOT = Path(__file__).resolve().parents[2]

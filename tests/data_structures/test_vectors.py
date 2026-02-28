@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from src.glyphser.data_structures.validate_struct import (
+from runtime.glyphser.data_structures.validate_struct import (
     validate_checkpoint_header,
     validate_trace_iter_record,
 )

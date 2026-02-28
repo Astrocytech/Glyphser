@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from src.glyphser.model.model_ir_executor import execute
+from runtime.glyphser.model.model_ir_executor import execute
 
 
 def _demo_ir():

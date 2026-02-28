@@ -3,9 +3,9 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from src.glyphser.tracking.run_create import run_create
-from src.glyphser.tracking.metric_log import metric_log
-from src.glyphser.monitor.emit import monitor_emit
+from runtime.glyphser.tracking.run_create import run_create
+from runtime.glyphser.tracking.metric_log import metric_log
+from runtime.glyphser.monitor.emit import monitor_emit
 
 ROOT = Path(__file__).resolve().parents[2]
 

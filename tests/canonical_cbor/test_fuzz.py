@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import random
 
-from src.glyphser.serialization.canonical_cbor import encode_canonical_hex
+from runtime.glyphser.serialization.canonical_cbor import encode_canonical_hex
 
 
 SEED = 1337

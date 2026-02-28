@@ -10,5 +10,5 @@ ROOT = Path(__file__).resolve().parents[2]
 def test_doc_code_separation_gate_passes():
     report = doc_code_separation_gate.evaluate()
     assert report["status"] == "PASS"
-    latest = json.loads((ROOT / "evidence" / "structure" / "latest.json").read_text(encoding="utf-8"))
+    latest = json.loads((ROOT / "evidence" / "gates" / "structure" / "latest.json").read_text(encoding="utf-8"))
     assert latest["status"] == "PASS"

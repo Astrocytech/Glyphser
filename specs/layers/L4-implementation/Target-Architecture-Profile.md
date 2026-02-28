@@ -12,7 +12,7 @@
 ## 1) Target Decisions (Normative)
 ### 1.1 Primary Generation Targets
 - **Language/runtime:** Python 3.12.
-- **Packaging:** importable `glyphser` package in `src/`, with script entrypoints in `tooling/scripts/`.
+- **Packaging:** importable `glyphser` package in `runtime/`, with script entrypoints in `tooling/scripts/`.
 - **Artifacts:** JSON and CBOR artifacts under `specs/contracts/`, `artifacts/inputs/fixtures/`, `artifacts/expected/goldens/`, and `artifacts/inputs/vectors/`.
 - **Scope:** CPU-only, single-node runtime for the reference implementation.
 
@@ -28,7 +28,7 @@
 ## 2) Runtime Integration Contracts (Normative)
 ### 2.1 Logging and Tracing
 - Trace records are written as deterministic JSON sidecars per `specs/layers/L2-specs/Trace-Sidecar.md`.
-- Trace hash computation must match `src/glyphser/trace/compute_trace_hash.py` and `docs/layer4-implementation/Canonical-Hashing-Reference.md`.
+- Trace hash computation must match `runtime/glyphser/trace/compute_trace_hash.py` and `docs/layer4-implementation/Canonical-Hashing-Reference.md`.
 
 ### 2.2 Metrics and Experiment Tracking
 - Metrics reporting and experiment tracking follow `specs/layers/L2-specs/Experiment-Tracking.md`.

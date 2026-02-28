@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from src.glyphser.error.emit import emit_error
+from runtime.glyphser.error.emit import emit_error
 
 
 def test_emit_error_stable_shape():

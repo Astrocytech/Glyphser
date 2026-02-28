@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from src.glyphser.trace.compute_trace_hash import compute_trace_hash
+from runtime.glyphser.trace.compute_trace_hash import compute_trace_hash
 
 
 def test_compute_trace_hash_deterministic():

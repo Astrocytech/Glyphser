@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from .vector_loader import load_vectors
-from src.glyphser.serialization.canonical_cbor import encode_canonical_hex, validate_canonical_hex
+from runtime.glyphser.serialization.canonical_cbor import encode_canonical_hex, validate_canonical_hex
 
 
 def _materialize_input(raw):

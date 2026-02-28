@@ -5,12 +5,12 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT = ROOT / "evidence" / "structure"
+OUT = ROOT / "evidence" / "gates" / "structure"
 
 DOC_EXTS = {".md", ".txt", ".rst"}
 CODE_EXTS = {".py", ".sh", ".bash", ".zsh", ".js", ".ts", ".go", ".rs", ".java", ".c", ".cc", ".cpp"}
 CODE_DIRS = (
-    "src",
+    "runtime",
     "tooling/codegen",
     "tooling/conformance",
     "tooling/deploy",

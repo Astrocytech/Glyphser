@@ -3,8 +3,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from src.glyphser.security.audit import append_event, verify_chain
-from src.glyphser.security.authz import authorize
+from runtime.glyphser.security.audit import append_event, verify_chain
+from runtime.glyphser.security.authz import authorize
 
 
 def test_rbac_negative_and_positive():

@@ -9,8 +9,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from src.glyphser.security.audit import append_event, verify_chain
-from src.glyphser.security.authz import authorize
+from runtime.glyphser.security.audit import append_event, verify_chain
+from runtime.glyphser.security.authz import authorize
 sys.path.insert(0, str(ROOT))
 from tooling.lib.path_config import evidence_root, first_existing, rel
 

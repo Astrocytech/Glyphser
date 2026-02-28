@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from src.glyphser.storage.state_store import DurableStateStore
+from runtime.glyphser.storage.state_store import DurableStateStore
 
 
 def test_restart_recovery_and_backup_restore(tmp_path: Path):

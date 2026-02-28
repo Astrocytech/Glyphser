@@ -10,5 +10,5 @@ ROOT = Path(__file__).resolve().parents[2]
 def test_spec_link_gate_passes() -> None:
     report = spec_link_gate.evaluate()
     assert report["status"] == "PASS"
-    report = json.loads((ROOT / "evidence" / "structure" / "spec_link_gate.json").read_text(encoding="utf-8"))
+    report = json.loads((ROOT / "evidence" / "gates" / "structure" / "spec_link_gate.json").read_text(encoding="utf-8"))
     assert report["status"] == "PASS"

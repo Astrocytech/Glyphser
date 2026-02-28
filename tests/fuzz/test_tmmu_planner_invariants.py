@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from src.glyphser.tmmu.prepare_memory import prepare_memory
+from runtime.glyphser.tmmu.prepare_memory import prepare_memory
 
 
 def _demo_ir():

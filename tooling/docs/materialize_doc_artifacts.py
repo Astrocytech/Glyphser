@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT))
 
-from src.glyphser.registry.registry_builder import (  # noqa: E402
+from runtime.glyphser.registry.registry_builder import (  # noqa: E402
     build_operator_registry_from_list,
     parse_api_interfaces,
 )
@@ -345,7 +345,7 @@ def materialize() -> None:
     batch = dataset[0]
     model_ir = json.loads((fixtures_dir / "model_ir.json").read_text(encoding="utf-8"))
     inputs = batch["x"]
-    from src.glyphser.model.model_ir_executor import execute as model_ir_execute  # noqa: E402
+    from runtime.glyphser.model.model_ir_executor import execute as model_ir_execute  # noqa: E402
     response = model_ir_execute(
         {
             "ir_dag": model_ir,
@@ -375,7 +375,7 @@ def materialize() -> None:
         "manifest_hash": sha256_hex((fixtures_dir / "manifest.core.yaml").read_bytes()),
         "operator_registry_root_hash": operator_registry_root_hash,
     }
-    from src.glyphser.trace.compute_trace_hash import compute_trace_hash  # noqa: E402
+    from runtime.glyphser.trace.compute_trace_hash import compute_trace_hash  # noqa: E402
     trace_final_hash = compute_trace_hash(trace_snippet["records"])
     execution_certificate = {
         "certificate_id": "hello-core-cert-v1",

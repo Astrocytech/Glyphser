@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from src.glyphser.api.validate_signature import validate_api_signature
+from runtime.glyphser.api.validate_signature import validate_api_signature
 
 
 def test_validate_api_signature_ok():

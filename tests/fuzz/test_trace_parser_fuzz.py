@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from src.glyphser.trace.compute_trace_hash import compute_trace_hash
+from runtime.glyphser.trace.compute_trace_hash import compute_trace_hash
 
 
 @pytest.mark.fuzz_harness

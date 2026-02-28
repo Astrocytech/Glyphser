@@ -20,7 +20,7 @@ Status: PASS
 - `evidence/deploy/rollback.json`
 - `evidence/deploy/drift.json`
 - `evidence/deploy/parity.json`
-- `runtime_state/deploy/staging_active.json`
+- `evidence/state/deploy/staging_active.json`
 
 ## Operational Docs
 - `docs/ops/DEPLOYMENT_RUNBOOK.md`

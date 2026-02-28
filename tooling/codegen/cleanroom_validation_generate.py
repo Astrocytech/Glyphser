@@ -13,7 +13,7 @@ from tooling.codegen.cleanroom_validation import main as clean_build  # noqa: E4
 from tooling.codegen.generate import generate  # noqa: E402
 from tooling.lib.path_config import generated_root  # noqa: E402
 
-CLEAN = generated_root() / "codegen" / "cleanroom_validation"
+CLEAN = generated_root() / "codegen_staging" / "cleanroom_validation"
 
 
 def main() -> int:

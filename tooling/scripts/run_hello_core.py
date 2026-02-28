@@ -10,13 +10,13 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT))
 
-from src.glyphser.certificate.build import write_execution_certificate  # noqa: E402
-from src.glyphser.checkpoint.write import save_checkpoint  # noqa: E402
-from src.glyphser.data.next_batch import next_batch  # noqa: E402
-from src.glyphser.model.model_ir_executor import execute  # noqa: E402
-from src.glyphser.trace.compute_trace_hash import compute_trace_hash  # noqa: E402
-from src.glyphser.serialization.canonical_cbor import encode_canonical  # noqa: E402
-from src.glyphser.trace.trace_sidecar import write_trace  # noqa: E402
+from runtime.glyphser.certificate.build import write_execution_certificate  # noqa: E402
+from runtime.glyphser.checkpoint.write import save_checkpoint  # noqa: E402
+from runtime.glyphser.data.next_batch import next_batch  # noqa: E402
+from runtime.glyphser.model.model_ir_executor import execute  # noqa: E402
+from runtime.glyphser.trace.compute_trace_hash import compute_trace_hash  # noqa: E402
+from runtime.glyphser.serialization.canonical_cbor import encode_canonical  # noqa: E402
+from runtime.glyphser.trace.trace_sidecar import write_trace  # noqa: E402
 from tooling.lib.path_config import fixtures_root  # noqa: E402
 
 FIXTURES = fixtures_root() / "hello-core"

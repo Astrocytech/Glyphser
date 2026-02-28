@@ -7,7 +7,7 @@ from typing import List
 
 ROOT = Path(__file__).resolve().parents[2]
 CONFIG = ROOT / "governance" / "structure" / "spec_link_policy.json"
-OUT = ROOT / "evidence" / "structure" / "spec_link_gate.json"
+OUT = ROOT / "evidence" / "gates" / "structure" / "spec_link_gate.json"
 
 
 def _rel(path: Path) -> str:

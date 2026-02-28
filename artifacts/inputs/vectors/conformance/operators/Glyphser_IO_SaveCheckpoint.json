@@ -9,7 +9,7 @@
         }
       },
       "request": {
-        "path": "runtime_state/checkpoint-restore/ckpt-1.json",
+        "path": "evidence/state/checkpoint-restore/ckpt-1.json",
         "state": {
           "checkpoint_id": "ckpt-1",
           "global_step": 1,

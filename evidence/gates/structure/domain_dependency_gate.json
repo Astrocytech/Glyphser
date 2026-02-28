@@ -1,0 +1,15 @@
+{
+  "checks": [
+    {
+      "name": "runtime_domain_dependencies",
+      "status": "PASS",
+      "violations": []
+    },
+    {
+      "name": "tooling_domain_dependencies",
+      "status": "PASS",
+      "violations": []
+    }
+  ],
+  "status": "PASS"
+}

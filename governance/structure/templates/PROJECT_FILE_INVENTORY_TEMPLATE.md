@@ -4,7 +4,7 @@ This template defines where inventory evidence is produced and how it is maintai
 
 ## Generation Contract
 - Generator command: `python3 tooling/validation/generate_project_inventory.py`
-- Output location: `evidence/structure/PROJECT_FILE_INVENTORY.md`
+- Output location: `evidence/gates/structure/PROJECT_FILE_INVENTORY.md`
 - Pipeline integration: `tooling/commands/push_button.py`
 
 ## Structural Requirements

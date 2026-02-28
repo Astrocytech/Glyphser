@@ -21,7 +21,7 @@ Independent implementation; no official affiliation or certification claims are 
 4. Run the full push-button pipeline: `python tooling/commands/push_button.py`
 
 ## You Are Here
-- `src/`: runtime Python package (`glyphser`).
+- `runtime/`: runtime Python package (`glyphser`).
 - `specs/`: human-readable normative specifications and contracts.
 - `specs/schemas/`: machine-readable schemas aligned to spec layers.
 - `artifacts/`: deterministic inputs, expected outputs, generated bundles.
