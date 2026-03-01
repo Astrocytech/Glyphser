@@ -1,0 +1,104 @@
+{
+  "drift_records": [
+    {
+      "max_abs_drift": 2.220446049250313e-16,
+      "pair": "pytorch_cpu__vs__pytorch_gpu",
+      "tier": "medium"
+    },
+    {
+      "max_abs_drift": 2.220446049250313e-16,
+      "pair": "pytorch_cpu__vs__keras_cpu",
+      "tier": "medium"
+    },
+    {
+      "max_abs_drift": 2.220446049250313e-16,
+      "pair": "pytorch_cpu__vs__keras_gpu",
+      "tier": "medium"
+    },
+    {
+      "max_abs_drift": 2.220446049250313e-16,
+      "pair": "pytorch_cpu__vs__java_cpu",
+      "tier": "medium"
+    },
+    {
+      "max_abs_drift": 2.220446049250313e-16,
+      "pair": "pytorch_gpu__vs__keras_cpu",
+      "tier": "medium"
+    },
+    {
+      "max_abs_drift": 0.0,
+      "pair": "pytorch_gpu__vs__keras_gpu",
+      "tier": "medium"
+    },
+    {
+      "max_abs_drift": 2.220446049250313e-16,
+      "pair": "pytorch_gpu__vs__java_cpu",
+      "tier": "medium"
+    },
+    {
+      "max_abs_drift": 2.220446049250313e-16,
+      "pair": "keras_cpu__vs__keras_gpu",
+      "tier": "medium"
+    },
+    {
+      "max_abs_drift": 2.220446049250313e-16,
+      "pair": "keras_cpu__vs__java_cpu",
+      "tier": "medium"
+    },
+    {
+      "max_abs_drift": 2.220446049250313e-16,
+      "pair": "keras_gpu__vs__java_cpu",
+      "tier": "medium"
+    },
+    {
+      "max_abs_drift": 4.440892098500626e-16,
+      "pair": "pytorch_cpu__vs__pytorch_gpu",
+      "tier": "large"
+    },
+    {
+      "max_abs_drift": 4.440892098500626e-16,
+      "pair": "pytorch_cpu__vs__keras_cpu",
+      "tier": "large"
+    },
+    {
+      "max_abs_drift": 4.440892098500626e-16,
+      "pair": "pytorch_cpu__vs__keras_gpu",
+      "tier": "large"
+    },
+    {
+      "max_abs_drift": 4.440892098500626e-16,
+      "pair": "pytorch_cpu__vs__java_cpu",
+      "tier": "large"
+    },
+    {
+      "max_abs_drift": 4.440892098500626e-16,
+      "pair": "pytorch_gpu__vs__keras_cpu",
+      "tier": "large"
+    },
+    {
+      "max_abs_drift": 0.0,
+      "pair": "pytorch_gpu__vs__keras_gpu",
+      "tier": "large"
+    },
+    {
+      "max_abs_drift": 2.220446049250313e-16,
+      "pair": "pytorch_gpu__vs__java_cpu",
+      "tier": "large"
+    },
+    {
+      "max_abs_drift": 4.440892098500626e-16,
+      "pair": "keras_cpu__vs__keras_gpu",
+      "tier": "large"
+    },
+    {
+      "max_abs_drift": 4.440892098500626e-16,
+      "pair": "keras_cpu__vs__java_cpu",
+      "tier": "large"
+    },
+    {
+      "max_abs_drift": 2.220446049250313e-16,
+      "pair": "keras_gpu__vs__java_cpu",
+      "tier": "large"
+    }
+  ]
+}

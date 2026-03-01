@@ -1,0 +1,684 @@
+{
+  "pairs": [
+    {
+      "classification": "E1",
+      "max_abs_drift": 2.220446049250313e-16,
+      "models": [
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 2.220446049250313e-16,
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_cpu__vs__pytorch_gpu",
+      "reason": "All model/tier checks pass.",
+      "status": "PASS",
+      "tier": "medium"
+    },
+    {
+      "classification": "E1",
+      "max_abs_drift": 2.220446049250313e-16,
+      "models": [
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 2.220446049250313e-16,
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_cpu__vs__keras_cpu",
+      "reason": "All model/tier checks pass.",
+      "status": "PASS",
+      "tier": "medium"
+    },
+    {
+      "classification": "E1",
+      "max_abs_drift": 2.220446049250313e-16,
+      "models": [
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 2.220446049250313e-16,
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_cpu__vs__keras_gpu",
+      "reason": "All model/tier checks pass.",
+      "status": "PASS",
+      "tier": "medium"
+    },
+    {
+      "classification": "E1",
+      "max_abs_drift": 2.220446049250313e-16,
+      "models": [
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 2.220446049250313e-16,
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_cpu__vs__java_cpu",
+      "reason": "All model/tier checks pass.",
+      "status": "PASS",
+      "tier": "medium"
+    },
+    {
+      "classification": "E1",
+      "max_abs_drift": 2.220446049250313e-16,
+      "models": [
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "max_abs_drift": 0.0,
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact dataset output/fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 2.220446049250313e-16,
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_gpu__vs__keras_cpu",
+      "reason": "All model/tier checks pass.",
+      "status": "PASS",
+      "tier": "medium"
+    },
+    {
+      "classification": "E0",
+      "max_abs_drift": 0.0,
+      "models": [
+        {
+          "classification": "E0",
+          "max_abs_drift": 0.0,
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Exact dataset output/fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "max_abs_drift": 0.0,
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact dataset output/fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "max_abs_drift": 0.0,
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Exact dataset output/fingerprint match.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_gpu__vs__keras_gpu",
+      "reason": "All model/tier checks pass.",
+      "status": "PASS",
+      "tier": "medium"
+    },
+    {
+      "classification": "E1",
+      "max_abs_drift": 2.220446049250313e-16,
+      "models": [
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "max_abs_drift": 0.0,
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact dataset output/fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 2.220446049250313e-16,
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_gpu__vs__java_cpu",
+      "reason": "All model/tier checks pass.",
+      "status": "PASS",
+      "tier": "medium"
+    },
+    {
+      "classification": "E1",
+      "max_abs_drift": 2.220446049250313e-16,
+      "models": [
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "max_abs_drift": 0.0,
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact dataset output/fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 2.220446049250313e-16,
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "keras_cpu__vs__keras_gpu",
+      "reason": "All model/tier checks pass.",
+      "status": "PASS",
+      "tier": "medium"
+    },
+    {
+      "classification": "E1",
+      "max_abs_drift": 2.220446049250313e-16,
+      "models": [
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "max_abs_drift": 0.0,
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact dataset output/fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 2.220446049250313e-16,
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "keras_cpu__vs__java_cpu",
+      "reason": "All model/tier checks pass.",
+      "status": "PASS",
+      "tier": "medium"
+    },
+    {
+      "classification": "E1",
+      "max_abs_drift": 2.220446049250313e-16,
+      "models": [
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "max_abs_drift": 0.0,
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact dataset output/fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 2.220446049250313e-16,
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "keras_gpu__vs__java_cpu",
+      "reason": "All model/tier checks pass.",
+      "status": "PASS",
+      "tier": "medium"
+    },
+    {
+      "classification": "E1",
+      "max_abs_drift": 4.440892098500626e-16,
+      "models": [
+        {
+          "classification": "E1",
+          "max_abs_drift": 2.220446049250313e-16,
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 4.440892098500626e-16,
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_cpu__vs__pytorch_gpu",
+      "reason": "All model/tier checks pass.",
+      "status": "PASS",
+      "tier": "large"
+    },
+    {
+      "classification": "E1",
+      "max_abs_drift": 4.440892098500626e-16,
+      "models": [
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 4.440892098500626e-16,
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_cpu__vs__keras_cpu",
+      "reason": "All model/tier checks pass.",
+      "status": "PASS",
+      "tier": "large"
+    },
+    {
+      "classification": "E1",
+      "max_abs_drift": 4.440892098500626e-16,
+      "models": [
+        {
+          "classification": "E1",
+          "max_abs_drift": 2.220446049250313e-16,
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 4.440892098500626e-16,
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_cpu__vs__keras_gpu",
+      "reason": "All model/tier checks pass.",
+      "status": "PASS",
+      "tier": "large"
+    },
+    {
+      "classification": "E1",
+      "max_abs_drift": 4.440892098500626e-16,
+      "models": [
+        {
+          "classification": "E1",
+          "max_abs_drift": 2.220446049250313e-16,
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 4.440892098500626e-16,
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_cpu__vs__java_cpu",
+      "reason": "All model/tier checks pass.",
+      "status": "PASS",
+      "tier": "large"
+    },
+    {
+      "classification": "E1",
+      "max_abs_drift": 4.440892098500626e-16,
+      "models": [
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "max_abs_drift": 0.0,
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact dataset output/fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 4.440892098500626e-16,
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_gpu__vs__keras_cpu",
+      "reason": "All model/tier checks pass.",
+      "status": "PASS",
+      "tier": "large"
+    },
+    {
+      "classification": "E0",
+      "max_abs_drift": 0.0,
+      "models": [
+        {
+          "classification": "E0",
+          "max_abs_drift": 0.0,
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Exact dataset output/fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "max_abs_drift": 0.0,
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact dataset output/fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "max_abs_drift": 0.0,
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Exact dataset output/fingerprint match.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_gpu__vs__keras_gpu",
+      "reason": "All model/tier checks pass.",
+      "status": "PASS",
+      "tier": "large"
+    },
+    {
+      "classification": "E1",
+      "max_abs_drift": 2.220446049250313e-16,
+      "models": [
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "max_abs_drift": 0.0,
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact dataset output/fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 2.220446049250313e-16,
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_gpu__vs__java_cpu",
+      "reason": "All model/tier checks pass.",
+      "status": "PASS",
+      "tier": "large"
+    },
+    {
+      "classification": "E1",
+      "max_abs_drift": 4.440892098500626e-16,
+      "models": [
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "max_abs_drift": 0.0,
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact dataset output/fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 4.440892098500626e-16,
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "keras_cpu__vs__keras_gpu",
+      "reason": "All model/tier checks pass.",
+      "status": "PASS",
+      "tier": "large"
+    },
+    {
+      "classification": "E1",
+      "max_abs_drift": 4.440892098500626e-16,
+      "models": [
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "max_abs_drift": 0.0,
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact dataset output/fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 4.440892098500626e-16,
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "keras_cpu__vs__java_cpu",
+      "reason": "All model/tier checks pass.",
+      "status": "PASS",
+      "tier": "large"
+    },
+    {
+      "classification": "E1",
+      "max_abs_drift": 2.220446049250313e-16,
+      "models": [
+        {
+          "classification": "E1",
+          "max_abs_drift": 1.1102230246251565e-16,
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "max_abs_drift": 0.0,
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact dataset output/fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "max_abs_drift": 2.220446049250313e-16,
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Dataset outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "keras_gpu__vs__java_cpu",
+      "reason": "All model/tier checks pass.",
+      "status": "PASS",
+      "tier": "large"
+    }
+  ]
+}

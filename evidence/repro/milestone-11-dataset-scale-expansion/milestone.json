@@ -1,0 +1,19 @@
+{
+  "classification": "E1",
+  "dependencies": [
+    10
+  ],
+  "evidence_dir": "evidence/repro/milestone-11-dataset-scale-expansion/",
+  "milestone": 11,
+  "owner": "Astrocytech/Glyphser",
+  "profiles": [
+    "pytorch_cpu",
+    "pytorch_gpu",
+    "keras_cpu",
+    "keras_gpu",
+    "java_cpu"
+  ],
+  "result": "PASS",
+  "slug": "dataset-scale-expansion",
+  "target_date": "2026-04-19"
+}

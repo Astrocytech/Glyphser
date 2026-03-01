@@ -1,0 +1,25 @@
+{
+  "abs_tol": 1e-06,
+  "java": {
+    "java_version": "openjdk version \"21.0.10\" 2026-01-20\nOpenJDK Runtime Environment (build 21.0.10+7-Ubuntu-124.04)\nOpenJDK 64-Bit Server VM (build 21.0.10+7-Ubuntu-124.04, mixed mode, sharing)",
+    "javac_version": "javac 21.0.10"
+  },
+  "kernel": "6.8.0-101-generic",
+  "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+  "python": "3.12.3",
+  "rel_tol": 1e-06,
+  "tensorflow": {
+    "gpu_devices": [
+      "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')"
+    ],
+    "gpu_visible": true,
+    "version": "2.20.0"
+  },
+  "timestamp_utc": "2026-03-01T15:37:01.994965+00:00",
+  "torch": {
+    "cuda_available": true,
+    "cuda_version": "12.1",
+    "gpu_name": "NVIDIA GeForce GTX 1070",
+    "version": "2.5.1+cu121"
+  }
+}

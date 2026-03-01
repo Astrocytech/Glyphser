@@ -1,0 +1,10 @@
+{
+  "abs_tol": 1e-06,
+  "classification": "E1",
+  "excluded_operators": [],
+  "milestone": 11,
+  "profile": "dataset_scale_expansion_cross_stack",
+  "reason": "All dataset/scale reproducibility checks pass.",
+  "rel_tol": 1e-06,
+  "status": "PASS"
+}

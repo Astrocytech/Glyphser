@@ -1,0 +1,40 @@
+{
+  "dataset_tiers": [
+    "medium",
+    "large"
+  ],
+  "horizons": {
+    "large": 8,
+    "medium": 4
+  },
+  "mandatory_profiles": [
+    "pytorch_cpu",
+    "pytorch_gpu",
+    "keras_cpu",
+    "keras_gpu",
+    "java_cpu"
+  ],
+  "milestone": 11,
+  "model_classes": [
+    "cnn",
+    "mlp",
+    "sequence_attention_lite"
+  ],
+  "model_ids": [
+    "mlp_deep",
+    "cnn_tiny",
+    "attention_lite"
+  ],
+  "profiles": [
+    "pytorch_cpu",
+    "pytorch_gpu",
+    "keras_cpu",
+    "keras_gpu",
+    "java_cpu"
+  ],
+  "sample_counts": {
+    "large": 48,
+    "medium": 16
+  },
+  "status": "PASS"
+}
