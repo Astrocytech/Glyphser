@@ -1,0 +1,87 @@
+{
+  "classification": "E2",
+  "meta": {
+    "kernel": "6.8.0-101-generic",
+    "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "timestamp_utc": "2026-03-01T17:45:26.240735+00:00"
+  },
+  "milestone": 25,
+  "prerequisites": [
+    {
+      "classification": "E2",
+      "milestone": 12,
+      "reason": "need >=2 Linux hosts; need >=1 Windows host; need >=2 GPU architectures; missing GTX 1070 baseline host; missing RTX 30+ host",
+      "report_path": "evidence/repro/milestone-12-multi-host-multi-os/report.json",
+      "slug": "milestone-12-multi-host-multi-os",
+      "status": "BLOCKED"
+    },
+    {
+      "classification": "E2",
+      "milestone": 16,
+      "reason": "missing report.json",
+      "report_path": "evidence/repro/milestone-16-universal-profile-v1/report.json",
+      "slug": "milestone-16-universal-profile-v1",
+      "status": "BLOCKED"
+    },
+    {
+      "classification": "E2",
+      "milestone": 18,
+      "reason": "Missing required device classes: cpu_arm64, gpu_amd_rocm, gpu_apple_mps, edge_target",
+      "report_path": "evidence/repro/milestone-18-device-class-expansion/report.json",
+      "slug": "milestone-18-device-class-expansion",
+      "status": "BLOCKED"
+    },
+    {
+      "classification": "E2",
+      "milestone": 19,
+      "reason": "Missing OS targets: ubuntu_lts_linux, windows_11_native, macos_apple_silicon",
+      "report_path": "evidence/repro/milestone-19-os-universality/report.json",
+      "slug": "milestone-19-os-universality",
+      "status": "BLOCKED"
+    },
+    {
+      "classification": "E1",
+      "milestone": 20,
+      "reason": "All language lanes pass.",
+      "report_path": "evidence/repro/milestone-20-language-ecosystem-v2/report.json",
+      "slug": "milestone-20-language-ecosystem-v2",
+      "status": "PASS"
+    },
+    {
+      "classification": "E1",
+      "milestone": 21,
+      "reason": "All library lanes pass.",
+      "report_path": "evidence/repro/milestone-21-library-ecosystem/report.json",
+      "slug": "milestone-21-library-ecosystem",
+      "status": "PASS"
+    },
+    {
+      "classification": "E1",
+      "milestone": 22,
+      "reason": "All artifact portability checks pass.",
+      "report_path": "evidence/repro/milestone-22-artifact-portability/report.json",
+      "slug": "milestone-22-artifact-portability",
+      "status": "PASS"
+    },
+    {
+      "classification": "E2",
+      "milestone": 23,
+      "reason": "At least one distributed reproducibility check is blocked.",
+      "report_path": "evidence/repro/milestone-23-distributed-heterogeneous/report.json",
+      "slug": "milestone-23-distributed-heterogeneous",
+      "status": "BLOCKED"
+    },
+    {
+      "classification": "E2",
+      "milestone": 24,
+      "reason": "At least one edge/mobile/web target is blocked.",
+      "report_path": "evidence/repro/milestone-24-edge-mobile-web/report.json",
+      "slug": "milestone-24-edge-mobile-web",
+      "status": "BLOCKED"
+    }
+  ],
+  "profile": "universal_profile_v2",
+  "reason": "Blocked prerequisite milestones: 12, 16, 18, 19, 23, 24",
+  "status": "BLOCKED"
+}

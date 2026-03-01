@@ -1,0 +1,10 @@
+{
+  "pairs": [
+    {
+      "classification": "E2",
+      "pair": "global_certification_gate",
+      "reason": "Blocked prerequisite milestones: 12, 16, 18, 19, 23, 24",
+      "status": "BLOCKED"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "classification": "E2",
+  "generated_at": "2026-03-01T17:45:26.236850+00:00",
+  "milestone": 25,
+  "profile": "universal_profile_v2",
+  "reason": "Blocked prerequisite milestones: 12, 16, 18, 19, 23, 24",
+  "status": "BLOCKED"
+}
