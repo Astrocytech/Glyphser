@@ -1,0 +1,17 @@
+{
+  "pairs": [
+    {
+      "checks": [
+        "canonical_request_equivalence",
+        "canonical_submit_determinism",
+        "idempotency_single_thread",
+        "idempotency_concurrent_load",
+        "evidence_replay_stability"
+      ],
+      "classification": "E1",
+      "pair": "service_api__vs__service_api_replay",
+      "reason": "All service reproducibility checks pass.",
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "waivers": [
+    {
+      "adr": "evidence/repro/decisions/ADR-2026-03-01-m12-resource-gap-temporary-waiver.md",
+      "id": "M12_TEMP_RESOURCE_GAP",
+      "scope": "Milestones 13-15 execution unblocked while Milestone 12 is BLOCKED.",
+      "status": "ACTIVE"
+    }
+  ]
+}

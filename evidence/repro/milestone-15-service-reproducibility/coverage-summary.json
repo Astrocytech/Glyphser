@@ -1,0 +1,17 @@
+{
+  "checks": [
+    "canonical_request_equivalence",
+    "canonical_submit_determinism",
+    "idempotency_single_thread",
+    "idempotency_concurrent_load",
+    "evidence_replay_stability"
+  ],
+  "milestone": 15,
+  "service_surface": [
+    "submit_job",
+    "status",
+    "evidence",
+    "replay"
+  ],
+  "status": "PASS"
+}

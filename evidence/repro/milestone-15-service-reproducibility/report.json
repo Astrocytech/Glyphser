@@ -1,0 +1,98 @@
+{
+  "checks": [
+    {
+      "check": "canonical_request_equivalence",
+      "classification": "E0",
+      "details": {
+        "canonical_a": "{\"payload\":{\"job\":\"svc-demo\",\"params\":{\"x\":1,\"y\":2}}}",
+        "canonical_b": "{\"payload\":{\"job\":\"svc-demo\",\"params\":{\"x\":1,\"y\":2}}}"
+      },
+      "reason": "Canonical JSON matches for semantically equivalent payloads.",
+      "status": "PASS"
+    },
+    {
+      "check": "canonical_submit_determinism",
+      "classification": "E0",
+      "details": {
+        "job_id_a": "eb0f5f57ec1eafec6b203d9c",
+        "job_id_b": "eb0f5f57ec1eafec6b203d9c"
+      },
+      "reason": "Equivalent canonical payloads map to identical job_id.",
+      "status": "PASS"
+    },
+    {
+      "check": "idempotency_single_thread",
+      "classification": "E0",
+      "details": {
+        "job_ids": [
+          "bb1b3c8e7c9382463055471a"
+        ]
+      },
+      "reason": "Repeated idempotent submits return same job_id.",
+      "status": "PASS"
+    },
+    {
+      "check": "idempotency_concurrent_load",
+      "classification": "E1",
+      "details": {
+        "batch-key-0": [
+          "f5698aa28e5739990809b9e4"
+        ],
+        "batch-key-1": [
+          "44c9e130cca8f4a053832e4b"
+        ],
+        "batch-key-2": [
+          "f005783863ff1158c4170f0f"
+        ],
+        "batch-key-3": [
+          "d0c2c8ac5ab8aaab7c8cddb0"
+        ]
+      },
+      "reason": "Concurrent idempotent submissions are stable per key.",
+      "status": "PASS"
+    },
+    {
+      "check": "evidence_replay_stability",
+      "classification": "E1",
+      "details": {
+        "evidence_a": {
+          "api_version": "1.0.0",
+          "bundle_manifest_line": "abc123  hello-core-bundle.tar.gz",
+          "conformance_report_hash": "cc272982687daa127c5a8010b804b69603fcbc32a40f3ea63649eeb36ad474fa",
+          "job_id": "bb1b3c8e7c9382463055471a",
+          "repro_hash_line": "abc123  hello-core-bundle.tar.gz"
+        },
+        "evidence_b": {
+          "api_version": "1.0.0",
+          "bundle_manifest_line": "abc123  hello-core-bundle.tar.gz",
+          "conformance_report_hash": "cc272982687daa127c5a8010b804b69603fcbc32a40f3ea63649eeb36ad474fa",
+          "job_id": "bb1b3c8e7c9382463055471a",
+          "repro_hash_line": "abc123  hello-core-bundle.tar.gz"
+        },
+        "replay_a": {
+          "api_version": "1.0.0",
+          "job_id": "bb1b3c8e7c9382463055471a",
+          "replay_verdict": "PASS"
+        },
+        "replay_b": {
+          "api_version": "1.0.0",
+          "job_id": "bb1b3c8e7c9382463055471a",
+          "replay_verdict": "PASS"
+        }
+      },
+      "reason": "Evidence and replay responses are stable and PASS under repeat calls.",
+      "status": "PASS"
+    }
+  ],
+  "classification": "E1",
+  "meta": {
+    "kernel": "6.8.0-101-generic",
+    "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "timestamp_utc": "2026-03-01T16:56:34.085443+00:00"
+  },
+  "milestone": 15,
+  "profile": "service_reproducibility",
+  "reason": "All service reproducibility checks pass.",
+  "status": "PASS"
+}

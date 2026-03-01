@@ -1,0 +1,18 @@
+{
+  "classification": "E1",
+  "dependencies": [
+    14
+  ],
+  "evidence_dir": "evidence/repro/milestone-15-service-reproducibility/",
+  "milestone": 15,
+  "owner": "Astrocytech/Glyphser",
+  "profiles": [
+    "service_api"
+  ],
+  "result": "PASS",
+  "slug": "service-reproducibility",
+  "target_date": "2026-07-12",
+  "waiver_dependencies": [
+    12
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "hooks": [
+    {
+      "action": "freeze write path and inspect audit chain",
+      "event": "idempotency_violation",
+      "severity": "high"
+    },
+    {
+      "action": "trigger reproducibility incident workflow",
+      "event": "replay_verdict_fail",
+      "severity": "high"
+    },
+    {
+      "action": "block deploy and diff canonical payload bytes",
+      "event": "canonicalization_mismatch",
+      "severity": "medium"
+    }
+  ]
+}
