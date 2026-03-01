@@ -1,0 +1,33 @@
+{
+  "arch": "x86_64",
+  "device_classes": {
+    "cpu_arm64": false,
+    "cpu_x86_64": true,
+    "edge_target": false,
+    "gpu_amd_rocm": false,
+    "gpu_apple_mps": false,
+    "gpu_intel": true,
+    "gpu_nvidia_cuda": true
+  },
+  "frameworks": {
+    "tensorflow": {
+      "gpu_visible": true,
+      "present": true,
+      "version": "2.20.0"
+    },
+    "torch": {
+      "cuda_available": true,
+      "cuda_version": "12.1",
+      "hip_version": null,
+      "present": true,
+      "version": "2.5.1+cu121"
+    }
+  },
+  "host_id": "coka-Predator-PH517-51",
+  "kernel": "6.8.0-101-generic",
+  "os_family": "Linux",
+  "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+  "python": "3.12.3",
+  "source": "local",
+  "timestamp_utc": "2026-03-01T17:12:26.578171+00:00"
+}

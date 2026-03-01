@@ -1,0 +1,12 @@
+{
+  "hosts": [
+    {
+      "arch": "x86_64",
+      "host_id": "coka-Predator-PH517-51",
+      "os_family": "Linux"
+    }
+  ],
+  "os_families": [
+    "Linux"
+  ]
+}

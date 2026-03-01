@@ -1,0 +1,19 @@
+{
+  "covered_device_classes": [
+    "cpu_x86_64",
+    "gpu_intel",
+    "gpu_nvidia_cuda"
+  ],
+  "host_count": 1,
+  "milestone": 18,
+  "required_device_classes": [
+    "cpu_x86_64",
+    "cpu_arm64",
+    "gpu_nvidia_cuda",
+    "gpu_amd_rocm",
+    "gpu_intel",
+    "gpu_apple_mps",
+    "edge_target"
+  ],
+  "status": "BLOCKED"
+}

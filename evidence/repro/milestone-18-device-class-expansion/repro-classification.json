@@ -1,0 +1,8 @@
+{
+  "classification": "E2",
+  "excluded_operators": [],
+  "milestone": 18,
+  "profile": "device_class_expansion",
+  "reason": "Missing required device classes: cpu_arm64, gpu_amd_rocm, gpu_apple_mps, edge_target",
+  "status": "BLOCKED"
+}

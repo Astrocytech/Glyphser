@@ -1,0 +1,7 @@
+{
+  "libraries_observed": [
+    "tensorflow",
+    "torch"
+  ],
+  "note": "Milestone 18 captures visibility only; full library universality is milestone 21."
+}

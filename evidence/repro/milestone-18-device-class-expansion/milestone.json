@@ -1,0 +1,19 @@
+{
+  "classification": "E2",
+  "dependencies": [
+    17,
+    "17A"
+  ],
+  "evidence_dir": "evidence/repro/milestone-18-device-class-expansion/",
+  "host_manifests": [
+    "evidence/repro/milestone-18-device-class-expansion/host-coka-Predator-PH517-51.json"
+  ],
+  "milestone": 18,
+  "owner": "Astrocytech/Glyphser",
+  "profiles": [
+    "device_matrix"
+  ],
+  "result": "BLOCKED",
+  "slug": "device-class-expansion",
+  "target_date": "2026-09-15"
+}
