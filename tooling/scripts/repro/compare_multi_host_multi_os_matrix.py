@@ -26,8 +26,12 @@ def _sha256_file(path: Path) -> str:
 
 
 def _run(cmd: list[str]) -> tuple[int, str, str]:
-    proc = subprocess.run(cmd, capture_output=True, text=True, cwd=str(ROOT))
-    return proc.returncode, proc.stdout.strip(), proc.stderr.strip()
+    try:
+        proc = subprocess.run(cmd, capture_output=True, text=True, cwd=str(ROOT))
+        return proc.returncode, proc.stdout.strip(), proc.stderr.strip()
+    except FileNotFoundError as exc:
+        # Some host tools (for example nvidia-smi/lscpu/java) may not exist on every OS.
+        return 127, "", str(exc)
 
 
 def _parse_gpu_models() -> list[str]:
