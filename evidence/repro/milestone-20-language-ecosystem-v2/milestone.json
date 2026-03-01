@@ -1,0 +1,24 @@
+{
+  "classification": "E1",
+  "dependencies": [
+    19
+  ],
+  "evidence_dir": "evidence/repro/milestone-20-language-ecosystem-v2/",
+  "milestone": 20,
+  "owner": "Astrocytech/Glyphser",
+  "profiles": [
+    "python_pytorch_cpu",
+    "python_keras_cpu",
+    "java_onnxruntime_cpu",
+    "rust_cpu",
+    "go_cpu",
+    "cpp_cpu",
+    "csharp_cpu"
+  ],
+  "result": "PASS",
+  "slug": "language-ecosystem-v2",
+  "target_date": "2026-10-22",
+  "waiver_dependencies": [
+    19
+  ]
+}

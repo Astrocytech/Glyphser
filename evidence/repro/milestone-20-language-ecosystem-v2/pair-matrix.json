@@ -1,0 +1,218 @@
+{
+  "pairs": [
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "classification": "E0",
+      "pair": "python_pytorch_cpu__vs__python_keras_cpu",
+      "reason": "Exact output and execution fingerprint match.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "78275243043a912c5c362e2c3b5e1fc2f40d70a56abd847fd6aa5022873a74b6",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "onnxruntime_java"
+      },
+      "classification": "E1",
+      "pair": "python_pytorch_cpu__vs__java_onnxruntime_cpu",
+      "reason": "Outputs within tolerance.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "51faee958c94e4f0a05fa16cd73cb5a2d3f65682c698f217d4f672afe61da90d",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "rust_cpu"
+      },
+      "classification": "E1",
+      "pair": "python_pytorch_cpu__vs__rust_cpu",
+      "reason": "Outputs within tolerance.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "e692eac452aa27f4cf6b78b1f3dae8228ee722dc6b2f108973a7db87164204ac",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "go_cpu"
+      },
+      "classification": "E1",
+      "pair": "python_pytorch_cpu__vs__go_cpu",
+      "reason": "Outputs within tolerance.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "d3079cd594ecf3edc757d1298c3fc4b3c731206bce1e6fa603080c440cea1f19",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "cpp_cpu"
+      },
+      "classification": "E1",
+      "pair": "python_pytorch_cpu__vs__cpp_cpu",
+      "reason": "Outputs within tolerance.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "92ec46f5ea2ab88b5c3a51e44f9378511efffd4412d5ffa8715d0cf231c88b7c",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "csharp_cpu"
+      },
+      "classification": "E1",
+      "pair": "python_pytorch_cpu__vs__csharp_cpu",
+      "reason": "Outputs within tolerance.",
+      "status": "PASS"
+    }
+  ]
+}
