@@ -1,0 +1,16 @@
+{
+  "pairs": [
+    {
+      "checks": [
+        "onnx_roundtrip",
+        "safetensors_roundtrip",
+        "canonical_json_stability",
+        "canonical_cbor_stability"
+      ],
+      "classification": "E1",
+      "pair": "artifact_portability",
+      "reason": "All artifact portability checks pass.",
+      "status": "PASS"
+    }
+  ]
+}

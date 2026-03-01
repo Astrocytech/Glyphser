@@ -1,0 +1,272 @@
+{
+  "classification": "E1",
+  "library_matrix": [
+    {
+      "library_lane": "python_pytorch_cpu",
+      "status": "PASS"
+    },
+    {
+      "library_lane": "python_keras_cpu",
+      "status": "PASS"
+    },
+    {
+      "library_lane": "jax_cpu",
+      "status": "PASS"
+    },
+    {
+      "library_lane": "onnxruntime_cpu",
+      "status": "PASS"
+    },
+    {
+      "library_lane": "openvino_tensorrt",
+      "status": "PASS"
+    }
+  ],
+  "meta": {
+    "abs_tol": 1e-06,
+    "jax": {
+      "present": true,
+      "version": "0.9.0.1"
+    },
+    "kernel": "6.8.0-101-generic",
+    "onnx": {
+      "present": true,
+      "version": "1.20.1"
+    },
+    "onnxruntime": {
+      "present": true,
+      "version": "1.24.2"
+    },
+    "openvino": {
+      "present": true,
+      "version": "2026.0.0-20965-c6d6a13a886-releases/2026/0"
+    },
+    "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "rel_tol": 1e-06,
+    "tensorrt": {
+      "error": "No module named 'tensorrt'",
+      "present": false
+    },
+    "timestamp_utc": "2026-03-01T17:34:13.032834+00:00"
+  },
+  "milestone": 21,
+  "pairs": [
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "classification": "E0",
+      "pair": "python_pytorch_cpu__vs__python_keras_cpu",
+      "reason": "Exact output and execution fingerprint match.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "4bc23eac8c820b67345e0aa0f1a3cc6e4d4e096668444641fab4e92a9792e25e",
+        "outputs": [
+          [
+            0.6000000238418579
+          ]
+        ],
+        "runtime": "jax_cpu"
+      },
+      "classification": "E1",
+      "pair": "python_pytorch_cpu__vs__jax_cpu",
+      "reason": "Outputs within tolerance.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "d26837affacd83f1ddfe8201f56f1edb45a72e6a743b26af67ca09ce1cf268e2",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "onnxruntime_cpu"
+      },
+      "classification": "E1",
+      "pair": "python_pytorch_cpu__vs__onnxruntime_cpu",
+      "reason": "Outputs within tolerance.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "04755f3a97667a8975f2deb4b1f150ebeed480f92e4da73b896cac87584819b8",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "openvino_cpu"
+      },
+      "classification": "E1",
+      "pair": "python_pytorch_cpu__vs__openvino_tensorrt",
+      "reason": "Outputs within tolerance.",
+      "status": "PASS"
+    }
+  ],
+  "profile": "library_ecosystem",
+  "reason": "All library lanes pass.",
+  "results": {
+    "jax_cpu": {
+      "execution_fp": "4bc23eac8c820b67345e0aa0f1a3cc6e4d4e096668444641fab4e92a9792e25e",
+      "outputs": [
+        [
+          0.6000000238418579
+        ]
+      ],
+      "runtime": "jax_cpu"
+    },
+    "onnxruntime_cpu": {
+      "execution_fp": "d26837affacd83f1ddfe8201f56f1edb45a72e6a743b26af67ca09ce1cf268e2",
+      "outputs": [
+        [
+          0.6000000000000001
+        ]
+      ],
+      "runtime": "onnxruntime_cpu"
+    },
+    "openvino_tensorrt": {
+      "execution_fp": "04755f3a97667a8975f2deb4b1f150ebeed480f92e4da73b896cac87584819b8",
+      "outputs": [
+        [
+          0.6000000000000001
+        ]
+      ],
+      "runtime": "openvino_cpu"
+    },
+    "python_keras_cpu": {
+      "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+      "outputs": [
+        [
+          0.6000000000000001
+        ]
+      ],
+      "rng_state_next": 0,
+      "tmmu_state_next": {
+        "arena_config": {
+          "default": {
+            "alignment_bytes": 64,
+            "capacity_bytes": 1000000
+          }
+        },
+        "committed": true,
+        "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+      }
+    },
+    "python_pytorch_cpu": {
+      "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+      "outputs": [
+        [
+          0.6000000000000001
+        ]
+      ],
+      "rng_state_next": 0,
+      "tmmu_state_next": {
+        "arena_config": {
+          "default": {
+            "alignment_bytes": 64,
+            "capacity_bytes": 1000000
+          }
+        },
+        "committed": true,
+        "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+      }
+    }
+  },
+  "status": "PASS"
+}

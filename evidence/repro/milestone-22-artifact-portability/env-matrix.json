@@ -1,0 +1,20 @@
+{
+  "abs_tol": 1e-06,
+  "kernel": "6.8.0-101-generic",
+  "onnx": {
+    "present": true,
+    "version": "1.20.1"
+  },
+  "onnxruntime": {
+    "present": true,
+    "version": "1.24.2"
+  },
+  "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+  "python": "3.12.3",
+  "rel_tol": 1e-06,
+  "safetensors": {
+    "present": true,
+    "version": "0.7.0"
+  },
+  "timestamp_utc": "2026-03-01T17:36:26.952051+00:00"
+}

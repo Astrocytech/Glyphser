@@ -1,0 +1,15 @@
+{
+  "classification": "E1",
+  "dependencies": [
+    21
+  ],
+  "evidence_dir": "evidence/repro/milestone-22-artifact-portability/",
+  "milestone": 22,
+  "owner": "Astrocytech/Glyphser",
+  "profiles": [
+    "artifact_portability"
+  ],
+  "result": "PASS",
+  "slug": "artifact-portability",
+  "target_date": "2026-12-03"
+}
