@@ -1,0 +1,19 @@
+{
+  "classification": "E1",
+  "dependencies": [
+    9
+  ],
+  "evidence_dir": "evidence/repro/milestone-10-model-class-expansion/",
+  "milestone": 10,
+  "owner": "Astrocytech/Glyphser",
+  "profiles": [
+    "pytorch_cpu",
+    "pytorch_gpu",
+    "keras_cpu",
+    "keras_gpu",
+    "java_cpu"
+  ],
+  "result": "PASS",
+  "slug": "model-class-expansion",
+  "target_date": "2026-03-29"
+}

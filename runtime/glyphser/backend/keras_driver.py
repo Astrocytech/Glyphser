@@ -61,6 +61,7 @@ class KerasCPUDriver:
         return instr in {
             "Input",
             "Dense",
+            "Conv1D",
             "Add",
             "Mul",
             "Relu",
@@ -177,6 +178,21 @@ class KerasCPUDriver:
                 b = _to_tensor_cpu(bias)
                 out = out + b
                 return _to_python(out), rng_state
+        if instr == "Conv1D":
+            with _tf.device("/CPU:0"):
+                x = _tf.reshape(_to_tensor_cpu(inputs[0]), [-1])
+                kernel = _tf.reshape(_to_tensor_cpu(params.get("kernel") or []), [-1])
+                if int(kernel.shape[0]) <= 0:
+                    raise ValueError("Conv1D kernel missing")
+                if int(x.shape[0]) < int(kernel.shape[0]):
+                    raise ValueError("Conv1D input shorter than kernel")
+                bias = float(params.get("bias", 0.0))
+                out_len = int(x.shape[0] - kernel.shape[0] + 1)
+                elems: list[Any] = []
+                for i in range(out_len):
+                    elems.append(_tf.reduce_sum(x[i : i + int(kernel.shape[0])] * kernel) + bias)
+                out = _tf.stack(elems, axis=0)
+                return _to_python(out), rng_state
         raise ValueError(f"unsupported instr: {instr}")
 
 
@@ -233,6 +249,7 @@ class KerasGPUDriver:
         return instr in {
             "Input",
             "Dense",
+            "Conv1D",
             "Add",
             "Mul",
             "Relu",
@@ -347,6 +364,21 @@ class KerasGPUDriver:
                     out = _tf.linalg.matvec(w, x)
                 b = _to_tensor_gpu(bias)
                 out = out + b
+                return _to_python(out), rng_state
+        if instr == "Conv1D":
+            with _tf.device("/GPU:0"):
+                x = _tf.reshape(_to_tensor_gpu(inputs[0]), [-1])
+                kernel = _tf.reshape(_to_tensor_gpu(params.get("kernel") or []), [-1])
+                if int(kernel.shape[0]) <= 0:
+                    raise ValueError("Conv1D kernel missing")
+                if int(x.shape[0]) < int(kernel.shape[0]):
+                    raise ValueError("Conv1D input shorter than kernel")
+                bias = float(params.get("bias", 0.0))
+                out_len = int(x.shape[0] - kernel.shape[0] + 1)
+                elems: list[Any] = []
+                for i in range(out_len):
+                    elems.append(_tf.reduce_sum(x[i : i + int(kernel.shape[0])] * kernel) + bias)
+                out = _tf.stack(elems, axis=0)
                 return _to_python(out), rng_state
         raise ValueError(f"unsupported instr: {instr}")
 

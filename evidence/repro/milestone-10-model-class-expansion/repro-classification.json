@@ -1,0 +1,10 @@
+{
+  "abs_tol": 1e-06,
+  "classification": "E1",
+  "excluded_operators": [],
+  "milestone": 10,
+  "profile": "model_class_expansion_cross_stack",
+  "reason": "All model class pairs pass.",
+  "rel_tol": 1e-06,
+  "status": "PASS"
+}

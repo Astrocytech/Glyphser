@@ -1,0 +1,29 @@
+{
+  "mandatory_profiles": [
+    "pytorch_cpu",
+    "pytorch_gpu",
+    "keras_cpu",
+    "keras_gpu",
+    "java_cpu"
+  ],
+  "milestone": 10,
+  "model_classes": [
+    "cnn",
+    "mlp",
+    "sequence_attention_lite"
+  ],
+  "model_count": 3,
+  "model_ids": [
+    "mlp_deep",
+    "cnn_tiny",
+    "attention_lite"
+  ],
+  "profiles": [
+    "pytorch_cpu",
+    "pytorch_gpu",
+    "keras_cpu",
+    "keras_gpu",
+    "java_cpu"
+  ],
+  "status": "PASS"
+}

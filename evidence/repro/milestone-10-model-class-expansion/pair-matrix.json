@@ -1,0 +1,294 @@
+{
+  "pairs": [
+    {
+      "classification": "E0",
+      "models": [
+        {
+          "classification": "E0",
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_cpu__vs__pytorch_gpu",
+      "reason": "All model classes pass.",
+      "status": "PASS"
+    },
+    {
+      "classification": "E1",
+      "models": [
+        {
+          "classification": "E1",
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_cpu__vs__keras_cpu",
+      "reason": "All model classes pass.",
+      "status": "PASS"
+    },
+    {
+      "classification": "E0",
+      "models": [
+        {
+          "classification": "E0",
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_cpu__vs__keras_gpu",
+      "reason": "All model classes pass.",
+      "status": "PASS"
+    },
+    {
+      "classification": "E1",
+      "models": [
+        {
+          "classification": "E1",
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_cpu__vs__java_cpu",
+      "reason": "All model classes pass.",
+      "status": "PASS"
+    },
+    {
+      "classification": "E1",
+      "models": [
+        {
+          "classification": "E1",
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_gpu__vs__keras_cpu",
+      "reason": "All model classes pass.",
+      "status": "PASS"
+    },
+    {
+      "classification": "E0",
+      "models": [
+        {
+          "classification": "E0",
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_gpu__vs__keras_gpu",
+      "reason": "All model classes pass.",
+      "status": "PASS"
+    },
+    {
+      "classification": "E1",
+      "models": [
+        {
+          "classification": "E1",
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_gpu__vs__java_cpu",
+      "reason": "All model classes pass.",
+      "status": "PASS"
+    },
+    {
+      "classification": "E1",
+      "models": [
+        {
+          "classification": "E1",
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "keras_cpu__vs__keras_gpu",
+      "reason": "All model classes pass.",
+      "status": "PASS"
+    },
+    {
+      "classification": "E1",
+      "models": [
+        {
+          "classification": "E1",
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "keras_cpu__vs__java_cpu",
+      "reason": "All model classes pass.",
+      "status": "PASS"
+    },
+    {
+      "classification": "E1",
+      "models": [
+        {
+          "classification": "E1",
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "keras_gpu__vs__java_cpu",
+      "reason": "All model classes pass.",
+      "status": "PASS"
+    }
+  ]
+}

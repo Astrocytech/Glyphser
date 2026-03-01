@@ -1,0 +1,616 @@
+{
+  "classification": "E1",
+  "meta": {
+    "abs_tol": 1e-06,
+    "java": {
+      "java_version": "openjdk version \"21.0.10\" 2026-01-20\nOpenJDK Runtime Environment (build 21.0.10+7-Ubuntu-124.04)\nOpenJDK 64-Bit Server VM (build 21.0.10+7-Ubuntu-124.04, mixed mode, sharing)",
+      "javac_version": "javac 21.0.10"
+    },
+    "kernel": "6.8.0-101-generic",
+    "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "rel_tol": 1e-06,
+    "tensorflow": {
+      "gpu_devices": [
+        "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')"
+      ],
+      "gpu_visible": true,
+      "version": "2.20.0"
+    },
+    "timestamp_utc": "2026-03-01T15:23:46.811430+00:00",
+    "torch": {
+      "cuda_available": true,
+      "cuda_version": "12.1",
+      "gpu_name": "NVIDIA GeForce GTX 1070",
+      "version": "2.5.1+cu121"
+    }
+  },
+  "milestone": 10,
+  "model_classifications": {
+    "attention_lite": "E1",
+    "cnn_tiny": "E1",
+    "mlp_deep": "E1"
+  },
+  "models": [
+    {
+      "model_class": "mlp",
+      "model_id": "mlp_deep",
+      "profile_results": {
+        "java_cpu": {
+          "execution_fp": "5ecb8446c12c4ea4cc52259aa09ae078b03658193c1b83da9caa2b34c087a5d1",
+          "outputs": [
+            [
+              0.6690740262512674,
+              0.3677224540652248,
+              0.6552054233029431
+            ]
+          ]
+        },
+        "keras_cpu": {
+          "execution_fp": "d466a4476317edd76fe4c9b5185a7e58f555bf97c814709fed924838cbd4730b",
+          "outputs": [
+            [
+              0.6690740262512676,
+              0.3677224540652248,
+              0.655205423302943
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "1f1a408381bd9292d536a6c73a99796fa4cc3b9e737b95e8412bcbcdda8c099d"
+          }
+        },
+        "keras_gpu": {
+          "execution_fp": "b079a6577a94dab7f986120d822e4d1427510095f356318fd4a1d43612d14f3f",
+          "outputs": [
+            [
+              0.6690740262512674,
+              0.3677224540652248,
+              0.6552054233029431
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "1f1a408381bd9292d536a6c73a99796fa4cc3b9e737b95e8412bcbcdda8c099d"
+          }
+        },
+        "pytorch_cpu": {
+          "execution_fp": "b079a6577a94dab7f986120d822e4d1427510095f356318fd4a1d43612d14f3f",
+          "outputs": [
+            [
+              0.6690740262512674,
+              0.3677224540652248,
+              0.6552054233029431
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "1f1a408381bd9292d536a6c73a99796fa4cc3b9e737b95e8412bcbcdda8c099d"
+          }
+        },
+        "pytorch_gpu": {
+          "execution_fp": "b079a6577a94dab7f986120d822e4d1427510095f356318fd4a1d43612d14f3f",
+          "outputs": [
+            [
+              0.6690740262512674,
+              0.3677224540652248,
+              0.6552054233029431
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "1f1a408381bd9292d536a6c73a99796fa4cc3b9e737b95e8412bcbcdda8c099d"
+          }
+        }
+      }
+    },
+    {
+      "model_class": "cnn",
+      "model_id": "cnn_tiny",
+      "profile_results": {
+        "java_cpu": {
+          "execution_fp": "7c1363eb6f2316150752b03b3eed5f9ff93001163aea0e2f46ff737bbfe705b8",
+          "outputs": [
+            [
+              0.8175,
+              -0.28
+            ]
+          ]
+        },
+        "keras_cpu": {
+          "execution_fp": "0249da4bd26841730a56696c15302017257f7cb18f9f5b73e4fe824bcc767fb8",
+          "outputs": [
+            [
+              0.8175,
+              -0.28
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "a509f7ce092b66947e5322757ce646cc852a03648ad43bb3aa0a5246c09aea87"
+          }
+        },
+        "keras_gpu": {
+          "execution_fp": "0249da4bd26841730a56696c15302017257f7cb18f9f5b73e4fe824bcc767fb8",
+          "outputs": [
+            [
+              0.8175,
+              -0.28
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "a509f7ce092b66947e5322757ce646cc852a03648ad43bb3aa0a5246c09aea87"
+          }
+        },
+        "pytorch_cpu": {
+          "execution_fp": "0249da4bd26841730a56696c15302017257f7cb18f9f5b73e4fe824bcc767fb8",
+          "outputs": [
+            [
+              0.8175,
+              -0.28
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "a509f7ce092b66947e5322757ce646cc852a03648ad43bb3aa0a5246c09aea87"
+          }
+        },
+        "pytorch_gpu": {
+          "execution_fp": "0249da4bd26841730a56696c15302017257f7cb18f9f5b73e4fe824bcc767fb8",
+          "outputs": [
+            [
+              0.8175,
+              -0.28
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "a509f7ce092b66947e5322757ce646cc852a03648ad43bb3aa0a5246c09aea87"
+          }
+        }
+      }
+    },
+    {
+      "model_class": "sequence_attention_lite",
+      "model_id": "attention_lite",
+      "profile_results": {
+        "java_cpu": {
+          "execution_fp": "4c37012bf7db94f9f73d6d666bb536d44bbb898263a3de30d760d92d7efcc0e0",
+          "outputs": [
+            [
+              1.1361167501135268
+            ]
+          ]
+        },
+        "keras_cpu": {
+          "execution_fp": "1eba886ec51c922c2b12eb03d1b664a6592d228ba28eca19fa3234d1f9d6d917",
+          "outputs": [
+            [
+              1.1361167501135268
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "af9e2aaaf68e1839dbb1b4774efb47809041160a66c860e753c7ceec1d7402fc"
+          }
+        },
+        "keras_gpu": {
+          "execution_fp": "1eba886ec51c922c2b12eb03d1b664a6592d228ba28eca19fa3234d1f9d6d917",
+          "outputs": [
+            [
+              1.1361167501135268
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "af9e2aaaf68e1839dbb1b4774efb47809041160a66c860e753c7ceec1d7402fc"
+          }
+        },
+        "pytorch_cpu": {
+          "execution_fp": "1eba886ec51c922c2b12eb03d1b664a6592d228ba28eca19fa3234d1f9d6d917",
+          "outputs": [
+            [
+              1.1361167501135268
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "af9e2aaaf68e1839dbb1b4774efb47809041160a66c860e753c7ceec1d7402fc"
+          }
+        },
+        "pytorch_gpu": {
+          "execution_fp": "1eba886ec51c922c2b12eb03d1b664a6592d228ba28eca19fa3234d1f9d6d917",
+          "outputs": [
+            [
+              1.1361167501135268
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "af9e2aaaf68e1839dbb1b4774efb47809041160a66c860e753c7ceec1d7402fc"
+          }
+        }
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "classification": "E0",
+      "models": [
+        {
+          "classification": "E0",
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_cpu__vs__pytorch_gpu",
+      "reason": "All model classes pass.",
+      "status": "PASS"
+    },
+    {
+      "classification": "E1",
+      "models": [
+        {
+          "classification": "E1",
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_cpu__vs__keras_cpu",
+      "reason": "All model classes pass.",
+      "status": "PASS"
+    },
+    {
+      "classification": "E0",
+      "models": [
+        {
+          "classification": "E0",
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_cpu__vs__keras_gpu",
+      "reason": "All model classes pass.",
+      "status": "PASS"
+    },
+    {
+      "classification": "E1",
+      "models": [
+        {
+          "classification": "E1",
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_cpu__vs__java_cpu",
+      "reason": "All model classes pass.",
+      "status": "PASS"
+    },
+    {
+      "classification": "E1",
+      "models": [
+        {
+          "classification": "E1",
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_gpu__vs__keras_cpu",
+      "reason": "All model classes pass.",
+      "status": "PASS"
+    },
+    {
+      "classification": "E0",
+      "models": [
+        {
+          "classification": "E0",
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_gpu__vs__keras_gpu",
+      "reason": "All model classes pass.",
+      "status": "PASS"
+    },
+    {
+      "classification": "E1",
+      "models": [
+        {
+          "classification": "E1",
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "pytorch_gpu__vs__java_cpu",
+      "reason": "All model classes pass.",
+      "status": "PASS"
+    },
+    {
+      "classification": "E1",
+      "models": [
+        {
+          "classification": "E1",
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E0",
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "keras_cpu__vs__keras_gpu",
+      "reason": "All model classes pass.",
+      "status": "PASS"
+    },
+    {
+      "classification": "E1",
+      "models": [
+        {
+          "classification": "E1",
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "keras_cpu__vs__java_cpu",
+      "reason": "All model classes pass.",
+      "status": "PASS"
+    },
+    {
+      "classification": "E1",
+      "models": [
+        {
+          "classification": "E1",
+          "model_class": "mlp",
+          "model_id": "mlp_deep",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "model_class": "cnn",
+          "model_id": "cnn_tiny",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "classification": "E1",
+          "model_class": "sequence_attention_lite",
+          "model_id": "attention_lite",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        }
+      ],
+      "pair": "keras_gpu__vs__java_cpu",
+      "reason": "All model classes pass.",
+      "status": "PASS"
+    }
+  ],
+  "profile": "model_class_expansion_cross_stack",
+  "reason": "All model class pairs pass.",
+  "status": "PASS"
+}

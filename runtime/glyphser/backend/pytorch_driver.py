@@ -35,6 +35,7 @@ class PyTorchCPUDriver:
         return instr in {
             "Input",
             "Dense",
+            "Conv1D",
             "Add",
             "Mul",
             "Relu",
@@ -133,6 +134,19 @@ class PyTorchCPUDriver:
             b = _to_tensor(bias)
             out = out + b
             return _to_python(out), rng_state
+        if instr == "Conv1D":
+            x = _to_tensor(inputs[0]).reshape(-1)
+            kernel = _to_tensor(params.get("kernel") or [])
+            if kernel.ndim != 1 or kernel.numel() == 0:
+                raise ValueError("Conv1D kernel missing")
+            if x.numel() < kernel.numel():
+                raise ValueError("Conv1D input shorter than kernel")
+            bias = float(params.get("bias", 0.0))
+            out_len = int(x.numel() - kernel.numel() + 1)
+            out = _torch.empty((out_len,), dtype=_torch.float64, device="cpu")
+            for i in range(out_len):
+                out[i] = (x[i : i + kernel.numel()] * kernel).sum() + bias
+            return _to_python(out), rng_state
         raise ValueError(f"unsupported instr: {instr}")
 
 
@@ -188,6 +202,7 @@ class PyTorchGPUDriver:
         return instr in {
             "Input",
             "Dense",
+            "Conv1D",
             "Add",
             "Mul",
             "Relu",
@@ -285,6 +300,19 @@ class PyTorchGPUDriver:
                 out = _torch.matmul(w, x)
             b = _to_tensor_cuda(bias)
             out = out + b
+            return _to_python(out), rng_state
+        if instr == "Conv1D":
+            x = _to_tensor_cuda(inputs[0]).reshape(-1)
+            kernel = _to_tensor_cuda(params.get("kernel") or [])
+            if kernel.ndim != 1 or kernel.numel() == 0:
+                raise ValueError("Conv1D kernel missing")
+            if x.numel() < kernel.numel():
+                raise ValueError("Conv1D input shorter than kernel")
+            bias = float(params.get("bias", 0.0))
+            out_len = int(x.numel() - kernel.numel() + 1)
+            out = _torch.empty((out_len,), dtype=_torch.float64, device="cuda")
+            for i in range(out_len):
+                out[i] = (x[i : i + kernel.numel()] * kernel).sum() + bias
             return _to_python(out), rng_state
         raise ValueError(f"unsupported instr: {instr}")
 
