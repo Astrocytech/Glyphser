@@ -1,0 +1,10 @@
+{
+  "abs_tol": 1e-06,
+  "classification": "E1",
+  "excluded_operators": [],
+  "milestone": 13,
+  "profile": "java_runtime_hardening",
+  "reason": "All PyTorch\u2194Java runtime hardening pairs pass.",
+  "rel_tol": 1e-06,
+  "status": "PASS"
+}

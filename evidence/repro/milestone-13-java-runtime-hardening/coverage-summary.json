@@ -1,0 +1,20 @@
+{
+  "java_runtime_lanes": [
+    "onnxruntime_java",
+    "djl"
+  ],
+  "mandatory_profiles": [
+    "pytorch_cpu",
+    "pytorch_gpu",
+    "java_onnxruntime_cpu",
+    "java_djl_cpu"
+  ],
+  "milestone": 13,
+  "profiles": [
+    "pytorch_cpu",
+    "pytorch_gpu",
+    "java_onnxruntime_cpu",
+    "java_djl_cpu"
+  ],
+  "status": "PASS"
+}

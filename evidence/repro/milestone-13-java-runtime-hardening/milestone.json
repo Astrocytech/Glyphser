@@ -1,0 +1,21 @@
+{
+  "classification": "E1",
+  "dependencies": [
+    11
+  ],
+  "evidence_dir": "evidence/repro/milestone-13-java-runtime-hardening/",
+  "milestone": 13,
+  "owner": "Astrocytech/Glyphser",
+  "profiles": [
+    "pytorch_cpu",
+    "pytorch_gpu",
+    "java_onnxruntime_cpu",
+    "java_djl_cpu"
+  ],
+  "result": "PASS",
+  "slug": "java-runtime-hardening",
+  "target_date": "2026-05-31",
+  "waiver_dependencies": [
+    12
+  ]
+}
