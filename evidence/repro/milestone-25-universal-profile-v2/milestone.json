@@ -15,5 +15,5 @@
   "result": "BLOCKED",
   "slug": "universal-profile-v2",
   "target_date": "2027-03-20",
-  "universality_profile": "available_local"
+  "universality_profile": "available_local_partial"
 }

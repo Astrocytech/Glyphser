@@ -2,5 +2,5 @@
   "milestone": 25,
   "prerequisite_count": 7,
   "status": "BLOCKED",
-  "universality_profile": "available_local"
+  "universality_profile": "available_local_partial"
 }

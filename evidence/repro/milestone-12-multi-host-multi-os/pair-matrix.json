@@ -20,6 +20,20 @@
       "profile": "java_cpu",
       "reason": "profile validated",
       "status": "PASS"
+    },
+    {
+      "classification": "E0",
+      "host_id": "coka-Predator-PH517-51",
+      "profile": "pytorch_gpu",
+      "reason": "profile validated",
+      "status": "PASS"
+    },
+    {
+      "classification": "E0",
+      "host_id": "coka-Predator-PH517-51",
+      "profile": "keras_gpu",
+      "reason": "profile validated",
+      "status": "PASS"
     }
   ]
 }

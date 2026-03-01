@@ -2,7 +2,7 @@
   "classification": "E2",
   "milestone": 25,
   "profile": "universal_profile_v2",
-  "reason": "Blocked prerequisite milestones: 12, 16, 23, 24",
+  "reason": "Blocked prerequisite milestones: 12, 16, 23",
   "status": "BLOCKED",
-  "universality_profile": "available_local"
+  "universality_profile": "available_local_partial"
 }

@@ -12,14 +12,18 @@
   "rows": [
     {
       "classification": "E2",
+      "gate_reason": "need >=2 Linux hosts; need >=1 Windows host; need >=2 GPU architectures; missing RTX 30+ host",
+      "gate_status": "BLOCKED",
       "milestone": 12,
-      "reason": "need >=2 Linux hosts; need >=1 Windows host; need >=2 GPU architectures; missing GTX 1070 baseline host; missing RTX 30+ host",
+      "reason": "need >=2 Linux hosts; need >=1 Windows host; need >=2 GPU architectures; missing RTX 30+ host",
       "report_path": "evidence/repro/milestone-12-multi-host-multi-os/report.json",
       "slug": "milestone-12-multi-host-multi-os",
       "status": "BLOCKED"
     },
     {
       "classification": "E2",
+      "gate_reason": "Blocked prerequisite milestones: 12",
+      "gate_status": "BLOCKED",
       "milestone": 16,
       "reason": "Blocked prerequisite milestones: 12",
       "report_path": "evidence/repro/milestone-16-universal-profile-v1/report.json",
@@ -28,6 +32,8 @@
     },
     {
       "classification": "E1",
+      "gate_reason": "All language lanes pass.",
+      "gate_status": "PASS",
       "milestone": 20,
       "reason": "All language lanes pass.",
       "report_path": "evidence/repro/milestone-20-language-ecosystem-v2/report.json",
@@ -36,6 +42,8 @@
     },
     {
       "classification": "E1",
+      "gate_reason": "All library lanes pass.",
+      "gate_status": "PASS",
       "milestone": 21,
       "reason": "All library lanes pass.",
       "report_path": "evidence/repro/milestone-21-library-ecosystem/report.json",
@@ -44,6 +52,8 @@
     },
     {
       "classification": "E1",
+      "gate_reason": "All artifact portability checks pass.",
+      "gate_status": "PASS",
       "milestone": 22,
       "reason": "All artifact portability checks pass.",
       "report_path": "evidence/repro/milestone-22-artifact-portability/report.json",
@@ -52,6 +62,8 @@
     },
     {
       "classification": "E2",
+      "gate_reason": "At least one distributed reproducibility check is blocked.",
+      "gate_status": "BLOCKED",
       "milestone": 23,
       "reason": "At least one distributed reproducibility check is blocked.",
       "report_path": "evidence/repro/milestone-23-distributed-heterogeneous/report.json",
@@ -60,6 +72,8 @@
     },
     {
       "classification": "E2",
+      "gate_reason": "Accepted partial milestone under available_local_partial profile (Android multi-device rerun TODO).",
+      "gate_status": "PASS",
       "milestone": 24,
       "reason": "At least one required edge/mobile/web target is blocked.",
       "report_path": "evidence/repro/milestone-24-edge-mobile-web/report.json",
@@ -68,5 +82,5 @@
     }
   ],
   "status": "BLOCKED",
-  "universality_profile": "available_local"
+  "universality_profile": "available_local_partial"
 }

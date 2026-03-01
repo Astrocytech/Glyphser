@@ -1,10 +1,12 @@
 {
   "classification": "E2",
   "constraints": {
-    "baseline_gpu_present": false,
+    "baseline_gpu_present": true,
     "gpu_arch_required": 2,
-    "gpu_model_count_observed": 0,
-    "gpu_models_observed": [],
+    "gpu_model_count_observed": 1,
+    "gpu_models_observed": [
+      "NVIDIA GeForce GTX 1070"
+    ],
     "linux_hosts_observed": 1,
     "linux_hosts_required": 2,
     "newer_gpu_present": false,
@@ -23,19 +25,24 @@
           "javac_version": "javac 21.0.10"
         },
         "tensorflow": {
-          "gpu_devices": [],
-          "gpu_visible": false,
+          "gpu_devices": [
+            "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')"
+          ],
+          "gpu_visible": true,
           "present": true,
           "version": "2.20.0"
         },
         "torch": {
-          "cuda_available": false,
+          "cuda_available": true,
           "cuda_version": "12.1",
+          "gpu_name": "NVIDIA GeForce GTX 1070",
           "present": true,
           "version": "2.5.1+cu121"
         }
       },
-      "gpu_models": [],
+      "gpu_models": [
+        "NVIDIA GeForce GTX 1070"
+      ],
       "host_id": "coka-Predator-PH517-51",
       "kernel": "6.8.0-101-generic",
       "os_family": "Linux",
@@ -43,13 +50,13 @@
       "profiles": {
         "java_cpu": "PASS",
         "keras_cpu": "PASS",
-        "keras_gpu": "BLOCKED",
+        "keras_gpu": "PASS",
         "pytorch_cpu": "PASS",
-        "pytorch_gpu": "BLOCKED"
+        "pytorch_gpu": "PASS"
       },
       "python": "3.12.3",
       "source": "local",
-      "timestamp_utc": "2026-03-01T16:21:01.990446+00:00"
+      "timestamp_utc": "2026-03-01T22:37:28.180604+00:00"
     }
   ],
   "matrix_rows": [
@@ -73,14 +80,28 @@
       "profile": "java_cpu",
       "reason": "profile validated",
       "status": "PASS"
+    },
+    {
+      "classification": "E0",
+      "host_id": "coka-Predator-PH517-51",
+      "profile": "pytorch_gpu",
+      "reason": "profile validated",
+      "status": "PASS"
+    },
+    {
+      "classification": "E0",
+      "host_id": "coka-Predator-PH517-51",
+      "profile": "keras_gpu",
+      "reason": "profile validated",
+      "status": "PASS"
     }
   ],
   "meta": {
     "cwd": "/home/coka/Desktop/ASTROCYTECH/git_project/Glyphser",
-    "timestamp_utc": "2026-03-01T16:21:02.133427+00:00"
+    "timestamp_utc": "2026-03-01T22:37:28.320481+00:00"
   },
   "milestone": 12,
   "profile": "multi_host_multi_os_matrix",
-  "reason": "need >=2 Linux hosts; need >=1 Windows host; need >=2 GPU architectures; missing GTX 1070 baseline host; missing RTX 30+ host",
+  "reason": "need >=2 Linux hosts; need >=1 Windows host; need >=2 GPU architectures; missing RTX 30+ host",
   "status": "BLOCKED"
 }
