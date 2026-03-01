@@ -1,0 +1,15 @@
+{
+  "classification": "E2",
+  "dependencies": [
+    23
+  ],
+  "evidence_dir": "evidence/repro/milestone-24-edge-mobile-web/",
+  "milestone": 24,
+  "owner": "Astrocytech/Glyphser",
+  "profiles": [
+    "edge_mobile_web"
+  ],
+  "result": "BLOCKED",
+  "slug": "edge-mobile-web",
+  "target_date": "2027-02-18"
+}

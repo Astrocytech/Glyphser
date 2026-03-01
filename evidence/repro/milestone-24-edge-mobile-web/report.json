@@ -1,0 +1,35 @@
+{
+  "checks": [
+    {
+      "classification": "E2",
+      "reason": "[Errno 2] No such file or directory: 'adb'",
+      "status": "BLOCKED",
+      "target": "android"
+    },
+    {
+      "classification": "E2",
+      "reason": "[Errno 2] No such file or directory: 'xcrun'",
+      "status": "BLOCKED",
+      "target": "ios"
+    },
+    {
+      "classification": "E1",
+      "reason": "Web runtime toolchain detected.",
+      "runtime_cmd": "node --version",
+      "runtime_version": "v24.14.0",
+      "status": "PASS",
+      "target": "web"
+    }
+  ],
+  "classification": "E2",
+  "meta": {
+    "kernel": "6.8.0-101-generic",
+    "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "timestamp_utc": "2026-03-01T17:43:01.472480+00:00"
+  },
+  "milestone": 24,
+  "profile": "edge_mobile_web",
+  "reason": "At least one edge/mobile/web target is blocked.",
+  "status": "BLOCKED"
+}

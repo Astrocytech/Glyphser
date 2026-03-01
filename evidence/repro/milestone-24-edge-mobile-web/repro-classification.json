@@ -1,0 +1,7 @@
+{
+  "classification": "E2",
+  "milestone": 24,
+  "profile": "edge_mobile_web",
+  "reason": "At least one edge/mobile/web target is blocked.",
+  "status": "BLOCKED"
+}
