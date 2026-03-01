@@ -1,0 +1,92 @@
+{
+  "normalization_parity": [
+    {
+      "direct_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ],
+      "expected_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ],
+      "route": "pytorch_cpu",
+      "status": "PASS",
+      "universal_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ]
+    },
+    {
+      "direct_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ],
+      "expected_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ],
+      "route": "pytorch_gpu",
+      "status": "PASS",
+      "universal_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ]
+    },
+    {
+      "direct_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ],
+      "expected_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ],
+      "route": "keras_cpu",
+      "status": "PASS",
+      "universal_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ]
+    },
+    {
+      "direct_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ],
+      "expected_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ],
+      "route": "keras_gpu",
+      "status": "PASS",
+      "universal_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "milestone": 17,
+  "status": "PASS",
+  "supported_routes": [
+    "pytorch_cpu",
+    "pytorch_gpu",
+    "keras_cpu",
+    "keras_gpu"
+  ]
+}

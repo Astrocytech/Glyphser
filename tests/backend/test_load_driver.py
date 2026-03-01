@@ -66,6 +66,42 @@ def test_load_driver_keras_gpu_route(monkeypatch: pytest.MonkeyPatch) -> None:
     assert result["driver_runtime_fingerprint_hash"] == "sha256:fake-keras-gpu-runtime"
 
 
+def test_load_driver_universal_driver_explicit_route(monkeypatch: pytest.MonkeyPatch) -> None:
+    class _FakeDriver:
+        backend_binary_hash = "sha256:fake-kcpu"
+        runtime_fingerprint_hash = "sha256:fake-kcpu-runtime"
+
+    monkeypatch.setattr(load_driver_module, "get_keras_cpu_driver", lambda: _FakeDriver())
+    result = load_driver_module.load_driver({"driver_id": "universal_driver", "universal_route": "keras_cpu"})
+    assert result["status"] == "OK"
+    assert result["driver_id"] == "universal_driver"
+    assert result["selected_route"] == "keras_cpu"
+    assert result["backend_binary_hash"] == "sha256:fake-kcpu"
+    assert result["driver_runtime_fingerprint_hash"] == "sha256:fake-kcpu-runtime"
+
+
+def test_load_driver_universal_driver_framework_fallback(monkeypatch: pytest.MonkeyPatch) -> None:
+    class _PyCPU:
+        backend_binary_hash = "sha256:fake-pcpu"
+        runtime_fingerprint_hash = "sha256:fake-pcpu-runtime"
+
+    def _gpu_unavailable() -> None:
+        raise RuntimeError("gpu unavailable")
+
+    monkeypatch.setattr(load_driver_module, "get_pytorch_gpu_driver", _gpu_unavailable)
+    monkeypatch.setattr(load_driver_module, "get_pytorch_cpu_driver", lambda: _PyCPU())
+    result = load_driver_module.load_driver({"driver_id": "universal_driver", "universal_framework": "pytorch", "universal_prefer_gpu": True})
+    assert result["status"] == "OK"
+    assert result["selected_route"] == "pytorch_cpu"
+
+
+def test_load_driver_universal_driver_rejects_java_rust_routes() -> None:
+    with pytest.raises(ValueError, match="unsupported universal_route"):
+        load_driver_module.load_driver({"driver_id": "universal_driver", "universal_route": "java_cpu"})
+    with pytest.raises(ValueError, match="unsupported universal_route"):
+        load_driver_module.load_driver({"driver_id": "universal_driver", "universal_route": "rust_cpu"})
+
+
 def test_load_driver_rejects_unknown_driver() -> None:
     with pytest.raises(ValueError, match="unsupported driver_id"):
         load_driver_module.load_driver({"driver_id": "unknown"})

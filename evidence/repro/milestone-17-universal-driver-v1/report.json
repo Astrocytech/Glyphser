@@ -1,0 +1,351 @@
+{
+  "classification": "E0",
+  "fallback_policy": {
+    "driver_id": "universal_driver",
+    "rules": [
+      {
+        "behavior": "Route exactly to universal_route if supported.",
+        "rule": "explicit_route"
+      },
+      {
+        "behavior": "Prefer pytorch (default) or keras with gpu-first by default.",
+        "rule": "framework_preference"
+      },
+      {
+        "behavior": "If preferred route is unavailable, fallback deterministically by ordered candidate list.",
+        "rule": "fallback"
+      },
+      {
+        "behavior": "Reject java_cpu and rust_cpu with deterministic ValueError.",
+        "rule": "unsupported_language_route"
+      }
+    ],
+    "version": "v1"
+  },
+  "meta": {
+    "abs_tol": 1e-06,
+    "kernel": "6.8.0-101-generic",
+    "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "rel_tol": 1e-06,
+    "timestamp_utc": "2026-03-01T17:01:44.886864+00:00"
+  },
+  "milestone": 17,
+  "normalization_parity": [
+    {
+      "direct_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ],
+      "expected_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ],
+      "route": "pytorch_cpu",
+      "status": "PASS",
+      "universal_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ]
+    },
+    {
+      "direct_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ],
+      "expected_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ],
+      "route": "pytorch_gpu",
+      "status": "PASS",
+      "universal_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ]
+    },
+    {
+      "direct_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ],
+      "expected_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ],
+      "route": "keras_cpu",
+      "status": "PASS",
+      "universal_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ]
+    },
+    {
+      "direct_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ],
+      "expected_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ],
+      "route": "keras_gpu",
+      "status": "PASS",
+      "universal_keys": [
+        "execution_fp",
+        "outputs",
+        "rng_state_next",
+        "tmmu_state_next"
+      ]
+    }
+  ],
+  "pairs": [
+    {
+      "classification": "E0",
+      "direct_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "pair": "universal:pytorch_cpu__vs__direct:pytorch_cpu",
+      "reason": "Exact output and execution fingerprint match.",
+      "status": "PASS",
+      "universal_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      }
+    },
+    {
+      "classification": "E0",
+      "direct_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "pair": "universal:pytorch_gpu__vs__direct:pytorch_gpu",
+      "reason": "Exact output and execution fingerprint match.",
+      "status": "PASS",
+      "universal_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      }
+    },
+    {
+      "classification": "E0",
+      "direct_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "pair": "universal:keras_cpu__vs__direct:keras_cpu",
+      "reason": "Exact output and execution fingerprint match.",
+      "status": "PASS",
+      "universal_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      }
+    },
+    {
+      "classification": "E0",
+      "direct_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "pair": "universal:keras_gpu__vs__direct:keras_gpu",
+      "reason": "Exact output and execution fingerprint match.",
+      "status": "PASS",
+      "universal_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      }
+    }
+  ],
+  "profile": "universal_driver_v1",
+  "reason": "Universal driver route, parity, and normalization checks pass.",
+  "route_matrix": [
+    {
+      "route": "pytorch_cpu",
+      "routing_policy": {
+        "universal_framework": "pytorch",
+        "universal_prefer_gpu": true,
+        "universal_route": "pytorch_cpu",
+        "version": "v1"
+      },
+      "selected_route": "pytorch_cpu",
+      "status": "PASS"
+    },
+    {
+      "route": "pytorch_gpu",
+      "routing_policy": {
+        "universal_framework": "pytorch",
+        "universal_prefer_gpu": true,
+        "universal_route": "pytorch_gpu",
+        "version": "v1"
+      },
+      "selected_route": "pytorch_gpu",
+      "status": "PASS"
+    },
+    {
+      "route": "keras_cpu",
+      "routing_policy": {
+        "universal_framework": "pytorch",
+        "universal_prefer_gpu": true,
+        "universal_route": "keras_cpu",
+        "version": "v1"
+      },
+      "selected_route": "keras_cpu",
+      "status": "PASS"
+    },
+    {
+      "route": "keras_gpu",
+      "routing_policy": {
+        "universal_framework": "pytorch",
+        "universal_prefer_gpu": true,
+        "universal_route": "keras_gpu",
+        "version": "v1"
+      },
+      "selected_route": "keras_gpu",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

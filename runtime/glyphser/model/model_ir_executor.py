@@ -57,7 +57,7 @@ def execute(request: Dict[str, Any]) -> Dict[str, Any]:
     if driver is None:
         driver_id = request.get("driver_id") or "default"
         try:
-            driver = resolve_driver(driver_id)
+            driver = resolve_driver(driver_id, request=request)
         except Exception:
             return {
                 "error": emit_error(

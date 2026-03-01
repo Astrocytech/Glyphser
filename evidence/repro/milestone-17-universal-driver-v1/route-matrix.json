@@ -1,0 +1,48 @@
+{
+  "routes": [
+    {
+      "route": "pytorch_cpu",
+      "routing_policy": {
+        "universal_framework": "pytorch",
+        "universal_prefer_gpu": true,
+        "universal_route": "pytorch_cpu",
+        "version": "v1"
+      },
+      "selected_route": "pytorch_cpu",
+      "status": "PASS"
+    },
+    {
+      "route": "pytorch_gpu",
+      "routing_policy": {
+        "universal_framework": "pytorch",
+        "universal_prefer_gpu": true,
+        "universal_route": "pytorch_gpu",
+        "version": "v1"
+      },
+      "selected_route": "pytorch_gpu",
+      "status": "PASS"
+    },
+    {
+      "route": "keras_cpu",
+      "routing_policy": {
+        "universal_framework": "pytorch",
+        "universal_prefer_gpu": true,
+        "universal_route": "keras_cpu",
+        "version": "v1"
+      },
+      "selected_route": "keras_cpu",
+      "status": "PASS"
+    },
+    {
+      "route": "keras_gpu",
+      "routing_policy": {
+        "universal_framework": "pytorch",
+        "universal_prefer_gpu": true,
+        "universal_route": "keras_gpu",
+        "version": "v1"
+      },
+      "selected_route": "keras_gpu",
+      "status": "PASS"
+    }
+  ]
+}

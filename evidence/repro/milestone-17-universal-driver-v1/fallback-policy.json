@@ -1,0 +1,22 @@
+{
+  "driver_id": "universal_driver",
+  "rules": [
+    {
+      "behavior": "Route exactly to universal_route if supported.",
+      "rule": "explicit_route"
+    },
+    {
+      "behavior": "Prefer pytorch (default) or keras with gpu-first by default.",
+      "rule": "framework_preference"
+    },
+    {
+      "behavior": "If preferred route is unavailable, fallback deterministically by ordered candidate list.",
+      "rule": "fallback"
+    },
+    {
+      "behavior": "Reject java_cpu and rust_cpu with deterministic ValueError.",
+      "rule": "unsupported_language_route"
+    }
+  ],
+  "version": "v1"
+}

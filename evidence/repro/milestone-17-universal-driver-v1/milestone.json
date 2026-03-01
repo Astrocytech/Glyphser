@@ -1,0 +1,22 @@
+{
+  "classification": "E0",
+  "dependencies": [
+    16
+  ],
+  "evidence_dir": "evidence/repro/milestone-17-universal-driver-v1/",
+  "milestone": 17,
+  "owner": "Astrocytech/Glyphser",
+  "profiles": [
+    "universal_driver",
+    "pytorch_cpu",
+    "pytorch_gpu",
+    "keras_cpu",
+    "keras_gpu"
+  ],
+  "result": "PASS",
+  "slug": "universal-driver-v1",
+  "target_date": "2026-08-31",
+  "waiver_dependencies": [
+    12
+  ]
+}
