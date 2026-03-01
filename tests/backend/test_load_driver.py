@@ -27,6 +27,19 @@ def test_load_driver_pytorch_cpu_route(monkeypatch: pytest.MonkeyPatch) -> None:
     assert result["driver_runtime_fingerprint_hash"] == "sha256:fake-pytorch-runtime"
 
 
+def test_load_driver_pytorch_gpu_route(monkeypatch: pytest.MonkeyPatch) -> None:
+    class _FakeDriver:
+        backend_binary_hash = "sha256:fake-pytorch-gpu"
+        runtime_fingerprint_hash = "sha256:fake-pytorch-gpu-runtime"
+
+    monkeypatch.setattr(load_driver_module, "get_pytorch_gpu_driver", lambda: _FakeDriver())
+    result = load_driver_module.load_driver({"driver_id": "pytorch_gpu"})
+    assert result["status"] == "OK"
+    assert result["driver_id"] == "pytorch_gpu"
+    assert result["backend_binary_hash"] == "sha256:fake-pytorch-gpu"
+    assert result["driver_runtime_fingerprint_hash"] == "sha256:fake-pytorch-gpu-runtime"
+
+
 def test_load_driver_rejects_unknown_driver() -> None:
     with pytest.raises(ValueError, match="unsupported driver_id"):
         load_driver_module.load_driver({"driver_id": "unknown"})
@@ -35,6 +48,15 @@ def test_load_driver_rejects_unknown_driver() -> None:
 def test_resolve_driver_reference_alias() -> None:
     driver = load_driver_module.resolve_driver("reference")
     assert driver.driver_id == "reference"
+
+
+def test_load_driver_pytorch_gpu_no_cuda(monkeypatch: pytest.MonkeyPatch) -> None:
+    def _raise() -> None:
+        raise RuntimeError("cuda is not available")
+
+    monkeypatch.setattr(load_driver_module, "get_pytorch_gpu_driver", _raise)
+    with pytest.raises(RuntimeError, match="cuda is not available"):
+        load_driver_module.load_driver({"driver_id": "pytorch_gpu"})
 
 
 def test_model_executor_reports_unsupported_driver_id() -> None:
