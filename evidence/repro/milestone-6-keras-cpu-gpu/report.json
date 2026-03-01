@@ -1,0 +1,60 @@
+{
+  "classification": "E0",
+  "cpu_result": {
+    "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+    "outputs": [
+      [
+        0.6000000000000001
+      ]
+    ],
+    "rng_state_next": 0,
+    "tmmu_state_next": {
+      "arena_config": {
+        "default": {
+          "alignment_bytes": 64,
+          "capacity_bytes": 1000000
+        }
+      },
+      "committed": true,
+      "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+    }
+  },
+  "gpu_result": {
+    "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+    "outputs": [
+      [
+        0.6000000000000001
+      ]
+    ],
+    "rng_state_next": 0,
+    "tmmu_state_next": {
+      "arena_config": {
+        "default": {
+          "alignment_bytes": 64,
+          "capacity_bytes": 1000000
+        }
+      },
+      "committed": true,
+      "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+    }
+  },
+  "meta": {
+    "abs_tol": 1e-06,
+    "kernel": "6.8.0-101-generic",
+    "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "rel_tol": 1e-06,
+    "tensorflow": {
+      "gpu_devices": [
+        "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')"
+      ],
+      "gpu_visible": true,
+      "tensorflow_present": true,
+      "tensorflow_version": "2.20.0"
+    }
+  },
+  "milestone": 6,
+  "profile": "keras_cpu_gpu",
+  "reason": "Keras CPU and GPU outputs/execution fingerprints match exactly.",
+  "status": "PASS"
+}
