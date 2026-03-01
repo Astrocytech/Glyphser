@@ -1,0 +1,78 @@
+{
+  "checks": [
+    {
+      "check": "onnx_roundtrip",
+      "classification": "E1",
+      "expected": [
+        [
+          0.6000000000000001
+        ]
+      ],
+      "observed": [
+        [
+          0.6000000000000001
+        ]
+      ],
+      "reason": "ONNX export/import output matches expected tolerance.",
+      "status": "PASS"
+    },
+    {
+      "check": "safetensors_roundtrip",
+      "classification": "E1",
+      "expected": [
+        [
+          0.6000000000000001
+        ]
+      ],
+      "observed": [
+        [
+          0.6000000000000001
+        ]
+      ],
+      "reason": "SafeTensors roundtrip output matches expected tolerance.",
+      "status": "PASS"
+    },
+    {
+      "check": "canonical_json_stability",
+      "classification": "E0",
+      "reason": "Canonical JSON bytes are stable under key reorder.",
+      "sha256_a": "59234ac8c906d5d00926bfddf2f35e4a1e739e725f47d602567bb15b118998ff",
+      "sha256_b": "59234ac8c906d5d00926bfddf2f35e4a1e739e725f47d602567bb15b118998ff",
+      "status": "PASS"
+    },
+    {
+      "check": "canonical_cbor_stability",
+      "classification": "E0",
+      "hex_len": 892,
+      "reason": "Canonical CBOR bytes are stable under key reorder.",
+      "sha256_a": "3b5081fa3d1b034ef8424f44037f80cb96c1ec4ac79ab21da7a9ff802f14153f",
+      "sha256_b": "3b5081fa3d1b034ef8424f44037f80cb96c1ec4ac79ab21da7a9ff802f14153f",
+      "status": "PASS"
+    }
+  ],
+  "classification": "E1",
+  "meta": {
+    "abs_tol": 1e-06,
+    "kernel": "6.8.0-101-generic",
+    "onnx": {
+      "present": true,
+      "version": "1.20.1"
+    },
+    "onnxruntime": {
+      "present": true,
+      "version": "1.24.2"
+    },
+    "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "rel_tol": 1e-06,
+    "safetensors": {
+      "present": true,
+      "version": "0.7.0"
+    },
+    "timestamp_utc": "2026-03-01T17:36:26.952051+00:00"
+  },
+  "milestone": 22,
+  "profile": "artifact_portability",
+  "reason": "All artifact portability checks pass.",
+  "status": "PASS"
+}

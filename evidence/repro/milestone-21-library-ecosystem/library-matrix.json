@@ -1,0 +1,24 @@
+{
+  "library_matrix": [
+    {
+      "library_lane": "python_pytorch_cpu",
+      "status": "PASS"
+    },
+    {
+      "library_lane": "python_keras_cpu",
+      "status": "PASS"
+    },
+    {
+      "library_lane": "jax_cpu",
+      "status": "PASS"
+    },
+    {
+      "library_lane": "onnxruntime_cpu",
+      "status": "PASS"
+    },
+    {
+      "library_lane": "openvino_tensorrt",
+      "status": "PASS"
+    }
+  ]
+}

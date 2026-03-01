@@ -1,0 +1,19 @@
+{
+  "classification": "E1",
+  "dependencies": [
+    20
+  ],
+  "evidence_dir": "evidence/repro/milestone-21-library-ecosystem/",
+  "milestone": 21,
+  "owner": "Astrocytech/Glyphser",
+  "profiles": [
+    "python_pytorch_cpu",
+    "python_keras_cpu",
+    "jax_cpu",
+    "onnxruntime_cpu",
+    "openvino_tensorrt"
+  ],
+  "result": "PASS",
+  "slug": "library-ecosystem",
+  "target_date": "2026-11-12"
+}
