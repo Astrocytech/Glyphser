@@ -1,0 +1,8 @@
+{
+  "classification": "E2",
+  "excluded_operators": [],
+  "milestone": 19,
+  "profile": "os_universality",
+  "reason": "Missing OS targets: ubuntu_lts_linux, windows_11_native, macos_apple_silicon",
+  "status": "BLOCKED"
+}

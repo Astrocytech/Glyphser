@@ -1,0 +1,10 @@
+{
+  "pairs": [
+    {
+      "classification": "E2",
+      "pair": "os_target_coverage",
+      "reason": "Missing OS targets: ubuntu_lts_linux, windows_11_native, macos_apple_silicon",
+      "status": "BLOCKED"
+    }
+  ]
+}

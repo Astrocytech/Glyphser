@@ -1,0 +1,21 @@
+{
+  "classification": "E2",
+  "dependencies": [
+    18
+  ],
+  "evidence_dir": "evidence/repro/milestone-19-os-universality/",
+  "host_manifests": [
+    "evidence/repro/milestone-19-os-universality/host-coka-Predator-PH517-51.json"
+  ],
+  "milestone": 19,
+  "owner": "Astrocytech/Glyphser",
+  "profiles": [
+    "os_matrix"
+  ],
+  "result": "BLOCKED",
+  "slug": "os-universality",
+  "target_date": "2026-10-01",
+  "waiver_dependencies": [
+    18
+  ]
+}

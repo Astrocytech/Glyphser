@@ -1,0 +1,51 @@
+{
+  "classification": "E2",
+  "hosts": [
+    {
+      "arch": "x86_64",
+      "host_id": "coka-Predator-PH517-51",
+      "is_wsl": false,
+      "kernel": "6.8.0-101-generic",
+      "linux_distro": "Linux Mint 22.1",
+      "os_family": "Linux",
+      "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+      "python": "3.12.3",
+      "source": "local",
+      "timestamp_utc": "2026-03-01T17:19:55.603692+00:00"
+    }
+  ],
+  "meta": {
+    "kernel": "6.8.0-101-generic",
+    "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "timestamp_utc": "2026-03-01T17:19:55.605161+00:00"
+  },
+  "milestone": 19,
+  "os_matrix": [
+    {
+      "os_target": "ubuntu_lts_linux",
+      "present_hosts": [],
+      "status": "BLOCKED"
+    },
+    {
+      "os_target": "additional_non_ubuntu_linux",
+      "present_hosts": [
+        "coka-Predator-PH517-51"
+      ],
+      "status": "PASS"
+    },
+    {
+      "os_target": "windows_11_native",
+      "present_hosts": [],
+      "status": "BLOCKED"
+    },
+    {
+      "os_target": "macos_apple_silicon",
+      "present_hosts": [],
+      "status": "BLOCKED"
+    }
+  ],
+  "profile": "os_universality",
+  "reason": "Missing OS targets: ubuntu_lts_linux, windows_11_native, macos_apple_silicon",
+  "status": "BLOCKED"
+}

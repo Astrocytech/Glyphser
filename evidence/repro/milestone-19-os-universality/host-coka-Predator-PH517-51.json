@@ -1,0 +1,12 @@
+{
+  "arch": "x86_64",
+  "host_id": "coka-Predator-PH517-51",
+  "is_wsl": false,
+  "kernel": "6.8.0-101-generic",
+  "linux_distro": "Linux Mint 22.1",
+  "os_family": "Linux",
+  "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+  "python": "3.12.3",
+  "source": "local",
+  "timestamp_utc": "2026-03-01T17:19:55.603692+00:00"
+}

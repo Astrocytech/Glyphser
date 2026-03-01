@@ -1,0 +1,26 @@
+{
+  "os_matrix": [
+    {
+      "os_target": "ubuntu_lts_linux",
+      "present_hosts": [],
+      "status": "BLOCKED"
+    },
+    {
+      "os_target": "additional_non_ubuntu_linux",
+      "present_hosts": [
+        "coka-Predator-PH517-51"
+      ],
+      "status": "PASS"
+    },
+    {
+      "os_target": "windows_11_native",
+      "present_hosts": [],
+      "status": "BLOCKED"
+    },
+    {
+      "os_target": "macos_apple_silicon",
+      "present_hosts": [],
+      "status": "BLOCKED"
+    }
+  ]
+}
