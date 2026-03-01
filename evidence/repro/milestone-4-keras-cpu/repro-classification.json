@@ -1,0 +1,9 @@
+{
+  "milestone": 4,
+  "profile": "keras_cpu",
+  "classification": "E0",
+  "reason": "Single-device Keras CPU integration passes deterministic conformance on locked hello-core profile.",
+  "abs_tol": 1e-06,
+  "rel_tol": 1e-06,
+  "excluded_operators": []
+}

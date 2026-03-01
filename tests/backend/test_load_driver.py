@@ -40,6 +40,19 @@ def test_load_driver_pytorch_gpu_route(monkeypatch: pytest.MonkeyPatch) -> None:
     assert result["driver_runtime_fingerprint_hash"] == "sha256:fake-pytorch-gpu-runtime"
 
 
+def test_load_driver_keras_cpu_route(monkeypatch: pytest.MonkeyPatch) -> None:
+    class _FakeDriver:
+        backend_binary_hash = "sha256:fake-keras"
+        runtime_fingerprint_hash = "sha256:fake-keras-runtime"
+
+    monkeypatch.setattr(load_driver_module, "get_keras_cpu_driver", lambda: _FakeDriver())
+    result = load_driver_module.load_driver({"driver_id": "keras_cpu"})
+    assert result["status"] == "OK"
+    assert result["driver_id"] == "keras_cpu"
+    assert result["backend_binary_hash"] == "sha256:fake-keras"
+    assert result["driver_runtime_fingerprint_hash"] == "sha256:fake-keras-runtime"
+
+
 def test_load_driver_rejects_unknown_driver() -> None:
     with pytest.raises(ValueError, match="unsupported driver_id"):
         load_driver_module.load_driver({"driver_id": "unknown"})
@@ -57,6 +70,15 @@ def test_load_driver_pytorch_gpu_no_cuda(monkeypatch: pytest.MonkeyPatch) -> Non
     monkeypatch.setattr(load_driver_module, "get_pytorch_gpu_driver", _raise)
     with pytest.raises(RuntimeError, match="cuda is not available"):
         load_driver_module.load_driver({"driver_id": "pytorch_gpu"})
+
+
+def test_load_driver_keras_cpu_missing_runtime(monkeypatch: pytest.MonkeyPatch) -> None:
+    def _raise() -> None:
+        raise RuntimeError("tensorflow is not available")
+
+    monkeypatch.setattr(load_driver_module, "get_keras_cpu_driver", _raise)
+    with pytest.raises(RuntimeError, match="tensorflow is not available"):
+        load_driver_module.load_driver({"driver_id": "keras_cpu"})
 
 
 def test_model_executor_reports_unsupported_driver_id() -> None:
