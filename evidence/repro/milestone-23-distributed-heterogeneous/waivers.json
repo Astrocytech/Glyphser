@@ -1,0 +1,20 @@
+{
+  "waivers": [
+    {
+      "adr": "evidence/repro/decisions/ADR-2026-03-01-m12-resource-gap-temporary-waiver.md",
+      "status": "ACTIVE"
+    },
+    {
+      "adr": "evidence/repro/decisions/ADR-2026-03-01-m18-device-resource-gap-temporary-waiver.md",
+      "status": "ACTIVE"
+    },
+    {
+      "adr": "evidence/repro/decisions/ADR-2026-03-01-m19-proceed-under-m18-waiver.md",
+      "status": "ACTIVE"
+    },
+    {
+      "adr": "evidence/repro/decisions/ADR-2026-03-01-m23-progress-with-limited-cluster.md",
+      "status": "ACTIVE"
+    }
+  ]
+}

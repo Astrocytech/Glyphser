@@ -1,0 +1,18 @@
+{
+  "classification": "E2",
+  "dependencies": [
+    22
+  ],
+  "evidence_dir": "evidence/repro/milestone-23-distributed-heterogeneous/",
+  "host_manifests": [
+    "evidence/repro/milestone-23-distributed-heterogeneous/host-coka-Predator-PH517-51.json"
+  ],
+  "milestone": 23,
+  "owner": "Astrocytech/Glyphser",
+  "profiles": [
+    "distributed_cluster"
+  ],
+  "result": "BLOCKED",
+  "slug": "distributed-heterogeneous",
+  "target_date": "2027-01-14"
+}

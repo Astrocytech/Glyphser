@@ -1,0 +1,100 @@
+{
+  "checks": [
+    {
+      "check": "cluster_heterogeneity_coverage",
+      "classification": "E2",
+      "details": {
+        "host_count": 1,
+        "unique_arch": [
+          "x86_64"
+        ],
+        "unique_os": [
+          "Linux"
+        ]
+      },
+      "reason": "Need >=2 hosts with heterogeneous OS/arch coverage.",
+      "status": "BLOCKED"
+    },
+    {
+      "base": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "check": "cpu_perturbation_replay",
+      "classification": "E0",
+      "host_order_a": [
+        "coka-Predator-PH517-51"
+      ],
+      "host_order_b": [
+        "coka-Predator-PH517-51"
+      ],
+      "perturbed": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "reason": "CPU perturbation replay is deterministic.",
+      "status": "PASS"
+    },
+    {
+      "check": "gpu_perturbation_replay",
+      "classification": "E2",
+      "reason": "No GPU host present in provided host manifests.",
+      "status": "BLOCKED"
+    }
+  ],
+  "classification": "E2",
+  "hosts": [
+    {
+      "arch": "x86_64",
+      "gpu_present": false,
+      "host_id": "coka-Predator-PH517-51",
+      "is_wsl": false,
+      "kernel": "6.8.0-101-generic",
+      "os_family": "Linux",
+      "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+      "source": "local",
+      "timestamp_utc": "2026-03-01T17:39:30.523665+00:00"
+    }
+  ],
+  "meta": {
+    "kernel": "6.8.0-101-generic",
+    "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "seed": 1337,
+    "timestamp_utc": "2026-03-01T17:39:30.530856+00:00"
+  },
+  "milestone": 23,
+  "profile": "distributed_heterogeneous",
+  "reason": "At least one distributed reproducibility check is blocked.",
+  "status": "BLOCKED"
+}

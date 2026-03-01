@@ -1,0 +1,7 @@
+{
+  "classification": "E2",
+  "milestone": 23,
+  "profile": "distributed_heterogeneous",
+  "reason": "At least one distributed reproducibility check is blocked.",
+  "status": "BLOCKED"
+}
