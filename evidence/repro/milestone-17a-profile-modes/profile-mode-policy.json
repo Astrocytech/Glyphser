@@ -1,0 +1,86 @@
+{
+  "policies": [
+    {
+      "case_id": "strict_universal_cpu",
+      "request": {
+        "profile_mode": "strict_universal",
+        "universal_route": "pytorch_cpu"
+      },
+      "routing_policy": {
+        "pinned_profiles_available": [
+          "balanced_v1",
+          "universal_v1",
+          "universal_v1_gpu"
+        ],
+        "profile_id": "",
+        "profile_mode": "strict_universal",
+        "universal_framework": "pytorch",
+        "universal_prefer_gpu": true,
+        "universal_route": "pytorch_cpu",
+        "version": "v1"
+      }
+    },
+    {
+      "case_id": "balanced_default",
+      "request": {
+        "profile_mode": "balanced",
+        "universal_framework": "pytorch",
+        "universal_prefer_gpu": true
+      },
+      "routing_policy": {
+        "pinned_profiles_available": [
+          "balanced_v1",
+          "universal_v1",
+          "universal_v1_gpu"
+        ],
+        "profile_id": "",
+        "profile_mode": "balanced",
+        "universal_framework": "pytorch",
+        "universal_prefer_gpu": true,
+        "universal_route": "",
+        "version": "v1"
+      }
+    },
+    {
+      "case_id": "optimized_native_default",
+      "request": {
+        "profile_mode": "optimized_native",
+        "universal_framework": "pytorch",
+        "universal_prefer_gpu": true
+      },
+      "routing_policy": {
+        "pinned_profiles_available": [
+          "balanced_v1",
+          "universal_v1",
+          "universal_v1_gpu"
+        ],
+        "profile_id": "",
+        "profile_mode": "optimized_native",
+        "universal_framework": "pytorch",
+        "universal_prefer_gpu": true,
+        "universal_route": "",
+        "version": "v1"
+      }
+    },
+    {
+      "case_id": "pinned_profile_v1",
+      "request": {
+        "profile_id": "universal_v1",
+        "profile_mode": "pinned_profile"
+      },
+      "routing_policy": {
+        "pinned_profiles_available": [
+          "balanced_v1",
+          "universal_v1",
+          "universal_v1_gpu"
+        ],
+        "profile_id": "universal_v1",
+        "profile_mode": "pinned_profile",
+        "universal_framework": "pytorch",
+        "universal_prefer_gpu": true,
+        "universal_route": "",
+        "version": "v1"
+      }
+    }
+  ]
+}

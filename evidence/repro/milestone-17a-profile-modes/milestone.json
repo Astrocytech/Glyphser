@@ -1,0 +1,15 @@
+{
+  "classification": "E0",
+  "dependencies": [
+    17
+  ],
+  "evidence_dir": "evidence/repro/milestone-17a-profile-modes/",
+  "milestone": "17A",
+  "owner": "Astrocytech/Glyphser",
+  "profiles": [
+    "universal_driver"
+  ],
+  "result": "PASS",
+  "slug": "profile-modes",
+  "target_date": "2026-09-01"
+}

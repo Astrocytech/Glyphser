@@ -1,0 +1,44 @@
+{
+  "profile_modes": [
+    {
+      "case_id": "strict_universal_cpu",
+      "profile_id": "",
+      "profile_mode": "strict_universal",
+      "selected_route": "pytorch_cpu",
+      "status": "PASS"
+    },
+    {
+      "case_id": "balanced_default",
+      "profile_id": "",
+      "profile_mode": "balanced",
+      "selected_route": "pytorch_cpu",
+      "status": "PASS"
+    },
+    {
+      "case_id": "optimized_native_default",
+      "profile_id": "",
+      "profile_mode": "optimized_native",
+      "selected_route": "pytorch_cpu",
+      "status": "PASS"
+    },
+    {
+      "case_id": "pinned_profile_v1",
+      "profile_id": "universal_v1",
+      "profile_mode": "pinned_profile",
+      "selected_route": "pytorch_cpu",
+      "status": "PASS"
+    }
+  ],
+  "rejections": [
+    {
+      "reason": "unsupported universal_route: java_cpu",
+      "route": "java_cpu",
+      "status": "PASS"
+    },
+    {
+      "reason": "unsupported universal_route: rust_cpu",
+      "route": "rust_cpu",
+      "status": "PASS"
+    }
+  ]
+}

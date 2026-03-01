@@ -1,0 +1,10 @@
+{
+  "abs_tol": 1e-06,
+  "classification": "E0",
+  "excluded_operators": [],
+  "milestone": "17A",
+  "profile": "optional_universality_profile_modes",
+  "reason": "All profile modes route deterministically and preserve parity.",
+  "rel_tol": 1e-06,
+  "status": "PASS"
+}

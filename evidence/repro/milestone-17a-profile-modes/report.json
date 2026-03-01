@@ -1,0 +1,399 @@
+{
+  "classification": "E0",
+  "meta": {
+    "abs_tol": 1e-06,
+    "kernel": "6.8.0-101-generic",
+    "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "rel_tol": 1e-06,
+    "timestamp_utc": "2026-03-01T17:09:07.861627+00:00"
+  },
+  "milestone": "17A",
+  "pairs": [
+    {
+      "classification": "E0",
+      "direct_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "pair": "mode:strict_universal_cpu__vs__direct:pytorch_cpu",
+      "reason": "Exact output and execution fingerprint match.",
+      "route_info": {
+        "backend_binary_hash": "sha256:fd88a8967027a2f0673ac4418b4c0549893ca9c8a81e328056360ac5a2617222",
+        "driver_id": "universal_driver",
+        "driver_runtime_fingerprint_hash": "sha256:c9b6ecd6baa8ac79bb8ee500fd36532f393742d8d62fb19dddba0a68733b5afa",
+        "routing_policy": {
+          "pinned_profiles_available": [
+            "balanced_v1",
+            "universal_v1",
+            "universal_v1_gpu"
+          ],
+          "profile_id": "",
+          "profile_mode": "strict_universal",
+          "universal_framework": "pytorch",
+          "universal_prefer_gpu": true,
+          "universal_route": "pytorch_cpu",
+          "version": "v1"
+        },
+        "selected_route": "pytorch_cpu",
+        "status": "OK"
+      },
+      "status": "PASS",
+      "universal_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      }
+    },
+    {
+      "classification": "E0",
+      "direct_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "pair": "mode:balanced_default__vs__direct:pytorch_cpu",
+      "reason": "Exact output and execution fingerprint match.",
+      "route_info": {
+        "backend_binary_hash": "sha256:fd88a8967027a2f0673ac4418b4c0549893ca9c8a81e328056360ac5a2617222",
+        "driver_id": "universal_driver",
+        "driver_runtime_fingerprint_hash": "sha256:c9b6ecd6baa8ac79bb8ee500fd36532f393742d8d62fb19dddba0a68733b5afa",
+        "routing_policy": {
+          "pinned_profiles_available": [
+            "balanced_v1",
+            "universal_v1",
+            "universal_v1_gpu"
+          ],
+          "profile_id": "",
+          "profile_mode": "balanced",
+          "universal_framework": "pytorch",
+          "universal_prefer_gpu": true,
+          "universal_route": "",
+          "version": "v1"
+        },
+        "selected_route": "pytorch_cpu",
+        "status": "OK"
+      },
+      "status": "PASS",
+      "universal_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      }
+    },
+    {
+      "classification": "E0",
+      "direct_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "pair": "mode:optimized_native_default__vs__direct:pytorch_cpu",
+      "reason": "Exact output and execution fingerprint match.",
+      "route_info": {
+        "backend_binary_hash": "sha256:fd88a8967027a2f0673ac4418b4c0549893ca9c8a81e328056360ac5a2617222",
+        "driver_id": "universal_driver",
+        "driver_runtime_fingerprint_hash": "sha256:c9b6ecd6baa8ac79bb8ee500fd36532f393742d8d62fb19dddba0a68733b5afa",
+        "routing_policy": {
+          "pinned_profiles_available": [
+            "balanced_v1",
+            "universal_v1",
+            "universal_v1_gpu"
+          ],
+          "profile_id": "",
+          "profile_mode": "optimized_native",
+          "universal_framework": "pytorch",
+          "universal_prefer_gpu": true,
+          "universal_route": "",
+          "version": "v1"
+        },
+        "selected_route": "pytorch_cpu",
+        "status": "OK"
+      },
+      "status": "PASS",
+      "universal_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      }
+    },
+    {
+      "classification": "E0",
+      "direct_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "pair": "mode:pinned_profile_v1__vs__direct:pytorch_cpu",
+      "reason": "Exact output and execution fingerprint match.",
+      "route_info": {
+        "backend_binary_hash": "sha256:fd88a8967027a2f0673ac4418b4c0549893ca9c8a81e328056360ac5a2617222",
+        "driver_id": "universal_driver",
+        "driver_runtime_fingerprint_hash": "sha256:c9b6ecd6baa8ac79bb8ee500fd36532f393742d8d62fb19dddba0a68733b5afa",
+        "routing_policy": {
+          "pinned_profiles_available": [
+            "balanced_v1",
+            "universal_v1",
+            "universal_v1_gpu"
+          ],
+          "profile_id": "universal_v1",
+          "profile_mode": "pinned_profile",
+          "universal_framework": "pytorch",
+          "universal_prefer_gpu": true,
+          "universal_route": "",
+          "version": "v1"
+        },
+        "selected_route": "pytorch_cpu",
+        "status": "OK"
+      },
+      "status": "PASS",
+      "universal_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      }
+    }
+  ],
+  "profile": "optional_universality_profile_modes",
+  "profile_mode_matrix": [
+    {
+      "case_id": "strict_universal_cpu",
+      "profile_id": "",
+      "profile_mode": "strict_universal",
+      "selected_route": "pytorch_cpu",
+      "status": "PASS"
+    },
+    {
+      "case_id": "balanced_default",
+      "profile_id": "",
+      "profile_mode": "balanced",
+      "selected_route": "pytorch_cpu",
+      "status": "PASS"
+    },
+    {
+      "case_id": "optimized_native_default",
+      "profile_id": "",
+      "profile_mode": "optimized_native",
+      "selected_route": "pytorch_cpu",
+      "status": "PASS"
+    },
+    {
+      "case_id": "pinned_profile_v1",
+      "profile_id": "universal_v1",
+      "profile_mode": "pinned_profile",
+      "selected_route": "pytorch_cpu",
+      "status": "PASS"
+    }
+  ],
+  "profile_mode_policy": [
+    {
+      "case_id": "strict_universal_cpu",
+      "request": {
+        "profile_mode": "strict_universal",
+        "universal_route": "pytorch_cpu"
+      },
+      "routing_policy": {
+        "pinned_profiles_available": [
+          "balanced_v1",
+          "universal_v1",
+          "universal_v1_gpu"
+        ],
+        "profile_id": "",
+        "profile_mode": "strict_universal",
+        "universal_framework": "pytorch",
+        "universal_prefer_gpu": true,
+        "universal_route": "pytorch_cpu",
+        "version": "v1"
+      }
+    },
+    {
+      "case_id": "balanced_default",
+      "request": {
+        "profile_mode": "balanced",
+        "universal_framework": "pytorch",
+        "universal_prefer_gpu": true
+      },
+      "routing_policy": {
+        "pinned_profiles_available": [
+          "balanced_v1",
+          "universal_v1",
+          "universal_v1_gpu"
+        ],
+        "profile_id": "",
+        "profile_mode": "balanced",
+        "universal_framework": "pytorch",
+        "universal_prefer_gpu": true,
+        "universal_route": "",
+        "version": "v1"
+      }
+    },
+    {
+      "case_id": "optimized_native_default",
+      "request": {
+        "profile_mode": "optimized_native",
+        "universal_framework": "pytorch",
+        "universal_prefer_gpu": true
+      },
+      "routing_policy": {
+        "pinned_profiles_available": [
+          "balanced_v1",
+          "universal_v1",
+          "universal_v1_gpu"
+        ],
+        "profile_id": "",
+        "profile_mode": "optimized_native",
+        "universal_framework": "pytorch",
+        "universal_prefer_gpu": true,
+        "universal_route": "",
+        "version": "v1"
+      }
+    },
+    {
+      "case_id": "pinned_profile_v1",
+      "request": {
+        "profile_id": "universal_v1",
+        "profile_mode": "pinned_profile"
+      },
+      "routing_policy": {
+        "pinned_profiles_available": [
+          "balanced_v1",
+          "universal_v1",
+          "universal_v1_gpu"
+        ],
+        "profile_id": "universal_v1",
+        "profile_mode": "pinned_profile",
+        "universal_framework": "pytorch",
+        "universal_prefer_gpu": true,
+        "universal_route": "",
+        "version": "v1"
+      }
+    }
+  ],
+  "reason": "All profile modes route deterministically and preserve parity.",
+  "rejection_checks": [
+    {
+      "reason": "unsupported universal_route: java_cpu",
+      "route": "java_cpu",
+      "status": "PASS"
+    },
+    {
+      "reason": "unsupported universal_route: rust_cpu",
+      "route": "rust_cpu",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}
