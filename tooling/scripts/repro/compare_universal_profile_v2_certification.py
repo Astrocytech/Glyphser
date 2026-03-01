@@ -11,16 +11,27 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[3]
 
-REQUIRED_MILESTONES = {
-    12: "milestone-12-multi-host-multi-os",
-    16: "milestone-16-universal-profile-v1",
-    18: "milestone-18-device-class-expansion",
-    19: "milestone-19-os-universality",
-    20: "milestone-20-language-ecosystem-v2",
-    21: "milestone-21-library-ecosystem",
-    22: "milestone-22-artifact-portability",
-    23: "milestone-23-distributed-heterogeneous",
-    24: "milestone-24-edge-mobile-web",
+REQUIRED_MILESTONES_BY_PROFILE = {
+    "strict_universal": {
+        12: "milestone-12-multi-host-multi-os",
+        16: "milestone-16-universal-profile-v1",
+        18: "milestone-18-device-class-expansion",
+        19: "milestone-19-os-universality",
+        20: "milestone-20-language-ecosystem-v2",
+        21: "milestone-21-library-ecosystem",
+        22: "milestone-22-artifact-portability",
+        23: "milestone-23-distributed-heterogeneous",
+        24: "milestone-24-edge-mobile-web",
+    },
+    "available_local": {
+        12: "milestone-12-multi-host-multi-os",
+        16: "milestone-16-universal-profile-v1",
+        20: "milestone-20-language-ecosystem-v2",
+        21: "milestone-21-library-ecosystem",
+        22: "milestone-22-artifact-portability",
+        23: "milestone-23-distributed-heterogeneous",
+        24: "milestone-24-edge-mobile-web",
+    },
 }
 
 WAIVER_ADRS = [
@@ -58,10 +69,17 @@ def _load_report(path: Path) -> dict[str, Any] | None:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Milestone 25 universal profile v2 certification aggregator.")
     parser.add_argument(
+        "--universality-profile",
+        choices=sorted(REQUIRED_MILESTONES_BY_PROFILE.keys()),
+        default="available_local",
+        help="Certification scope profile. Default is available_local for currently available hardware/OS coverage.",
+    )
+    parser.add_argument(
         "--output-dir",
         default=str(ROOT / "evidence" / "repro" / "milestone-25-universal-profile-v2"),
     )
     args = parser.parse_args()
+    required_milestones = REQUIRED_MILESTONES_BY_PROFILE[args.universality_profile]
 
     out_dir = Path(args.output_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -71,7 +89,7 @@ def main() -> int:
     failed: list[int] = []
     missing: list[int] = []
 
-    for mid, slug in REQUIRED_MILESTONES.items():
+    for mid, slug in required_milestones.items():
         report_path = ROOT / "evidence" / "repro" / slug / "report.json"
         report = _load_report(report_path)
         if report is None:
@@ -114,17 +132,19 @@ def main() -> int:
         overall_reason = "Blocked prerequisite milestones: " + ", ".join(str(m) for m in all_blocked)
     else:
         overall_status, overall_class = "PASS", "E0"
-        overall_reason = "All prerequisite milestones satisfied for Universal Profile v2 certification."
+        overall_reason = f"All prerequisite milestones satisfied for Universal Profile v2 certification profile '{args.universality_profile}'."
 
     compatibility_matrix = {
         "milestone": 25,
-        "required_prerequisites": sorted(REQUIRED_MILESTONES.keys()),
+        "required_prerequisites": sorted(required_milestones.keys()),
+        "universality_profile": args.universality_profile,
         "rows": prereq_rows,
         "status": overall_status,
     }
     certification_bundle = {
         "milestone": 25,
         "profile": "universal_profile_v2",
+        "universality_profile": args.universality_profile,
         "status": overall_status,
         "classification": overall_class,
         "reason": overall_reason,
@@ -133,6 +153,7 @@ def main() -> int:
     report = {
         "milestone": 25,
         "profile": "universal_profile_v2",
+        "universality_profile": args.universality_profile,
         "status": overall_status,
         "classification": overall_class,
         "reason": overall_reason,
@@ -146,6 +167,7 @@ def main() -> int:
             {
                 "milestone": 25,
                 "profile": "universal_profile_v2",
+                "universality_profile": args.universality_profile,
                 "classification": overall_class,
                 "status": overall_status,
                 "reason": overall_reason,
@@ -165,13 +187,27 @@ def main() -> int:
         + "\n",
         encoding="utf-8",
     )
-    (out_dir / "coverage-summary.json").write_text(json.dumps({"milestone": 25, "prerequisite_count": len(prereq_rows), "status": overall_status}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "coverage-summary.json").write_text(
+        json.dumps(
+            {
+                "milestone": 25,
+                "universality_profile": args.universality_profile,
+                "prerequisite_count": len(prereq_rows),
+                "status": overall_status,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     (out_dir / "env-matrix.json").write_text(json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8")
     (out_dir / "device-matrix.json").write_text(json.dumps({"note": "Derived from prerequisite milestone reports."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     (out_dir / "os-matrix.json").write_text(json.dumps({"note": "Derived from prerequisite milestone reports."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     (out_dir / "language-matrix.json").write_text(json.dumps({"note": "Derived from prerequisite milestone reports."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     (out_dir / "library-matrix.json").write_text(json.dumps({"note": "Derived from prerequisite milestone reports."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     gaps = ["# Portability Gaps (Milestone 25)", ""]
+    gaps.append(f"- Universality profile: `{args.universality_profile}`")
     for row in prereq_rows:
         if row["status"] != "PASS":
             gaps.append(f"- Milestone {row['milestone']} (`{row['slug']}`): {row['status']} - {row['reason']}")
@@ -200,6 +236,7 @@ def main() -> int:
             [
                 "# Milestone 25: Universal Profile v2 Certification (Global)",
                 "",
+                f"Universality profile: {args.universality_profile}",
                 f"Status: {overall_status}",
                 f"Classification: {overall_class}",
                 f"Reason: {overall_reason}",
@@ -210,7 +247,8 @@ def main() -> int:
     )
     (out_dir / "known-limitations.md").write_text(
         "# Known Limitations (Milestone 25)\n\n"
-        "- Certification status is computed from prerequisite milestone reports and remains blocked until all prerequisites PASS.\n",
+        "- Certification status is computed from prerequisite milestone reports.\n"
+        "- `strict_universal` remains stricter and may remain blocked until expanded hardware/OS targets are available.\n",
         encoding="utf-8",
     )
     (out_dir / "milestone.json").write_text(
@@ -220,7 +258,8 @@ def main() -> int:
                 "slug": "universal-profile-v2",
                 "owner": "Astrocytech/Glyphser",
                 "target_date": "2027-03-20",
-                "dependencies": sorted(REQUIRED_MILESTONES.keys()),
+                "universality_profile": args.universality_profile,
+                "dependencies": sorted(required_milestones.keys()),
                 "result": overall_status,
                 "classification": overall_class,
                 "evidence_dir": "evidence/repro/milestone-25-universal-profile-v2/",

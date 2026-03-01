@@ -3,8 +3,6 @@
   "required_prerequisites": [
     12,
     16,
-    18,
-    19,
     20,
     21,
     22,
@@ -26,22 +24,6 @@
       "reason": "Blocked prerequisite milestones: 12",
       "report_path": "evidence/repro/milestone-16-universal-profile-v1/report.json",
       "slug": "milestone-16-universal-profile-v1",
-      "status": "BLOCKED"
-    },
-    {
-      "classification": "E2",
-      "milestone": 18,
-      "reason": "Missing required device classes: cpu_arm64, gpu_amd_rocm, gpu_apple_mps, edge_target",
-      "report_path": "evidence/repro/milestone-18-device-class-expansion/report.json",
-      "slug": "milestone-18-device-class-expansion",
-      "status": "BLOCKED"
-    },
-    {
-      "classification": "E2",
-      "milestone": 19,
-      "reason": "Missing OS targets: ubuntu_lts_linux, windows_11_native, macos_apple_silicon",
-      "report_path": "evidence/repro/milestone-19-os-universality/report.json",
-      "slug": "milestone-19-os-universality",
       "status": "BLOCKED"
     },
     {
@@ -79,11 +61,12 @@
     {
       "classification": "E2",
       "milestone": 24,
-      "reason": "At least one edge/mobile/web target is blocked.",
+      "reason": "At least one required edge/mobile/web target is blocked.",
       "report_path": "evidence/repro/milestone-24-edge-mobile-web/report.json",
       "slug": "milestone-24-edge-mobile-web",
       "status": "BLOCKED"
     }
   ],
-  "status": "BLOCKED"
+  "status": "BLOCKED",
+  "universality_profile": "available_local"
 }

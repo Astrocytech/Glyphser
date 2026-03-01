@@ -3,7 +3,7 @@
     {
       "classification": "E2",
       "pair": "edge_mobile_web_targets",
-      "reason": "At least one edge/mobile/web target is blocked.",
+      "reason": "At least one required edge/mobile/web target is blocked.",
       "status": "BLOCKED"
     }
   ]

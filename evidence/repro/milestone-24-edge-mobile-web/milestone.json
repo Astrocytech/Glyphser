@@ -11,5 +11,6 @@
   ],
   "result": "BLOCKED",
   "slug": "edge-mobile-web",
-  "target_date": "2027-02-18"
+  "target_date": "2027-02-18",
+  "universality_profile": "available_local"
 }

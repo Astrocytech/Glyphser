@@ -1,6 +1,6 @@
 # Project File Inventory
 
-Generated: 2026-02-28 22:44:34 UTC
+Generated: 2026-03-01 18:37:01 UTC
 
 Scope: Full repository tree excluding transient local cache directories (`.git`, `.venv`, `.pytest_cache`, `__pycache__`, lint/type caches).
 
@@ -250,6 +250,325 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   ├── latest.json
 │   │   └── replay-proof.txt
 │   ├── repro
+│   │   ├── decisions
+│   │   │   ├── ADR-2026-03-01-available-local-certification-profile.md
+│   │   │   ├── ADR-2026-03-01-m12-resource-gap-temporary-waiver.md
+│   │   │   ├── ADR-2026-03-01-m18-device-resource-gap-temporary-waiver.md
+│   │   │   ├── ADR-2026-03-01-m19-proceed-under-m18-waiver.md
+│   │   │   ├── ADR-2026-03-01-m20-proceed-under-m19-pause.md
+│   │   │   ├── ADR-2026-03-01-m23-progress-with-limited-cluster.md
+│   │   │   ├── ADR-2026-03-01-m24-progress-with-limited-targets.md
+│   │   │   └── ADR-2026-03-01-m25-progress-with-blocked-prereqs.md
+│   │   ├── milestone-1-pytorch-cpu
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── repro-classification.json
+│   │   │   └── summary.md
+│   │   ├── milestone-10-model-class-expansion
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── coverage-summary.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── milestone.json
+│   │   │   ├── pair-matrix.json
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   ├── summary.md
+│   │   │   └── waivers.json
+│   │   ├── milestone-11-dataset-scale-expansion
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── coverage-summary.json
+│   │   │   ├── drift-envelope.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── milestone.json
+│   │   │   ├── pair-matrix.json
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   ├── summary.md
+│   │   │   └── waivers.json
+│   │   ├── milestone-12-multi-host-multi-os
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── coverage-summary.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── host-coka-Predator-PH517-51.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── milestone.json
+│   │   │   ├── pair-matrix.json
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   ├── summary.md
+│   │   │   └── waivers.json
+│   │   ├── milestone-13-java-runtime-hardening
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── coverage-summary.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── milestone.json
+│   │   │   ├── pair-matrix.json
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   ├── summary.md
+│   │   │   └── waivers.json
+│   │   ├── milestone-14-additional-language-bridges
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── coverage-summary.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── milestone.json
+│   │   │   ├── pair-matrix.json
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   ├── summary.md
+│   │   │   └── waivers.json
+│   │   ├── milestone-15-service-reproducibility
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── coverage-summary.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── incident-playbook-hooks.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── milestone.json
+│   │   │   ├── pair-matrix.json
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   ├── summary.md
+│   │   │   └── waivers.json
+│   │   ├── milestone-16-universal-profile-v1
+│   │   │   ├── certification-bundle.json
+│   │   │   ├── compatibility-matrix.json
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── coverage-summary.json
+│   │   │   ├── device-matrix.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── language-matrix.json
+│   │   │   ├── library-matrix.json
+│   │   │   ├── milestone.json
+│   │   │   ├── os-matrix.json
+│   │   │   ├── pair-matrix.json
+│   │   │   ├── portability-gaps.md
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   ├── summary.md
+│   │   │   └── waivers.json
+│   │   ├── milestone-17-universal-driver-v1
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── coverage-summary.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── fallback-policy.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── milestone.json
+│   │   │   ├── normalization-parity.json
+│   │   │   ├── pair-matrix.json
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   ├── route-matrix.json
+│   │   │   ├── summary.md
+│   │   │   └── waivers.json
+│   │   ├── milestone-17a-profile-modes
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── coverage-summary.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── milestone.json
+│   │   │   ├── pair-matrix.json
+│   │   │   ├── profile-mode-matrix.json
+│   │   │   ├── profile-mode-policy.json
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   ├── summary.md
+│   │   │   └── waivers.json
+│   │   ├── milestone-18-device-class-expansion
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── coverage-summary.json
+│   │   │   ├── device-matrix.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── host-coka-Predator-PH517-51.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── language-matrix.json
+│   │   │   ├── library-matrix.json
+│   │   │   ├── milestone.json
+│   │   │   ├── os-matrix.json
+│   │   │   ├── pair-matrix.json
+│   │   │   ├── portability-gaps.md
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   ├── summary.md
+│   │   │   └── waivers.json
+│   │   ├── milestone-19-os-universality
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── coverage-summary.json
+│   │   │   ├── device-matrix.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── host-coka-Predator-PH517-51.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── language-matrix.json
+│   │   │   ├── library-matrix.json
+│   │   │   ├── milestone.json
+│   │   │   ├── os-matrix.json
+│   │   │   ├── pair-matrix.json
+│   │   │   ├── portability-gaps.md
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   ├── summary.md
+│   │   │   └── waivers.json
+│   │   ├── milestone-2-pytorch-gpu
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── repro-classification.json
+│   │   │   └── summary.md
+│   │   ├── milestone-20-language-ecosystem-v2
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── coverage-summary.json
+│   │   │   ├── device-matrix.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── language-matrix.json
+│   │   │   ├── library-matrix.json
+│   │   │   ├── milestone.json
+│   │   │   ├── os-matrix.json
+│   │   │   ├── pair-matrix.json
+│   │   │   ├── portability-gaps.md
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   ├── summary.md
+│   │   │   └── waivers.json
+│   │   ├── milestone-21-library-ecosystem
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── coverage-summary.json
+│   │   │   ├── device-matrix.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── language-matrix.json
+│   │   │   ├── library-matrix.json
+│   │   │   ├── milestone.json
+│   │   │   ├── os-matrix.json
+│   │   │   ├── pair-matrix.json
+│   │   │   ├── portability-gaps.md
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   ├── summary.md
+│   │   │   └── waivers.json
+│   │   ├── milestone-22-artifact-portability
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── coverage-summary.json
+│   │   │   ├── device-matrix.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── language-matrix.json
+│   │   │   ├── library-matrix.json
+│   │   │   ├── milestone.json
+│   │   │   ├── os-matrix.json
+│   │   │   ├── pair-matrix.json
+│   │   │   ├── portability-gaps.md
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   ├── summary.md
+│   │   │   └── waivers.json
+│   │   ├── milestone-23-distributed-heterogeneous
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── coverage-summary.json
+│   │   │   ├── device-matrix.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── host-coka-Predator-PH517-51.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── language-matrix.json
+│   │   │   ├── library-matrix.json
+│   │   │   ├── milestone.json
+│   │   │   ├── os-matrix.json
+│   │   │   ├── pair-matrix.json
+│   │   │   ├── portability-gaps.md
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   ├── summary.md
+│   │   │   └── waivers.json
+│   │   ├── milestone-24-edge-mobile-web
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── coverage-summary.json
+│   │   │   ├── device-matrix.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── language-matrix.json
+│   │   │   ├── library-matrix.json
+│   │   │   ├── milestone.json
+│   │   │   ├── os-matrix.json
+│   │   │   ├── pair-matrix.json
+│   │   │   ├── portability-gaps.md
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   ├── summary.md
+│   │   │   └── waivers.json
+│   │   ├── milestone-25-universal-profile-v2
+│   │   │   ├── certification-bundle.json
+│   │   │   ├── compatibility-matrix.json
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── coverage-summary.json
+│   │   │   ├── device-matrix.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── language-matrix.json
+│   │   │   ├── library-matrix.json
+│   │   │   ├── milestone.json
+│   │   │   ├── os-matrix.json
+│   │   │   ├── pair-matrix.json
+│   │   │   ├── portability-gaps.md
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   ├── summary.md
+│   │   │   └── waivers.json
+│   │   ├── milestone-3-pytorch-cpu-gpu
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   └── summary.md
+│   │   ├── milestone-4-keras-cpu
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── repro-classification.json
+│   │   │   └── summary.md
+│   │   ├── milestone-5-keras-gpu
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── repro-classification.json
+│   │   │   └── summary.md
+│   │   ├── milestone-6-keras-cpu-gpu
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   └── summary.md
+│   │   ├── milestone-7-pytorch-keras
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   └── summary.md
+│   │   ├── milestone-8-pytorch-java
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   └── summary.md
+│   │   ├── milestone-9-operator-expansion-v2
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── coverage-summary.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── milestone.json
+│   │   │   ├── pair-matrix.json
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   ├── summary.md
+│   │   │   └── waivers.json
 │   │   ├── compare-20260228.md
 │   │   ├── compare-template.md
 │   │   ├── dependency-lock.sha256
@@ -411,7 +730,9 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │       │   ├── runtime_api.py
 │       │   └── validate_signature.py
 │       ├── backend
+│       │   ├── keras_driver.py
 │       │   ├── load_driver.py
+│       │   ├── pytorch_driver.py
 │       │   └── reference_driver.py
 │       ├── cert
 │       │   └── evidence_validate.py
@@ -774,6 +1095,8 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   ├── test_api_contract_gate.py
 │   │   ├── test_runtime_api.py
 │   │   └── test_validate_signature.py
+│   ├── backend
+│   │   └── test_load_driver.py
 │   ├── canonical_cbor
 │   │   ├── __init__.py
 │   │   ├── test_fuzz.py
@@ -933,6 +1256,55 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   └── verify_release.py
 │   ├── scripts
 │   │   ├── repro
+│   │   │   ├── cpp_bridge
+│   │   │   │   ├── CppLaneRunner
+│   │   │   │   └── CppLaneRunner.cpp
+│   │   │   ├── csharp_bridge
+│   │   │   │   ├── CSharpLaneRunner.cs
+│   │   │   │   └── CSharpLaneRunner.exe
+│   │   │   ├── go_bridge
+│   │   │   │   ├── GoLaneRunner
+│   │   │   │   └── GoLaneRunner.go
+│   │   │   ├── java_bridge
+│   │   │   │   ├── DjlLaneRunner.class
+│   │   │   │   ├── DjlLaneRunner.java
+│   │   │   │   ├── HelloCoreJavaRunner.class
+│   │   │   │   ├── HelloCoreJavaRunner.java
+│   │   │   │   ├── ModelClassExpansionJavaRunner.class
+│   │   │   │   ├── ModelClassExpansionJavaRunner.java
+│   │   │   │   ├── OnnxRuntimeLaneRunner.class
+│   │   │   │   ├── OnnxRuntimeLaneRunner.java
+│   │   │   │   ├── OperatorExpansionJavaRunner.class
+│   │   │   │   ├── OperatorExpansionJavaRunner.java
+│   │   │   │   └── README_M13_JAVA_RUNTIME_HARDENING.md
+│   │   │   ├── library_bridge
+│   │   │   │   └── openvino_tensorrt_lane.py
+│   │   │   ├── rust_bridge
+│   │   │   │   ├── README_M14_RUST_BRIDGE.md
+│   │   │   │   ├── RustLaneRunner
+│   │   │   │   └── RustLaneRunner.rs
+│   │   │   ├── compare_additional_language_bridges.py
+│   │   │   ├── compare_artifact_portability.py
+│   │   │   ├── compare_dataset_scale_expansion.py
+│   │   │   ├── compare_device_class_expansion.py
+│   │   │   ├── compare_distributed_heterogeneous.py
+│   │   │   ├── compare_edge_mobile_web.py
+│   │   │   ├── compare_java_runtime_hardening.py
+│   │   │   ├── compare_keras_cpu_gpu.py
+│   │   │   ├── compare_language_ecosystem_v2.py
+│   │   │   ├── compare_library_ecosystem.py
+│   │   │   ├── compare_model_class_expansion.py
+│   │   │   ├── compare_multi_host_multi_os_matrix.py
+│   │   │   ├── compare_operator_expansion_v2.py
+│   │   │   ├── compare_os_universality.py
+│   │   │   ├── compare_profile_modes_v1.py
+│   │   │   ├── compare_pytorch_cpu_gpu.py
+│   │   │   ├── compare_pytorch_java_matrix.py
+│   │   │   ├── compare_pytorch_keras_matrix.py
+│   │   │   ├── compare_service_reproducibility.py
+│   │   │   ├── compare_universal_driver_v1.py
+│   │   │   ├── compare_universal_profile_v1_certification.py
+│   │   │   ├── compare_universal_profile_v2_certification.py
 │   │   │   └── host_meta.py
 │   │   └── run_hello_core.py
 │   ├── security
@@ -1140,8 +1512,300 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `evidence/recovery/replay-proof.txt` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/compare-20260228.md` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/compare-template.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/decisions/ADR-2026-03-01-available-local-certification-profile.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/decisions/ADR-2026-03-01-m12-resource-gap-temporary-waiver.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/decisions/ADR-2026-03-01-m18-device-resource-gap-temporary-waiver.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/decisions/ADR-2026-03-01-m19-proceed-under-m18-waiver.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/decisions/ADR-2026-03-01-m20-proceed-under-m19-pause.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/decisions/ADR-2026-03-01-m23-progress-with-limited-cluster.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/decisions/ADR-2026-03-01-m24-progress-with-limited-targets.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/decisions/ADR-2026-03-01-m25-progress-with-blocked-prereqs.md` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/dependency-lock.sha256` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/hashes.txt` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-1-pytorch-cpu/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-1-pytorch-cpu/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-1-pytorch-cpu/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-1-pytorch-cpu/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-1-pytorch-cpu/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-10-model-class-expansion/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-10-model-class-expansion/coverage-summary.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-10-model-class-expansion/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-10-model-class-expansion/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-10-model-class-expansion/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-10-model-class-expansion/pair-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-10-model-class-expansion/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-10-model-class-expansion/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-10-model-class-expansion/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-10-model-class-expansion/waivers.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-11-dataset-scale-expansion/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-11-dataset-scale-expansion/coverage-summary.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-11-dataset-scale-expansion/drift-envelope.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-11-dataset-scale-expansion/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-11-dataset-scale-expansion/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-11-dataset-scale-expansion/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-11-dataset-scale-expansion/pair-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-11-dataset-scale-expansion/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-11-dataset-scale-expansion/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-11-dataset-scale-expansion/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-11-dataset-scale-expansion/waivers.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-12-multi-host-multi-os/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-12-multi-host-multi-os/coverage-summary.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-12-multi-host-multi-os/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-12-multi-host-multi-os/host-coka-Predator-PH517-51.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-12-multi-host-multi-os/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-12-multi-host-multi-os/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-12-multi-host-multi-os/pair-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-12-multi-host-multi-os/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-12-multi-host-multi-os/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-12-multi-host-multi-os/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-12-multi-host-multi-os/waivers.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-13-java-runtime-hardening/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-13-java-runtime-hardening/coverage-summary.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-13-java-runtime-hardening/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-13-java-runtime-hardening/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-13-java-runtime-hardening/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-13-java-runtime-hardening/pair-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-13-java-runtime-hardening/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-13-java-runtime-hardening/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-13-java-runtime-hardening/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-13-java-runtime-hardening/waivers.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-14-additional-language-bridges/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-14-additional-language-bridges/coverage-summary.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-14-additional-language-bridges/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-14-additional-language-bridges/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-14-additional-language-bridges/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-14-additional-language-bridges/pair-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-14-additional-language-bridges/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-14-additional-language-bridges/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-14-additional-language-bridges/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-14-additional-language-bridges/waivers.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-15-service-reproducibility/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-15-service-reproducibility/coverage-summary.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-15-service-reproducibility/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-15-service-reproducibility/incident-playbook-hooks.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-15-service-reproducibility/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-15-service-reproducibility/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-15-service-reproducibility/pair-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-15-service-reproducibility/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-15-service-reproducibility/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-15-service-reproducibility/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-15-service-reproducibility/waivers.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-16-universal-profile-v1/certification-bundle.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-16-universal-profile-v1/compatibility-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-16-universal-profile-v1/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-16-universal-profile-v1/coverage-summary.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-16-universal-profile-v1/device-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-16-universal-profile-v1/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-16-universal-profile-v1/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-16-universal-profile-v1/language-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-16-universal-profile-v1/library-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-16-universal-profile-v1/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-16-universal-profile-v1/os-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-16-universal-profile-v1/pair-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-16-universal-profile-v1/portability-gaps.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-16-universal-profile-v1/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-16-universal-profile-v1/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-16-universal-profile-v1/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-16-universal-profile-v1/waivers.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17-universal-driver-v1/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17-universal-driver-v1/coverage-summary.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17-universal-driver-v1/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17-universal-driver-v1/fallback-policy.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17-universal-driver-v1/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17-universal-driver-v1/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17-universal-driver-v1/normalization-parity.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17-universal-driver-v1/pair-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17-universal-driver-v1/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17-universal-driver-v1/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17-universal-driver-v1/route-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17-universal-driver-v1/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17-universal-driver-v1/waivers.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17a-profile-modes/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17a-profile-modes/coverage-summary.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17a-profile-modes/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17a-profile-modes/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17a-profile-modes/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17a-profile-modes/pair-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17a-profile-modes/profile-mode-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17a-profile-modes/profile-mode-policy.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17a-profile-modes/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17a-profile-modes/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17a-profile-modes/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-17a-profile-modes/waivers.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-18-device-class-expansion/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-18-device-class-expansion/coverage-summary.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-18-device-class-expansion/device-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-18-device-class-expansion/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-18-device-class-expansion/host-coka-Predator-PH517-51.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-18-device-class-expansion/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-18-device-class-expansion/language-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-18-device-class-expansion/library-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-18-device-class-expansion/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-18-device-class-expansion/os-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-18-device-class-expansion/pair-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-18-device-class-expansion/portability-gaps.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-18-device-class-expansion/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-18-device-class-expansion/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-18-device-class-expansion/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-18-device-class-expansion/waivers.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-19-os-universality/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-19-os-universality/coverage-summary.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-19-os-universality/device-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-19-os-universality/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-19-os-universality/host-coka-Predator-PH517-51.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-19-os-universality/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-19-os-universality/language-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-19-os-universality/library-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-19-os-universality/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-19-os-universality/os-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-19-os-universality/pair-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-19-os-universality/portability-gaps.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-19-os-universality/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-19-os-universality/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-19-os-universality/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-19-os-universality/waivers.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-2-pytorch-gpu/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-2-pytorch-gpu/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-2-pytorch-gpu/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-2-pytorch-gpu/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-2-pytorch-gpu/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-20-language-ecosystem-v2/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-20-language-ecosystem-v2/coverage-summary.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-20-language-ecosystem-v2/device-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-20-language-ecosystem-v2/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-20-language-ecosystem-v2/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-20-language-ecosystem-v2/language-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-20-language-ecosystem-v2/library-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-20-language-ecosystem-v2/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-20-language-ecosystem-v2/os-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-20-language-ecosystem-v2/pair-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-20-language-ecosystem-v2/portability-gaps.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-20-language-ecosystem-v2/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-20-language-ecosystem-v2/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-20-language-ecosystem-v2/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-20-language-ecosystem-v2/waivers.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-21-library-ecosystem/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-21-library-ecosystem/coverage-summary.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-21-library-ecosystem/device-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-21-library-ecosystem/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-21-library-ecosystem/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-21-library-ecosystem/language-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-21-library-ecosystem/library-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-21-library-ecosystem/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-21-library-ecosystem/os-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-21-library-ecosystem/pair-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-21-library-ecosystem/portability-gaps.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-21-library-ecosystem/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-21-library-ecosystem/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-21-library-ecosystem/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-21-library-ecosystem/waivers.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-22-artifact-portability/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-22-artifact-portability/coverage-summary.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-22-artifact-portability/device-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-22-artifact-portability/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-22-artifact-portability/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-22-artifact-portability/language-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-22-artifact-portability/library-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-22-artifact-portability/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-22-artifact-portability/os-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-22-artifact-portability/pair-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-22-artifact-portability/portability-gaps.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-22-artifact-portability/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-22-artifact-portability/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-22-artifact-portability/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-22-artifact-portability/waivers.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-23-distributed-heterogeneous/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-23-distributed-heterogeneous/coverage-summary.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-23-distributed-heterogeneous/device-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-23-distributed-heterogeneous/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-23-distributed-heterogeneous/host-coka-Predator-PH517-51.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-23-distributed-heterogeneous/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-23-distributed-heterogeneous/language-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-23-distributed-heterogeneous/library-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-23-distributed-heterogeneous/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-23-distributed-heterogeneous/os-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-23-distributed-heterogeneous/pair-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-23-distributed-heterogeneous/portability-gaps.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-23-distributed-heterogeneous/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-23-distributed-heterogeneous/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-23-distributed-heterogeneous/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-23-distributed-heterogeneous/waivers.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-24-edge-mobile-web/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-24-edge-mobile-web/coverage-summary.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-24-edge-mobile-web/device-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-24-edge-mobile-web/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-24-edge-mobile-web/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-24-edge-mobile-web/language-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-24-edge-mobile-web/library-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-24-edge-mobile-web/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-24-edge-mobile-web/os-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-24-edge-mobile-web/pair-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-24-edge-mobile-web/portability-gaps.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-24-edge-mobile-web/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-24-edge-mobile-web/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-24-edge-mobile-web/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-24-edge-mobile-web/waivers.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-25-universal-profile-v2/certification-bundle.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-25-universal-profile-v2/compatibility-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-25-universal-profile-v2/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-25-universal-profile-v2/coverage-summary.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-25-universal-profile-v2/device-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-25-universal-profile-v2/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-25-universal-profile-v2/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-25-universal-profile-v2/language-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-25-universal-profile-v2/library-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-25-universal-profile-v2/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-25-universal-profile-v2/os-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-25-universal-profile-v2/pair-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-25-universal-profile-v2/portability-gaps.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-25-universal-profile-v2/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-25-universal-profile-v2/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-25-universal-profile-v2/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-25-universal-profile-v2/waivers.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-3-pytorch-cpu-gpu/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-3-pytorch-cpu-gpu/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-3-pytorch-cpu-gpu/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-3-pytorch-cpu-gpu/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-3-pytorch-cpu-gpu/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-3-pytorch-cpu-gpu/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-4-keras-cpu/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-4-keras-cpu/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-4-keras-cpu/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-4-keras-cpu/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-4-keras-cpu/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-5-keras-gpu/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-5-keras-gpu/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-5-keras-gpu/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-5-keras-gpu/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-5-keras-gpu/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-6-keras-cpu-gpu/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-6-keras-cpu-gpu/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-6-keras-cpu-gpu/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-6-keras-cpu-gpu/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-6-keras-cpu-gpu/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-6-keras-cpu-gpu/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-7-pytorch-keras/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-7-pytorch-keras/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-7-pytorch-keras/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-7-pytorch-keras/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-7-pytorch-keras/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-7-pytorch-keras/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-8-pytorch-java/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-8-pytorch-java/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-8-pytorch-java/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-8-pytorch-java/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-8-pytorch-java/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-8-pytorch-java/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-9-operator-expansion-v2/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-9-operator-expansion-v2/coverage-summary.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-9-operator-expansion-v2/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-9-operator-expansion-v2/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-9-operator-expansion-v2/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-9-operator-expansion-v2/pair-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-9-operator-expansion-v2/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-9-operator-expansion-v2/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-9-operator-expansion-v2/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-9-operator-expansion-v2/waivers.json` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/run-checklist.md` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/security/audit.log.jsonl` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/security/build_provenance.json` | Generated verification evidence, reports, and audit outputs. |
@@ -1265,7 +1929,9 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `runtime/glyphser/_generated/validators.py` | Runtime source code and importable application modules. |
 | `runtime/glyphser/api/runtime_api.py` | Runtime source code and importable application modules. |
 | `runtime/glyphser/api/validate_signature.py` | Runtime source code and importable application modules. |
+| `runtime/glyphser/backend/keras_driver.py` | Runtime source code and importable application modules. |
 | `runtime/glyphser/backend/load_driver.py` | Runtime source code and importable application modules. |
+| `runtime/glyphser/backend/pytorch_driver.py` | Runtime source code and importable application modules. |
 | `runtime/glyphser/backend/reference_driver.py` | Runtime source code and importable application modules. |
 | `runtime/glyphser/cert/evidence_validate.py` | Runtime source code and importable application modules. |
 | `runtime/glyphser/certificate/build.py` | Runtime source code and importable application modules. |
@@ -1589,6 +2255,7 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `tests/api/test_api_contract_gate.py` | Automated test coverage across unit/integration/conformance domains. |
 | `tests/api/test_runtime_api.py` | Automated test coverage across unit/integration/conformance domains. |
 | `tests/api/test_validate_signature.py` | Automated test coverage across unit/integration/conformance domains. |
+| `tests/backend/test_load_driver.py` | Automated test coverage across unit/integration/conformance domains. |
 | `tests/canonical_cbor/__init__.py` | Automated test coverage across unit/integration/conformance domains. |
 | `tests/canonical_cbor/test_fuzz.py` | Automated test coverage across unit/integration/conformance domains. |
 | `tests/canonical_cbor/test_vectors.py` | Automated test coverage across unit/integration/conformance domains. |
@@ -1717,7 +2384,50 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `tooling/release/release_evidence_gate.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/release/reproducibility_check.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/release/verify_release.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_additional_language_bridges.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_artifact_portability.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_dataset_scale_expansion.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_device_class_expansion.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_distributed_heterogeneous.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_edge_mobile_web.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_java_runtime_hardening.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_keras_cpu_gpu.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_language_ecosystem_v2.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_library_ecosystem.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_model_class_expansion.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_multi_host_multi_os_matrix.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_operator_expansion_v2.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_os_universality.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_profile_modes_v1.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_pytorch_cpu_gpu.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_pytorch_java_matrix.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_pytorch_keras_matrix.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_service_reproducibility.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_universal_driver_v1.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_universal_profile_v1_certification.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_universal_profile_v2_certification.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/cpp_bridge/CppLaneRunner` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/cpp_bridge/CppLaneRunner.cpp` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/csharp_bridge/CSharpLaneRunner.cs` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/csharp_bridge/CSharpLaneRunner.exe` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/go_bridge/GoLaneRunner` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/go_bridge/GoLaneRunner.go` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/scripts/repro/host_meta.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/java_bridge/DjlLaneRunner.class` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/java_bridge/DjlLaneRunner.java` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/java_bridge/HelloCoreJavaRunner.class` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/java_bridge/HelloCoreJavaRunner.java` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/java_bridge/ModelClassExpansionJavaRunner.class` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/java_bridge/ModelClassExpansionJavaRunner.java` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/java_bridge/OnnxRuntimeLaneRunner.class` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/java_bridge/OnnxRuntimeLaneRunner.java` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/java_bridge/OperatorExpansionJavaRunner.class` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/java_bridge/OperatorExpansionJavaRunner.java` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/java_bridge/README_M13_JAVA_RUNTIME_HARDENING.md` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/library_bridge/openvino_tensorrt_lane.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/rust_bridge/README_M14_RUST_BRIDGE.md` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/rust_bridge/RustLaneRunner` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/rust_bridge/RustLaneRunner.rs` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/scripts/run_hello_core.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/security/__init__.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/security/security_artifacts.py` | Automation, gate, build, release, or developer tooling script. |

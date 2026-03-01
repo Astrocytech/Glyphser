@@ -22,6 +22,17 @@ WAIVER_ADRS = [
     "evidence/repro/decisions/ADR-2026-03-01-m24-progress-with-limited-targets.md",
 ]
 
+TARGET_PROFILES = {
+    "strict_universal": {
+        "required_targets": ["android", "ios", "web"],
+        "description": "Requires Android, iOS, and Web runtime readiness.",
+    },
+    "available_local": {
+        "required_targets": ["android", "web"],
+        "description": "Requires Android and Web on currently available hardware; iOS is optional/deferred.",
+    },
+}
+
 
 def _sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -84,6 +95,12 @@ def _runtime_meta() -> dict[str, Any]:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Milestone 24 edge/mobile/web runtime coverage.")
     parser.add_argument(
+        "--universality-profile",
+        choices=sorted(TARGET_PROFILES.keys()),
+        default="available_local",
+        help="Certification scope profile. Default is available_local for current hardware coverage.",
+    )
+    parser.add_argument(
         "--output-dir",
         default=str(ROOT / "evidence" / "repro" / "milestone-24-edge-mobile-web"),
     )
@@ -93,17 +110,25 @@ def main() -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     checks = [_android_status(), _ios_status(), _web_status()]
-    statuses = [c["status"] for c in checks]
-    if any(s == "FAIL" for s in statuses):
-        overall_status, overall_class, overall_reason = "FAIL", "E2", "At least one edge/mobile/web target failed."
-    elif any(s == "BLOCKED" for s in statuses):
-        overall_status, overall_class, overall_reason = "BLOCKED", "E2", "At least one edge/mobile/web target is blocked."
+    check_map = {str(c.get("target", "")).lower(): c for c in checks}
+    profile_cfg = TARGET_PROFILES[args.universality_profile]
+    required_targets = profile_cfg["required_targets"]
+    required_rows = [check_map[t] for t in required_targets if t in check_map]
+    required_statuses = [str(c.get("status", "BLOCKED")) for c in required_rows]
+
+    if any(s == "FAIL" for s in required_statuses):
+        overall_status, overall_class, overall_reason = "FAIL", "E2", "At least one required edge/mobile/web target failed."
+    elif any(s == "BLOCKED" for s in required_statuses):
+        overall_status, overall_class, overall_reason = "BLOCKED", "E2", "At least one required edge/mobile/web target is blocked."
     else:
-        overall_status, overall_class, overall_reason = "PASS", "E1", "All edge/mobile/web targets are available."
+        overall_status, overall_class, overall_reason = "PASS", "E1", f"All required targets for profile '{args.universality_profile}' are available."
 
     report = {
         "milestone": 24,
         "profile": "edge_mobile_web",
+        "universality_profile": args.universality_profile,
+        "required_targets": required_targets,
+        "profile_description": profile_cfg["description"],
         "status": overall_status,
         "classification": overall_class,
         "reason": overall_reason,
@@ -116,6 +141,7 @@ def main() -> int:
             {
                 "milestone": 24,
                 "profile": "edge_mobile_web",
+                "universality_profile": args.universality_profile,
                 "classification": overall_class,
                 "status": overall_status,
                 "reason": overall_reason,
@@ -136,14 +162,30 @@ def main() -> int:
         encoding="utf-8",
     )
     (out_dir / "env-matrix.json").write_text(json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "coverage-summary.json").write_text(json.dumps({"milestone": 24, "target_count": len(checks), "status": overall_status}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "coverage-summary.json").write_text(
+        json.dumps(
+            {
+                "milestone": 24,
+                "universality_profile": args.universality_profile,
+                "required_targets": required_targets,
+                "target_count": len(checks),
+                "status": overall_status,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     (out_dir / "device-matrix.json").write_text(json.dumps({"targets": [c["target"] for c in checks]}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     (out_dir / "os-matrix.json").write_text(json.dumps({"note": "Target runtime detection is host-specific for mobile/web tooling."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     (out_dir / "language-matrix.json").write_text(json.dumps({"note": "Milestone 24 focuses on runtime targets, not language lanes."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     (out_dir / "library-matrix.json").write_text(json.dumps({"note": "Milestone 24 validates runtime target availability and reproducibility readiness."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     gaps = ["# Portability Gaps (Milestone 24)", ""]
+    gaps.append(f"- Universality profile: `{args.universality_profile}`")
     for c in checks:
-        if c["status"] != "PASS":
+        is_required = str(c.get("target", "")).lower() in required_targets
+        if c["status"] != "PASS" and is_required:
             gaps.append(f"- `{c['target']}`: {c['reason']}")
     if len(gaps) == 2:
         gaps.append("- No portability gaps detected.")
@@ -166,6 +208,8 @@ def main() -> int:
             [
                 "# Milestone 24: Edge, Mobile, and Web Runtime Coverage",
                 "",
+                f"Universality profile: {args.universality_profile}",
+                f"Required targets: {', '.join(required_targets)}",
                 f"Status: {overall_status}",
                 f"Classification: {overall_class}",
                 f"Reason: {overall_reason}",
@@ -176,7 +220,8 @@ def main() -> int:
     )
     (out_dir / "known-limitations.md").write_text(
         "# Known Limitations (Milestone 24)\n\n"
-        "- Full PASS requires real Android/iOS/Web runtime targets connected or available.\n"
+        f"- Active universality profile: `{args.universality_profile}`.\n"
+        "- Strict profile (`strict_universal`) requires real Android/iOS/Web runtime targets connected or available.\n"
         "- iOS checks require macOS host tooling (`xcrun simctl`).\n",
         encoding="utf-8",
     )
@@ -189,6 +234,7 @@ def main() -> int:
                 "target_date": "2027-02-18",
                 "dependencies": [23],
                 "profiles": ["edge_mobile_web"],
+                "universality_profile": args.universality_profile,
                 "result": overall_status,
                 "classification": overall_class,
                 "evidence_dir": "evidence/repro/milestone-24-edge-mobile-web/",

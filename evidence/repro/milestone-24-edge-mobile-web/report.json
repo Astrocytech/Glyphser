@@ -26,10 +26,16 @@
     "kernel": "6.8.0-101-generic",
     "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
     "python": "3.12.3",
-    "timestamp_utc": "2026-03-01T17:43:01.472480+00:00"
+    "timestamp_utc": "2026-03-01T18:36:53.278234+00:00"
   },
   "milestone": 24,
   "profile": "edge_mobile_web",
-  "reason": "At least one edge/mobile/web target is blocked.",
-  "status": "BLOCKED"
+  "profile_description": "Requires Android and Web on currently available hardware; iOS is optional/deferred.",
+  "reason": "At least one required edge/mobile/web target is blocked.",
+  "required_targets": [
+    "android",
+    "web"
+  ],
+  "status": "BLOCKED",
+  "universality_profile": "available_local"
 }

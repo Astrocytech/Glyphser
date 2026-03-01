@@ -1,5 +1,10 @@
 {
   "milestone": 24,
+  "required_targets": [
+    "android",
+    "web"
+  ],
   "status": "BLOCKED",
-  "target_count": 3
+  "target_count": 3,
+  "universality_profile": "available_local"
 }
