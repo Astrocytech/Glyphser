@@ -1,0 +1,32 @@
+{
+  "language_matrix": [
+    {
+      "language_lane": "python_pytorch_cpu",
+      "status": "PASS"
+    },
+    {
+      "language_lane": "python_keras_cpu",
+      "status": "PASS"
+    },
+    {
+      "language_lane": "java_onnxruntime_cpu",
+      "status": "PASS"
+    },
+    {
+      "language_lane": "rust_cpu",
+      "status": "PASS"
+    },
+    {
+      "language_lane": "go_cpu",
+      "status": "PASS"
+    },
+    {
+      "language_lane": "cpp_cpu",
+      "status": "PASS"
+    },
+    {
+      "language_lane": "csharp_cpu",
+      "status": "PASS"
+    }
+  ]
+}
