@@ -1,0 +1,10 @@
+{
+  "python_version": "3.12.3",
+  "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+  "kernel": "6.8.0-101-generic",
+  "tensorflow": "2.20.0",
+  "driver_id": "keras_gpu",
+  "gpu_visible_to_tf": true,
+  "gpu_model": "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')",
+  "validation_source": "manual_terminal_confirmation"
+}

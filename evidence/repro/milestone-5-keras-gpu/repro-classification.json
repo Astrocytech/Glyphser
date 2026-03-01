@@ -1,0 +1,9 @@
+{
+  "milestone": 5,
+  "profile": "keras_gpu",
+  "classification": "E1",
+  "reason": "Single-device Keras GPU integration validated via conformance PASS; CPU↔GPU class validation is Milestone 6.",
+  "abs_tol": 1e-06,
+  "rel_tol": 1e-06,
+  "excluded_operators": []
+}

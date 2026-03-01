@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from typing import Any, Dict
 
-from runtime.glyphser.backend.keras_driver import get_keras_cpu_driver
+from runtime.glyphser.backend.keras_driver import get_keras_cpu_driver, get_keras_gpu_driver
 from runtime.glyphser.backend.pytorch_driver import get_pytorch_cpu_driver, get_pytorch_gpu_driver
 from runtime.glyphser.backend.reference_driver import get_default_driver
 
@@ -17,6 +17,8 @@ def resolve_driver(driver_id: str) -> Any:
         return get_pytorch_gpu_driver()
     if driver_id == "keras_cpu":
         return get_keras_cpu_driver()
+    if driver_id == "keras_gpu":
+        return get_keras_gpu_driver()
     raise ValueError(f"unsupported driver_id: {driver_id}")
 
 
