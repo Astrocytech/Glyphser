@@ -1,0 +1,10 @@
+{
+  "abs_tol": 1e-06,
+  "classification": "E0",
+  "excluded_operators": [],
+  "milestone": 8,
+  "profile": "pytorch_java_cross_matrix",
+  "reason": "All PyTorch\u2194Java pairs pass.",
+  "rel_tol": 1e-06,
+  "status": "PASS"
+}

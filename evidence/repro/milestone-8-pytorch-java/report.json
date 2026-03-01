@@ -1,0 +1,92 @@
+{
+  "classification": "E0",
+  "meta": {
+    "abs_tol": 1e-06,
+    "java": {
+      "java_version": "openjdk version \"21.0.10\" 2026-01-20\nOpenJDK Runtime Environment (build 21.0.10+7-Ubuntu-124.04)\nOpenJDK 64-Bit Server VM (build 21.0.10+7-Ubuntu-124.04, mixed mode, sharing)",
+      "javac_version": "javac 21.0.10"
+    },
+    "kernel": "6.8.0-101-generic",
+    "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "rel_tol": 1e-06,
+    "torch": {
+      "cuda_available": true,
+      "cuda_version": "12.1",
+      "gpu_name": "NVIDIA GeForce GTX 1070",
+      "version": "2.5.1+cu121"
+    }
+  },
+  "milestone": 8,
+  "pairs": [
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "3a58e0c62c1fcffd04ebae9a14adebfacbee05846ddc21b581271a964d66d937",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ]
+      },
+      "classification": "E0",
+      "pair": "pytorch_cpu__vs__java_cpu",
+      "reason": "Exact output match.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "3a58e0c62c1fcffd04ebae9a14adebfacbee05846ddc21b581271a964d66d937",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ]
+      },
+      "classification": "E0",
+      "pair": "pytorch_gpu__vs__java_cpu",
+      "reason": "Exact output match.",
+      "status": "PASS"
+    }
+  ],
+  "profile": "pytorch_java_cross_matrix",
+  "reason": "All PyTorch\u2194Java pairs pass.",
+  "status": "PASS"
+}
