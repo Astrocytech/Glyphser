@@ -1,0 +1,20 @@
+{
+  "python_version": "3.12.3",
+  "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+  "kernel": "6.8.0-101-generic",
+  "cpu_arch": "x86_64",
+  "cpu_model": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+  "frameworks": {
+    "torch": "2.2.2+cpu"
+  },
+  "cuda_available": false,
+  "driver_id": "pytorch_cpu",
+  "determinism": {
+    "torch_use_deterministic_algorithms": true,
+    "driver_sets_num_threads": 1
+  },
+  "dependency_lock": {
+    "file": "requirements.lock",
+    "sha256": "ff8d7ca61a478017944504b804a5c2eaf48958dd83eafb612f78ac1aae2d538b"
+  }
+}

@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from typing import Any, Dict, List
 
-from runtime.glyphser.backend.reference_driver import get_default_driver
+from runtime.glyphser.backend.load_driver import resolve_driver
 from runtime.glyphser.contract.validate import ContractViolationError, validate_contract
 from runtime.glyphser.error.emit import emit_error
 from runtime.glyphser.fingerprint.state_fingerprint import state_fingerprint
@@ -53,7 +53,23 @@ def execute(request: Dict[str, Any]) -> Dict[str, Any]:
     rng_state = int(request.get("rng_state", 0))
     tmmu_context = request.get("tmmu_context", {})
 
-    driver = request.get("driver") or get_default_driver()
+    driver = request.get("driver")
+    if driver is None:
+        driver_id = request.get("driver_id") or "default"
+        try:
+            driver = resolve_driver(driver_id)
+        except Exception:
+            return {
+                "error": emit_error(
+                    "PRIMITIVE_UNSUPPORTED",
+                    "unsupported primitive",
+                    operator_id="Glyphser.Model.ModelIR_Executor",
+                    t="",
+                    node_id="",
+                    instr="",
+                    backend_binary_hash="",
+                )
+            }
 
     try:
         ir = validate_contract(ir_dag, driver, mode)

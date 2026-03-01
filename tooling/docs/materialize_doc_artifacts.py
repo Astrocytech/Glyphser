@@ -311,12 +311,35 @@ def materialize() -> None:
     )
 
     model_ir = {
-        "ir_version": 1,
-        "operators": [
-            {"id": "input", "op": "INPUT", "shape": [4]},
-            {"id": "dense", "op": "DENSE", "weights": [0.1, 0.2, 0.3, 0.4], "bias": 0.0},
-            {"id": "output", "op": "OUTPUT"},
+        "ir_schema_hash": "sha256:uml_model_ir_demo",
+        "nodes": [
+            {
+                "dtype": "float32",
+                "inputs": [],
+                "instr": "Input",
+                "node_id": "input",
+                "role": "input",
+                "shape_out": [4],
+            },
+            {
+                "dtype": "float32",
+                "inputs": [{"node_id": "input", "output_idx": 0}],
+                "instr": "Dense",
+                "node_id": "dense",
+                "params": {"bias": 0.0, "weights": [0.1, 0.2, 0.3, 0.4]},
+                "role": "activation",
+                "shape_out": [1],
+            },
+            {
+                "dtype": "float32",
+                "inputs": [{"node_id": "dense", "output_idx": 0}],
+                "instr": "Output",
+                "node_id": "output",
+                "role": "output",
+                "shape_out": [1],
+            },
         ],
+        "outputs": [{"node_id": "output", "output_idx": 0}],
     }
     write_text(fixtures_dir / "model_ir.json", json.dumps(model_ir, indent=2, sort_keys=True) + "\n")
 

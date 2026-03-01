@@ -15,7 +15,7 @@
       "step": 1
     },
     {
-      "event_hash": "48f52e3ddf5a1d4f332fdbeff63b980f296435275c72cd11b7b79a0b53a63ced",
+      "event_hash": "a40d0e467d52d7836cee606b78409360dc57f48c538a33771177ceb2819b9993",
       "inputs": [
         0.0,
         1.0,
@@ -23,7 +23,11 @@
         1.0
       ],
       "operator_id": "Glyphser.Model.ModelIR_Executor",
-      "outputs": null,
+      "outputs": [
+        [
+          0.6000000000000001
+        ]
+      ],
       "step": 1
     }
   ],

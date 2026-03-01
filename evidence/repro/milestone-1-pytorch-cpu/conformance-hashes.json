@@ -1,0 +1,14 @@
+{
+  "conformance_results": {
+    "path": "evidence/conformance/results/latest.json",
+    "sha256": "1dcfb93f20df0ce3bd464a05753fec1a2b4adc9914f6f3e1f77ebb17e9f348e5"
+  },
+  "conformance_report": {
+    "path": "evidence/conformance/reports/latest.json",
+    "sha256": "ddcf43446c4d9e49adeb55ae8f6990cf6e58ee97da8835d67d0770cbafaa8861"
+  },
+  "hello_core_golden": {
+    "path": "specs/examples/hello-core/hello-core-golden.json",
+    "sha256": "cebfc4b34b1a6c58726940e0c6ce72e77cabeb565ef8c8b29e2892e5ddf6df4b"
+  }
+}

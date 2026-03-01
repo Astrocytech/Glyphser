@@ -12,8 +12,8 @@
     },
     {
       "path": "artifacts/inputs/fixtures/hello-core/model_ir.json",
-      "sha256": "468de26db5d54eed4a54b4dcfb1ca1ee95d2bea7326bb4a1b45ada86e7d964ff",
-      "size_bytes": 341
+      "sha256": "284e41652a1abd2f50dc61101fd9295cc78c51f4f1cae00998500685ae7c972c",
+      "size_bytes": 974
     }
   ],
   "fixture_set_id": "hello-core-fixtures-v1"

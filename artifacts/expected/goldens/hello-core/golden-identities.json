@@ -2,9 +2,9 @@
   "canonical_profile_id": "CanonicalSerialization",
   "comparison_rule": "exact_bytes32_equality",
   "expected_identities": {
-    "certificate_hash": "dcdbd082095aa84e830c6bc8da865d7036f451972720ec522d7718f2b2a30494",
+    "certificate_hash": "955699b3a18f8b6fde9ff164636c31727c6de4470cff1c7bd641e815942fd713",
     "interface_hash": "d6c07c27e755cca8767ab62fb8106fead06055e90dc50c86ea015cde45e9fbc4",
-    "trace_final_hash": "d67d669bca75d6613c1fdda27f39a959012b5cef0bd723f6f299e9e386bb6c23"
+    "trace_final_hash": "93029741ddcd7f53431fe997626ac6a9e03ebc66122e7a90817c76f286a3c5c1"
   },
   "fixture_id": "hello-core-v1"
 }

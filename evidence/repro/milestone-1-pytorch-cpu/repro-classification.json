@@ -1,0 +1,9 @@
+{
+  "milestone": 1,
+  "profile": "pytorch_cpu",
+  "classification": "E0",
+  "reason": "Default and pytorch_cpu conformance runs both PASS with matching canonical hello-core identities on this host profile.",
+  "abs_tol": 1e-06,
+  "rel_tol": 1e-06,
+  "excluded_operators": []
+}

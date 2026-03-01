@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -40,11 +41,67 @@ def _load_dataset(path: Path) -> list[dict]:
     return rows
 
 
+def _normalize_hello_ir(ir: dict) -> dict:
+    if "nodes" in ir and "ir_schema_hash" in ir:
+        return ir
+
+    ops = ir.get("operators")
+    if not isinstance(ops, list):
+        return ir
+
+    normalized_nodes = []
+    last_node_id = None
+    last_shape = None
+    for raw in ops:
+        op = str(raw.get("op", "")).upper()
+        node_id = raw.get("id")
+        if not isinstance(node_id, str) or not node_id:
+            continue
+
+        if op == "INPUT":
+            shape = raw.get("shape", [1])
+            node = {"node_id": node_id, "instr": "Input", "inputs": [], "shape_out": shape, "dtype": "float32"}
+            last_shape = shape
+        elif op == "DENSE":
+            params = {"weights": raw.get("weights", []), "bias": raw.get("bias", 0.0)}
+            node = {
+                "node_id": node_id,
+                "instr": "Dense",
+                "inputs": [{"node_id": last_node_id, "output_idx": 0}] if last_node_id else [],
+                "params": params,
+                "shape_out": [1],
+                "dtype": "float32",
+            }
+            last_shape = [1]
+        elif op == "OUTPUT":
+            node = {
+                "node_id": node_id,
+                "instr": "Output",
+                "inputs": [{"node_id": last_node_id, "output_idx": 0}] if last_node_id else [],
+                "shape_out": last_shape or [1],
+                "dtype": "float32",
+            }
+        else:
+            continue
+
+        normalized_nodes.append(node)
+        last_node_id = node_id
+
+    outputs = [{"node_id": last_node_id, "output_idx": 0}] if last_node_id else []
+    return {
+        "ir_schema_hash": ir.get("ir_schema_hash", "sha256:uml_model_ir_demo"),
+        "nodes": normalized_nodes,
+        "outputs": outputs,
+    }
+
+
 def _record_hash(record: dict) -> str:
     return _sha256_hex(encode_canonical(record))
 
 
 def main() -> int:
+    driver_id = os.environ.get("GLYPHSER_DRIVER_ID", "default")
+
     if not GOLDEN.exists():
         print(f"missing golden file: {GOLDEN}")
         return 1
@@ -56,7 +113,7 @@ def main() -> int:
         return 1
 
     dataset = _load_dataset(dataset_path)
-    model_ir = json.loads(model_ir_path.read_text(encoding="utf-8"))
+    model_ir = _normalize_hello_ir(json.loads(model_ir_path.read_text(encoding="utf-8")))
 
     cursor = 0
     batch, cursor = next_batch(dataset, cursor, batch_size=1)
@@ -69,6 +126,7 @@ def main() -> int:
         {
             "ir_dag": model_ir,
             "input_data": {"input": inputs},
+            "driver_id": driver_id,
             "mode": "forward",
             "replay_token": "hello-core-replay-token",
             "tmmu_context": {
@@ -76,6 +134,9 @@ def main() -> int:
             },
         }
     )
+    if "error" in response:
+        print(json.dumps(response, indent=2, sort_keys=True))
+        return 1
     outputs = response.get("outputs")
 
     base_records = [
