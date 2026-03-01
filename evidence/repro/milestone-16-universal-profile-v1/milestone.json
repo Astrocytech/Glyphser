@@ -1,0 +1,18 @@
+{
+  "classification": "E2",
+  "dependencies": [
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "evidence_dir": "evidence/repro/milestone-16-universal-profile-v1/",
+  "milestone": 16,
+  "owner": "Astrocytech/Glyphser",
+  "result": "BLOCKED",
+  "slug": "universal-profile-v1",
+  "target_date": "2026-07-31"
+}

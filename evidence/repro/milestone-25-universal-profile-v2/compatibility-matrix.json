@@ -23,7 +23,7 @@
     {
       "classification": "E2",
       "milestone": 16,
-      "reason": "missing report.json",
+      "reason": "Blocked prerequisite milestones: 12",
       "report_path": "evidence/repro/milestone-16-universal-profile-v1/report.json",
       "slug": "milestone-16-universal-profile-v1",
       "status": "BLOCKED"

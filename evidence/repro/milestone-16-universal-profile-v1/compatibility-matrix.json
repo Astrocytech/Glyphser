@@ -1,0 +1,71 @@
+{
+  "milestone": 16,
+  "required_prerequisites": [
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "rows": [
+    {
+      "classification": "E1",
+      "milestone": 9,
+      "reason": "All required operator expansion pairs pass.",
+      "report_path": "evidence/repro/milestone-9-operator-expansion-v2/report.json",
+      "slug": "milestone-9-operator-expansion-v2",
+      "status": "PASS"
+    },
+    {
+      "classification": "E1",
+      "milestone": 10,
+      "reason": "All model class pairs pass.",
+      "report_path": "evidence/repro/milestone-10-model-class-expansion/report.json",
+      "slug": "milestone-10-model-class-expansion",
+      "status": "PASS"
+    },
+    {
+      "classification": "E1",
+      "milestone": 11,
+      "reason": "All dataset/scale reproducibility checks pass.",
+      "report_path": "evidence/repro/milestone-11-dataset-scale-expansion/report.json",
+      "slug": "milestone-11-dataset-scale-expansion",
+      "status": "PASS"
+    },
+    {
+      "classification": "E2",
+      "milestone": 12,
+      "reason": "need >=2 Linux hosts; need >=1 Windows host; need >=2 GPU architectures; missing GTX 1070 baseline host; missing RTX 30+ host",
+      "report_path": "evidence/repro/milestone-12-multi-host-multi-os/report.json",
+      "slug": "milestone-12-multi-host-multi-os",
+      "status": "BLOCKED"
+    },
+    {
+      "classification": "E1",
+      "milestone": 13,
+      "reason": "All PyTorch\u2194Java runtime hardening pairs pass.",
+      "report_path": "evidence/repro/milestone-13-java-runtime-hardening/report.json",
+      "slug": "milestone-13-java-runtime-hardening",
+      "status": "PASS"
+    },
+    {
+      "classification": "E1",
+      "milestone": 14,
+      "reason": "All cross-language pairs pass (Python, Java, Rust).",
+      "report_path": "evidence/repro/milestone-14-additional-language-bridges/report.json",
+      "slug": "milestone-14-additional-language-bridges",
+      "status": "PASS"
+    },
+    {
+      "classification": "E1",
+      "milestone": 15,
+      "reason": "All service reproducibility checks pass.",
+      "report_path": "evidence/repro/milestone-15-service-reproducibility/report.json",
+      "slug": "milestone-15-service-reproducibility",
+      "status": "PASS"
+    }
+  ],
+  "status": "BLOCKED"
+}

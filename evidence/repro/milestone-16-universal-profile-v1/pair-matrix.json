@@ -1,0 +1,10 @@
+{
+  "pairs": [
+    {
+      "classification": "E2",
+      "pair": "v1_certification_gate",
+      "reason": "Blocked prerequisite milestones: 12",
+      "status": "BLOCKED"
+    }
+  ]
+}

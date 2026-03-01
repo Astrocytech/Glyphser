@@ -1,0 +1,8 @@
+{
+  "waivers": [
+    {
+      "adr": "evidence/repro/decisions/ADR-2026-03-01-m12-resource-gap-temporary-waiver.md",
+      "status": "ACTIVE"
+    }
+  ]
+}

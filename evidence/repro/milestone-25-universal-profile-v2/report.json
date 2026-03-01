@@ -4,7 +4,7 @@
     "kernel": "6.8.0-101-generic",
     "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
     "python": "3.12.3",
-    "timestamp_utc": "2026-03-01T17:45:26.240735+00:00"
+    "timestamp_utc": "2026-03-01T17:47:35.402178+00:00"
   },
   "milestone": 25,
   "prerequisites": [
@@ -19,7 +19,7 @@
     {
       "classification": "E2",
       "milestone": 16,
-      "reason": "missing report.json",
+      "reason": "Blocked prerequisite milestones: 12",
       "report_path": "evidence/repro/milestone-16-universal-profile-v1/report.json",
       "slug": "milestone-16-universal-profile-v1",
       "status": "BLOCKED"
