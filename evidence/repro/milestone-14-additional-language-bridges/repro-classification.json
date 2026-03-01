@@ -1,0 +1,10 @@
+{
+  "abs_tol": 1e-06,
+  "classification": "E1",
+  "excluded_operators": [],
+  "milestone": 14,
+  "profile": "additional_language_bridges",
+  "reason": "All cross-language pairs pass (Python, Java, Rust).",
+  "rel_tol": 1e-06,
+  "status": "PASS"
+}

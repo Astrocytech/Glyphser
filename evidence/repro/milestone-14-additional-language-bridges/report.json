@@ -1,0 +1,915 @@
+{
+  "classification": "E1",
+  "meta": {
+    "abs_tol": 1e-06,
+    "java": {
+      "java_ok": true,
+      "java_version": "openjdk version \"21.0.10\" 2026-01-20\nOpenJDK Runtime Environment (build 21.0.10+7-Ubuntu-124.04)\nOpenJDK 64-Bit Server VM (build 21.0.10+7-Ubuntu-124.04, mixed mode, sharing)",
+      "javac_ok": true,
+      "javac_version": "javac 21.0.10"
+    },
+    "kernel": "6.8.0-101-generic",
+    "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "rel_tol": 1e-06,
+    "runtime_commands": {
+      "djl": "java -cp /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/tooling/scripts/repro/java_bridge:/home/coka/.m2/repository/ai/djl/api/0.30.0/api-0.30.0.jar DjlLaneRunner {input_csv} {weights_csv} {bias}",
+      "onnxruntime_java": "java -cp /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/tooling/scripts/repro/java_bridge:/home/coka/.m2/repository/com/microsoft/onnxruntime/onnxruntime/1.20.0/onnxruntime-1.20.0.jar OnnxRuntimeLaneRunner {input_csv} {weights_csv} {bias}",
+      "rust_cpu": "/home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/tooling/scripts/repro/rust_bridge/RustLaneRunner {input_csv} {weights_csv} {bias}"
+    },
+    "rust": {
+      "rustc_ok": true,
+      "rustc_version": "rustc 1.75.0 (82e1608df 2023-12-21) (built from a source tarball)"
+    },
+    "tensorflow": {
+      "gpu_devices": [
+        "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')"
+      ],
+      "gpu_visible": true,
+      "version": "2.20.0"
+    },
+    "timestamp_utc": "2026-03-01T16:54:05.934117+00:00",
+    "torch": {
+      "cuda_available": true,
+      "cuda_version": "12.1",
+      "gpu_name": "NVIDIA GeForce GTX 1070",
+      "version": "2.5.1+cu121"
+    }
+  },
+  "milestone": 14,
+  "pairs": [
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "classification": "E0",
+      "pair": "pytorch_cpu__vs__pytorch_gpu",
+      "reason": "Exact output and execution fingerprint match.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "classification": "E0",
+      "pair": "pytorch_cpu__vs__keras_cpu",
+      "reason": "Exact output and execution fingerprint match.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "classification": "E0",
+      "pair": "pytorch_cpu__vs__keras_gpu",
+      "reason": "Exact output and execution fingerprint match.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "78275243043a912c5c362e2c3b5e1fc2f40d70a56abd847fd6aa5022873a74b6",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "onnxruntime_java",
+        "runtime_version": "1.20.0"
+      },
+      "classification": "E1",
+      "pair": "pytorch_cpu__vs__java_onnxruntime_cpu",
+      "reason": "Exact output match; execution fingerprint differs by runtime.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "77d923b4d6b6218fe1f6e2047cf75f954f4dd8f12164ed98255f9e5076880e15",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "djl",
+        "runtime_version": "unknown"
+      },
+      "classification": "E1",
+      "pair": "pytorch_cpu__vs__java_djl_cpu",
+      "reason": "Exact output match; execution fingerprint differs by runtime.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "51faee958c94e4f0a05fa16cd73cb5a2d3f65682c698f217d4f672afe61da90d",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "rust_cpu",
+        "runtime_version": "unknown"
+      },
+      "classification": "E1",
+      "pair": "pytorch_cpu__vs__rust_cpu",
+      "reason": "Exact output match; execution fingerprint differs by runtime.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "classification": "E0",
+      "pair": "pytorch_gpu__vs__keras_cpu",
+      "reason": "Exact output and execution fingerprint match.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "classification": "E0",
+      "pair": "pytorch_gpu__vs__keras_gpu",
+      "reason": "Exact output and execution fingerprint match.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "78275243043a912c5c362e2c3b5e1fc2f40d70a56abd847fd6aa5022873a74b6",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "onnxruntime_java",
+        "runtime_version": "1.20.0"
+      },
+      "classification": "E1",
+      "pair": "pytorch_gpu__vs__java_onnxruntime_cpu",
+      "reason": "Exact output match; execution fingerprint differs by runtime.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "77d923b4d6b6218fe1f6e2047cf75f954f4dd8f12164ed98255f9e5076880e15",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "djl",
+        "runtime_version": "unknown"
+      },
+      "classification": "E1",
+      "pair": "pytorch_gpu__vs__java_djl_cpu",
+      "reason": "Exact output match; execution fingerprint differs by runtime.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "51faee958c94e4f0a05fa16cd73cb5a2d3f65682c698f217d4f672afe61da90d",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "rust_cpu",
+        "runtime_version": "unknown"
+      },
+      "classification": "E1",
+      "pair": "pytorch_gpu__vs__rust_cpu",
+      "reason": "Exact output match; execution fingerprint differs by runtime.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "classification": "E0",
+      "pair": "keras_cpu__vs__keras_gpu",
+      "reason": "Exact output and execution fingerprint match.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "78275243043a912c5c362e2c3b5e1fc2f40d70a56abd847fd6aa5022873a74b6",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "onnxruntime_java",
+        "runtime_version": "1.20.0"
+      },
+      "classification": "E1",
+      "pair": "keras_cpu__vs__java_onnxruntime_cpu",
+      "reason": "Exact output match; execution fingerprint differs by runtime.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "77d923b4d6b6218fe1f6e2047cf75f954f4dd8f12164ed98255f9e5076880e15",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "djl",
+        "runtime_version": "unknown"
+      },
+      "classification": "E1",
+      "pair": "keras_cpu__vs__java_djl_cpu",
+      "reason": "Exact output match; execution fingerprint differs by runtime.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "51faee958c94e4f0a05fa16cd73cb5a2d3f65682c698f217d4f672afe61da90d",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "rust_cpu",
+        "runtime_version": "unknown"
+      },
+      "classification": "E1",
+      "pair": "keras_cpu__vs__rust_cpu",
+      "reason": "Exact output match; execution fingerprint differs by runtime.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "78275243043a912c5c362e2c3b5e1fc2f40d70a56abd847fd6aa5022873a74b6",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "onnxruntime_java",
+        "runtime_version": "1.20.0"
+      },
+      "classification": "E1",
+      "pair": "keras_gpu__vs__java_onnxruntime_cpu",
+      "reason": "Exact output match; execution fingerprint differs by runtime.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "77d923b4d6b6218fe1f6e2047cf75f954f4dd8f12164ed98255f9e5076880e15",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "djl",
+        "runtime_version": "unknown"
+      },
+      "classification": "E1",
+      "pair": "keras_gpu__vs__java_djl_cpu",
+      "reason": "Exact output match; execution fingerprint differs by runtime.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "b_result": {
+        "execution_fp": "51faee958c94e4f0a05fa16cd73cb5a2d3f65682c698f217d4f672afe61da90d",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "rust_cpu",
+        "runtime_version": "unknown"
+      },
+      "classification": "E1",
+      "pair": "keras_gpu__vs__rust_cpu",
+      "reason": "Exact output match; execution fingerprint differs by runtime.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "78275243043a912c5c362e2c3b5e1fc2f40d70a56abd847fd6aa5022873a74b6",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "onnxruntime_java",
+        "runtime_version": "1.20.0"
+      },
+      "b_result": {
+        "execution_fp": "77d923b4d6b6218fe1f6e2047cf75f954f4dd8f12164ed98255f9e5076880e15",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "djl",
+        "runtime_version": "unknown"
+      },
+      "classification": "E1",
+      "pair": "java_onnxruntime_cpu__vs__java_djl_cpu",
+      "reason": "Exact output match; execution fingerprint differs by runtime.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "78275243043a912c5c362e2c3b5e1fc2f40d70a56abd847fd6aa5022873a74b6",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "onnxruntime_java",
+        "runtime_version": "1.20.0"
+      },
+      "b_result": {
+        "execution_fp": "51faee958c94e4f0a05fa16cd73cb5a2d3f65682c698f217d4f672afe61da90d",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "rust_cpu",
+        "runtime_version": "unknown"
+      },
+      "classification": "E1",
+      "pair": "java_onnxruntime_cpu__vs__rust_cpu",
+      "reason": "Exact output match; execution fingerprint differs by runtime.",
+      "status": "PASS"
+    },
+    {
+      "a_result": {
+        "execution_fp": "77d923b4d6b6218fe1f6e2047cf75f954f4dd8f12164ed98255f9e5076880e15",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "djl",
+        "runtime_version": "unknown"
+      },
+      "b_result": {
+        "execution_fp": "51faee958c94e4f0a05fa16cd73cb5a2d3f65682c698f217d4f672afe61da90d",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "runtime": "rust_cpu",
+        "runtime_version": "unknown"
+      },
+      "classification": "E1",
+      "pair": "java_djl_cpu__vs__rust_cpu",
+      "reason": "Exact output match; execution fingerprint differs by runtime.",
+      "status": "PASS"
+    }
+  ],
+  "profile": "additional_language_bridges",
+  "profiles": {
+    "java_djl_cpu": {
+      "execution_fp": "77d923b4d6b6218fe1f6e2047cf75f954f4dd8f12164ed98255f9e5076880e15",
+      "outputs": [
+        [
+          0.6000000000000001
+        ]
+      ],
+      "runtime": "djl",
+      "runtime_version": "unknown"
+    },
+    "java_onnxruntime_cpu": {
+      "execution_fp": "78275243043a912c5c362e2c3b5e1fc2f40d70a56abd847fd6aa5022873a74b6",
+      "outputs": [
+        [
+          0.6000000000000001
+        ]
+      ],
+      "runtime": "onnxruntime_java",
+      "runtime_version": "1.20.0"
+    },
+    "keras_cpu": {
+      "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+      "outputs": [
+        [
+          0.6000000000000001
+        ]
+      ],
+      "rng_state_next": 0,
+      "tmmu_state_next": {
+        "arena_config": {
+          "default": {
+            "alignment_bytes": 64,
+            "capacity_bytes": 1000000
+          }
+        },
+        "committed": true,
+        "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+      }
+    },
+    "keras_gpu": {
+      "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+      "outputs": [
+        [
+          0.6000000000000001
+        ]
+      ],
+      "rng_state_next": 0,
+      "tmmu_state_next": {
+        "arena_config": {
+          "default": {
+            "alignment_bytes": 64,
+            "capacity_bytes": 1000000
+          }
+        },
+        "committed": true,
+        "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+      }
+    },
+    "pytorch_cpu": {
+      "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+      "outputs": [
+        [
+          0.6000000000000001
+        ]
+      ],
+      "rng_state_next": 0,
+      "tmmu_state_next": {
+        "arena_config": {
+          "default": {
+            "alignment_bytes": 64,
+            "capacity_bytes": 1000000
+          }
+        },
+        "committed": true,
+        "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+      }
+    },
+    "pytorch_gpu": {
+      "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+      "outputs": [
+        [
+          0.6000000000000001
+        ]
+      ],
+      "rng_state_next": 0,
+      "tmmu_state_next": {
+        "arena_config": {
+          "default": {
+            "alignment_bytes": 64,
+            "capacity_bytes": 1000000
+          }
+        },
+        "committed": true,
+        "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+      }
+    },
+    "rust_cpu": {
+      "execution_fp": "51faee958c94e4f0a05fa16cd73cb5a2d3f65682c698f217d4f672afe61da90d",
+      "outputs": [
+        [
+          0.6000000000000001
+        ]
+      ],
+      "runtime": "rust_cpu",
+      "runtime_version": "unknown"
+    }
+  },
+  "reason": "All cross-language pairs pass (Python, Java, Rust).",
+  "status": "PASS"
+}

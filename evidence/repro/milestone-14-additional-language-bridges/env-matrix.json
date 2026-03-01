@@ -1,0 +1,36 @@
+{
+  "abs_tol": 1e-06,
+  "java": {
+    "java_ok": true,
+    "java_version": "openjdk version \"21.0.10\" 2026-01-20\nOpenJDK Runtime Environment (build 21.0.10+7-Ubuntu-124.04)\nOpenJDK 64-Bit Server VM (build 21.0.10+7-Ubuntu-124.04, mixed mode, sharing)",
+    "javac_ok": true,
+    "javac_version": "javac 21.0.10"
+  },
+  "kernel": "6.8.0-101-generic",
+  "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+  "python": "3.12.3",
+  "rel_tol": 1e-06,
+  "runtime_commands": {
+    "djl": "java -cp /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/tooling/scripts/repro/java_bridge:/home/coka/.m2/repository/ai/djl/api/0.30.0/api-0.30.0.jar DjlLaneRunner {input_csv} {weights_csv} {bias}",
+    "onnxruntime_java": "java -cp /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/tooling/scripts/repro/java_bridge:/home/coka/.m2/repository/com/microsoft/onnxruntime/onnxruntime/1.20.0/onnxruntime-1.20.0.jar OnnxRuntimeLaneRunner {input_csv} {weights_csv} {bias}",
+    "rust_cpu": "/home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/tooling/scripts/repro/rust_bridge/RustLaneRunner {input_csv} {weights_csv} {bias}"
+  },
+  "rust": {
+    "rustc_ok": true,
+    "rustc_version": "rustc 1.75.0 (82e1608df 2023-12-21) (built from a source tarball)"
+  },
+  "tensorflow": {
+    "gpu_devices": [
+      "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')"
+    ],
+    "gpu_visible": true,
+    "version": "2.20.0"
+  },
+  "timestamp_utc": "2026-03-01T16:54:05.934117+00:00",
+  "torch": {
+    "cuda_available": true,
+    "cuda_version": "12.1",
+    "gpu_name": "NVIDIA GeForce GTX 1070",
+    "version": "2.5.1+cu121"
+  }
+}

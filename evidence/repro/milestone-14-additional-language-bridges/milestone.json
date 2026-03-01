@@ -1,0 +1,24 @@
+{
+  "classification": "E1",
+  "dependencies": [
+    13
+  ],
+  "evidence_dir": "evidence/repro/milestone-14-additional-language-bridges/",
+  "milestone": 14,
+  "owner": "Astrocytech/Glyphser",
+  "profiles": [
+    "pytorch_cpu",
+    "pytorch_gpu",
+    "keras_cpu",
+    "keras_gpu",
+    "java_onnxruntime_cpu",
+    "java_djl_cpu",
+    "rust_cpu"
+  ],
+  "result": "PASS",
+  "slug": "additional-language-bridges",
+  "target_date": "2026-06-21",
+  "waiver_dependencies": [
+    12
+  ]
+}
