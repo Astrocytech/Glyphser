@@ -1,0 +1,8 @@
+{
+  "classification": "E2",
+  "excluded_operators": [],
+  "milestone": 12,
+  "profile": "multi_host_multi_os_matrix",
+  "reason": "need >=2 Linux hosts; need >=1 Windows host; need >=2 GPU architectures; missing GTX 1070 baseline host; missing RTX 30+ host",
+  "status": "BLOCKED"
+}

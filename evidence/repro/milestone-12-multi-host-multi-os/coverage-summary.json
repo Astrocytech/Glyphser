@@ -1,0 +1,33 @@
+{
+  "constraints": {
+    "baseline_gpu_present": false,
+    "gpu_arch_required": 2,
+    "gpu_model_count_observed": 0,
+    "gpu_models_observed": [],
+    "linux_hosts_observed": 1,
+    "linux_hosts_required": 2,
+    "newer_gpu_present": false,
+    "windows_hosts_observed": 0,
+    "windows_hosts_required": 1
+  },
+  "gpu_models": [],
+  "host_count": 1,
+  "linux_hosts": 1,
+  "mandatory_profiles": [
+    "pytorch_cpu",
+    "pytorch_gpu",
+    "keras_cpu",
+    "keras_gpu",
+    "java_cpu"
+  ],
+  "milestone": 12,
+  "profiles": [
+    "pytorch_cpu",
+    "pytorch_gpu",
+    "keras_cpu",
+    "keras_gpu",
+    "java_cpu"
+  ],
+  "status": "BLOCKED",
+  "windows_hosts": 0
+}
