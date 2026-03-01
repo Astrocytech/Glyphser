@@ -1,0 +1,19 @@
+{
+  "classification": "E1",
+  "dependencies": [
+    8
+  ],
+  "evidence_dir": "evidence/repro/milestone-9-operator-expansion-v2/",
+  "milestone": 9,
+  "owner": "Astrocytech/Glyphser",
+  "profiles": [
+    "pytorch_cpu",
+    "pytorch_gpu",
+    "keras_cpu",
+    "keras_gpu",
+    "java_cpu"
+  ],
+  "result": "PASS",
+  "slug": "operator-expansion-v2",
+  "target_date": "2026-03-15"
+}

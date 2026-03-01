@@ -1,0 +1,1327 @@
+{
+  "cases": [
+    {
+      "case_id": "matmul_2x2",
+      "family": "matmul_variants",
+      "operator": "MatMul",
+      "profile_results": {
+        "java_cpu": {
+          "execution_fp": "92cc05e3fe87fc1aeb790df75ac715d956efa9ac6407f2456396e1e942ff8bc4",
+          "outputs": [
+            [
+              [
+                3.5,
+                -1.0
+              ],
+              [
+                7.5,
+                -1.0
+              ]
+            ]
+          ]
+        },
+        "keras_cpu": {
+          "execution_fp": "b73524c03804a117b6341242b0109c7b48c72f17cd8c4a965139e9348d4fe82d",
+          "outputs": [
+            [
+              [
+                3.5,
+                -1.0
+              ],
+              [
+                7.5,
+                -1.0
+              ]
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "1a3faed28683773edcf34746749f93589908807fe4a1d91a44ab2bdfe02101f9"
+          }
+        },
+        "keras_gpu": {
+          "execution_fp": "b73524c03804a117b6341242b0109c7b48c72f17cd8c4a965139e9348d4fe82d",
+          "outputs": [
+            [
+              [
+                3.5,
+                -1.0
+              ],
+              [
+                7.5,
+                -1.0
+              ]
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "1a3faed28683773edcf34746749f93589908807fe4a1d91a44ab2bdfe02101f9"
+          }
+        },
+        "pytorch_cpu": {
+          "execution_fp": "b73524c03804a117b6341242b0109c7b48c72f17cd8c4a965139e9348d4fe82d",
+          "outputs": [
+            [
+              [
+                3.5,
+                -1.0
+              ],
+              [
+                7.5,
+                -1.0
+              ]
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "1a3faed28683773edcf34746749f93589908807fe4a1d91a44ab2bdfe02101f9"
+          }
+        },
+        "pytorch_gpu": {
+          "execution_fp": "b73524c03804a117b6341242b0109c7b48c72f17cd8c4a965139e9348d4fe82d",
+          "outputs": [
+            [
+              [
+                3.5,
+                -1.0
+              ],
+              [
+                7.5,
+                -1.0
+              ]
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "1a3faed28683773edcf34746749f93589908807fe4a1d91a44ab2bdfe02101f9"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "reduce_sum_vec4",
+      "family": "reductions",
+      "operator": "ReduceSum",
+      "profile_results": {
+        "java_cpu": {
+          "execution_fp": "97290d8c2b13e2d2d2e088444ffb2879ea119621e96461858b7e73db477671cc",
+          "outputs": [
+            [
+              3.0
+            ]
+          ]
+        },
+        "keras_cpu": {
+          "execution_fp": "a769f458b232190d1585c506e481041cb6ea40d3f1e2079fbb7308355133faa8",
+          "outputs": [
+            [
+              3.0
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "6ec25259515d3d862e5388d2f58f0b6cf2d51bc902b76404b07d586cfddc19e8"
+          }
+        },
+        "keras_gpu": {
+          "execution_fp": "a769f458b232190d1585c506e481041cb6ea40d3f1e2079fbb7308355133faa8",
+          "outputs": [
+            [
+              3.0
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "6ec25259515d3d862e5388d2f58f0b6cf2d51bc902b76404b07d586cfddc19e8"
+          }
+        },
+        "pytorch_cpu": {
+          "execution_fp": "a769f458b232190d1585c506e481041cb6ea40d3f1e2079fbb7308355133faa8",
+          "outputs": [
+            [
+              3.0
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "6ec25259515d3d862e5388d2f58f0b6cf2d51bc902b76404b07d586cfddc19e8"
+          }
+        },
+        "pytorch_gpu": {
+          "execution_fp": "a769f458b232190d1585c506e481041cb6ea40d3f1e2079fbb7308355133faa8",
+          "outputs": [
+            [
+              3.0
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "6ec25259515d3d862e5388d2f58f0b6cf2d51bc902b76404b07d586cfddc19e8"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "reshape_4_to_2x2",
+      "family": "reshape_transpose",
+      "operator": "Reshape",
+      "profile_results": {
+        "java_cpu": {
+          "execution_fp": "f257a2bfefb5a94a282884257c0861c108a1e6522dac5f5e9795c37d8e9b3906",
+          "outputs": [
+            [
+              [
+                1.0,
+                2.0
+              ],
+              [
+                3.0,
+                4.0
+              ]
+            ]
+          ]
+        },
+        "keras_cpu": {
+          "execution_fp": "35d48853c3c694ed9b63ff666760bd712bb092cc3439a15b4c9b138eaf599990",
+          "outputs": [
+            [
+              [
+                1.0,
+                2.0
+              ],
+              [
+                3.0,
+                4.0
+              ]
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "80c969f662d9218718c597a584cfe5473a543e29c9a509e487e15b725eebc582"
+          }
+        },
+        "keras_gpu": {
+          "execution_fp": "35d48853c3c694ed9b63ff666760bd712bb092cc3439a15b4c9b138eaf599990",
+          "outputs": [
+            [
+              [
+                1.0,
+                2.0
+              ],
+              [
+                3.0,
+                4.0
+              ]
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "80c969f662d9218718c597a584cfe5473a543e29c9a509e487e15b725eebc582"
+          }
+        },
+        "pytorch_cpu": {
+          "execution_fp": "35d48853c3c694ed9b63ff666760bd712bb092cc3439a15b4c9b138eaf599990",
+          "outputs": [
+            [
+              [
+                1.0,
+                2.0
+              ],
+              [
+                3.0,
+                4.0
+              ]
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "80c969f662d9218718c597a584cfe5473a543e29c9a509e487e15b725eebc582"
+          }
+        },
+        "pytorch_gpu": {
+          "execution_fp": "35d48853c3c694ed9b63ff666760bd712bb092cc3439a15b4c9b138eaf599990",
+          "outputs": [
+            [
+              [
+                1.0,
+                2.0
+              ],
+              [
+                3.0,
+                4.0
+              ]
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "80c969f662d9218718c597a584cfe5473a543e29c9a509e487e15b725eebc582"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "transpose_2x3_to_3x2",
+      "family": "reshape_transpose",
+      "operator": "Transpose",
+      "profile_results": {
+        "java_cpu": {
+          "execution_fp": "20b2f1938c21ecf5c65a988bd8924df088a9fec31933bf8d6663083409a5baa2",
+          "outputs": [
+            [
+              [
+                1.0,
+                4.0
+              ],
+              [
+                2.0,
+                5.0
+              ],
+              [
+                3.0,
+                6.0
+              ]
+            ]
+          ]
+        },
+        "keras_cpu": {
+          "execution_fp": "fcf60bed008846db5f2e64e84d2e2f71fa507fa81b7648df2abf26de7e9941f4",
+          "outputs": [
+            [
+              [
+                1.0,
+                4.0
+              ],
+              [
+                2.0,
+                5.0
+              ],
+              [
+                3.0,
+                6.0
+              ]
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "e30e03b82cc297d5805863139aaa8b425e3ae2323ab7f323c7b525a107f9d57d"
+          }
+        },
+        "keras_gpu": {
+          "execution_fp": "fcf60bed008846db5f2e64e84d2e2f71fa507fa81b7648df2abf26de7e9941f4",
+          "outputs": [
+            [
+              [
+                1.0,
+                4.0
+              ],
+              [
+                2.0,
+                5.0
+              ],
+              [
+                3.0,
+                6.0
+              ]
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "e30e03b82cc297d5805863139aaa8b425e3ae2323ab7f323c7b525a107f9d57d"
+          }
+        },
+        "pytorch_cpu": {
+          "execution_fp": "fcf60bed008846db5f2e64e84d2e2f71fa507fa81b7648df2abf26de7e9941f4",
+          "outputs": [
+            [
+              [
+                1.0,
+                4.0
+              ],
+              [
+                2.0,
+                5.0
+              ],
+              [
+                3.0,
+                6.0
+              ]
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "e30e03b82cc297d5805863139aaa8b425e3ae2323ab7f323c7b525a107f9d57d"
+          }
+        },
+        "pytorch_gpu": {
+          "execution_fp": "fcf60bed008846db5f2e64e84d2e2f71fa507fa81b7648df2abf26de7e9941f4",
+          "outputs": [
+            [
+              [
+                1.0,
+                4.0
+              ],
+              [
+                2.0,
+                5.0
+              ],
+              [
+                3.0,
+                6.0
+              ]
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "e30e03b82cc297d5805863139aaa8b425e3ae2323ab7f323c7b525a107f9d57d"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "softmax_vec3",
+      "family": "softmax_loss",
+      "operator": "Softmax",
+      "profile_results": {
+        "java_cpu": {
+          "execution_fp": "0d87f0d2c32fd4ab969592d243d2b83b491c73c763e789a0875e7f60ec26fec9",
+          "outputs": [
+            [
+              0.09003057317038046,
+              0.24472847105479764,
+              0.6652409557748218
+            ]
+          ]
+        },
+        "keras_cpu": {
+          "execution_fp": "a5f8e0c07f5885fd03c53485a1ee287689563b6255e175bac6144f981c5d87b7",
+          "outputs": [
+            [
+              0.09003057317038045,
+              0.2447284710547976,
+              0.6652409557748218
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "9a8e873b098babaca26ea5ebf638ef967c6f260b0599caf1ac9a3abb608ac588"
+          }
+        },
+        "keras_gpu": {
+          "execution_fp": "47fc8a6920b27c3e89f61a0d290cdba761b6e628656a5dfecbd8883f5bc1c748",
+          "outputs": [
+            [
+              0.09003057317038046,
+              0.24472847105479764,
+              0.6652409557748218
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "9a8e873b098babaca26ea5ebf638ef967c6f260b0599caf1ac9a3abb608ac588"
+          }
+        },
+        "pytorch_cpu": {
+          "execution_fp": "a5f8e0c07f5885fd03c53485a1ee287689563b6255e175bac6144f981c5d87b7",
+          "outputs": [
+            [
+              0.09003057317038045,
+              0.2447284710547976,
+              0.6652409557748218
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "9a8e873b098babaca26ea5ebf638ef967c6f260b0599caf1ac9a3abb608ac588"
+          }
+        },
+        "pytorch_gpu": {
+          "execution_fp": "47fc8a6920b27c3e89f61a0d290cdba761b6e628656a5dfecbd8883f5bc1c748",
+          "outputs": [
+            [
+              0.09003057317038046,
+              0.24472847105479764,
+              0.6652409557748218
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "9a8e873b098babaca26ea5ebf638ef967c6f260b0599caf1ac9a3abb608ac588"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "layernorm_vec3",
+      "family": "normalization",
+      "operator": "LayerNorm",
+      "profile_results": {
+        "java_cpu": {
+          "execution_fp": "65b50511403d9d5d2c63f5a87e66423507f37d7fca9e98f78da0fa4ca2b0d906",
+          "outputs": [
+            [
+              0.1,
+              -1.202266710036187,
+              1.5472148678220063
+            ]
+          ]
+        },
+        "keras_cpu": {
+          "execution_fp": "bf5a5a7aefac929ebf7894b35a8dcb729f47a7109e5786143fd0d91446046496",
+          "outputs": [
+            [
+              0.1,
+              -1.202266710036187,
+              1.5472148678220063
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "476500e65612d58bdbd1505b8f3c9a37595c75e9bb1ecbf31ab6aaf9c6ed1a48"
+          }
+        },
+        "keras_gpu": {
+          "execution_fp": "bf5a5a7aefac929ebf7894b35a8dcb729f47a7109e5786143fd0d91446046496",
+          "outputs": [
+            [
+              0.1,
+              -1.202266710036187,
+              1.5472148678220063
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "476500e65612d58bdbd1505b8f3c9a37595c75e9bb1ecbf31ab6aaf9c6ed1a48"
+          }
+        },
+        "pytorch_cpu": {
+          "execution_fp": "bf5a5a7aefac929ebf7894b35a8dcb729f47a7109e5786143fd0d91446046496",
+          "outputs": [
+            [
+              0.1,
+              -1.202266710036187,
+              1.5472148678220063
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "476500e65612d58bdbd1505b8f3c9a37595c75e9bb1ecbf31ab6aaf9c6ed1a48"
+          }
+        },
+        "pytorch_gpu": {
+          "execution_fp": "bf5a5a7aefac929ebf7894b35a8dcb729f47a7109e5786143fd0d91446046496",
+          "outputs": [
+            [
+              0.1,
+              -1.202266710036187,
+              1.5472148678220063
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "476500e65612d58bdbd1505b8f3c9a37595c75e9bb1ecbf31ab6aaf9c6ed1a48"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "mse_loss_vec3",
+      "family": "softmax_loss",
+      "operator": "MSELoss",
+      "profile_results": {
+        "java_cpu": {
+          "execution_fp": "fb3f3674eb93bf9c5cc2677998a850bc7b3cd9fb221b85415975563a3406a625",
+          "outputs": [
+            [
+              0.09000000000000001
+            ]
+          ]
+        },
+        "keras_cpu": {
+          "execution_fp": "eb90343d88802d222ac7f8d7c66152d4bd763e25bc0d6411941e9dd144f309a5",
+          "outputs": [
+            [
+              0.09000000000000001
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "d8a6518aced390638526cd07d92c6739b7763d722564695b4a0798e00fdee902"
+          }
+        },
+        "keras_gpu": {
+          "execution_fp": "eb90343d88802d222ac7f8d7c66152d4bd763e25bc0d6411941e9dd144f309a5",
+          "outputs": [
+            [
+              0.09000000000000001
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "d8a6518aced390638526cd07d92c6739b7763d722564695b4a0798e00fdee902"
+          }
+        },
+        "pytorch_cpu": {
+          "execution_fp": "eb90343d88802d222ac7f8d7c66152d4bd763e25bc0d6411941e9dd144f309a5",
+          "outputs": [
+            [
+              0.09000000000000001
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "d8a6518aced390638526cd07d92c6739b7763d722564695b4a0798e00fdee902"
+          }
+        },
+        "pytorch_gpu": {
+          "execution_fp": "6f289ccada9bc599645b5fd511f083591f4bb988eb6a18531e4280694500cd7c",
+          "outputs": [
+            [
+              0.09
+            ]
+          ],
+          "rng_state_next": 0,
+          "tmmu_state_next": {
+            "arena_config": {
+              "default": {
+                "alignment_bytes": 64,
+                "capacity_bytes": 1000000
+              }
+            },
+            "committed": true,
+            "tmmu_plan_hash": "d8a6518aced390638526cd07d92c6739b7763d722564695b4a0798e00fdee902"
+          }
+        }
+      }
+    }
+  ],
+  "classification": "E1",
+  "meta": {
+    "abs_tol": 1e-06,
+    "java": {
+      "java_version": "openjdk version \"21.0.10\" 2026-01-20\nOpenJDK Runtime Environment (build 21.0.10+7-Ubuntu-124.04)\nOpenJDK 64-Bit Server VM (build 21.0.10+7-Ubuntu-124.04, mixed mode, sharing)",
+      "javac_version": "javac 21.0.10"
+    },
+    "kernel": "6.8.0-101-generic",
+    "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "rel_tol": 1e-06,
+    "tensorflow": {
+      "gpu_devices": [
+        "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')"
+      ],
+      "gpu_visible": true,
+      "version": "2.20.0"
+    },
+    "timestamp_utc": "2026-03-01T15:19:22.396724+00:00",
+    "torch": {
+      "cuda_available": true,
+      "cuda_version": "12.1",
+      "gpu_name": "NVIDIA GeForce GTX 1070",
+      "version": "2.5.1+cu121"
+    }
+  },
+  "milestone": 9,
+  "operators": [
+    "MatMul",
+    "ReduceSum",
+    "Reshape",
+    "Transpose",
+    "Softmax",
+    "LayerNorm",
+    "MSELoss"
+  ],
+  "pairs": [
+    {
+      "cases": [
+        {
+          "case_id": "matmul_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reduce_sum_vec4",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reshape_4_to_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "transpose_2x3_to_3x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "softmax_vec3",
+          "classification": "E1",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "layernorm_vec3",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "mse_loss_vec3",
+          "classification": "E1",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "classification": "E1",
+      "pair": "pytorch_cpu__vs__pytorch_gpu",
+      "reason": "All operator cases pass.",
+      "status": "PASS"
+    },
+    {
+      "cases": [
+        {
+          "case_id": "matmul_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reduce_sum_vec4",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reshape_4_to_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "transpose_2x3_to_3x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "softmax_vec3",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "layernorm_vec3",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "mse_loss_vec3",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        }
+      ],
+      "classification": "E0",
+      "pair": "pytorch_cpu__vs__keras_cpu",
+      "reason": "All operator cases pass.",
+      "status": "PASS"
+    },
+    {
+      "cases": [
+        {
+          "case_id": "matmul_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reduce_sum_vec4",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reshape_4_to_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "transpose_2x3_to_3x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "softmax_vec3",
+          "classification": "E1",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "layernorm_vec3",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "mse_loss_vec3",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        }
+      ],
+      "classification": "E1",
+      "pair": "pytorch_cpu__vs__keras_gpu",
+      "reason": "All operator cases pass.",
+      "status": "PASS"
+    },
+    {
+      "cases": [
+        {
+          "case_id": "matmul_2x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reduce_sum_vec4",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reshape_4_to_2x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "transpose_2x3_to_3x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "softmax_vec3",
+          "classification": "E1",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "layernorm_vec3",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "mse_loss_vec3",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        }
+      ],
+      "classification": "E1",
+      "pair": "pytorch_cpu__vs__java_cpu",
+      "reason": "All operator cases pass.",
+      "status": "PASS"
+    },
+    {
+      "cases": [
+        {
+          "case_id": "matmul_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reduce_sum_vec4",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reshape_4_to_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "transpose_2x3_to_3x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "softmax_vec3",
+          "classification": "E1",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "layernorm_vec3",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "mse_loss_vec3",
+          "classification": "E1",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "classification": "E1",
+      "pair": "pytorch_gpu__vs__keras_cpu",
+      "reason": "All operator cases pass.",
+      "status": "PASS"
+    },
+    {
+      "cases": [
+        {
+          "case_id": "matmul_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reduce_sum_vec4",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reshape_4_to_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "transpose_2x3_to_3x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "softmax_vec3",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "layernorm_vec3",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "mse_loss_vec3",
+          "classification": "E1",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "classification": "E1",
+      "pair": "pytorch_gpu__vs__keras_gpu",
+      "reason": "All operator cases pass.",
+      "status": "PASS"
+    },
+    {
+      "cases": [
+        {
+          "case_id": "matmul_2x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reduce_sum_vec4",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reshape_4_to_2x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "transpose_2x3_to_3x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "softmax_vec3",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "layernorm_vec3",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "mse_loss_vec3",
+          "classification": "E1",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "classification": "E1",
+      "pair": "pytorch_gpu__vs__java_cpu",
+      "reason": "All operator cases pass.",
+      "status": "PASS"
+    },
+    {
+      "cases": [
+        {
+          "case_id": "matmul_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reduce_sum_vec4",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reshape_4_to_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "transpose_2x3_to_3x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "softmax_vec3",
+          "classification": "E1",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "layernorm_vec3",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "mse_loss_vec3",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        }
+      ],
+      "classification": "E1",
+      "pair": "keras_cpu__vs__keras_gpu",
+      "reason": "All operator cases pass.",
+      "status": "PASS"
+    },
+    {
+      "cases": [
+        {
+          "case_id": "matmul_2x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reduce_sum_vec4",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reshape_4_to_2x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "transpose_2x3_to_3x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "softmax_vec3",
+          "classification": "E1",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "layernorm_vec3",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "mse_loss_vec3",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        }
+      ],
+      "classification": "E1",
+      "pair": "keras_cpu__vs__java_cpu",
+      "reason": "All operator cases pass.",
+      "status": "PASS"
+    },
+    {
+      "cases": [
+        {
+          "case_id": "matmul_2x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reduce_sum_vec4",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reshape_4_to_2x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "transpose_2x3_to_3x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "softmax_vec3",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "layernorm_vec3",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "mse_loss_vec3",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        }
+      ],
+      "classification": "E1",
+      "pair": "keras_gpu__vs__java_cpu",
+      "reason": "All operator cases pass.",
+      "status": "PASS"
+    }
+  ],
+  "profile": "operator_expansion_v2_cross_stack",
+  "reason": "All required operator expansion pairs pass.",
+  "status": "PASS"
+}

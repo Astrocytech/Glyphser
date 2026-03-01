@@ -1,0 +1,35 @@
+{
+  "families": {
+    "matmul_variants": 1,
+    "normalization": 1,
+    "reductions": 1,
+    "reshape_transpose": 2,
+    "softmax_loss": 2
+  },
+  "mandatory_profiles": [
+    "pytorch_cpu",
+    "pytorch_gpu",
+    "keras_cpu",
+    "keras_gpu",
+    "java_cpu"
+  ],
+  "milestone": 9,
+  "operator_case_count": 7,
+  "operators": [
+    "LayerNorm",
+    "MSELoss",
+    "MatMul",
+    "ReduceSum",
+    "Reshape",
+    "Softmax",
+    "Transpose"
+  ],
+  "profiles": [
+    "pytorch_cpu",
+    "pytorch_gpu",
+    "keras_cpu",
+    "keras_gpu",
+    "java_cpu"
+  ],
+  "status": "PASS"
+}

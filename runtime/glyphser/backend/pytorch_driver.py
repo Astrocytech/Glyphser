@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 from typing import Any, Dict, List, Tuple
 
 try:
@@ -38,6 +39,13 @@ class PyTorchCPUDriver:
             "Mul",
             "Relu",
             "Sigmoid",
+            "MatMul",
+            "ReduceSum",
+            "Reshape",
+            "Transpose",
+            "Softmax",
+            "LayerNorm",
+            "MSELoss",
             "Identity",
             "Output",
         }
@@ -73,6 +81,44 @@ class PyTorchCPUDriver:
         if instr == "Sigmoid":
             a = _to_tensor(inputs[0])
             return _to_python(_torch.sigmoid(a)), rng_state
+        if instr == "MatMul":
+            a = _to_tensor(inputs[0])
+            b = _to_tensor(inputs[1])
+            return _to_python(_torch.matmul(a, b)), rng_state
+        if instr == "ReduceSum":
+            a = _to_tensor(inputs[0])
+            return _to_python(_torch.reshape(_torch.sum(a), (1,))), rng_state
+        if instr == "Reshape":
+            a = _to_tensor(inputs[0])
+            shape = params.get("shape")
+            if not isinstance(shape, list) or not shape:
+                raise ValueError("Reshape shape missing")
+            return _to_python(_torch.reshape(a, shape)), rng_state
+        if instr == "Transpose":
+            a = _to_tensor(inputs[0])
+            perm = params.get("perm", [1, 0])
+            if not isinstance(perm, list) or len(perm) != a.ndim:
+                raise ValueError("Transpose perm mismatch")
+            return _to_python(_torch.permute(a, tuple(int(x) for x in perm))), rng_state
+        if instr == "Softmax":
+            a = _to_tensor(inputs[0])
+            axis = int(params.get("axis", -1))
+            return _to_python(_torch.softmax(a, dim=axis)), rng_state
+        if instr == "LayerNorm":
+            a = _to_tensor(inputs[0])
+            eps = float(params.get("eps", 1e-5))
+            gamma = params.get("gamma")
+            beta = params.get("beta")
+            normalized_shape = (a.shape[-1],)
+            weight = _to_tensor(gamma) if gamma is not None else None
+            bias = _to_tensor(beta) if beta is not None else None
+            out = _torch.nn.functional.layer_norm(a, normalized_shape, weight=weight, bias=bias, eps=eps)
+            return _to_python(out), rng_state
+        if instr == "MSELoss":
+            pred = _to_tensor(inputs[0])
+            target = _to_tensor(inputs[1])
+            out = _torch.mean((pred - target) ** 2)
+            return _to_python(_torch.reshape(out, (1,))), rng_state
         if instr == "Dense":
             x = _to_tensor(inputs[0])
             weights = params.get("weights") or theta.get("weights") or []
@@ -121,6 +167,8 @@ class PyTorchGPUDriver:
             raise RuntimeError("pytorch is not available")
         if not _torch.cuda.is_available():
             raise RuntimeError("cuda is not available")
+        # Required by PyTorch for deterministic CUDA matmul kernels.
+        os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
         _torch.use_deterministic_algorithms(True)
         _torch.backends.cudnn.deterministic = True
         _torch.backends.cudnn.benchmark = False
@@ -144,6 +192,13 @@ class PyTorchGPUDriver:
             "Mul",
             "Relu",
             "Sigmoid",
+            "MatMul",
+            "ReduceSum",
+            "Reshape",
+            "Transpose",
+            "Softmax",
+            "LayerNorm",
+            "MSELoss",
             "Identity",
             "Output",
         }
@@ -179,6 +234,44 @@ class PyTorchGPUDriver:
         if instr == "Sigmoid":
             a = _to_tensor_cuda(inputs[0])
             return _to_python(_torch.sigmoid(a)), rng_state
+        if instr == "MatMul":
+            a = _to_tensor_cuda(inputs[0])
+            b = _to_tensor_cuda(inputs[1])
+            return _to_python(_torch.matmul(a, b)), rng_state
+        if instr == "ReduceSum":
+            a = _to_tensor_cuda(inputs[0])
+            return _to_python(_torch.reshape(_torch.sum(a), (1,))), rng_state
+        if instr == "Reshape":
+            a = _to_tensor_cuda(inputs[0])
+            shape = params.get("shape")
+            if not isinstance(shape, list) or not shape:
+                raise ValueError("Reshape shape missing")
+            return _to_python(_torch.reshape(a, shape)), rng_state
+        if instr == "Transpose":
+            a = _to_tensor_cuda(inputs[0])
+            perm = params.get("perm", [1, 0])
+            if not isinstance(perm, list) or len(perm) != a.ndim:
+                raise ValueError("Transpose perm mismatch")
+            return _to_python(_torch.permute(a, tuple(int(x) for x in perm))), rng_state
+        if instr == "Softmax":
+            a = _to_tensor_cuda(inputs[0])
+            axis = int(params.get("axis", -1))
+            return _to_python(_torch.softmax(a, dim=axis)), rng_state
+        if instr == "LayerNorm":
+            a = _to_tensor_cuda(inputs[0])
+            eps = float(params.get("eps", 1e-5))
+            gamma = params.get("gamma")
+            beta = params.get("beta")
+            normalized_shape = (a.shape[-1],)
+            weight = _to_tensor_cuda(gamma) if gamma is not None else None
+            bias = _to_tensor_cuda(beta) if beta is not None else None
+            out = _torch.nn.functional.layer_norm(a, normalized_shape, weight=weight, bias=bias, eps=eps)
+            return _to_python(out), rng_state
+        if instr == "MSELoss":
+            pred = _to_tensor_cuda(inputs[0])
+            target = _to_tensor_cuda(inputs[1])
+            out = _torch.mean((pred - target) ** 2)
+            return _to_python(_torch.reshape(out, (1,))), rng_state
         if instr == "Dense":
             x = _to_tensor_cuda(inputs[0])
             weights = params.get("weights") or theta.get("weights") or []

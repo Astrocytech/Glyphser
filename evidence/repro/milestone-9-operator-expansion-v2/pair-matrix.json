@@ -1,0 +1,504 @@
+{
+  "pairs": [
+    {
+      "cases": [
+        {
+          "case_id": "matmul_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reduce_sum_vec4",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reshape_4_to_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "transpose_2x3_to_3x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "softmax_vec3",
+          "classification": "E1",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "layernorm_vec3",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "mse_loss_vec3",
+          "classification": "E1",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "classification": "E1",
+      "pair": "pytorch_cpu__vs__pytorch_gpu",
+      "reason": "All operator cases pass.",
+      "status": "PASS"
+    },
+    {
+      "cases": [
+        {
+          "case_id": "matmul_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reduce_sum_vec4",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reshape_4_to_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "transpose_2x3_to_3x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "softmax_vec3",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "layernorm_vec3",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "mse_loss_vec3",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        }
+      ],
+      "classification": "E0",
+      "pair": "pytorch_cpu__vs__keras_cpu",
+      "reason": "All operator cases pass.",
+      "status": "PASS"
+    },
+    {
+      "cases": [
+        {
+          "case_id": "matmul_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reduce_sum_vec4",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reshape_4_to_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "transpose_2x3_to_3x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "softmax_vec3",
+          "classification": "E1",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "layernorm_vec3",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "mse_loss_vec3",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        }
+      ],
+      "classification": "E1",
+      "pair": "pytorch_cpu__vs__keras_gpu",
+      "reason": "All operator cases pass.",
+      "status": "PASS"
+    },
+    {
+      "cases": [
+        {
+          "case_id": "matmul_2x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reduce_sum_vec4",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reshape_4_to_2x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "transpose_2x3_to_3x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "softmax_vec3",
+          "classification": "E1",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "layernorm_vec3",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "mse_loss_vec3",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        }
+      ],
+      "classification": "E1",
+      "pair": "pytorch_cpu__vs__java_cpu",
+      "reason": "All operator cases pass.",
+      "status": "PASS"
+    },
+    {
+      "cases": [
+        {
+          "case_id": "matmul_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reduce_sum_vec4",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reshape_4_to_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "transpose_2x3_to_3x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "softmax_vec3",
+          "classification": "E1",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "layernorm_vec3",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "mse_loss_vec3",
+          "classification": "E1",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "classification": "E1",
+      "pair": "pytorch_gpu__vs__keras_cpu",
+      "reason": "All operator cases pass.",
+      "status": "PASS"
+    },
+    {
+      "cases": [
+        {
+          "case_id": "matmul_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reduce_sum_vec4",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reshape_4_to_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "transpose_2x3_to_3x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "softmax_vec3",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "layernorm_vec3",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "mse_loss_vec3",
+          "classification": "E1",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "classification": "E1",
+      "pair": "pytorch_gpu__vs__keras_gpu",
+      "reason": "All operator cases pass.",
+      "status": "PASS"
+    },
+    {
+      "cases": [
+        {
+          "case_id": "matmul_2x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reduce_sum_vec4",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reshape_4_to_2x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "transpose_2x3_to_3x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "softmax_vec3",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "layernorm_vec3",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "mse_loss_vec3",
+          "classification": "E1",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        }
+      ],
+      "classification": "E1",
+      "pair": "pytorch_gpu__vs__java_cpu",
+      "reason": "All operator cases pass.",
+      "status": "PASS"
+    },
+    {
+      "cases": [
+        {
+          "case_id": "matmul_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reduce_sum_vec4",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reshape_4_to_2x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "transpose_2x3_to_3x2",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "softmax_vec3",
+          "classification": "E1",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "layernorm_vec3",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "mse_loss_vec3",
+          "classification": "E0",
+          "reason": "Exact output and execution fingerprint match.",
+          "status": "PASS"
+        }
+      ],
+      "classification": "E1",
+      "pair": "keras_cpu__vs__keras_gpu",
+      "reason": "All operator cases pass.",
+      "status": "PASS"
+    },
+    {
+      "cases": [
+        {
+          "case_id": "matmul_2x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reduce_sum_vec4",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reshape_4_to_2x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "transpose_2x3_to_3x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "softmax_vec3",
+          "classification": "E1",
+          "reason": "Outputs within tolerance.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "layernorm_vec3",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "mse_loss_vec3",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        }
+      ],
+      "classification": "E1",
+      "pair": "keras_cpu__vs__java_cpu",
+      "reason": "All operator cases pass.",
+      "status": "PASS"
+    },
+    {
+      "cases": [
+        {
+          "case_id": "matmul_2x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reduce_sum_vec4",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "reshape_4_to_2x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "transpose_2x3_to_3x2",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "softmax_vec3",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "layernorm_vec3",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        },
+        {
+          "case_id": "mse_loss_vec3",
+          "classification": "E1",
+          "reason": "Exact output match; execution fingerprint differs by runtime.",
+          "status": "PASS"
+        }
+      ],
+      "classification": "E1",
+      "pair": "keras_gpu__vs__java_cpu",
+      "reason": "All operator cases pass.",
+      "status": "PASS"
+    }
+  ]
+}

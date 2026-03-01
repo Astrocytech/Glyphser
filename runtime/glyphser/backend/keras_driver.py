@@ -65,6 +65,13 @@ class KerasCPUDriver:
             "Mul",
             "Relu",
             "Sigmoid",
+            "MatMul",
+            "ReduceSum",
+            "Reshape",
+            "Transpose",
+            "Softmax",
+            "LayerNorm",
+            "MSELoss",
             "Identity",
             "Output",
         }
@@ -107,6 +114,54 @@ class KerasCPUDriver:
             with _tf.device("/CPU:0"):
                 a = _to_tensor_cpu(inputs[0])
                 return _to_python(_tf.math.sigmoid(a)), rng_state
+        if instr == "MatMul":
+            with _tf.device("/CPU:0"):
+                a = _to_tensor_cpu(inputs[0])
+                b = _to_tensor_cpu(inputs[1])
+                return _to_python(_tf.linalg.matmul(a, b)), rng_state
+        if instr == "ReduceSum":
+            with _tf.device("/CPU:0"):
+                a = _to_tensor_cpu(inputs[0])
+                return _to_python(_tf.reshape(_tf.reduce_sum(a), [1])), rng_state
+        if instr == "Reshape":
+            with _tf.device("/CPU:0"):
+                a = _to_tensor_cpu(inputs[0])
+                shape = params.get("shape")
+                if not isinstance(shape, list) or not shape:
+                    raise ValueError("Reshape shape missing")
+                return _to_python(_tf.reshape(a, shape)), rng_state
+        if instr == "Transpose":
+            with _tf.device("/CPU:0"):
+                a = _to_tensor_cpu(inputs[0])
+                perm = params.get("perm", [1, 0])
+                if not isinstance(perm, list) or len(perm) != len(a.shape):
+                    raise ValueError("Transpose perm mismatch")
+                return _to_python(_tf.transpose(a, perm=perm)), rng_state
+        if instr == "Softmax":
+            with _tf.device("/CPU:0"):
+                a = _to_tensor_cpu(inputs[0])
+                axis = int(params.get("axis", -1))
+                return _to_python(_tf.nn.softmax(a, axis=axis)), rng_state
+        if instr == "LayerNorm":
+            with _tf.device("/CPU:0"):
+                a = _to_tensor_cpu(inputs[0])
+                eps = float(params.get("eps", 1e-5))
+                gamma = params.get("gamma")
+                beta = params.get("beta")
+                if gamma is None:
+                    gamma = [1.0] * int(a.shape[-1])
+                if beta is None:
+                    beta = [0.0] * int(a.shape[-1])
+                mean = _tf.reduce_mean(a, axis=-1, keepdims=True)
+                var = _tf.reduce_mean(_tf.math.squared_difference(a, mean), axis=-1, keepdims=True)
+                out = ((a - mean) / _tf.sqrt(var + eps)) * _to_tensor_cpu(gamma) + _to_tensor_cpu(beta)
+                return _to_python(out), rng_state
+        if instr == "MSELoss":
+            with _tf.device("/CPU:0"):
+                pred = _to_tensor_cpu(inputs[0])
+                target = _to_tensor_cpu(inputs[1])
+                out = _tf.reduce_mean(_tf.math.squared_difference(pred, target))
+                return _to_python(_tf.reshape(out, [1])), rng_state
         if instr == "Dense":
             with _tf.device("/CPU:0"):
                 x = _to_tensor_cpu(inputs[0])
@@ -182,6 +237,13 @@ class KerasGPUDriver:
             "Mul",
             "Relu",
             "Sigmoid",
+            "MatMul",
+            "ReduceSum",
+            "Reshape",
+            "Transpose",
+            "Softmax",
+            "LayerNorm",
+            "MSELoss",
             "Identity",
             "Output",
         }
@@ -223,6 +285,54 @@ class KerasGPUDriver:
             with _tf.device("/GPU:0"):
                 a = _to_tensor_gpu(inputs[0])
                 return _to_python(_tf.math.sigmoid(a)), rng_state
+        if instr == "MatMul":
+            with _tf.device("/GPU:0"):
+                a = _to_tensor_gpu(inputs[0])
+                b = _to_tensor_gpu(inputs[1])
+                return _to_python(_tf.linalg.matmul(a, b)), rng_state
+        if instr == "ReduceSum":
+            with _tf.device("/GPU:0"):
+                a = _to_tensor_gpu(inputs[0])
+                return _to_python(_tf.reshape(_tf.reduce_sum(a), [1])), rng_state
+        if instr == "Reshape":
+            with _tf.device("/GPU:0"):
+                a = _to_tensor_gpu(inputs[0])
+                shape = params.get("shape")
+                if not isinstance(shape, list) or not shape:
+                    raise ValueError("Reshape shape missing")
+                return _to_python(_tf.reshape(a, shape)), rng_state
+        if instr == "Transpose":
+            with _tf.device("/GPU:0"):
+                a = _to_tensor_gpu(inputs[0])
+                perm = params.get("perm", [1, 0])
+                if not isinstance(perm, list) or len(perm) != len(a.shape):
+                    raise ValueError("Transpose perm mismatch")
+                return _to_python(_tf.transpose(a, perm=perm)), rng_state
+        if instr == "Softmax":
+            with _tf.device("/GPU:0"):
+                a = _to_tensor_gpu(inputs[0])
+                axis = int(params.get("axis", -1))
+                return _to_python(_tf.nn.softmax(a, axis=axis)), rng_state
+        if instr == "LayerNorm":
+            with _tf.device("/GPU:0"):
+                a = _to_tensor_gpu(inputs[0])
+                eps = float(params.get("eps", 1e-5))
+                gamma = params.get("gamma")
+                beta = params.get("beta")
+                if gamma is None:
+                    gamma = [1.0] * int(a.shape[-1])
+                if beta is None:
+                    beta = [0.0] * int(a.shape[-1])
+                mean = _tf.reduce_mean(a, axis=-1, keepdims=True)
+                var = _tf.reduce_mean(_tf.math.squared_difference(a, mean), axis=-1, keepdims=True)
+                out = ((a - mean) / _tf.sqrt(var + eps)) * _to_tensor_gpu(gamma) + _to_tensor_gpu(beta)
+                return _to_python(out), rng_state
+        if instr == "MSELoss":
+            with _tf.device("/GPU:0"):
+                pred = _to_tensor_gpu(inputs[0])
+                target = _to_tensor_gpu(inputs[1])
+                out = _tf.reduce_mean(_tf.math.squared_difference(pred, target))
+                return _to_python(_tf.reshape(out, [1])), rng_state
         if instr == "Dense":
             with _tf.device("/GPU:0"):
                 x = _to_tensor_gpu(inputs[0])
