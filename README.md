@@ -1,4 +1,4 @@
-# Glyphser
+# Glyphser 𝒢⟦·⟧
 
 Company: **Astrocytech**
 
