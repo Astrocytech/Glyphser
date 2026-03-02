@@ -1,0 +1,29 @@
+{
+  "actions": [
+    {
+      "action": "check_torch",
+      "ok": true,
+      "required": true
+    },
+    {
+      "action": "check_tensorflow",
+      "ok": true,
+      "required": true
+    },
+    {
+      "action": "check_java",
+      "ok": true,
+      "required": true
+    },
+    {
+      "action": "check_gpu",
+      "ok": false,
+      "required": false
+    }
+  ],
+  "doctor_sha256": "9cc589ee1dfd298c64a25c69a76b6711ea4c57c0db92ac9db3968b2e3b561dee",
+  "max_retries": 1,
+  "offline": false,
+  "profile": "available_local",
+  "schema_version": "setup_plan.v1"
+}

@@ -1,0 +1,90 @@
+{
+  "counts": {
+    "tier_1_certified": 4,
+    "tier_2_compatible_by_contract": 1,
+    "tier_3_unvalidated": 2
+  },
+  "milestone": 30,
+  "profile": "support_tiers_contract",
+  "rows": [
+    {
+      "classification": "E2",
+      "gate_status": "BLOCKED",
+      "milestone": 12,
+      "reason": "need >=2 GPU architectures; missing RTX 30+ host",
+      "slug": "milestone-12-multi-host-multi-os",
+      "status": "BLOCKED",
+      "tier": "tier_3_unvalidated"
+    },
+    {
+      "classification": "E2",
+      "gate_status": "BLOCKED",
+      "milestone": 16,
+      "reason": "Blocked prerequisite milestones: 12",
+      "slug": "milestone-16-universal-profile-v1",
+      "status": "BLOCKED",
+      "tier": "tier_3_unvalidated"
+    },
+    {
+      "classification": "E1",
+      "gate_status": "PASS",
+      "milestone": 20,
+      "reason": "All language lanes pass.",
+      "slug": "milestone-20-language-ecosystem-v2",
+      "status": "PASS",
+      "tier": "tier_1_certified"
+    },
+    {
+      "classification": "E1",
+      "gate_status": "PASS",
+      "milestone": 21,
+      "reason": "All library lanes pass.",
+      "slug": "milestone-21-library-ecosystem",
+      "status": "PASS",
+      "tier": "tier_1_certified"
+    },
+    {
+      "classification": "E1",
+      "gate_status": "PASS",
+      "milestone": 22,
+      "reason": "All artifact portability checks pass.",
+      "slug": "milestone-22-artifact-portability",
+      "status": "PASS",
+      "tier": "tier_1_certified"
+    },
+    {
+      "classification": "E0",
+      "gate_status": "PASS",
+      "milestone": 23,
+      "reason": "Distributed heterogeneous reproducibility checks pass.",
+      "slug": "milestone-23-distributed-heterogeneous",
+      "status": "PASS",
+      "tier": "tier_1_certified"
+    },
+    {
+      "classification": "E2",
+      "gate_status": "PASS",
+      "milestone": 24,
+      "reason": "partial acceptance: milestone 24 accepted for available_local_partial",
+      "slug": "milestone-24-edge-mobile-web",
+      "status": "BLOCKED",
+      "tier": "tier_2_compatible_by_contract"
+    }
+  ],
+  "scope_label": "available_local_partial",
+  "status": "PASS",
+  "tiers": [
+    {
+      "description": "Certified by direct passing evidence in active scope.",
+      "tier": "tier_1_certified"
+    },
+    {
+      "description": "Accepted by explicit contract/policy rule in active scope.",
+      "tier": "tier_2_compatible_by_contract"
+    },
+    {
+      "description": "Not validated for current scope or blocked by prerequisites.",
+      "tier": "tier_3_unvalidated"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "profile_id": "available_local",
+  "reverse_actions": [
+    {
+      "action": "noop",
+      "reason": "setup currently verification-only"
+    }
+  ],
+  "schema_version": "rollback_plan.v1"
+}

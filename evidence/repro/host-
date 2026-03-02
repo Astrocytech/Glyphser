@@ -1,0 +1,43 @@
+{
+  "cpu_model": "11th Gen Intel(R) Core(TM) i7-11700F @ 2.50GHz",
+  "frameworks": {
+    "java": {
+      "java_ok": true,
+      "java_version": "openjdk version \"17.0.18\" 2026-01-20\nOpenJDK Runtime Environment (build 17.0.18+8-Ubuntu-124.04.1)\nOpenJDK 64-Bit Server VM (build 17.0.18+8-Ubuntu-124.04.1, mixed mode, sharing)",
+      "javac_ok": true,
+      "javac_version": "javac 17.0.18"
+    },
+    "tensorflow": {
+      "gpu_devices": [
+        "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')"
+      ],
+      "gpu_visible": true,
+      "present": true,
+      "version": "2.20.0"
+    },
+    "torch": {
+      "cuda_available": true,
+      "cuda_version": "12.1",
+      "gpu_name": "NVIDIA GeForce RTX 3060 Ti",
+      "present": true,
+      "version": "2.5.1+cu121"
+    }
+  },
+  "gpu_models": [
+    "NVIDIA GeForce RTX 3060 Ti"
+  ],
+  "host_id": "njonji-Predator-PO3-630",
+  "kernel": "6.8.0-100-generic",
+  "os_family": "Linux",
+  "platform": "Linux-6.8.0-100-generic-x86_64-with-glibc2.39",
+  "profiles": {
+    "java_cpu": "PASS",
+    "keras_cpu": "PASS",
+    "keras_gpu": "PASS",
+    "pytorch_cpu": "PASS",
+    "pytorch_gpu": "PASS"
+  },
+  "python": "3.11.6",
+  "source": "local",
+  "timestamp_utc": "2026-03-02T00:19:43.837370+00:00"
+}

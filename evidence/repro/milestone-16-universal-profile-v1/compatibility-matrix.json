@@ -37,7 +37,7 @@
     {
       "classification": "E2",
       "milestone": 12,
-      "reason": "need >=2 Linux hosts; need >=1 Windows host; need >=2 GPU architectures; missing GTX 1070 baseline host; missing RTX 30+ host",
+      "reason": "need >=2 GPU architectures; missing RTX 30+ host",
       "report_path": "evidence/repro/milestone-12-multi-host-multi-os/report.json",
       "slug": "milestone-12-multi-host-multi-os",
       "status": "BLOCKED"

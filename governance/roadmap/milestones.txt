@@ -9,6 +9,27 @@ Current Readiness (Today)
 -------------------------
 Status: not yet enough for full push-button production generation.
 
+Universality Inventory Snapshot (2026-03-02)
+---------------------------------------------
+Scope model:
+- `available_local_partial`: COMPLETE (implemented and policy-certified path).
+- `available_local`: operationally supported; final evidence pass depends on host-manifest synchronization on coordinator host.
+- `strict_universal`: DEFERRED (requires broader OS/device matrix not currently available).
+
+Milestone status summary for cross-tech universality track:
+- M1-M11: DONE
+- M12: PASS on validated multi-host coordinator runs; may appear BLOCKED on hosts with stale/missing imported manifests.
+- M13-M17A: DONE
+- M18-M19: BLOCKED/DEFERRED for strict-universal hardware/OS class expansion
+- M20-M23: DONE
+- M24: PARTIAL (accepted under `available_local_partial`; strict iOS/mobile breadth deferred)
+- M25: DONE for `available_local_partial` profile
+- M26-M29: DONE
+- M30: DONE (support-tier policy + claim-gate enforcement implemented)
+
+Operational note:
+- When local evidence appears inconsistent, treat coordinator host evidence as source of truth and re-sync external host manifests before cert reruns.
+
 What is ready:
 1. Strong multi-layer prose contract coverage.
 2. Determinism and evidence semantics are largely defined.

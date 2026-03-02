@@ -1,0 +1,15 @@
+{
+  "classification": "E1",
+  "dependencies": [
+    26
+  ],
+  "evidence_dir": "evidence/repro/milestone-27-setup/",
+  "milestone": 27,
+  "owner": "Astrocytech/Glyphser",
+  "profiles": [
+    "available_local"
+  ],
+  "result": "PASS",
+  "slug": "setup",
+  "target_date": "2026-03-02"
+}

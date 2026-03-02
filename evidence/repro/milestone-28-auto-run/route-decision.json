@@ -1,0 +1,8 @@
+{
+  "doctor_hash": "9cc589ee1dfd298c64a25c69a76b6711ea4c57c0db92ac9db3968b2e3b561dee",
+  "route_policy_hash": "c030113780a73ea6df227d0b2e71601456f8e23d98d1aa4463ae910cb9a53ff5",
+  "route_schema_version": "route_decision.v1",
+  "selected_profile": "available_local_partial",
+  "selected_route": "pytorch_cpu",
+  "timestamp_utc": "2026-03-02T00:07:49.171185+00:00"
+}

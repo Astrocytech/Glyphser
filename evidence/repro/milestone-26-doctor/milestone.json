@@ -1,0 +1,13 @@
+{
+  "classification": "E1",
+  "dependencies": [],
+  "evidence_dir": "evidence/repro/milestone-26-doctor/",
+  "milestone": 26,
+  "owner": "Astrocytech/Glyphser",
+  "profiles": [
+    "doctor"
+  ],
+  "result": "PASS",
+  "slug": "doctor",
+  "target_date": "2026-03-02"
+}

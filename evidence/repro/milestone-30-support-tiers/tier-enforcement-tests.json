@@ -1,0 +1,42 @@
+{
+  "milestone": 30,
+  "scope_label": "available_local_partial",
+  "tests": [
+    {
+      "actual": "PASS",
+      "expected": "PASS",
+      "status": "PASS",
+      "test_id": "claim_gate_scoped_docs_pass"
+    },
+    {
+      "actual": "FAIL",
+      "expected": "FAIL",
+      "status": "PASS",
+      "test_id": "claim_gate_unscoped_claim_rejected"
+    },
+    {
+      "actual": "PASS",
+      "expected": "PASS",
+      "status": "PASS",
+      "test_id": "claim_gate_scoped_claim_allowed"
+    },
+    {
+      "actual": "available_local_partial",
+      "expected": "present",
+      "status": "PASS",
+      "test_id": "scope_label_present_in_cert_bundle"
+    },
+    {
+      "actual": "7",
+      "expected": "7",
+      "status": "PASS",
+      "test_id": "tier_mapping_rows_match_prerequisites"
+    },
+    {
+      "actual": "BLOCKED",
+      "expected": "PASS",
+      "status": "BLOCKED",
+      "test_id": "cert_bundle_status_must_be_pass"
+    }
+  ]
+}

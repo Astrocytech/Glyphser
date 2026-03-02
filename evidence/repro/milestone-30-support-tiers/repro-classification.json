@@ -1,0 +1,7 @@
+{
+  "classification": "E2",
+  "milestone": 30,
+  "profile": "support_tiers_contract",
+  "reason": "One or more support-tier enforcement checks are blocked by unmet prerequisites.",
+  "status": "BLOCKED"
+}

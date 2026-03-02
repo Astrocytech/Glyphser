@@ -1,0 +1,15 @@
+{
+  "classification": "E2",
+  "dependencies": [
+    29
+  ],
+  "evidence_dir": "evidence/repro/milestone-30-support-tiers/",
+  "milestone": 30,
+  "owner": "Astrocytech/Glyphser",
+  "profiles": [
+    "support_tiers_contract"
+  ],
+  "result": "BLOCKED",
+  "slug": "support-tiers",
+  "target_date": "2026-03-02"
+}

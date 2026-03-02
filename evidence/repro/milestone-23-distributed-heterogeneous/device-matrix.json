@@ -1,4 +1,6 @@
 {
-  "gpu_hosts": [],
-  "host_count": 1
+  "gpu_hosts": [
+    "coka-Predator-PH517-51"
+  ],
+  "host_count": 3
 }

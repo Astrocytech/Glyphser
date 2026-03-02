@@ -1,0 +1,15 @@
+{
+  "certification_bundle_status": "BLOCKED",
+  "classification": "E2",
+  "meta": {
+    "kernel": "6.8.0-101-generic",
+    "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "timestamp_utc": "2026-03-02T00:35:27.448658+00:00"
+  },
+  "milestone": 30,
+  "profile": "support_tiers_contract",
+  "reason": "One or more support-tier enforcement checks are blocked by unmet prerequisites.",
+  "scope_label": "available_local_partial",
+  "status": "BLOCKED"
+}

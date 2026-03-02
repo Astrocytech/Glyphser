@@ -1,0 +1,15 @@
+{
+  "classification": "E1",
+  "dependencies": [
+    27
+  ],
+  "evidence_dir": "evidence/repro/milestone-28-auto-run/",
+  "milestone": 28,
+  "owner": "Astrocytech/Glyphser",
+  "profiles": [
+    "available_local_partial"
+  ],
+  "result": "PASS",
+  "slug": "auto-run",
+  "target_date": "2026-03-02"
+}

@@ -6,10 +6,10 @@
     "gpu_models_observed": [
       "NVIDIA GeForce GTX 1070"
     ],
-    "linux_hosts_observed": 1,
+    "linux_hosts_observed": 2,
     "linux_hosts_required": 2,
     "newer_gpu_present": false,
-    "windows_hosts_observed": 0,
+    "windows_hosts_observed": 1,
     "windows_hosts_required": 1
   },
   "hosts": [
@@ -54,7 +54,88 @@
       },
       "python": "3.12.3",
       "source": "local",
+      "timestamp_utc": "2026-03-02T00:32:12.161702+00:00"
+    },
+    {
+      "cpu_model": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+      "frameworks": {
+        "java": {
+          "java_ok": true,
+          "java_version": "openjdk version \"21.0.10\" 2026-01-20\nOpenJDK Runtime Environment (build 21.0.10+7-Ubuntu-124.04)\nOpenJDK 64-Bit Server VM (build 21.0.10+7-Ubuntu-124.04, mixed mode, sharing)",
+          "javac_ok": true,
+          "javac_version": "javac 21.0.10"
+        },
+        "tensorflow": {
+          "gpu_devices": [
+            "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')"
+          ],
+          "gpu_visible": true,
+          "present": true,
+          "version": "2.20.0"
+        },
+        "torch": {
+          "cuda_available": true,
+          "cuda_version": "12.1",
+          "gpu_name": "NVIDIA GeForce GTX 1070",
+          "present": true,
+          "version": "2.5.1+cu121"
+        }
+      },
+      "gpu_models": [
+        "NVIDIA GeForce GTX 1070"
+      ],
+      "host_id": "coka-Predator-PH517-51",
+      "kernel": "6.8.0-101-generic",
+      "os_family": "Linux",
+      "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+      "profiles": {
+        "java_cpu": "PASS",
+        "keras_cpu": "PASS",
+        "keras_gpu": "PASS",
+        "pytorch_cpu": "PASS",
+        "pytorch_gpu": "PASS"
+      },
+      "python": "3.12.3",
+      "source": "local",
       "timestamp_utc": "2026-03-01T22:37:28.180604+00:00"
+    },
+    {
+      "cpu_model": "AMD64 Family 22 Model 48 Stepping 1, AuthenticAMD",
+      "frameworks": {
+        "java": {
+          "java_ok": true,
+          "java_version": "openjdk version \"21.0.10\" 2026-01-20 LTS\nOpenJDK Runtime Environment Temurin-21.0.10+7 (build 21.0.10+7-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.10+7 (build 21.0.10+7-LTS, mixed mode, sharing)",
+          "javac_ok": true,
+          "javac_version": "javac 21.0.10"
+        },
+        "tensorflow": {
+          "gpu_devices": [],
+          "gpu_visible": false,
+          "present": true,
+          "version": "2.20.0"
+        },
+        "torch": {
+          "cuda_available": false,
+          "cuda_version": null,
+          "present": true,
+          "version": "2.10.0+cpu"
+        }
+      },
+      "gpu_models": [],
+      "host_id": "DESKTOP-04VVVDV",
+      "kernel": "10",
+      "os_family": "Windows",
+      "platform": "Windows-10-10.0.19045-SP0",
+      "profiles": {
+        "java_cpu": "PASS",
+        "keras_cpu": "PASS",
+        "keras_gpu": "BLOCKED",
+        "pytorch_cpu": "PASS",
+        "pytorch_gpu": "BLOCKED"
+      },
+      "python": "3.13.12",
+      "source": "local",
+      "timestamp_utc": "2026-03-01T23:18:11.774236+00:00"
     }
   ]
 }

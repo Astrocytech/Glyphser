@@ -1,0 +1,9 @@
+{
+  "classification": "E1",
+  "failed_actions": [],
+  "max_retries": 1,
+  "offline": false,
+  "reason": "setup checks satisfied",
+  "status": "PASS",
+  "timeout_sec": 300
+}

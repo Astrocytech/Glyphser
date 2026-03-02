@@ -1,0 +1,38 @@
+{
+  "cpu_model": "AMD64 Family 22 Model 48 Stepping 1, AuthenticAMD",
+  "frameworks": {
+    "java": {
+      "java_ok": true,
+      "java_version": "openjdk version \"21.0.10\" 2026-01-20 LTS\nOpenJDK Runtime Environment Temurin-21.0.10+7 (build 21.0.10+7-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.10+7 (build 21.0.10+7-LTS, mixed mode, sharing)",
+      "javac_ok": true,
+      "javac_version": "javac 21.0.10"
+    },
+    "tensorflow": {
+      "gpu_devices": [],
+      "gpu_visible": false,
+      "present": true,
+      "version": "2.20.0"
+    },
+    "torch": {
+      "cuda_available": false,
+      "cuda_version": null,
+      "present": true,
+      "version": "2.10.0+cpu"
+    }
+  },
+  "gpu_models": [],
+  "host_id": "DESKTOP-04VVVDV",
+  "kernel": "10",
+  "os_family": "Windows",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "profiles": {
+    "java_cpu": "PASS",
+    "keras_cpu": "PASS",
+    "keras_gpu": "BLOCKED",
+    "pytorch_cpu": "PASS",
+    "pytorch_gpu": "BLOCKED"
+  },
+  "python": "3.13.12",
+  "source": "local",
+  "timestamp_utc": "2026-03-01T23:18:11.774236+00:00"
+}

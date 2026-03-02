@@ -1,0 +1,13 @@
+{
+  "checked_paths": [
+    "/home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/repro/milestone-30-support-tiers/known-limitations.md",
+    "/home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/repro/milestone-30-support-tiers/release-policy-delta.md"
+  ],
+  "reason": "Scope-qualified universality language check passed.",
+  "scope_tokens": [
+    "available_local",
+    "available_local_partial",
+    "strict_universal"
+  ],
+  "status": "PASS"
+}

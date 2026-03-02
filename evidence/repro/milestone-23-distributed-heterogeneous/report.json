@@ -2,18 +2,20 @@
   "checks": [
     {
       "check": "cluster_heterogeneity_coverage",
-      "classification": "E2",
+      "classification": "E0",
       "details": {
-        "host_count": 1,
+        "host_count": 3,
         "unique_arch": [
+          "",
           "x86_64"
         ],
         "unique_os": [
-          "Linux"
+          "Linux",
+          "Windows"
         ]
       },
-      "reason": "Need >=2 hosts with heterogeneous OS/arch coverage.",
-      "status": "BLOCKED"
+      "reason": "Host set is heterogeneous.",
+      "status": "PASS"
     },
     {
       "base": {
@@ -38,10 +40,14 @@
       "check": "cpu_perturbation_replay",
       "classification": "E0",
       "host_order_a": [
-        "coka-Predator-PH517-51"
+        "coka-Predator-PH517-51",
+        "coka-Predator-PH517-51",
+        "DESKTOP-04VVVDV"
       ],
       "host_order_b": [
-        "coka-Predator-PH517-51"
+        "coka-Predator-PH517-51",
+        "coka-Predator-PH517-51",
+        "DESKTOP-04VVVDV"
       ],
       "perturbed": {
         "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
@@ -66,24 +72,143 @@
       "status": "PASS"
     },
     {
+      "base": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
       "check": "gpu_perturbation_replay",
-      "classification": "E2",
-      "reason": "No GPU host present in provided host manifests.",
-      "status": "BLOCKED"
+      "classification": "E0",
+      "perturbed": {
+        "execution_fp": "ea62e9a683aee890dd495f848dcd71fb291d54a9ee51b7f5ed27bbf99ebdf8de",
+        "outputs": [
+          [
+            0.6000000000000001
+          ]
+        ],
+        "rng_state_next": 0,
+        "tmmu_state_next": {
+          "arena_config": {
+            "default": {
+              "alignment_bytes": 64,
+              "capacity_bytes": 1000000
+            }
+          },
+          "committed": true,
+          "tmmu_plan_hash": "0f3ffcb89785f68a19d0c49e96e0c3250b64b70735203a2bffa5630835690574"
+        }
+      },
+      "reason": "GPU perturbation replay is deterministic.",
+      "status": "PASS"
     }
   ],
-  "classification": "E2",
+  "classification": "E0",
   "hosts": [
     {
       "arch": "x86_64",
-      "gpu_present": false,
+      "gpu_present": true,
       "host_id": "coka-Predator-PH517-51",
       "is_wsl": false,
       "kernel": "6.8.0-101-generic",
       "os_family": "Linux",
       "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
       "source": "local",
-      "timestamp_utc": "2026-03-01T17:39:30.523665+00:00"
+      "timestamp_utc": "2026-03-02T00:32:16.365779+00:00"
+    },
+    {
+      "cpu_model": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+      "frameworks": {
+        "java": {
+          "java_ok": true,
+          "java_version": "openjdk version \"21.0.10\" 2026-01-20\nOpenJDK Runtime Environment (build 21.0.10+7-Ubuntu-124.04)\nOpenJDK 64-Bit Server VM (build 21.0.10+7-Ubuntu-124.04, mixed mode, sharing)",
+          "javac_ok": true,
+          "javac_version": "javac 21.0.10"
+        },
+        "tensorflow": {
+          "gpu_devices": [
+            "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')"
+          ],
+          "gpu_visible": true,
+          "present": true,
+          "version": "2.20.0"
+        },
+        "torch": {
+          "cuda_available": true,
+          "cuda_version": "12.1",
+          "gpu_name": "NVIDIA GeForce GTX 1070",
+          "present": true,
+          "version": "2.5.1+cu121"
+        }
+      },
+      "gpu_models": [
+        "NVIDIA GeForce GTX 1070"
+      ],
+      "host_id": "coka-Predator-PH517-51",
+      "kernel": "6.8.0-101-generic",
+      "os_family": "Linux",
+      "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
+      "profiles": {
+        "java_cpu": "PASS",
+        "keras_cpu": "PASS",
+        "keras_gpu": "PASS",
+        "pytorch_cpu": "PASS",
+        "pytorch_gpu": "PASS"
+      },
+      "python": "3.12.3",
+      "source": "local",
+      "timestamp_utc": "2026-03-01T22:37:28.180604+00:00"
+    },
+    {
+      "cpu_model": "AMD64 Family 22 Model 48 Stepping 1, AuthenticAMD",
+      "frameworks": {
+        "java": {
+          "java_ok": true,
+          "java_version": "openjdk version \"21.0.10\" 2026-01-20 LTS\nOpenJDK Runtime Environment Temurin-21.0.10+7 (build 21.0.10+7-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.10+7 (build 21.0.10+7-LTS, mixed mode, sharing)",
+          "javac_ok": true,
+          "javac_version": "javac 21.0.10"
+        },
+        "tensorflow": {
+          "gpu_devices": [],
+          "gpu_visible": false,
+          "present": true,
+          "version": "2.20.0"
+        },
+        "torch": {
+          "cuda_available": false,
+          "cuda_version": null,
+          "present": true,
+          "version": "2.10.0+cpu"
+        }
+      },
+      "gpu_models": [],
+      "host_id": "DESKTOP-04VVVDV",
+      "kernel": "10",
+      "os_family": "Windows",
+      "platform": "Windows-10-10.0.19045-SP0",
+      "profiles": {
+        "java_cpu": "PASS",
+        "keras_cpu": "PASS",
+        "keras_gpu": "BLOCKED",
+        "pytorch_cpu": "PASS",
+        "pytorch_gpu": "BLOCKED"
+      },
+      "python": "3.13.12",
+      "source": "local",
+      "timestamp_utc": "2026-03-01T23:18:11.774236+00:00"
     }
   ],
   "meta": {
@@ -91,10 +216,10 @@
     "platform": "Linux-6.8.0-101-generic-x86_64-with-glibc2.39",
     "python": "3.12.3",
     "seed": 1337,
-    "timestamp_utc": "2026-03-01T17:39:30.530856+00:00"
+    "timestamp_utc": "2026-03-02T00:32:16.481644+00:00"
   },
   "milestone": 23,
   "profile": "distributed_heterogeneous",
-  "reason": "At least one distributed reproducibility check is blocked.",
-  "status": "BLOCKED"
+  "reason": "Distributed heterogeneous reproducibility checks pass.",
+  "status": "PASS"
 }

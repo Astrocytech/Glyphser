@@ -5,7 +5,9 @@
   ],
   "evidence_dir": "evidence/repro/milestone-12-multi-host-multi-os/",
   "host_manifests": [
-    "evidence/repro/milestone-12-multi-host-multi-os/host-coka-Predator-PH517-51.json"
+    "evidence/repro/milestone-12-multi-host-multi-os/host-coka-Predator-PH517-51.json",
+    "/home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/repro/host-manifests/incoming/host-coka-Predator-PH517-51.json",
+    "/home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/repro/host-manifests/incoming/host-DESKTOP-04VVVDV.json"
   ],
   "milestone": 12,
   "owner": "Astrocytech/Glyphser",

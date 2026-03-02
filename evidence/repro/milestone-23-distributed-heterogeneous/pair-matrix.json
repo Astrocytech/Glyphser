@@ -1,10 +1,10 @@
 {
   "pairs": [
     {
-      "classification": "E2",
+      "classification": "E0",
       "pair": "distributed_cluster_replay",
-      "reason": "At least one distributed reproducibility check is blocked.",
-      "status": "BLOCKED"
+      "reason": "Distributed heterogeneous reproducibility checks pass.",
+      "status": "PASS"
     }
   ]
 }

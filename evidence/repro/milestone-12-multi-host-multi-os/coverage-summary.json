@@ -6,17 +6,17 @@
     "gpu_models_observed": [
       "NVIDIA GeForce GTX 1070"
     ],
-    "linux_hosts_observed": 1,
+    "linux_hosts_observed": 2,
     "linux_hosts_required": 2,
     "newer_gpu_present": false,
-    "windows_hosts_observed": 0,
+    "windows_hosts_observed": 1,
     "windows_hosts_required": 1
   },
   "gpu_models": [
     "NVIDIA GeForce GTX 1070"
   ],
-  "host_count": 1,
-  "linux_hosts": 1,
+  "host_count": 3,
+  "linux_hosts": 2,
   "mandatory_profiles": [
     "pytorch_cpu",
     "pytorch_gpu",
@@ -33,5 +33,5 @@
     "java_cpu"
   ],
   "status": "BLOCKED",
-  "windows_hosts": 0
+  "windows_hosts": 1
 }

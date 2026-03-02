@@ -1,0 +1,5 @@
+{
+  "rule": "no unscoped universality claims",
+  "scope_label": "available_local_partial",
+  "status": "PASS"
+}

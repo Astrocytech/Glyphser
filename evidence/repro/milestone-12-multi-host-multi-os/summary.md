@@ -2,9 +2,9 @@
 
 Status: BLOCKED
 Classification: E2
-Reason: need >=2 Linux hosts; need >=1 Windows host; need >=2 GPU architectures; missing RTX 30+ host
+Reason: need >=2 GPU architectures; missing RTX 30+ host
 
-Hosts observed: 1
-Linux hosts: 1
-Windows hosts: 0
+Hosts observed: 3
+Linux hosts: 2
+Windows hosts: 1
 GPU models: NVIDIA GeForce GTX 1070

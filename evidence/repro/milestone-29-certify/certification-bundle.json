@@ -1,0 +1,65 @@
+{
+  "bundle_schema_version": "cert_bundle.v1",
+  "classification": "E2",
+  "prerequisites": [
+    {
+      "classification": "E2",
+      "gate_status": "BLOCKED",
+      "milestone": 12,
+      "reason": "need >=2 GPU architectures; missing RTX 30+ host",
+      "slug": "milestone-12-multi-host-multi-os",
+      "status": "BLOCKED"
+    },
+    {
+      "classification": "E2",
+      "gate_status": "BLOCKED",
+      "milestone": 16,
+      "reason": "Blocked prerequisite milestones: 12",
+      "slug": "milestone-16-universal-profile-v1",
+      "status": "BLOCKED"
+    },
+    {
+      "classification": "E1",
+      "gate_status": "PASS",
+      "milestone": 20,
+      "reason": "All language lanes pass.",
+      "slug": "milestone-20-language-ecosystem-v2",
+      "status": "PASS"
+    },
+    {
+      "classification": "E1",
+      "gate_status": "PASS",
+      "milestone": 21,
+      "reason": "All library lanes pass.",
+      "slug": "milestone-21-library-ecosystem",
+      "status": "PASS"
+    },
+    {
+      "classification": "E1",
+      "gate_status": "PASS",
+      "milestone": 22,
+      "reason": "All artifact portability checks pass.",
+      "slug": "milestone-22-artifact-portability",
+      "status": "PASS"
+    },
+    {
+      "classification": "E0",
+      "gate_status": "PASS",
+      "milestone": 23,
+      "reason": "Distributed heterogeneous reproducibility checks pass.",
+      "slug": "milestone-23-distributed-heterogeneous",
+      "status": "PASS"
+    },
+    {
+      "classification": "E2",
+      "gate_status": "PASS",
+      "milestone": 24,
+      "reason": "partial acceptance: milestone 24 accepted for available_local_partial",
+      "slug": "milestone-24-edge-mobile-web",
+      "status": "BLOCKED"
+    }
+  ],
+  "reason": "Blocked prerequisite milestones: 12, 16",
+  "scope_label": "available_local_partial",
+  "status": "BLOCKED"
+}

@@ -1,6 +1,6 @@
 # Project File Inventory
 
-Generated: 2026-03-01 18:37:01 UTC
+Generated: 2026-03-02 13:29:57 UTC
 
 Scope: Full repository tree excluding transient local cache directories (`.git`, `.venv`, `.pytest_cache`, `__pycache__`, lint/type caches).
 
@@ -259,6 +259,10 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   │   ├── ADR-2026-03-01-m23-progress-with-limited-cluster.md
 │   │   │   ├── ADR-2026-03-01-m24-progress-with-limited-targets.md
 │   │   │   └── ADR-2026-03-01-m25-progress-with-blocked-prereqs.md
+│   │   ├── host-manifests
+│   │   │   └── incoming
+│   │   │       ├── host-coka-Predator-PH517-51.json
+│   │   │       └── host-DESKTOP-04VVVDV.json
 │   │   ├── milestone-1-pytorch-cpu
 │   │   │   ├── conformance-hashes.json
 │   │   │   ├── env-matrix.json
@@ -518,6 +522,49 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   │   ├── repro-classification.json
 │   │   │   ├── summary.md
 │   │   │   └── waivers.json
+│   │   ├── milestone-26-doctor
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── doctor-manifest.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── milestone.json
+│   │   │   ├── repro-classification.json
+│   │   │   └── summary.md
+│   │   ├── milestone-27-setup
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── milestone.json
+│   │   │   ├── profile.lock.json
+│   │   │   ├── repro-classification.json
+│   │   │   ├── rollback-plan.json
+│   │   │   ├── setup-plan.json
+│   │   │   ├── setup-result.json
+│   │   │   └── summary.md
+│   │   ├── milestone-28-auto-run
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── fallback-policy.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── milestone.json
+│   │   │   ├── repro-classification.json
+│   │   │   ├── route-decision.json
+│   │   │   ├── route-policy-hash.json
+│   │   │   ├── route-replay-check.json
+│   │   │   └── summary.md
+│   │   ├── milestone-29-certify
+│   │   │   ├── bundle-signature.asc
+│   │   │   ├── certification-bundle.json
+│   │   │   ├── certification-scope.json
+│   │   │   ├── claim-language-check.json
+│   │   │   ├── compatibility-matrix.json
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── milestone.json
+│   │   │   ├── repro-classification.json
+│   │   │   ├── signature-verification.json
+│   │   │   └── summary.md
 │   │   ├── milestone-3-pytorch-cpu-gpu
 │   │   │   ├── conformance-hashes.json
 │   │   │   ├── env-matrix.json
@@ -525,6 +572,18 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   │   ├── report.json
 │   │   │   ├── repro-classification.json
 │   │   │   └── summary.md
+│   │   ├── milestone-30-support-tiers
+│   │   │   ├── claim-gate-report.json
+│   │   │   ├── conformance-hashes.json
+│   │   │   ├── env-matrix.json
+│   │   │   ├── known-limitations.md
+│   │   │   ├── milestone.json
+│   │   │   ├── release-policy-delta.md
+│   │   │   ├── report.json
+│   │   │   ├── repro-classification.json
+│   │   │   ├── summary.md
+│   │   │   ├── support-tier-matrix.json
+│   │   │   └── tier-enforcement-tests.json
 │   │   ├── milestone-4-keras-cpu
 │   │   │   ├── conformance-hashes.json
 │   │   │   ├── env-matrix.json
@@ -573,6 +632,7 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   ├── compare-template.md
 │   │   ├── dependency-lock.sha256
 │   │   ├── hashes.txt
+│   │   ├── host-
 │   │   └── run-checklist.md
 │   ├── security
 │   │   ├── audit.log.jsonl
@@ -791,15 +851,16 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │       │   ├── compute_trace_hash.py
 │       │   ├── migrate_trace.py
 │       │   └── trace_sidecar.py
-│       └── tracking
-│           ├── artifact_get.py
-│           ├── artifact_list.py
-│           ├── artifact_put.py
-│           ├── artifact_tombstone.py
-│           ├── metric_log.py
-│           ├── run_create.py
-│           ├── run_end.py
-│           └── run_start.py
+│       ├── tracking
+│       │   ├── artifact_get.py
+│       │   ├── artifact_list.py
+│       │   ├── artifact_put.py
+│       │   ├── artifact_tombstone.py
+│       │   ├── metric_log.py
+│       │   ├── run_create.py
+│       │   ├── run_end.py
+│       │   └── run_start.py
+│       └── cli.py
 ├── specs
 │   ├── contracts
 │   │   ├── capability_catalog.cbor
@@ -1227,10 +1288,12 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   ├── quality_gates
 │   │   ├── __init__.py
 │   │   ├── api_contract_gate.py
+│   │   ├── claim_scope_gate.py
 │   │   ├── coverage_report.py
 │   │   ├── doc_code_separation_gate.py
 │   │   ├── domain_dependency_gate.py
 │   │   ├── error_code_gate.py
+│   │   ├── evidence_required_files_gate.py
 │   │   ├── external_validation_gate.py
 │   │   ├── fixtures_gate.py
 │   │   ├── legacy_path_gate.py
@@ -1302,6 +1365,7 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 │   │   │   ├── compare_pytorch_java_matrix.py
 │   │   │   ├── compare_pytorch_keras_matrix.py
 │   │   │   ├── compare_service_reproducibility.py
+│   │   │   ├── compare_support_tiers_contract.py
 │   │   │   ├── compare_universal_driver_v1.py
 │   │   │   ├── compare_universal_profile_v1_certification.py
 │   │   │   ├── compare_universal_profile_v2_certification.py
@@ -1522,6 +1586,9 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `evidence/repro/decisions/ADR-2026-03-01-m25-progress-with-blocked-prereqs.md` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/dependency-lock.sha256` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/hashes.txt` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/host-` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/host-manifests/incoming/host-DESKTOP-04VVVDV.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/host-manifests/incoming/host-coka-Predator-PH517-51.json` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/milestone-1-pytorch-cpu/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/milestone-1-pytorch-cpu/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/milestone-1-pytorch-cpu/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
@@ -1762,12 +1829,62 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `evidence/repro/milestone-25-universal-profile-v2/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/milestone-25-universal-profile-v2/summary.md` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/milestone-25-universal-profile-v2/waivers.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-26-doctor/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-26-doctor/doctor-manifest.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-26-doctor/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-26-doctor/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-26-doctor/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-26-doctor/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-26-doctor/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-27-setup/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-27-setup/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-27-setup/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-27-setup/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-27-setup/profile.lock.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-27-setup/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-27-setup/rollback-plan.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-27-setup/setup-plan.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-27-setup/setup-result.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-27-setup/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-28-auto-run/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-28-auto-run/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-28-auto-run/fallback-policy.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-28-auto-run/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-28-auto-run/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-28-auto-run/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-28-auto-run/route-decision.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-28-auto-run/route-policy-hash.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-28-auto-run/route-replay-check.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-28-auto-run/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-29-certify/bundle-signature.asc` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-29-certify/certification-bundle.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-29-certify/certification-scope.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-29-certify/claim-language-check.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-29-certify/compatibility-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-29-certify/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-29-certify/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-29-certify/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-29-certify/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-29-certify/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-29-certify/signature-verification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-29-certify/summary.md` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/milestone-3-pytorch-cpu-gpu/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/milestone-3-pytorch-cpu-gpu/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/milestone-3-pytorch-cpu-gpu/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/milestone-3-pytorch-cpu-gpu/report.json` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/milestone-3-pytorch-cpu-gpu/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/milestone-3-pytorch-cpu-gpu/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-30-support-tiers/claim-gate-report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-30-support-tiers/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-30-support-tiers/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-30-support-tiers/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-30-support-tiers/milestone.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-30-support-tiers/release-policy-delta.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-30-support-tiers/report.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-30-support-tiers/repro-classification.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-30-support-tiers/summary.md` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-30-support-tiers/support-tier-matrix.json` | Generated verification evidence, reports, and audit outputs. |
+| `evidence/repro/milestone-30-support-tiers/tier-enforcement-tests.json` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/milestone-4-keras-cpu/conformance-hashes.json` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/milestone-4-keras-cpu/env-matrix.json` | Generated verification evidence, reports, and audit outputs. |
 | `evidence/repro/milestone-4-keras-cpu/known-limitations.md` | Generated verification evidence, reports, and audit outputs. |
@@ -1938,6 +2055,7 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `runtime/glyphser/checkpoint/migrate_checkpoint.py` | Runtime source code and importable application modules. |
 | `runtime/glyphser/checkpoint/restore.py` | Runtime source code and importable application modules. |
 | `runtime/glyphser/checkpoint/write.py` | Runtime source code and importable application modules. |
+| `runtime/glyphser/cli.py` | Runtime source code and importable application modules. |
 | `runtime/glyphser/config/migrate_manifest.py` | Runtime source code and importable application modules. |
 | `runtime/glyphser/contract/validate.py` | Runtime source code and importable application modules. |
 | `runtime/glyphser/data/next_batch.py` | Runtime source code and importable application modules. |
@@ -2359,10 +2477,12 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `tooling/lib/path_config.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/quality_gates/__init__.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/quality_gates/api_contract_gate.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/quality_gates/claim_scope_gate.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/quality_gates/coverage_report.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/quality_gates/doc_code_separation_gate.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/quality_gates/domain_dependency_gate.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/quality_gates/error_code_gate.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/quality_gates/evidence_required_files_gate.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/quality_gates/external_validation_gate.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/quality_gates/fixtures_gate.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/quality_gates/legacy_path_gate.py` | Automation, gate, build, release, or developer tooling script. |
@@ -2403,6 +2523,7 @@ Scope: Full repository tree excluding transient local cache directories (`.git`,
 | `tooling/scripts/repro/compare_pytorch_java_matrix.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/scripts/repro/compare_pytorch_keras_matrix.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/scripts/repro/compare_service_reproducibility.py` | Automation, gate, build, release, or developer tooling script. |
+| `tooling/scripts/repro/compare_support_tiers_contract.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/scripts/repro/compare_universal_driver_v1.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/scripts/repro/compare_universal_profile_v1_certification.py` | Automation, gate, build, release, or developer tooling script. |
 | `tooling/scripts/repro/compare_universal_profile_v2_certification.py` | Automation, gate, build, release, or developer tooling script. |

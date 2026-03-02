@@ -1,12 +1,14 @@
 {
-  "gpu_host_count": 0,
-  "host_count": 1,
+  "gpu_host_count": 1,
+  "host_count": 3,
   "milestone": 23,
-  "status": "BLOCKED",
+  "status": "PASS",
   "unique_arch": [
+    "",
     "x86_64"
   ],
   "unique_os": [
-    "Linux"
+    "Linux",
+    "Windows"
   ]
 }

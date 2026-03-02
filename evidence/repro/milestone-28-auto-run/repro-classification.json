@@ -1,0 +1,7 @@
+{
+  "classification": "E1",
+  "milestone": 28,
+  "profile": "available_local_partial",
+  "reason": "Route selected deterministically: pytorch_cpu",
+  "status": "PASS"
+}

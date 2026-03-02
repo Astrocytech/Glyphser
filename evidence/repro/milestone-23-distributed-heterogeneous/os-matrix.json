@@ -1,6 +1,7 @@
 {
-  "host_count": 1,
+  "host_count": 3,
   "unique_os": [
-    "Linux"
+    "Linux",
+    "Windows"
   ]
 }
