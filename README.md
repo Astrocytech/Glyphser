@@ -2,6 +2,8 @@
 
 Company: **Astrocytech**
 
+Official Astrocytech website: https://www.astrocytech.com
+
 GitHub: https://github.com/Astrocytech/Glyphser
 
 Core purpose: Glyphser exists to make ML and data workflow results repeatable and verifiable. It helps teams prove that the same inputs produce the same outcomes, with evidence they can audit and trust.
