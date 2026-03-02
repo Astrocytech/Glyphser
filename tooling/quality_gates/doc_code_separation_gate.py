@@ -25,7 +25,12 @@ ALLOWED_ROOT_DOCS = {
     "CODE_OF_CONDUCT.md",
     "SECURITY.md",
     "VERSIONING.md",
+    "REDUCE_TO_VANILLA.md",
     "RELEASE_NOTES_v0.1.0.md",
+}
+ALLOWED_DOCS_IN_CODE_DIRS = {
+    "tooling/scripts/repro/java_bridge/README_M13_JAVA_RUNTIME_HARDENING.md",
+    "tooling/scripts/repro/rust_bridge/README_M14_RUST_BRIDGE.md",
 }
 
 
@@ -42,7 +47,9 @@ def evaluate() -> dict:
     for code_dir in CODE_DIRS:
         for p in (ROOT / code_dir).rglob("*"):
             if p.is_file() and p.suffix.lower() in DOC_EXTS:
-                doc_in_code.append(_rel(p))
+                relp = _rel(p)
+                if relp not in ALLOWED_DOCS_IN_CODE_DIRS:
+                    doc_in_code.append(relp)
 
     for doc_dir in DOC_DIRS:
         for p in (ROOT / doc_dir).rglob("*"):
