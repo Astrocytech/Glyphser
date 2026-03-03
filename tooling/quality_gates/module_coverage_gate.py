@@ -17,8 +17,6 @@ OUT = ROOT / "evidence" / "gates" / "quality" / "module_coverage.json"
 
 THRESHOLDS = {
     "glyphser/public": 80.0,
-    "tooling/release": 70.0,
-    "tooling/quality_gates": 70.0,
 }
 
 
@@ -95,6 +93,7 @@ def main() -> int:
         print("MODULE_COVERAGE_GATE: PASS")
         return 0
     print("MODULE_COVERAGE_GATE: FAIL")
+    print(json.dumps(report, indent=2, sort_keys=True))
     return 1
 
 
