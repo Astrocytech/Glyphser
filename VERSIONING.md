@@ -2,10 +2,21 @@
 
 This project follows [Semantic Versioning 2.0.0](https://semver.org/).
 
-## Summary
-* **MAJOR (x.0.0):** Breaking changes to the `specs/contracts/` or the Conformance API.
-* **MINOR (0.x.0):** New capabilities, new layers in `docs/`, or new non-breaking features.
-* **PATCH (0.0.x):** Typos in docs, bug fixes in `tooling/`, or metadata updates.
+## Public API scope
+
+Only modules under `glyphser.public` (and top-level re-exports from `glyphser`) are versioned as stable API.
+
+## Version semantics
+
+- **MAJOR (`X.0.0`)**: breaking changes to stable public API.
+- **MINOR (`x.Y.0`)**: backward-compatible new functionality.
+- **PATCH (`x.y.Z`)**: bug fixes and documentation changes with no API breaks.
+
+## Compatibility guarantees
+
+- No breaking change to stable API within a minor line (`0.1.x`).
+- Deprecated public symbols remain available for at least one minor release.
+- Internal modules (`glyphser.internal.*`, `runtime.glyphser.*`) can change without notice.
 
 ## Current Status
-Current Version: **0.1.0-alpha** (Pre-release / Initial Specification Phase)
+Current Version: **0.1.0** (Initial public boundary established)

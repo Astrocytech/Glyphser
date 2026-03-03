@@ -67,7 +67,12 @@ The example demonstrates:
 ## Installation and CLI
 
 - Package: `pip install glyphser`
-- CLI: `glyphser doctor --out evidence/repro/doctor/doctor-manifest.json`
+- User-facing CLI:
+  - `glyphser verify --model model.json --input input.json`
+  - `glyphser snapshot --model model.json --input input.json --out evidence/snapshot.json`
+- Advanced runtime commands:
+  - `glyphser runtime doctor --out evidence/repro/doctor/doctor-manifest.json`
+  - `glyphser runtime setup --profile available_local --doctor evidence/repro/doctor/doctor-manifest.json --out evidence/repro/setup/setup-result.json`
 
 ## Stability Signals
 
@@ -75,6 +80,8 @@ The example demonstrates:
 - Changelog: `CHANGELOG.md`
 - Compatibility matrix: `docs/COMPATIBILITY_MATRIX.md`
 - Deprecation policy: `docs/DEPRECATION_POLICY.md`
+- Release and publish process: `docs/RELEASE_PROCESS.md`
+- Auto-generated API reference: `docs/API_REFERENCE.md`
 - Security posture: `SECURITY.md`
 
 ## Repository Areas

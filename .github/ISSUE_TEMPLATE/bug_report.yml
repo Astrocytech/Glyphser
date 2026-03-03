@@ -1,0 +1,25 @@
+name: Bug report
+about: Report a defect in Glyphser
+labels: [bug]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened and what did you expect?
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Glyphser version
+      description: Example: v0.1.0
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction steps
+      description: Minimal command or code path to reproduce.
+    validations:
+      required: true
