@@ -56,7 +56,6 @@ jobs:
 
       - name: Enforce per-module coverage minimums
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
-        continue-on-error: true
         run: python tooling/quality_gates/module_coverage_gate.py --coverage-file coverage.xml
 
       - name: Run spec-implementation congruence gate

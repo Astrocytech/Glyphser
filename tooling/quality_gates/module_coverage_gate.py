@@ -18,7 +18,7 @@ OUT = ROOT / "evidence" / "gates" / "quality" / "module_coverage.json"
 MODULE_TARGETS = {
     "public_api": {
         "minimum_percent": 80.0,
-        "prefixes": ["glyphser/public", "glyphser/__init__.py"],
+        "prefixes": ["glyphser/public", "glyphser/__init__.py", "public"],
     },
 }
 
@@ -53,11 +53,19 @@ def evaluate(coverage_file: Path) -> dict:
         pkg_name = pkg.attrib.get("name", "").replace(".", "/")
         for cls in pkg.findall(".//class"):
             filename = cls.attrib.get("filename", "")
-            effective = filename
-            if "/" not in filename and pkg_name:
-                effective = f"{pkg_name}/{filename}"
+            candidates = {filename}
+            if pkg_name:
+                candidates.add(f"{pkg_name}/{filename}")
+                # Some coverage emitters provide package= glyphser and filename=public/foo.py.
+                # Keep a glyphser-rooted candidate to make prefix matching stable.
+                if not filename.startswith(pkg_name + "/"):
+                    candidates.add(f"{pkg_name}/{filename.lstrip('/')}")
             for target, cfg in MODULE_TARGETS.items():
-                if any(_matches_prefix(effective, prefix) for prefix in cfg["prefixes"]):
+                if any(
+                    _matches_prefix(candidate, prefix)
+                    for candidate in candidates
+                    for prefix in cfg["prefixes"]
+                ):
                     lines = cls.find("lines")
                     if lines is None:
                         continue
