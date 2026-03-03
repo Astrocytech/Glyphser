@@ -12,3 +12,8 @@
 2. Add migration path in release notes.
 3. Keep compatibility window through the next minor release.
 4. Remove in a major release.
+
+## Current Deprecated Aliases
+
+- `glyphser.RuntimeApiService` -> use `glyphser.RuntimeService`
+- `glyphser.verify_model` -> use `glyphser.verify`

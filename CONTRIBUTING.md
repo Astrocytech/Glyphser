@@ -10,12 +10,16 @@ This guide explains how to propose changes, run validation locally, and submit p
 - For security issues, do not open a public issue. Follow `SECURITY.md`.
 
 ## Development Setup
-1. Use Python `3.12+`.
+1. Use Python `3.11+`.
 2. Clone the repository and move to project root.
 3. Create and activate a virtual environment.
 4. Install dependencies:
    ```bash
    python -m pip install -e .
+   ```
+5. Optional bootstrap helper:
+   ```bash
+   python tooling/commands/bootstrap_dev.py --verify
    ```
 
 ## Recommended First Checks
@@ -35,6 +39,14 @@ This guide explains how to propose changes, run validation locally, and submit p
 4. Run relevant local checks before opening a PR.
 5. Open a pull request with clear context and evidence.
 
+## First Contribution Path
+
+If you are new to the project:
+1. Start with issues labeled `good first issue`.
+2. Next, pick issues labeled `help wanted`.
+3. Run `make release-check` before opening your PR.
+4. Include the exact command output summary in the PR description.
+
 ## What to Include in a Pull Request
 - A short problem statement.
 - What changed and why.
@@ -53,7 +65,7 @@ Choose the smallest meaningful validation set for your change, then expand if ne
 
 Common commands:
 ```bash
-python -m pytest
+pytest -q
 python tooling/conformance/cli.py run
 python tooling/conformance/cli.py report
 python tooling/validation/generate_project_inventory.py

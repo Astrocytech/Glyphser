@@ -8,6 +8,7 @@ python tooling/benchmarks/run_benchmarks.py
 
 Latest results are written to:
 - `evidence/benchmarks/latest.json`
+- `evidence/benchmarks/variance_impact.json`
 
 Tracked metrics:
 - Interface hash computation latency.

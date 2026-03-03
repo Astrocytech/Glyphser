@@ -1,0 +1,14 @@
+{
+  "results": [
+    {
+      "check": "python_version",
+      "ok": true,
+      "value": "3.12.3"
+    },
+    {
+      "check": "git_available",
+      "ok": true
+    }
+  ],
+  "status": "PASS"
+}

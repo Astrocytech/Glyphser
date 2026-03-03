@@ -1,0 +1,14 @@
+{
+  "schema_version": "glyphser-evidence-catalog.v0",
+  "entries": [
+    {
+      "id": "evidence.benchmarks.latest",
+      "artifact_path": "evidence/benchmarks/latest.json",
+      "digest_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "type": "benchmark",
+      "fixture": "hello-core",
+      "generator": "tooling/benchmarks/run_benchmarks.py",
+      "schema": "glyphser-benchmark.v1"
+    }
+  ]
+}

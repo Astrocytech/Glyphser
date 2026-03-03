@@ -17,9 +17,14 @@ This project uses semantic versioning and Git tags for public releases.
    git push origin v0.2.0
    ```
 3. GitHub Actions builds release artifacts and publishes to PyPI (on trusted publishing).
-4. Create GitHub Release notes from `CHANGELOG.md`.
+4. Release workflow also emits:
+   - `dist/CHECKSUMS.sha256`
+   - `evidence/security/sbom.json`
+   - `evidence/security/build_provenance.json`
+5. Create GitHub Release notes from `CHANGELOG.md`.
 
 ## Required repository settings
 
 - Configure `PYPI_PROJECT` and trusted publisher for this repo.
 - Enable GitHub Actions permissions for `id-token: write`.
+- Optional: configure GPG signing for checksum/signature publication.

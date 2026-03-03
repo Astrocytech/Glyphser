@@ -7,7 +7,14 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-CHECKSUM_FILE = ROOT / "distribution" / "release" / "CHECKSUMS_v0.1.0.sha256"
+RELEASE_DIR = ROOT / "distribution" / "release"
+
+
+def _select_checksum_file() -> Path:
+    candidates = sorted(RELEASE_DIR.glob("CHECKSUMS_v*.sha256"))
+    if not candidates:
+        return RELEASE_DIR / "CHECKSUMS_v0.0.0.sha256"
+    return candidates[-1]
 
 
 def _sha256(path: Path) -> str:
@@ -36,8 +43,9 @@ def _load_expected(path: Path) -> list[tuple[str, Path]]:
 
 
 def main() -> int:
-    if not CHECKSUM_FILE.exists():
-        print(f"missing checksum file: {CHECKSUM_FILE}")
+    checksum_file = _select_checksum_file()
+    if not checksum_file.exists():
+        print(f"missing checksum file: {checksum_file}")
         return 1
 
     print("STEP 1: running push-button pipeline")
@@ -46,8 +54,9 @@ def main() -> int:
         return rc
 
     print("STEP 2: verifying release checksums")
+    print(f"Using checksum manifest: {checksum_file.relative_to(ROOT).as_posix()}")
     try:
-        expected = _load_expected(CHECKSUM_FILE)
+        expected = _load_expected(checksum_file)
     except ValueError as exc:
         print(str(exc))
         return 1

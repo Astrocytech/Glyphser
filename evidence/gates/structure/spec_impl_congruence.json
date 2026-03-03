@@ -1,0 +1,15 @@
+{
+  "checks": {
+    "interface_hash_actual": "d6c07c27e755cca8767ab62fb8106fead06055e90dc50c86ea015cde45e9fbc4",
+    "interface_hash_expected": "d6c07c27e755cca8767ab62fb8106fead06055e90dc50c86ea015cde45e9fbc4",
+    "openapi_sha256": "8c1040de86f3720b7b03040aa58c587b7d8caeded73161513f6c82686fe208c4",
+    "public_exports": [
+      "RuntimeApiConfig",
+      "RuntimeService",
+      "VerificationResult",
+      "verify"
+    ]
+  },
+  "findings": [],
+  "status": "PASS"
+}

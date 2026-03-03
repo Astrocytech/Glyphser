@@ -1,0 +1,24 @@
+{
+  "findings": [],
+  "status": "PASS",
+  "summary": {
+    "glyphser/public": {
+      "coverage_percent": 100.0,
+      "covered_lines": 2,
+      "minimum_percent": 80.0,
+      "valid_lines": 2
+    },
+    "tooling/quality_gates": {
+      "coverage_percent": 100.0,
+      "covered_lines": 2,
+      "minimum_percent": 70.0,
+      "valid_lines": 2
+    },
+    "tooling/release": {
+      "coverage_percent": 100.0,
+      "covered_lines": 2,
+      "minimum_percent": 70.0,
+      "valid_lines": 2
+    }
+  }
+}

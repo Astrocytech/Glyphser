@@ -1,0 +1,112 @@
+{
+  "evidence": [
+    {
+      "path": "evidence/benchmarks/latest.json",
+      "sha256": "ac52b130a27b6cf390cc3d18e797807dc118c0aea023d00c754e128afbdd3c7a"
+    },
+    {
+      "path": "evidence/benchmarks/variance_impact.json",
+      "sha256": "21b36ef19b0d8918f52edb816c30aa49d5b3aacf2adc999796c3e848cba51416"
+    },
+    {
+      "path": "evidence/security/sbom.json",
+      "sha256": "20f7f4224ea58967c35f2945f7156da65f7d9089ddbca05fa3b6390def6807a1"
+    },
+    {
+      "path": "evidence/security/build_provenance.json",
+      "sha256": "9d9e14ad559c401fb18d9fac552ea5ead17d7068bd73b12e9b1da256df721bd7"
+    }
+  ],
+  "fixtures": [
+    {
+      "file_count": 3,
+      "files": [
+        "artifacts/inputs/fixtures/checkpoint-restore/checkpoint_input.json",
+        "artifacts/inputs/fixtures/checkpoint-restore/fixture-manifest.json",
+        "artifacts/inputs/fixtures/checkpoint-restore/restore_request.json"
+      ],
+      "fixture_digest": "",
+      "fixture_id": "checkpoint-restore"
+    },
+    {
+      "file_count": 2,
+      "files": [
+        "artifacts/inputs/fixtures/failure-injection/faulty_request.json",
+        "artifacts/inputs/fixtures/failure-injection/fixture-manifest.json"
+      ],
+      "fixture_digest": "",
+      "fixture_id": "failure-injection"
+    },
+    {
+      "file_count": 7,
+      "files": [
+        "artifacts/inputs/fixtures/hello-core/checkpoint.json",
+        "artifacts/inputs/fixtures/hello-core/execution_certificate.json",
+        "artifacts/inputs/fixtures/hello-core/fixture-manifest.json",
+        "artifacts/inputs/fixtures/hello-core/manifest.core.yaml",
+        "artifacts/inputs/fixtures/hello-core/model_ir.json",
+        "artifacts/inputs/fixtures/hello-core/tiny_synth_dataset.jsonl",
+        "artifacts/inputs/fixtures/hello-core/trace.json"
+      ],
+      "fixture_digest": "bae33a12cbc773cd62e5246b434efc38b0967fdf3f02a20d3eb6c19eda890db8",
+      "fixture_id": "hello-core"
+    },
+    {
+      "file_count": 1,
+      "files": [
+        "artifacts/inputs/fixtures/mini-tracking/inputs.json"
+      ],
+      "fixture_digest": "",
+      "fixture_id": "mini-tracking"
+    },
+    {
+      "file_count": 2,
+      "files": [
+        "artifacts/inputs/fixtures/perf-scale/batch.json",
+        "artifacts/inputs/fixtures/perf-scale/fixture-manifest.json"
+      ],
+      "fixture_digest": "",
+      "fixture_id": "perf-scale"
+    },
+    {
+      "file_count": 3,
+      "files": [
+        "artifacts/inputs/fixtures/registry-lifecycle/fixture-manifest.json",
+        "artifacts/inputs/fixtures/registry-lifecycle/stage_transition.json",
+        "artifacts/inputs/fixtures/registry-lifecycle/version_create.json"
+      ],
+      "fixture_digest": "",
+      "fixture_id": "registry-lifecycle"
+    },
+    {
+      "file_count": 2,
+      "files": [
+        "artifacts/inputs/fixtures/replay-determinism/fixture-manifest.json",
+        "artifacts/inputs/fixtures/replay-determinism/trace.json"
+      ],
+      "fixture_digest": "",
+      "fixture_id": "replay-determinism"
+    },
+    {
+      "file_count": 2,
+      "files": [
+        "artifacts/inputs/fixtures/replay-suite-1/fixture-manifest.json",
+        "artifacts/inputs/fixtures/replay-suite-1/trace.json"
+      ],
+      "fixture_digest": "",
+      "fixture_id": "replay-suite-1"
+    },
+    {
+      "file_count": 2,
+      "files": [
+        "artifacts/inputs/fixtures/tracking-monitoring/fixture-manifest.json",
+        "artifacts/inputs/fixtures/tracking-monitoring/run_event.json"
+      ],
+      "fixture_digest": "",
+      "fixture_id": "tracking-monitoring"
+    }
+  ],
+  "generated_at_utc": "2026-03-03T18:56:57.537833+00:00",
+  "git_commit": "3407f56540f57bbeb903a883cba940ee19ca5020",
+  "schema_version": "glyphser-traceability-index.v1"
+}

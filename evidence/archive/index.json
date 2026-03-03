@@ -1,0 +1,36 @@
+{
+  "schema_version": "glyphser-evidence-archive-index.v1",
+  "snapshots": [
+    {
+      "created_at_utc": "2026-03-03T18:56:57.665261+00:00",
+      "file_count": 6,
+      "files": [
+        {
+          "path": "benchmarks/latest.json",
+          "sha256": "ac52b130a27b6cf390cc3d18e797807dc118c0aea023d00c754e128afbdd3c7a"
+        },
+        {
+          "path": "benchmarks/variance_impact.json",
+          "sha256": "21b36ef19b0d8918f52edb816c30aa49d5b3aacf2adc999796c3e848cba51416"
+        },
+        {
+          "path": "security/sbom.json",
+          "sha256": "20f7f4224ea58967c35f2945f7156da65f7d9089ddbca05fa3b6390def6807a1"
+        },
+        {
+          "path": "security/build_provenance.json",
+          "sha256": "9d9e14ad559c401fb18d9fac552ea5ead17d7068bd73b12e9b1da256df721bd7"
+        },
+        {
+          "path": "traceability/index.json",
+          "sha256": "8087c5bbbfa398a930b571df33b6bc34ccd65e2a0522cf8ce763cf37a472f39d"
+        },
+        {
+          "path": "metadata/catalog.json",
+          "sha256": "fd7c41814eeb516ed3c00d9693b886fdf0e2214b90433e8d17cc6a07885ae96f"
+        }
+      ],
+      "snapshot_id": "20260303T185657Z"
+    }
+  ]
+}

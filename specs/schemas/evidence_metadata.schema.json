@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "glyphser://schemas/evidence_metadata.schema.json",
+  "title": "Glyphser Evidence Metadata Catalog",
+  "type": "object",
+  "required": ["schema_version", "generated_at_utc", "generator", "entries"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "generated_at_utc": {"type": "string"},
+    "generator": {"type": "string"},
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "artifact_id",
+          "path",
+          "sha256",
+          "evidence_type",
+          "source_fixture",
+          "generated_by",
+          "schema_version"
+        ],
+        "properties": {
+          "artifact_id": {"type": "string"},
+          "path": {"type": "string"},
+          "sha256": {"type": "string"},
+          "evidence_type": {"type": "string"},
+          "source_fixture": {"type": "string"},
+          "generated_by": {"type": "string"},
+          "schema_version": {"type": "string"}
+        }
+      }
+    }
+  }
+}
