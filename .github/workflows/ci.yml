@@ -42,8 +42,8 @@ jobs:
       - name: Run lint and format checks
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
         run: |
-          ruff check glyphser runtime tooling tests examples --ignore E501
-          ruff format --check glyphser runtime tooling tests examples
+          ruff check glyphser runtime tooling tests examples --ignore E501 --exclude runtime/glyphser/_generated
+          ruff format --check glyphser runtime tooling tests examples --exclude runtime/glyphser/_generated
 
       - name: Run type checks
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
