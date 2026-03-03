@@ -43,8 +43,12 @@ def _verify_hello_core() -> dict[str, Any]:
     certificate = json.loads(
         (fixture_root / "execution_certificate.json").read_text(encoding="utf-8")
     )
-    expected = json.loads(golden_path.read_text(encoding="utf-8"))["expected_identities"]
-    interface_hash = json.loads(interface_hash_path.read_text(encoding="utf-8"))["interface_hash"]
+    expected = json.loads(golden_path.read_text(encoding="utf-8"))[
+        "expected_identities"
+    ]
+    interface_hash = json.loads(interface_hash_path.read_text(encoding="utf-8"))[
+        "interface_hash"
+    ]
 
     actual = {
         "trace_final_hash": compute_trace_hash(trace_records),
@@ -176,7 +180,11 @@ def main(argv: list[str] | None = None) -> int:
         help="Example id (currently: hello).",
     )
     run_cmd.add_argument("--format", choices=["json", "text"], default="text")
-    run_cmd.add_argument("--tree", action="store_true", help="Print evidence file tree.")
+    run_cmd.add_argument(
+        "--tree",
+        action="store_true",
+        help="Print evidence file tree.",
+    )
 
     snapshot_cmd = sub.add_parser(
         "snapshot", help="Write a verification snapshot manifest."
