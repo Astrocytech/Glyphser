@@ -86,9 +86,11 @@ Conformance / Verification Gates
 - Use cases: `docs/USE_CASES.md`
 - Stability contract: `docs/STABILITY_CONTRACT.md`
 - API lifecycle SLA: `docs/API_LIFECYCLE_SLA.md`
+- Boundary gates: `docs/BOUNDARY_GATES.md`
 - Spec/code matrix: `docs/SPEC_IMPLEMENTATION_MATRIX.md`
 - Gate telemetry: `docs/GATE_TELEMETRY.md`
 - Benchmark registry: `docs/BENCHMARK_REGISTRY.md`
+- Security scanning: `docs/SECURITY_SCANNING.md`
 - CI integration example: `docs/ci/github-actions-glyphser-gate.yml`
 - Public roadmap: `ROADMAP.md`
 - Starter issue backlog: `docs/ISSUE_BACKLOG.md`

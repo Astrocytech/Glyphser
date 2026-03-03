@@ -41,6 +41,12 @@ jobs:
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
         run: mypy --config-file mypy.ini
 
+      - name: Run security scans
+        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
+        run: |
+          bandit -q -r glyphser runtime tooling
+          pip-audit
+
       - name: Enforce per-module coverage minimums
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
         run: python tooling/quality_gates/module_coverage_gate.py --coverage-file coverage.xml
@@ -53,6 +59,10 @@ jobs:
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
         run: python tooling/quality_gates/interface_stability_gate.py
 
+      - name: Run runtime/tooling boundary gate
+        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
+        run: python tooling/quality_gates/runtime_tooling_boundary_gate.py
+
       - name: Run determinism matrix gate
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
         run: python tooling/quality_gates/determinism_matrix_gate.py
@@ -64,6 +74,10 @@ jobs:
       - name: Run benchmark registry gate
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
         run: python tooling/benchmarks/benchmark_registry_gate.py
+
+      - name: Run benchmark trend gate
+        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
+        run: python tooling/benchmarks/benchmark_trend_gate.py
 
       - name: Generate traceability index
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'

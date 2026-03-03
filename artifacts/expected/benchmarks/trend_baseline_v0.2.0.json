@@ -1,0 +1,10 @@
+{
+  "schema_version": "glyphser-benchmark-trend-baseline.v1",
+  "baseline_version": "v0.2.0",
+  "max_regression_factor": 2.0,
+  "metrics": {
+    "compute_interface_hash.avg_ms": 0.05,
+    "runtime_status.avg_ms": 300.0,
+    "runtime_evidence.avg_ms": 700.0
+  }
+}

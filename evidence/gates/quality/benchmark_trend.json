@@ -1,0 +1,24 @@
+{
+  "checks": [
+    {
+      "actual": 0.013426,
+      "baseline": 0.05,
+      "metric": "compute_interface_hash.avg_ms",
+      "threshold": 0.1
+    },
+    {
+      "actual": 0.02846,
+      "baseline": 300.0,
+      "metric": "runtime_status.avg_ms",
+      "threshold": 600.0
+    },
+    {
+      "actual": 0.141767,
+      "baseline": 700.0,
+      "metric": "runtime_evidence.avg_ms",
+      "threshold": 1400.0
+    }
+  ],
+  "findings": [],
+  "status": "PASS"
+}

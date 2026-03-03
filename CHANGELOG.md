@@ -32,6 +32,9 @@ All notable changes to this project are documented in this file.
 - Structured gate telemetry traces with failure taxonomy and remediation hints.
 - Formal interface lifecycle SLA contract and validation gate.
 - Deterministic benchmark registry with thresholds and gate enforcement.
+- Runtime/tooling boundary gate to enforce module dependency direction.
+- Benchmark trend regression gate against versioned baseline thresholds.
+- Security scan enforcement in CI (`bandit`, `pip-audit`) plus local `make security-scan`.
 
 ## [0.2.0] - 2026-03-03
 

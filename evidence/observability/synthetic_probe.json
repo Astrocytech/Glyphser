@@ -1,5 +1,5 @@
 {
-  "latency_ms": 0.031,
+  "latency_ms": 0.019,
   "probe": "conformance_report_read",
   "status": "PASS",
   "target": "evidence/conformance/reports/latest.json"

@@ -5,6 +5,8 @@
 - `docs/GLOSSARY.md`
 - `docs/ARCHITECTURE.md`
 - `docs/STABILITY_CONTRACT.md`
+- `docs/API_LIFECYCLE_SLA.md`
+- `docs/BOUNDARY_GATES.md`
 - `docs/ALTERNATIVES.md`
 - `docs/USE_CASES.md`
 - `docs/DIAGRAMS.md`
@@ -33,6 +35,7 @@
 - `docs/BENCHMARKS.md`
 - `docs/BENCHMARK_IMPACT.md`
 - `docs/BENCHMARK_REGISTRY.md`
+- `docs/SECURITY_SCANNING.md`
 - `docs/TUTORIAL_PIPELINE.md`
 
 ## Release & Versioning
