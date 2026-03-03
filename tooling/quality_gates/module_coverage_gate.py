@@ -18,7 +18,7 @@ OUT = ROOT / "evidence" / "gates" / "quality" / "module_coverage.json"
 MODULE_TARGETS = {
     "public_api": {
         "minimum_percent": 80.0,
-        "prefixes": ["glyphser/public", "glyphser"],
+        "prefixes": ["glyphser/public", "glyphser/__init__.py"],
     },
 }
 
@@ -27,6 +27,9 @@ def _matches_prefix(filename: str, prefix: str) -> bool:
     # Coverage XML may contain relative paths (glyphser/public/...)
     # or absolute paths (.../Glyphser/glyphser/public/...).
     norm = filename.replace("\\", "/").lstrip("./")
+    if "." in prefix.split("/")[-1]:
+        # File target.
+        return norm == prefix or norm.endswith("/" + prefix)
     return (
         norm == prefix
         or norm.startswith(prefix + "/")
