@@ -28,7 +28,7 @@ def topo_sort_nodes(nodes: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     # Stable Kahn's algorithm using input order as tie-breaker.
     id_to_node = {_node_id(n): n for n in nodes}
     incoming = {_node_id(n): 0 for n in nodes}
-    edges = {_node_id(n): [] for n in nodes}
+    edges: Dict[str, List[str]] = {_node_id(n): [] for n in nodes}
     order_index = {_node_id(n): i for i, n in enumerate(nodes)}
 
     for n in nodes:

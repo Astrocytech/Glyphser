@@ -4,7 +4,6 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import os
 import platform
 import socket
 import subprocess
@@ -107,7 +106,7 @@ def _gpu_models() -> list[str]:
 def _framework_meta() -> dict[str, Any]:
     out: dict[str, Any] = {}
     try:
-        import torch  # type: ignore
+        import torch
 
         out["torch"] = {
             "present": True,
@@ -118,7 +117,7 @@ def _framework_meta() -> dict[str, Any]:
     except Exception as exc:  # pragma: no cover - import-path dependent
         out["torch"] = {"present": False, "error": str(exc)}
     try:
-        import tensorflow as tf  # type: ignore
+        import tensorflow as tf
 
         gpus = tf.config.list_physical_devices("GPU")
         out["tensorflow"] = {"present": True, "version": tf.__version__, "gpu_visible": bool(gpus)}
@@ -232,8 +231,8 @@ def _cmd_setup(args: argparse.Namespace) -> int:
             milestone=27,
             slug="setup",
             profile=args.profile,
-            status=dry["status"],
-            classification=dry["classification"],
+            status=str(dry["status"]),
+            classification=str(dry["classification"]),
             reason="dry-run setup evaluation complete" if not failed else "dry-run setup blocked due missing capabilities",
             dependencies=[26],
         )
@@ -271,9 +270,9 @@ def _cmd_setup(args: argparse.Namespace) -> int:
         milestone=27,
         slug="setup",
         profile=args.profile,
-        status=result["status"],
-        classification=result["classification"],
-        reason=result["reason"],
+        status=str(result["status"]),
+        classification=str(result["classification"]),
+        reason=str(result["reason"]),
         dependencies=[26],
     )
     print(json.dumps(result, indent=2, sort_keys=True))
