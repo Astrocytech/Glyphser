@@ -19,7 +19,8 @@ try:
     import torch
 except Exception as exc:  # pragma: no cover - optional dependency
     raise SystemExit(
-        "This demo requires torch and numpy. Install with: python -m pip install torch numpy"
+        "This demo requires torch and numpy. "
+        "Install with: python -m pip install torch numpy"
     ) from exc
 
 from glyphser.internal.hashing import canonical_sha256
@@ -56,10 +57,10 @@ def run_train(seed: int) -> DemoEvidence:
     for _ in range(120):
         optim.zero_grad()
         pred = model(x)
-        l = loss_fn(pred, y)
-        l.backward()
+        loss_tensor = loss_fn(pred, y)
+        loss_tensor.backward()
         optim.step()
-        loss = float(l.item())
+        loss = float(loss_tensor.item())
 
     return DemoEvidence(
         seed=seed,
@@ -71,7 +72,8 @@ def run_train(seed: int) -> DemoEvidence:
 
 def write_manifest(name: str, payload: dict) -> None:
     OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / f"{name}.json").write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    manifest_json = json.dumps(payload, indent=2, sort_keys=True) + "\n"
+    (OUT / f"{name}.json").write_text(manifest_json, encoding="utf-8")
     (OUT / f"{name}.cbor").write_bytes(cbor2.dumps(payload))
 
 

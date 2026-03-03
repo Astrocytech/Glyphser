@@ -5,12 +5,12 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from glyphser import verify
+
 try:
     import mlflow
 except Exception as exc:  # pragma: no cover - optional dependency
     raise SystemExit("Install requirements: python -m pip install mlflow") from exc
-
-from glyphser import verify
 
 
 MODEL = {
@@ -25,8 +25,9 @@ def main() -> int:
     result = verify(MODEL, INPUT)
     evidence_path = Path("evidence/mlflow/verification.json")
     evidence_path.parent.mkdir(parents=True, exist_ok=True)
+    payload = {"digest": result.digest, "output": result.output}
     evidence_path.write_text(
-        json.dumps({"digest": result.digest, "output": result.output}, indent=2, sort_keys=True) + "\n",
+        json.dumps(payload, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
 

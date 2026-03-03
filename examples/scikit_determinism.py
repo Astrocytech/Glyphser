@@ -9,11 +9,18 @@ try:
     import numpy as np
     from sklearn.linear_model import LinearRegression
 except Exception as exc:  # pragma: no cover - optional dependency
-    raise SystemExit("Install requirements: python -m pip install numpy scikit-learn") from exc
+    raise SystemExit(
+        "Install requirements: python -m pip install numpy scikit-learn"
+    ) from exc
 
 
 def digest(payload: dict) -> str:
-    blob = json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode("utf-8")
+    blob = json.dumps(
+        payload,
+        sort_keys=True,
+        separators=(",", ":"),
+        ensure_ascii=True,
+    ).encode("utf-8")
     return hashlib.sha256(blob).hexdigest()
 
 
