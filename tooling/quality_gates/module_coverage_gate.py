@@ -15,8 +15,11 @@ from tooling.quality_gates.telemetry import emit_gate_trace
 
 OUT = ROOT / "evidence" / "gates" / "quality" / "module_coverage.json"
 
-THRESHOLDS = {
-    "glyphser/public": 80.0,
+MODULE_TARGETS = {
+    "public_api": {
+        "minimum_percent": 80.0,
+        "prefixes": ["glyphser/public", "glyphser"],
+    },
 }
 
 
@@ -42,35 +45,37 @@ def evaluate(coverage_file: Path) -> dict:
     tree = ET.parse(coverage_file)
     root = tree.getroot()
 
-    totals = {k: {"covered": 0, "valid": 0} for k in THRESHOLDS}
+    totals = {k: {"covered": 0, "valid": 0} for k in MODULE_TARGETS}
     for cls in root.findall(".//class"):
         filename = cls.attrib.get("filename", "")
-        for prefix in THRESHOLDS:
-            if _matches_prefix(filename, prefix):
+        for target, cfg in MODULE_TARGETS.items():
+            if any(_matches_prefix(filename, prefix) for prefix in cfg["prefixes"]):
                 lines = cls.find("lines")
                 if lines is None:
                     continue
                 for ln in lines.findall("line"):
-                    totals[prefix]["valid"] += 1
+                    totals[target]["valid"] += 1
                     if int(ln.attrib.get("hits", "0")) > 0:
-                        totals[prefix]["covered"] += 1
+                        totals[target]["covered"] += 1
 
     findings = []
     summary = {}
-    for prefix, data in totals.items():
+    for target, data in totals.items():
         valid = data["valid"]
         covered = data["covered"]
         ratio = (covered / valid * 100.0) if valid else 0.0
-        summary[prefix] = {
+        minimum = float(MODULE_TARGETS[target]["minimum_percent"])
+        summary[target] = {
             "covered_lines": covered,
             "valid_lines": valid,
             "coverage_percent": round(ratio, 2),
-            "minimum_percent": THRESHOLDS[prefix],
+            "minimum_percent": minimum,
+            "prefixes": MODULE_TARGETS[target]["prefixes"],
         }
         if valid == 0:
-            findings.append(f"no_covered_lines_for_prefix:{prefix}")
-        elif ratio < THRESHOLDS[prefix]:
-            findings.append(f"coverage_below_threshold:{prefix}:{ratio:.2f}")
+            findings.append(f"no_covered_lines_for_target:{target}")
+        elif ratio < minimum:
+            findings.append(f"coverage_below_threshold:{target}:{ratio:.2f}")
 
     payload = {
         "status": "PASS" if not findings else "FAIL",
