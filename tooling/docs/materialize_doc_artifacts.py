@@ -472,7 +472,7 @@ def materialize() -> None:
 if __name__ == "__main__":
     materialize()
     print("Materialized deterministic doc-phase artifacts:")
-    print(f"  - contracts: {ROOT / "specs" / "contracts"}")
+    print(f"  - contracts: {ROOT / 'specs' / 'contracts'}")
     print(f"  - fixtures:  {fixtures_root() / 'hello-core'}")
     print(f"  - goldens:   {goldens_root() / 'hello-core'}")
     print(f"  - vectors:   {vectors_root() / 'suites' / 'hello-core'}")
