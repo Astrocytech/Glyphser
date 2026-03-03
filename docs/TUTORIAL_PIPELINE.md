@@ -5,7 +5,7 @@ This walkthrough shows how to add Glyphser to a simple ML workflow.
 ## 1) Install
 
 ```bash
-python -m pip install glyphser
+python -m pip install -e .[dev]
 ```
 
 ## 2) Run deterministic fixture gate

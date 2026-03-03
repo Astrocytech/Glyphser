@@ -5,7 +5,7 @@ Deterministic execution verification harness for ML workloads.
 ## Start
 
 ```bash
-python -m pip install glyphser
+python -m pip install -e .[dev]
 glyphser run --example hello --tree
 ```
 

@@ -5,7 +5,7 @@ This guide takes you from install to reproducibility verification in under 10 mi
 ## 1) Install
 
 ```bash
-python -m pip install glyphser
+python -m pip install -e .[dev]
 ```
 
 ## 2) Run the built-in deterministic check

@@ -3,8 +3,7 @@
 [![CI](https://github.com/Astrocytech/Glyphser/actions/workflows/ci.yml/badge.svg)](https://github.com/Astrocytech/Glyphser/actions/workflows/ci.yml)
 [![Conformance Gate](https://github.com/Astrocytech/Glyphser/actions/workflows/conformance-gate.yml/badge.svg)](https://github.com/Astrocytech/Glyphser/actions/workflows/conformance-gate.yml)
 [![Release](https://github.com/Astrocytech/Glyphser/actions/workflows/release.yml/badge.svg)](https://github.com/Astrocytech/Glyphser/actions/workflows/release.yml)
-[![PyPI](https://img.shields.io/pypi/v/glyphser)](https://pypi.org/project/glyphser/)
-[![Python](https://img.shields.io/pypi/pyversions/glyphser)](https://pypi.org/project/glyphser/)
+[![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12-blue)](https://github.com/Astrocytech/Glyphser/blob/main/docs/COMPATIBILITY_MATRIX.md)
 
 Glyphser is a deterministic execution verification harness for ML workloads.
 
@@ -27,6 +26,12 @@ Interface hash: <sha256>
 ```
 
 ## Install
+
+```bash
+python -m pip install -e .[dev]
+```
+
+When PyPI publishing is enabled for releases, install with:
 
 ```bash
 python -m pip install glyphser

@@ -7,7 +7,7 @@ This pack helps publish one external anchor quickly.
 Record this exact flow:
 
 ```bash
-python -m pip install glyphser
+python -m pip install -e .[dev]
 glyphser run --example hello --tree
 python examples/proof_demo.py
 ```

@@ -6,6 +6,7 @@ This checklist is for cutting a public release (example: `v0.2.0`) and publishin
 
 - You have push access to `main`.
 - GitHub trusted publishing for PyPI is configured.
+- Repository variable `PUBLISH_PYPI=true` is set (if publishing from tag-triggered workflow).
 - CI is green on `main`.
 - `CHANGELOG.md` contains release notes for the target version.
 
@@ -48,7 +49,7 @@ git push origin v0.2.0
 
 - Confirm `.github/workflows/release.yml` ran for `v0.2.0`.
 - Confirm build artifacts exist.
-- Confirm PyPI publish job succeeded.
+- Confirm PyPI publish job succeeded (or was intentionally skipped if publishing is not enabled).
 
 ## 5) Publish GitHub Release Notes
 

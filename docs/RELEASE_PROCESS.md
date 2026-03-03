@@ -16,15 +16,17 @@ This project uses semantic versioning and Git tags for public releases.
    git tag -s v0.2.0 -m "Glyphser v0.2.0"
    git push origin v0.2.0
    ```
-3. GitHub Actions builds release artifacts and publishes to PyPI (on trusted publishing).
-4. Release workflow also emits:
+3. GitHub Actions builds release artifacts.
+4. PyPI publish runs only when explicitly enabled (`PUBLISH_PYPI=true` repo variable or manual dispatch input).
+5. Release workflow also emits:
    - `dist/CHECKSUMS.sha256`
    - `evidence/security/sbom.json`
    - `evidence/security/build_provenance.json`
-5. Create GitHub Release notes from `CHANGELOG.md`.
+6. Create GitHub Release notes from `CHANGELOG.md`.
 
 ## Required repository settings
 
-- Configure `PYPI_PROJECT` and trusted publisher for this repo.
+- Configure trusted publishing for this repo in PyPI.
+- Set repository variable `PUBLISH_PYPI=true` when you are ready to publish from tags.
 - Enable GitHub Actions permissions for `id-token: write`.
 - Optional: configure GPG signing for checksum/signature publication.

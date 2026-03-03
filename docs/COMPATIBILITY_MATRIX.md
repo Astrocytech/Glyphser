@@ -5,7 +5,7 @@
 | Python | 3.11, 3.12 | Both versions are validated in CI matrix. |
 | OS | Linux, macOS | Validated in CI matrix. |
 | Backends | `default`, `pytorch`, `keras` | Determinism guarantees depend on backend and profile constraints. |
-| Install Mode | `pip install glyphser`, editable install | Both are supported for development and CI. |
+| Install Mode | editable install (`pip install -e .[dev]`), PyPI install (`pip install glyphser`) | Editable install is always available; PyPI install works after published releases. |
 
 ## Scope
 

@@ -4,6 +4,13 @@ on:
   push:
     tags:
       - "v*.*.*"
+  workflow_dispatch:
+    inputs:
+      publish_pypi:
+        description: "Publish built artifacts to PyPI (requires trusted publishing setup)"
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   build:
@@ -36,6 +43,7 @@ jobs:
 
   publish-pypi:
     needs: build
+    if: ${{ vars.PUBLISH_PYPI == 'true' || github.event.inputs.publish_pypi == 'true' }}
     runs-on: ubuntu-latest
     environment: release
     permissions:
@@ -48,3 +56,13 @@ jobs:
           path: dist/
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+
+  publish-pypi-skipped:
+    needs: build
+    if: ${{ !(vars.PUBLISH_PYPI == 'true' || github.event.inputs.publish_pypi == 'true') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: PyPI publish disabled
+        run: |
+          echo "PyPI publish step skipped."
+          echo "Set repository variable PUBLISH_PYPI=true or run workflow_dispatch with publish_pypi=true."
