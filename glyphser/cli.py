@@ -21,7 +21,12 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def _sha256_canonical_json(payload: dict[str, Any]) -> str:
-    data = json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode("utf-8")
+    data = json.dumps(
+        payload,
+        sort_keys=True,
+        separators=(",", ":"),
+        ensure_ascii=True,
+    ).encode("utf-8")
     return hashlib.sha256(data).hexdigest()
 
 
@@ -32,8 +37,12 @@ def _verify_hello_core() -> dict[str, Any]:
     golden_path = ROOT / "specs" / "examples" / "hello-core" / "hello-core-golden.json"
     interface_hash_path = ROOT / "specs" / "contracts" / "interface_hash.json"
 
-    trace_records = json.loads((fixture_root / "trace.json").read_text(encoding="utf-8"))
-    certificate = json.loads((fixture_root / "execution_certificate.json").read_text(encoding="utf-8"))
+    trace_records = json.loads(
+        (fixture_root / "trace.json").read_text(encoding="utf-8")
+    )
+    certificate = json.loads(
+        (fixture_root / "execution_certificate.json").read_text(encoding="utf-8")
+    )
     expected = json.loads(golden_path.read_text(encoding="utf-8"))["expected_identities"]
     interface_hash = json.loads(interface_hash_path.read_text(encoding="utf-8"))["interface_hash"]
 
@@ -143,26 +152,53 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Glyphser public CLI.")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
-    verify_cmd = sub.add_parser("verify", help="Run deterministic verification for a model JSON.")
-    verify_cmd.add_argument("target", nargs="?", help="Named fixture target (for example: hello-core).")
+    verify_cmd = sub.add_parser(
+        "verify", help="Run deterministic verification for a model JSON."
+    )
+    verify_cmd.add_argument(
+        "target",
+        nargs="?",
+        help="Named fixture target (for example: hello-core).",
+    )
     verify_cmd.add_argument("--model", help="Path to model IR JSON file.")
     verify_cmd.add_argument("--input", help="Path to input JSON file.")
     verify_cmd.add_argument("--format", choices=["json", "text"], default="json")
-    verify_cmd.add_argument("--tree", action="store_true", help="Print evidence file tree for fixture verification.")
+    verify_cmd.add_argument(
+        "--tree",
+        action="store_true",
+        help="Print evidence file tree for fixture verification.",
+    )
 
     run_cmd = sub.add_parser("run", help="Run quick built-in example.")
-    run_cmd.add_argument("--example", default="hello", help="Example id (currently: hello).")
+    run_cmd.add_argument(
+        "--example",
+        default="hello",
+        help="Example id (currently: hello).",
+    )
     run_cmd.add_argument("--format", choices=["json", "text"], default="text")
     run_cmd.add_argument("--tree", action="store_true", help="Print evidence file tree.")
 
-    snapshot_cmd = sub.add_parser("snapshot", help="Write a verification snapshot manifest.")
-    snapshot_cmd.add_argument("--model", required=True, help="Path to model IR JSON file.")
+    snapshot_cmd = sub.add_parser(
+        "snapshot", help="Write a verification snapshot manifest."
+    )
+    snapshot_cmd.add_argument(
+        "--model",
+        required=True,
+        help="Path to model IR JSON file.",
+    )
     snapshot_cmd.add_argument("--input", help="Path to input JSON file.")
-    snapshot_cmd.add_argument("--out", required=True, help="Output path for snapshot JSON.")
+    snapshot_cmd.add_argument(
+        "--out",
+        required=True,
+        help="Output path for snapshot JSON.",
+    )
     snapshot_cmd.add_argument("--format", choices=["json", "text"], default="json")
 
     # Keep advanced operational commands available without exposing them as default UX.
-    runtime_cmd = sub.add_parser("runtime", help="Run advanced runtime CLI commands (doctor/setup/run/certify).")
+    runtime_cmd = sub.add_parser(
+        "runtime",
+        help="Run advanced runtime CLI commands (doctor/setup/run/certify).",
+    )
     runtime_cmd.add_argument("args", nargs=argparse.REMAINDER)
 
     args = parser.parse_args(argv)

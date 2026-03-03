@@ -20,7 +20,10 @@ def _canonical_json(payload: Any) -> str:
     return json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
 
 
-def verify(model: dict[str, Any], input_data: dict[str, Any] | None = None) -> VerificationResult:
+def verify(
+    model: dict[str, Any],
+    input_data: dict[str, Any] | None = None,
+) -> VerificationResult:
     """Execute a model deterministically and return a verification digest.
 
     Args:
