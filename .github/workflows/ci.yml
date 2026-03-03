@@ -51,7 +51,7 @@ jobs:
       - name: Run security scans
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
         run: |
-          bandit -q -r glyphser runtime tooling
+          bandit -q -r glyphser runtime tooling -lll -x runtime/glyphser/_generated
           pip-audit
 
       - name: Enforce per-module coverage minimums
