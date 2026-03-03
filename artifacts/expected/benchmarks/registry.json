@@ -1,0 +1,12 @@
+{
+  "schema_version": "glyphser-benchmark-registry.v1",
+  "thresholds": {
+    "compute_interface_hash_avg_ms_max": 0.1,
+    "runtime_status_avg_ms_max": 500.0,
+    "runtime_evidence_avg_ms_max": 1000.0
+  },
+  "determinism_requirements": {
+    "same_seed_match": true,
+    "different_seed_diverges": true
+  }
+}

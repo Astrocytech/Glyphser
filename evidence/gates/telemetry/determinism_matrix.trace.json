@@ -1,0 +1,17 @@
+{
+  "failure_taxonomy": "none",
+  "findings": [],
+  "gate_id": "determinism_matrix",
+  "raw_report": {
+    "actual_trace_hash": "93029741ddcd7f53431fe997626ac6a9e03ebc66122e7a90817c76f286a3c5c1",
+    "expected_trace_hash": "93029741ddcd7f53431fe997626ac6a9e03ebc66122e7a90817c76f286a3c5c1",
+    "findings": [],
+    "status": "PASS"
+  },
+  "recommended_next_steps": [
+    "No action required."
+  ],
+  "schema_version": "glyphser-gate-telemetry.v1",
+  "status": "PASS",
+  "timestamp_utc": "2026-03-03T19:23:57.911509+00:00"
+}

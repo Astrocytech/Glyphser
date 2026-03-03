@@ -4,9 +4,15 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tooling.quality_gates.telemetry import emit_gate_trace
+
 CATALOG = ROOT / "evidence" / "metadata" / "catalog.json"
 SCHEMA = ROOT / "specs" / "schemas" / "evidence_metadata.schema.json"
 OUT = ROOT / "evidence" / "gates" / "quality" / "evidence_metadata.json"
@@ -24,6 +30,7 @@ def evaluate() -> dict:
         payload = {"status": "FAIL", "findings": findings}
         OUT.parent.mkdir(parents=True, exist_ok=True)
         OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        emit_gate_trace(ROOT, "evidence_metadata", payload)
         return payload
 
     schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
@@ -66,6 +73,7 @@ def evaluate() -> dict:
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    emit_gate_trace(ROOT, "evidence_metadata", payload)
     return payload
 
 

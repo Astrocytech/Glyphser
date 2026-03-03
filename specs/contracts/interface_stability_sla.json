@@ -1,0 +1,28 @@
+{
+  "schema_version": "glyphser-interface-sla.v1",
+  "public_surface": {
+    "module": "glyphser",
+    "stable_exports": [
+      "verify",
+      "VerificationResult",
+      "RuntimeApiConfig",
+      "RuntimeService"
+    ],
+    "deprecation_window_minor_releases": 1,
+    "breaking_changes_require_major": true
+  },
+  "deprecated_aliases": [
+    {
+      "symbol": "RuntimeApiService",
+      "replacement": "RuntimeService",
+      "introduced_deprecated_in": "0.2.0",
+      "removal_target": "1.0.0"
+    },
+    {
+      "symbol": "verify_model",
+      "replacement": "verify",
+      "introduced_deprecated_in": "0.2.0",
+      "removal_target": "1.0.0"
+    }
+  ]
+}

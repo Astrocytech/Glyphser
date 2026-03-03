@@ -1,22 +1,22 @@
 {
   "benchmarks": {
     "compute_interface_hash": {
-      "avg_ms": 0.01312,
-      "max_ms": 0.048367,
-      "min_ms": 0.012278,
-      "p95_ms": 0.015048
+      "avg_ms": 0.013426,
+      "max_ms": 0.0615,
+      "min_ms": 0.012337,
+      "p95_ms": 0.015369
     },
     "runtime_evidence": {
-      "avg_ms": 330.845161,
-      "max_ms": 580.467236,
-      "min_ms": 257.066763,
-      "p95_ms": 416.202911
+      "avg_ms": 0.141767,
+      "max_ms": 0.284467,
+      "min_ms": 0.133267,
+      "p95_ms": 0.184423
     },
     "runtime_status": {
-      "avg_ms": 158.012023,
-      "max_ms": 503.995011,
-      "min_ms": 118.447878,
-      "p95_ms": 217.331462
+      "avg_ms": 0.02846,
+      "max_ms": 0.068804,
+      "min_ms": 0.026934,
+      "p95_ms": 0.031234
     }
   },
   "environment": {
@@ -28,5 +28,5 @@
     "Use this file for trend tracking, not cross-host absolute comparisons."
   ],
   "schema_version": "glyphser-benchmark.v1",
-  "timestamp_utc": "2026-03-03T18:56:57.285915+00:00"
+  "timestamp_utc": "2026-03-03T19:23:57.714877+00:00"
 }

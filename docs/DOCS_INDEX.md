@@ -14,6 +14,7 @@
 
 - `docs/API_REFERENCE.md`
 - `docs/VERIFY.md`
+- `docs/API_LIFECYCLE_SLA.md`
 
 ## Evidence Formats
 
@@ -31,6 +32,7 @@
 - `docs/DOCKER_QUICKSTART.md`
 - `docs/BENCHMARKS.md`
 - `docs/BENCHMARK_IMPACT.md`
+- `docs/BENCHMARK_REGISTRY.md`
 - `docs/TUTORIAL_PIPELINE.md`
 
 ## Release & Versioning
@@ -42,6 +44,7 @@
 - `docs/START-HERE.md`
 - `docs/EXTERNAL_VALIDATION_PACK.md`
 - `docs/ISSUE_BACKLOG.md`
+- `docs/GATE_TELEMETRY.md`
 - `notebooks/quickstart.ipynb`
 - `ROADMAP.md`
 - `VERSIONING.md`

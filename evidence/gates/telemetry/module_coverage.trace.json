@@ -1,0 +1,35 @@
+{
+  "failure_taxonomy": "none",
+  "findings": [],
+  "gate_id": "module_coverage",
+  "raw_report": {
+    "findings": [],
+    "status": "PASS",
+    "summary": {
+      "glyphser/public": {
+        "coverage_percent": 100.0,
+        "covered_lines": 2,
+        "minimum_percent": 80.0,
+        "valid_lines": 2
+      },
+      "tooling/quality_gates": {
+        "coverage_percent": 100.0,
+        "covered_lines": 2,
+        "minimum_percent": 70.0,
+        "valid_lines": 2
+      },
+      "tooling/release": {
+        "coverage_percent": 100.0,
+        "covered_lines": 2,
+        "minimum_percent": 70.0,
+        "valid_lines": 2
+      }
+    }
+  },
+  "recommended_next_steps": [
+    "No action required."
+  ],
+  "schema_version": "glyphser-gate-telemetry.v1",
+  "status": "PASS",
+  "timestamp_utc": "2026-03-03T19:23:55.931497+00:00"
+}

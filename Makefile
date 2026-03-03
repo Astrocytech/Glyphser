@@ -30,8 +30,10 @@ bench:
 
 gates:
 	python3 tooling/quality_gates/spec_impl_congruence_gate.py
+	python3 tooling/quality_gates/interface_stability_gate.py
 	python3 tooling/quality_gates/determinism_matrix_gate.py
 	python3 tooling/quality_gates/schema_evolution_gate.py
+	python3 tooling/benchmarks/benchmark_registry_gate.py
 
 traceability:
 	python3 tooling/release/generate_traceability_index.py

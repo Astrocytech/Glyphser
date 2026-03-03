@@ -36,7 +36,12 @@ def run() -> dict[str, object]:
     tmp_dir = ROOT / "artifacts" / "generated" / "benchmarks"
     tmp_dir.mkdir(parents=True, exist_ok=True)
 
-    service = RuntimeApiService(
+    class _NoAuditRuntimeApiService(RuntimeApiService):
+        # Keep benchmark focused on runtime operations, not log growth overhead.
+        def _audit(self, operation: str, token: str, job_id: str, scope: str, replay_verdict: str = "") -> None:
+            return None
+
+    service = _NoAuditRuntimeApiService(
         RuntimeApiConfig(
             root=ROOT,
             state_path=tmp_dir / "runtime-state.json",

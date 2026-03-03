@@ -31,6 +31,68 @@
         }
       ],
       "snapshot_id": "20260303T185657Z"
+    },
+    {
+      "created_at_utc": "2026-03-03T19:20:46.383193+00:00",
+      "file_count": 6,
+      "files": [
+        {
+          "path": "benchmarks/latest.json",
+          "sha256": "ac52b130a27b6cf390cc3d18e797807dc118c0aea023d00c754e128afbdd3c7a"
+        },
+        {
+          "path": "benchmarks/variance_impact.json",
+          "sha256": "21b36ef19b0d8918f52edb816c30aa49d5b3aacf2adc999796c3e848cba51416"
+        },
+        {
+          "path": "security/sbom.json",
+          "sha256": "01871112cba432126d00b597984ae5f32dced4d40c46658d780b85963cf9201e"
+        },
+        {
+          "path": "security/build_provenance.json",
+          "sha256": "0e5d5a699c606d5f69ed4b48fa0cb1c0cb27a47b5dc5033e3d0dfc9f0705cac3"
+        },
+        {
+          "path": "traceability/index.json",
+          "sha256": "5d18dcef506d09f65586841b95149d6f0e7af622997d9a6fef39ec84161e1733"
+        },
+        {
+          "path": "metadata/catalog.json",
+          "sha256": "5fa4fc76df8b299a526a0824f19e2526ab77d725feeb8a6ca421b0190f20f4d6"
+        }
+      ],
+      "snapshot_id": "20260303T192046Z"
+    },
+    {
+      "created_at_utc": "2026-03-03T19:23:58.128178+00:00",
+      "file_count": 6,
+      "files": [
+        {
+          "path": "benchmarks/latest.json",
+          "sha256": "7e7c0544c1dfc9d629963f8dd4404c447fc5c2d0e953fcd80d750bc0793f1276"
+        },
+        {
+          "path": "benchmarks/variance_impact.json",
+          "sha256": "b7c4253bc3108df0c910050c1fd4f14bdc5ad3c58314a898b0abe7600bd9847d"
+        },
+        {
+          "path": "security/sbom.json",
+          "sha256": "01871112cba432126d00b597984ae5f32dced4d40c46658d780b85963cf9201e"
+        },
+        {
+          "path": "security/build_provenance.json",
+          "sha256": "0e5d5a699c606d5f69ed4b48fa0cb1c0cb27a47b5dc5033e3d0dfc9f0705cac3"
+        },
+        {
+          "path": "traceability/index.json",
+          "sha256": "becb17e6bc06bb86f87ba99146da3e994ca4c9df6bb2bdce91d95870013fe391"
+        },
+        {
+          "path": "metadata/catalog.json",
+          "sha256": "f247b90b26bd5ab2d2abc605debe8a9188b3c6ecd0a1315fcf440db340bcaa54"
+        }
+      ],
+      "snapshot_id": "20260303T192358Z"
     }
   ]
 }

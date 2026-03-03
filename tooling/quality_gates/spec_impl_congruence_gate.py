@@ -12,6 +12,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from runtime.glyphser.registry.interface_hash import compute_interface_hash
+from tooling.quality_gates.telemetry import emit_gate_trace
 
 OUT = ROOT / "evidence" / "gates" / "structure" / "spec_impl_congruence.json"
 OPENAPI = ROOT / "specs" / "contracts" / "openapi_public_api_v1.yaml"
@@ -81,6 +82,7 @@ def evaluate() -> dict:
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    emit_gate_trace(ROOT, "spec_impl_congruence", payload)
     return payload
 
 

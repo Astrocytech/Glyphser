@@ -3,10 +3,16 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tooling.quality_gates.telemetry import emit_gate_trace
+
 OUT = ROOT / "evidence" / "gates" / "quality" / "module_coverage.json"
 
 THRESHOLDS = {
@@ -21,6 +27,7 @@ def evaluate(coverage_file: Path) -> dict:
         payload = {"status": "FAIL", "findings": [f"missing_coverage_file:{coverage_file}"]}
         OUT.parent.mkdir(parents=True, exist_ok=True)
         OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        emit_gate_trace(ROOT, "module_coverage", payload)
         return payload
 
     tree = ET.parse(coverage_file)
@@ -63,6 +70,7 @@ def evaluate(coverage_file: Path) -> dict:
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    emit_gate_trace(ROOT, "module_coverage", payload)
     return payload
 
 

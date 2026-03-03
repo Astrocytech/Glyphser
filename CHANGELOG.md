@@ -29,6 +29,9 @@ All notable changes to this project are documented in this file.
 - API deprecation compatibility aliases with warning tests.
 - Schema evolution compatibility gate for legacy evidence metadata fixtures.
 - Evidence archive/retention automation and lifecycle documentation.
+- Structured gate telemetry traces with failure taxonomy and remediation hints.
+- Formal interface lifecycle SLA contract and validation gate.
+- Deterministic benchmark registry with thresholds and gate enforcement.
 
 ## [0.2.0] - 2026-03-03
 

@@ -1,0 +1,13 @@
+{
+  "determinism": {
+    "different_seed_diverges": true,
+    "same_seed_match": true
+  },
+  "findings": [],
+  "metrics": {
+    "compute_interface_hash_avg_ms": 0.013426,
+    "runtime_evidence_avg_ms": 0.141767,
+    "runtime_status_avg_ms": 0.02846
+  },
+  "status": "PASS"
+}

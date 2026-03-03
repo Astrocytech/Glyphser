@@ -1,0 +1,61 @@
+{
+  "entries": [
+    {
+      "artifact_id": "evidence.benchmarks.latest",
+      "evidence_type": "benchmark",
+      "generated_by": "tooling/benchmarks/run_benchmarks.py",
+      "path": "evidence/benchmarks/latest.json",
+      "schema_version": "glyphser-benchmark.v1",
+      "sha256": "7e7c0544c1dfc9d629963f8dd4404c447fc5c2d0e953fcd80d750bc0793f1276",
+      "source_fixture": "hello-core"
+    },
+    {
+      "artifact_id": "evidence.benchmarks.variance_impact",
+      "evidence_type": "benchmark",
+      "generated_by": "tooling/benchmarks/variance_impact.py",
+      "path": "evidence/benchmarks/variance_impact.json",
+      "schema_version": "glyphser-variance-impact.v1",
+      "sha256": "b7c4253bc3108df0c910050c1fd4f14bdc5ad3c58314a898b0abe7600bd9847d",
+      "source_fixture": "hello-core"
+    },
+    {
+      "artifact_id": "evidence.gates.structure.spec_impl_congruence",
+      "evidence_type": "gate",
+      "generated_by": "tooling/quality_gates/spec_impl_congruence_gate.py",
+      "path": "evidence/gates/structure/spec_impl_congruence.json",
+      "schema_version": "glyphser-gate-report.v1",
+      "sha256": "ad960db0e4e830cb2fa5655a639cb44d97103d0997a65325c517a89157679391",
+      "source_fixture": "contracts"
+    },
+    {
+      "artifact_id": "evidence.traceability.index",
+      "evidence_type": "traceability",
+      "generated_by": "tooling/release/generate_traceability_index.py",
+      "path": "evidence/traceability/index.json",
+      "schema_version": "glyphser-traceability-index.v1",
+      "sha256": "becb17e6bc06bb86f87ba99146da3e994ca4c9df6bb2bdce91d95870013fe391",
+      "source_fixture": "all"
+    },
+    {
+      "artifact_id": "evidence.security.sbom",
+      "evidence_type": "security",
+      "generated_by": "tooling/security/security_artifacts.py",
+      "path": "evidence/security/sbom.json",
+      "schema_version": "glyphser-sbom-v1",
+      "sha256": "01871112cba432126d00b597984ae5f32dced4d40c46658d780b85963cf9201e",
+      "source_fixture": "release"
+    },
+    {
+      "artifact_id": "evidence.security.build_provenance",
+      "evidence_type": "security",
+      "generated_by": "tooling/security/security_artifacts.py",
+      "path": "evidence/security/build_provenance.json",
+      "schema_version": "glyphser-provenance-v1",
+      "sha256": "0e5d5a699c606d5f69ed4b48fa0cb1c0cb27a47b5dc5033e3d0dfc9f0705cac3",
+      "source_fixture": "release"
+    }
+  ],
+  "generated_at_utc": "2026-03-03T19:23:58.055224+00:00",
+  "generator": "tooling/release/generate_evidence_metadata.py",
+  "schema_version": "glyphser-evidence-catalog.v1"
+}

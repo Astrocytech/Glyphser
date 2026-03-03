@@ -1,0 +1,26 @@
+{
+  "failure_taxonomy": "none",
+  "findings": [],
+  "gate_id": "spec_impl_congruence",
+  "raw_report": {
+    "checks": {
+      "interface_hash_actual": "d6c07c27e755cca8767ab62fb8106fead06055e90dc50c86ea015cde45e9fbc4",
+      "interface_hash_expected": "d6c07c27e755cca8767ab62fb8106fead06055e90dc50c86ea015cde45e9fbc4",
+      "openapi_sha256": "8c1040de86f3720b7b03040aa58c587b7d8caeded73161513f6c82686fe208c4",
+      "public_exports": [
+        "RuntimeApiConfig",
+        "RuntimeService",
+        "VerificationResult",
+        "verify"
+      ]
+    },
+    "findings": [],
+    "status": "PASS"
+  },
+  "recommended_next_steps": [
+    "No action required."
+  ],
+  "schema_version": "glyphser-gate-telemetry.v1",
+  "status": "PASS",
+  "timestamp_utc": "2026-03-03T19:23:57.812195+00:00"
+}

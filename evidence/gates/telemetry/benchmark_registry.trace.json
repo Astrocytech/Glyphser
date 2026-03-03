@@ -1,0 +1,24 @@
+{
+  "failure_taxonomy": "none",
+  "findings": [],
+  "gate_id": "benchmark_registry",
+  "raw_report": {
+    "determinism": {
+      "different_seed_diverges": true,
+      "same_seed_match": true
+    },
+    "findings": [],
+    "metrics": {
+      "compute_interface_hash_avg_ms": 0.013426,
+      "runtime_evidence_avg_ms": 0.141767,
+      "runtime_status_avg_ms": 0.02846
+    },
+    "status": "PASS"
+  },
+  "recommended_next_steps": [
+    "No action required."
+  ],
+  "schema_version": "glyphser-gate-telemetry.v1",
+  "status": "PASS",
+  "timestamp_utc": "2026-03-03T19:23:57.980648+00:00"
+}

@@ -13,6 +13,7 @@ if str(ROOT) not in sys.path:
 
 from runtime.glyphser.trace.compute_trace_hash import compute_trace_hash
 from tooling.scripts import run_hello_core
+from tooling.quality_gates.telemetry import emit_gate_trace
 
 OUT = ROOT / "evidence" / "gates" / "quality" / "determinism_matrix.json"
 FIXTURE_TRACE = ROOT / "artifacts" / "inputs" / "fixtures" / "hello-core" / "trace.json"
@@ -49,6 +50,7 @@ def evaluate() -> dict:
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    emit_gate_trace(ROOT, "determinism_matrix", payload)
     return payload
 
 
