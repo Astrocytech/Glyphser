@@ -22,6 +22,17 @@ THRESHOLDS = {
 }
 
 
+def _matches_prefix(filename: str, prefix: str) -> bool:
+    # Coverage XML may contain relative paths (glyphser/public/...)
+    # or absolute paths (.../Glyphser/glyphser/public/...).
+    norm = filename.replace("\\", "/").lstrip("./")
+    return (
+        norm == prefix
+        or norm.startswith(prefix + "/")
+        or f"/{prefix}/" in norm
+    )
+
+
 def evaluate(coverage_file: Path) -> dict:
     if not coverage_file.exists():
         payload = {"status": "FAIL", "findings": [f"missing_coverage_file:{coverage_file}"]}
@@ -37,7 +48,7 @@ def evaluate(coverage_file: Path) -> dict:
     for cls in root.findall(".//class"):
         filename = cls.attrib.get("filename", "")
         for prefix in THRESHOLDS:
-            if filename.startswith(prefix):
+            if _matches_prefix(filename, prefix):
                 lines = cls.find("lines")
                 if lines is None:
                     continue
