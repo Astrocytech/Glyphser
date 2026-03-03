@@ -1,19 +1,19 @@
 {
   "checks": [
     {
-      "actual": 0.013426,
+      "actual": 0.01529,
       "baseline": 0.05,
       "metric": "compute_interface_hash.avg_ms",
       "threshold": 0.1
     },
     {
-      "actual": 0.02846,
+      "actual": 0.032006,
       "baseline": 300.0,
       "metric": "runtime_status.avg_ms",
       "threshold": 600.0
     },
     {
-      "actual": 0.141767,
+      "actual": 0.158294,
       "baseline": 700.0,
       "metric": "runtime_evidence.avg_ms",
       "threshold": 1400.0

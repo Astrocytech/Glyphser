@@ -93,6 +93,37 @@
         }
       ],
       "snapshot_id": "20260303T192358Z"
+    },
+    {
+      "created_at_utc": "2026-03-03T19:37:45.608697+00:00",
+      "file_count": 6,
+      "files": [
+        {
+          "path": "benchmarks/latest.json",
+          "sha256": "afb2d9d20294ba586f11c6a4f238461c012e3bb30687f703ebd0210fbc63f700"
+        },
+        {
+          "path": "benchmarks/variance_impact.json",
+          "sha256": "6f9475819020472d1dd3238558a6daf8f74799b46154e75b0e0e5e53e02d234d"
+        },
+        {
+          "path": "security/sbom.json",
+          "sha256": "736b8a60bfd7d478fa2fa70b189f28ad8bda8ce8beda63e7e2801a83dff5226c"
+        },
+        {
+          "path": "security/build_provenance.json",
+          "sha256": "e72dbd5a9d84f9b236a5cee1d969e10f11b9bb1de001d87c26273a19191282d1"
+        },
+        {
+          "path": "traceability/index.json",
+          "sha256": "921bd675bbd3abba32022859bf48b9ded07c3ffe1efde493129bfd9b08ce5edb"
+        },
+        {
+          "path": "metadata/catalog.json",
+          "sha256": "e47bc32689ab4cb968983d43f7d68fef82927b2484e182e43c5576a54dd56807"
+        }
+      ],
+      "snapshot_id": "20260303T193745Z"
     }
   ]
 }

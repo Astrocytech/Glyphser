@@ -9,9 +9,9 @@
     },
     "findings": [],
     "metrics": {
-      "compute_interface_hash_avg_ms": 0.013426,
-      "runtime_evidence_avg_ms": 0.141767,
-      "runtime_status_avg_ms": 0.02846
+      "compute_interface_hash_avg_ms": 0.01529,
+      "runtime_evidence_avg_ms": 0.158294,
+      "runtime_status_avg_ms": 0.032006
     },
     "status": "PASS"
   },
@@ -20,5 +20,5 @@
   ],
   "schema_version": "glyphser-gate-telemetry.v1",
   "status": "PASS",
-  "timestamp_utc": "2026-03-03T19:33:38.917936+00:00"
+  "timestamp_utc": "2026-03-03T19:37:45.407831+00:00"
 }

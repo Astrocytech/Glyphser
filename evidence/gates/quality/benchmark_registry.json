@@ -5,9 +5,9 @@
   },
   "findings": [],
   "metrics": {
-    "compute_interface_hash_avg_ms": 0.013426,
-    "runtime_evidence_avg_ms": 0.141767,
-    "runtime_status_avg_ms": 0.02846
+    "compute_interface_hash_avg_ms": 0.01529,
+    "runtime_evidence_avg_ms": 0.158294,
+    "runtime_status_avg_ms": 0.032006
   },
   "status": "PASS"
 }
