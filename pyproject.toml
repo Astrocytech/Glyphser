@@ -1,13 +1,48 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "glyphser"
 version = "0.1.0"
-description = "Deterministic runtime and conformance verification suite for ML2ML."
+description = "Deterministic evidence engine for reproducible ML runtime verification."
+readme = "README.md"
 requires-python = ">=3.12"
-dependencies = [
-    "pytest",
-    "cbor2",
-    "pyyaml"
+license = { file = "LICENSE" }
+authors = [{ name = "Astrocytech" }]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU Affero General Public License v3",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Quality Assurance",
 ]
+dependencies = [
+    "cbor2>=5.6.0",
+    "PyYAML>=6.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Astrocytech/Glyphser"
+Repository = "https://github.com/Astrocytech/Glyphser"
+Issues = "https://github.com/Astrocytech/Glyphser/issues"
+
+[project.scripts]
+glyphser = "glyphser.cli:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.3.0",
+]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["glyphser*", "runtime*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

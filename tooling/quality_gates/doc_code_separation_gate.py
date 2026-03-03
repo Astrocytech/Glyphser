@@ -21,6 +21,7 @@ CODE_DIRS = (
 DOC_DIRS = ("docs", "specs", "governance", "product")
 ALLOWED_ROOT_DOCS = {
     "README.md",
+    "CHANGELOG.md",
     "CONTRIBUTING.md",
     "CODE_OF_CONDUCT.md",
     "SECURITY.md",

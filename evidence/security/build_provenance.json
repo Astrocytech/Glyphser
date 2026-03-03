@@ -1,8 +1,8 @@
 {
   "format": "glyphser-provenance-v1",
-  "git_commit": "c1f8c9f2eb2823621f7e8b2299118c0f636c7db2",
+  "git_commit": "52eec1c094c308b51e8e7ff5b9d386818364c5b3",
   "lockfile_hash": "ff8d7ca61a478017944504b804a5c2eaf48958dd83eafb612f78ac1aae2d538b",
   "python_version": "3.12.3",
-  "sbom_hash": "ce64dd22b225a1bdb7fd6df3fbf12ab57d1b52da13089a01d8487588d623279b",
+  "sbom_hash": "343c096574cb9d45cece71723061a51129a709fb50e918dbdf4f669a4994b427",
   "tool": "tooling/security/security_artifacts.py"
 }

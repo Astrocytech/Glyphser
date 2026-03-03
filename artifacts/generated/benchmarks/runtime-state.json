@@ -1,0 +1,15 @@
+{
+  "idempotency": {
+    "bench-key": "5e8f006d6783a042929f07ee"
+  },
+  "jobs": {
+    "5e8f006d6783a042929f07ee": {
+      "api_version": "1.0.0",
+      "idempotency_key": "bench-key",
+      "job_id": "5e8f006d6783a042929f07ee",
+      "payload_hash": "6314e440ff1de66baf1bf7d21eff32f8ae2bc8a86cf98c92baf3fbef54966919",
+      "status": "accepted",
+      "trace_id": "696e6ee3b00bb3cef16032dc752c3c18"
+    }
+  }
+}
