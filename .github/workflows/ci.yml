@@ -43,6 +43,7 @@ jobs:
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
         run: |
           ruff check glyphser examples --ignore E501
+          ruff format --check glyphser examples
 
       - name: Run type checks
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
