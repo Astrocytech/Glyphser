@@ -1,7 +1,7 @@
 # Verify Glyphser Locally
 
 ## Requirements
-- Python 3.12+
+- Python 3.11+
 - `git`
 
 ## Quick Verify (<=5 steps)
@@ -18,5 +18,5 @@ python tooling/release/verify_release.py
 
 ## What It Checks
 - Runs `tooling/commands/push_button.py` end-to-end.
-- Verifies release artifact hashes against `docs/release/CHECKSUMS_v0.1.0.sha256`.
+- Verifies release artifact hashes against the latest `distribution/release/CHECKSUMS_v*.sha256`.
 - Returns exit code `0` only when all checks pass.

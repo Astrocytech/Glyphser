@@ -1,12 +1,13 @@
-# 𝒢 ⟦·⟧
+# Glyphser
 
-## Glyphser
+[![CI](https://github.com/Astrocytech/Glyphser/actions/workflows/ci.yml/badge.svg)](https://github.com/Astrocytech/Glyphser/actions/workflows/ci.yml)
+[![Conformance Gate](https://github.com/Astrocytech/Glyphser/actions/workflows/conformance-gate.yml/badge.svg)](https://github.com/Astrocytech/Glyphser/actions/workflows/conformance-gate.yml)
+[![Schema Gate](https://github.com/Astrocytech/Glyphser/actions/workflows/schema-gate.yml/badge.svg)](https://github.com/Astrocytech/Glyphser/actions/workflows/schema-gate.yml)
+[![Release](https://github.com/Astrocytech/Glyphser/actions/workflows/release.yml/badge.svg)](https://github.com/Astrocytech/Glyphser/actions/workflows/release.yml)
 
-Company: **Astrocytech**
+Glyphser is a deterministic evidence engine for ML workloads. It guarantees reproducible execution fingerprints across environments by producing cryptographically verifiable runtime manifests.
 
-Official Astrocytech website: https://www.astrocytech.com
-
-GitHub: https://github.com/Astrocytech/Glyphser
+## Quickstart
 
 ```bash
 python -m pip install glyphser
@@ -17,14 +18,32 @@ from glyphser import verify
 
 model = {
     "ir_hash": "demo-ir",
-    "nodes": [
-        {"node_id": "x", "instr": "Input", "shape_out": [1], "dtype": "f32"},
-    ],
+    "nodes": [{"node_id": "x", "instr": "Input", "shape_out": [1], "dtype": "f32"}],
     "outputs": [{"node_id": "x", "output_idx": 0}],
 }
 
 result = verify(model, {"x": [1.0]})
 print(result.digest)
+```
+
+## One-Command Determinism Demo
+
+```bash
+glyphser verify hello-core --format text --tree
+```
+
+Expected success shape:
+
+```text
+VERIFY hello-core: PASS
+Evidence: .../artifacts/inputs/fixtures/hello-core
+Trace hash: <sha256>
+Certificate hash: <sha256>
+Interface hash: <sha256>
+Evidence files:
+  - .../trace.json
+  - .../checkpoint.json
+  - .../execution_certificate.json
 ```
 
 ## Stable API Boundary
@@ -34,71 +53,32 @@ Only modules under `glyphser.public` are considered stable API.
 - Stable: `glyphser.public.*` and top-level re-exports from `glyphser`
 - Unstable/internal: `glyphser.internal.*`, `runtime.glyphser.*`
 
-See `docs/API_STABILITY.md` for compatibility guarantees.
+See `docs/STABILITY_CONTRACT.md`.
 
-## Architecture
+## CLI
 
-```text
-User Code
-   ↓
-Glyphser Public API
-   ↓
-Runtime Core
-   ↓
-Deterministic Execution Layer
-   ↓
-Evidence Builder
-   ↓
-Conformance Validator
-```
+- `glyphser verify --model model.json --input input.json`
+- `glyphser verify hello-core`
+- `glyphser snapshot --model model.json --input input.json --out evidence/snapshot.json`
+- `glyphser runtime ...` for advanced operational commands
 
-Expanded architecture notes: `docs/ARCHITECTURE.md`.
+## Documentation Map
+
+- Concepts: `docs/DOCS_INDEX.md`, `docs/GLOSSARY.md`, `docs/ARCHITECTURE.md`
+- API: `docs/API_REFERENCE.md`, `docs/API_STABILITY.md`
+- Evidence: `docs/EVIDENCE_FORMATS.md`, `docs/INDEPENDENT_VERIFICATION.md`
+- Integrations: `docs/INTEGRATIONS.md`
+- Release: `docs/RELEASE_PROCESS.md`, `docs/RELEASE_CHECKLIST.md`, `VERSIONING.md`, `CHANGELOG.md`
 
 ## Real Integration Example
 
 - PyTorch deterministic training + evidence flow: `examples/pytorch_determinism.py`
 
-The example demonstrates:
-1. Train a tiny model with fixed seeds.
-2. Produce an evidence bundle from model state.
-3. Re-run and compare digest values.
-4. Fail fast on digest mismatch.
-
-## Installation and CLI
-
-- Package: `pip install glyphser`
-- User-facing CLI:
-  - `glyphser verify --model model.json --input input.json`
-  - `glyphser snapshot --model model.json --input input.json --out evidence/snapshot.json`
-- Advanced runtime commands:
-  - `glyphser runtime doctor --out evidence/repro/doctor/doctor-manifest.json`
-  - `glyphser runtime setup --profile available_local --doctor evidence/repro/doctor/doctor-manifest.json --out evidence/repro/setup/setup-result.json`
-
-## Stability Signals
-
-- Semantic versioning: `VERSIONING.md`
-- Changelog: `CHANGELOG.md`
-- Compatibility matrix: `docs/COMPATIBILITY_MATRIX.md`
-- Deprecation policy: `docs/DEPRECATION_POLICY.md`
-- Release and publish process: `docs/RELEASE_PROCESS.md`
-- Release checklist: `docs/RELEASE_CHECKLIST.md`
-- Auto-generated API reference: `docs/API_REFERENCE.md`
-- Security posture: `SECURITY.md`
-
-## Repository Areas
-
-- Core Runtime: `runtime/`
-- Public API Package: `glyphser/`
-- Compliance & Conformance: `specs/`, `tests/`, `evidence/`
-- Research / Experimental: `artifacts/inputs/conformance/suites/`, `specs/layers/L4-*`
-- Tooling Automation: `tooling/`
-- Governance & Process: `governance/`
-
 ## Development
 
 ```bash
 python -m pip install -e .[dev]
-pytest
+make release-check
 ```
 
 ## License

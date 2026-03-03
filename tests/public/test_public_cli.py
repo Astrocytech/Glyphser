@@ -32,6 +32,16 @@ def test_verify_cli_json_output(tmp_path, capsys):
     assert len(payload["digest"]) == 64
 
 
+def test_verify_hello_core_target(capsys):
+    rc = main(["verify", "hello-core", "--format", "json"])
+    out = capsys.readouterr().out
+    payload = json.loads(out)
+
+    assert rc == 0
+    assert payload["status"] == "PASS"
+    assert payload["fixture"] == "hello-core"
+
+
 def test_snapshot_cli_writes_manifest(tmp_path):
     model_path = tmp_path / "model.json"
     input_path = tmp_path / "input.json"

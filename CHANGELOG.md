@@ -2,6 +2,17 @@
 
 All notable changes to this project are documented in this file.
 
+## [Unreleased]
+
+## [0.2.0] - 2026-03-03
+
+### Added
+- One-command deterministic fixture verification: `glyphser verify hello-core`.
+- Navigation-first docs set: glossary, evidence formats, integrations, and independent verification guides.
+- CI workflow with Linux/macOS and Python 3.11/3.12 matrix.
+- Coverage artifact upload (XML + HTML) in CI.
+- Release workflow hardening with release checksums, SBOM, and provenance artifacts.
+
 ## [0.1.0] - 2026-03-03
 
 ### Added

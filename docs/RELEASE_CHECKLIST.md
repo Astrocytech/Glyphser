@@ -25,6 +25,7 @@ git push origin main
 
 ```bash
 make release-check
+glyphser verify hello-core --format text --tree
 ```
 
 ## 3) Create and Push Tag
