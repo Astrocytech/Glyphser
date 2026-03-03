@@ -49,17 +49,22 @@ def evaluate(coverage_file: Path) -> dict:
     root = tree.getroot()
 
     totals = {k: {"covered": 0, "valid": 0} for k in MODULE_TARGETS}
-    for cls in root.findall(".//class"):
-        filename = cls.attrib.get("filename", "")
-        for target, cfg in MODULE_TARGETS.items():
-            if any(_matches_prefix(filename, prefix) for prefix in cfg["prefixes"]):
-                lines = cls.find("lines")
-                if lines is None:
-                    continue
-                for ln in lines.findall("line"):
-                    totals[target]["valid"] += 1
-                    if int(ln.attrib.get("hits", "0")) > 0:
-                        totals[target]["covered"] += 1
+    for pkg in root.findall(".//package"):
+        pkg_name = pkg.attrib.get("name", "").replace(".", "/")
+        for cls in pkg.findall(".//class"):
+            filename = cls.attrib.get("filename", "")
+            effective = filename
+            if "/" not in filename and pkg_name:
+                effective = f"{pkg_name}/{filename}"
+            for target, cfg in MODULE_TARGETS.items():
+                if any(_matches_prefix(effective, prefix) for prefix in cfg["prefixes"]):
+                    lines = cls.find("lines")
+                    if lines is None:
+                        continue
+                    for ln in lines.findall("line"):
+                        totals[target]["valid"] += 1
+                        if int(ln.attrib.get("hits", "0")) > 0:
+                            totals[target]["covered"] += 1
 
     findings = []
     summary = {}
