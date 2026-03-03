@@ -1,8 +1,12 @@
-# Glyphser
+# 𝒢 ⟦·⟧
 
-Glyphser is a deterministic evidence engine for ML workloads. It guarantees reproducible execution fingerprints across environments by producing cryptographically verifiable runtime manifests.
+## Glyphser
 
-## Quickstart (5 minutes)
+Company: **Astrocytech**
+
+Official Astrocytech website: https://www.astrocytech.com
+
+GitHub: https://github.com/Astrocytech/Glyphser
 
 ```bash
 python -m pip install glyphser
