@@ -80,6 +80,7 @@ Conformance / Verification Gates
 - Traceability index: `docs/TRACEABILITY.md`
 - Evidence metadata catalog: `docs/EVIDENCE_METADATA.md`
 - Evidence lifecycle: `docs/EVIDENCE_LIFECYCLE.md`
+- Evidence storage policy: `governance/structure/EVIDENCE_STORAGE_POLICY.md`
 - Diagrams: `docs/DIAGRAMS.md`
 - Docker quickstart: `docs/DOCKER_QUICKSTART.md`
 - Alternatives: `docs/ALTERNATIVES.md`

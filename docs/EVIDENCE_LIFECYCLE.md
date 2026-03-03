@@ -22,3 +22,14 @@ python tooling/release/archive_evidence.py --keep 10
 
 - Keep latest N snapshots (`--keep` argument).
 - Oldest snapshots are pruned automatically.
+
+## Storage policy enforcement
+
+Evidence storage mode is defined in:
+- `governance/structure/evidence_storage_policy.json`
+
+Gate:
+
+```bash
+python tooling/quality_gates/evidence_storage_policy_gate.py
+```

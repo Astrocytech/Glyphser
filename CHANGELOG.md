@@ -35,6 +35,7 @@ All notable changes to this project are documented in this file.
 - Runtime/tooling boundary gate to enforce module dependency direction.
 - Benchmark trend regression gate against versioned baseline thresholds.
 - Security scan enforcement in CI (`bandit`, `pip-audit`) plus local `make security-scan`.
+- Explicit evidence storage policy (versioned audit mode) with CI-enforced gate.
 
 ## [0.2.0] - 2026-03-03
 

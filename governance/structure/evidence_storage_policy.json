@@ -1,0 +1,16 @@
+{
+  "schema_version": "glyphser-evidence-storage-policy.v1",
+  "mode": "versioned_audit",
+  "description": "Keep canonical evidence and archived snapshots in version control for audit traceability; forbid local scratch evidence paths.",
+  "required_paths": [
+    "evidence/metadata/catalog.json",
+    "evidence/traceability/index.json",
+    "evidence/security/sbom.json",
+    "evidence/security/build_provenance.json"
+  ],
+  "forbidden_globs": [
+    "evidence/tmp/**",
+    "evidence/local/**",
+    "evidence/scratch/**"
+  ]
+}

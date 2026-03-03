@@ -63,6 +63,10 @@ jobs:
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
         run: python tooling/quality_gates/runtime_tooling_boundary_gate.py
 
+      - name: Run evidence storage policy gate
+        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
+        run: python tooling/quality_gates/evidence_storage_policy_gate.py
+
       - name: Run determinism matrix gate
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
         run: python tooling/quality_gates/determinism_matrix_gate.py

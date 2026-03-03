@@ -48,3 +48,7 @@ Thumbs.db
 desktop.ini
 ._*
 node_modules/
+# Local scratch evidence (forbidden by evidence storage policy gate)
+evidence/tmp/**
+evidence/local/**
+evidence/scratch/**

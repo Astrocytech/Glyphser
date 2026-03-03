@@ -25,6 +25,7 @@
 - `docs/TRACEABILITY.md`
 - `docs/EVIDENCE_METADATA.md`
 - `docs/EVIDENCE_LIFECYCLE.md`
+- `governance/structure/EVIDENCE_STORAGE_POLICY.md`
 
 ## Integrations
 
