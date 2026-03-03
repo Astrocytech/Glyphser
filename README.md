@@ -81,6 +81,7 @@ The example demonstrates:
 - Compatibility matrix: `docs/COMPATIBILITY_MATRIX.md`
 - Deprecation policy: `docs/DEPRECATION_POLICY.md`
 - Release and publish process: `docs/RELEASE_PROCESS.md`
+- Release checklist: `docs/RELEASE_CHECKLIST.md`
 - Auto-generated API reference: `docs/API_REFERENCE.md`
 - Security posture: `SECURITY.md`
 
