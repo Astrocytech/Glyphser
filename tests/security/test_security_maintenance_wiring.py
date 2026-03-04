@@ -74,6 +74,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "runtime_api_state_schema_gate.json" in wf
     assert "security_gate_test_coverage.json" in wf
     assert "hardening_todo_consistency_gate.json" in wf
+    assert "security_trend_alert.json" in wf
     assert "semgrep --version" in wf
     assert 'python -c "import pkg_resources"' in wf
     assert "security-maintenance-artifacts" in wf

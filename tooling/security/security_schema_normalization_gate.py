@@ -17,7 +17,7 @@ write_json_report = importlib.import_module("tooling.security.report_io").write_
 REQUIRED = ["status"]
 REQUIRED_NORMALIZED = ["findings", "summary", "metadata", "schema_version"]
 IGNORE = {"security_slo_history.json"}
-ALLOWED_STATUS = {"PASS", "FAIL", "WARN", "SKIP"}
+ALLOWED_STATUS = {"PASS", "FAIL", "WARN", "SKIP", "OK", "ALERT"}
 
 
 def main(argv: list[str] | None = None) -> int:

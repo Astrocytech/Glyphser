@@ -188,6 +188,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_super_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_slo_report.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_trend_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_trend_alert.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_dashboard.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_schema_normalization_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/cosign_attestation_gate.json

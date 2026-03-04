@@ -64,6 +64,7 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/conformance_security_coupling_gate.py" in ci
     assert "python tooling/security/security_super_gate.py --strict-key" in ci
     assert "python tooling/security/security_artifacts.py" in ci
+    assert "security_trend_alert.json" in ci
     assert "python tooling/security/branch_protection_policy_gate.py" in ci
     assert "bandit -q -c tooling/security/bandit.yaml -r glyphser runtime tooling -f json -o bandit.json -l -ii" in ci
     assert "python tooling/security/bandit_json_to_sarif.py --input bandit.json --output bandit.sarif" in ci
