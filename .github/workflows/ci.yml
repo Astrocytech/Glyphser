@@ -272,7 +272,7 @@ jobs:
       - name: External attestation gate
         run: python tooling/security/cosign_attestation_gate.py
       - name: Semgrep (SARIF)
-        run: python -m semgrep --config tooling/security/semgrep-rules.yml --error --sarif --output semgrep.sarif runtime glyphser tooling
+        run: semgrep --config tooling/security/semgrep-rules.yml --error --sarif --output semgrep.sarif runtime glyphser tooling
       - name: Semgrep rule regression tests
         run: pytest -q tests/security/test_semgrep_rules.py
       - name: Upload Bandit SARIF to Code Scanning
