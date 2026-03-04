@@ -21,6 +21,7 @@
     "governance/security/sbom_diff_approval.json",
     "governance/security/security_artifact_signature_policy.json",
     "governance/security/security_schema_compatibility_policy.json",
+    "governance/security/security_super_gate_membership_baseline.json",
     "governance/security/secret_management_policy.json",
     "governance/security/security_event_schema.json",
     "governance/security/stage_s_hardening_policy.json",

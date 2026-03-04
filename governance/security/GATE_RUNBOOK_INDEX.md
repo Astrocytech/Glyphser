@@ -729,3 +729,17 @@ Inputs: `governance/security/threat_control_matrix.json`, `governance/security/m
 Outputs: `evidence/security/threat_control_mapping_gate.json`.
 Fail reasons: Unmapped controls, missing owners, missing gate/workflow references, critical gates without mapped owners, metadata/matrix drift.
 Triage steps: Update threat control matrix and threat metadata IDs, wire missing gates in workflows, ensure owners and evidence paths are complete.
+
+## `security_super_gate_membership_guard_gate.py`
+Purpose: Prevent silent shrinkage of required core/extended super-gate membership.
+Inputs: `tooling/security/security_super_gate_manifest.json`, `governance/security/security_super_gate_membership_baseline.json`.
+Outputs: `evidence/security/security_super_gate_membership_guard_gate.json`.
+Fail reasons: Missing required core/extended gate entries or missing baseline/manifest.
+Triage steps: Restore required manifest entries or intentionally update baseline policy with review and signature updates.
+
+## `security_super_extended_compare_gate.py`
+Purpose: Classify failed super-gate checks into core vs extended categories and detect unknown failures.
+Inputs: `evidence/security/security_super_gate.json`, `tooling/security/security_super_gate_manifest.json`.
+Outputs: `evidence/security/security_super_extended_compare_gate.json`.
+Fail reasons: Missing source reports/manifests or failures that cannot be classified by manifest.
+Triage steps: Ensure the super-gate report exists, keep manifest aligned, and remediate unknown gate references.

@@ -1,0 +1,11 @@
+{
+  "required_core": [
+    "tooling/security/policy_signature_gate.py",
+    "tooling/security/provenance_signature_gate.py",
+    "tooling/security/evidence_attestation_gate.py"
+  ],
+  "required_extended": [
+    "tooling/security/evidence_chain_of_custody.py",
+    "tooling/security/disaster_recovery_drill_gate.py"
+  ]
+}

@@ -37,6 +37,8 @@ jobs:
         run: python tooling/security/evidence_run_dir_guard.py --run-id "${{ github.run_id }}-security-super-extended"
       - name: Security super gate (extended)
         run: python tooling/security/security_super_gate.py --strict-key --strict-prereqs --include-extended
+      - name: Extended super gate comparison report
+        run: python tooling/security/security_super_extended_compare_gate.py
       - name: Upload extended super gate artifacts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -44,3 +46,4 @@ jobs:
           retention-days: 30
           path: |
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_super_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_super_extended_compare_gate.json
