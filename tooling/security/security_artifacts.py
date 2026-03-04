@@ -43,6 +43,7 @@ def _load_lock_packages(path: Path) -> list[dict]:
 
 def main() -> int:
     from tooling.lib.path_config import evidence_root
+    from runtime.glyphser.security.artifact_signing import current_key, sign_file
 
     OUT = evidence_root() / "security"
     OUT.mkdir(parents=True, exist_ok=True)
@@ -57,6 +58,8 @@ def main() -> int:
     }
     sbom_path = OUT / "sbom.json"
     sbom_path.write_text(json.dumps(sbom, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    key = current_key()
+    (OUT / "sbom.json.sig").write_text(sign_file(sbom_path, key=key) + "\n", encoding="utf-8")
 
     prov = {
         "format": "glyphser-provenance-v1",
@@ -68,6 +71,7 @@ def main() -> int:
     }
     prov_path = OUT / "build_provenance.json"
     prov_path.write_text(json.dumps(prov, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (OUT / "build_provenance.json.sig").write_text(sign_file(prov_path, key=key) + "\n", encoding="utf-8")
     print("SECURITY_ARTIFACTS: PASS")
     return 0
 

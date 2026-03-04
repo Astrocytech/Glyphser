@@ -1,0 +1,58 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import json
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from runtime.glyphser.security.artifact_signing import current_key, verify_file
+from tooling.lib.path_config import evidence_root
+
+
+def _verify_pair(path: Path, sig_path: Path) -> tuple[bool, str]:
+    if not path.exists():
+        return False, "missing_artifact"
+    if not sig_path.exists():
+        return False, "missing_signature"
+    sig = sig_path.read_text(encoding="utf-8").strip()
+    if not sig:
+        return False, "empty_signature"
+    if not verify_file(path, sig, key=current_key()):
+        return False, "signature_mismatch"
+    return True, "ok"
+
+
+def main() -> int:
+    sec = evidence_root() / "security"
+    checks: dict[str, dict[str, str | bool]] = {}
+    pairs = [
+        ("sbom", sec / "sbom.json", sec / "sbom.json.sig"),
+        ("build_provenance", sec / "build_provenance.json", sec / "build_provenance.json.sig"),
+    ]
+    ok_all = True
+    for name, path, sig_path in pairs:
+        ok, reason = _verify_pair(path, sig_path)
+        checks[name] = {
+            "ok": ok,
+            "reason": reason,
+            "artifact": str(path.relative_to(ROOT)).replace("\\", "/"),
+            "signature": str(sig_path.relative_to(ROOT)).replace("\\", "/"),
+        }
+        if not ok:
+            ok_all = False
+
+    payload: dict[str, object] = {"status": "PASS" if ok_all else "FAIL", "checks": checks}
+    out = sec / "provenance_signature.json"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    print(f"PROVENANCE_SIGNATURE_GATE: {payload['status']}")
+    print(f"Report: {out}")
+    return 0 if ok_all else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

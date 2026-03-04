@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any, Dict
 
 SCHEMA_VERSION = 1
+_MAX_CHECKPOINT_BYTES = 10 * 1024 * 1024
 
 
 def _canonical_json(obj: Any) -> str:
@@ -76,7 +77,14 @@ class DurableStateStore:
         return out
 
     def restore_from_checkpoint(self, checkpoint_path: Path) -> Dict[str, str]:
-        payload = json.loads(checkpoint_path.read_text(encoding="utf-8"))
+        if checkpoint_path.suffix != ".json":
+            raise ValueError("checkpoint must be a .json file")
+        if checkpoint_path.is_symlink():
+            raise ValueError("symlink paths are not allowed")
+        safe_path = checkpoint_path.resolve(strict=True)
+        if safe_path.stat().st_size > _MAX_CHECKPOINT_BYTES:
+            raise ValueError("checkpoint file too large")
+        payload = json.loads(safe_path.read_text(encoding="utf-8"))
         if int(payload.get("schema_version", 0)) != SCHEMA_VERSION:
             raise ValueError("unsupported checkpoint schema version")
         state = payload.get("state")

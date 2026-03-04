@@ -21,6 +21,8 @@ def main() -> int:
         conformance_reports_root() / "latest.json",
         bundles / "hello-core-bundle.tar.gz",
         bundles / "hello-core-bundle.sha256",
+        ROOT / "evidence" / "security" / "sbom.json.sig",
+        ROOT / "evidence" / "security" / "build_provenance.json.sig",
     ]
 
     missing = [str(p) for p in required if not p.exists()]

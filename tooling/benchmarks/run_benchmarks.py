@@ -80,22 +80,22 @@ def run() -> dict[str, object]:
     first = service.submit_job(
         payload={"bench": True, "step": 1},
         token=AUTH_MARKER,
-        scope="bench",
+        scope="jobs:write",
         idempotency_key="bench-key",
     )
     service.submit_job(
         payload={"bench": True, "step": 1},
         token=AUTH_MARKER,
-        scope="bench",
+        scope="jobs:write",
         idempotency_key="bench-key",
     )
 
     status_metrics = _time_call(
-        lambda: service.status(first["job_id"], token=AUTH_MARKER, scope="bench"),
+        lambda: service.status(first["job_id"], token=AUTH_MARKER, scope="jobs:read"),
         repeats=2000,
     )
     evidence_metrics = _time_call(
-        lambda: service.evidence(first["job_id"], token=AUTH_MARKER, scope="bench"),
+        lambda: service.evidence(first["job_id"], token=AUTH_MARKER, scope="evidence:read"),
         repeats=500,
     )
 

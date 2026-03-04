@@ -160,14 +160,24 @@ jobs:
           pip install -e .[dev]
       - name: Bandit
         run: bandit -q -c tooling/security/bandit.yaml -r glyphser runtime tooling -l -ii
+      - name: Bandit (SARIF)
+        run: bandit -q -c tooling/security/bandit.yaml -r glyphser runtime tooling -f sarif -o bandit.sarif -l -ii
       - name: pip-audit gate
         run: python tooling/security/pip_audit_gate.py
       - name: Secret scan gate
         run: python tooling/security/secret_scan_gate.py
       - name: Workflow action pinning gate
         run: python tooling/security/workflow_pinning_gate.py
+      - name: Security artifacts
+        run: python tooling/security/security_artifacts.py
+      - name: Provenance signature gate
+        run: python tooling/security/provenance_signature_gate.py
       - name: Semgrep (SARIF)
         run: semgrep --config tooling/security/semgrep-rules.yml --error --sarif --output semgrep.sarif runtime glyphser tooling
+      - name: Upload Bandit SARIF to Code Scanning
+        uses: github/codeql-action/upload-sarif@c793e31f5d8b407fc63e2f79f4fc0488b92581e6
+        with:
+          sarif_file: bandit.sarif
       - name: Upload SARIF to Code Scanning
         uses: github/codeql-action/upload-sarif@c793e31f5d8b407fc63e2f79f4fc0488b92581e6
         with:
@@ -177,7 +187,13 @@ jobs:
         with:
           name: security-artifacts-${{ matrix.python-version }}
           path: |
+            bandit.sarif
             semgrep.sarif
             evidence/security/pip_audit.json
             evidence/security/secret_scan.json
             evidence/security/workflow_pinning.json
+            evidence/security/sbom.json
+            evidence/security/sbom.json.sig
+            evidence/security/build_provenance.json
+            evidence/security/build_provenance.json.sig
+            evidence/security/provenance_signature.json

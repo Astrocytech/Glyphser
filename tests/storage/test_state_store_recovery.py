@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytest
+
 from runtime.glyphser.storage.state_store import DurableStateStore
 
 
@@ -31,3 +33,11 @@ def test_corruption_quarantine_and_wal_replay(tmp_path: Path):
     current = recovered.recover()
     assert current["state_hash"] == first["state_hash"]
     assert list(recovered.quarantine_dir.glob("state.json.corrupt.*"))
+
+
+def test_restore_rejects_non_json_checkpoint(tmp_path: Path):
+    store = DurableStateStore(tmp_path / "store")
+    outside = tmp_path / "outside.txt"
+    outside.write_text('{"schema_version":1,"state":{"events":[],"last_event_hash":""}}\n', encoding="utf-8")
+    with pytest.raises(ValueError, match="\\.json"):
+        store.restore_from_checkpoint(outside)
