@@ -11,7 +11,7 @@ from tooling.security.advanced_policy import load_policy
 
 def _workflow_names() -> list[str]:
     names: list[str] = []
-    for path in (ROOT / ".github" / "workflows").glob("*.yml"):
+    for path in sorted((ROOT / ".github" / "workflows").glob("*.yml")):
         names.append(path.name)
     return sorted(names)
 
