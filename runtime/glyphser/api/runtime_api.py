@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import base64
 import hashlib
+import hmac
 import json
 import math
 import os
@@ -22,12 +24,12 @@ _MAX_PAYLOAD_ITEMS = 50_000
 _MAX_PAYLOAD_BYTES = 128 * 1024
 _MAX_IDEMPOTENCY_KEY_LENGTH = 128
 _MAX_SCOPE_LENGTH = 64
-_MAX_TOKEN_LENGTH = 256
+_MAX_TOKEN_LENGTH = 4096
 
 _JOB_ID_RE = re.compile(r"^[0-9a-f]{24}$")
 _PAYLOAD_KEY_RE = re.compile(r"^[A-Za-z0-9_.:-]{1,64}$")
 _IDEMPOTENCY_KEY_RE = re.compile(r"^[A-Za-z0-9_.:-]{1,128}$")
-_TOKEN_RE = re.compile(r"^[A-Za-z0-9_.:-]{1,256}$")
+_TOKEN_RE = re.compile(r"^[A-Za-z0-9_.:-]{1,4096}$")
 
 
 def _first_existing(candidates: list[Path]) -> Path:
@@ -213,6 +215,11 @@ def _shannon_entropy_bits(text: str) -> float:
     return entropy * len(text)
 
 
+def _b64url_decode(data: str) -> bytes:
+    pad = "=" * ((4 - (len(data) % 4)) % 4)
+    return base64.urlsafe_b64decode(data + pad)
+
+
 @dataclass(frozen=True)
 class RuntimeApiConfig:
     root: Path
@@ -246,6 +253,14 @@ class RuntimeApiConfig:
     replay_token_max_uses: int = 500
     idempotency_ttl_seconds: int = 86_400
     idempotency_max_entries: int = 10_000
+    enforce_signed_tokens: bool = False
+    token_hmac_key_env: str = "GLYPHSER_RUNTIME_API_TOKEN_HMAC_KEY"
+    token_issuer: str = "glyphser-runtime"
+    token_audience: str = "glyphser-runtime-api"
+    token_clock_skew_seconds: int = 60
+    enforce_token_jti_replay_protection: bool = False
+    token_jti_ttl_seconds: int = 3600
+    token_jti_max_entries: int = 10_000
 
 
 class RuntimeApiService:
@@ -507,10 +522,81 @@ class RuntimeApiService:
             return out
 
     @staticmethod
-    def _roles_from_token(token: str) -> list[str]:
+    def _roles_from_token(token: str, claims: dict[str, Any] | None = None) -> list[str]:
+        if isinstance(claims, dict):
+            raw_roles = claims.get("roles", [])
+            if isinstance(raw_roles, list):
+                roles = [str(x).strip() for x in raw_roles if isinstance(x, str) and str(x).strip()]
+                if roles:
+                    return roles
         if token.startswith("role:"):
             return [token.split(":", 1)[1]]
         return ["admin"]
+
+    def _token_hmac_key(self) -> str:
+        return os.environ.get(self._config.token_hmac_key_env, "")
+
+    def _parse_signed_token_claims(self, token: str) -> dict[str, Any] | None:
+        if not token.startswith("sig:"):
+            return None
+        raw = token[4:]
+        if "." not in raw:
+            raise ValueError("token signature format invalid")
+        payload_b64, sig_hex = raw.rsplit(".", 1)
+        if not payload_b64 or not sig_hex:
+            raise ValueError("token signature format invalid")
+        key = self._token_hmac_key()
+        if not key:
+            raise ValueError("missing signed token verification key")
+        expected = hmac.new(key.encode("utf-8"), payload_b64.encode("ascii"), hashlib.sha256).hexdigest()
+        if not hmac.compare_digest(expected, sig_hex):
+            raise ValueError("token signature invalid")
+        try:
+            claims_raw = _b64url_decode(payload_b64).decode("utf-8")
+            claims = json.loads(claims_raw)
+        except Exception as exc:
+            raise ValueError("token payload invalid") from exc
+        if not isinstance(claims, dict):
+            raise ValueError("token claims invalid")
+        return claims
+
+    def _validate_signed_token(self, token: str, *, scope: str, state: dict[str, Any] | None = None) -> dict[str, Any]:
+        claims = self._parse_signed_token_claims(token)
+        if claims is None:
+            if self._config.enforce_signed_tokens:
+                raise ValueError("signed token required")
+            return {}
+        iss = str(claims.get("iss", "")).strip()
+        aud = str(claims.get("aud", "")).strip()
+        if iss != self._config.token_issuer:
+            raise ValueError("token issuer invalid")
+        valid_aud = {self._config.token_audience, f"{self._config.token_audience}:{scope}", scope}
+        if aud not in valid_aud:
+            raise ValueError("token audience invalid")
+        exp = claims.get("exp")
+        now = int(time.time())
+        skew = max(0, int(self._config.token_clock_skew_seconds))
+        if not isinstance(exp, int):
+            raise ValueError("token expiry invalid")
+        if exp < (now - skew):
+            raise ValueError("token expired")
+        token_scope = str(claims.get("scope", "")).strip()
+        if token_scope and token_scope != scope:
+            raise ValueError("token scope mismatch")
+        if self._config.enforce_token_jti_replay_protection:
+            jti = str(claims.get("jti", "")).strip()
+            if not jti:
+                raise ValueError("token jti missing")
+            if state is None:
+                raise ValueError("token state required")
+            self._prune_token_jti_cache(state)
+            seen = state.setdefault("token_jti_seen", {})
+            if not isinstance(seen, dict):
+                raise ValueError("invalid token_jti_seen state")
+            if jti in seen:
+                raise ValueError("token jti replay detected")
+            seen[jti] = now
+        return claims
 
     def _token_policy_enforced(self) -> bool:
         if not self._config.enforce_token_policy:
@@ -555,11 +641,12 @@ class RuntimeApiService:
             return min(base, max(1, base // 3))
         return base
 
-    def _require_auth(self, token: str, action: str) -> None:
+    def _require_auth(self, token: str, action: str, *, scope: str, state: dict[str, Any] | None = None) -> None:
         if not isinstance(token, str) or not token.strip():
             raise ValueError("missing auth token")
         if len(token) > _MAX_TOKEN_LENGTH:
             raise ValueError("token too long")
+        claims = self._validate_signed_token(token, scope=scope, state=state)
         if self._token_policy_enforced():
             if len(token) < 8 and not token.startswith("role:"):
                 raise ValueError("token too short")
@@ -569,7 +656,7 @@ class RuntimeApiService:
                 raise ValueError("weak token pattern not allowed")
             if _shannon_entropy_bits(token) < float(self._config.min_token_entropy_bits):
                 raise ValueError("token entropy below minimum")
-        roles = self._roles_from_token(token)
+        roles = self._roles_from_token(token, claims=claims)
         if not authorize(action, roles):
             raise ValueError(f"unauthorized action: {action}")
 
@@ -578,7 +665,8 @@ class RuntimeApiService:
             with self._lock:
                 state = self._load_state()
                 self._enforce_auth_failure_cooldown(state, token=token)
-            self._require_auth(token=token, action=action)
+                self._require_auth(token=token, action=action, scope=scope, state=state)
+                self._save_state(state)
         except ValueError:
             with self._lock:
                 state = self._load_state()
@@ -614,6 +702,7 @@ class RuntimeApiService:
                 "idempotency": {},
                 "idempotency_meta": {},
                 "replay_tokens": {},
+                "token_jti_seen": {},
                 "quotas": {
                     "token_requests": {},
                     "token_submits": {},
@@ -636,6 +725,7 @@ class RuntimeApiService:
         data.setdefault("idempotency", {})
         data.setdefault("idempotency_meta", {})
         data.setdefault("replay_tokens", {})
+        data.setdefault("token_jti_seen", {})
         quotas = data.setdefault("quotas", {})
         if not isinstance(quotas, dict):
             raise ValueError("invalid state quotas")
@@ -651,6 +741,8 @@ class RuntimeApiService:
         quotas.setdefault("replay_window_by_job", {})
         quotas.setdefault("replay_window_job_tokens", {})
         quotas.setdefault("job_read_window", {})
+        if not isinstance(data.get("token_jti_seen"), dict):
+            raise ValueError("invalid token_jti_seen")
         return data
 
     def _save_state(self, state: Dict[str, Any]) -> None:
@@ -688,6 +780,26 @@ class RuntimeApiService:
             for key, _ in ordered[:drop]:
                 idx.pop(key, None)
                 legacy.pop(key, None)
+
+    def _prune_token_jti_cache(self, state: Dict[str, Any]) -> None:
+        ttl = max(1, int(self._config.token_jti_ttl_seconds))
+        cap = max(1, int(self._config.token_jti_max_entries))
+        now = int(time.time())
+        seen = state.get("token_jti_seen", {})
+        if not isinstance(seen, dict):
+            seen = {}
+            state["token_jti_seen"] = seen
+        expired: list[str] = []
+        for jti, ts in seen.items():
+            if not isinstance(jti, str) or not isinstance(ts, int) or (now - ts) >= ttl:
+                expired.append(jti)
+        for jti in expired:
+            seen.pop(jti, None)
+        if len(seen) > cap:
+            ordered = sorted((k, int(v)) for k, v in seen.items() if isinstance(v, int))
+            drop = max(0, len(seen) - cap)
+            for key, _ in ordered[:drop]:
+                seen.pop(key, None)
 
     def _enforce_replay_token_lifecycle(self, *, state: Dict[str, Any], job_id: str, token: str) -> None:
         if not self._config.enforce_replay_token_binding:

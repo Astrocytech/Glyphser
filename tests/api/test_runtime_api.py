@@ -1,11 +1,40 @@
 from __future__ import annotations
 
+import base64
+import hashlib
+import hmac
 import json
+import time
 from pathlib import Path
 
 from runtime.glyphser.api.runtime_api import RuntimeApiConfig, RuntimeApiService
 
 ROOT = Path(__file__).resolve().parents[2]
+
+
+def _signed_token(
+    *,
+    key: str,
+    scope: str,
+    aud: str,
+    roles: list[str] | None = None,
+    jti: str = "jti-1",
+    exp: int | None = None,
+    iss: str = "glyphser-runtime",
+) -> str:
+    payload = {
+        "iss": iss,
+        "sub": "test-subject",
+        "scope": scope,
+        "aud": aud,
+        "exp": int(time.time()) + 3600 if exp is None else int(exp),
+        "jti": jti,
+        "roles": roles or ["operator"],
+    }
+    raw = json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode("utf-8")
+    payload_b64 = base64.urlsafe_b64encode(raw).decode("ascii").rstrip("=")
+    sig = hmac.new(key.encode("utf-8"), payload_b64.encode("ascii"), hashlib.sha256).hexdigest()
+    return f"sig:{payload_b64}.{sig}"
 
 
 def test_submit_idempotency_and_status(tmp_path: Path):
@@ -484,3 +513,81 @@ def test_replay_failure_reason_hidden_by_default(tmp_path: Path):
     out = svc.replay(job["job_id"], token="token-reason", scope="replay:run")
     assert out["replay_verdict"] == "FAIL"
     assert "reason" not in out
+
+
+def test_signed_token_auth_succeeds_when_valid(monkeypatch, tmp_path: Path):
+    key = "runtime-api-test-secret"
+    monkeypatch.setenv("GLYPHSER_RUNTIME_API_TOKEN_HMAC_KEY", key)
+    svc = RuntimeApiService(
+        RuntimeApiConfig(
+            root=ROOT,
+            state_path=tmp_path / "state.json",
+            enforce_signed_tokens=True,
+        )
+    )
+    token = _signed_token(key=key, scope="jobs:write", aud="glyphser-runtime-api:jobs:write", jti="signed-ok")
+    out = svc.submit_job(payload={"payload": {"x": 1}}, token=token, scope="jobs:write")
+    assert out["status"] == "accepted"
+
+
+def test_signed_token_rejected_when_expired(monkeypatch, tmp_path: Path):
+    key = "runtime-api-test-secret"
+    monkeypatch.setenv("GLYPHSER_RUNTIME_API_TOKEN_HMAC_KEY", key)
+    svc = RuntimeApiService(
+        RuntimeApiConfig(
+            root=ROOT,
+            state_path=tmp_path / "state.json",
+            enforce_signed_tokens=True,
+            token_clock_skew_seconds=0,
+        )
+    )
+    token = _signed_token(
+        key=key,
+        scope="jobs:write",
+        aud="glyphser-runtime-api:jobs:write",
+        exp=int(time.time()) - 1,
+        jti="signed-expired",
+    )
+    try:
+        svc.submit_job(payload={"payload": {"x": 1}}, token=token, scope="jobs:write")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "expired" in str(exc)
+
+
+def test_signed_token_rejected_on_audience_mismatch(monkeypatch, tmp_path: Path):
+    key = "runtime-api-test-secret"
+    monkeypatch.setenv("GLYPHSER_RUNTIME_API_TOKEN_HMAC_KEY", key)
+    svc = RuntimeApiService(
+        RuntimeApiConfig(
+            root=ROOT,
+            state_path=tmp_path / "state.json",
+            enforce_signed_tokens=True,
+        )
+    )
+    token = _signed_token(key=key, scope="jobs:write", aud="glyphser-runtime-api:jobs:read", jti="signed-bad-aud")
+    try:
+        svc.submit_job(payload={"payload": {"x": 1}}, token=token, scope="jobs:write")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "audience invalid" in str(exc)
+
+
+def test_signed_token_jti_replay_protection(monkeypatch, tmp_path: Path):
+    key = "runtime-api-test-secret"
+    monkeypatch.setenv("GLYPHSER_RUNTIME_API_TOKEN_HMAC_KEY", key)
+    svc = RuntimeApiService(
+        RuntimeApiConfig(
+            root=ROOT,
+            state_path=tmp_path / "state.json",
+            enforce_signed_tokens=True,
+            enforce_token_jti_replay_protection=True,
+        )
+    )
+    token = _signed_token(key=key, scope="jobs:write", aud="glyphser-runtime-api:jobs:write", jti="reused-jti")
+    _ = svc.submit_job(payload={"payload": {"x": 1}}, token=token, scope="jobs:write")
+    try:
+        svc.submit_job(payload={"payload": {"x": 2}}, token=token, scope="jobs:write")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "jti replay" in str(exc)
