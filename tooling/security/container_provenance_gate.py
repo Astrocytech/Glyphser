@@ -12,6 +12,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tooling.lib.path_config import evidence_root
+from tooling.security.report_io import write_json_report
 
 
 def main() -> int:
@@ -49,10 +50,16 @@ def main() -> int:
         "skipped": skipped,
         "strict_mode": strict_mode,
         "findings": findings,
+        "summary": {
+            "strict_mode": strict_mode,
+            "skipped": skipped,
+            "has_container_artifacts": has_container_artifacts,
+            "required_files": len(required_files),
+        },
+        "metadata": {"gate": "container_provenance_gate"},
     }
     out = evidence_root() / "security" / "container_provenance.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, payload)
     print(f"CONTAINER_PROVENANCE_GATE: {status}")
     print(f"Report: {out}")
     return 0 if status == "PASS" else 1

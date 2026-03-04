@@ -11,6 +11,7 @@ _sp = importlib.import_module("".join(["sub", "process"]))
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -36,10 +37,13 @@ def main(argv: list[str] | None = None) -> int:
     proc = _sp.run(cmd, cwd=str(ROOT), capture_output=True, text=True)
 
     status = "PASS"
+    findings: list[str] = []
     if proc.returncode == 1:
         status = "FAIL" if args.strict else "WARN"
+        findings.append("vulnerabilities_reported")
     elif proc.returncode != 0:
         status = "FAIL"
+        findings.append("pip_audit_execution_failed")
 
     payload: dict[str, object] = {
         "status": status,
@@ -48,6 +52,13 @@ def main(argv: list[str] | None = None) -> int:
         "strict": args.strict,
         "stdout": proc.stdout,
         "stderr": proc.stderr,
+        "findings": findings,
+        "summary": {
+            "returncode": proc.returncode,
+            "strict_mode": args.strict,
+            "had_stdout": bool(proc.stdout.strip()),
+        },
+        "metadata": {"gate": "pip_audit_gate"},
     }
     if proc.stdout.strip():
         try:
@@ -55,8 +66,7 @@ def main(argv: list[str] | None = None) -> int:
         except json.JSONDecodeError:
             payload["report_parse_error"] = "stdout was not valid JSON"
 
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, payload)
 
     print(f"PIP_AUDIT_GATE: {payload['status']}")
     print(f"Report: {out}")

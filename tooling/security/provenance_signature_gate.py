@@ -57,6 +57,11 @@ def main(argv: list[str] | None = None) -> int:
     payload: dict[str, object] = {
         "status": "PASS" if ok_all else "FAIL",
         "checks": checks,
+        "findings": [f"{name}:{meta['reason']}" for name, meta in checks.items() if not bool(meta["ok"])],
+        "summary": {
+            "checked_artifacts": len(checks),
+            "failed_artifacts": sum(1 for meta in checks.values() if not bool(meta["ok"])),
+        },
         "metadata": {"key_provenance": key_metadata(strict=args.strict_key), "gate": "provenance_signature_gate"},
     }
     out = sec / "provenance_signature.json"

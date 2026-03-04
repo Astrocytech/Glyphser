@@ -12,6 +12,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 WORKFLOWS = ROOT / ".github" / "workflows"
 EVIDENCE_ROOT_ENV_NAME = "GLYPHSER_EVIDENCE_ROOT"
@@ -57,10 +58,10 @@ def main(argv: list[str] | None = None) -> int:
             "failing_workflows": sum(1 for r in rows if r["status"] != "PASS"),
             "rows": rows,
         },
+        "metadata": {"gate": "workflow_evidence_scope_gate"},
     }
     out = evidence_root() / "security" / "workflow_evidence_scope_gate.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, report)
     print(f"WORKFLOW_EVIDENCE_SCOPE_GATE: {report['status']}")
     print(f"Report: {out}")
     return 0 if report["status"] == "PASS" else 1

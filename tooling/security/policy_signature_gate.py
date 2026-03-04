@@ -78,6 +78,11 @@ def main(argv: list[str] | None = None) -> int:
         "status": "PASS" if not findings else "FAIL",
         "checks": checks,
         "findings": findings,
+        "summary": {
+            "total_policies": len(policies),
+            "failed_policies": len(findings),
+            "strict_key": args.strict_key,
+        },
         "metadata": {"key_provenance": key_metadata(strict=args.strict_key), "gate": "policy_signature_gate"},
     }
     out = evidence_root() / "security" / "policy_signature.json"

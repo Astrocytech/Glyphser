@@ -8,6 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
+from tooling.security.report_io import write_json_report
 
 SECRET_PATTERNS = [
     re.compile(r"-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----"),
@@ -121,6 +122,14 @@ def main() -> int:
         status = "FAIL"
     report = {
         "status": status,
+        "findings": [f"missing_required:{item}" for item in missing],
+        "summary": {
+            "missing_required_count": len(missing),
+            "secret_scan_status": secret_scan.get("status", "UNKNOWN"),
+            "rbac_status": rbac.get("status", "UNKNOWN"),
+            "audit_status": audit.get("status", "UNKNOWN"),
+        },
+        "metadata": {"gate": "security_baseline_gate"},
         "missing_required": missing,
         "secret_scan": secret_scan,
         "rbac_checks": rbac,
@@ -129,7 +138,7 @@ def main() -> int:
         "dast": {"status": "PASS"},
         "sca": {"status": "PASS"},
     }
-    (OUT / "latest.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(OUT / "latest.json", report)
     if status == "PASS":
         print("SECURITY_BASELINE_GATE: PASS")
         return 0
