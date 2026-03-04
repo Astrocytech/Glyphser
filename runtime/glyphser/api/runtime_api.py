@@ -12,6 +12,11 @@ from typing import Any, Dict
 from runtime.glyphser.security.audit import append_event
 from runtime.glyphser.security.authz import authorize
 
+_MAX_PAYLOAD_DEPTH = 16
+_MAX_PAYLOAD_ITEMS = 50_000
+_MAX_PAYLOAD_BYTES = 128 * 1024
+_MAX_IDEMPOTENCY_KEY_LENGTH = 128
+
 
 def _first_existing(candidates: list[Path]) -> Path:
     for path in candidates:
@@ -30,6 +35,34 @@ def _sha256_text(text: str) -> str:
 
 def _sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _validate_payload(payload: Dict[str, Any]) -> None:
+    if not isinstance(payload, dict):
+        raise ValueError("payload must be dict")
+
+    stack: list[tuple[Any, int]] = [(payload, 0)]
+    seen_items = 0
+    while stack:
+        current, depth = stack.pop()
+        seen_items += 1
+        if seen_items > _MAX_PAYLOAD_ITEMS:
+            raise ValueError("payload too complex")
+        if depth > _MAX_PAYLOAD_DEPTH:
+            raise ValueError("payload too deeply nested")
+
+        if isinstance(current, dict):
+            for key, value in current.items():
+                if not isinstance(key, str):
+                    raise ValueError("payload keys must be strings")
+                stack.append((value, depth + 1))
+        elif isinstance(current, list):
+            for value in current:
+                stack.append((value, depth + 1))
+        elif current is None or isinstance(current, (bool, int, float, str)):
+            continue
+        else:
+            raise ValueError(f"unsupported payload type: {type(current).__name__}")
 
 
 @dataclass(frozen=True)
@@ -56,6 +89,9 @@ class RuntimeApiService:
         idempotency_key: str | None = None,
     ) -> Dict[str, Any]:
         self._require_auth(token=token, action="jobs:write")
+        _validate_payload(payload)
+        if idempotency_key and len(idempotency_key) > _MAX_IDEMPOTENCY_KEY_LENGTH:
+            raise ValueError("idempotency_key too long")
         with self._lock:
             state = self._load_state()
 
@@ -67,6 +103,8 @@ class RuntimeApiService:
                     return out
 
             payload_text = _canonical_json(payload)
+            if len(payload_text.encode("utf-8")) > _MAX_PAYLOAD_BYTES:
+                raise ValueError("payload too large")
             basis = f"job:{idempotency_key or payload_text}"
             job_id = _sha256_text(basis)[:24]
             trace_id = _sha256_text(f"trace:{job_id}:{payload_text}")[:32]

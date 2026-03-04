@@ -14,6 +14,11 @@ _ALLOWED_DTYPES = {
     "int32": 4,
     "int64": 8,
 }
+_MAX_NODE_COUNT = 4096
+_MAX_INPUTS_PER_NODE = 256
+_MAX_SHAPE_RANK = 16
+_MAX_DIM_VALUE = 1_000_000
+_MAX_TENSOR_BYTES = 2 * 1024 * 1024 * 1024
 
 
 class IRValidationError(ValueError):
@@ -61,6 +66,8 @@ def _normalize_inputs(inputs: Any) -> List[Dict[str, Any]]:
                     raise IRValidationError("input reference missing node_id/input_key")
             else:
                 raise IRValidationError("input reference must be string or dict")
+        if len(normalized) > _MAX_INPUTS_PER_NODE:
+            raise IRValidationError("too many input references")
         return normalized
     raise IRValidationError("inputs must be list")
 
@@ -69,9 +76,11 @@ def _normalize_shape(shape: Any) -> List[int]:
     if shape is None:
         raise IRValidationError("shape_out missing")
     if isinstance(shape, list):
+        if len(shape) > _MAX_SHAPE_RANK:
+            raise IRValidationError("shape rank too large")
         out: List[int] = []
         for dim in shape:
-            if not isinstance(dim, int) or dim < 0:
+            if not isinstance(dim, int) or dim < 0 or dim > _MAX_DIM_VALUE:
                 raise IRValidationError("shape_out must contain non-negative ints")
             out.append(dim)
         return out
@@ -103,6 +112,8 @@ def validate_ir_dag(ir_dag: Any) -> Dict[str, Any]:
     ir = _require_dict(ir_dag, "ir_dag")
     nodes_raw = ir.get("nodes") or ir.get("operators")
     nodes_list = _require_list(nodes_raw, "nodes")
+    if len(nodes_list) > _MAX_NODE_COUNT:
+        raise IRValidationError("too many nodes")
 
     ir_schema_hash = ir.get("ir_schema_hash")
     if not isinstance(ir_schema_hash, str) or not ir_schema_hash:
@@ -122,6 +133,8 @@ def validate_ir_dag(ir_dag: Any) -> Dict[str, Any]:
         inputs = _normalize_inputs(node.get("inputs"))
         shape_out = _normalize_shape(node.get("shape_out") or node.get("shape"))
         dtype = _normalize_dtype(node.get("dtype"))
+        if tensor_size_bytes(shape_out, dtype) > _MAX_TENSOR_BYTES:
+            raise IRValidationError(f"tensor size exceeds limit for node: {nid}")
         normalized_nodes.append(
             {
                 "node_id": nid,

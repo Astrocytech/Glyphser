@@ -45,3 +45,45 @@ def test_submit_rejects_unauthorized_role(tmp_path: Path):
         assert False, "expected ValueError"
     except ValueError as exc:
         assert "unauthorized action" in str(exc)
+
+
+def test_submit_rejects_payload_too_large(tmp_path: Path):
+    svc = RuntimeApiService(RuntimeApiConfig(root=ROOT, state_path=tmp_path / "state.json"))
+    payload = {"payload": {"blob": "x" * (130 * 1024)}}
+    try:
+        svc.submit_job(payload=payload, token="token-a", scope="jobs:write")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "payload too large" in str(exc)
+
+
+def test_submit_rejects_payload_too_deep(tmp_path: Path):
+    svc = RuntimeApiService(RuntimeApiConfig(root=ROOT, state_path=tmp_path / "state.json"))
+    payload: dict[str, object] = {"n0": {}}
+    cursor = payload["n0"]
+    assert isinstance(cursor, dict)
+    for ix in range(20):
+        cursor[f"n{ix + 1}"] = {}
+        nxt = cursor[f"n{ix + 1}"]
+        assert isinstance(nxt, dict)
+        cursor = nxt
+    try:
+        svc.submit_job(payload=payload, token="token-a", scope="jobs:write")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "payload too deeply nested" in str(exc)
+
+
+def test_submit_rejects_long_idempotency_key(tmp_path: Path):
+    svc = RuntimeApiService(RuntimeApiConfig(root=ROOT, state_path=tmp_path / "state.json"))
+    long_key = "k" * 129
+    try:
+        svc.submit_job(
+            payload={"payload": {"x": 1}},
+            token="token-a",
+            scope="jobs:write",
+            idempotency_key=long_key,
+        )
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "idempotency_key too long" in str(exc)

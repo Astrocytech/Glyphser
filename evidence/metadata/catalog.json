@@ -33,7 +33,7 @@
       "generated_by": "tooling/release/generate_traceability_index.py",
       "path": "evidence/traceability/index.json",
       "schema_version": "glyphser-traceability-index.v1",
-      "sha256": "ccbcf8700c546aefae3e33ae0526ccc0b9160219322826020160951c7c69413a",
+      "sha256": "b14359dac98736d0e2a20657a4cee0eec27ce0b6ee17abb0cee1b64f52deb36a",
       "source_fixture": "all"
     },
     {
@@ -55,7 +55,7 @@
       "source_fixture": "release"
     }
   ],
-  "generated_at_utc": "2026-03-04T00:56:55.024974+00:00",
+  "generated_at_utc": "2026-03-04T01:04:28.128989+00:00",
   "generator": "tooling/release/generate_evidence_metadata.py",
   "schema_version": "glyphser-evidence-catalog.v1"
 }
