@@ -104,6 +104,10 @@ jobs:
         run: python tooling/security/conformance_security_coupling_gate.py
       - name: Security super gate
         run: python tooling/security/security_super_gate.py --strict-key --strict-prereqs
+      - name: Security event export
+        run: python tooling/security/security_event_export.py
+      - name: Security event schema gate
+        run: python tooling/security/security_event_schema_gate.py
       - name: Security SLO report
         run: python tooling/security/security_slo_report.py
       - name: Security trend gate
@@ -159,6 +163,9 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_evidence_scope_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/conformance_security_coupling.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_super_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_events.jsonl
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_event_export.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_event_schema_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_slo_report.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_trend_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_dashboard.json
@@ -224,6 +231,8 @@ jobs:
           python tooling/security/workflow_evidence_scope_gate.py
           python tooling/security/conformance_security_coupling_gate.py
           python tooling/security/security_super_gate.py --strict-key --strict-prereqs
+          python tooling/security/security_event_export.py
+          python tooling/security/security_event_schema_gate.py
           python tooling/security/security_slo_report.py
           python tooling/security/security_trend_gate.py
           python tooling/security/security_dashboard_export.py

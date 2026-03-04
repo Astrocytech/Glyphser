@@ -193,6 +193,8 @@ def main(argv: list[str] | None = None) -> int:
         ),
         [sys.executable, "tooling/security/security_cross_gate_consistency_gate.py"],
         [sys.executable, "tooling/security/security_actionable_findings_gate.py"],
+        [sys.executable, "tooling/security/security_event_export.py"],
+        [sys.executable, "tooling/security/security_event_schema_gate.py"],
         [sys.executable, "tooling/security/slsa_attestation_gate.py"],
         [sys.executable, "tooling/security/workflow_evidence_scope_gate.py"],
         [sys.executable, "tooling/security/conformance_security_coupling_gate.py"],

@@ -130,6 +130,8 @@ jobs:
           python tooling/security/security_slo_report.py
           python tooling/security/security_trend_gate.py
           python tooling/security/security_dashboard_export.py
+          python tooling/security/security_event_export.py
+          python tooling/security/security_event_schema_gate.py
           python tooling/security/security_schema_normalization_gate.py
           python tooling/security/incident_bundle_collect.py --incident-id "${{ github.run_id }}"
           python tooling/security/tabletop_replay.py --bundle "${{ env.GLYPHSER_EVIDENCE_ROOT }}/incident/incident-bundle-${{ github.run_id }}.tar.gz"
@@ -205,6 +207,9 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_trend_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_trend_alert.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_dashboard.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_events.jsonl
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_event_export.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_event_schema_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_schema_normalization_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/tabletop_replay.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/cosign_attestation_gate.json

@@ -30,6 +30,8 @@ def test_release_workflow_enforces_signature_verification() -> None:
     assert "python tooling/security/workflow_evidence_scope_gate.py" in release
     assert "python tooling/security/conformance_security_coupling_gate.py" in release
     assert "python tooling/security/security_super_gate.py --strict-key" in release
+    assert "python tooling/security/security_event_export.py" in release
+    assert "python tooling/security/security_event_schema_gate.py" in release
     assert "python tooling/security/live_rollout_gate.py --profile release" in release
     assert "GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/release-build" in release
     assert "GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/release-verify" in release

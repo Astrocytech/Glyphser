@@ -1,0 +1,15 @@
+{
+  "required_fields": [
+    "event_type",
+    "severity",
+    "control_id",
+    "run_id",
+    "artifact_ref"
+  ],
+  "allowed_severities": [
+    "low",
+    "medium",
+    "high"
+  ],
+  "event_type": "security_gate_status"
+}

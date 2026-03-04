@@ -324,6 +324,10 @@ jobs:
         run: python tooling/security/signature_algorithm_policy_gate.py
       - name: Security verification summary
         run: python tooling/security/security_verification_summary.py --strict-key
+      - name: Security event export
+        run: python tooling/security/security_event_export.py
+      - name: Security event schema gate
+        run: python tooling/security/security_event_schema_gate.py
       - name: SLSA attestation gate
         run: python tooling/security/slsa_attestation_gate.py
       - name: Workflow evidence scope gate
@@ -436,6 +440,9 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/signature_algorithm_policy_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_verification_summary.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_verification_summary.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_events.jsonl
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_event_export.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_event_schema_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/slsa_attestation.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_evidence_scope_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/conformance_security_coupling.json
