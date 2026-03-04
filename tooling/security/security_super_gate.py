@@ -52,12 +52,16 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="Fail early if required tools/env/evidence prerequisites are missing.",
     )
+    parser.add_argument(
+        "--include-extended",
+        action="store_true",
+        help="Also run extended hardening gates that are outside baseline CI sequencing.",
+    )
     args = parser.parse_args([] if argv is None else argv)
     prereq_findings = _prereq_failures(strict_prereqs=args.strict_prereqs, strict_key=args.strict_key)
 
     gates: list[list[str]] = [
         [sys.executable, "tooling/security/security_toolchain_gate.py"],
-        [sys.executable, "tooling/security/key_management_gate.py"],
         [sys.executable, "tooling/security/governance_markdown_gate.py"],
         [sys.executable, "tooling/security/review_policy_gate.py"],
         [sys.executable, "tooling/security/file_permissions_gate.py"],
@@ -77,6 +81,32 @@ def main(argv: list[str] | None = None) -> int:
         [sys.executable, "tooling/security/temporary_waiver_gate.py"],
         [sys.executable, "tooling/security/provenance_revocation_gate.py"],
         [sys.executable, "tooling/security/report_secret_leak_gate.py"],
+        [sys.executable, "tooling/security/third_party_pentest_gate.py", "--strict-key"],
+        [sys.executable, "tooling/security/live_integrations_verify.py", "--dry-run"],
+        [sys.executable, "tooling/security/live_rollout_gate.py", "--allow-dry-run", "--allow-missing"],
+        [sys.executable, "tooling/security/container_provenance_gate.py"],
+        (
+            [sys.executable, "tooling/security/evidence_attestation_index.py", "--strict-key"]
+            if args.strict_key
+            else [sys.executable, "tooling/security/evidence_attestation_index.py"]
+        ),
+        (
+            [sys.executable, "tooling/security/evidence_attestation_gate.py", "--strict-key"]
+            if args.strict_key
+            else [sys.executable, "tooling/security/evidence_attestation_gate.py"]
+        ),
+        (
+            [sys.executable, "tooling/security/provenance_signature_gate.py", "--strict-key"]
+            if args.strict_key
+            else [sys.executable, "tooling/security/provenance_signature_gate.py"]
+        ),
+        [sys.executable, "tooling/security/slsa_attestation_gate.py"],
+        [sys.executable, "tooling/security/workflow_evidence_scope_gate.py"],
+        [sys.executable, "tooling/security/conformance_security_coupling_gate.py"],
+    ]
+
+    extended_gates: list[list[str]] = [
+        [sys.executable, "tooling/security/key_management_gate.py"],
         [sys.executable, "tooling/security/cosign_attestation_gate.py"],
         [sys.executable, "tooling/security/release_rollback_provenance_gate.py"],
         [sys.executable, "tooling/security/emergency_lockdown_gate.py"],
@@ -90,7 +120,6 @@ def main(argv: list[str] | None = None) -> int:
             if args.strict_key
             else [sys.executable, "tooling/security/evidence_chain_of_custody.py", "--verify"]
         ),
-        [sys.executable, "tooling/security/conformance_security_coupling_gate.py"],
         [sys.executable, "tooling/security/security_slo_report.py"],
         [sys.executable, "tooling/security/security_trend_gate.py"],
         [sys.executable, "tooling/security/security_dashboard_export.py"],
@@ -125,6 +154,8 @@ def main(argv: list[str] | None = None) -> int:
         [sys.executable, "tooling/security/archive_integrity_revalidation_gate.py"],
         [sys.executable, "tooling/security/compromised_runner_drill.py"],
     ]
+    if args.include_extended:
+        gates.extend(extended_gates)
 
     results = [_run(cmd) for cmd in gates]
     failures = [r for r in results if r["status"] != "PASS"]
