@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "workflows": [
+    "branch-protection-ops.yml",
+    "ci.yml",
+    "conformance-gate.yml",
+    "emergency-lockdown.yml",
+    "fuzz-nightly.yml",
+    "push-button.yml",
+    "registry-gate.yml",
+    "release.yml",
+    "reproducible-build.yml",
+    "schema-gate.yml",
+    "security-audit-archive.yml",
+    "security-baseline-update.yml",
+    "security-live-integrations.yml",
+    "security-maintenance.yml",
+    "security-penetration.yml",
+    "security-super-extended.yml",
+    "security-tamper-canary.yml",
+    "security-tamper-e2e.yml"
+  ]
+}

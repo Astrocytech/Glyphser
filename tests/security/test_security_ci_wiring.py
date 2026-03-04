@@ -22,6 +22,7 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/security_super_gate_manifest_gate.py" in ci
     assert "python tooling/security/workflow_artifact_retention_gate.py" in ci
     assert "python tooling/security/semgrep_rules_self_check_gate.py" in ci
+    assert "python tooling/security/workflow_policy_coverage_gate.py" in ci
     assert "python tooling/security/workflow_risky_patterns_gate.py" in ci
     assert "python tooling/security/workflow_deprecated_invocation_gate.py" in ci
     assert "python tooling/security/policy_schema_validation_gate.py" in ci

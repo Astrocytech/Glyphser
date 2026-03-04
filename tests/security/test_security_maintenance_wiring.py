@@ -18,6 +18,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/security_super_gate_manifest_gate.py" in wf
     assert "python tooling/security/workflow_artifact_retention_gate.py" in wf
     assert "python tooling/security/semgrep_rules_self_check_gate.py" in wf
+    assert "python tooling/security/workflow_policy_coverage_gate.py" in wf
     assert "python tooling/security/security_evidence_corruption_gate.py" in wf
     assert "python tooling/security/security_toolchain_gate.py" in wf
     assert "python tooling/security/workflow_risky_patterns_gate.py" in wf
@@ -57,6 +58,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "security_super_gate_manifest_gate.json" in wf
     assert "workflow_artifact_retention_gate.json" in wf
     assert "semgrep_rules_self_check_gate.json" in wf
+    assert "workflow_policy_coverage_gate.json" in wf
     assert "security_evidence_corruption_gate.json" in wf
     assert "security_workflow_trigger_gate.json" in wf
     assert "security_critical_test_wiring_gate.json" in wf
