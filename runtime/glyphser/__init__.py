@@ -1,2 +1,1 @@
 """Glyphser runtime package."""
-
