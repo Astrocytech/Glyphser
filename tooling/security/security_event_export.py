@@ -1,15 +1,20 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import importlib
 import json
 import os
 import sys
 from pathlib import Path
 from typing import Any
 
-from tooling.lib.path_config import evidence_root
-
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
+
 INCIDENT_POLICY = ROOT / "governance" / "security" / "incident_response_policy.json"
 
 
@@ -87,7 +92,7 @@ def main(argv: list[str] | None = None) -> int:
         "summary": {"events_emitted": len(events), "output": str(out.relative_to(ROOT)).replace("\\", "/")},
         "metadata": {"gate": "security_event_export"},
     }
-    summary_out.write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(summary_out, summary)
     print("SECURITY_EVENT_EXPORT: PASS")
     print(f"Report: {summary_out}")
     return 0

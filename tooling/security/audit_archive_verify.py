@@ -14,6 +14,7 @@ if str(ROOT) not in sys.path:
 
 audit = importlib.import_module("runtime.glyphser.security.audit")
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 
 def _is_safe_member(base: Path, member_name: str) -> bool:
@@ -77,7 +78,7 @@ def main(argv: list[str] | None = None) -> int:
         "metadata": {"gate": "audit_archive_verify"},
     }
     out = sec / "audit_archive_verify.json"
-    out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, report)
     print(f"AUDIT_ARCHIVE_VERIFY: {report['status']}")
     print(f"Report: {out}")
     return 0 if report["status"] == "PASS" else 1

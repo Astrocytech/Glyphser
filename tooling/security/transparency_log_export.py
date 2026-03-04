@@ -2,15 +2,19 @@
 from __future__ import annotations
 
 import hashlib
+import importlib
 import json
 import sys
 from datetime import UTC, datetime
 from pathlib import Path
 
-from tooling.lib.path_config import evidence_root
-from tooling.security.stage_s_policy import load_stage_s_policy
-
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+load_stage_s_policy = importlib.import_module("tooling.security.stage_s_policy").load_stage_s_policy
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 
 def _sha(path: Path) -> str:
@@ -72,8 +76,7 @@ def main(argv: list[str] | None = None) -> int:
         "metadata": {"tool": "transparency_log_export"},
     }
     out = evidence_root() / "security" / "transparency_log_export.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, report)
     print("TRANSPARENCY_LOG_EXPORT: PASS")
     print(f"Report: {out}")
     return 0

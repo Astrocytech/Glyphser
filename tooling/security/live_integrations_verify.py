@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import http.client
+import importlib
 import json
 import os
 import sys
@@ -15,7 +16,8 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tooling.lib.path_config import evidence_root
+evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 
 def _validate_live_url(name: str, url: str) -> None:
@@ -96,13 +98,15 @@ def main(argv: list[str] | None = None) -> int:
     status = "PASS" if all(bool(c.get("ok")) for c in checks) else "FAIL"
     payload = {
         "status": status,
+        "findings": [] if status == "PASS" else [f"integration_check_failed:{c.get('name', 'unknown')}" for c in checks if not c.get("ok")],
+        "summary": {"checks": checks, "mode": "dry_run" if args.dry_run else "live", "checked_at_utc": datetime.now(UTC).isoformat()},
+        "metadata": {"gate": "live_integrations_verify"},
         "checks": checks,
         "mode": "dry_run" if args.dry_run else "live",
         "checked_at_utc": datetime.now(UTC).isoformat(),
     }
     out = evidence_root() / "security" / "live_integrations.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, payload)
     print(f"LIVE_INTEGRATIONS_VERIFY: {status}")
     print(f"Report: {out}")
     return 0 if status == "PASS" else 1
