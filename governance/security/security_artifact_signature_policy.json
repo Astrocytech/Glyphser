@@ -1,0 +1,24 @@
+{
+  "required_signature_pairs": [
+    {
+      "artifact": "sbom.json",
+      "signature": "sbom.json.sig"
+    },
+    {
+      "artifact": "build_provenance.json",
+      "signature": "build_provenance.json.sig"
+    },
+    {
+      "artifact": "slsa_provenance_v1.json",
+      "signature": "slsa_provenance_v1.json.sig"
+    },
+    {
+      "artifact": "evidence_chain_of_custody.json",
+      "signature": "evidence_chain_of_custody.json.sig"
+    },
+    {
+      "artifact": "evidence_attestation_index.json",
+      "signature": "evidence_attestation_index.json.sig"
+    }
+  ]
+}

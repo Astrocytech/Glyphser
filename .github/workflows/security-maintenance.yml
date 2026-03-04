@@ -61,6 +61,8 @@ jobs:
         run: python tooling/security/workflow_policy_coverage_gate.py
       - name: Security evidence corruption gate
         run: python tooling/security/security_evidence_corruption_gate.py
+      - name: Security artifact signature coverage gate
+        run: python tooling/security/security_artifact_signature_coverage_gate.py
       - name: Policy signature gate
         run: python tooling/security/policy_signature_gate.py --strict-key
       - name: Dependency refresh report
@@ -142,6 +144,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/semgrep_rules_self_check_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_policy_coverage_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_evidence_corruption_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_artifact_signature_coverage_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_toolchain.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_risky_patterns_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_deprecated_invocation_gate.json

@@ -226,6 +226,8 @@ jobs:
         run: python tooling/security/security_schema_migration_tracker.py
       - name: Security evidence corruption gate
         run: python tooling/security/security_evidence_corruption_gate.py
+      - name: Security artifact signature coverage gate
+        run: python tooling/security/security_artifact_signature_coverage_gate.py
       - name: Security workflow trigger gate
         run: python tooling/security/security_workflow_trigger_gate.py
       - name: Security critical test wiring gate
@@ -360,6 +362,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_schema_validation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_schema_migration_tracker.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_evidence_corruption_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_artifact_signature_coverage_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_workflow_trigger_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_critical_test_wiring_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_sarif_permissions_gate.json
