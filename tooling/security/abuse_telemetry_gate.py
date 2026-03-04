@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from runtime.glyphser.security.artifact_signing import current_key, verify_file
+from runtime.glyphser.security.artifact_signing import bootstrap_key, current_key, verify_file
 from tooling.lib.path_config import evidence_root
 
 
@@ -45,7 +45,7 @@ def main(argv: list[str] | None = None) -> int:
         else:
             raise
     if not verify_file(policy_path, sig, key=key):
-        if args.strict_key and verify_file(policy_path, sig, key=current_key(strict=False)):
+        if args.strict_key and verify_file(policy_path, sig, key=bootstrap_key()):
             pass
         else:
             raise ValueError("invalid abuse telemetry policy signature")

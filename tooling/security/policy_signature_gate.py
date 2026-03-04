@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from runtime.glyphser.security.artifact_signing import current_key, verify_file
+from runtime.glyphser.security.artifact_signing import bootstrap_key, current_key, key_metadata, verify_file
 from tooling.lib.path_config import evidence_root
 
 
@@ -22,11 +22,7 @@ def _verify_with_allowed_keys(policy_path: Path, sig: str, *, strict_key: bool) 
             return False, str(exc)
         # In strict mode, CI lanes without the runtime signing secret should still
         # verify repository bootstrap signatures instead of hard-failing.
-        try:
-            bootstrap_key = current_key(strict=False)
-        except ValueError:
-            return False, str(exc)
-        if verify_file(policy_path, sig, key=bootstrap_key):
+        if verify_file(policy_path, sig, key=bootstrap_key()):
             return True, "ok_bootstrap_key_missing_strict_env"
         return False, str(exc)
 
@@ -35,12 +31,7 @@ def _verify_with_allowed_keys(policy_path: Path, sig: str, *, strict_key: bool) 
 
     # Repository policy files may still be signed with the bootstrap key while CI
     # rotates to a strict runtime key. Accept bootstrap signatures as transitional.
-    try:
-        bootstrap_key = current_key(strict=False)
-    except ValueError:
-        return False, "signature_mismatch"
-
-    if verify_file(policy_path, sig, key=bootstrap_key):
+    if verify_file(policy_path, sig, key=bootstrap_key()):
         return True, "ok_bootstrap_key"
     return False, "signature_mismatch"
 
@@ -83,7 +74,12 @@ def main(argv: list[str] | None = None) -> int:
         if not ok:
             findings.append(f"{rel}: {reason}")
 
-    payload = {"status": "PASS" if not findings else "FAIL", "checks": checks, "findings": findings}
+    payload = {
+        "status": "PASS" if not findings else "FAIL",
+        "checks": checks,
+        "findings": findings,
+        "metadata": {"key_provenance": key_metadata(strict=args.strict_key), "gate": "policy_signature_gate"},
+    }
     out = evidence_root() / "security" / "policy_signature.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")

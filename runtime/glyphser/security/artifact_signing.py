@@ -30,6 +30,10 @@ def current_key(*, strict: bool = False) -> bytes:
     return raw.encode("utf-8")
 
 
+def bootstrap_key() -> bytes:
+    return _FALLBACK_KEY.encode("utf-8")
+
+
 def key_metadata(*, strict: bool = False) -> dict[str, Any]:
     raw = os.environ.get(_KEY_ENV, "")
     env_hint = os.environ.get(_ENV_HINT, "").strip().lower()

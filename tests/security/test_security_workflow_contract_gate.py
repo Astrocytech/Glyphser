@@ -41,6 +41,7 @@ jobs:
       - run: python tooling/security/runtime_api_state_schema_gate.py
       - run: python tooling/security/security_workflow_trigger_gate.py
       - run: python tooling/security/security_critical_test_wiring_gate.py
+      - run: python tooling/security/key_provenance_continuity_gate.py
       - run: echo semgrep.json
 """
     (wf / "ci.yml").write_text(ci_text, encoding="utf-8")
@@ -68,6 +69,7 @@ jobs:
       - run: python tooling/security/runtime_api_state_schema_gate.py
       - run: python tooling/security/security_workflow_trigger_gate.py
       - run: python tooling/security/security_critical_test_wiring_gate.py
+      - run: python tooling/security/key_provenance_continuity_gate.py
 """
     (wf / "security-maintenance.yml").write_text(maintenance_text, encoding="utf-8")
     extended_text = """

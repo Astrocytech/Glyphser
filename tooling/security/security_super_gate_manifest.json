@@ -42,6 +42,7 @@
     "tooling/security/evidence_attestation_index.py",
     "tooling/security/evidence_attestation_gate.py",
     "tooling/security/provenance_signature_gate.py",
+    "tooling/security/key_provenance_continuity_gate.py",
     "tooling/security/slsa_attestation_gate.py",
     "tooling/security/workflow_evidence_scope_gate.py",
     "tooling/security/conformance_security_coupling_gate.py"

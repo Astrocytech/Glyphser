@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from runtime.glyphser.security.artifact_signing import current_key, verify_file
+from runtime.glyphser.security.artifact_signing import current_key, key_metadata, verify_file
 from tooling.lib.path_config import evidence_root
 
 
@@ -54,7 +54,11 @@ def main(argv: list[str] | None = None) -> int:
         if not ok:
             ok_all = False
 
-    payload: dict[str, object] = {"status": "PASS" if ok_all else "FAIL", "checks": checks}
+    payload: dict[str, object] = {
+        "status": "PASS" if ok_all else "FAIL",
+        "checks": checks,
+        "metadata": {"key_provenance": key_metadata(strict=args.strict_key), "gate": "provenance_signature_gate"},
+    }
     out = sec / "provenance_signature.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")

@@ -154,6 +154,7 @@ def main(argv: list[str] | None = None) -> int:
             if args.strict_key
             else [sys.executable, "tooling/security/provenance_signature_gate.py"]
         ),
+        [sys.executable, "tooling/security/key_provenance_continuity_gate.py"],
         [sys.executable, "tooling/security/slsa_attestation_gate.py"],
         [sys.executable, "tooling/security/workflow_evidence_scope_gate.py"],
         [sys.executable, "tooling/security/conformance_security_coupling_gate.py"],

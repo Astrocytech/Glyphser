@@ -30,6 +30,7 @@ def test_provenance_signature_gate_passes(monkeypatch, tmp_path: Path) -> None:
     assert rc == 0
     report = json.loads((sec / "provenance_signature.json").read_text(encoding="utf-8"))
     assert report["status"] == "PASS"
+    assert "key_provenance" in report["metadata"]
 
 
 def test_provenance_signature_gate_fails_on_tamper(monkeypatch, tmp_path: Path) -> None:
