@@ -16,6 +16,7 @@ evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
 
 DEFAULT_TODO = ""
 SECTION_RE = re.compile(r"^([A-Z0-9]{1,4})\.\s+")
+TRIGGER_RE = re.compile(r"\b(trigger|incident|audit|run[-_ ]id)\b", re.IGNORECASE)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -26,8 +27,15 @@ def main(argv: list[str] | None = None) -> int:
     status = "PASS"
     skipped = False
     pending_count = 0
+    pending_without_trigger = 0
     done_marker_present = False
     section_counts: dict[str, dict[str, int]] = {}
+    require_trigger_ref = os.environ.get("GLYPHSER_HARDENING_TODO_REQUIRE_TRIGGER_REF", "").strip().lower() in {
+        "1",
+        "true",
+        "yes",
+        "on",
+    }
 
     if not configured or not todo_path.exists():
         skipped = True
@@ -46,6 +54,8 @@ def main(argv: list[str] | None = None) -> int:
             if stripped.startswith("[ ]"):
                 pending_count += 1
                 section_counts[current_section]["pending"] += 1
+                if require_trigger_ref and not TRIGGER_RE.search(stripped):
+                    pending_without_trigger += 1
             elif stripped.startswith("[~]"):
                 section_counts[current_section]["in_progress"] += 1
             elif stripped.startswith("[x]"):
@@ -53,6 +63,9 @@ def main(argv: list[str] | None = None) -> int:
         if done_marker_present and pending_count > 0:
             status = "FAIL"
             findings.append("done_marker_present_with_pending_items")
+        if pending_without_trigger > 0:
+            status = "FAIL"
+            findings.append("pending_item_missing_trigger_reference")
 
     report = {
         "status": status,
@@ -61,8 +74,10 @@ def main(argv: list[str] | None = None) -> int:
         "summary": {
             "todo_path": str(todo_path) if configured else "",
             "pending_items": pending_count,
+            "pending_without_trigger_reference": pending_without_trigger,
             "done_marker_present": done_marker_present,
             "section_counts": section_counts,
+            "require_trigger_reference": require_trigger_ref,
         },
         "metadata": {"gate": "hardening_todo_consistency_gate"},
     }
