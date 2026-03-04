@@ -2,11 +2,11 @@
 from __future__ import annotations
 
 import argparse
+import http.client
 import json
 import os
 import sys
-import urllib.error
-import urllib.request
+from urllib.parse import urlparse
 from pathlib import Path
 from typing import Any
 
@@ -31,24 +31,27 @@ def _load_policy() -> dict[str, Any]:
 
 
 def _api_request(url: str, *, method: str, token: str, payload: dict[str, Any]) -> tuple[int, str]:
+    parsed = urlparse(url)
+    if parsed.scheme != "https" or not parsed.netloc:
+        raise ValueError("api URL must be https")
     data = json.dumps(payload).encode("utf-8")
-    req = urllib.request.Request(
-        url,
-        data=data,
-        method=method,
-        headers={
-            "Accept": "application/vnd.github+json",
-            "Authorization": f"Bearer {token}",
-            "Content-Type": "application/json",
-        },
-    )
+    conn = http.client.HTTPSConnection(parsed.netloc, timeout=30)
     try:
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            body = resp.read().decode("utf-8", errors="replace")
-            return int(resp.status), body
-    except urllib.error.HTTPError as exc:
-        body = exc.read().decode("utf-8", errors="replace")
-        return int(exc.code), body
+        conn.request(
+            method,
+            parsed.path or "/",
+            body=data,
+            headers={
+                "Accept": "application/vnd.github+json",
+                "Authorization": f"Bearer {token}",
+                "Content-Type": "application/json",
+            },
+        )
+        resp = conn.getresponse()
+        body = resp.read().decode("utf-8", errors="replace")
+        return int(resp.status), body
+    finally:
+        conn.close()
 
 
 def main(argv: list[str] | None = None) -> int:

@@ -14,7 +14,7 @@ if str(ROOT) not in sys.path:
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
 
 WORKFLOWS = ROOT / ".github" / "workflows"
-EVIDENCE_ROOT_TOKEN = "GLYPHSER_EVIDENCE_ROOT"
+EVIDENCE_ROOT_ENV_NAME = "GLYPHSER_EVIDENCE_ROOT"
 GUARD_CMD = "tooling/security/evidence_run_dir_guard.py"
 
 
@@ -30,7 +30,7 @@ def _report_for(path: Path) -> dict[str, Any]:
     text = path.read_text(encoding="utf-8")
     needs = _needs_evidence_scope(text)
     findings: list[str] = []
-    if needs and EVIDENCE_ROOT_TOKEN not in text:
+    if needs and EVIDENCE_ROOT_ENV_NAME not in text:
         findings.append("missing_GLYPHSER_EVIDENCE_ROOT")
     if needs and GUARD_CMD not in text:
         findings.append("missing_evidence_run_dir_guard")

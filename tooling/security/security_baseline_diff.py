@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import importlib
 import json
-import subprocess
 import sys
 from pathlib import Path
 
@@ -15,6 +14,7 @@ artifact_signing = importlib.import_module("runtime.glyphser.security.artifact_s
 current_key = artifact_signing.current_key
 sign_file = artifact_signing.sign_file
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+run_checked = importlib.import_module("tooling.security.subprocess_policy").run_checked
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -24,7 +24,7 @@ def main(argv: list[str] | None = None) -> int:
         "tooling/security/semgrep-rules.yml",
         "tooling/security/bandit.yaml",
     ]
-    proc = subprocess.run(["git", "diff", "--", *baseline_files], cwd=ROOT, capture_output=True, text=True, check=False)
+    proc = run_checked(["git", "diff", "--", *baseline_files], cwd=ROOT)
     diff_text = proc.stdout
     sec = evidence_root() / "security"
     sec.mkdir(parents=True, exist_ok=True)

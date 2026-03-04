@@ -2,14 +2,14 @@
 from __future__ import annotations
 
 import argparse
+import http.client
 import json
 import os
 import sys
-import urllib.error
-import urllib.request
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
@@ -28,19 +28,23 @@ def _validate_target(repo: str, branch: str, *, dry_run: bool) -> None:
 
 
 def _api_get(url: str, token: str) -> tuple[int, str]:
-    req = urllib.request.Request(
-        url,
-        method="GET",
-        headers={
-            "Accept": "application/vnd.github+json",
-            "Authorization": f"Bearer {token}",
-        },
-    )
+    parsed = urlparse(url)
+    if parsed.scheme != "https" or not parsed.netloc:
+        raise ValueError("api URL must be https")
+    conn = http.client.HTTPSConnection(parsed.netloc, timeout=30)
     try:
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            return int(resp.status), resp.read().decode("utf-8", errors="replace")
-    except urllib.error.HTTPError as exc:
-        return int(exc.code), exc.read().decode("utf-8", errors="replace")
+        conn.request(
+            "GET",
+            parsed.path or "/",
+            headers={
+                "Accept": "application/vnd.github+json",
+                "Authorization": f"Bearer {token}",
+            },
+        )
+        resp = conn.getresponse()
+        return int(resp.status), resp.read().decode("utf-8", errors="replace")
+    finally:
+        conn.close()
 
 
 def main(argv: list[str] | None = None) -> int:

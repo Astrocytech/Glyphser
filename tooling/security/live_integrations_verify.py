@@ -2,14 +2,14 @@
 from __future__ import annotations
 
 import argparse
+import http.client
 import json
 import os
 import sys
-import urllib.error
-import urllib.request
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
@@ -30,16 +30,21 @@ def _validate_live_url(name: str, url: str) -> None:
 
 
 def _check_http(name: str, url: str, token: str) -> dict[str, Any]:
-    req = urllib.request.Request(url, method="GET")
+    parsed = urlparse(url)
+    if parsed.scheme != "https" or not parsed.netloc:
+        return {"name": name, "ok": False, "error": "invalid_url_scheme"}
+    headers: dict[str, str] = {}
     if token:
-        req.add_header("Authorization", f"Bearer {token}")
+        headers["Authorization"] = f"Bearer {token}"
+    conn = http.client.HTTPSConnection(parsed.netloc, timeout=15)
     try:
-        with urllib.request.urlopen(req, timeout=15) as resp:
-            return {"name": name, "ok": int(resp.status) < 400, "status_code": int(resp.status)}
-    except urllib.error.HTTPError as exc:
-        return {"name": name, "ok": False, "status_code": int(exc.code)}
+        conn.request("GET", parsed.path or "/", headers=headers)
+        resp = conn.getresponse()
+        return {"name": name, "ok": int(resp.status) < 400, "status_code": int(resp.status)}
     except Exception as exc:  # pragma: no cover
         return {"name": name, "ok": False, "error": str(exc)}
+    finally:
+        conn.close()
 
 
 def main(argv: list[str] | None = None) -> int:

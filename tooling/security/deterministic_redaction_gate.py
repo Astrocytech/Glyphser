@@ -45,9 +45,13 @@ def main(argv: list[str] | None = None) -> int:
     redactions: dict[str, str] = {}
     for path_s in sorted(glob.glob(str(ROOT / scan_glob))):
         path = Path(path_s)
+        payload: Any | None = None
         try:
             payload = json.loads(path.read_text(encoding="utf-8"))
-        except Exception:
+        except (OSError, ValueError) as exc:
+            rel = str(path.relative_to(ROOT)).replace("\\", "/")
+            findings.append(f"unreadable_or_invalid_json:{rel}:{type(exc).__name__}")
+        if payload is None:
             continue
         strings = _walk(payload)
         for literal in forbidden:

@@ -16,6 +16,11 @@ audit = importlib.import_module("runtime.glyphser.security.audit")
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
 
 
+def _is_safe_member(base: Path, member_name: str) -> bool:
+    target = (base / member_name).resolve()
+    return str(target).startswith(str(base.resolve()) + str(Path("/")))
+
+
 def main(argv: list[str] | None = None) -> int:
     _ = argv
     sec = evidence_root() / "security"
@@ -35,7 +40,11 @@ def main(argv: list[str] | None = None) -> int:
         shutil.rmtree(extract)
     extract.mkdir(parents=True, exist_ok=True)
     with tarfile.open(archive, "r:gz") as tf:
-        tf.extractall(extract)
+        for member in tf.getmembers():
+            if not _is_safe_member(extract, member.name):
+                findings.append(f"unsafe_tar_member:{member.name}")
+                continue
+            tf.extract(member, extract)
     restored = extract / "audit.log.jsonl"
     result = audit.verify_chain(restored)
     if str(result.get("status", "FAIL")).upper() != "PASS":

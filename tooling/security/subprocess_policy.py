@@ -1,8 +1,9 @@
 from __future__ import annotations
 
-import subprocess
+import asyncio
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable
+from typing import Mapping
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -26,9 +27,32 @@ def _allowed(cmd: list[str]) -> bool:
     return False
 
 
-def run_checked(cmd: list[str], *, cwd: Path | None = None, capture_output: bool = True, text: bool = True) -> subprocess.CompletedProcess:
+@dataclass(frozen=True)
+class PolicyProcessResult:
+    returncode: int
+    stdout: str
+    stderr: str
+
+
+async def _run_async(cmd: list[str], *, cwd: Path, env: Mapping[str, str] | None) -> PolicyProcessResult:
+    proc = await asyncio.create_subprocess_exec(
+        *cmd,
+        cwd=str(cwd),
+        env=dict(env) if env is not None else None,
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE,
+    )
+    stdout_b, stderr_b = await proc.communicate()
+    return PolicyProcessResult(
+        returncode=int(proc.returncode or 0),
+        stdout=stdout_b.decode("utf-8", errors="replace"),
+        stderr=stderr_b.decode("utf-8", errors="replace"),
+    )
+
+
+def run_checked(cmd: list[str], *, cwd: Path | None = None, env: Mapping[str, str] | None = None) -> PolicyProcessResult:
     if not cmd:
         raise ValueError("empty command")
     if not _allowed(cmd):
         raise ValueError(f"subprocess command not allowed by policy: {' '.join(cmd)}")
-    return subprocess.run(cmd, cwd=str(cwd or ROOT), check=False, capture_output=capture_output, text=text)
+    return asyncio.run(_run_async(cmd, cwd=cwd or ROOT, env=env))

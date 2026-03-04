@@ -4,7 +4,6 @@ from __future__ import annotations
 import importlib
 import json
 import os
-import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -14,10 +13,11 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+run_checked = importlib.import_module("tooling.security.subprocess_policy").run_checked
 
 
 def _run(cmd: list[str]) -> str:
-    proc = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, check=False)
+    proc = run_checked(cmd, cwd=ROOT)
     return proc.stdout.strip() if proc.returncode == 0 else ""
 
 

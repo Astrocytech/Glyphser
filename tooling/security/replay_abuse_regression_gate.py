@@ -3,17 +3,16 @@ from __future__ import annotations
 
 import hashlib
 import json
-import subprocess
-import sys
+import platform
 from pathlib import Path
 
 from tooling.lib.path_config import evidence_root
 
 CASES = [
-    {"name": "single_token_burst", "events": [{"token": "a", "kind": "replay"}] * 8},
+    {"name": "single_actor_burst", "events": [{"actor_id": "actor-01", "kind": "replay"}] * 8},
     {
-        "name": "token_spray",
-        "events": [{"token": f"t{i}", "kind": "replay"} for i in range(8)],
+        "name": "actor_spray",
+        "events": [{"actor_id": f"actor-{i:02d}", "kind": "replay"} for i in range(8)],
     },
 ]
 
@@ -22,20 +21,13 @@ def _score(case: dict[str, object]) -> int:
     events = case.get("events", [])
     if not isinstance(events, list):
         return -1
-    tokens = [str(e.get("token", "")) for e in events if isinstance(e, dict)]
-    unique = len(set(tokens))
-    return len(tokens) + (unique * 3)
+    actors = [str(e.get("actor_id", "")) for e in events if isinstance(e, dict)]
+    unique = len(set(actors))
+    return len(actors) + (unique * 3)
 
 
 def _python_version() -> str:
-    proc = subprocess.run(
-        [sys.executable, "-c", "import platform;print(platform.python_version())"],
-        capture_output=True,
-        text=True,
-        check=False,
-        cwd=str(ROOT),
-    )
-    return proc.stdout.strip() if proc.returncode == 0 else "unknown"
+    return platform.python_version()
 
 ROOT = Path(__file__).resolve().parents[2]
 
