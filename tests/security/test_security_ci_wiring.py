@@ -22,6 +22,7 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/subprocess_allowlist_report.py" in ci
     assert "python tooling/security/subprocess_direct_usage_gate.py" in ci
     assert "python tooling/security/security_workflow_contract_gate.py" in ci
+    assert "python tooling/security/workflow_risky_patterns_gate.py" in ci
     assert "python tooling/security/policy_schema_validation_gate.py" in ci
     assert "python tooling/security/security_workflow_trigger_gate.py" in ci
     assert "python tooling/security/security_critical_test_wiring_gate.py" in ci
