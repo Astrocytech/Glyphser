@@ -1,0 +1,9 @@
+line-length = 120
+target-version = "py311"
+
+[lint]
+select = ["E", "F", "I", "C90"]
+ignore = []
+
+[lint.mccabe]
+max-complexity = 12
