@@ -19,6 +19,15 @@ run_checked = importlib.import_module("tooling.security.subprocess_policy").run_
 SUPER_GATE_SUBPROCESS_TIMEOUT_SEC = 300.0
 SUPER_GATE_SUBPROCESS_MAX_OUTPUT_BYTES = 2_000_000
 
+REMEDIATION_HINTS = {
+    "missing_tool:semgrep": "Install pinned security tools (`pip install semgrep==1.95.0 setuptools==75.8.0`).",
+    "missing_tool:pip-audit": "Install pinned security tools (`pip install pip-audit==2.9.0`).",
+    "missing_env:GLYPHSER_PROVENANCE_HMAC_KEY": "Export GLYPHSER_PROVENANCE_HMAC_KEY from repository or environment secrets.",
+    "missing_env:TZ": "Set TZ=UTC for deterministic security gate outputs.",
+    "missing_env:LC_ALL": "Set LC_ALL=C.UTF-8 for deterministic sorting/encoding behavior.",
+    "missing_env:LANG": "Set LANG=C.UTF-8 for deterministic locale behavior.",
+}
+
 
 def _run(cmd: list[str]) -> dict[str, Any]:
     proc = run_checked(
@@ -50,6 +59,20 @@ def _prereq_failures(*, strict_prereqs: bool, strict_key: bool) -> list[str]:
             if not os.environ.get(name, "").strip():
                 findings.append(f"missing_env:{name}")
     return findings
+
+
+def _prereq_diagnostics(findings: list[str]) -> list[dict[str, str]]:
+    diagnostics: list[dict[str, str]] = []
+    for finding in findings:
+        diagnostics.append(
+            {
+                "finding": finding,
+                "remediation": REMEDIATION_HINTS.get(
+                    finding, "See security super-gate prerequisites and workflow environment configuration."
+                ),
+            }
+        )
+    return diagnostics
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -185,6 +208,7 @@ def main(argv: list[str] | None = None) -> int:
     results = [_run(cmd) for cmd in gates]
     failures = [r for r in results if r["status"] != "PASS"]
     findings = ["gate_failed:" + " ".join(r["cmd"]) for r in failures] + prereq_findings
+    prereq_diagnostics = _prereq_diagnostics(prereq_findings)
     report = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
@@ -200,6 +224,7 @@ def main(argv: list[str] | None = None) -> int:
             "strict_prereqs": args.strict_prereqs,
             "subprocess_timeout_sec": SUPER_GATE_SUBPROCESS_TIMEOUT_SEC,
             "subprocess_max_output_bytes": SUPER_GATE_SUBPROCESS_MAX_OUTPUT_BYTES,
+            "prereq_diagnostics": prereq_diagnostics,
         },
         "results": results,
     }

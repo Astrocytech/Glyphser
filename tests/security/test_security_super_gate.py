@@ -40,3 +40,21 @@ def test_security_super_gate_fails_on_subgate_failure(monkeypatch, tmp_path: Pat
 
     monkeypatch.setattr(security_super_gate, "run_checked", _run)
     assert security_super_gate.main([]) == 1
+
+
+def test_security_super_gate_reports_prereq_diagnostics(monkeypatch, tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    ev = repo / "evidence"
+    monkeypatch.setattr(security_super_gate, "ROOT", repo)
+    monkeypatch.setattr(security_super_gate, "evidence_root", lambda: ev)
+    monkeypatch.setattr(security_super_gate, "run_checked", lambda *a, **k: _Proc(0))
+    monkeypatch.setattr(security_super_gate.shutil, "which", lambda _: None)
+    monkeypatch.delenv("TZ", raising=False)
+    monkeypatch.delenv("LC_ALL", raising=False)
+    monkeypatch.delenv("LANG", raising=False)
+    monkeypatch.delenv("GLYPHSER_PROVENANCE_HMAC_KEY", raising=False)
+    assert security_super_gate.main(["--strict-prereqs", "--strict-key"]) == 1
+    out = json.loads((ev / "security" / "security_super_gate.json").read_text(encoding="utf-8"))
+    diagnostics = out["metadata"]["prereq_diagnostics"]
+    assert diagnostics
+    assert all("finding" in d and "remediation" in d for d in diagnostics)
