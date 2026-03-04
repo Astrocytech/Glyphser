@@ -4,6 +4,7 @@ from __future__ import annotations
 import hashlib
 import importlib
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -58,7 +59,8 @@ def main() -> int:
     }
     sbom_path = OUT / "sbom.json"
     sbom_path.write_text(json.dumps(sbom, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    key = current_key()
+    strict_signing = str(os.environ.get("GLYPHSER_STRICT_SIGNING", "")).lower() in {"1", "true", "yes"}
+    key = current_key(strict=strict_signing)
     (OUT / "sbom.json.sig").write_text(sign_file(sbom_path, key=key) + "\n", encoding="utf-8")
 
     prov = {

@@ -11,9 +11,11 @@ _KEY_ENV = "GLYPHSER_PROVENANCE_HMAC_KEY"
 _FALLBACK_KEY = "glyphser-provenance-hmac-fallback-v1"
 
 
-def current_key() -> bytes:
+def current_key(*, strict: bool = False) -> bytes:
     raw = os.environ.get(_KEY_ENV, "")
     if not raw:
+        if strict:
+            raise ValueError(f"missing required signing key env: {_KEY_ENV}")
         raw = _FALLBACK_KEY
     return raw.encode("utf-8")
 

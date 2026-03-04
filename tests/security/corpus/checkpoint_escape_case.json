@@ -1,0 +1,5 @@
+{
+  "kind": "restore_checkpoint",
+  "scenario": "escape_root",
+  "expected_error_substring": "path escapes allowed root"
+}

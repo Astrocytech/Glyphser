@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import sys
+import argparse
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -13,7 +14,7 @@ from runtime.glyphser.security.artifact_signing import current_key, verify_file
 from tooling.lib.path_config import evidence_root
 
 
-def _verify_pair(path: Path, sig_path: Path) -> tuple[bool, str]:
+def _verify_pair(path: Path, sig_path: Path, *, strict_key: bool) -> tuple[bool, str]:
     if not path.exists():
         return False, "missing_artifact"
     if not sig_path.exists():
@@ -21,12 +22,16 @@ def _verify_pair(path: Path, sig_path: Path) -> tuple[bool, str]:
     sig = sig_path.read_text(encoding="utf-8").strip()
     if not sig:
         return False, "empty_signature"
-    if not verify_file(path, sig, key=current_key()):
+    if not verify_file(path, sig, key=current_key(strict=strict_key)):
         return False, "signature_mismatch"
     return True, "ok"
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description="Verify signatures on security provenance artifacts.")
+    parser.add_argument("--strict-key", action="store_true", help="Require GLYPHSER_PROVENANCE_HMAC_KEY.")
+    args = parser.parse_args([] if argv is None else argv)
+
     sec = evidence_root() / "security"
     checks: dict[str, dict[str, str | bool]] = {}
     pairs = [
@@ -35,7 +40,10 @@ def main() -> int:
     ]
     ok_all = True
     for name, path, sig_path in pairs:
-        ok, reason = _verify_pair(path, sig_path)
+        try:
+            ok, reason = _verify_pair(path, sig_path, strict_key=args.strict_key)
+        except ValueError as exc:
+            ok, reason = False, str(exc)
         checks[name] = {
             "ok": ok,
             "reason": reason,
@@ -55,4 +63,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(main(sys.argv[1:]))

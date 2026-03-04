@@ -21,7 +21,7 @@ def test_provenance_signature_gate_passes(monkeypatch, tmp_path: Path) -> None:
 
     monkeypatch.setattr(provenance_signature_gate, "ROOT", repo)
     monkeypatch.setattr(provenance_signature_gate, "evidence_root", lambda: repo / "evidence")
-    monkeypatch.setattr(provenance_signature_gate, "current_key", lambda: key)
+    monkeypatch.setattr(provenance_signature_gate, "current_key", lambda strict=False: key)
 
     rc = provenance_signature_gate.main()
     assert rc == 0
@@ -44,9 +44,25 @@ def test_provenance_signature_gate_fails_on_tamper(monkeypatch, tmp_path: Path) 
 
     monkeypatch.setattr(provenance_signature_gate, "ROOT", repo)
     monkeypatch.setattr(provenance_signature_gate, "evidence_root", lambda: repo / "evidence")
-    monkeypatch.setattr(provenance_signature_gate, "current_key", lambda: key)
+    monkeypatch.setattr(provenance_signature_gate, "current_key", lambda strict=False: key)
 
     rc = provenance_signature_gate.main()
     assert rc == 1
     report = json.loads((sec / "provenance_signature.json").read_text(encoding="utf-8"))
     assert report["status"] == "FAIL"
+
+
+def test_provenance_signature_gate_strict_key_missing(monkeypatch, tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    sec = repo / "evidence" / "security"
+    sec.mkdir(parents=True)
+    (sec / "sbom.json").write_text('{"status":"ok"}\n', encoding="utf-8")
+    (sec / "build_provenance.json").write_text('{"status":"ok"}\n', encoding="utf-8")
+    (sec / "sbom.json.sig").write_text("deadbeef\n", encoding="utf-8")
+    (sec / "build_provenance.json.sig").write_text("deadbeef\n", encoding="utf-8")
+
+    monkeypatch.setattr(provenance_signature_gate, "ROOT", repo)
+    monkeypatch.setattr(provenance_signature_gate, "evidence_root", lambda: repo / "evidence")
+    monkeypatch.setattr(provenance_signature_gate, "current_key", lambda strict=False: (_ for _ in ()).throw(ValueError("missing required signing key env")))
+    rc = provenance_signature_gate.main(["--strict-key"])
+    assert rc == 1

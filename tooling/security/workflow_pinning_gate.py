@@ -13,12 +13,8 @@ if str(ROOT) not in sys.path:
 
 from tooling.lib.path_config import evidence_root
 
-USES_RE = re.compile(r"^\s*-\s*uses:\s*([^\s]+)\s*$")
+USES_RE = re.compile(r"^\s*(?:-\s*)?uses:\s*([^\s]+)\s*$")
 SHA_RE = re.compile(r"^[0-9a-f]{40}$")
-EXEMPT_USES_REFS = {
-    "actions/download-artifact@v4",
-    "pypa/gh-action-pypi-publish@release/v1",
-}
 
 
 class Finding(TypedDict):
@@ -49,8 +45,6 @@ def _scan_workflow(path: Path) -> list[Finding]:
             )
             continue
         _action, ref = uses_ref.rsplit("@", 1)
-        if uses_ref in EXEMPT_USES_REFS:
-            continue
         if not SHA_RE.fullmatch(ref):
             findings.append(
                 {
@@ -75,7 +69,6 @@ def main() -> int:
         "workflow_count": len(workflows),
         "finding_count": len(findings),
         "findings": findings,
-        "exempt_uses_refs": sorted(EXEMPT_USES_REFS),
     }
     out = evidence_root() / "security" / "workflow_pinning.json"
     out.parent.mkdir(parents=True, exist_ok=True)

@@ -223,7 +223,7 @@ def execute(request: Dict[str, Any]) -> Dict[str, Any]:
                 "invalid request",
                 operator_id="Glyphser.Model.ModelIR_Executor",
                 t=None,
-                replay_token=request.get("replay_token") if isinstance(request.get("replay_token"), str) else "",
+                replay_token=request.get("replay_token") if isinstance(request.get("replay_token"), str) else str(),
                 failure_operator=None,
             )
         }
