@@ -29,6 +29,7 @@ jobs:
       - run: python tooling/security/subprocess_direct_usage_gate.py
       - run: python tooling/security/security_workflow_trigger_gate.py
       - run: python tooling/security/security_critical_test_wiring_gate.py
+      - run: echo semgrep.json
 """
     (wf / "ci.yml").write_text(ci_text, encoding="utf-8")
     maintenance_text = """

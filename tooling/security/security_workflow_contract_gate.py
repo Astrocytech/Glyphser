@@ -24,6 +24,7 @@ REQUIRED_SNIPPETS = {
         "python tooling/security/subprocess_direct_usage_gate.py",
         "python tooling/security/security_workflow_trigger_gate.py",
         "python tooling/security/security_critical_test_wiring_gate.py",
+        "semgrep.json",
         "semgrep --version",
         'python -c "import pkg_resources"',
     ],
