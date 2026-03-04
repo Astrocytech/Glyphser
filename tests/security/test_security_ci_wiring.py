@@ -21,6 +21,7 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/security_toolchain_gate.py" in ci
     assert "python tooling/security/security_workflow_contract_gate.py" in ci
     assert "python tooling/security/security_sarif_permissions_gate.py" in ci
+    assert "python tooling/security/security_exception_suppression_gate.py" in ci
     assert "python tooling/security/security_dead_gate_wiring_gate.py" in ci
     assert "python tooling/security/hardening_todo_consistency_gate.py" in ci
     assert "bandit -q -c tooling/security/bandit.yaml -r glyphser runtime tooling -l -ii" in ci

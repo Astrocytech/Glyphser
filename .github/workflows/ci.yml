@@ -207,6 +207,8 @@ jobs:
         run: python tooling/security/security_workflow_contract_gate.py
       - name: Security SARIF permissions gate
         run: python tooling/security/security_sarif_permissions_gate.py
+      - name: Security exception suppression gate
+        run: python tooling/security/security_exception_suppression_gate.py
       - name: Security dead-gate wiring gate
         run: python tooling/security/security_dead_gate_wiring_gate.py
       - name: Hardening TODO consistency gate
@@ -313,6 +315,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_toolchain.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_workflow_contract_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_sarif_permissions_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_exception_suppression_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_dead_gate_wiring_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/hardening_todo_consistency_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/incident_response.json

@@ -26,7 +26,7 @@ def _covered_by_tests(gate_module: str, tests_dir: Path) -> bool:
         try:
             if pattern in test_file.read_text(encoding="utf-8"):
                 return True
-        except Exception:
+        except (OSError, UnicodeDecodeError):
             continue
     return False
 
