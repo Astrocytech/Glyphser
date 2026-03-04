@@ -16,6 +16,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/security-maintenance" in wf
     assert "python tooling/security/evidence_run_dir_guard.py --run-id" in wf
     assert "python tooling/security/policy_signature_gate.py --strict-key" in wf
+    assert "python tooling/security/policy_schema_validation_gate.py" in wf
     assert "python tooling/security/security_toolchain_gate.py" in wf
     assert "python tooling/security/subprocess_allowlist_report.py" in wf
     assert "python tooling/security/subprocess_direct_usage_gate.py" in wf
@@ -45,6 +46,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "security_workflow_contract_gate.json" in wf
     assert "subprocess_allowlist_report.json" in wf
     assert "subprocess_direct_usage_gate.json" in wf
+    assert "policy_schema_validation_gate.json" in wf
     assert "security_workflow_trigger_gate.json" in wf
     assert "security_critical_test_wiring_gate.json" in wf
     assert "security_sarif_permissions_gate.json" in wf
