@@ -15,6 +15,7 @@ if str(ROOT) not in sys.path:
 def main() -> int:
     path_config = importlib.import_module("tooling.lib.path_config")
     out = path_config.evidence_root() / "security" / "pip_audit.json"
+    lock = ROOT / "requirements.lock"
     cmd = [
         sys.executable,
         "-m",
@@ -23,6 +24,8 @@ def main() -> int:
         "json",
         "--desc",
         "--skip-editable",
+        "--requirement",
+        str(lock),
     ]
     proc = _sp.run(cmd, cwd=str(ROOT), capture_output=True, text=True)
 

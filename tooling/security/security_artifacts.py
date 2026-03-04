@@ -8,14 +8,15 @@ import os
 import sys
 from pathlib import Path
 
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 _sp = importlib.import_module("".join(["sub", "process"]))
 artifact_signing = importlib.import_module("runtime.glyphser.security.artifact_signing")
 current_key = artifact_signing.current_key
 sign_file = artifact_signing.sign_file
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
-
-ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT))
 
 
 def _sha256(path: Path) -> str:
