@@ -16,8 +16,7 @@ REQUIRED_SNIPPETS = {
     ".github/workflows/ci.yml": [
         "security-matrix:",
         "security-events: write",
-        "semgrep==1.95.0",
-        "setuptools==75.8.0",
+        "python tooling/security/install_security_toolchain.py",
         "if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false",
         "python tooling/security/evidence_run_dir_guard.py --run-id",
         "python tooling/security/subprocess_allowlist_report.py",
@@ -35,8 +34,7 @@ REQUIRED_SNIPPETS = {
     ],
     ".github/workflows/security-maintenance.yml": [
         "security-maintenance:",
-        "semgrep==1.95.0",
-        "setuptools==75.8.0",
+        "python tooling/security/install_security_toolchain.py",
         "python tooling/security/evidence_run_dir_guard.py --run-id",
         "python tooling/security/subprocess_allowlist_report.py",
         "python tooling/security/subprocess_direct_usage_gate.py",
@@ -52,8 +50,7 @@ REQUIRED_SNIPPETS = {
     ],
     ".github/workflows/security-super-extended.yml": [
         "security-super-extended:",
-        "semgrep==1.95.0",
-        "setuptools==75.8.0",
+        "python tooling/security/install_security_toolchain.py",
         "python tooling/security/evidence_run_dir_guard.py --run-id",
         "semgrep --version",
         'python -c "import pkg_resources"',

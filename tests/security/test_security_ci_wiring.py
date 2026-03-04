@@ -9,10 +9,7 @@ def test_ci_security_steps_are_wired() -> None:
     ci = (ROOT / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
     assert "security-matrix:" in ci
     assert 'python-version: ["3.11", "3.12"]' in ci
-    assert "bandit==1.9.4" in ci
-    assert "pip-audit==2.9.0" in ci
-    assert "semgrep==1.95.0" in ci
-    assert "setuptools==75.8.0" in ci
+    assert "python tooling/security/install_security_toolchain.py" in ci
     assert (
         "GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/security-matrix-${{ matrix.python-version }}" in ci
     )

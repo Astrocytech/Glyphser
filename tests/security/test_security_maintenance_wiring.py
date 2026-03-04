@@ -9,10 +9,7 @@ def test_security_maintenance_workflow_wired() -> None:
     wf = (ROOT / ".github" / "workflows" / "security-maintenance.yml").read_text(encoding="utf-8")
     assert "schedule:" in wf
     assert "python tooling/security/dependency_refresh_report.py" in wf
-    assert "bandit==1.9.4" in wf
-    assert "pip-audit==2.9.0" in wf
-    assert "semgrep==1.95.0" in wf
-    assert "setuptools==75.8.0" in wf
+    assert "python tooling/security/install_security_toolchain.py" in wf
     assert "GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/security-maintenance" in wf
     assert "python tooling/security/evidence_run_dir_guard.py --run-id" in wf
     assert "python tooling/security/policy_signature_gate.py --strict-key" in wf

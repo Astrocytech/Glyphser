@@ -21,7 +21,7 @@ jobs:
       security-events: write
     steps:
       - run: python tooling/security/evidence_run_dir_guard.py --run-id x
-      - run: pip install semgrep==1.95.0 setuptools==75.8.0
+      - run: python tooling/security/install_security_toolchain.py
       - if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
       - run: semgrep --version
       - run: python -c "import pkg_resources"
@@ -41,7 +41,7 @@ jobs:
 jobs:
   security-maintenance:
     steps:
-      - run: pip install semgrep==1.95.0 setuptools==75.8.0
+      - run: python tooling/security/install_security_toolchain.py
       - run: python tooling/security/evidence_run_dir_guard.py --run-id x
       - run: semgrep --version
       - run: python -c "import pkg_resources"
@@ -60,7 +60,7 @@ jobs:
 jobs:
   security-super-extended:
     steps:
-      - run: pip install semgrep==1.95.0 setuptools==75.8.0
+      - run: python tooling/security/install_security_toolchain.py
       - run: python tooling/security/evidence_run_dir_guard.py --run-id x
       - run: semgrep --version
       - run: python -c "import pkg_resources"
