@@ -33,4 +33,18 @@ def test_write_json_report_auto_normalizes_security_report_shape(tmp_path: Path)
     assert parsed["schema_version"] == 1
     assert parsed["findings"] == []
     assert parsed["summary"] == {}
-    assert parsed["metadata"] == {}
+    assert "generated_at_utc" in parsed["metadata"]
+
+
+def test_write_json_report_adds_env_normalization_metadata(monkeypatch, tmp_path: Path) -> None:
+    monkeypatch.setenv("TZ", "UTC")
+    monkeypatch.setenv("LC_ALL", "C.UTF-8")
+    monkeypatch.setenv("LANG", "C.UTF-8")
+    out = tmp_path / "security" / "gate.json"
+    write_json_report(out, {"status": "PASS", "metadata": {}})
+    parsed = json.loads(out.read_text(encoding="utf-8"))
+    meta = parsed["metadata"]
+    assert meta["tz"] == "UTC"
+    assert meta["lc_all"] == "C.UTF-8"
+    assert meta["lang"] == "C.UTF-8"
+    assert "generated_at_utc" in meta

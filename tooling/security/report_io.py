@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import os
 import tempfile
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -15,7 +16,12 @@ def _normalize_report_payload(payload: dict[str, Any]) -> dict[str, Any]:
         normalized.setdefault("schema_version", SCHEMA_VERSION)
         normalized.setdefault("findings", [])
         normalized.setdefault("summary", {})
-        normalized.setdefault("metadata", {})
+        metadata = normalized.setdefault("metadata", {})
+        if isinstance(metadata, dict):
+            metadata.setdefault("generated_at_utc", datetime.now(UTC).isoformat())
+            metadata.setdefault("tz", os.environ.get("TZ", ""))
+            metadata.setdefault("lc_all", os.environ.get("LC_ALL", ""))
+            metadata.setdefault("lang", os.environ.get("LANG", ""))
     return normalized
 
 
