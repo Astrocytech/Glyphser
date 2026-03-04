@@ -1,14 +1,19 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import importlib
 import json
 import re
 import sys
 from pathlib import Path
 
-from tooling.lib.path_config import evidence_root
-
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
+
 SECURITY_DIR = ROOT / "tooling" / "security"
 FORCED_SUCCESS_RE = re.compile(r"SystemExit\(\s*0\s*\)")
 
@@ -35,8 +40,7 @@ def main(argv: list[str] | None = None) -> int:
         "metadata": {"gate": "helper_script_enforcement_gate"},
     }
     out = evidence_root() / "security" / "helper_script_enforcement_gate.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, report)
     print(f"HELPER_SCRIPT_ENFORCEMENT_GATE: {report['status']}")
     print(f"Report: {out}")
     return 0 if report["status"] == "PASS" else 1
