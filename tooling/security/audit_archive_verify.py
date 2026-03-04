@@ -21,6 +21,30 @@ def _is_safe_member(base: Path, member_name: str) -> bool:
     return str(target).startswith(str(base.resolve()) + str(Path("/")))
 
 
+def _extract_archive_safely(archive: Path, extract: Path, *, expected_member: str) -> list[str]:
+    findings: list[str] = []
+    with tarfile.open(archive, "r:gz") as tf:
+        members = tf.getmembers()
+        names = [m.name for m in members]
+        if expected_member not in names:
+            findings.append(f"missing_expected_member:{expected_member}")
+        for member in members:
+            if member.islnk() or member.issym():
+                findings.append(f"disallowed_link_member:{member.name}")
+                continue
+            if member.ischr() or member.isblk() or member.isfifo() or member.isdev():
+                findings.append(f"disallowed_special_member:{member.name}")
+                continue
+            if not _is_safe_member(extract, member.name):
+                findings.append(f"unsafe_tar_member:{member.name}")
+                continue
+            try:
+                tf.extract(member, extract, filter="data")
+            except TypeError:
+                tf.extract(member, extract)
+    return findings
+
+
 def main(argv: list[str] | None = None) -> int:
     _ = argv
     sec = evidence_root() / "security"
@@ -28,6 +52,7 @@ def main(argv: list[str] | None = None) -> int:
     archive = sec / "audit-log-archive.tar.gz"
     extract = sec / "audit-restore-check"
     findings: list[str] = []
+    sec.mkdir(parents=True, exist_ok=True)
 
     if not log.exists():
         log.parent.mkdir(parents=True, exist_ok=True)
@@ -39,12 +64,7 @@ def main(argv: list[str] | None = None) -> int:
     if extract.exists():
         shutil.rmtree(extract)
     extract.mkdir(parents=True, exist_ok=True)
-    with tarfile.open(archive, "r:gz") as tf:
-        for member in tf.getmembers():
-            if not _is_safe_member(extract, member.name):
-                findings.append(f"unsafe_tar_member:{member.name}")
-                continue
-            tf.extract(member, extract)
+    findings.extend(_extract_archive_safely(archive, extract, expected_member="audit.log.jsonl"))
     restored = extract / "audit.log.jsonl"
     result = audit.verify_chain(restored)
     if str(result.get("status", "FAIL")).upper() != "PASS":

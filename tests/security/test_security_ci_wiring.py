@@ -30,6 +30,7 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/security_schema_migration_tracker.py" in ci
     assert "python tooling/security/security_schema_strict_readiness_gate.py" in ci
     assert "python tooling/security/security_evidence_corruption_gate.py" in ci
+    assert "python tooling/security/audit_archive_verify.py" in ci
     assert "python tooling/security/security_artifact_signature_coverage_gate.py" in ci
     assert "python tooling/security/security_unsigned_json_gate.py" in ci
     assert "python tooling/security/security_workflow_trigger_gate.py" in ci
@@ -63,6 +64,7 @@ def test_ci_security_steps_are_wired() -> None:
     assert "provenance_revocation_gate.json" in ci
     assert "workflow_pin_change_approval_gate.json" in ci
     assert "exception_waiver_reconciliation_gate.json" in ci
+    assert "audit_archive_verify.json" in ci
     assert "security_artifact_signature_coverage_gate.json" in ci
     assert "security_unsigned_json_gate.json" in ci
     assert "stale_policy_review_gate.json" in ci

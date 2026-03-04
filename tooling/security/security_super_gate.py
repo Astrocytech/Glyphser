@@ -116,6 +116,7 @@ def main(argv: list[str] | None = None) -> int:
         [sys.executable, "tooling/security/security_schema_migration_tracker.py"],
         [sys.executable, "tooling/security/security_schema_strict_readiness_gate.py"],
         [sys.executable, "tooling/security/security_evidence_corruption_gate.py"],
+        [sys.executable, "tooling/security/audit_archive_verify.py"],
         [sys.executable, "tooling/security/security_artifact_signature_coverage_gate.py"],
         [sys.executable, "tooling/security/security_unsigned_json_gate.py"],
         [sys.executable, "tooling/security/security_workflow_trigger_gate.py"],

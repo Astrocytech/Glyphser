@@ -20,6 +20,7 @@ def test_release_workflow_enforces_signature_verification() -> None:
     assert "python tooling/security/container_registry_provenance_gate.py" in release
     assert "python tooling/security/attestation_digest_match_gate.py" in release
     assert "python tooling/security/stale_policy_review_gate.py" in release
+    assert "python tooling/security/audit_archive_verify.py" in release
     assert "python tooling/security/abuse_telemetry_snapshot.py" in release
     assert "python tooling/security/abuse_telemetry_gate.py" in release
     assert "python tooling/security/exception_waiver_reconciliation_gate.py" in release

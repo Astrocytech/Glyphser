@@ -80,6 +80,8 @@ jobs:
         run: python tooling/security/review_policy_gate.py
       - name: File permissions gate
         run: python tooling/security/file_permissions_gate.py
+      - name: Audit archive verify gate
+        run: python tooling/security/audit_archive_verify.py
       - name: Abuse telemetry snapshot + gate
         run: |
           python tooling/security/abuse_telemetry_snapshot.py
@@ -135,6 +137,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/stale_policy_review_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/review_policy_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/file_permissions_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/audit_archive_verify.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/key_management.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/report_secret_leak.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/third_party_pentest.json
@@ -200,6 +203,7 @@ jobs:
           python tooling/security/stale_policy_review_gate.py
           python tooling/security/review_policy_gate.py
           python tooling/security/file_permissions_gate.py
+          python tooling/security/audit_archive_verify.py
           python tooling/security/live_rollout_gate.py --profile release
           GLYPHSER_CONTAINER_PUBLISHING_ENABLED=true \
           python tooling/security/container_provenance_gate.py
