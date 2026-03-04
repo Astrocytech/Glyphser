@@ -65,6 +65,7 @@ def main(argv: list[str] | None = None) -> int:
         [sys.executable, "tooling/security/security_workflow_contract_gate.py"],
         [sys.executable, "tooling/security/security_sarif_permissions_gate.py"],
         [sys.executable, "tooling/security/security_dead_gate_wiring_gate.py"],
+        [sys.executable, "tooling/security/hardening_todo_consistency_gate.py"],
         [sys.executable, "tooling/security/governance_markdown_gate.py"],
         [sys.executable, "tooling/security/review_policy_gate.py"],
         [sys.executable, "tooling/security/file_permissions_gate.py"],
