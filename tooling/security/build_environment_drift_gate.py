@@ -2,16 +2,20 @@
 from __future__ import annotations
 
 import hashlib
+import importlib
 import json
 import platform
 import re
 import sys
 from pathlib import Path
 
-from tooling.lib.path_config import evidence_root
-from tooling.security.stage_s_policy import load_stage_s_policy
-
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+load_stage_s_policy = importlib.import_module("tooling.security.stage_s_policy").load_stage_s_policy
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 
 TICKET_RE = re.compile(r"^(SEC-|ADR-|TICKET-)")
@@ -54,8 +58,7 @@ def main(argv: list[str] | None = None) -> int:
         "metadata": {"gate": "build_environment_drift_gate"},
     }
     out = evidence_root() / "security" / "build_environment_drift_gate.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, report)
     print(f"BUILD_ENVIRONMENT_DRIFT_GATE: {report['status']}")
     print(f"Report: {out}")
     return 0 if report["status"] == "PASS" else 1
