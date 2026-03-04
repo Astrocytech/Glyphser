@@ -27,10 +27,18 @@ jobs:
         run: python tooling/security/workflow_pinning_gate.py
       - name: Incident response gate
         run: python tooling/security/incident_response_gate.py
+      - name: Org secret backend gate
+        run: python tooling/security/org_secret_backend_gate.py
       - name: Secret management gate
         run: python tooling/security/secret_management_gate.py
       - name: Production controls gate
         run: python tooling/security/production_controls_gate.py
+      - name: Third-party pentest gate
+        run: python tooling/security/third_party_pentest_gate.py
+      - name: Live integration verify (dry-run)
+        run: python tooling/security/live_integrations_verify.py --dry-run
+      - name: Container provenance gate
+        run: python tooling/security/container_provenance_gate.py
       - name: Security artifacts + attestation checks
         run: |
           python tooling/security/security_artifacts.py
@@ -46,7 +54,11 @@ jobs:
             evidence/security/secret_scan.json
             evidence/security/workflow_pinning.json
             evidence/security/incident_response.json
+            evidence/security/org_secret_backend.json
             evidence/security/secret_management.json
             evidence/security/production_controls.json
+            evidence/security/third_party_pentest.json
+            evidence/security/live_integrations.json
+            evidence/security/container_provenance.json
             evidence/security/provenance_signature.json
             evidence/security/slsa_attestation.json

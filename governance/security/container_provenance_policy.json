@@ -1,0 +1,8 @@
+{
+  "required_when_container_artifacts_present": true,
+  "container_digest_manifest": "distribution/container/image-digests.txt",
+  "required_signature_files": [
+    "distribution/container/image-digests.txt.sig",
+    "distribution/container/slsa-provenance.intoto.jsonl"
+  ]
+}

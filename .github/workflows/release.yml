@@ -43,8 +43,14 @@ jobs:
         run: python tooling/security/slsa_attestation_gate.py
       - name: Secret management gate
         run: python tooling/security/secret_management_gate.py
+      - name: Org secret backend gate
+        run: python tooling/security/org_secret_backend_gate.py
       - name: Production controls gate
         run: python tooling/security/production_controls_gate.py
+      - name: Third-party pentest gate
+        run: python tooling/security/third_party_pentest_gate.py
+      - name: Container provenance gate
+        run: python tooling/security/container_provenance_gate.py
       - name: Upload artifacts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -59,8 +65,11 @@ jobs:
             evidence/security/slsa_provenance_v1.json.sig
             evidence/security/provenance_signature.json
             evidence/security/slsa_attestation.json
+            evidence/security/org_secret_backend.json
             evidence/security/secret_management.json
             evidence/security/production_controls.json
+            evidence/security/third_party_pentest.json
+            evidence/security/container_provenance.json
 
   verify-signatures:
     needs: build
@@ -80,8 +89,11 @@ jobs:
           python tooling/security/security_artifacts.py
           python tooling/security/provenance_signature_gate.py --strict-key
           python tooling/security/slsa_attestation_gate.py
+          python tooling/security/org_secret_backend_gate.py
           python tooling/security/secret_management_gate.py
           python tooling/security/production_controls_gate.py
+          python tooling/security/third_party_pentest_gate.py
+          python tooling/security/container_provenance_gate.py
 
   publish-pypi:
     needs: [build, verify-signatures]

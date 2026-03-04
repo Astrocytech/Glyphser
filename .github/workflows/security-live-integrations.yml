@@ -1,0 +1,33 @@
+name: security-live-integrations
+
+on:
+  schedule:
+    - cron: "11 2 * * 2"
+  workflow_dispatch:
+
+jobs:
+  live-integrations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-python@42375524a18f07eb0658ddf24b150a0f0f0b274f
+        with:
+          python-version: "3.12"
+      - name: Install package
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev]
+      - name: Verify live integrations
+        env:
+          GLYPHSER_WAF_HEALTH_URL: ${{ secrets.GLYPHSER_WAF_HEALTH_URL }}
+          GLYPHSER_WAF_TOKEN: ${{ secrets.GLYPHSER_WAF_TOKEN }}
+          GLYPHSER_SIEM_HEALTH_URL: ${{ secrets.GLYPHSER_SIEM_HEALTH_URL }}
+          GLYPHSER_SIEM_TOKEN: ${{ secrets.GLYPHSER_SIEM_TOKEN }}
+          GLYPHSER_PAGING_HEALTH_URL: ${{ secrets.GLYPHSER_PAGING_HEALTH_URL }}
+          GLYPHSER_PAGING_TOKEN: ${{ secrets.GLYPHSER_PAGING_TOKEN }}
+        run: python tooling/security/live_integrations_verify.py
+      - name: Upload live integration evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: live-integrations
+          path: evidence/security/live_integrations.json

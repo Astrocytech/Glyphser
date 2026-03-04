@@ -10,8 +10,11 @@ def test_release_workflow_enforces_signature_verification() -> None:
     assert "verify-signatures:" in release
     assert "python tooling/security/provenance_signature_gate.py --strict-key" in release
     assert "python tooling/security/slsa_attestation_gate.py" in release
+    assert "python tooling/security/org_secret_backend_gate.py" in release
     assert "python tooling/security/secret_management_gate.py" in release
     assert "python tooling/security/production_controls_gate.py" in release
+    assert "python tooling/security/third_party_pentest_gate.py" in release
+    assert "python tooling/security/container_provenance_gate.py" in release
     assert "GLYPHSER_STRICT_SIGNING: \"true\"" in release
     assert "GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}" in release
 

@@ -14,8 +14,12 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/secret_scan_gate.py" in ci
     assert "python tooling/security/workflow_pinning_gate.py" in ci
     assert "python tooling/security/incident_response_gate.py" in ci
+    assert "python tooling/security/org_secret_backend_gate.py" in ci
     assert "python tooling/security/secret_management_gate.py" in ci
     assert "python tooling/security/production_controls_gate.py" in ci
+    assert "python tooling/security/third_party_pentest_gate.py" in ci
+    assert "python tooling/security/live_integrations_verify.py --dry-run" in ci
+    assert "python tooling/security/container_provenance_gate.py" in ci
     assert "python tooling/security/provenance_signature_gate.py" in ci
     assert "python tooling/security/slsa_attestation_gate.py" in ci
     assert "python tooling/security/security_artifacts.py" in ci
