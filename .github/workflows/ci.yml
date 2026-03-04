@@ -18,10 +18,10 @@ jobs:
         python-version: ["3.11", "3.12"]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@42375524a18f07eb0658ddf24b150a0f0f0b274f
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -107,19 +107,19 @@ jobs:
 
       - name: Upload coverage XML
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: coverage-xml
           path: coverage.xml
       - name: Upload coverage HTML
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: coverage-html
           path: htmlcov/
       - name: Upload gate telemetry
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: gate-telemetry
           path: evidence/gates/telemetry/
@@ -132,8 +132,8 @@ jobs:
         os: [ubuntu-latest, macos-latest]
         python-version: ["3.11", "3.12"]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-python@42375524a18f07eb0658ddf24b150a0f0f0b274f
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install package
@@ -150,8 +150,8 @@ jobs:
       matrix:
         python-version: ["3.11", "3.12"]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-python@42375524a18f07eb0658ddf24b150a0f0f0b274f
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install package
@@ -162,16 +162,22 @@ jobs:
         run: bandit -q -c tooling/security/bandit.yaml -r glyphser runtime tooling -l -ii
       - name: pip-audit gate
         run: python tooling/security/pip_audit_gate.py
+      - name: Secret scan gate
+        run: python tooling/security/secret_scan_gate.py
+      - name: Workflow action pinning gate
+        run: python tooling/security/workflow_pinning_gate.py
       - name: Semgrep (SARIF)
         run: semgrep --config tooling/security/semgrep-rules.yml --error --sarif --output semgrep.sarif runtime glyphser tooling
       - name: Upload SARIF to Code Scanning
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@c793e31f5d8b407fc63e2f79f4fc0488b92581e6
         with:
           sarif_file: semgrep.sarif
       - name: Upload security artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: security-artifacts-${{ matrix.python-version }}
           path: |
             semgrep.sarif
             evidence/security/pip_audit.json
+            evidence/security/secret_scan.json
+            evidence/security/workflow_pinning.json

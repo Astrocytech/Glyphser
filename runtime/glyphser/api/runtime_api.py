@@ -6,6 +6,7 @@ import hashlib
 import json
 import re
 import threading
+import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict
@@ -98,6 +99,8 @@ class RuntimeApiConfig:
     max_requests_per_token: int = 10_000
     max_submits_per_token: int = 2_000
     max_reads_per_job: int = 10_000
+    max_replays_per_job: int = 2_000
+    replay_cooldown_seconds: int = 1
 
 
 class RuntimeApiService:
@@ -227,6 +230,8 @@ class RuntimeApiService:
             )
             _ = self._require_job_locked(state, job_id)
             self._bump_job_read_quota(state, job_id=job_id, limit=self._config.max_reads_per_job)
+            self._enforce_replay_cooldown(state, job_id=job_id, cooldown_seconds=self._config.replay_cooldown_seconds)
+            self._bump_job_replay_quota(state, job_id=job_id, limit=self._config.max_replays_per_job)
             self._save_state(state)
             ev = self._build_evidence(job_id)
             bundle_line = ev["bundle_manifest_line"]
@@ -301,7 +306,13 @@ class RuntimeApiService:
             return {
                 "jobs": {},
                 "idempotency": {},
-                "quotas": {"token_requests": {}, "token_submits": {}, "job_reads": {}},
+                "quotas": {
+                    "token_requests": {},
+                    "token_submits": {},
+                    "job_reads": {},
+                    "job_replays": {},
+                    "job_last_replay_ts": {},
+                },
             }
         data = json.loads(self._config.state_path.read_text(encoding="utf-8"))
         if not isinstance(data, dict):
@@ -314,6 +325,8 @@ class RuntimeApiService:
         quotas.setdefault("token_requests", {})
         quotas.setdefault("token_submits", {})
         quotas.setdefault("job_reads", {})
+        quotas.setdefault("job_replays", {})
+        quotas.setdefault("job_last_replay_ts", {})
         return data
 
     def _save_state(self, state: Dict[str, Any]) -> None:
@@ -392,3 +405,25 @@ class RuntimeApiService:
             limit,
             error="job read quota exceeded",
         )
+
+    def _bump_job_replay_quota(self, state: Dict[str, Any], *, job_id: str, limit: int) -> None:
+        quotas = state["quotas"]
+        self._bump_counter(
+            quotas["job_replays"],
+            job_id,
+            limit,
+            error="job replay quota exceeded",
+        )
+
+    @staticmethod
+    def _enforce_replay_cooldown(state: Dict[str, Any], *, job_id: str, cooldown_seconds: int) -> None:
+        if cooldown_seconds <= 0:
+            return
+        now = int(time.time())
+        quotas = state["quotas"]
+        last_replay = quotas["job_last_replay_ts"].get(job_id, 0)
+        if not isinstance(last_replay, int):
+            last_replay = 0
+        if (now - last_replay) < cooldown_seconds:
+            raise ValueError("replay cooldown active")
+        quotas["job_last_replay_ts"][job_id] = now

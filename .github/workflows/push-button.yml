@@ -34,9 +34,9 @@ jobs:
   push-button:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@42375524a18f07eb0658ddf24b150a0f0f0b274f
         with:
           python-version: "3.12"
       - name: Install dependencies
@@ -48,7 +48,7 @@ jobs:
           python tooling/codegen/cleanroom_validation_generate.py
           python tooling/codegen/diff_fidelity.py
       - name: Upload release checksum
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: hello-core-bundle-sha256
           path: artifacts/bundles/hello-core-bundle.sha256

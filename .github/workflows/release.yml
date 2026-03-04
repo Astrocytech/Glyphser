@@ -18,8 +18,8 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-python@42375524a18f07eb0658ddf24b150a0f0f0b274f
         with:
           python-version: "3.12"
       - name: Build dist
@@ -33,7 +33,7 @@ jobs:
       - name: Generate SBOM and provenance
         run: python tooling/security/security_artifacts.py
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: dist
           path: |

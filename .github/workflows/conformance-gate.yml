@@ -26,9 +26,9 @@ jobs:
   conformance:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@42375524a18f07eb0658ddf24b150a0f0f0b274f
         with:
           python-version: "3.12"
       - name: Install dependencies
@@ -41,9 +41,9 @@ jobs:
   hello-core:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@42375524a18f07eb0658ddf24b150a0f0f0b274f
         with:
           python-version: "3.12"
       - name: Install dependencies
