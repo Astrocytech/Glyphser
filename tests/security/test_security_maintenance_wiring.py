@@ -17,6 +17,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/evidence_run_dir_guard.py --run-id" in wf
     assert "python tooling/security/policy_signature_gate.py --strict-key" in wf
     assert "python tooling/security/policy_schema_validation_gate.py" in wf
+    assert "python tooling/security/security_schema_migration_tracker.py" in wf
     assert "python tooling/security/security_toolchain_gate.py" in wf
     assert "python tooling/security/workflow_risky_patterns_gate.py" in wf
     assert "python tooling/security/subprocess_allowlist_report.py" in wf
@@ -49,6 +50,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "subprocess_allowlist_report.json" in wf
     assert "subprocess_direct_usage_gate.json" in wf
     assert "policy_schema_validation_gate.json" in wf
+    assert "security_schema_migration_tracker.json" in wf
     assert "security_workflow_trigger_gate.json" in wf
     assert "security_critical_test_wiring_gate.json" in wf
     assert "security_sarif_permissions_gate.json" in wf
