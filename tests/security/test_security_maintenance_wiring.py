@@ -12,6 +12,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "bandit==1.9.4" in wf
     assert "pip-audit==2.9.0" in wf
     assert "semgrep==1.95.0" in wf
+    assert "setuptools==75.8.0" in wf
     assert "GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/security-maintenance" in wf
     assert "python tooling/security/evidence_run_dir_guard.py --run-id" in wf
     assert "python tooling/security/policy_signature_gate.py --strict-key" in wf
@@ -37,4 +38,6 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/workflow_evidence_scope_gate.py" in wf
     assert "python tooling/security/conformance_security_coupling_gate.py" in wf
     assert "python tooling/security/security_super_gate.py --strict-key" in wf
+    assert "semgrep --version" in wf
+    assert 'python -c "import pkg_resources"' in wf
     assert "security-maintenance-artifacts" in wf

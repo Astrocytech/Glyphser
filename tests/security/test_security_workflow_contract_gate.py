@@ -1,0 +1,45 @@
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+from tooling.security import security_workflow_contract_gate
+
+
+def test_security_workflow_contract_gate_passes_when_required_ci_snippets_exist(
+    monkeypatch, tmp_path: Path
+) -> None:
+    repo = tmp_path / "repo"
+    wf = repo / ".github" / "workflows"
+    ev = repo / "evidence" / "security"
+    wf.mkdir(parents=True)
+    ev.mkdir(parents=True)
+    ci_text = """
+jobs:
+  security-matrix:
+    permissions:
+      security-events: write
+    steps:
+      - run: python tooling/security/evidence_run_dir_guard.py --run-id x
+      - run: pip install semgrep==1.95.0 setuptools==75.8.0
+      - if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
+"""
+    (wf / "ci.yml").write_text(ci_text, encoding="utf-8")
+    monkeypatch.setattr(security_workflow_contract_gate, "ROOT", repo)
+    monkeypatch.setattr(security_workflow_contract_gate, "evidence_root", lambda: repo / "evidence")
+    assert security_workflow_contract_gate.main([]) == 0
+
+
+def test_security_workflow_contract_gate_fails_when_snippet_missing(monkeypatch, tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    wf = repo / ".github" / "workflows"
+    ev = repo / "evidence" / "security"
+    wf.mkdir(parents=True)
+    ev.mkdir(parents=True)
+    (wf / "ci.yml").write_text("jobs:\n  test:\n    runs-on: ubuntu-latest\n", encoding="utf-8")
+    monkeypatch.setattr(security_workflow_contract_gate, "ROOT", repo)
+    monkeypatch.setattr(security_workflow_contract_gate, "evidence_root", lambda: repo / "evidence")
+    assert security_workflow_contract_gate.main([]) == 1
+    report = json.loads((ev / "security_workflow_contract_gate.json").read_text(encoding="utf-8"))
+    assert report["status"] == "FAIL"
+    assert any(item.startswith("missing_workflow_contract_snippet:") for item in report["findings"])

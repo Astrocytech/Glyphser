@@ -32,6 +32,10 @@ jobs:
             pip-audit==2.9.0 \
             semgrep==1.95.0 \
             setuptools==75.8.0
+      - name: Semgrep runtime preflight
+        run: |
+          semgrep --version
+          python -c "import pkg_resources"
       - name: Initialize immutable evidence run directory
         run: python tooling/security/evidence_run_dir_guard.py --run-id "${{ github.run_id }}-security-maintenance"
       - name: Security toolchain gate

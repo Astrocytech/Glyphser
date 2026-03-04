@@ -195,10 +195,16 @@ jobs:
             pip-audit==2.9.0 \
             semgrep==1.95.0 \
             setuptools==75.8.0
+      - name: Semgrep runtime preflight
+        run: |
+          semgrep --version
+          python -c "import pkg_resources"
       - name: Initialize immutable evidence run directory
         run: python tooling/security/evidence_run_dir_guard.py --run-id "${{ github.run_id }}-${{ matrix.python-version }}-security"
       - name: Security toolchain gate
         run: python tooling/security/security_toolchain_gate.py
+      - name: Security workflow contract gate
+        run: python tooling/security/security_workflow_contract_gate.py
       - name: Policy signature generate
         run: python tooling/security/policy_signature_generate.py --strict-key
       - name: Policy signature gate
@@ -299,6 +305,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_pinning.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_signature.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_toolchain.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_workflow_contract_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/incident_response.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/org_secret_backend.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/secret_management.json
