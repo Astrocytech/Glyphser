@@ -63,6 +63,7 @@ def main(argv: list[str] | None = None) -> int:
     gates: list[list[str]] = [
         [sys.executable, "tooling/security/security_toolchain_gate.py"],
         [sys.executable, "tooling/security/security_workflow_contract_gate.py"],
+        [sys.executable, "tooling/security/security_dead_gate_wiring_gate.py"],
         [sys.executable, "tooling/security/governance_markdown_gate.py"],
         [sys.executable, "tooling/security/review_policy_gate.py"],
         [sys.executable, "tooling/security/file_permissions_gate.py"],
@@ -126,6 +127,7 @@ def main(argv: list[str] | None = None) -> int:
         [sys.executable, "tooling/security/security_trend_gate.py"],
         [sys.executable, "tooling/security/security_dashboard_export.py"],
         [sys.executable, "tooling/security/security_schema_normalization_gate.py"],
+        [sys.executable, "tooling/security/security_baseline_gate.py"],
         [sys.executable, "tooling/security/crypto_agility_matrix_gate.py"],
         [sys.executable, "tooling/security/provenance_witness_quorum_gate.py"],
         [sys.executable, "tooling/security/transparency_log_export.py"],
