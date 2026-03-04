@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from runtime.glyphser.security.artifact_signing import current_key, sign_file
+from runtime.glyphser.security.artifact_signing import current_key, key_metadata, sign_file
 from tooling.lib.path_config import evidence_root
 
 
@@ -35,13 +35,18 @@ def main(argv: list[str] | None = None) -> int:
         and not p.name.endswith(".sig")
     )
     items = [
-        {"path": str(p.relative_to(ROOT)).replace("\\", "/"), "sha256": _sha256_file(p)}
-        for p in files
+        {
+            "seq": ix + 1,
+            "path": str(p.relative_to(ROOT)).replace("\\", "/"),
+            "sha256": _sha256_file(p),
+        }
+        for ix, p in enumerate(files)
     ]
     payload = {
         "status": "PASS",
         "generated_at_utc": datetime.now(UTC).isoformat(),
         "count": len(items),
+        "key_provenance": key_metadata(strict=args.strict_key),
         "items": items,
     }
     index_path = sec / "evidence_attestation_index.json"

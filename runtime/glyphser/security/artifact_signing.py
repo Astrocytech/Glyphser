@@ -4,13 +4,17 @@ from __future__ import annotations
 
 import hashlib
 import hmac
+import importlib
 import os
 from pathlib import Path
+from typing import Any
 
 _KEY_ENV = "GLYPHSER_PROVENANCE_HMAC_KEY"
 _FALLBACK_KEY = "glyphser-provenance-hmac-fallback-v1"
 _STRICT_ENV = "GLYPHSER_REQUIRE_SIGNING_KEY"
 _ENV_HINT = "GLYPHSER_ENV"
+_ADAPTER_ENV = "GLYPHSER_SIGNING_ADAPTER"
+_KEY_ID_ENV = "GLYPHSER_PROVENANCE_KEY_ID"
 
 
 def current_key(*, strict: bool = False) -> bytes:
@@ -26,8 +30,31 @@ def current_key(*, strict: bool = False) -> bytes:
     return raw.encode("utf-8")
 
 
+def key_metadata(*, strict: bool = False) -> dict[str, Any]:
+    raw = os.environ.get(_KEY_ENV, "")
+    env_hint = os.environ.get(_ENV_HINT, "").strip().lower()
+    require_key = strict or os.environ.get(_STRICT_ENV, "").strip().lower() in {"1", "true", "yes"}
+    if env_hint in {"ci", "prod", "production", "release"}:
+        require_key = True
+    fallback_used = not raw and not require_key
+    source = "env" if raw else ("fallback" if fallback_used else "missing")
+    return {
+        "source": source,
+        "adapter": os.environ.get(_ADAPTER_ENV, "").strip().lower() or "hmac",
+        "key_id": os.environ.get(_KEY_ID_ENV, "").strip() or "",
+        "fallback_used": fallback_used,
+    }
+
+
 def sign_bytes(payload: bytes, *, key: bytes) -> str:
-    return hmac.new(key, payload, hashlib.sha256).hexdigest()
+    adapter = os.environ.get(_ADAPTER_ENV, "").strip().lower() or "hmac"
+    if adapter == "hmac":
+        return hmac.new(key, payload, hashlib.sha256).hexdigest()
+    if adapter == "kms":
+        module = importlib.import_module("runtime.glyphser.security.kms_adapter")
+        signer = getattr(module, "sign_payload")
+        return str(signer(payload))
+    raise ValueError(f"unsupported signing adapter: {adapter}")
 
 
 def sign_file(path: Path, *, key: bytes) -> str:

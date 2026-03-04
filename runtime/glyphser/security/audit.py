@@ -41,7 +41,10 @@ def append_event(path: Path, event: Dict[str, Any]) -> Dict[str, Any]:
         _lock_exclusive(fh)
         try:
             fh.seek(0)
-            lines = [ln for ln in fh.read().splitlines() if ln.strip()]
+            raw_text = fh.read()
+            if raw_text and not raw_text.endswith("\n"):
+                raise ValueError("audit log corrupt: partial line suffix")
+            lines = [ln for ln in raw_text.splitlines() if ln.strip()]
             if lines:
                 try:
                     tail = json.loads(lines[-1])
@@ -50,6 +53,10 @@ def append_event(path: Path, event: Dict[str, Any]) -> Dict[str, Any]:
                 tail_hash = tail.get("hash")
                 if not isinstance(tail_hash, str):
                     raise ValueError("audit log corrupt: invalid hash field")
+                if not isinstance(tail.get("prev_hash", ""), str):
+                    raise ValueError("audit log corrupt: invalid prev_hash field")
+                if not isinstance(tail.get("event", {}), dict):
+                    raise ValueError("audit log corrupt: invalid event field")
                 prev_hash = tail_hash
             payload = {"event": event, "prev_hash": prev_hash}
             record_hash = _sha256(_canonical(payload))
@@ -58,6 +65,17 @@ def append_event(path: Path, event: Dict[str, Any]) -> Dict[str, Any]:
             fh.write(_canonical(record) + "\n")
             fh.flush()
             os.fsync(fh.fileno())
+            # Ensure directory entry metadata reaches stable storage.
+            dir_flag = getattr(os, "O_DIRECTORY", 0)
+            try:
+                dfd = os.open(str(path.parent), dir_flag)
+            except OSError:
+                dfd = -1
+            if dfd >= 0:
+                try:
+                    os.fsync(dfd)
+                finally:
+                    os.close(dfd)
         finally:
             _unlock(fh)
     return record

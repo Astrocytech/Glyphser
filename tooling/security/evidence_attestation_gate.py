@@ -53,6 +53,10 @@ def main(argv: list[str] | None = None) -> int:
                 items = [item for item in raw_items if isinstance(item, dict)]
 
     for item in items:
+        seq = item.get("seq", 0)
+        if not isinstance(seq, int) or seq <= 0:
+            findings.append("invalid attestation sequence number")
+            continue
         rel = str(item.get("path", "")).strip()
         expected = str(item.get("sha256", "")).strip().lower()
         if not rel or not expected:
@@ -65,6 +69,12 @@ def main(argv: list[str] | None = None) -> int:
         actual = _sha256_file(path)
         if actual != expected:
             findings.append(f"attested file hash mismatch: {rel}")
+    if items:
+        seqs = [item.get("seq", 0) for item in items if isinstance(item, dict)]
+        if any(not isinstance(v, int) for v in seqs):
+            findings.append("attestation sequence values must be integers")
+        elif sorted(seqs) != list(range(1, len(seqs) + 1)):
+            findings.append("attestation sequence values not strictly monotonic")
 
     out = sec / "evidence_attestation_gate.json"
     report = {"status": "PASS" if not findings else "FAIL", "findings": findings}

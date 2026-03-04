@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
+import os
 import re
 import threading
 import time
@@ -25,6 +27,7 @@ _MAX_TOKEN_LENGTH = 256
 _JOB_ID_RE = re.compile(r"^[0-9a-f]{24}$")
 _PAYLOAD_KEY_RE = re.compile(r"^[A-Za-z0-9_.:-]{1,64}$")
 _IDEMPOTENCY_KEY_RE = re.compile(r"^[A-Za-z0-9_.:-]{1,128}$")
+_TOKEN_RE = re.compile(r"^[A-Za-z0-9_.:-]{1,256}$")
 
 
 def _first_existing(candidates: list[Path]) -> Path:
@@ -184,6 +187,21 @@ def _validate_job_id(job_id: str) -> None:
         raise ValueError("invalid job_id")
 
 
+def _shannon_entropy_bits(text: str) -> float:
+    if not text:
+        return 0.0
+    counts: dict[str, int] = {}
+    for ch in text:
+        counts[ch] = counts.get(ch, 0) + 1
+    total = float(len(text))
+    entropy = 0.0
+    for count in counts.values():
+        p = count / total
+        if p > 0.0:
+            entropy -= p * math.log2(p)
+    return entropy * len(text)
+
+
 @dataclass(frozen=True)
 class RuntimeApiConfig:
     root: Path
@@ -200,6 +218,13 @@ class RuntimeApiConfig:
     max_replays_per_token_window: int = 30
     max_replays_per_job_window: int = 10
     replay_window_seconds: int = 60
+    max_cross_token_replays_per_job_window: int = 5
+    auth_failure_denylist_threshold: int = 5
+    auth_failure_denylist_cooldown_seconds: int = 300
+    enforce_token_policy: bool = True
+    min_token_entropy_bits: int = 24
+    idempotency_ttl_seconds: int = 86_400
+    idempotency_max_entries: int = 10_000
 
 
 class RuntimeApiService:
@@ -236,17 +261,19 @@ class RuntimeApiService:
             raise ValueError("idempotency_key has invalid characters")
         with self._lock:
             state = self._load_state()
+            self._prune_idempotency(state)
             self._bump_token_quota(
                 state,
                 token=token,
-                request_limit=self._config.max_requests_per_token,
-                submit_limit=self._config.max_submits_per_token,
+                action="jobs:write",
+                request_limit=self._effective_request_limit(token=token, action="jobs:write"),
+                submit_limit=self._effective_submit_limit(token=token),
                 window_limit=self._config.max_requests_per_window,
                 window_seconds=self._config.request_window_seconds,
             )
 
             if idempotency_key:
-                existing = state["idempotency"].get(idempotency_key)
+                existing = self._idempotency_job(state, idempotency_key)
                 if existing:
                     out = dict(state["jobs"][existing])
                     _validate_against_schema("submit_response", out)
@@ -270,6 +297,7 @@ class RuntimeApiService:
             state["jobs"][job_id] = record
             if idempotency_key:
                 state["idempotency"][idempotency_key] = job_id
+                state["idempotency_meta"][idempotency_key] = {"job_id": job_id, "ts": int(time.time())}
             self._save_state(state)
             self._audit("submit", token=token, job_id=job_id, scope=scope)
             _validate_against_schema("submit_response", record)
@@ -285,7 +313,8 @@ class RuntimeApiService:
             self._bump_token_quota(
                 state,
                 token=token,
-                request_limit=self._config.max_requests_per_token,
+                action="jobs:read",
+                request_limit=self._effective_request_limit(token=token, action="jobs:read"),
                 window_limit=self._config.max_requests_per_window,
                 window_seconds=self._config.request_window_seconds,
             )
@@ -306,7 +335,8 @@ class RuntimeApiService:
             self._bump_token_quota(
                 state,
                 token=token,
-                request_limit=self._config.max_requests_per_token,
+                action="evidence:read",
+                request_limit=self._effective_request_limit(token=token, action="evidence:read"),
                 window_limit=self._config.max_requests_per_window,
                 window_seconds=self._config.request_window_seconds,
             )
@@ -350,7 +380,8 @@ class RuntimeApiService:
             self._bump_token_quota(
                 state,
                 token=token,
-                request_limit=self._config.max_requests_per_token,
+                action="replay:run",
+                request_limit=self._effective_request_limit(token=token, action="replay:run"),
                 window_limit=self._config.max_requests_per_window,
                 window_seconds=self._config.request_window_seconds,
             )
@@ -362,8 +393,9 @@ class RuntimeApiService:
                 state,
                 token=token,
                 job_id=job_id,
-                token_limit=self._config.max_replays_per_token_window,
+                token_limit=self._effective_replay_token_window_limit(token=token),
                 job_limit=self._config.max_replays_per_job_window,
+                cross_token_limit=self._config.max_cross_token_replays_per_job_window,
                 window_seconds=self._config.replay_window_seconds,
             )
             self._save_state(state)
@@ -408,17 +440,61 @@ class RuntimeApiService:
             return [token.split(":", 1)[1]]
         return ["admin"]
 
+    def _token_policy_enforced(self) -> bool:
+        if not self._config.enforce_token_policy:
+            return False
+        env_hint = os.environ.get("GLYPHSER_ENV", "").strip().lower()
+        return env_hint not in {"", "local", "dev", "test"}
+
+    def _effective_request_limit(self, *, token: str, action: str) -> int:
+        roles = self._roles_from_token(token)
+        role = roles[0] if roles else "admin"
+        base = self._config.max_requests_per_token
+        if role in {"viewer", "reader"}:
+            return min(base, max(10, base // 4))
+        if action == "replay:run":
+            return min(base, max(10, base // 2))
+        return base
+
+    def _effective_submit_limit(self, *, token: str) -> int:
+        roles = self._roles_from_token(token)
+        role = roles[0] if roles else "admin"
+        base = self._config.max_submits_per_token
+        if role in {"viewer", "reader"}:
+            return min(base, max(5, base // 10))
+        return base
+
+    def _effective_replay_token_window_limit(self, *, token: str) -> int:
+        roles = self._roles_from_token(token)
+        role = roles[0] if roles else "admin"
+        base = self._config.max_replays_per_token_window
+        if role in {"viewer", "reader"}:
+            return min(base, max(1, base // 3))
+        return base
+
     def _require_auth(self, token: str, action: str) -> None:
         if not isinstance(token, str) or not token.strip():
             raise ValueError("missing auth token")
         if len(token) > _MAX_TOKEN_LENGTH:
             raise ValueError("token too long")
+        if self._token_policy_enforced():
+            if len(token) < 8 and not token.startswith("role:"):
+                raise ValueError("token too short")
+            if not _TOKEN_RE.match(token):
+                raise ValueError("token format invalid")
+            if token.startswith("token-") or token.endswith("-token") or token in {"token-a", "token-b"}:
+                raise ValueError("weak token pattern not allowed")
+            if _shannon_entropy_bits(token) < float(self._config.min_token_entropy_bits):
+                raise ValueError("token entropy below minimum")
         roles = self._roles_from_token(token)
         if not authorize(action, roles):
             raise ValueError(f"unauthorized action: {action}")
 
     def _require_auth_with_tracking(self, *, token: str, action: str, scope: str, job_id: str) -> None:
         try:
+            with self._lock:
+                state = self._load_state()
+                self._enforce_auth_failure_cooldown(state, token=token)
             self._require_auth(token=token, action=action)
         except ValueError:
             with self._lock:
@@ -453,6 +529,7 @@ class RuntimeApiService:
             return {
                 "jobs": {},
                 "idempotency": {},
+                "idempotency_meta": {},
                 "quotas": {
                     "token_requests": {},
                     "token_submits": {},
@@ -461,8 +538,10 @@ class RuntimeApiService:
                     "job_last_replay_ts": {},
                     "token_request_window": {},
                     "auth_failures_by_token": {},
+                    "auth_failure_cooldown_until": {},
                     "replay_window_by_token": {},
                     "replay_window_by_job": {},
+                    "replay_window_job_tokens": {},
                 },
             }
         data = json.loads(self._config.state_path.read_text(encoding="utf-8"))
@@ -470,6 +549,7 @@ class RuntimeApiService:
             raise ValueError("invalid state")
         data.setdefault("jobs", {})
         data.setdefault("idempotency", {})
+        data.setdefault("idempotency_meta", {})
         quotas = data.setdefault("quotas", {})
         if not isinstance(quotas, dict):
             raise ValueError("invalid state quotas")
@@ -480,12 +560,63 @@ class RuntimeApiService:
         quotas.setdefault("job_last_replay_ts", {})
         quotas.setdefault("token_request_window", {})
         quotas.setdefault("auth_failures_by_token", {})
+        quotas.setdefault("auth_failure_cooldown_until", {})
         quotas.setdefault("replay_window_by_token", {})
         quotas.setdefault("replay_window_by_job", {})
+        quotas.setdefault("replay_window_job_tokens", {})
         return data
 
     def _save_state(self, state: Dict[str, Any]) -> None:
         self._config.state_path.write_text(json.dumps(state, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+    def _prune_idempotency(self, state: Dict[str, Any]) -> None:
+        ttl = max(1, int(self._config.idempotency_ttl_seconds))
+        cap = max(1, int(self._config.idempotency_max_entries))
+        now = int(time.time())
+        idx = state.get("idempotency_meta", {})
+        if not isinstance(idx, dict):
+            idx = {}
+            state["idempotency_meta"] = idx
+        legacy = state.get("idempotency", {})
+        if not isinstance(legacy, dict):
+            legacy = {}
+            state["idempotency"] = legacy
+        expired: list[str] = []
+        for key, payload in idx.items():
+            if not isinstance(key, str) or not isinstance(payload, dict):
+                expired.append(key)
+                continue
+            ts = payload.get("ts", 0)
+            if not isinstance(ts, int) or (now - ts) >= ttl:
+                expired.append(key)
+        for key in expired:
+            idx.pop(key, None)
+            legacy.pop(key, None)
+        if len(idx) > cap:
+            ordered = sorted(
+                ((k, v) for k, v in idx.items() if isinstance(v, dict)),
+                key=lambda kv: int(kv[1].get("ts", 0)) if isinstance(kv[1].get("ts", 0), int) else 0,
+            )
+            drop = max(0, len(idx) - cap)
+            for key, _ in ordered[:drop]:
+                idx.pop(key, None)
+                legacy.pop(key, None)
+
+    @staticmethod
+    def _idempotency_job(state: Dict[str, Any], key: str) -> str:
+        meta = state.get("idempotency_meta", {})
+        if isinstance(meta, dict):
+            payload = meta.get(key)
+            if isinstance(payload, dict):
+                job_id = payload.get("job_id")
+                if isinstance(job_id, str):
+                    return job_id
+        raw = state.get("idempotency", {})
+        if isinstance(raw, dict):
+            job = raw.get(key)
+            if isinstance(job, str):
+                return job
+        return ""
 
     @staticmethod
     def _require_job_locked(state: Dict[str, Any], job_id: str) -> Dict[str, Any]:
@@ -534,6 +665,7 @@ class RuntimeApiService:
         state: Dict[str, Any],
         *,
         token: str,
+        action: str,
         request_limit: int,
         submit_limit: int | None = None,
         window_limit: int,
@@ -555,7 +687,7 @@ class RuntimeApiService:
             )
         self._bump_token_window_quota(
             quotas["token_request_window"],
-            token=token,
+            token=f"{token}:{action}",
             limit=window_limit,
             window_seconds=window_seconds,
         )
@@ -604,7 +736,21 @@ class RuntimeApiService:
         current = counter.get(token, 0)
         if not isinstance(current, int) or current < 0:
             current = 0
-        counter[token] = current + 1
+        nxt = current + 1
+        counter[token] = nxt
+        threshold = max(1, int(self._config.auth_failure_denylist_threshold))
+        if nxt >= threshold:
+            cooldown = max(1, int(self._config.auth_failure_denylist_cooldown_seconds))
+            quotas["auth_failure_cooldown_until"][token] = int(time.time()) + cooldown
+
+    def _enforce_auth_failure_cooldown(self, state: Dict[str, Any], *, token: str) -> None:
+        quotas = state["quotas"]
+        now = int(time.time())
+        until = quotas.get("auth_failure_cooldown_until", {}).get(token, 0)
+        if not isinstance(until, int):
+            return
+        if until > now:
+            raise ValueError("token temporarily denied after auth failures")
 
     @staticmethod
     def _bump_window_counter(
@@ -635,6 +781,7 @@ class RuntimeApiService:
         job_id: str,
         token_limit: int,
         job_limit: int,
+        cross_token_limit: int,
         window_seconds: int,
     ) -> None:
         quotas = state["quotas"]
@@ -652,6 +799,42 @@ class RuntimeApiService:
             window_seconds=window_seconds,
             error="job replay burst exceeded",
         )
+        self._bump_cross_token_replay_window(
+            quotas["replay_window_job_tokens"],
+            token=token,
+            job_id=job_id,
+            limit=cross_token_limit,
+            window_seconds=window_seconds,
+        )
+
+    @staticmethod
+    def _bump_cross_token_replay_window(
+        counter: Dict[str, Any],
+        *,
+        token: str,
+        job_id: str,
+        limit: int,
+        window_seconds: int,
+    ) -> None:
+        if limit <= 0 or window_seconds <= 0:
+            return
+        now = int(time.time())
+        raw = counter.get(job_id, {})
+        if not isinstance(raw, dict):
+            raw = {}
+        cleaned: Dict[str, list[int]] = {}
+        for existing_token, stamps in raw.items():
+            if not isinstance(existing_token, str) or not isinstance(stamps, list):
+                continue
+            keep = [int(ts) for ts in stamps if isinstance(ts, int) and (now - ts) < window_seconds]
+            if keep:
+                cleaned[existing_token] = keep
+        slots = cleaned.get(token, [])
+        slots.append(now)
+        cleaned[token] = slots
+        if len(cleaned) > limit:
+            raise ValueError("cross-token replay burst exceeded")
+        counter[job_id] = cleaned
 
     @staticmethod
     def _enforce_replay_cooldown(state: Dict[str, Any], *, job_id: str, cooldown_seconds: int) -> None:

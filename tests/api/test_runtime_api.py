@@ -280,3 +280,91 @@ def test_replay_window_limits_enforced(tmp_path: Path):
         assert False, "expected ValueError"
     except ValueError as exc:
         assert "replay burst exceeded" in str(exc)
+
+
+def test_cross_token_replay_window_limit_enforced(tmp_path: Path):
+    root = tmp_path / "repo"
+    (root / "evidence" / "conformance" / "reports").mkdir(parents=True)
+    (root / "artifacts" / "bundles").mkdir(parents=True)
+    (root / "evidence" / "repro").mkdir(parents=True)
+    (root / "evidence" / "conformance" / "reports" / "latest.json").write_text(
+        json.dumps({"status": "PASS"}) + "\n", encoding="utf-8"
+    )
+    line = "abc123  hello-core-bundle.tar.gz\n"
+    (root / "artifacts" / "bundles" / "hello-core-bundle.sha256").write_text(line, encoding="utf-8")
+    (root / "evidence" / "repro" / "hashes.txt").write_text(line, encoding="utf-8")
+    svc = RuntimeApiService(
+        RuntimeApiConfig(
+            root=root,
+            state_path=tmp_path / "state.json",
+            replay_cooldown_seconds=0,
+            max_cross_token_replays_per_job_window=2,
+            replay_window_seconds=300,
+        )
+    )
+    job = svc.submit_job(payload={"payload": {"n": 1}}, token="alpha-token-123", scope="jobs:write")
+    svc.replay(job["job_id"], token="alpha-token-123", scope="replay:run")
+    svc.replay(job["job_id"], token="beta-token-456", scope="replay:run")
+    try:
+        svc.replay(job["job_id"], token="gamma-token-789", scope="replay:run")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "cross-token replay burst exceeded" in str(exc)
+
+
+def test_auth_failure_denylist_cooldown_enforced(tmp_path: Path):
+    svc = RuntimeApiService(
+        RuntimeApiConfig(
+            root=ROOT,
+            state_path=tmp_path / "state.json",
+            auth_failure_denylist_threshold=2,
+            auth_failure_denylist_cooldown_seconds=3600,
+        )
+    )
+    for _ in range(2):
+        try:
+            svc.submit_job(payload={"payload": {"x": 1}}, token="role:viewer", scope="jobs:write")
+            assert False, "expected ValueError"
+        except ValueError:
+            pass
+    try:
+        svc.submit_job(payload={"payload": {"x": 1}}, token="role:viewer", scope="jobs:write")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "temporarily denied" in str(exc)
+
+
+def test_token_policy_entropy_validation_enforced_in_non_test_env(monkeypatch, tmp_path: Path):
+    monkeypatch.setenv("GLYPHSER_ENV", "ci")
+    svc = RuntimeApiService(
+        RuntimeApiConfig(
+            root=ROOT,
+            state_path=tmp_path / "state.json",
+            min_token_entropy_bits=80,
+            enforce_token_policy=True,
+        )
+    )
+    try:
+        svc.submit_job(payload={"payload": {"x": 1}}, token="aaaaaaaaaaaaaaaa", scope="jobs:write")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "entropy" in str(exc)
+
+
+def test_idempotency_ttl_prunes_and_refreshes_meta(tmp_path: Path):
+    svc = RuntimeApiService(
+        RuntimeApiConfig(
+            root=ROOT,
+            state_path=tmp_path / "state.json",
+            idempotency_ttl_seconds=1,
+            idempotency_max_entries=100,
+        )
+    )
+    payload = {"payload": {"job": "demo", "value": 1}}
+    _ = svc.submit_job(payload=payload, token="entropy-token-12345", scope="jobs:write", idempotency_key="ttl-key")
+    state = json.loads((tmp_path / "state.json").read_text(encoding="utf-8"))
+    state["idempotency_meta"]["ttl-key"]["ts"] = 0
+    (tmp_path / "state.json").write_text(json.dumps(state, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    _ = svc.submit_job(payload=payload, token="entropy-token-12345", scope="jobs:write", idempotency_key="ttl-key")
+    state2 = json.loads((tmp_path / "state.json").read_text(encoding="utf-8"))
+    assert int(state2["idempotency_meta"]["ttl-key"]["ts"]) > 0

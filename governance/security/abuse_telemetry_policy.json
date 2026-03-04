@@ -1,5 +1,18 @@
 {
+  "profiles": {
+    "ci": {
+      "max_auth_failures_per_token": 20,
+      "max_distinct_tokens": 200,
+      "max_failure_spike": 100
+    },
+    "prod": {
+      "max_auth_failures_per_token": 8,
+      "max_distinct_tokens": 100,
+      "max_failure_spike": 40
+    }
+  },
   "runtime_api_state_path": "artifacts/generated/tmp/security/runtime_api_state.json",
   "max_distinct_tokens": 200,
-  "max_auth_failures_per_token": 20
+  "max_auth_failures_per_token": 20,
+  "max_failure_spike": 100
 }

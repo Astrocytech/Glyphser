@@ -34,15 +34,29 @@ rules:
 
   - id: glyphser.unsafe-tempfile-mktemp
     pattern: tempfile.mktemp(...)
-    message: "tempfile.mktemp is unsafe; use NamedTemporaryFile/delete=False or mkstemp."
+    message: "tempfile.mktemp is unsafe; use mkstemp with secure ownership and cleanup."
     languages: [python]
     severity: ERROR
+
+  - id: glyphser.unsafe-tempfile-delete-false
+    pattern: tempfile.NamedTemporaryFile(..., delete=False, ...)
+    message: "NamedTemporaryFile(delete=False) requires strict ownership and cleanup; avoid for untrusted paths."
+    languages: [python]
+    severity: ERROR
+
+  - id: glyphser.path-join-untrusted
+    pattern: os.path.join($BASE, $UNTRUSTED)
+    message: "Joining untrusted path segments can enable traversal; validate and normalize first."
+    languages: [python]
+    severity: WARNING
 
   - id: glyphser.permissive-file-mode
     patterns:
       - pattern-either:
           - pattern: os.chmod(..., 0o777)
           - pattern: os.chmod(..., 0o666)
+          - pattern: os.open(..., 0o777)
+          - pattern: os.open(..., 0o666)
           - pattern: $P.mkdir(..., mode=0o777, ...)
           - pattern: os.makedirs(..., mode=0o777, ...)
     message: "Overly permissive file modes are not allowed."

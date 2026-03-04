@@ -26,6 +26,8 @@ def test_semgrep_rules_catch_expected_patterns() -> None:
     ids = {r.get("check_id") for r in payload.get("results", [])}
     assert "glyphser.path-traversal-archive-extractall" in ids
     assert "glyphser.unsafe-tempfile-mktemp" in ids
+    assert "glyphser.unsafe-tempfile-delete-false" in ids
+    assert "glyphser.path-join-untrusted" in ids
     assert "glyphser.permissive-file-mode" in ids
 
 

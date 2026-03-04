@@ -25,6 +25,11 @@ on:
 jobs:
   conformance:
     runs-on: ubuntu-latest
+    env:
+      GLYPHSER_ENV: "ci"
+      GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
+      GLYPHSER_PROVENANCE_KEY_ROTATED_AT: "2026-03-01T00:00:00+00:00"
+      GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/conformance
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - name: Setup Python
@@ -33,13 +38,24 @@ jobs:
           python-version: "3.12"
       - name: Install dependencies
         run: pip install -e .
+      - name: Initialize immutable evidence run directory
+        run: python tooling/security/evidence_run_dir_guard.py --run-id "${{ github.run_id }}-conformance"
       - name: Run conformance
         run: |
           python tooling/conformance/cli.py run
           python tooling/conformance/cli.py report
+      - name: Security linkage checks
+        run: |
+          python tooling/security/policy_signature_gate.py --strict-key
+          python tooling/security/security_artifacts.py
+          python tooling/security/evidence_attestation_index.py --strict-key
+          python tooling/security/evidence_attestation_gate.py --strict-key
+          python tooling/security/conformance_security_coupling_gate.py
 
   hello-core:
     runs-on: ubuntu-latest
+    env:
+      GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/hello-core
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - name: Setup Python
@@ -48,5 +64,7 @@ jobs:
           python-version: "3.12"
       - name: Install dependencies
         run: pip install -e .
+      - name: Initialize immutable evidence run directory
+        run: python tooling/security/evidence_run_dir_guard.py --run-id "${{ github.run_id }}-hello-core"
       - name: Run hello-core
         run: python tooling/scripts/run_hello_core.py

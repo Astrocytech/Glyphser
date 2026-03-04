@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 import sys
 from pathlib import Path
 from typing import Any
@@ -29,13 +30,23 @@ def main(argv: list[str] | None = None) -> int:
         raise ValueError("invalid abuse telemetry policy")
 
     state_path = ROOT / str(policy.get("runtime_api_state_path", "")).strip()
-    max_distinct_tokens = _as_int(policy.get("max_distinct_tokens", 200), 200)
-    max_auth_failures_per_token = _as_int(policy.get("max_auth_failures_per_token", 20), 20)
+    profile = os.environ.get("GLYPHSER_ENV", "").strip().lower() or "ci"
+    profile_policy = policy.get("profiles", {}).get(profile, {}) if isinstance(policy.get("profiles"), dict) else {}
+    if not isinstance(profile_policy, dict):
+        profile_policy = {}
+    max_distinct_tokens = _as_int(profile_policy.get("max_distinct_tokens", policy.get("max_distinct_tokens", 200)), 200)
+    max_auth_failures_per_token = _as_int(
+        profile_policy.get("max_auth_failures_per_token", policy.get("max_auth_failures_per_token", 20)),
+        20,
+    )
+    max_failure_spike = _as_int(profile_policy.get("max_failure_spike", policy.get("max_failure_spike", 100)), 100)
     findings: list[str] = []
     summary: dict[str, Any] = {
         "state_path": str(state_path.relative_to(ROOT)).replace("\\", "/"),
         "max_distinct_tokens": max_distinct_tokens,
         "max_auth_failures_per_token": max_auth_failures_per_token,
+        "max_failure_spike": max_failure_spike,
+        "profile": profile,
     }
 
     if not state_path.exists():
@@ -63,6 +74,10 @@ def main(argv: list[str] | None = None) -> int:
         )
         if offenders:
             findings.append(f"repeated auth failures over threshold for: {', '.join(offenders)}")
+        total_failures = sum(_as_int(v, 0) for v in auth_failures.values())
+        summary["total_auth_failures"] = total_failures
+        if total_failures > max_failure_spike:
+            findings.append(f"auth_failure_spike:{total_failures}")
 
     payload = {"status": "PASS" if not findings else "FAIL", "findings": findings, "summary": summary}
     out = evidence_root() / "security" / "abuse_telemetry.json"

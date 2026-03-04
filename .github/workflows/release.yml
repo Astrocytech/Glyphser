@@ -19,7 +19,8 @@ jobs:
       contents: read
     env:
       GLYPHSER_ENV: "release"
-      GLYPHSER_PROVENANCE_HMAC_KEY: "glyphser-provenance-hmac-fallback-v1"
+      GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
+      GLYPHSER_PROVENANCE_KEY_ROTATED_AT: "2026-03-01T00:00:00+00:00"
       GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/release-build
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
@@ -68,6 +69,12 @@ jobs:
         run: |
           python tooling/security/evidence_attestation_index.py --strict-key
           python tooling/security/evidence_attestation_gate.py --strict-key
+      - name: Workflow evidence scope gate
+        run: python tooling/security/workflow_evidence_scope_gate.py
+      - name: Conformance-security coupling gate
+        run: python tooling/security/conformance_security_coupling_gate.py
+      - name: Security super gate
+        run: python tooling/security/security_super_gate.py --strict-key
       - name: Upload artifacts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -86,6 +93,8 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/org_secret_backend.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/secret_management.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/production_controls.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/key_management.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/report_secret_leak.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/third_party_pentest.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/live_rollout_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/abuse_telemetry.json
@@ -93,6 +102,13 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json.sig
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_evidence_scope_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/conformance_security_coupling.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_super_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_chain_of_custody.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_chain_of_custody.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_chain_of_custody_build.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_chain_of_custody_gate.json
 
   verify-signatures:
     needs: build
@@ -101,7 +117,8 @@ jobs:
       contents: read
     env:
       GLYPHSER_ENV: "release"
-      GLYPHSER_PROVENANCE_HMAC_KEY: "glyphser-provenance-hmac-fallback-v1"
+      GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
+      GLYPHSER_PROVENANCE_KEY_ROTATED_AT: "2026-03-01T00:00:00+00:00"
       GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/release-verify
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
@@ -128,6 +145,9 @@ jobs:
           python tooling/security/abuse_telemetry_gate.py
           python tooling/security/evidence_attestation_index.py --strict-key
           python tooling/security/evidence_attestation_gate.py --strict-key
+          python tooling/security/workflow_evidence_scope_gate.py
+          python tooling/security/conformance_security_coupling_gate.py
+          python tooling/security/security_super_gate.py --strict-key
 
   publish-pypi:
     needs: [build, verify-signatures]

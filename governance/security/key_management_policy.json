@@ -1,0 +1,7 @@
+{
+  "minimum_key_length": 32,
+  "minimum_entropy_bits": 80,
+  "maximum_rotation_age_days": 90,
+  "rotation_timestamp_env": "GLYPHSER_PROVENANCE_KEY_ROTATED_AT",
+  "signing_key_env": "GLYPHSER_PROVENANCE_HMAC_KEY"
+}

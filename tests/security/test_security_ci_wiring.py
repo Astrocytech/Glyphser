@@ -34,6 +34,9 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/evidence_attestation_gate.py --strict-key" in ci
     assert "python tooling/security/provenance_signature_gate.py --strict-key" in ci
     assert "python tooling/security/slsa_attestation_gate.py" in ci
+    assert "python tooling/security/workflow_evidence_scope_gate.py" in ci
+    assert "python tooling/security/conformance_security_coupling_gate.py" in ci
+    assert "python tooling/security/security_super_gate.py --strict-key" in ci
     assert "python tooling/security/security_artifacts.py" in ci
     assert "python tooling/security/branch_protection_policy_gate.py" in ci
     assert "bandit -q -c tooling/security/bandit.yaml -r glyphser runtime tooling -f sarif -o bandit.sarif -l -ii" in ci
