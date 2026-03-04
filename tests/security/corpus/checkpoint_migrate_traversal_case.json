@@ -1,0 +1,7 @@
+{
+  "kind": "checkpoint_migrate",
+  "request": {
+    "source_path": "../../secret.json"
+  },
+  "expected_error_substring": "traversal"
+}

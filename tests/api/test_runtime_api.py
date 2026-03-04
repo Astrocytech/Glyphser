@@ -146,6 +146,27 @@ def test_token_request_quota_enforced(tmp_path: Path):
         assert "token request quota exceeded" in str(exc)
 
 
+def test_token_burst_rate_limit_enforced(tmp_path: Path):
+    svc = RuntimeApiService(
+        RuntimeApiConfig(
+            root=ROOT,
+            state_path=tmp_path / "state.json",
+            max_requests_per_token=100,
+            max_submits_per_token=100,
+            max_requests_per_window=2,
+            request_window_seconds=60,
+        )
+    )
+    payload = {"payload": {"job": "demo"}}
+    svc.submit_job(payload=payload, token="token-burst", scope="jobs:write")
+    svc.submit_job(payload=payload, token="token-burst", scope="jobs:write")
+    try:
+        svc.submit_job(payload=payload, token="token-burst", scope="jobs:write")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "token burst rate exceeded" in str(exc)
+
+
 def test_job_read_quota_enforced(tmp_path: Path):
     svc = RuntimeApiService(
         RuntimeApiConfig(

@@ -53,3 +53,20 @@ def test_threat_model_api_actions_emit_audit_events(tmp_path: Path):
     assert verify_chain(audit_path)["status"] == "PASS"
     lines = audit_path.read_text(encoding="utf-8").splitlines()
     assert len(lines) >= 3
+
+
+def test_threat_model_audit_chain_fails_closed_on_partial_append(tmp_path: Path):
+    log = tmp_path / "audit.log.jsonl"
+    append_event(log, {"operation": "submit", "actor": "role:operator"})
+    log.write_text(log.read_text(encoding="utf-8") + '{"event":{"operation":"status"},"prev_hash":"x"', encoding="utf-8")
+    result = verify_chain(log)
+    assert result["status"] == "FAIL"
+    assert result["reason"] == "invalid_json"
+
+
+def test_threat_model_runtime_state_fails_closed_on_corrupt_state(tmp_path: Path):
+    state_path = tmp_path / "state.json"
+    state_path.write_text('{"jobs":', encoding="utf-8")
+    svc = RuntimeApiService(RuntimeApiConfig(root=tmp_path, state_path=state_path))
+    with pytest.raises(Exception):
+        svc.submit_job(payload={"payload": {"x": 1}}, token="role:operator", scope="jobs:write")

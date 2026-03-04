@@ -11,6 +11,7 @@ def test_branch_protection_ops_workflow_wired() -> None:
     assert "python tooling/security/apply_branch_protection.py" in wf
     assert "python tooling/security/verify_branch_protection_live.py" in wf
     assert "python tooling/security/live_rollout_gate.py --target branch_protection" in wf
+    assert "if: ${{ github.event.inputs.apply == 'true' }}" in wf
     assert 'default: "owner/repo"' not in wf
     assert "BRANCH_PROTECTION_ADMIN_TOKEN" in wf
 

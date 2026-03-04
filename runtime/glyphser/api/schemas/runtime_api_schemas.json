@@ -1,0 +1,92 @@
+{
+  "submit_request": {
+    "type": "object",
+    "required": ["payload", "token", "scope", "idempotency_key"],
+    "additionalProperties": false,
+    "properties": {
+      "payload": {"type": "object"},
+      "token": {"type": "string"},
+      "scope": {"type": "string"},
+      "idempotency_key": {"type": "string"}
+    }
+  },
+  "submit_response": {
+    "type": "object",
+    "required": ["job_id", "trace_id", "status", "api_version", "payload_hash", "idempotency_key"],
+    "additionalProperties": false,
+    "properties": {
+      "job_id": {"type": "string"},
+      "trace_id": {"type": "string"},
+      "status": {"type": "string"},
+      "api_version": {"type": "string"},
+      "payload_hash": {"type": "string"},
+      "idempotency_key": {"type": "string"}
+    }
+  },
+  "status_request": {
+    "type": "object",
+    "required": ["job_id", "token", "scope"],
+    "additionalProperties": false,
+    "properties": {
+      "job_id": {"type": "string"},
+      "token": {"type": "string"},
+      "scope": {"type": "string"}
+    }
+  },
+  "status_response": {
+    "type": "object",
+    "required": ["job_id", "trace_id", "status", "api_version", "payload_hash", "idempotency_key"],
+    "additionalProperties": false,
+    "properties": {
+      "job_id": {"type": "string"},
+      "trace_id": {"type": "string"},
+      "status": {"type": "string"},
+      "api_version": {"type": "string"},
+      "payload_hash": {"type": "string"},
+      "idempotency_key": {"type": "string"}
+    }
+  },
+  "evidence_request": {
+    "type": "object",
+    "required": ["job_id", "token", "scope"],
+    "additionalProperties": false,
+    "properties": {
+      "job_id": {"type": "string"},
+      "token": {"type": "string"},
+      "scope": {"type": "string"}
+    }
+  },
+  "evidence_response": {
+    "type": "object",
+    "required": ["job_id", "api_version", "conformance_report_hash", "bundle_manifest_line", "repro_hash_line"],
+    "additionalProperties": false,
+    "properties": {
+      "job_id": {"type": "string"},
+      "api_version": {"type": "string"},
+      "conformance_report_hash": {"type": "string"},
+      "bundle_manifest_line": {"type": "string"},
+      "repro_hash_line": {"type": "string"}
+    }
+  },
+  "replay_request": {
+    "type": "object",
+    "required": ["job_id", "token", "scope"],
+    "additionalProperties": false,
+    "properties": {
+      "job_id": {"type": "string"},
+      "token": {"type": "string"},
+      "scope": {"type": "string"}
+    }
+  },
+  "replay_response": {
+    "type": "object",
+    "required": ["job_id", "api_version", "replay_verdict"],
+    "additionalProperties": false,
+    "properties": {
+      "job_id": {"type": "string"},
+      "api_version": {"type": "string"},
+      "replay_verdict": {"type": "string"},
+      "reason": {"type": "string"}
+    }
+  }
+}

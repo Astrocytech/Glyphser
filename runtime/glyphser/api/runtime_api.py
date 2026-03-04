@@ -8,6 +8,7 @@ import re
 import threading
 import time
 from dataclasses import dataclass
+from functools import lru_cache
 from pathlib import Path
 from typing import Any, Dict
 
@@ -111,6 +112,64 @@ def _validate_submit_payload_schema(payload: Dict[str, Any]) -> None:
                 raise ValueError("submit tags must be safe short strings")
 
 
+def _matches_schema_type(value: Any, schema_type: str) -> bool:
+    if schema_type == "object":
+        return isinstance(value, dict)
+    if schema_type == "array":
+        return isinstance(value, list)
+    if schema_type == "string":
+        return isinstance(value, str)
+    if schema_type == "integer":
+        return isinstance(value, int) and not isinstance(value, bool)
+    if schema_type == "number":
+        return isinstance(value, (int, float)) and not isinstance(value, bool)
+    if schema_type == "boolean":
+        return isinstance(value, bool)
+    if schema_type == "null":
+        return value is None
+    return True
+
+
+@lru_cache(maxsize=1)
+def _runtime_api_schemas() -> dict[str, Any]:
+    schema_path = Path(__file__).resolve().parent / "schemas" / "runtime_api_schemas.json"
+    payload = json.loads(schema_path.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict):
+        raise ValueError("runtime api schemas must be an object")
+    return payload
+
+
+def _validate_against_schema(name: str, payload: dict[str, Any]) -> None:
+    schemas = _runtime_api_schemas()
+    schema = schemas.get(name)
+    if not isinstance(schema, dict):
+        raise ValueError(f"missing schema: {name}")
+    if schema.get("type") != "object":
+        raise ValueError(f"schema {name} must be object")
+
+    required = schema.get("required", [])
+    properties = schema.get("properties", {})
+    additional = bool(schema.get("additionalProperties", True))
+    if not isinstance(required, list) or not isinstance(properties, dict):
+        raise ValueError(f"invalid schema layout: {name}")
+
+    for key in required:
+        if key not in payload:
+            raise ValueError(f"{name}: missing required field {key}")
+
+    for key, value in payload.items():
+        prop = properties.get(key)
+        if prop is None:
+            if not additional:
+                raise ValueError(f"{name}: unknown field {key}")
+            continue
+        if not isinstance(prop, dict):
+            raise ValueError(f"{name}: invalid field schema {key}")
+        field_type = str(prop.get("type", "")).strip()
+        if field_type and not _matches_schema_type(value, field_type):
+            raise ValueError(f"{name}: invalid type for field {key}")
+
+
 def _validate_scope(scope: str, *, expected: str) -> None:
     if not isinstance(scope, str) or not scope:
         raise ValueError("missing scope")
@@ -136,6 +195,8 @@ class RuntimeApiConfig:
     max_reads_per_job: int = 10_000
     max_replays_per_job: int = 2_000
     replay_cooldown_seconds: int = 1
+    max_requests_per_window: int = 250
+    request_window_seconds: int = 60
 
 
 class RuntimeApiService:
@@ -153,6 +214,15 @@ class RuntimeApiService:
         scope: str,
         idempotency_key: str | None = None,
     ) -> Dict[str, Any]:
+        _validate_against_schema(
+            "submit_request",
+            {
+                "payload": payload,
+                "token": token,
+                "scope": scope,
+                "idempotency_key": idempotency_key or "",
+            },
+        )
         _validate_scope(scope, expected="jobs:write")
         self._require_auth(token=token, action="jobs:write")
         _validate_payload(payload)
@@ -168,12 +238,15 @@ class RuntimeApiService:
                 token=token,
                 request_limit=self._config.max_requests_per_token,
                 submit_limit=self._config.max_submits_per_token,
+                window_limit=self._config.max_requests_per_window,
+                window_seconds=self._config.request_window_seconds,
             )
 
             if idempotency_key:
                 existing = state["idempotency"].get(idempotency_key)
                 if existing:
                     out = dict(state["jobs"][existing])
+                    _validate_against_schema("submit_response", out)
                     self._audit("status", token=token, job_id=existing, scope=scope)
                     return out
 
@@ -196,9 +269,11 @@ class RuntimeApiService:
                 state["idempotency"][idempotency_key] = job_id
             self._save_state(state)
             self._audit("submit", token=token, job_id=job_id, scope=scope)
+            _validate_against_schema("submit_response", record)
             return dict(record)
 
     def status(self, job_id: str, token: str, scope: str) -> Dict[str, Any]:
+        _validate_against_schema("status_request", {"job_id": job_id, "token": token, "scope": scope})
         _validate_scope(scope, expected="jobs:read")
         _validate_job_id(job_id)
         self._require_auth(token=token, action="jobs:read")
@@ -208,14 +283,18 @@ class RuntimeApiService:
                 state,
                 token=token,
                 request_limit=self._config.max_requests_per_token,
+                window_limit=self._config.max_requests_per_window,
+                window_seconds=self._config.request_window_seconds,
             )
             out = self._require_job_locked(state, job_id)
             self._bump_job_read_quota(state, job_id=job_id, limit=self._config.max_reads_per_job)
             self._save_state(state)
             self._audit("status", token=token, job_id=job_id, scope=scope)
+            _validate_against_schema("status_response", out)
             return out
 
     def evidence(self, job_id: str, token: str, scope: str) -> Dict[str, Any]:
+        _validate_against_schema("evidence_request", {"job_id": job_id, "token": token, "scope": scope})
         _validate_scope(scope, expected="evidence:read")
         _validate_job_id(job_id)
         self._require_auth(token=token, action="evidence:read")
@@ -225,6 +304,8 @@ class RuntimeApiService:
                 state,
                 token=token,
                 request_limit=self._config.max_requests_per_token,
+                window_limit=self._config.max_requests_per_window,
+                window_seconds=self._config.request_window_seconds,
             )
             _ = self._require_job_locked(state, job_id)
             self._bump_job_read_quota(state, job_id=job_id, limit=self._config.max_reads_per_job)
@@ -253,9 +334,11 @@ class RuntimeApiService:
                 "repro_hash_line": repro.read_text(encoding="utf-8").strip() if repro.exists() else "",
             }
             self._audit("evidence", token=token, job_id=job_id, scope=scope)
+            _validate_against_schema("evidence_response", out)
             return out
 
     def replay(self, job_id: str, token: str, scope: str) -> Dict[str, Any]:
+        _validate_against_schema("replay_request", {"job_id": job_id, "token": token, "scope": scope})
         _validate_scope(scope, expected="replay:run")
         _validate_job_id(job_id)
         self._require_auth(token=token, action="replay:run")
@@ -265,6 +348,8 @@ class RuntimeApiService:
                 state,
                 token=token,
                 request_limit=self._config.max_requests_per_token,
+                window_limit=self._config.max_requests_per_window,
+                window_seconds=self._config.request_window_seconds,
             )
             _ = self._require_job_locked(state, job_id)
             self._bump_job_read_quota(state, job_id=job_id, limit=self._config.max_reads_per_job)
@@ -288,6 +373,7 @@ class RuntimeApiService:
                     scope=scope,
                     replay_verdict="FAIL",
                 )
+                _validate_against_schema("replay_response", out)
                 return out
             verdict = "PASS" if bundle_line == repro_line else "FAIL"
             out = {
@@ -302,6 +388,7 @@ class RuntimeApiService:
                 scope=scope,
                 replay_verdict=verdict,
             )
+            _validate_against_schema("replay_response", out)
             return out
 
     @staticmethod
@@ -347,11 +434,12 @@ class RuntimeApiService:
                 "quotas": {
                     "token_requests": {},
                     "token_submits": {},
-                    "job_reads": {},
-                    "job_replays": {},
-                    "job_last_replay_ts": {},
-                },
-            }
+                "job_reads": {},
+                "job_replays": {},
+                "job_last_replay_ts": {},
+                "token_request_window": {},
+            },
+        }
         data = json.loads(self._config.state_path.read_text(encoding="utf-8"))
         if not isinstance(data, dict):
             raise ValueError("invalid state")
@@ -365,6 +453,7 @@ class RuntimeApiService:
         quotas.setdefault("job_reads", {})
         quotas.setdefault("job_replays", {})
         quotas.setdefault("job_last_replay_ts", {})
+        quotas.setdefault("token_request_window", {})
         return data
 
     def _save_state(self, state: Dict[str, Any]) -> None:
@@ -419,6 +508,8 @@ class RuntimeApiService:
         token: str,
         request_limit: int,
         submit_limit: int | None = None,
+        window_limit: int,
+        window_seconds: int,
     ) -> None:
         quotas = state["quotas"]
         self._bump_counter(
@@ -434,6 +525,32 @@ class RuntimeApiService:
                 submit_limit,
                 error="token submit quota exceeded",
             )
+        self._bump_token_window_quota(
+            quotas["token_request_window"],
+            token=token,
+            limit=window_limit,
+            window_seconds=window_seconds,
+        )
+
+    @staticmethod
+    def _bump_token_window_quota(
+        counter: Dict[str, Any],
+        *,
+        token: str,
+        limit: int,
+        window_seconds: int,
+    ) -> None:
+        if window_seconds <= 0 or limit <= 0:
+            return
+        now = int(time.time())
+        raw = counter.get(token, [])
+        if not isinstance(raw, list):
+            raw = []
+        recent = [int(ts) for ts in raw if isinstance(ts, int) and (now - ts) < window_seconds]
+        if len(recent) >= limit:
+            raise ValueError("token burst rate exceeded")
+        recent.append(now)
+        counter[token] = recent
 
     def _bump_job_read_quota(self, state: Dict[str, Any], *, job_id: str, limit: int) -> None:
         quotas = state["quotas"]

@@ -1,0 +1,5 @@
+{
+  "kind": "restore_checkpoint",
+  "scenario": "symlink",
+  "expected_error_substring": "symlink"
+}

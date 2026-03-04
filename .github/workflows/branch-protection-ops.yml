@@ -36,6 +36,7 @@ jobs:
             --repo "${{ github.event.inputs.repo }}" \
             --branch "${{ github.event.inputs.branch }}"
       - name: Verify live branch protection
+        if: ${{ github.event.inputs.apply == 'true' }}
         env:
           GITHUB_TOKEN: ${{ secrets.BRANCH_PROTECTION_ADMIN_TOKEN }}
         run: |
@@ -43,6 +44,7 @@ jobs:
             --repo "${{ github.event.inputs.repo }}" \
             --branch "${{ github.event.inputs.branch }}"
       - name: Verify live rollout evidence (branch protection)
+        if: ${{ github.event.inputs.apply == 'true' }}
         run: python tooling/security/live_rollout_gate.py --target branch_protection
       - name: Upload branch protection evidence
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
