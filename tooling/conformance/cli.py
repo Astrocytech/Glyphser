@@ -7,12 +7,11 @@ import json
 import sys
 from pathlib import Path
 
-from tooling.docs import verify_doc_artifacts
-from tooling.registry import build_operator_registry
-
 _sp = importlib.import_module("".join(["sub", "process"]))
 
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 
 RESULTS_DIR = ROOT / "evidence" / "conformance" / "results"
@@ -27,7 +26,7 @@ def _write_json(path: Path, payload: dict) -> None:
 
 def _run_hello_core() -> bool:
     proc = _sp.run(
-        [sys.executable, str(ROOT / "tooling" / "scripts" / "run_hello_core.py")],
+        [sys.executable, "-m", "tooling.scripts.run_hello_core"],
         cwd=str(ROOT),
         capture_output=True,
         text=True,
@@ -39,6 +38,8 @@ def _run_hello_core() -> bool:
 
 
 def run() -> int:
+    verify_doc_artifacts = importlib.import_module("tooling.docs.verify_doc_artifacts")
+    build_operator_registry = importlib.import_module("tooling.registry.build_operator_registry")
     results = []
 
     verify_ok = verify_doc_artifacts.main() == 0

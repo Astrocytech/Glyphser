@@ -56,8 +56,9 @@ archive-evidence:
 	python3 tooling/release/archive_evidence.py --keep 10
 
 security-scan:
-	bandit -q -r glyphser runtime tooling
-	pip-audit
+	bandit -q -c tooling/security/bandit.yaml -r glyphser runtime tooling -l -ii
+	python3 tooling/security/pip_audit_gate.py
+	semgrep --config tooling/security/semgrep-rules.yml --error runtime glyphser tooling
 
 release-check: test docs-api bench gates traceability evidence-metadata archive-evidence
 	@echo "release-check: PASS"

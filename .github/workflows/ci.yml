@@ -52,8 +52,13 @@ jobs:
       - name: Run security scans
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
         run: |
-          bandit -q -r glyphser runtime tooling
-          pip-audit
+          bandit -q -c tooling/security/bandit.yaml -r glyphser runtime tooling -l -ii
+          python tooling/security/pip_audit_gate.py
+          semgrep --config tooling/security/semgrep-rules.yml --error runtime glyphser tooling
+
+      - name: Run conformance gate
+        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
+        run: python tooling/conformance/cli.py run
 
       - name: Enforce per-module coverage minimums
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'

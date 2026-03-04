@@ -1,0 +1,27 @@
+rules:
+  - id: glyphser.subprocess-shell-true
+    patterns:
+      - pattern-either:
+          - pattern: $PROC.run(..., shell=True, ...)
+          - pattern: $PROC.Popen(..., shell=True, ...)
+    message: "Avoid shell=True in subprocess invocations; pass argv list and validate inputs."
+    languages: [python]
+    severity: ERROR
+
+  - id: glyphser.dynamic-code-execution
+    patterns:
+      - pattern-either:
+          - pattern: eval($EXPR)
+          - pattern: exec($EXPR)
+    message: "Dynamic code execution is not allowed in runtime/tooling paths."
+    languages: [python]
+    severity: ERROR
+
+  - id: glyphser.unsafe-yaml-load
+    patterns:
+      - pattern: yaml.load($DATA, ...)
+      - pattern-not: yaml.load($DATA, Loader=yaml.SafeLoader)
+      - pattern-not: yaml.load($DATA, Loader=SafeLoader)
+    message: "Use yaml.safe_load(...) or SafeLoader to avoid unsafe object construction."
+    languages: [python]
+    severity: ERROR

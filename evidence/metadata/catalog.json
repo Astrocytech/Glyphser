@@ -33,7 +33,7 @@
       "generated_by": "tooling/release/generate_traceability_index.py",
       "path": "evidence/traceability/index.json",
       "schema_version": "glyphser-traceability-index.v1",
-      "sha256": "2f627a5f456b4761fa561904997f7d8148edb27f60c2c7b95fcf747995397a1c",
+      "sha256": "ccbcf8700c546aefae3e33ae0526ccc0b9160219322826020160951c7c69413a",
       "source_fixture": "all"
     },
     {
@@ -42,7 +42,7 @@
       "generated_by": "tooling/security/security_artifacts.py",
       "path": "evidence/security/sbom.json",
       "schema_version": "glyphser-sbom-v1",
-      "sha256": "e3f19ad86307cf3c7639f48a86dd12d9033e7cdf19df1c498f4d9cb09e3d84a9",
+      "sha256": "62aceec516a61ea0e23a76dcf12c0eeff51359648749b414373f64c9b779f880",
       "source_fixture": "release"
     },
     {
@@ -51,11 +51,11 @@
       "generated_by": "tooling/security/security_artifacts.py",
       "path": "evidence/security/build_provenance.json",
       "schema_version": "glyphser-provenance-v1",
-      "sha256": "06f50af253e94ef7cc6e784d4498edb38a1b4596c8ce855373b99cde8e42c99f",
+      "sha256": "e92bd54976b0908be83c86fe01a1de5bdc5043c3216fc11dcca986a2c1ef724a",
       "source_fixture": "release"
     }
   ],
-  "generated_at_utc": "2026-03-04T00:48:57.669990+00:00",
+  "generated_at_utc": "2026-03-04T00:56:55.024974+00:00",
   "generator": "tooling/release/generate_evidence_metadata.py",
   "schema_version": "glyphser-evidence-catalog.v1"
 }
