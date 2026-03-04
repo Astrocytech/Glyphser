@@ -12,28 +12,55 @@ if str(ROOT) not in sys.path:
 
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
 
-REQUIRED_SNIPPETS = [
-    "security-matrix:",
-    "security-events: write",
-    "semgrep==1.95.0",
-    "setuptools==75.8.0",
-    "if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false",
-    "python tooling/security/evidence_run_dir_guard.py --run-id",
-]
+REQUIRED_SNIPPETS = {
+    ".github/workflows/ci.yml": [
+        "security-matrix:",
+        "security-events: write",
+        "semgrep==1.95.0",
+        "setuptools==75.8.0",
+        "if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false",
+        "python tooling/security/evidence_run_dir_guard.py --run-id",
+        "semgrep --version",
+        'python -c "import pkg_resources"',
+    ],
+    ".github/workflows/security-maintenance.yml": [
+        "security-maintenance:",
+        "semgrep==1.95.0",
+        "setuptools==75.8.0",
+        "python tooling/security/evidence_run_dir_guard.py --run-id",
+        "semgrep --version",
+        'python -c "import pkg_resources"',
+    ],
+    ".github/workflows/security-super-extended.yml": [
+        "security-super-extended:",
+        "semgrep==1.95.0",
+        "setuptools==75.8.0",
+        "python tooling/security/evidence_run_dir_guard.py --run-id",
+        "semgrep --version",
+        'python -c "import pkg_resources"',
+    ],
+}
 
 
 def main(argv: list[str] | None = None) -> int:
     _ = argv
-    ci = (ROOT / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
     findings: list[str] = []
-    for snippet in REQUIRED_SNIPPETS:
-        if snippet not in ci:
-            findings.append(f"missing_workflow_contract_snippet:{snippet}")
+    checked = 0
+    for rel_path, snippets in REQUIRED_SNIPPETS.items():
+        path = ROOT / rel_path
+        if not path.exists():
+            findings.append(f"missing_workflow_file:{rel_path}")
+            continue
+        checked += 1
+        text = path.read_text(encoding="utf-8")
+        for snippet in snippets:
+            if snippet not in text:
+                findings.append(f"missing_workflow_contract_snippet:{rel_path}:{snippet}")
 
     report = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
-        "summary": {"required_snippets": len(REQUIRED_SNIPPETS), "checked_workflow": ".github/workflows/ci.yml"},
+        "summary": {"checked_workflows": checked, "required_workflows": len(REQUIRED_SNIPPETS)},
         "metadata": {"gate": "security_workflow_contract_gate"},
     }
     out = evidence_root() / "security" / "security_workflow_contract_gate.json"

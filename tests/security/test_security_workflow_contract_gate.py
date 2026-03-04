@@ -23,8 +23,30 @@ jobs:
       - run: python tooling/security/evidence_run_dir_guard.py --run-id x
       - run: pip install semgrep==1.95.0 setuptools==75.8.0
       - if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
+      - run: semgrep --version
+      - run: python -c "import pkg_resources"
 """
     (wf / "ci.yml").write_text(ci_text, encoding="utf-8")
+    maintenance_text = """
+jobs:
+  security-maintenance:
+    steps:
+      - run: pip install semgrep==1.95.0 setuptools==75.8.0
+      - run: python tooling/security/evidence_run_dir_guard.py --run-id x
+      - run: semgrep --version
+      - run: python -c "import pkg_resources"
+"""
+    (wf / "security-maintenance.yml").write_text(maintenance_text, encoding="utf-8")
+    extended_text = """
+jobs:
+  security-super-extended:
+    steps:
+      - run: pip install semgrep==1.95.0 setuptools==75.8.0
+      - run: python tooling/security/evidence_run_dir_guard.py --run-id x
+      - run: semgrep --version
+      - run: python -c "import pkg_resources"
+"""
+    (wf / "security-super-extended.yml").write_text(extended_text, encoding="utf-8")
     monkeypatch.setattr(security_workflow_contract_gate, "ROOT", repo)
     monkeypatch.setattr(security_workflow_contract_gate, "evidence_root", lambda: repo / "evidence")
     assert security_workflow_contract_gate.main([]) == 0
@@ -37,6 +59,8 @@ def test_security_workflow_contract_gate_fails_when_snippet_missing(monkeypatch,
     wf.mkdir(parents=True)
     ev.mkdir(parents=True)
     (wf / "ci.yml").write_text("jobs:\n  test:\n    runs-on: ubuntu-latest\n", encoding="utf-8")
+    (wf / "security-maintenance.yml").write_text("jobs:\n  x:\n    runs-on: ubuntu-latest\n", encoding="utf-8")
+    (wf / "security-super-extended.yml").write_text("jobs:\n  y:\n    runs-on: ubuntu-latest\n", encoding="utf-8")
     monkeypatch.setattr(security_workflow_contract_gate, "ROOT", repo)
     monkeypatch.setattr(security_workflow_contract_gate, "evidence_root", lambda: repo / "evidence")
     assert security_workflow_contract_gate.main([]) == 1
