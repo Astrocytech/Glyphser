@@ -28,6 +28,7 @@ REQUIRED_JOB_PERMISSIONS: dict[str, dict[str, tuple[str, ...]]] = {
 }
 
 _JOB_RE = re.compile(r"^  ([A-Za-z0-9_-]+):\s*$")
+_PERMISSION_VALUE_RE = re.compile(r"^\s{2}([A-Za-z0-9_-]+):\s*([A-Za-z-]+)\s*$")
 
 
 def _job_blocks(text: str) -> dict[str, str]:
@@ -54,6 +55,29 @@ def _job_blocks(text: str) -> dict[str, str]:
     return {name: "\n".join(block) for name, block in blocks.items()}
 
 
+def _workflow_permissions_values(text: str) -> list[tuple[str, str]]:
+    lines = text.splitlines()
+    values: list[tuple[str, str]] = []
+    for idx, line in enumerate(lines):
+        if line.strip() == "permissions:" and not line.startswith(" "):
+            for inner in lines[idx + 1 :]:
+                if not inner.strip():
+                    continue
+                if not inner.startswith("  "):
+                    break
+                if inner.startswith("    "):
+                    continue
+                match = _PERMISSION_VALUE_RE.match(inner)
+                if match:
+                    values.append((match.group(1), match.group(2)))
+            break
+        if line.startswith("permissions:") and line.strip() != "permissions:":
+            _key, value = line.split(":", 1)
+            values.append(("permissions", value.strip()))
+            break
+    return values
+
+
 def main(argv: list[str] | None = None) -> int:
     _ = argv
     findings: list[str] = []
@@ -68,6 +92,9 @@ def main(argv: list[str] | None = None) -> int:
         rel = str(wf.relative_to(ROOT)).replace("\\", "/")
         if "write-all" in text:
             findings.append(f"forbidden_permission_write_all:{rel}")
+        for key, value in _workflow_permissions_values(text):
+            if value in {"write", "write-all"}:
+                findings.append(f"forbidden_workflow_default_write_permission:{rel}:{key}:{value}")
         if wf.name in REQUIRED_EXPLICIT_PERMISSIONS:
             security_workflows += 1
             if "permissions:" not in text:
