@@ -27,6 +27,7 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/workflow_deprecated_invocation_gate.py" in ci
     assert "python tooling/security/policy_schema_validation_gate.py" in ci
     assert "python tooling/security/security_schema_migration_tracker.py" in ci
+    assert "python tooling/security/security_schema_strict_readiness_gate.py" in ci
     assert "python tooling/security/security_evidence_corruption_gate.py" in ci
     assert "python tooling/security/security_artifact_signature_coverage_gate.py" in ci
     assert "python tooling/security/security_unsigned_json_gate.py" in ci
@@ -73,6 +74,7 @@ def test_ci_security_steps_are_wired() -> None:
     assert "security_verification_summary.json" in ci
     assert "security_verification_summary.json.sig" in ci
     assert "python tooling/security/branch_protection_policy_gate.py" in ci
+    assert "security_schema_strict_readiness_gate.json" in ci
     assert "bandit -q -c tooling/security/bandit.yaml -r glyphser runtime tooling -f json -o bandit.json -l -ii" in ci
     assert "python tooling/security/bandit_json_to_sarif.py --input bandit.json --output bandit.sarif" in ci
     assert "semgrep --config tooling/security/semgrep-rules.yml --error --sarif --output semgrep.sarif" in ci

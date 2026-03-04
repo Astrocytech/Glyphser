@@ -15,6 +15,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/policy_signature_gate.py --strict-key" in wf
     assert "python tooling/security/policy_schema_validation_gate.py" in wf
     assert "python tooling/security/security_schema_migration_tracker.py" in wf
+    assert "python tooling/security/security_schema_strict_readiness_gate.py" in wf
     assert "python tooling/security/security_super_gate_manifest_gate.py" in wf
     assert "python tooling/security/workflow_artifact_retention_gate.py" in wf
     assert "python tooling/security/semgrep_rules_self_check_gate.py" in wf
@@ -61,6 +62,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "subprocess_direct_usage_gate.json" in wf
     assert "policy_schema_validation_gate.json" in wf
     assert "security_schema_migration_tracker.json" in wf
+    assert "security_schema_strict_readiness_gate.json" in wf
     assert "security_super_gate_manifest_gate.json" in wf
     assert "workflow_artifact_retention_gate.json" in wf
     assert "semgrep_rules_self_check_gate.json" in wf

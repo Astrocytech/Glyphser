@@ -56,5 +56,6 @@
     "evidence/security/sbom.json",
     "evidence/security/build_provenance.json",
     "evidence/security/slsa_provenance_v1.json"
-  ]
+  ],
+  "schema_strict_min_migration_pct": 95.0
 }

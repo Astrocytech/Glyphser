@@ -51,6 +51,8 @@ jobs:
         run: python tooling/security/policy_schema_validation_gate.py
       - name: Security schema migration tracker
         run: python tooling/security/security_schema_migration_tracker.py
+      - name: Security schema strict readiness gate
+        run: python tooling/security/security_schema_strict_readiness_gate.py
       - name: Security super gate manifest drift gate
         run: python tooling/security/security_super_gate_manifest_gate.py
       - name: Workflow artifact retention gate
@@ -143,6 +145,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_signature.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_schema_validation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_schema_migration_tracker.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_schema_strict_readiness_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_super_gate_manifest_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_artifact_retention_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/semgrep_rules_self_check_gate.json
