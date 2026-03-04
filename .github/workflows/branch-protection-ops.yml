@@ -6,7 +6,6 @@ on:
       repo:
         description: "owner/repo"
         required: true
-        default: "owner/repo"
       branch:
         description: "target branch"
         required: true

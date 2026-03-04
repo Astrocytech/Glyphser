@@ -13,6 +13,15 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[2]
 
 
+def _validate_target(repo: str, branch: str, *, dry_run: bool) -> None:
+    if "/" not in repo or repo.count("/") != 1:
+        raise ValueError("repo must be owner/repo")
+    if not branch.strip():
+        raise ValueError("branch must be non-empty")
+    if not dry_run and repo.strip().lower() == "owner/repo":
+        raise ValueError("repo placeholder owner/repo is not allowed in live mode")
+
+
 def _load_policy() -> dict[str, Any]:
     path = ROOT / ".github" / "branch-protection.required.json"
     payload = json.loads(path.read_text(encoding="utf-8"))
@@ -48,6 +57,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--branch", default="main")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args([] if argv is None else argv)
+    _validate_target(args.repo, args.branch, dry_run=args.dry_run)
 
     token = os.environ.get("GITHUB_TOKEN", "").strip()
     if not token and not args.dry_run:

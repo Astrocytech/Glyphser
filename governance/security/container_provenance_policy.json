@@ -1,5 +1,6 @@
 {
   "required_when_container_artifacts_present": true,
+  "container_publishing_enabled": false,
   "container_digest_manifest": "distribution/container/image-digests.txt",
   "required_signature_files": [
     "distribution/container/image-digests.txt.sig",
