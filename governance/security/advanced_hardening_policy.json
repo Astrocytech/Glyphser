@@ -71,5 +71,7 @@
     "provenance_signature.json",
     "evidence_attestation_gate.json"
   ],
-  "enforce_deployment_freeze": true
+  "enforce_deployment_freeze": true,
+  "exception_debt_budget": 8,
+  "minimum_exception_reason_length": 24
 }
