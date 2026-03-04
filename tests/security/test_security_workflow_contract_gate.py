@@ -28,6 +28,7 @@ jobs:
       - run: python tooling/security/subprocess_allowlist_report.py
       - run: python tooling/security/subprocess_direct_usage_gate.py
       - run: python tooling/security/workflow_risky_patterns_gate.py
+      - run: python tooling/security/workflow_deprecated_invocation_gate.py
       - run: python tooling/security/policy_schema_validation_gate.py
       - run: python tooling/security/security_schema_migration_tracker.py
       - run: python tooling/security/security_evidence_corruption_gate.py
@@ -47,6 +48,7 @@ jobs:
       - run: python tooling/security/subprocess_allowlist_report.py
       - run: python tooling/security/subprocess_direct_usage_gate.py
       - run: python tooling/security/workflow_risky_patterns_gate.py
+      - run: python tooling/security/workflow_deprecated_invocation_gate.py
       - run: python tooling/security/policy_schema_validation_gate.py
       - run: python tooling/security/security_schema_migration_tracker.py
       - run: python tooling/security/security_evidence_corruption_gate.py

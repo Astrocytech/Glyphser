@@ -44,6 +44,8 @@ jobs:
         run: python tooling/security/security_toolchain_gate.py
       - name: Workflow risky patterns gate
         run: python tooling/security/workflow_risky_patterns_gate.py
+      - name: Workflow deprecated invocation gate
+        run: python tooling/security/workflow_deprecated_invocation_gate.py
       - name: Subprocess allowlist report
         run: python tooling/security/subprocess_allowlist_report.py
       - name: Subprocess direct usage gate
@@ -133,6 +135,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_evidence_corruption_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_toolchain.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_risky_patterns_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_deprecated_invocation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/subprocess_allowlist_report.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/subprocess_direct_usage_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_workflow_contract_gate.json

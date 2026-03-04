@@ -21,6 +21,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/security_evidence_corruption_gate.py" in wf
     assert "python tooling/security/security_toolchain_gate.py" in wf
     assert "python tooling/security/workflow_risky_patterns_gate.py" in wf
+    assert "python tooling/security/workflow_deprecated_invocation_gate.py" in wf
     assert "python tooling/security/subprocess_allowlist_report.py" in wf
     assert "python tooling/security/subprocess_direct_usage_gate.py" in wf
     assert "python tooling/security/pip_audit_gate.py" in wf
@@ -48,6 +49,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/security_critical_test_wiring_gate.py" in wf
     assert "security_workflow_contract_gate.json" in wf
     assert "workflow_risky_patterns_gate.json" in wf
+    assert "workflow_deprecated_invocation_gate.json" in wf
     assert "subprocess_allowlist_report.json" in wf
     assert "subprocess_direct_usage_gate.json" in wf
     assert "policy_schema_validation_gate.json" in wf
