@@ -100,11 +100,16 @@ def verify_index(strict_key: bool) -> dict[str, Any]:
         rows = []
 
     prev = ""
+    seen_seq: set[int] = set()
     for ix, row in enumerate(rows, start=1):
         if not isinstance(row, dict):
             findings.append("invalid_chain_row")
             continue
         seq = row.get("seq")
+        if isinstance(seq, int):
+            if seq in seen_seq:
+                findings.append("duplicate_sequence_id")
+            seen_seq.add(seq)
         rel = str(row.get("path", "")).strip()
         expected_digest = str(row.get("sha256", "")).strip().lower()
         prev_hash = str(row.get("prev_chain_hash", ""))
