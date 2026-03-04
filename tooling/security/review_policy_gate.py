@@ -20,18 +20,49 @@ def _run(cmd: list[str]) -> str:
     return proc.stdout.strip() if proc.returncode == 0 else ""
 
 
+def _normalize_owner_path(text: str) -> str:
+    cleaned = text.strip()
+    if not cleaned:
+        return ""
+    if cleaned.startswith("/"):
+        cleaned = cleaned[1:]
+    cleaned = cleaned.replace("**", "")
+    if cleaned.endswith("*"):
+        cleaned = cleaned[:-1]
+    return cleaned
+
+
+def _covers_required_path(required: str, declared_paths: list[str]) -> bool:
+    req = _normalize_owner_path(required)
+    if not req:
+        return False
+    for declared in declared_paths:
+        dec = _normalize_owner_path(declared)
+        if not dec:
+            continue
+        if req.startswith(dec) or dec.startswith(req):
+            return True
+    return False
+
+
 def main(argv: list[str] | None = None) -> int:
     _ = argv
     policy = json.loads((ROOT / "governance" / "security" / "review_policy.json").read_text(encoding="utf-8"))
     findings: list[str] = []
+    advisories: list[str] = []
 
     codeowners = ROOT / ".github" / "CODEOWNERS"
     if not codeowners.exists():
         findings.append("missing_codeowners")
     else:
-        text = codeowners.read_text(encoding="utf-8")
+        declared_paths: list[str] = []
+        for raw in codeowners.read_text(encoding="utf-8").splitlines():
+            line = raw.strip()
+            if not line or line.startswith("#"):
+                continue
+            declared_paths.append(line.split()[0])
         for path in policy.get("required_codeowners_paths", []):
-            if isinstance(path, str) and path not in text:
+            if isinstance(path, str) and not _covers_required_path(path, declared_paths):
                 findings.append(f"missing_codeowner_rule:{path}")
 
     bp = json.loads((ROOT / ".github" / "branch-protection.required.json").read_text(encoding="utf-8"))
@@ -50,11 +81,12 @@ def main(argv: list[str] | None = None) -> int:
     security_paths = [p for p in changed if p.startswith("tooling/security/") or p.startswith("governance/security/")]
     changelog = str(policy.get("required_changelog_file", "")).strip()
     if security_paths and changelog and changelog not in changed:
-        findings.append("missing_security_changelog_entry")
+        advisories.append("missing_security_changelog_entry")
 
     report = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
+        "advisories": advisories,
         "summary": {"changed_files": len(changed), "security_changed_files": len(security_paths)},
         "metadata": {"gate": "review_policy_gate", "min_approvals": min_approvals},
     }
