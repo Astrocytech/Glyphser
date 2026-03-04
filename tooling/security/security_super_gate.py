@@ -179,6 +179,7 @@ def main(argv: list[str] | None = None) -> int:
             else [sys.executable, "tooling/security/security_verification_summary.py"]
         ),
         [sys.executable, "tooling/security/security_cross_gate_consistency_gate.py"],
+        [sys.executable, "tooling/security/security_actionable_findings_gate.py"],
         [sys.executable, "tooling/security/slsa_attestation_gate.py"],
         [sys.executable, "tooling/security/workflow_evidence_scope_gate.py"],
         [sys.executable, "tooling/security/conformance_security_coupling_gate.py"],
