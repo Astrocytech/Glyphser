@@ -6,14 +6,20 @@ import re
 import sys
 from pathlib import Path
 
-from tooling.lib.path_config import evidence_root
-
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tooling.lib.path_config import evidence_root
 
 DOCS = [
     ROOT / "governance" / "security" / "SECURITY_ARCHITECTURE.md",
+    ROOT / "governance" / "security" / "EVIDENCE_FLOW_ARCHITECTURE.md",
     ROOT / "governance" / "security" / "INCIDENT_RUNBOOKS.md",
+    ROOT / "governance" / "security" / "GATE_RUNBOOK_INDEX.md",
+    ROOT / "governance" / "security" / "KNOWN_CI_FAILURE_MODES.md",
     ROOT / "governance" / "security" / "EMERGENCY_BYPASS_PROCESS.md",
+    ROOT / "governance" / "security" / "EMERGENCY_LOCKDOWN_ROLLBACK_CHECKLIST.md",
     ROOT / "governance" / "security" / "OPERATOR_SIGNED_ARTIFACTS_QUICKSTART.md",
 ]
 
