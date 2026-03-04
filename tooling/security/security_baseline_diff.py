@@ -14,6 +14,7 @@ artifact_signing = importlib.import_module("runtime.glyphser.security.artifact_s
 current_key = artifact_signing.current_key
 sign_file = artifact_signing.sign_file
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 run_checked = importlib.import_module("tooling.security.subprocess_policy").run_checked
 
 
@@ -39,7 +40,7 @@ def main(argv: list[str] | None = None) -> int:
         "metadata": {"gate": "security_baseline_diff"},
     }
     out = sec / "security_baseline_diff.json"
-    out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, report)
     print(f"SECURITY_BASELINE_DIFF: {out}")
     return 0
 
