@@ -15,8 +15,8 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
 
-from runtime.glyphser.model.model_ir_executor import execute  # noqa: E402
-from tooling.lib.path_config import fixtures_root  # noqa: E402
+from runtime.glyphser.model.model_ir_executor import execute
+from tooling.lib.path_config import fixtures_root
 
 WAIVER_ADRS = [
     "evidence/repro/decisions/ADR-2026-03-01-m12-resource-gap-temporary-waiver.md",
@@ -102,8 +102,8 @@ def _run_keras_cpu(model_ir: dict[str, Any], inputs: list[float]) -> dict[str, A
 
 def _run_jax(inputs: list[float], weights: list[float], bias: float) -> dict[str, Any]:
     try:
-        import jax  # type: ignore  # noqa: F401
-        import jax.numpy as jnp  # type: ignore
+        import jax
+        import jax.numpy as jnp
     except Exception as exc:
         return {"error": {"code_id": "LIBRARY_MISSING", "message": str(exc)}}
     x = jnp.array(inputs, dtype=jnp.float64)
@@ -121,10 +121,10 @@ def _run_jax(inputs: list[float], weights: list[float], bias: float) -> dict[str
 
 def _run_onnxruntime(inputs: list[float], weights: list[float], bias: float) -> dict[str, Any]:
     try:
-        import numpy as np  # type: ignore
-        import onnx  # type: ignore
-        import onnxruntime as ort  # type: ignore
-        from onnx import TensorProto, helper  # type: ignore
+        import numpy as np
+        import onnx
+        import onnxruntime as ort
+        from onnx import TensorProto, helper
     except Exception as exc:
         return {"error": {"code_id": "LIBRARY_MISSING", "message": str(exc)}}
     dim = len(inputs)

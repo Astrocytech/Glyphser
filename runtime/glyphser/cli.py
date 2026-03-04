@@ -15,7 +15,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from runtime.glyphser.backend.load_driver import load_driver  # noqa: E402
+from runtime.glyphser.backend.load_driver import load_driver
 
 PROFILE_LABELS = {"available_local", "available_local_partial", "strict_universal"}
 

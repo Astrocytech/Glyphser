@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from tooling.codegen.generate import generate  # noqa: E402
+from tooling.codegen.generate import generate
 
 
 def main() -> int:

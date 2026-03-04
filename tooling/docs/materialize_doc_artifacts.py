@@ -12,11 +12,11 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT))
 
-from runtime.glyphser.registry.registry_builder import (  # noqa: E402
+from runtime.glyphser.registry.registry_builder import (
     build_operator_registry_from_list,
     parse_api_interfaces,
 )
-from tooling.lib.path_config import (  # noqa: E402
+from tooling.lib.path_config import (
     fixtures_root,
     goldens_root,
     vectors_root,
@@ -390,7 +390,7 @@ def materialize() -> None:
     model_ir = json.loads((fixtures_dir / "model_ir.json").read_text(encoding="utf-8"))
     inputs = batch["x"]
     from runtime.glyphser.model.model_ir_executor import (
-        execute as model_ir_execute,  # noqa: E402
+        execute as model_ir_execute,
     )
 
     response = model_ir_execute(
@@ -424,7 +424,7 @@ def materialize() -> None:
         "operator_registry_root_hash": operator_registry_root_hash,
     }
     from runtime.glyphser.trace.compute_trace_hash import (
-        compute_trace_hash,  # noqa: E402
+        compute_trace_hash,
     )
 
     trace_final_hash = compute_trace_hash(trace_snippet["records"])

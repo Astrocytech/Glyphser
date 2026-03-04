@@ -16,8 +16,8 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
 
-from runtime.glyphser.model.model_ir_executor import execute  # noqa: E402
-from tooling.lib.path_config import fixtures_root  # noqa: E402
+from runtime.glyphser.model.model_ir_executor import execute
+from tooling.lib.path_config import fixtures_root
 
 WAIVER_ADR_M12 = "evidence/repro/decisions/ADR-2026-03-01-m12-resource-gap-temporary-waiver.md"
 WAIVER_ADR_M18 = "evidence/repro/decisions/ADR-2026-03-01-m18-device-resource-gap-temporary-waiver.md"

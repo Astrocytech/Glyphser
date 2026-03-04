@@ -54,7 +54,7 @@ def _has_amd_rocm() -> bool:
     if os.environ.get("ROCM_PATH") or os.environ.get("HIP_VISIBLE_DEVICES"):
         return True
     try:
-        import torch  # type: ignore
+        import torch
 
         return bool(getattr(getattr(torch, "version", None), "hip", None))
     except Exception:
@@ -75,9 +75,9 @@ def _has_apple_mps() -> bool:
     if platform.machine().lower() not in {"arm64", "aarch64"}:
         return False
     try:
-        import torch  # type: ignore
+        import torch
 
-        return bool(torch.backends.mps.is_available())  # type: ignore[attr-defined]
+        return bool(torch.backends.mps.is_available())
     except Exception:
         return True
 
@@ -93,7 +93,7 @@ def _has_edge_target() -> bool:
 def _frameworks_meta() -> dict[str, Any]:
     out: dict[str, Any] = {}
     try:
-        import torch  # type: ignore
+        import torch
 
         out["torch"] = {
             "present": True,
@@ -105,7 +105,7 @@ def _frameworks_meta() -> dict[str, Any]:
     except Exception as exc:
         out["torch"] = {"present": False, "error": str(exc)}
     try:
-        import tensorflow as tf  # type: ignore
+        import tensorflow as tf
 
         gpus = tf.config.list_physical_devices("GPU")
         out["tensorflow"] = {

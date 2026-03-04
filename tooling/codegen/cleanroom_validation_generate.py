@@ -9,9 +9,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from tooling.codegen.cleanroom_validation import main as clean_build  # noqa: E402
-from tooling.codegen.generate import generate  # noqa: E402
-from tooling.lib.path_config import generated_root, generated_tmp_root  # noqa: E402
+from tooling.codegen.cleanroom_validation import main as clean_build
+from tooling.codegen.generate import generate
+from tooling.lib.path_config import generated_root, generated_tmp_root
 
 CLEAN = generated_tmp_root() / "codegen_staging" / "cleanroom_validation"
 

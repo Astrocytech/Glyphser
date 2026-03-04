@@ -14,13 +14,13 @@ def _parse_csv(text: str) -> list[float]:
 
 def _detect_runtime() -> tuple[str, str]:
     try:
-        import openvino  # type: ignore
+        import openvino
 
         return "openvino_cpu", getattr(openvino, "__version__", "unknown")
     except Exception:
         pass
     try:
-        import tensorrt  # type: ignore
+        import tensorrt
 
         return "tensorrt", getattr(tensorrt, "__version__", "unknown")
     except Exception:

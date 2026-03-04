@@ -13,8 +13,8 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
 
-from runtime.glyphser.model.model_ir_executor import execute  # noqa: E402
-from tooling.lib.path_config import fixtures_root  # noqa: E402
+from runtime.glyphser.model.model_ir_executor import execute
+from tooling.lib.path_config import fixtures_root
 
 PAIRS: list[tuple[str, str]] = [
     ("pytorch_cpu", "java_cpu"),

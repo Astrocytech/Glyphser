@@ -7,13 +7,13 @@ from pathlib import Path
 from typing import Any
 
 from runtime.glyphser.registry.interface_hash import (
-    compute_interface_hash,  # noqa: E402
+    compute_interface_hash,
 )
-from runtime.glyphser.registry.registry_builder import (  # noqa: E402
+from runtime.glyphser.registry.registry_builder import (
     build_operator_registry_from_list,
     parse_api_interfaces,
 )
-from tooling.docs import materialize_doc_artifacts as mda  # noqa: E402
+from tooling.docs import materialize_doc_artifacts as mda
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))

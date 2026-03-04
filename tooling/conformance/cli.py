@@ -10,8 +10,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from tooling.docs import verify_doc_artifacts  # noqa: E402
-from tooling.registry import build_operator_registry  # noqa: E402
+from tooling.docs import verify_doc_artifacts
+from tooling.registry import build_operator_registry
 
 RESULTS_DIR = ROOT / "evidence" / "conformance" / "results"
 REPORTS_DIR = ROOT / "evidence" / "conformance" / "reports"

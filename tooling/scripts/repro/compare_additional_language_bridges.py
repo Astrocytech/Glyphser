@@ -17,8 +17,8 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
 
-from runtime.glyphser.model.model_ir_executor import execute  # noqa: E402
-from tooling.lib.path_config import fixtures_root  # noqa: E402
+from runtime.glyphser.model.model_ir_executor import execute
+from tooling.lib.path_config import fixtures_root
 
 PYTHON_PROFILES = ["pytorch_cpu", "pytorch_gpu", "keras_cpu", "keras_gpu"]
 JAVA_PROFILES = ["java_onnxruntime_cpu", "java_djl_cpu"]

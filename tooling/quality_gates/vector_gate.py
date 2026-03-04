@@ -9,7 +9,7 @@ from typing import List
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from tooling.registry.operator_vectors import (  # noqa: E402
+from tooling.registry.operator_vectors import (
     ensure_root,
     expected_vector_path,
     load_vectors_file,

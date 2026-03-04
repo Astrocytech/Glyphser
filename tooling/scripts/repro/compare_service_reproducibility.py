@@ -15,7 +15,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
 
-from runtime.glyphser.api.runtime_api import (  # noqa: E402
+from runtime.glyphser.api.runtime_api import (
     RuntimeApiConfig,
     RuntimeApiService,
     _canonical_json,

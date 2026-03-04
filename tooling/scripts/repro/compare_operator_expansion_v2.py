@@ -15,7 +15,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
 
-from runtime.glyphser.model.model_ir_executor import execute  # noqa: E402
+from runtime.glyphser.model.model_ir_executor import execute
 
 PROFILES: list[str] = [
     "pytorch_cpu",

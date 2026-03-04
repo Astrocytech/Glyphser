@@ -14,11 +14,11 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
 
-from runtime.glyphser.serialization.canonical_cbor import (  # noqa: E402
+from runtime.glyphser.serialization.canonical_cbor import (
     encode_canonical,
     encode_canonical_hex,
 )
-from tooling.lib.path_config import fixtures_root  # noqa: E402
+from tooling.lib.path_config import fixtures_root
 
 WAIVER_ADRS = [
     "evidence/repro/decisions/ADR-2026-03-01-m12-resource-gap-temporary-waiver.md",
@@ -52,10 +52,10 @@ def _check_onnx_roundtrip(
     rel_tol: float,
 ) -> dict[str, Any]:
     try:
-        import numpy as np  # type: ignore
-        import onnx  # type: ignore
-        import onnxruntime as ort  # type: ignore
-        from onnx import TensorProto, helper  # type: ignore
+        import numpy as np
+        import onnx
+        import onnxruntime as ort
+        from onnx import TensorProto, helper
     except Exception as exc:
         return {
             "check": "onnx_roundtrip",
@@ -115,8 +115,8 @@ def _check_safetensors_roundtrip(
     rel_tol: float,
 ) -> dict[str, Any]:
     try:
-        import numpy as np  # type: ignore
-        from safetensors.numpy import load_file, save_file  # type: ignore
+        import numpy as np
+        from safetensors.numpy import load_file, save_file
     except Exception as exc:
         return {
             "check": "safetensors_roundtrip",
