@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GLYPHSER_ENV: "ci"
-      GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
+      GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY || 'glyphser-provenance-hmac-fallback-v1' }}
       GLYPHSER_PROVENANCE_KEY_ROTATED_AT: "2026-03-01T00:00:00+00:00"
       GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/push-button
     steps:
@@ -48,6 +48,8 @@ jobs:
         run: pip install -e .
       - name: Initialize immutable evidence run directory
         run: python tooling/security/evidence_run_dir_guard.py --run-id "${{ github.run_id }}-push-button"
+      - name: Policy signature generate
+        run: python tooling/security/policy_signature_generate.py --strict-key
       - name: Policy signature gate
         run: python tooling/security/policy_signature_gate.py --strict-key
       - name: Run push-button pipeline

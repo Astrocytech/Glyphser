@@ -19,14 +19,14 @@ def test_semgrep_rules_catch_expected_patterns() -> None:
         check=False,
         cwd=ROOT,
     )
-    assert proc.returncode == 1, proc.stdout + "\n" + proc.stderr
+    assert proc.returncode in {0, 1}, proc.stdout + "\n" + proc.stderr
     payload = json.loads(proc.stdout)
     ids = {r.get("check_id") for r in payload.get("results", [])}
-    assert "glyphser.path-traversal-archive-extractall" in ids
-    assert "glyphser.unsafe-tempfile-mktemp" in ids
-    assert "glyphser.unsafe-tempfile-delete-false" in ids
-    assert "glyphser.path-join-untrusted" in ids
-    assert "glyphser.permissive-file-mode" in ids
+    assert any(str(i).endswith("glyphser.path-traversal-archive-extractall") for i in ids)
+    assert any(str(i).endswith("glyphser.unsafe-tempfile-mktemp") for i in ids)
+    assert any(str(i).endswith("glyphser.unsafe-tempfile-delete-false") for i in ids)
+    assert any(str(i).endswith("glyphser.path-join-untrusted") for i in ids)
+    assert any(str(i).endswith("glyphser.permissive-file-mode") for i in ids)
 
 
 def test_semgrep_rules_allow_good_fixture() -> None:

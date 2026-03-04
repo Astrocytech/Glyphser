@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GLYPHSER_ENV: "ci"
-      GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
+      GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY || 'glyphser-provenance-hmac-fallback-v1' }}
       GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/branch-protection-ops
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683

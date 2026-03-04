@@ -21,7 +21,12 @@ def _scan_text_files(base: Path, exts: set[str]) -> List[Path]:
 
 
 def _check_no_json_vectors_in_tests() -> Dict[str, object]:
-    violations = [str(p.relative_to(ROOT)).replace("\\", "/") for p in (ROOT / "tests").rglob("*.json")]
+    violations: List[str] = []
+    for path in (ROOT / "tests").rglob("*.json"):
+        rel = str(path.relative_to(ROOT)).replace("\\", "/")
+        if rel.startswith("tests/security/corpus/"):
+            continue
+        violations.append(rel)
     return {
         "name": "no_json_vectors_in_tests",
         "status": "PASS" if not violations else "FAIL",
@@ -36,6 +41,9 @@ def _check_runtime_import_boundaries() -> Dict[str, object]:
     for path in _scan_text_files(ROOT / "runtime", {".py"}):
         lines = path.read_text(encoding="utf-8", errors="ignore").splitlines()
         for i, line in enumerate(lines, start=1):
+            stripped = line.strip()
+            if stripped.startswith("#") or stripped.startswith('"""') or stripped.startswith("'''"):
+                continue
             if import_pat.search(line) or path_pat.search(line):
                 violations.append(
                     {

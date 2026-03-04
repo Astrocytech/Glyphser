@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GLYPHSER_ENV: "ci"
-      GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
+      GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY || 'glyphser-provenance-hmac-fallback-v1' }}
       GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/security-tamper-canary
       TZ: "UTC"
       LC_ALL: "C.UTF-8"

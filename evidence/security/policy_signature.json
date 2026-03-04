@@ -4,6 +4,22 @@
       "ok": true,
       "reason": "ok"
     },
+    "governance/security/advanced_hardening_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/artifact_classification_manifest.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/build_env_baseline.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/build_env_drift_approval.json": {
+      "ok": true,
+      "reason": "ok"
+    },
     "governance/security/container_provenance_policy.json": {
       "ok": true,
       "reason": "ok"
@@ -40,7 +56,19 @@
       "ok": true,
       "reason": "ok"
     },
+    "governance/security/sbom_diff_approval.json": {
+      "ok": true,
+      "reason": "ok"
+    },
     "governance/security/secret_management_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/stage_s_hardening_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/temporary_exceptions.json": {
       "ok": true,
       "reason": "ok"
     },

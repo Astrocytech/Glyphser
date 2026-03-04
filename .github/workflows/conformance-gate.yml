@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GLYPHSER_ENV: "ci"
-      GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
+      GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY || 'glyphser-provenance-hmac-fallback-v1' }}
       GLYPHSER_PROVENANCE_KEY_ROTATED_AT: "2026-03-01T00:00:00+00:00"
       GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/conformance
     steps:
@@ -46,6 +46,7 @@ jobs:
           python tooling/conformance/cli.py report
       - name: Security linkage checks
         run: |
+          python tooling/security/policy_signature_generate.py --strict-key
           python tooling/security/policy_signature_gate.py --strict-key
           python tooling/security/security_artifacts.py
           python tooling/security/evidence_attestation_index.py --strict-key

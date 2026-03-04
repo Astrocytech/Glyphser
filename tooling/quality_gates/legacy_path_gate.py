@@ -49,6 +49,8 @@ ALLOW_SUBSTRINGS = [
     "evidence/",
     "evidence/conformance/reports/",
     "evidence/conformance/results/",
+    "${{ env.GLYPHSER_EVIDENCE_ROOT }}/conformance/reports/",
+    "${{ env.GLYPHSER_EVIDENCE_ROOT }}/conformance/results/",
 ]
 
 
