@@ -16,15 +16,15 @@ ROOT = Path(__file__).resolve().parents[2]
 
 def _walk(obj: Any) -> list[str]:
     if isinstance(obj, dict):
-        out: list[str] = []
+        values: list[str] = []
         for v in obj.values():
-            out.extend(_walk(v))
-        return out
+            values.extend(_walk(v))
+        return values
     if isinstance(obj, list):
-        out: list[str] = []
+        items: list[str] = []
         for v in obj:
-            out.extend(_walk(v))
-        return out
+            items.extend(_walk(v))
+        return items
     if isinstance(obj, str):
         return [obj]
     return []

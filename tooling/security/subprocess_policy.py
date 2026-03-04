@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 _ALLOWED_PREFIXES: list[tuple[str, ...]] = [
     ("git", "rev-parse"),
+    ("git", "diff"),
     ("git", "ls-files"),
     ("java", "-version"),
     ("javac", "-version"),

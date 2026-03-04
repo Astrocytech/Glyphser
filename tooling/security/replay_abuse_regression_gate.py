@@ -6,6 +6,7 @@ import json
 import platform
 import sys
 from pathlib import Path
+from typing import Mapping
 
 from tooling.lib.path_config import evidence_root
 
@@ -18,7 +19,7 @@ CASES = [
 ]
 
 
-def _score(case: dict[str, object]) -> int:
+def _score(case: Mapping[str, object]) -> int:
     events = case.get("events", [])
     if not isinstance(events, list):
         return -1
