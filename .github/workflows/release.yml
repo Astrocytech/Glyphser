@@ -74,6 +74,8 @@ jobs:
         run: python tooling/security/attestation_digest_match_gate.py
       - name: Governance markdown gate
         run: python tooling/security/governance_markdown_gate.py
+      - name: Stale policy review gate
+        run: python tooling/security/stale_policy_review_gate.py
       - name: Review policy gate
         run: python tooling/security/review_policy_gate.py
       - name: File permissions gate
@@ -128,6 +130,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/secret_management.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/production_controls.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/governance_markdown_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/stale_policy_review_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/review_policy_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/file_permissions_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/key_management.json
@@ -190,6 +193,7 @@ jobs:
           python tooling/security/production_controls_gate.py
           python tooling/security/third_party_pentest_gate.py --strict-key
           python tooling/security/governance_markdown_gate.py
+          python tooling/security/stale_policy_review_gate.py
           python tooling/security/review_policy_gate.py
           python tooling/security/file_permissions_gate.py
           python tooling/security/live_rollout_gate.py --profile release

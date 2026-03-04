@@ -78,10 +78,17 @@ def main(argv: list[str] | None = None) -> int:
         if not any(tok in ticket for tok in patterns):
             findings.append("baseline_change_missing_ticket_or_adr")
 
-    security_paths = [p for p in changed if p.startswith("tooling/security/") or p.startswith("governance/security/")]
+    security_paths = [
+        p
+        for p in changed
+        if p.startswith("tooling/security/")
+        or p.startswith("governance/security/")
+        or p.startswith("runtime/glyphser/security/")
+        or p.startswith(".github/workflows/")
+    ]
     changelog = str(policy.get("required_changelog_file", "")).strip()
     if security_paths and changelog and changelog not in changed:
-        advisories.append("missing_security_changelog_entry")
+        findings.append("missing_security_changelog_entry")
 
     report = {
         "status": "PASS" if not findings else "FAIL",
