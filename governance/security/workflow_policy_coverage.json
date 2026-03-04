@@ -15,6 +15,7 @@
     "security-baseline-update.yml",
     "security-live-integrations.yml",
     "security-maintenance.yml",
+    "security-pin-drift-monthly.yml",
     "security-penetration.yml",
     "security-super-extended.yml",
     "security-tamper-canary.yml",
