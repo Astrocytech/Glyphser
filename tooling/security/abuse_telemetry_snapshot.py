@@ -67,10 +67,4 @@ def main(argv: list[str] | None = None) -> int:
 
 
 if __name__ == "__main__":
-    exit_code = 0
-    try:
-        exit_code = main(sys.argv[1:])
-    except Exception as exc:
-        # Telemetry snapshot must never fail CI; downstream gates evaluate content.
-        print(f"ABUSE_TELEMETRY_SNAPSHOT_WARN: {type(exc).__name__}", file=sys.stderr)
-    raise SystemExit(exit_code if exit_code == 0 else 0)
+    raise SystemExit(main(sys.argv[1:]))
