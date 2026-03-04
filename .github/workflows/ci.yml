@@ -276,6 +276,8 @@ jobs:
         run: python tooling/security/container_provenance_gate.py
       - name: Security artifacts
         run: python tooling/security/security_artifacts.py
+      - name: Security unsigned JSON gate
+        run: python tooling/security/security_unsigned_json_gate.py
       - name: Governance markdown gate
         run: python tooling/security/governance_markdown_gate.py
       - name: Review policy gate
@@ -363,6 +365,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_schema_migration_tracker.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_evidence_corruption_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_artifact_signature_coverage_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_unsigned_json_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_workflow_trigger_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_critical_test_wiring_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_sarif_permissions_gate.json

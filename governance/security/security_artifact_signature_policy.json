@@ -20,5 +20,12 @@
       "artifact": "evidence_attestation_index.json",
       "signature": "evidence_attestation_index.json.sig"
     }
+  ],
+  "required_signed_security_json": [
+    "sbom.json",
+    "build_provenance.json",
+    "slsa_provenance_v1.json",
+    "evidence_chain_of_custody.json",
+    "evidence_attestation_index.json"
   ]
 }

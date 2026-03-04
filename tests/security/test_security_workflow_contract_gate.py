@@ -37,6 +37,7 @@ jobs:
       - run: python tooling/security/security_schema_migration_tracker.py
       - run: python tooling/security/security_evidence_corruption_gate.py
       - run: python tooling/security/security_artifact_signature_coverage_gate.py
+      - run: python tooling/security/security_unsigned_json_gate.py
       - run: python tooling/security/runtime_api_state_schema_gate.py
       - run: python tooling/security/security_workflow_trigger_gate.py
       - run: python tooling/security/security_critical_test_wiring_gate.py
@@ -63,6 +64,7 @@ jobs:
       - run: python tooling/security/security_schema_migration_tracker.py
       - run: python tooling/security/security_evidence_corruption_gate.py
       - run: python tooling/security/security_artifact_signature_coverage_gate.py
+      - run: python tooling/security/security_unsigned_json_gate.py
       - run: python tooling/security/runtime_api_state_schema_gate.py
       - run: python tooling/security/security_workflow_trigger_gate.py
       - run: python tooling/security/security_critical_test_wiring_gate.py

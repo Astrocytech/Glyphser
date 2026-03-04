@@ -109,6 +109,7 @@ jobs:
       - name: Security artifacts + attestation checks
         run: |
           python tooling/security/security_artifacts.py
+          python tooling/security/security_unsigned_json_gate.py
           python tooling/security/abuse_telemetry_snapshot.py
           python tooling/security/runtime_api_state_schema_gate.py
           python tooling/security/abuse_telemetry_gate.py
@@ -145,6 +146,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_policy_coverage_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_evidence_corruption_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_artifact_signature_coverage_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_unsigned_json_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_toolchain.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_risky_patterns_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_deprecated_invocation_gate.json
