@@ -24,3 +24,13 @@ def test_write_json_report_replaces_existing_file_atomically(tmp_path: Path) -> 
     second = out.read_text(encoding="utf-8")
     assert first != second
     assert json.loads(second)["version"] == 2
+
+
+def test_write_json_report_auto_normalizes_security_report_shape(tmp_path: Path) -> None:
+    out = tmp_path / "security" / "gate.json"
+    write_json_report(out, {"status": "PASS"})
+    parsed = json.loads(out.read_text(encoding="utf-8"))
+    assert parsed["schema_version"] == 1
+    assert parsed["findings"] == []
+    assert parsed["summary"] == {}
+    assert parsed["metadata"] == {}

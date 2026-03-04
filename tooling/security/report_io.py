@@ -6,11 +6,23 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
+SCHEMA_VERSION = 1
+
+
+def _normalize_report_payload(payload: dict[str, Any]) -> dict[str, Any]:
+    normalized = dict(payload)
+    if "status" in normalized:
+        normalized.setdefault("schema_version", SCHEMA_VERSION)
+        normalized.setdefault("findings", [])
+        normalized.setdefault("summary", {})
+        normalized.setdefault("metadata", {})
+    return normalized
+
 
 def write_json_report(path: Path, payload: dict[str, Any]) -> None:
     """Write a canonical report using atomic replace + fsync."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    body = json.dumps(payload, indent=2, sort_keys=True) + "\n"
+    body = json.dumps(_normalize_report_payload(payload), indent=2, sort_keys=True) + "\n"
 
     fd, tmp_name = tempfile.mkstemp(prefix=f".{path.name}.", dir=str(path.parent))
     tmp_path = Path(tmp_name)
