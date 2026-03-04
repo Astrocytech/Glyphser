@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import importlib
-import json
 import os
 import re
 import sys
@@ -13,6 +12,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 DEFAULT_TODO = ""
 SECTION_RE = re.compile(r"^([A-Z0-9]{1,4})\.\s+")
@@ -82,8 +82,7 @@ def main(argv: list[str] | None = None) -> int:
         "metadata": {"gate": "hardening_todo_consistency_gate"},
     }
     out = evidence_root() / "security" / "hardening_todo_consistency_gate.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, report)
     print(f"HARDENING_TODO_CONSISTENCY_GATE: {report['status']}")
     print(f"Report: {out}")
     return 0 if report["status"] == "PASS" else 1

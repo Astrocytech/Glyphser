@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import importlib
-import json
 import re
 import sys
 from pathlib import Path
@@ -12,6 +11,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 REQUIRED_EXPLICIT_PERMISSIONS = {
     "ci.yml",
@@ -88,8 +88,7 @@ def main(argv: list[str] | None = None) -> int:
         "metadata": {"gate": "security_workflow_permissions_policy_gate"},
     }
     out = evidence_root() / "security" / "security_workflow_permissions_policy_gate.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, report)
     print(f"SECURITY_WORKFLOW_PERMISSIONS_POLICY_GATE: {report['status']}")
     print(f"Report: {out}")
     return 0 if report["status"] == "PASS" else 1
