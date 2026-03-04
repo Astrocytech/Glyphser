@@ -14,6 +14,8 @@ if str(ROOT) not in sys.path:
 from tooling.lib.path_config import evidence_root
 
 JOB_RE = re.compile(r"^([A-Za-z0-9_-]+):\s*$")
+CRITICAL_STATUS_CHECKS = {"security-matrix", "branch-protection-policy"}
+CRITICAL_RELEASE_CHECKS = {"verify-signatures"}
 
 
 def _extract_jobs(path: Path) -> set[str]:
@@ -59,6 +61,8 @@ def main() -> int:
     release_jobs = _extract_jobs(release_path)
     missing_ci = sorted([job for job in required_checks if job not in ci_jobs])
     missing_release = sorted([job for job in required_release if job not in release_jobs])
+    missing_policy_status_checks = sorted(check for check in CRITICAL_STATUS_CHECKS if check not in required_checks)
+    missing_policy_release_checks = sorted(check for check in CRITICAL_RELEASE_CHECKS if check not in required_release)
     missing_workflow_jobs: dict[str, list[str]] = {}
     for filename, jobs in required_workflow_jobs.items():
         if not isinstance(filename, str) or not isinstance(jobs, list) or not all(isinstance(x, str) for x in jobs):
@@ -72,12 +76,22 @@ def main() -> int:
         if missing:
             missing_workflow_jobs[filename] = missing
 
-    status = "PASS" if not missing_ci and not missing_release and not missing_workflow_jobs else "FAIL"
+    status = (
+        "PASS"
+        if not missing_ci
+        and not missing_release
+        and not missing_workflow_jobs
+        and not missing_policy_status_checks
+        and not missing_policy_release_checks
+        else "FAIL"
+    )
     payload: dict[str, Any] = {
         "status": status,
         "policy_path": str(policy_path.relative_to(ROOT)).replace("\\", "/"),
         "missing_ci_jobs": missing_ci,
         "missing_release_jobs": missing_release,
+        "missing_policy_status_checks": missing_policy_status_checks,
+        "missing_policy_release_checks": missing_policy_release_checks,
         "missing_workflow_jobs": missing_workflow_jobs,
     }
     out = evidence_root() / "security" / "branch_protection_policy.json"
