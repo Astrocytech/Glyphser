@@ -1,6 +1,8 @@
 {
   "required_when_container_artifacts_present": true,
   "container_publishing_enabled": false,
+  "cosign_required_lanes": ["release", "security-maintenance"],
+  "cosign_skippable_lanes": ["ci", "dev"],
   "container_digest_manifest": "distribution/container/image-digests.txt",
   "required_signature_files": [
     "distribution/container/image-digests.txt.sig",
