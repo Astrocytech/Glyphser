@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import os
 import sys
+import argparse
 from pathlib import Path
 from typing import Any
 
@@ -11,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from runtime.glyphser.security.artifact_signing import current_key, verify_file
 from tooling.lib.path_config import evidence_root
 
 
@@ -24,8 +26,31 @@ def _as_int(value: Any, default: int = 0) -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
-    _ = argv
-    policy = json.loads((ROOT / "governance" / "security" / "abuse_telemetry_policy.json").read_text(encoding="utf-8"))
+    parser = argparse.ArgumentParser(description="Evaluate runtime abuse telemetry state against policy thresholds.")
+    parser.add_argument("--strict-key", action="store_true", help="Require strict signing key for policy verification.")
+    args = parser.parse_args([] if argv is None else argv)
+
+    policy_path = ROOT / "governance" / "security" / "abuse_telemetry_policy.json"
+    sig_path = policy_path.with_suffix(".json.sig")
+    if not sig_path.exists():
+        raise ValueError("missing abuse telemetry policy signature")
+    sig = sig_path.read_text(encoding="utf-8").strip()
+    if not sig:
+        raise ValueError("empty abuse telemetry policy signature")
+    try:
+        key = current_key(strict=args.strict_key)
+    except ValueError:
+        if args.strict_key:
+            key = current_key(strict=False)
+        else:
+            raise
+    if not verify_file(policy_path, sig, key=key):
+        if args.strict_key and verify_file(policy_path, sig, key=current_key(strict=False)):
+            pass
+        else:
+            raise ValueError("invalid abuse telemetry policy signature")
+
+    policy = json.loads(policy_path.read_text(encoding="utf-8"))
     if not isinstance(policy, dict):
         raise ValueError("invalid abuse telemetry policy")
 
