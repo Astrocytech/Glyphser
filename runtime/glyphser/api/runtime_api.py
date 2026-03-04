@@ -230,10 +230,20 @@ class RuntimeApiConfig:
     max_replays_per_job_window: int = 10
     replay_window_seconds: int = 60
     max_cross_token_replays_per_job_window: int = 5
+    max_job_reads_per_window: int = 120
+    job_read_window_seconds: int = 60
     auth_failure_denylist_threshold: int = 5
     auth_failure_denylist_cooldown_seconds: int = 300
     enforce_token_policy: bool = True
     min_token_entropy_bits: int = 24
+    submit_request_max_bytes: int = 256 * 1024
+    status_request_max_bytes: int = 2 * 1024
+    evidence_request_max_bytes: int = 2 * 1024
+    replay_request_max_bytes: int = 2 * 1024
+    include_replay_failure_reason: bool = False
+    enforce_replay_token_binding: bool = False
+    replay_token_ttl_seconds: int = 86_400
+    replay_token_max_uses: int = 500
     idempotency_ttl_seconds: int = 86_400
     idempotency_max_entries: int = 10_000
 
@@ -261,6 +271,11 @@ class RuntimeApiService:
                 "scope": scope,
                 "idempotency_key": idempotency_key or "",
             },
+        )
+        self._enforce_request_size(
+            {"payload": payload, "token": token, "scope": scope, "idempotency_key": idempotency_key or ""},
+            limit=self._config.submit_request_max_bytes,
+            error="submit request too large",
         )
         _validate_scope(scope, expected="jobs:write")
         self._enforce_lockdown("publish")
@@ -307,6 +322,12 @@ class RuntimeApiService:
                 "idempotency_key": idempotency_key or "",
             }
             state["jobs"][job_id] = record
+            state["replay_tokens"][job_id] = {
+                "minted_at": int(time.time()),
+                "bound_token_hash": _sha256_text(token),
+                "uses": 0,
+                "revoked": False,
+            }
             if idempotency_key:
                 state["idempotency"][idempotency_key] = job_id
                 state["idempotency_meta"][idempotency_key] = {"job_id": job_id, "ts": int(time.time())}
@@ -317,6 +338,11 @@ class RuntimeApiService:
 
     def status(self, job_id: str, token: str, scope: str) -> Dict[str, Any]:
         _validate_against_schema("status_request", {"job_id": job_id, "token": token, "scope": scope})
+        self._enforce_request_size(
+            {"job_id": job_id, "token": token, "scope": scope},
+            limit=self._config.status_request_max_bytes,
+            error="status request too large",
+        )
         _validate_scope(scope, expected="jobs:read")
         _validate_job_id(job_id)
         self._require_auth_with_tracking(token=token, action="jobs:read", scope=scope, job_id=job_id)
@@ -332,6 +358,13 @@ class RuntimeApiService:
             )
             out = self._require_job_locked(state, job_id)
             self._bump_job_read_quota(state, job_id=job_id, limit=self._config.max_reads_per_job)
+            self._bump_window_counter(
+                state["quotas"]["job_read_window"],
+                key=job_id,
+                limit=self._config.max_job_reads_per_window,
+                window_seconds=self._config.job_read_window_seconds,
+                error="job read burst exceeded",
+            )
             self._save_state(state)
             self._audit("status", token=token, job_id=job_id, scope=scope)
             _validate_against_schema("status_response", out)
@@ -339,6 +372,11 @@ class RuntimeApiService:
 
     def evidence(self, job_id: str, token: str, scope: str) -> Dict[str, Any]:
         _validate_against_schema("evidence_request", {"job_id": job_id, "token": token, "scope": scope})
+        self._enforce_request_size(
+            {"job_id": job_id, "token": token, "scope": scope},
+            limit=self._config.evidence_request_max_bytes,
+            error="evidence request too large",
+        )
         _validate_scope(scope, expected="evidence:read")
         _validate_job_id(job_id)
         self._require_auth_with_tracking(token=token, action="evidence:read", scope=scope, job_id=job_id)
@@ -354,6 +392,13 @@ class RuntimeApiService:
             )
             _ = self._require_job_locked(state, job_id)
             self._bump_job_read_quota(state, job_id=job_id, limit=self._config.max_reads_per_job)
+            self._bump_window_counter(
+                state["quotas"]["job_read_window"],
+                key=job_id,
+                limit=self._config.max_job_reads_per_window,
+                window_seconds=self._config.job_read_window_seconds,
+                error="job read burst exceeded",
+            )
             self._save_state(state)
             root = self._config.root
             conformance = root / "conformance" / "reports" / "latest.json"
@@ -384,6 +429,11 @@ class RuntimeApiService:
 
     def replay(self, job_id: str, token: str, scope: str) -> Dict[str, Any]:
         _validate_against_schema("replay_request", {"job_id": job_id, "token": token, "scope": scope})
+        self._enforce_request_size(
+            {"job_id": job_id, "token": token, "scope": scope},
+            limit=self._config.replay_request_max_bytes,
+            error="replay request too large",
+        )
         _validate_scope(scope, expected="replay:run")
         self._enforce_lockdown("replay")
         _validate_job_id(job_id)
@@ -400,6 +450,14 @@ class RuntimeApiService:
             )
             _ = self._require_job_locked(state, job_id)
             self._bump_job_read_quota(state, job_id=job_id, limit=self._config.max_reads_per_job)
+            self._bump_window_counter(
+                state["quotas"]["job_read_window"],
+                key=job_id,
+                limit=self._config.max_job_reads_per_window,
+                window_seconds=self._config.job_read_window_seconds,
+                error="job read burst exceeded",
+            )
+            self._enforce_replay_token_lifecycle(state=state, job_id=job_id, token=token)
             self._enforce_replay_cooldown(state, job_id=job_id, cooldown_seconds=self._config.replay_cooldown_seconds)
             self._bump_job_replay_quota(state, job_id=job_id, limit=self._config.max_replays_per_job)
             self._bump_replay_window_quota(
@@ -420,8 +478,9 @@ class RuntimeApiService:
                     "job_id": job_id,
                     "api_version": self._config.api_version,
                     "replay_verdict": "FAIL",
-                    "reason": "missing evidence",
                 }
+                if self._config.include_replay_failure_reason:
+                    out["reason"] = "missing evidence"
                 self._audit(
                     "replay",
                     token=token,
@@ -554,6 +613,7 @@ class RuntimeApiService:
                 "jobs": {},
                 "idempotency": {},
                 "idempotency_meta": {},
+                "replay_tokens": {},
                 "quotas": {
                     "token_requests": {},
                     "token_submits": {},
@@ -566,6 +626,7 @@ class RuntimeApiService:
                     "replay_window_by_token": {},
                     "replay_window_by_job": {},
                     "replay_window_job_tokens": {},
+                    "job_read_window": {},
                 },
             }
         data = json.loads(self._config.state_path.read_text(encoding="utf-8"))
@@ -574,6 +635,7 @@ class RuntimeApiService:
         data.setdefault("jobs", {})
         data.setdefault("idempotency", {})
         data.setdefault("idempotency_meta", {})
+        data.setdefault("replay_tokens", {})
         quotas = data.setdefault("quotas", {})
         if not isinstance(quotas, dict):
             raise ValueError("invalid state quotas")
@@ -588,6 +650,7 @@ class RuntimeApiService:
         quotas.setdefault("replay_window_by_token", {})
         quotas.setdefault("replay_window_by_job", {})
         quotas.setdefault("replay_window_job_tokens", {})
+        quotas.setdefault("job_read_window", {})
         return data
 
     def _save_state(self, state: Dict[str, Any]) -> None:
@@ -625,6 +688,36 @@ class RuntimeApiService:
             for key, _ in ordered[:drop]:
                 idx.pop(key, None)
                 legacy.pop(key, None)
+
+    def _enforce_replay_token_lifecycle(self, *, state: Dict[str, Any], job_id: str, token: str) -> None:
+        if not self._config.enforce_replay_token_binding:
+            return
+        tokens = state.get("replay_tokens", {})
+        if not isinstance(tokens, dict):
+            raise ValueError("invalid replay token store")
+        payload = tokens.get(job_id)
+        if not isinstance(payload, dict):
+            raise ValueError("missing replay token")
+        if payload.get("revoked") is True:
+            raise ValueError("replay token revoked")
+        minted_at = payload.get("minted_at", 0)
+        if not isinstance(minted_at, int):
+            raise ValueError("invalid replay token metadata")
+        if (int(time.time()) - minted_at) > max(1, int(self._config.replay_token_ttl_seconds)):
+            raise ValueError("replay token expired")
+        bound_hash = payload.get("bound_token_hash")
+        if not isinstance(bound_hash, str) or not bound_hash:
+            raise ValueError("invalid replay token metadata")
+        if bound_hash != _sha256_text(token):
+            raise ValueError("replay token binding mismatch")
+        uses = payload.get("uses", 0)
+        if not isinstance(uses, int) or uses < 0:
+            uses = 0
+        uses += 1
+        if uses > max(1, int(self._config.replay_token_max_uses)):
+            raise ValueError("replay token use limit exceeded")
+        payload["uses"] = uses
+        tokens[job_id] = payload
 
     @staticmethod
     def _idempotency_job(state: Dict[str, Any], key: str) -> str:
@@ -683,6 +776,17 @@ class RuntimeApiService:
         if nxt > limit:
             raise ValueError(error)
         counter[key] = nxt
+
+    @staticmethod
+    def _enforce_request_size(payload: Dict[str, Any], *, limit: int, error: str) -> None:
+        if limit <= 0:
+            return
+        try:
+            encoded = _canonical_json(payload).encode("utf-8")
+        except Exception:
+            raise ValueError(error) from None
+        if len(encoded) > limit:
+            raise ValueError(error)
 
     def _bump_token_quota(
         self,

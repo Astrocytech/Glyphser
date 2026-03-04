@@ -391,3 +391,96 @@ def test_emergency_lockdown_blocks_publish_and_replay(tmp_path: Path):
         assert False, "expected ValueError"
     except ValueError as exc:
         assert "emergency lockdown" in str(exc)
+
+
+def test_endpoint_specific_request_size_limit_enforced(tmp_path: Path):
+    svc = RuntimeApiService(
+        RuntimeApiConfig(
+            root=ROOT,
+            state_path=tmp_path / "state.json",
+            submit_request_max_bytes=64,
+        )
+    )
+    payload = {"payload": {"blob": "x" * 256}}
+    try:
+        svc.submit_job(payload=payload, token="token-size-123", scope="jobs:write")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "submit request too large" in str(exc)
+
+
+def test_job_read_window_limit_enforced(tmp_path: Path):
+    svc = RuntimeApiService(
+        RuntimeApiConfig(
+            root=ROOT,
+            state_path=tmp_path / "state.json",
+            max_requests_per_token=100,
+            max_submits_per_token=100,
+            max_reads_per_job=100,
+            max_job_reads_per_window=2,
+            job_read_window_seconds=60,
+        )
+    )
+    job = svc.submit_job(payload={"payload": {"job": "demo"}}, token="token-job-read", scope="jobs:write")
+    svc.status(job["job_id"], token="token-job-read", scope="jobs:read")
+    svc.status(job["job_id"], token="token-job-read", scope="jobs:read")
+    try:
+        svc.status(job["job_id"], token="token-job-read", scope="jobs:read")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "job read burst exceeded" in str(exc)
+
+
+def test_replay_token_binding_lifecycle_enforced(tmp_path: Path):
+    root = tmp_path / "repo"
+    (root / "evidence" / "conformance" / "reports").mkdir(parents=True)
+    (root / "artifacts" / "bundles").mkdir(parents=True)
+    (root / "evidence" / "repro").mkdir(parents=True)
+    (root / "evidence" / "conformance" / "reports" / "latest.json").write_text(
+        json.dumps({"status": "PASS"}) + "\n", encoding="utf-8"
+    )
+    line = "abc123  hello-core-bundle.tar.gz\n"
+    (root / "artifacts" / "bundles" / "hello-core-bundle.sha256").write_text(line, encoding="utf-8")
+    (root / "evidence" / "repro" / "hashes.txt").write_text(line, encoding="utf-8")
+
+    svc = RuntimeApiService(
+        RuntimeApiConfig(
+            root=root,
+            state_path=tmp_path / "state.json",
+            enforce_replay_token_binding=True,
+            replay_token_ttl_seconds=3600,
+            replay_token_max_uses=1,
+            replay_cooldown_seconds=0,
+        )
+    )
+    job = svc.submit_job(payload={"payload": {"n": 1}}, token="bound-token-1", scope="jobs:write")
+
+    try:
+        svc.replay(job["job_id"], token="bound-token-2", scope="replay:run")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "binding mismatch" in str(exc)
+
+    _ = svc.replay(job["job_id"], token="bound-token-1", scope="replay:run")
+    try:
+        svc.replay(job["job_id"], token="bound-token-1", scope="replay:run")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "use limit exceeded" in str(exc)
+
+
+def test_replay_failure_reason_hidden_by_default(tmp_path: Path):
+    root = tmp_path / "repo"
+    (root / "evidence" / "conformance" / "reports").mkdir(parents=True)
+    (root / "artifacts" / "bundles").mkdir(parents=True)
+    (root / "evidence" / "conformance" / "reports" / "latest.json").write_text(
+        json.dumps({"status": "PASS"}) + "\n", encoding="utf-8"
+    )
+    (root / "artifacts" / "bundles" / "hello-core-bundle.sha256").write_text(
+        "abc123  hello-core-bundle.tar.gz\n", encoding="utf-8"
+    )
+    svc = RuntimeApiService(RuntimeApiConfig(root=root, state_path=tmp_path / "state.json", replay_cooldown_seconds=0))
+    job = svc.submit_job(payload={"payload": {"n": 1}}, token="token-reason", scope="jobs:write")
+    out = svc.replay(job["job_id"], token="token-reason", scope="replay:run")
+    assert out["replay_verdict"] == "FAIL"
+    assert "reason" not in out
