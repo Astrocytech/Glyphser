@@ -81,6 +81,7 @@ def main(argv: list[str] | None = None) -> int:
         [sys.executable, "tooling/security/temporary_waiver_gate.py"],
         [sys.executable, "tooling/security/provenance_revocation_gate.py"],
         [sys.executable, "tooling/security/report_secret_leak_gate.py"],
+        [sys.executable, "tooling/security/security_gate_test_coverage_gate.py"],
         [sys.executable, "tooling/security/third_party_pentest_gate.py", "--strict-key"],
         [sys.executable, "tooling/security/live_integrations_verify.py", "--dry-run"],
         [sys.executable, "tooling/security/live_rollout_gate.py", "--allow-dry-run", "--allow-missing"],

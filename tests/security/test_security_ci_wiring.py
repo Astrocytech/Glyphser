@@ -32,6 +32,7 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/container_provenance_gate.py" in ci
     assert "python tooling/security/abuse_telemetry_snapshot.py" in ci
     assert "python tooling/security/abuse_telemetry_gate.py" in ci
+    assert "python tooling/security/security_gate_test_coverage_gate.py" in ci
     assert "python tooling/security/evidence_attestation_index.py --strict-key" in ci
     assert "python tooling/security/evidence_attestation_gate.py --strict-key" in ci
     assert "python tooling/security/provenance_signature_gate.py --strict-key" in ci
