@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Mapping
@@ -20,12 +21,60 @@ _ALLOWED_PREFIXES: list[tuple[str, ...]] = [
     ("python",),
     ("python3",),
 ]
+_PYTHON_INLINE_RE = re.compile(r"^[A-Za-z0-9_ .,:;()'\"=+-/*[\]{}<>!\\n\\t]+$")
+
+
+def _allowed_python_args(cmd: list[str]) -> bool:
+    if len(cmd) < 2:
+        return False
+    # Allow explicit pip module operations used by security tooling setup/verification.
+    if len(cmd) >= 4 and cmd[1] == "-m" and cmd[2] == "pip" and cmd[3] in {"install", "freeze"}:
+        return True
+    # Allow controlled one-liners used in tests and diagnostics.
+    if len(cmd) == 3 and cmd[1] == "-c" and _PYTHON_INLINE_RE.fullmatch(cmd[2] or ""):
+        return True
+    # Allow executing repository-local python scripts.
+    script = Path(cmd[1])
+    if script.suffix != ".py":
+        return False
+    if script.is_absolute():
+        return str(script).startswith(str(ROOT))
+    return ".." not in script.parts
+
+
+def _allowed_git_args(cmd: list[str]) -> bool:
+    if len(cmd) < 2:
+        return False
+    subcmd = cmd[1]
+    if subcmd == "rev-parse":
+        return len(cmd) == 3 and cmd[2] == "HEAD"
+    if subcmd == "ls-files":
+        return len(cmd) >= 2
+    if subcmd == "diff":
+        return "--" in cmd
+    return False
+
+
+def _allowed_java_args(cmd: list[str]) -> bool:
+    return cmd[:2] == ["java", "-version"] or cmd[:2] == ["javac", "-version"]
+
+
+def _allowed_java_exec_args(cmd: list[str]) -> bool:
+    if cmd and cmd[0] == "javac":
+        return len(cmd) >= 2 and all(not arg.startswith("-J") for arg in cmd[1:])
+    if cmd[:2] == ["java", "-cp"]:
+        return len(cmd) >= 4
+    return False
 
 
 def _allowed(cmd: list[str]) -> bool:
     exe_name = Path(cmd[0]).name.lower()
     if exe_name.startswith("python"):
-        return True
+        return _allowed_python_args(cmd)
+    if exe_name == "git":
+        return _allowed_git_args(cmd)
+    if exe_name in {"java", "javac"}:
+        return _allowed_java_args(cmd) or _allowed_java_exec_args(cmd)
     parts = tuple(cmd)
     for prefix in _ALLOWED_PREFIXES:
         if parts[: len(prefix)] == prefix:

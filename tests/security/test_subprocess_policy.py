@@ -19,6 +19,16 @@ def test_run_checked_blocks_disallowed_commands() -> None:
         run_checked(["/bin/echo", "nope"])
 
 
+def test_run_checked_blocks_disallowed_python_invocation() -> None:
+    with pytest.raises(ValueError, match="subprocess command not allowed by policy"):
+        run_checked([sys.executable, "-m", "http.server"])
+
+
+def test_run_checked_blocks_unconstrained_git_diff() -> None:
+    with pytest.raises(ValueError, match="subprocess command not allowed by policy"):
+        run_checked(["git", "diff", "HEAD~1", "HEAD"])
+
+
 def test_run_checked_enforces_timeout() -> None:
     proc = run_checked(
         [sys.executable, "-c", "import time; time.sleep(0.2)"],

@@ -70,7 +70,7 @@ def main(argv: list[str] | None = None) -> int:
     if int(bp.get("minimum_required_approvals", 0)) < min_approvals:
         findings.append("branch_protection_approvals_too_low")
 
-    changed = _run(["git", "diff", "--name-only", "HEAD~1", "HEAD"]).splitlines()
+    changed = _run(["git", "diff", "--name-only", "HEAD~1", "HEAD", "--", "."]).splitlines()
     baseline_paths = [p for p in policy.get("security_baseline_paths", []) if isinstance(p, str)]
     if any(p in changed for p in baseline_paths):
         ticket = os.environ.get("GLYPHSER_CHANGE_TICKET", "")
