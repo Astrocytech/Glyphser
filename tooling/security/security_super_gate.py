@@ -16,15 +16,23 @@ if str(ROOT) not in sys.path:
 
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
 run_checked = importlib.import_module("tooling.security.subprocess_policy").run_checked
+SUPER_GATE_SUBPROCESS_TIMEOUT_SEC = 300.0
+SUPER_GATE_SUBPROCESS_MAX_OUTPUT_BYTES = 2_000_000
 
 
 def _run(cmd: list[str]) -> dict[str, Any]:
-    proc = run_checked(cmd, cwd=ROOT)
+    proc = run_checked(
+        cmd,
+        cwd=ROOT,
+        timeout_sec=SUPER_GATE_SUBPROCESS_TIMEOUT_SEC,
+        max_output_bytes=SUPER_GATE_SUBPROCESS_MAX_OUTPUT_BYTES,
+    )
     return {
         "cmd": cmd,
         "returncode": proc.returncode,
         "stdout": proc.stdout.strip(),
         "stderr": proc.stderr.strip(),
+        "exit_reason": getattr(proc, "exit_reason", "exit"),
         "status": "PASS" if proc.returncode == 0 else "FAIL",
     }
 
@@ -185,6 +193,8 @@ def main(argv: list[str] | None = None) -> int:
             "runner": "security_super_gate",
             "strict_key": args.strict_key,
             "strict_prereqs": args.strict_prereqs,
+            "subprocess_timeout_sec": SUPER_GATE_SUBPROCESS_TIMEOUT_SEC,
+            "subprocess_max_output_bytes": SUPER_GATE_SUBPROCESS_MAX_OUTPUT_BYTES,
         },
         "results": results,
     }

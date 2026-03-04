@@ -22,6 +22,8 @@ def test_security_super_gate_passes(monkeypatch, tmp_path: Path) -> None:
     assert security_super_gate.main([]) == 0
     out = json.loads((ev / "security" / "security_super_gate.json").read_text(encoding="utf-8"))
     assert out["status"] == "PASS"
+    assert out["metadata"]["subprocess_timeout_sec"] == security_super_gate.SUPER_GATE_SUBPROCESS_TIMEOUT_SEC
+    assert out["metadata"]["subprocess_max_output_bytes"] == security_super_gate.SUPER_GATE_SUBPROCESS_MAX_OUTPUT_BYTES
 
 
 def test_security_super_gate_fails_on_subgate_failure(monkeypatch, tmp_path: Path) -> None:
