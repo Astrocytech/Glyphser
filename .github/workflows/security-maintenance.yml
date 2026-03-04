@@ -108,6 +108,7 @@ jobs:
         run: |
           python tooling/security/security_artifacts.py
           python tooling/security/abuse_telemetry_snapshot.py
+          python tooling/security/runtime_api_state_schema_gate.py
           python tooling/security/abuse_telemetry_gate.py
           python tooling/security/evidence_attestation_index.py --strict-key
           python tooling/security/evidence_attestation_gate.py --strict-key
@@ -165,6 +166,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/third_party_pentest.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/live_integrations.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/live_rollout_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/runtime_api_state_schema_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/abuse_telemetry.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/temporary_waiver_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_revocation_gate.json

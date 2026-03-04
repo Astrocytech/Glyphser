@@ -12,6 +12,13 @@
     }
   },
   "runtime_api_state_path": "artifacts/generated/tmp/security/runtime_api_state.json",
+  "required_runtime_counters": [
+    "auth_failures_by_token",
+    "token_requests",
+    "job_replays",
+    "token_submits",
+    "job_reads"
+  ],
   "max_distinct_tokens": 200,
   "max_auth_failures_per_token": 20,
   "max_failure_spike": 100

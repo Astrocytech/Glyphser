@@ -38,6 +38,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/live_rollout_gate.py --target live_integrations" in wf
     assert "python tooling/security/container_provenance_gate.py" in wf
     assert "python tooling/security/abuse_telemetry_snapshot.py" in wf
+    assert "python tooling/security/runtime_api_state_schema_gate.py" in wf
     assert "python tooling/security/abuse_telemetry_gate.py" in wf
     assert "python tooling/security/evidence_attestation_index.py --strict-key" in wf
     assert "python tooling/security/evidence_attestation_gate.py --strict-key" in wf
@@ -66,6 +67,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "security_workflow_permissions_policy_gate.json" in wf
     assert "security_exception_suppression_gate.json" in wf
     assert "security_dead_gate_wiring_gate.json" in wf
+    assert "runtime_api_state_schema_gate.json" in wf
     assert "security_gate_test_coverage.json" in wf
     assert "hardening_todo_consistency_gate.json" in wf
     assert "semgrep --version" in wf

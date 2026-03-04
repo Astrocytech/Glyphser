@@ -19,6 +19,7 @@
     "governance/security/stage_s_hardening_policy.json",
     "governance/security/temporary_exceptions.json",
     "governance/security/temporary_waiver_policy.json",
-    "governance/security/third_party_pentest_policy.json"
+    "governance/security/third_party_pentest_policy.json",
+    "governance/security/workflow_pinning_exceptions.json"
   ]
 }
