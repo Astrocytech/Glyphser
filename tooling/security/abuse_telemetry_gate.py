@@ -5,6 +5,7 @@ import json
 import os
 import sys
 import argparse
+import importlib
 from pathlib import Path
 from typing import Any
 
@@ -14,6 +15,7 @@ if str(ROOT) not in sys.path:
 
 from runtime.glyphser.security.artifact_signing import bootstrap_key, current_key, verify_file
 from tooling.lib.path_config import evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 
 def _as_int(value: Any, default: int = 0) -> int:
@@ -119,10 +121,14 @@ def main(argv: list[str] | None = None) -> int:
         if total_failures > max_failure_spike:
             findings.append(f"auth_failure_spike:{total_failures}")
 
-    payload = {"status": "PASS" if not findings else "FAIL", "findings": findings, "summary": summary}
+    payload = {
+        "status": "PASS" if not findings else "FAIL",
+        "findings": findings,
+        "summary": summary,
+        "metadata": {"gate": "abuse_telemetry_gate", "strict_key": args.strict_key},
+    }
     out = evidence_root() / "security" / "abuse_telemetry.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, payload)
     print(f"ABUSE_TELEMETRY_GATE: {payload['status']}")
     print(f"Report: {out}")
     return 0 if payload["status"] == "PASS" else 1

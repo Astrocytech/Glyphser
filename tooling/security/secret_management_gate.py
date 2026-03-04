@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import sys
 from datetime import UTC, datetime
+import importlib
 from pathlib import Path
 from typing import Any
 
@@ -12,6 +13,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tooling.lib.path_config import evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 
 def _parse_utc(text: str) -> datetime:
@@ -59,10 +61,18 @@ def main() -> int:
         if _age_days(last_rotation) > max_age:
             findings.append("secret rotation stale")
 
-    payload: dict[str, Any] = {"status": "PASS" if not findings else "FAIL", "findings": findings}
+    payload: dict[str, Any] = {
+        "status": "PASS" if not findings else "FAIL",
+        "findings": findings,
+        "summary": {
+            "required_secret_count": len(required_secrets),
+            "missing_required_secret_count": len(missing),
+            "max_secret_rotation_age_days": max_age,
+        },
+        "metadata": {"gate": "secret_management_gate"},
+    }
     out = evidence_root() / "security" / "secret_management.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, payload)
     print(f"SECRET_MANAGEMENT_GATE: {payload['status']}")
     print(f"Report: {out}")
     return 0 if payload["status"] == "PASS" else 1

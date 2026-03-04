@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import re
 import sys
+import importlib
 from pathlib import Path
 from typing import TypedDict
 
@@ -12,6 +13,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tooling.lib.path_config import evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 
 class Finding(TypedDict):
@@ -75,10 +77,11 @@ def main() -> int:
         "finding_count": len(findings),
         "findings": findings,
         "scanned_roots": list(SCAN_ROOTS),
+        "summary": {"finding_count": len(findings), "scanned_roots": list(SCAN_ROOTS)},
+        "metadata": {"gate": "secret_scan_gate"},
     }
     out = evidence_root() / "security" / "secret_scan.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, payload)
 
     print(f"SECRET_SCAN_GATE: {status}")
     print(f"Report: {out}")

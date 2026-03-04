@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import sys
 from datetime import UTC, datetime
+import importlib
 from pathlib import Path
 from typing import Any
 
@@ -12,6 +13,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tooling.lib.path_config import evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 
 def _parse_utc(ts: str) -> datetime:
@@ -92,11 +94,17 @@ def main() -> int:
     payload: dict[str, Any] = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
+        "summary": {
+            "max_runbook_age_days": max_runbook_age,
+            "max_alert_routing_age_days": max_routing_age,
+            "max_key_rotation_drill_age_days": max_rotation_age,
+            "runbook_count": len(runbooks),
+        },
+        "metadata": {"gate": "incident_response_gate"},
         "policy": str(policy_path.relative_to(ROOT)).replace("\\", "/"),
     }
     out = evidence_root() / "security" / "incident_response.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, payload)
     print(f"INCIDENT_RESPONSE_GATE: {payload['status']}")
     print(f"Report: {out}")
     return 0 if payload["status"] == "PASS" else 1

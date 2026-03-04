@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import sys
+import importlib
 from pathlib import Path
 from typing import Any
 
@@ -11,6 +12,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tooling.lib.path_config import evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 
 def main() -> int:
@@ -49,10 +51,18 @@ def main() -> int:
     if missing:
         findings.append(f"missing managed secrets: {', '.join(missing)}")
 
-    payload: dict[str, Any] = {"status": "PASS" if not findings else "FAIL", "findings": findings}
+    payload: dict[str, Any] = {
+        "status": "PASS" if not findings else "FAIL",
+        "findings": findings,
+        "summary": {
+            "required_secret_count": len(required_secrets),
+            "missing_required_secret_count": len(missing),
+            "max_credential_ttl_hours": max_ttl,
+        },
+        "metadata": {"gate": "org_secret_backend_gate"},
+    }
     out = evidence_root() / "security" / "org_secret_backend.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, payload)
     print(f"ORG_SECRET_BACKEND_GATE: {payload['status']}")
     print(f"Report: {out}")
     return 0 if payload["status"] == "PASS" else 1

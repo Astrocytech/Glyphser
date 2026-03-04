@@ -5,6 +5,7 @@ import argparse
 import json
 import sys
 from datetime import UTC, datetime
+import importlib
 from pathlib import Path
 from typing import Any
 
@@ -13,6 +14,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tooling.lib.path_config import evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 _TARGET_TO_FILE = {
     "branch_protection": "branch_protection_live.json",
@@ -103,10 +105,15 @@ def main(argv: list[str] | None = None) -> int:
         "allow_missing": args.allow_missing,
         "profile": args.profile,
         "findings": findings,
+        "summary": {
+            "target_count": len(targets),
+            "finding_count": len(findings),
+            "max_evidence_age_hours": max_age_hours,
+        },
+        "metadata": {"gate": "live_rollout_gate"},
     }
     out = evidence_root() / "security" / "live_rollout_gate.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, payload)
     print(f"LIVE_ROLLOUT_GATE: {payload['status']}")
     print(f"Report: {out}")
     return 0 if payload["status"] == "PASS" else 1

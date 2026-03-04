@@ -4,6 +4,7 @@ from __future__ import annotations
 import hashlib
 import json
 import sys
+import importlib
 from pathlib import Path
 from typing import Any
 
@@ -12,6 +13,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tooling.lib.path_config import evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 
 def _sha256(path: Path) -> str:
@@ -72,10 +74,14 @@ def main() -> int:
         findings.append("missing builder id")
 
     status = "PASS" if not findings else "FAIL"
-    payload: dict[str, Any] = {"status": status, "findings": findings}
+    payload: dict[str, Any] = {
+        "status": status,
+        "findings": findings,
+        "summary": {"subject_count": len(subject_map), "expected_subjects": len(expected)},
+        "metadata": {"gate": "slsa_attestation_gate"},
+    }
     out = sec / "slsa_attestation.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, payload)
     print(f"SLSA_ATTESTATION_GATE: {status}")
     print(f"Report: {out}")
     return 0 if status == "PASS" else 1

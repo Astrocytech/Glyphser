@@ -5,6 +5,7 @@ import argparse
 import hashlib
 import json
 import sys
+import importlib
 from pathlib import Path
 from typing import Any
 
@@ -14,6 +15,7 @@ if str(ROOT) not in sys.path:
 
 from runtime.glyphser.security.artifact_signing import current_key, verify_file
 from tooling.lib.path_config import evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 
 def _sha256_file(path: Path) -> str:
@@ -77,8 +79,13 @@ def main(argv: list[str] | None = None) -> int:
             findings.append("attestation sequence values not strictly monotonic")
 
     out = sec / "evidence_attestation_gate.json"
-    report = {"status": "PASS" if not findings else "FAIL", "findings": findings}
-    out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    report = {
+        "status": "PASS" if not findings else "FAIL",
+        "findings": findings,
+        "summary": {"attested_items": len(items), "strict_key": args.strict_key},
+        "metadata": {"gate": "evidence_attestation_gate"},
+    }
+    write_json_report(out, report)
     print(f"EVIDENCE_ATTESTATION_GATE: {report['status']}")
     print(f"Report: {out}")
     return 0 if report["status"] == "PASS" else 1

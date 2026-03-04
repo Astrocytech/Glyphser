@@ -5,10 +5,12 @@ import json
 import os
 import re
 import sys
+import importlib
 from pathlib import Path
 from typing import Any
 
 from tooling.lib.path_config import evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 ROOT = Path(__file__).resolve().parents[2]
 POLICY = ROOT / "governance" / "security" / "container_provenance_policy.json"
@@ -24,10 +26,14 @@ def _manifest_digests(path: Path) -> list[str]:
 
 
 def _emit(status: str, findings: list[str], summary: dict[str, Any]) -> int:
-    payload = {"status": status, "findings": findings, "summary": summary}
+    payload = {
+        "status": status,
+        "findings": findings,
+        "summary": summary,
+        "metadata": {"gate": "container_registry_provenance_gate"},
+    }
     out = evidence_root() / "security" / "container_registry_provenance_gate.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, payload)
     print(f"CONTAINER_REGISTRY_PROVENANCE_GATE: {status}")
     print(f"Report: {out}")
     return 0 if status == "PASS" else 1

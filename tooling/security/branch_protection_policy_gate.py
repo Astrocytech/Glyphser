@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import re
 import sys
+import importlib
 from pathlib import Path
 from typing import Any
 
@@ -12,6 +13,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tooling.lib.path_config import evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 JOB_RE = re.compile(r"^([A-Za-z0-9_-]+):\s*$")
 CRITICAL_STATUS_CHECKS = {"security-matrix", "branch-protection-policy"}
@@ -85,8 +87,24 @@ def main() -> int:
         and not missing_policy_release_checks
         else "FAIL"
     )
+    findings = (
+        [f"missing_ci_job:{job}" for job in missing_ci]
+        + [f"missing_release_job:{job}" for job in missing_release]
+        + [f"missing_policy_status_check:{check}" for check in missing_policy_status_checks]
+        + [f"missing_policy_release_check:{check}" for check in missing_policy_release_checks]
+    )
+    for workflow, jobs in missing_workflow_jobs.items():
+        for job in jobs:
+            findings.append(f"missing_workflow_job:{workflow}:{job}")
     payload: dict[str, Any] = {
         "status": status,
+        "findings": findings,
+        "summary": {
+            "missing_ci_jobs": len(missing_ci),
+            "missing_release_jobs": len(missing_release),
+            "missing_workflow_jobs": sum(len(v) for v in missing_workflow_jobs.values()),
+        },
+        "metadata": {"gate": "branch_protection_policy_gate"},
         "policy_path": str(policy_path.relative_to(ROOT)).replace("\\", "/"),
         "missing_ci_jobs": missing_ci,
         "missing_release_jobs": missing_release,
@@ -95,8 +113,7 @@ def main() -> int:
         "missing_workflow_jobs": missing_workflow_jobs,
     }
     out = evidence_root() / "security" / "branch_protection_policy.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, payload)
     print(f"BRANCH_PROTECTION_POLICY_GATE: {status}")
     print(f"Report: {out}")
     return 0 if status == "PASS" else 1
