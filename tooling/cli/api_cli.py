@@ -6,13 +6,12 @@ import json
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT))
-
 from runtime.glyphser.api.runtime_api import (
     RuntimeApiConfig,
     RuntimeApiService,
 )
+
+ROOT = Path(__file__).resolve().parents[2]
 
 
 def _service(state_path: str | None) -> RuntimeApiService:

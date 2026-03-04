@@ -9,11 +9,10 @@ import sys
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[3]
-sys.path.insert(0, str(ROOT))
-
 from runtime.glyphser.model.model_ir_executor import execute
 from tooling.lib.path_config import fixtures_root
+
+ROOT = Path(__file__).resolve().parents[3]
 
 
 def _load_dataset(path: Path) -> list[dict[str, Any]]:

@@ -12,10 +12,10 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[3]
-sys.path.insert(0, str(ROOT))
-
 from runtime.glyphser.model.model_ir_executor import execute
+
+ROOT = Path(__file__).resolve().parents[3]
+
 
 PROFILES = ["pytorch_cpu", "pytorch_gpu", "keras_cpu", "keras_gpu", "java_cpu"]
 JAVA_SRC = ROOT / "tooling" / "scripts" / "repro" / "java_bridge" / "ModelClassExpansionJavaRunner.java"

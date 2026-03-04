@@ -5,20 +5,19 @@ import argparse
 import hashlib
 import json
 import platform
-import sys
 import tempfile
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
-
-ROOT = Path(__file__).resolve().parents[3]
-sys.path.insert(0, str(ROOT))
 
 from runtime.glyphser.serialization.canonical_cbor import (
     encode_canonical,
     encode_canonical_hex,
 )
 from tooling.lib.path_config import fixtures_root
+
+ROOT = Path(__file__).resolve().parents[3]
+
 
 WAIVER_ADRS = [
     "evidence/repro/decisions/ADR-2026-03-01-m12-resource-gap-temporary-waiver.md",

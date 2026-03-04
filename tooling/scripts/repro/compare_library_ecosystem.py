@@ -7,16 +7,15 @@ import json
 import platform
 import shlex
 import subprocess
-import sys
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[3]
-sys.path.insert(0, str(ROOT))
-
 from runtime.glyphser.model.model_ir_executor import execute
 from tooling.lib.path_config import fixtures_root
+
+ROOT = Path(__file__).resolve().parents[3]
+
 
 WAIVER_ADRS = [
     "evidence/repro/decisions/ADR-2026-03-01-m12-resource-gap-temporary-waiver.md",
@@ -102,7 +101,6 @@ def _run_keras_cpu(model_ir: dict[str, Any], inputs: list[float]) -> dict[str, A
 
 def _run_jax(inputs: list[float], weights: list[float], bias: float) -> dict[str, Any]:
     try:
-        import jax
         import jax.numpy as jnp
     except Exception as exc:
         return {"error": {"code_id": "LIBRARY_MISSING", "message": str(exc)}}

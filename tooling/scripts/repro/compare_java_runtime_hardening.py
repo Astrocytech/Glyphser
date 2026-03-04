@@ -13,11 +13,11 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[3]
-sys.path.insert(0, str(ROOT))
-
 from runtime.glyphser.model.model_ir_executor import execute
 from tooling.lib.path_config import fixtures_root
+
+ROOT = Path(__file__).resolve().parents[3]
+
 
 PYTORCH_PROFILES = ["pytorch_cpu", "pytorch_gpu"]
 JAVA_RUNTIME_PROFILES = {

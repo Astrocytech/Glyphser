@@ -2,12 +2,8 @@
 from __future__ import annotations
 
 import json
-import sys
 from pathlib import Path
 from typing import List
-
-ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT))
 
 from tooling.registry.operator_vectors import (
     ensure_root,
@@ -15,6 +11,9 @@ from tooling.registry.operator_vectors import (
     load_vectors_file,
     validate_vectors_payload,
 )
+
+ROOT = Path(__file__).resolve().parents[2]
+
 
 REGISTRY = ROOT / "specs" / "contracts" / "operator_registry.json"
 

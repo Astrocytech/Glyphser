@@ -7,15 +7,14 @@ import json
 import platform
 import socket
 import subprocess
-import sys
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT))
-
 from runtime.glyphser.backend.load_driver import load_driver
+
+ROOT = Path(__file__).resolve().parents[2]
+
 
 PROFILE_LABELS = {"available_local", "available_local_partial", "strict_universal"}
 

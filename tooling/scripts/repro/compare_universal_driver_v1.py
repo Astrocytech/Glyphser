@@ -5,17 +5,16 @@ import argparse
 import hashlib
 import json
 import platform
-import sys
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[3]
-sys.path.insert(0, str(ROOT))
-
 from runtime.glyphser.backend.load_driver import load_driver
 from runtime.glyphser.model.model_ir_executor import execute
 from tooling.lib.path_config import fixtures_root
+
+ROOT = Path(__file__).resolve().parents[3]
+
 
 SUPPORTED_ROUTES = ["pytorch_cpu", "pytorch_gpu", "keras_cpu", "keras_gpu"]
 WAIVER_ADR = "evidence/repro/decisions/ADR-2026-03-01-m12-resource-gap-temporary-waiver.md"

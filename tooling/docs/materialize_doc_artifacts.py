@@ -8,10 +8,6 @@ import sys
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT))
-
 from runtime.glyphser.registry.registry_builder import (
     build_operator_registry_from_list,
     parse_api_interfaces,
@@ -21,6 +17,9 @@ from tooling.lib.path_config import (
     goldens_root,
     vectors_root,
 )
+
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
 
 
 def sha256_hex(data: bytes) -> str:
