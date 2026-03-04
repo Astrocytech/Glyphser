@@ -1,0 +1,13 @@
+{
+  "current_schema_version": 1,
+  "minor_change_policy": "additive_only",
+  "major_change_policy": "requires_migration_plan_and_approval",
+  "allow_optional_field_additions": true,
+  "allow_required_field_removals": false,
+  "allow_field_type_changes_without_major": false,
+  "required_major_change_evidence": [
+    "adr_reference",
+    "migration_plan",
+    "approval_record"
+  ]
+}
