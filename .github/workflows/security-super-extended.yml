@@ -8,6 +8,8 @@ on:
 jobs:
   security-super-extended:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     env:
       GLYPHSER_ENV: "ci"
       GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY || 'glyphser-provenance-hmac-fallback-v1' }}
