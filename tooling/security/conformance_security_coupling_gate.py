@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import json
 import importlib
+import json
 import sys
 from pathlib import Path
 from typing import Any
@@ -30,7 +30,9 @@ def main(argv: list[str] | None = None) -> int:
     policy_gate = _read_json(root / "security" / "policy_signature.json")
 
     findings: list[str] = []
-    conformance_status = str(conformance_result.get("status", "")).upper() or str(conformance_report.get("status", "")).upper()
+    conformance_status = (
+        str(conformance_result.get("status", "")).upper() or str(conformance_report.get("status", "")).upper()
+    )
     security_status = str(security_gate.get("status", "")).upper()
     policy_status = str(policy_gate.get("status", "")).upper()
 

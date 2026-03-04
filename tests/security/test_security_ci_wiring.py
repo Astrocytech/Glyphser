@@ -12,7 +12,9 @@ def test_ci_security_steps_are_wired() -> None:
     assert "bandit==1.9.4" in ci
     assert "pip-audit==2.9.0" in ci
     assert "semgrep==1.95.0" in ci
-    assert "GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/security-matrix-${{ matrix.python-version }}" in ci
+    assert (
+        "GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/security-matrix-${{ matrix.python-version }}" in ci
+    )
     assert "python tooling/security/evidence_run_dir_guard.py --run-id" in ci
     assert "python tooling/security/policy_signature_gate.py --strict-key" in ci
     assert "python tooling/security/security_toolchain_gate.py" in ci
@@ -39,7 +41,8 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/security_super_gate.py --strict-key" in ci
     assert "python tooling/security/security_artifacts.py" in ci
     assert "python tooling/security/branch_protection_policy_gate.py" in ci
-    assert "bandit -q -c tooling/security/bandit.yaml -r glyphser runtime tooling -f sarif -o bandit.sarif -l -ii" in ci
+    assert "bandit -q -c tooling/security/bandit.yaml -r glyphser runtime tooling -f json -o bandit.json -l -ii" in ci
+    assert "python tooling/security/bandit_json_to_sarif.py --input bandit.json --output bandit.sarif" in ci
     assert "semgrep --config tooling/security/semgrep-rules.yml --error --sarif --output semgrep.sarif" in ci
     assert "name: security-artifacts-${{ matrix.python-version }}" in ci
     assert "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683" in ci

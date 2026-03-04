@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import argparse
 import json
 import sys
-import argparse
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]

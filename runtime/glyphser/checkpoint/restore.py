@@ -4,15 +4,14 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
 from runtime.glyphser.security.path_guard import resolve_inside_root
-
 
 _MAX_CHECKPOINT_BYTES = 10 * 1024 * 1024
 
 
-def restore_checkpoint(request: Dict[str, Any]) -> Dict[str, Any]:
+def restore_checkpoint(request: dict[str, Any]) -> dict[str, Any]:
     if not isinstance(request, dict):
         raise ValueError("request must be dict")
 

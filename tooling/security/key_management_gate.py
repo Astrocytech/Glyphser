@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import importlib
 import json
 import math
 import os
-import importlib
 import sys
 from datetime import UTC, datetime
 from pathlib import Path

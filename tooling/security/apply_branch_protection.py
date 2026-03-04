@@ -6,9 +6,9 @@ import http.client
 import json
 import os
 import sys
-from urllib.parse import urlparse
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[2]
 

@@ -40,7 +40,11 @@ def main(argv: list[str] | None = None) -> int:
     report = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
-        "summary": {"checked_files": checked, "revoked_digests": len(revoked_digests), "revoked_signatures": len(revoked_sigs)},
+        "summary": {
+            "checked_files": checked,
+            "revoked_digests": len(revoked_digests),
+            "revoked_signatures": len(revoked_sigs),
+        },
         "metadata": {"gate": "provenance_revocation_gate"},
     }
     out = sec / "provenance_revocation_gate.json"

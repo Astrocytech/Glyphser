@@ -9,6 +9,10 @@ import sys
 from pathlib import Path
 
 _sp = importlib.import_module("".join(["sub", "process"]))
+artifact_signing = importlib.import_module("runtime.glyphser.security.artifact_signing")
+current_key = artifact_signing.current_key
+sign_file = artifact_signing.sign_file
+evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
@@ -43,9 +47,6 @@ def _load_lock_packages(path: Path) -> list[dict]:
 
 
 def main() -> int:
-    from tooling.lib.path_config import evidence_root
-    from runtime.glyphser.security.artifact_signing import current_key, sign_file
-
     OUT = evidence_root() / "security"
     OUT.mkdir(parents=True, exist_ok=True)
     lock = ROOT / "requirements.lock"

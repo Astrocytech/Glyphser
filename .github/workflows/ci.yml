@@ -201,8 +201,10 @@ jobs:
         run: python tooling/security/policy_signature_gate.py --strict-key
       - name: Bandit
         run: bandit -q -c tooling/security/bandit.yaml -r glyphser runtime tooling -l -ii
-      - name: Bandit (SARIF)
-        run: bandit -q -c tooling/security/bandit.yaml -r glyphser runtime tooling -f sarif -o bandit.sarif -l -ii
+      - name: Bandit (JSON)
+        run: bandit -q -c tooling/security/bandit.yaml -r glyphser runtime tooling -f json -o bandit.json -l -ii
+      - name: Convert Bandit JSON to SARIF
+        run: python tooling/security/bandit_json_to_sarif.py --input bandit.json --output bandit.sarif
       - name: pip-audit gate
         run: python tooling/security/pip_audit_gate.py
       - name: Secret scan gate

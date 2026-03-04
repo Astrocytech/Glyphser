@@ -50,7 +50,12 @@ async def _run_async(cmd: list[str], *, cwd: Path, env: Mapping[str, str] | None
     )
 
 
-def run_checked(cmd: list[str], *, cwd: Path | None = None, env: Mapping[str, str] | None = None) -> PolicyProcessResult:
+def run_checked(
+    cmd: list[str],
+    *,
+    cwd: Path | None = None,
+    env: Mapping[str, str] | None = None,
+) -> PolicyProcessResult:
     if not cmd:
         raise ValueError("empty command")
     if not _allowed(cmd):

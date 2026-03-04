@@ -15,7 +15,9 @@ from tooling.lib.path_config import evidence_root
 
 
 def main() -> int:
-    policy = json.loads((ROOT / "governance" / "security" / "container_provenance_policy.json").read_text(encoding="utf-8"))
+    policy = json.loads(
+        (ROOT / "governance" / "security" / "container_provenance_policy.json").read_text(encoding="utf-8")
+    )
     if not isinstance(policy, dict):
         raise ValueError("invalid container provenance policy")
     digest_manifest = ROOT / str(policy.get("container_digest_manifest", "")).strip()

@@ -34,7 +34,10 @@ def main(argv: list[str] | None = None) -> int:
     profile_policy = policy.get("profiles", {}).get(profile, {}) if isinstance(policy.get("profiles"), dict) else {}
     if not isinstance(profile_policy, dict):
         profile_policy = {}
-    max_distinct_tokens = _as_int(profile_policy.get("max_distinct_tokens", policy.get("max_distinct_tokens", 200)), 200)
+    max_distinct_tokens = _as_int(
+        profile_policy.get("max_distinct_tokens", policy.get("max_distinct_tokens", 200)),
+        200,
+    )
     max_auth_failures_per_token = _as_int(
         profile_policy.get("max_auth_failures_per_token", policy.get("max_auth_failures_per_token", 20)),
         20,

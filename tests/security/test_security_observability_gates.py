@@ -1,16 +1,25 @@
 from __future__ import annotations
 
-import json
 from pathlib import Path
 
-from tooling.security import security_dashboard_export, security_schema_normalization_gate, security_slo_report, security_trend_gate
+from tooling.security import (
+    security_dashboard_export,
+    security_schema_normalization_gate,
+    security_slo_report,
+    security_trend_gate,
+)
 
 
 def test_security_slo_trend_dashboard(monkeypatch, tmp_path: Path) -> None:
     repo = tmp_path / "repo"
     sec = repo / "evidence" / "security"
     sec.mkdir(parents=True)
-    for name in ["policy_signature.json", "provenance_signature.json", "evidence_attestation_gate.json", "security_super_gate.json"]:
+    for name in [
+        "policy_signature.json",
+        "provenance_signature.json",
+        "evidence_attestation_gate.json",
+        "security_super_gate.json",
+    ]:
         (sec / name).write_text('{"status":"PASS","findings":[],"summary":{},"metadata":{}}\n', encoding="utf-8")
     monkeypatch.setattr(security_slo_report, "ROOT", repo)
     monkeypatch.setattr(security_slo_report, "evidence_root", lambda: repo / "evidence")
