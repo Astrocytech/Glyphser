@@ -1,14 +1,21 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import importlib
 import json
 import sys
 from pathlib import Path
 
-from runtime.glyphser.security.artifact_signing import current_key, verify_file
-from tooling.lib.path_config import evidence_root
-from tooling.security.advanced_policy import load_policy
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
+artifact_signing = importlib.import_module("runtime.glyphser.security.artifact_signing")
+current_key = artifact_signing.current_key
+verify_file = artifact_signing.verify_file
+evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+load_policy = importlib.import_module("tooling.security.advanced_policy").load_policy
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 def _packages(path: Path) -> set[str]:
     payload = json.loads(path.read_text(encoding="utf-8"))
@@ -22,9 +29,6 @@ def _packages(path: Path) -> set[str]:
                 if name:
                     out.add(f"{name}=={version}")
     return out
-
-
-ROOT = Path(__file__).resolve().parents[2]
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -72,8 +76,7 @@ def main(argv: list[str] | None = None) -> int:
         "metadata": {"gate": "sbom_diff_review_gate"},
     }
     out = evidence_root() / "security" / "sbom_diff_review_gate.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, report)
     print(f"SBOM_DIFF_REVIEW_GATE: {report['status']}")
     print(f"Report: {out}")
     return 0 if report["status"] == "PASS" else 1
