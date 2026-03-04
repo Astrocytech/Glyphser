@@ -2,6 +2,7 @@
   "minimum_key_length": 32,
   "minimum_entropy_bits": 80,
   "maximum_rotation_age_days": 90,
+  "maximum_rollover_window_days": 14,
   "rotation_record_path": "governance/security/key_rotation_record.json",
   "require_signed_rotation_record": true,
   "rotation_timestamp_env": "GLYPHSER_PROVENANCE_KEY_ROTATED_AT",
