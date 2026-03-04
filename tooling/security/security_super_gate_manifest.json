@@ -3,6 +3,7 @@
     "tooling/security/security_toolchain_gate.py",
     "tooling/security/security_toolchain_lock_signature_gate.py",
     "tooling/security/security_scan_ordering_gate.py",
+    "tooling/security/mypy_security_profile_gate.py",
     "tooling/security/subprocess_allowlist_report.py",
     "tooling/security/subprocess_direct_usage_gate.py",
     "tooling/security/security_workflow_contract_gate.py",
