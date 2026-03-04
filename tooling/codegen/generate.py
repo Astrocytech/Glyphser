@@ -121,7 +121,12 @@ def _render_models(schemas: List[SchemaInfo]) -> str:
             blocks.append("    pass")
             blocks.append("")
             continue
-        for prop_name, prop in sorted(schema.properties.items()):
+        # Dataclasses require non-default fields to appear before defaulted fields.
+        ordered_props = sorted(
+            schema.properties.items(),
+            key=lambda item: (item[0] not in schema.required, item[0]),
+        )
+        for prop_name, prop in ordered_props:
             field_name = _sanitize_identifier(prop_name)
             annotation = _py_type(prop)
             if prop_name not in schema.required:

@@ -5,7 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional
 
-
 @dataclass
 class GlyphserEvidenceMetadataCatalog:
     entries: List[Any]
@@ -42,9 +41,9 @@ class DataStructures:
 
 @dataclass
 class DependencyLockPolicy:
-    artifact_index_hash: Optional[str] = None
     dependencies_lock_hash: str
     lockfile_hash: str
+    artifact_index_hash: Optional[str] = None
     policy_bundle_hash: Optional[str] = None
     runtime_env_hash: Optional[str] = None
     sbom_hash: Optional[str] = None
@@ -53,9 +52,9 @@ class DependencyLockPolicy:
 
 @dataclass
 class DeterminismProfiles:
-    default_compare_policy: Optional[str] = None
     determinism_profile_hash: str
     determinism_profile_id: str
+    default_compare_policy: Optional[str] = None
     nan_policy: Optional[str] = None
     profile_rules: Optional[Dict[str, Any]] = None
     tolerance_map: Optional[Dict[str, Any]] = None
@@ -69,13 +68,13 @@ class DigestCatalog:
 
 @dataclass
 class EnvironmentManifest:
-    arch: Optional[str] = None
     backend_binary_hash: str
-    dependencies_lock_hash: Optional[str] = None
     driver_runtime_fingerprint_hash: str
+    runtime_env_hash: str
+    arch: Optional[str] = None
+    dependencies_lock_hash: Optional[str] = None
     gpu: Optional[str] = None
     os: Optional[str] = None
-    runtime_env_hash: str
     toolchain_hash: Optional[str] = None
 
 
@@ -86,8 +85,8 @@ class GlyphserErrorCodes:
 
 @dataclass
 class NormativityLegend:
-    default_rules: Optional[str] = None
     tags: List[Any]
+    default_rules: Optional[str] = None
 
 
 @dataclass
@@ -109,10 +108,10 @@ class OperatorRegistrySchema:
 @dataclass
 class RedactionPolicy:
     classification: str
-    redaction_key_id: Optional[str] = None
     redaction_mode: str
-    redaction_policy_hash: Optional[str] = None
     transform: str
+    redaction_key_id: Optional[str] = None
+    redaction_policy_hash: Optional[str] = None
 
 
 @dataclass
@@ -123,12 +122,12 @@ class AuthZCapabilityMatrixL2:
 
 @dataclass
 class CheckpointSchemaL2:
-    artifact_index_hash: Optional[str] = None
-    backend_binary_hash: Optional[str] = None
     checkpoint_hash: str
-    checkpoint_hash_prev: Optional[str] = None
     checkpoint_header_hash: str
     checkpoint_manifest_hash: str
+    artifact_index_hash: Optional[str] = None
+    backend_binary_hash: Optional[str] = None
+    checkpoint_hash_prev: Optional[str] = None
     checkpoint_merkle_root: Optional[str] = None
     data_cursors_hash: Optional[str] = None
     dataset_snapshot_id: Optional[str] = None
@@ -151,27 +150,27 @@ class CheckpointSchemaL2:
 
 @dataclass
 class ConfigSchemaL2:
-    checkpoint_frequency: Optional[int] = None
-    custom_operators: Optional[List[Any]] = None
-    data: Optional[Dict[str, Any]] = None
     datasets: Dict[str, Any]
     environment: Dict[str, Any]
-    execution_mode: Optional[str] = None
-    fingerprint_frequency: Optional[int] = None
     global_batch_size: int
-    job_priority: Optional[int] = None
     model: Dict[str, Any]
     optimizer: Dict[str, Any]
-    parallelism: Optional[Dict[str, Any]] = None
     pipeline_stages: List[Any]
-    policy: Optional[Dict[str, Any]] = None
     policy_bundle: Dict[str, Any]
-    schema_mode: Optional[str] = None
     security: Dict[str, Any]
     seed: int
     spec_version: str
-    task_type: Optional[str] = None
     tenant_id: str
+    checkpoint_frequency: Optional[int] = None
+    custom_operators: Optional[List[Any]] = None
+    data: Optional[Dict[str, Any]] = None
+    execution_mode: Optional[str] = None
+    fingerprint_frequency: Optional[int] = None
+    job_priority: Optional[int] = None
+    parallelism: Optional[Dict[str, Any]] = None
+    policy: Optional[Dict[str, Any]] = None
+    schema_mode: Optional[str] = None
+    task_type: Optional[str] = None
 
 
 @dataclass
@@ -223,7 +222,6 @@ class ExecutionCertificateL2:
 class ExperimentTrackingL2:
     checkpoint_hash: str
     created_at: str
-    ended_at: Optional[str] = None
     execution_certificate_hash: str
     manifest_hash: str
     replay_token: str
@@ -231,6 +229,7 @@ class ExperimentTrackingL2:
     status: str
     tenant_id: str
     trace_final_hash: str
+    ended_at: Optional[str] = None
 
 
 @dataclass
@@ -250,17 +249,17 @@ class ModelRegistryL2:
 @dataclass
 class ModelIRExecutorL2:
     ir_hash: str
-    outputs: Optional[List[Any]] = None
     replay_token: str
+    outputs: Optional[List[Any]] = None
 
 
 @dataclass
 class MonitoringPolicyL2:
+    monitor_policy_hash: str
+    policy_gate_hash: str
     baselines: Optional[List[Any]] = None
     metrics: Optional[List[Any]] = None
-    monitor_policy_hash: str
     monitor_summary_hash: Optional[str] = None
-    policy_gate_hash: str
     thresholds: Optional[Dict[str, Any]] = None
 
 
@@ -274,12 +273,12 @@ class PipelineOrchestratorL2:
 @dataclass
 class ReplayDeterminismL2:
     determinism_profile_hash: str
+    kernel_replay_token: str
+    replay_token: str
     driver_runtime_fingerprint_hash: Optional[str] = None
     env_manifest_hash: Optional[str] = None
-    kernel_replay_token: str
     operator_contracts_root_hash: Optional[str] = None
     policy_bundle_hash: Optional[str] = None
-    replay_token: str
     seed: Optional[int] = None
 
 
@@ -292,9 +291,9 @@ class RunCommitWALL2:
 
 @dataclass
 class SecurityComplianceProfileL2:
+    execution_mode: str
     attestation_bundle_hash: Optional[str] = None
     attestation_quote_hash: Optional[str] = None
-    execution_mode: str
     measurements_hash: Optional[str] = None
     redaction_mode: Optional[str] = None
     tcb_version: Optional[str] = None
@@ -307,8 +306,8 @@ class TMMUAllocationL2:
     allocation_header: Dict[str, Any]
     arena_config: Dict[str, Any]
     ir_hash: str
-    metrics: Optional[Dict[str, Any]] = None
     replay_token: str
+    metrics: Optional[Dict[str, Any]] = None
     tensor_map: Optional[Dict[str, Any]] = None
 
 
@@ -329,9 +328,9 @@ class CompatibilityTestMatrixL3:
 
 @dataclass
 class ConformanceCIPipelineL3:
-    artifacts: Optional[List[Any]] = None
     gates: List[Any]
     steps: List[Any]
+    artifacts: Optional[List[Any]] = None
 
 
 @dataclass
@@ -404,16 +403,16 @@ class StorageRecoveryTestMatrixL3:
 
 @dataclass
 class TestPlanL3:
-    coverage: Optional[str] = None
     pass_criteria: str
     tests: List[Any]
+    coverage: Optional[str] = None
 
 
 @dataclass
 class TestVectorsCatalogL3:
     catalog_version: str
-    coverage: Optional[str] = None
     vectors: List[Any]
+    coverage: Optional[str] = None
 
 
 @dataclass
@@ -749,3 +748,5 @@ class ToolingAndAutomationSuiteL4:
 @dataclass
 class ToolingSuiteL4:
     pass
+
+
