@@ -295,6 +295,8 @@ jobs:
         run: semgrep --config tooling/security/semgrep-rules.yml --error --sarif --output semgrep.sarif runtime glyphser tooling
       - name: Semgrep rule regression tests
         run: pytest -q tests/security/test_semgrep_rules.py
+      - name: Security targeted regression suite
+        run: pytest -q tests/security
       - name: Upload Bandit SARIF to Code Scanning
         if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
         uses: github/codeql-action/upload-sarif@b56ba49b26e50535fa1e7f7db0f4f7b4bf65d80d

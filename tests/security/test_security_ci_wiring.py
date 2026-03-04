@@ -53,6 +53,7 @@ def test_ci_security_steps_are_wired() -> None:
     assert "bandit -q -c tooling/security/bandit.yaml -r glyphser runtime tooling -f json -o bandit.json -l -ii" in ci
     assert "python tooling/security/bandit_json_to_sarif.py --input bandit.json --output bandit.sarif" in ci
     assert "semgrep --config tooling/security/semgrep-rules.yml --error --sarif --output semgrep.sarif" in ci
+    assert "pytest -q tests/security" in ci
     assert "semgrep --version" in ci
     assert 'python -c "import pkg_resources"' in ci
     assert "name: security-artifacts-${{ matrix.python-version }}" in ci
