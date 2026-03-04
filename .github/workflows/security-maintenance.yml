@@ -30,7 +30,8 @@ jobs:
           python -m pip install --upgrade \
             bandit==1.9.4 \
             pip-audit==2.9.0 \
-            semgrep==1.95.0
+            semgrep==1.95.0 \
+            setuptools
       - name: Initialize immutable evidence run directory
         run: python tooling/security/evidence_run_dir_guard.py --run-id "${{ github.run_id }}-security-maintenance"
       - name: Security toolchain gate
