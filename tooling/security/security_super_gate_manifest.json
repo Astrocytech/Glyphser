@@ -63,7 +63,8 @@
     "tooling/security/security_actionable_findings_gate.py",
     "tooling/security/slsa_attestation_gate.py",
     "tooling/security/workflow_evidence_scope_gate.py",
-    "tooling/security/conformance_security_coupling_gate.py"
+    "tooling/security/conformance_security_coupling_gate.py",
+    "tooling/security/deployment_freeze_gate.py"
   ],
   "extended": [
     "tooling/security/key_management_gate.py",

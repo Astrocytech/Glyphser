@@ -64,4 +64,12 @@
     "evidence/security/slsa_provenance_v1.json"
   ],
   "schema_strict_min_migration_pct": 95.0
+  ,
+  "critical_freeze_reports": [
+    "security_super_gate.json",
+    "policy_signature.json",
+    "provenance_signature.json",
+    "evidence_attestation_gate.json"
+  ],
+  "enforce_deployment_freeze": true
 }

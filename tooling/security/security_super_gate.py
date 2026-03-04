@@ -184,6 +184,7 @@ def main(argv: list[str] | None = None) -> int:
         [sys.executable, "tooling/security/slsa_attestation_gate.py"],
         [sys.executable, "tooling/security/workflow_evidence_scope_gate.py"],
         [sys.executable, "tooling/security/conformance_security_coupling_gate.py"],
+        [sys.executable, "tooling/security/deployment_freeze_gate.py"],
     ]
 
     extended_gates: list[list[str]] = [
