@@ -25,6 +25,7 @@ jobs:
       - if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
       - run: semgrep --version
       - run: python -c "import pkg_resources"
+      - run: python tooling/security/subprocess_allowlist_report.py
       - run: python tooling/security/security_workflow_trigger_gate.py
       - run: python tooling/security/security_critical_test_wiring_gate.py
 """
@@ -37,6 +38,7 @@ jobs:
       - run: python tooling/security/evidence_run_dir_guard.py --run-id x
       - run: semgrep --version
       - run: python -c "import pkg_resources"
+      - run: python tooling/security/subprocess_allowlist_report.py
       - run: python tooling/security/security_workflow_trigger_gate.py
       - run: python tooling/security/security_critical_test_wiring_gate.py
 """
