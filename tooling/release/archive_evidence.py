@@ -7,6 +7,7 @@ import json
 import shutil
 from datetime import UTC, datetime
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 EVIDENCE = ROOT / "evidence"
@@ -26,14 +27,14 @@ def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def archive(root: Path = ROOT, keep: int = 10) -> dict:
+def archive(root: Path = ROOT, keep: int = 10) -> dict[str, Any]:
     evidence = root / "evidence"
     archive_root = evidence / "archive"
     stamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
     target_dir = archive_root / stamp
     target_dir.mkdir(parents=True, exist_ok=True)
 
-    archived_files = []
+    archived_files: list[dict[str, str]] = []
     for rel in ARCHIVE_TARGETS:
         src = evidence / rel
         if not src.exists():
@@ -51,10 +52,10 @@ def archive(root: Path = ROOT, keep: int = 10) -> dict:
     }
 
     index_path = archive_root / "index.json"
-    index = {"schema_version": "glyphser-evidence-archive-index.v1", "snapshots": []}
+    index: dict[str, Any] = {"schema_version": "glyphser-evidence-archive-index.v1", "snapshots": []}
     if index_path.exists():
         index = json.loads(index_path.read_text(encoding="utf-8"))
-    snapshots = index.get("snapshots", [])
+    snapshots: list[dict[str, Any]] = list(index.get("snapshots", []))
     snapshots.append(snapshot)
     snapshots = sorted(snapshots, key=lambda x: x["snapshot_id"])
 

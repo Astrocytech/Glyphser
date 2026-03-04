@@ -224,7 +224,7 @@ def evaluate() -> Dict[str, object]:
         _check_evidence_write_contract(),
     ]
     status = "PASS" if all(c["status"] == "PASS" for c in checks) else "FAIL"
-    payload = {"status": status, "checks": checks}
+    payload: Dict[str, object] = {"status": status, "checks": checks}
     OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return payload
 
@@ -235,9 +235,10 @@ def main() -> int:
         print("STRUCTURAL_INVARIANTS_GATE: PASS")
         return 0
     print("STRUCTURAL_INVARIANTS_GATE: FAIL")
-    for c in payload["checks"]:
-        if c["status"] == "FAIL":
-            print(f" - {c['name']}: FAIL")
+    checks = payload.get("checks", [])
+    for c in checks if isinstance(checks, list) else []:
+        if isinstance(c, dict) and c.get("status") == "FAIL":
+            print(f" - {c.get('name', 'unknown')}: FAIL")
     return 1
 
 

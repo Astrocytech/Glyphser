@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
@@ -14,12 +15,12 @@ LATEST = ROOT / "evidence" / "benchmarks" / "latest.json"
 OUT = ROOT / "evidence" / "gates" / "quality" / "benchmark_trend.json"
 
 
-def _extract(latest: dict, key: str) -> float:
+def _extract(latest: dict[str, Any], key: str) -> float:
     section, metric = key.split(".", 1)
     return float(latest["benchmarks"][section][metric])
 
 
-def evaluate() -> dict:
+def evaluate() -> dict[str, Any]:
     from tooling.quality_gates.telemetry import emit_gate_trace
 
     findings: list[str] = []
@@ -29,17 +30,17 @@ def evaluate() -> dict:
         findings.append("missing_latest")
 
     if findings:
-        payload = {"status": "FAIL", "findings": findings}
+        fail_payload: dict[str, Any] = {"status": "FAIL", "findings": findings}
         OUT.parent.mkdir(parents=True, exist_ok=True)
-        OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-        emit_gate_trace(ROOT, "benchmark_trend", payload)
-        return payload
+        OUT.write_text(json.dumps(fail_payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        emit_gate_trace(ROOT, "benchmark_trend", fail_payload)
+        return fail_payload
 
     baseline = json.loads(BASELINE.read_text(encoding="utf-8"))
     latest = json.loads(LATEST.read_text(encoding="utf-8"))
 
     factor = float(baseline.get("max_regression_factor", 2.0))
-    checks = []
+    checks: list[dict[str, Any]] = []
     for key, base_val in baseline.get("metrics", {}).items():
         actual = _extract(latest, key)
         threshold = float(base_val) * factor
@@ -54,7 +55,7 @@ def evaluate() -> dict:
         if actual > threshold:
             findings.append(f"trend_regression:{key}:{actual:.6f}>{threshold:.6f}")
 
-    payload = {
+    payload: dict[str, Any] = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
         "checks": checks,

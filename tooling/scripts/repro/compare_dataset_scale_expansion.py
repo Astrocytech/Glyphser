@@ -261,7 +261,7 @@ MODEL_SPECS: list[dict[str, Any]] = [
     },
 ]
 
-DATASET_TIERS = [
+DATASET_TIERS: list[dict[str, Any]] = [
     {"tier": "medium", "count": 16, "horizon": 4, "seed": 101},
     {"tier": "large", "count": 48, "horizon": 8, "seed": 313},
 ]
@@ -458,17 +458,22 @@ def main() -> int:
     for tier in DATASET_TIERS:
         tier_models: list[dict[str, Any]] = []
         for model in MODEL_SPECS:
-            samples = _dataset(model["input_dim"], tier["count"], tier["seed"] + len(model["model_id"]))
+            input_dim = int(model["input_dim"])
+            sample_count = int(tier["count"])
+            seed = int(tier["seed"])
+            model_id = str(model["model_id"])
+            horizon = int(tier["horizon"])
+            samples = _dataset(input_dim, sample_count, seed + len(model_id))
             per_profile: dict[str, Any] = {}
             for profile in PROFILES:
-                per_profile[profile] = _run_profile_dataset(profile, model, samples, tier["horizon"])
+                per_profile[profile] = _run_profile_dataset(profile, model, samples, horizon)
             tier_models.append(
                 {
                     "tier": tier["tier"],
-                    "model_id": model["model_id"],
+                    "model_id": model_id,
                     "model_class": model["model_class"],
-                    "sample_count": tier["count"],
-                    "horizon": tier["horizon"],
+                    "sample_count": sample_count,
+                    "horizon": horizon,
                     "profile_results": per_profile,
                 }
             )

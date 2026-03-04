@@ -6,6 +6,7 @@ import json
 import sys
 import warnings
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
@@ -15,17 +16,17 @@ SLA = ROOT / "specs" / "contracts" / "interface_stability_sla.json"
 OUT = ROOT / "evidence" / "gates" / "quality" / "interface_stability.json"
 
 
-def evaluate() -> dict:
+def evaluate() -> dict[str, Any]:
     from tooling.quality_gates.telemetry import emit_gate_trace
 
     findings: list[str] = []
     if not SLA.exists():
         findings.append("missing_sla_file")
-        payload = {"status": "FAIL", "findings": findings}
+        fail_payload: dict[str, Any] = {"status": "FAIL", "findings": findings}
         OUT.parent.mkdir(parents=True, exist_ok=True)
-        OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-        emit_gate_trace(ROOT, "interface_stability", payload)
-        return payload
+        OUT.write_text(json.dumps(fail_payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        emit_gate_trace(ROOT, "interface_stability", fail_payload)
+        return fail_payload
 
     data = json.loads(SLA.read_text(encoding="utf-8"))
     surf = data.get("public_surface", {})
@@ -61,7 +62,7 @@ def evaluate() -> dict:
         if replacement not in exports:
             findings.append(f"missing_replacement_export:{replacement}")
 
-    payload = {
+    payload: dict[str, Any] = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
         "stable_export_count": len(required_exports),

@@ -89,7 +89,7 @@ def build_catalogs() -> dict[str, Any]:
         "schema.execution.certificate",
         "schema.vectors.catalog",
     ]
-    digest_entries = []
+    digest_entries: list[dict[str, Any]] = []
     digest_map: dict[str, bytes] = {}
     for label in digest_labels:
         digest_value = hashlib.sha256(label.encode("utf-8")).digest()
@@ -102,7 +102,7 @@ def build_catalogs() -> dict[str, Any]:
                 "domain_tag": "glyphser_doc_phase",
             }
         )
-    digest_entries.sort(key=lambda x: x["digest_label"])
+    digest_entries.sort(key=lambda x: str(x["digest_label"]))
     digest_catalog = {
         "catalog_version": 1,
         "entries": digest_entries,
@@ -420,9 +420,10 @@ def materialize() -> None:
             "outputs": outputs,
         },
     ]
+    trace_records: list[dict[str, Any]] = [{**record, "event_hash": record_hash(record)} for record in base_records]
     trace_snippet = {
         "run_id": "hello-core-run-v1",
-        "records": [{**record, "event_hash": record_hash(record)} for record in base_records],
+        "records": trace_records,
     }
     checkpoint_header = {
         "checkpoint_id": "hello-core-ckpt-v1",
@@ -434,7 +435,7 @@ def materialize() -> None:
         compute_trace_hash,
     )
 
-    trace_final_hash = compute_trace_hash(trace_snippet["records"])
+    trace_final_hash = compute_trace_hash(trace_records)
     execution_certificate = {
         "certificate_id": "hello-core-cert-v1",
         "run_id": "hello-core-run-v1",

@@ -111,7 +111,7 @@ def main() -> int:
     model_ir = json.loads((fixtures / "model_ir.json").read_text(encoding="utf-8"))
     inputs = dataset[0]["x"]
 
-    mode_cases = [
+    mode_cases: list[tuple[str, dict[str, Any]]] = [
         (
             "strict_universal_cpu",
             {"profile_mode": "strict_universal", "universal_route": "pytorch_cpu"},

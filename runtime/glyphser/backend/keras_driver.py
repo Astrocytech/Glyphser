@@ -6,6 +6,7 @@ import hashlib
 import json
 from typing import Any, Dict, List, Tuple
 
+_tf: Any
 try:
     import tensorflow as _tf
 except Exception:  # pragma: no cover - exercised when tensorflow is unavailable

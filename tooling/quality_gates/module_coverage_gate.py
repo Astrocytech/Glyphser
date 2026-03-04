@@ -5,6 +5,7 @@ import argparse
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
 from defusedxml import ElementTree as ET
 
@@ -14,7 +15,7 @@ if str(ROOT) not in sys.path:
 
 OUT = ROOT / "evidence" / "gates" / "quality" / "module_coverage.json"
 
-MODULE_TARGETS = {
+MODULE_TARGETS: dict[str, dict[str, Any]] = {
     "public_api": {
         "minimum_percent": 80.0,
         "prefixes": ["glyphser/public", "glyphser/__init__.py", "public"],
@@ -32,18 +33,18 @@ def _matches_prefix(filename: str, prefix: str) -> bool:
     return norm == prefix or norm.startswith(prefix + "/") or f"/{prefix}/" in norm
 
 
-def evaluate(coverage_file: Path) -> dict:
+def evaluate(coverage_file: Path) -> dict[str, Any]:
     from tooling.quality_gates.telemetry import emit_gate_trace
 
     if not coverage_file.exists():
-        payload = {
+        fail_payload: dict[str, Any] = {
             "status": "FAIL",
             "findings": [f"missing_coverage_file:{coverage_file}"],
         }
         OUT.parent.mkdir(parents=True, exist_ok=True)
-        OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-        emit_gate_trace(ROOT, "module_coverage", payload)
-        return payload
+        OUT.write_text(json.dumps(fail_payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        emit_gate_trace(ROOT, "module_coverage", fail_payload)
+        return fail_payload
 
     tree = ET.parse(coverage_file)
     root = tree.getroot()
@@ -61,7 +62,8 @@ def evaluate(coverage_file: Path) -> dict:
                 if not filename.startswith(pkg_name + "/"):
                     candidates.add(f"{pkg_name}/{filename.lstrip('/')}")
             for target, cfg in MODULE_TARGETS.items():
-                if any(_matches_prefix(candidate, prefix) for candidate in candidates for prefix in cfg["prefixes"]):
+                prefixes = [str(prefix) for prefix in cfg.get("prefixes", [])]
+                if any(_matches_prefix(candidate, prefix) for candidate in candidates for prefix in prefixes):
                     lines = cls.find("lines")
                     if lines is None:
                         continue
@@ -89,7 +91,7 @@ def evaluate(coverage_file: Path) -> dict:
         elif ratio < minimum:
             findings.append(f"coverage_below_threshold:{target}:{ratio:.2f}")
 
-    payload = {
+    payload: dict[str, Any] = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
         "summary": summary,

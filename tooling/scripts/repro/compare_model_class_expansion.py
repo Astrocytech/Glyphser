@@ -451,7 +451,7 @@ def main() -> int:
         )
 
     for mr in model_reports:
-        classes: list[str] = []
+        class_marks: list[str] = []
         blocked = False
         failed = False
         for a, b in itertools.combinations(PROFILES, 2):
@@ -463,17 +463,17 @@ def main() -> int:
             )
             if cls == "BLOCKED":
                 blocked = True
-                classes.append("E2")
+                class_marks.append("E2")
             elif cls == "E2":
                 failed = True
-                classes.append("E2")
+                class_marks.append("E2")
             else:
-                classes.append(cls)
+                class_marks.append(cls)
         if failed:
             per_model_classification[mr["model_id"]] = "E2"
         elif blocked:
             per_model_classification[mr["model_id"]] = "E2"
-        elif all(c == "E0" for c in classes):
+        elif all(c == "E0" for c in class_marks):
             per_model_classification[mr["model_id"]] = "E0"
         else:
             per_model_classification[mr["model_id"]] = "E1"

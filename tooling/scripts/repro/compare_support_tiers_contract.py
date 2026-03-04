@@ -226,7 +226,7 @@ def main() -> int:
         if path.exists():
             path.unlink()
 
-    tier_enforcement_tests = {
+    tier_enforcement_tests: dict[str, Any] = {
         "milestone": 30,
         "scope_label": scope_label,
         "tests": [
@@ -273,8 +273,9 @@ def main() -> int:
         )
     _write_json(out_dir / "tier-enforcement-tests.json", tier_enforcement_tests)
 
-    failures = [t for t in tier_enforcement_tests["tests"] if t["status"] == "FAIL"]
-    blocked_tests = [t for t in tier_enforcement_tests["tests"] if t["status"] == "BLOCKED"]
+    tests = tier_enforcement_tests.get("tests", [])
+    failures = [t for t in tests if isinstance(t, dict) and t.get("status") == "FAIL"]
+    blocked_tests = [t for t in tests if isinstance(t, dict) and t.get("status") == "BLOCKED"]
     if failures:
         status, classification = "FAIL", "E2"
         reason = "One or more support-tier enforcement tests failed."
@@ -297,7 +298,7 @@ def main() -> int:
     }
     _write_json(out_dir / "report.json", report)
 
-    conformance_hashes = {"status": status}
+    conformance_hashes: dict[str, Any] = {"status": status}
     rp = ROOT / "evidence" / "conformance" / "reports" / "latest.json"
     rs = ROOT / "evidence" / "conformance" / "results" / "latest.json"
     if rp.exists():

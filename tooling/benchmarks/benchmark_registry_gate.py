@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
@@ -15,7 +16,7 @@ VARIANCE = ROOT / "evidence" / "benchmarks" / "variance_impact.json"
 OUT = ROOT / "evidence" / "gates" / "quality" / "benchmark_registry.json"
 
 
-def evaluate() -> dict:
+def evaluate() -> dict[str, Any]:
     from tooling.quality_gates.telemetry import emit_gate_trace
 
     findings: list[str] = []
@@ -27,11 +28,11 @@ def evaluate() -> dict:
         findings.append("missing_variance_benchmark")
 
     if findings:
-        payload = {"status": "FAIL", "findings": findings}
+        fail_payload: dict[str, Any] = {"status": "FAIL", "findings": findings}
         OUT.parent.mkdir(parents=True, exist_ok=True)
-        OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-        emit_gate_trace(ROOT, "benchmark_registry", payload)
-        return payload
+        OUT.write_text(json.dumps(fail_payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        emit_gate_trace(ROOT, "benchmark_registry", fail_payload)
+        return fail_payload
 
     registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
     latest = json.loads(LATEST.read_text(encoding="utf-8"))
@@ -56,7 +57,7 @@ def evaluate() -> dict:
     if bool(variance.get("different_seed_diverges")) != bool(det.get("different_seed_diverges", True)):
         findings.append("different_seed_diverges_requirement_failed")
 
-    payload = {
+    payload: dict[str, Any] = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
         "metrics": {

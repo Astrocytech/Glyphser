@@ -6,6 +6,7 @@ import json
 import subprocess
 import sys
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
@@ -22,17 +23,17 @@ def _tracked_paths(root: Path) -> list[str]:
     return [line.strip() for line in proc.stdout.splitlines() if line.strip()]
 
 
-def evaluate(root: Path = ROOT, tracked_paths: list[str] | None = None) -> dict:
+def evaluate(root: Path = ROOT, tracked_paths: list[str] | None = None) -> dict[str, Any]:
     from tooling.quality_gates.telemetry import emit_gate_trace
 
     findings: list[str] = []
     if not POLICY.exists():
         findings.append("missing_policy_file")
-        payload = {"status": "FAIL", "findings": findings}
+        fail_payload: dict[str, Any] = {"status": "FAIL", "findings": findings}
         OUT.parent.mkdir(parents=True, exist_ok=True)
-        OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-        emit_gate_trace(root, "evidence_storage_policy", payload)
-        return payload
+        OUT.write_text(json.dumps(fail_payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        emit_gate_trace(root, "evidence_storage_policy", fail_payload)
+        return fail_payload
 
     policy = json.loads(POLICY.read_text(encoding="utf-8"))
     mode = policy.get("mode", "")
@@ -60,7 +61,7 @@ def evaluate(root: Path = ROOT, tracked_paths: list[str] | None = None) -> dict:
         if pat not in gitignore:
             findings.append(f"missing_gitignore_pattern:{pat}")
 
-    payload = {
+    payload: dict[str, Any] = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
         "mode": mode,

@@ -41,7 +41,7 @@ class DurableStateStore:
     def append_event(self, event: Dict[str, Any]) -> str:
         if not isinstance(event, dict):
             raise ValueError("event must be dict")
-        event_record = {
+        event_record: Dict[str, Any] = {
             "schema_version": SCHEMA_VERSION,
             "event": event,
             "event_hash": _sha256_text(_canonical_json(event)),
@@ -51,7 +51,7 @@ class DurableStateStore:
         self._state["events"].append(event_record)
         self._state["last_event_hash"] = event_record["event_hash"]
         self._persist_state()
-        return event_record["event_hash"]
+        return str(event_record["event_hash"])
 
     def state_hash(self) -> str:
         return _sha256_text(_canonical_json(self._state))
@@ -64,7 +64,7 @@ class DurableStateStore:
         }
         self._atomic_write_json(self.checkpoint_file, snapshot)
         cp_hash = _sha256_text(_canonical_json(snapshot))
-        return {"checkpoint_hash": cp_hash, "state_hash": snapshot["state_hash"]}
+        return {"checkpoint_hash": cp_hash, "state_hash": str(snapshot["state_hash"])}
 
     def backup_checkpoint(self) -> Path:
         if not self.checkpoint_file.exists():

@@ -6,6 +6,7 @@ import json
 import re
 import sys
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
@@ -21,17 +22,17 @@ def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def evaluate() -> dict:
+def evaluate() -> dict[str, Any]:
     from tooling.quality_gates.telemetry import emit_gate_trace
 
     findings: list[str] = []
     if not CATALOG.exists():
         findings.append("missing_catalog")
-        payload = {"status": "FAIL", "findings": findings}
+        fail_payload: dict[str, Any] = {"status": "FAIL", "findings": findings}
         OUT.parent.mkdir(parents=True, exist_ok=True)
-        OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-        emit_gate_trace(ROOT, "evidence_metadata", payload)
-        return payload
+        OUT.write_text(json.dumps(fail_payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        emit_gate_trace(ROOT, "evidence_metadata", fail_payload)
+        return fail_payload
 
     schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
     required_top = set(schema.get("required", []))
@@ -66,7 +67,7 @@ def evaluate() -> dict:
         if not SHA256_RE.match(entry["sha256"]):
             findings.append(f"entry_{idx}_invalid_sha256:{rel}")
 
-    payload = {
+    payload: dict[str, Any] = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
         "entry_count": len(entries),

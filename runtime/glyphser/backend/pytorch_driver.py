@@ -7,6 +7,7 @@ import json
 import os
 from typing import Any, Dict, List, Tuple
 
+_torch: Any
 try:
     import torch as _torch
 except Exception:  # pragma: no cover - exercised in runtime environments without torch

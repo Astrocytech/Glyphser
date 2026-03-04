@@ -52,7 +52,7 @@ def _slo_eval() -> Dict[str, Any]:
     correctness_ok = conf.get("status") == "PASS"
     availability_ok = deploy.get("status") == "PASS" and security.get("status") == "PASS"
     recovery_ok = recovery.get("status") == "PASS"
-    slo = {
+    slo: Dict[str, Any] = {
         "correctness": {"status": "PASS" if correctness_ok else "FAIL"},
         "availability": {"status": "PASS" if availability_ok else "FAIL"},
         "recovery": {"status": "PASS" if recovery_ok else "FAIL"},

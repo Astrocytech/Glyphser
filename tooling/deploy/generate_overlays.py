@@ -5,6 +5,7 @@ import hashlib
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
 from tooling.lib.path_config import generated_root
 
@@ -20,7 +21,7 @@ def _sha256(path: Path) -> str:
 
 def main() -> int:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    index = {"profiles": []}
+    index: dict[str, Any] = {"profiles": []}
     for profile in ("dev", "staging", "prod"):
         src = IN_DIR / f"{profile}.json"
         dst = OUT_DIR / f"{profile}.json"

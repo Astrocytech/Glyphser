@@ -296,7 +296,7 @@ def main() -> int:
         encoding="utf-8",
     )
 
-    conformance_hashes = {"status": overall_status}
+    conformance_hashes: dict[str, Any] = {"status": overall_status}
     rp = ROOT / "evidence" / "conformance" / "reports" / "latest.json"
     rs = ROOT / "evidence" / "conformance" / "results" / "latest.json"
     if rp.exists():

@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import platform
 import re
 import socket
@@ -48,9 +49,9 @@ def _linux_distro() -> str:
 def _is_wsl() -> bool:
     if platform.system().lower() != "linux":
         return False
-    env_hit = any(k in ("WSL_INTEROP", "WSL_DISTRO_NAME") for k in dict(**{}).keys())
+    env_hit = any(key in ("WSL_INTEROP", "WSL_DISTRO_NAME") for key in os.environ)
     # direct env check
-    if "WSL_INTEROP" in __import__("os").environ or "WSL_DISTRO_NAME" in __import__("os").environ:
+    if "WSL_INTEROP" in os.environ or "WSL_DISTRO_NAME" in os.environ:
         return True
     rel = platform.release().lower()
     plat = platform.platform().lower()
