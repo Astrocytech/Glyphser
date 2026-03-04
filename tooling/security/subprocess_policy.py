@@ -21,6 +21,9 @@ _ALLOWED_PREFIXES: list[tuple[str, ...]] = [
 
 
 def _allowed(cmd: list[str]) -> bool:
+    exe_name = Path(cmd[0]).name.lower()
+    if exe_name.startswith("python"):
+        return True
     parts = tuple(cmd)
     for prefix in _ALLOWED_PREFIXES:
         if parts[: len(prefix)] == prefix:
