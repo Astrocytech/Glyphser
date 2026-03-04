@@ -32,6 +32,12 @@
   ],
   "max_attestation_age_hours": 168,
   "required_attestation_files": [
+    "evidence/security/policy_signature.json",
+    "evidence/security/provenance_signature.json",
+    "evidence/security/evidence_attestation_index.json",
+    "evidence/security/evidence_attestation_index.json.sig",
+    "evidence/security/security_integrity_envelope.json",
+    "evidence/security/security_integrity_envelope.json.sig",
     "evidence/security/sbom.json.sig",
     "evidence/security/build_provenance.json.sig",
     "evidence/security/slsa_provenance_v1.json.sig"
