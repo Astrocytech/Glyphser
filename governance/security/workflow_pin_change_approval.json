@@ -1,0 +1,11 @@
+{
+  "ticket": "SEC-2026-0304-WORKFLOW-PIN-BASELINE",
+  "rationale": "Baseline approval record for workflow action pin updates; update this file and signature with each pin-change PR.",
+  "approved_by": "security-operations",
+  "approved_at_utc": "2026-03-04T00:00:00+00:00",
+  "expires_at_utc": "2099-01-01T00:00:00+00:00",
+  "workflow_paths": [
+    ".github/workflows/ci.yml",
+    ".github/workflows/release.yml"
+  ]
+}

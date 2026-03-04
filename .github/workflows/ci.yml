@@ -220,6 +220,8 @@ jobs:
         run: python tooling/security/workflow_risky_patterns_gate.py
       - name: Workflow deprecated invocation gate
         run: python tooling/security/workflow_deprecated_invocation_gate.py
+      - name: Workflow pin change approval gate
+        run: python tooling/security/workflow_pin_change_approval_gate.py
       - name: Policy schema validation gate
         run: python tooling/security/policy_schema_validation_gate.py
       - name: Security schema migration tracker
@@ -300,6 +302,8 @@ jobs:
         run: python tooling/security/abuse_telemetry_gate.py
       - name: Temporary waiver gate
         run: python tooling/security/temporary_waiver_gate.py
+      - name: Exception waiver reconciliation gate
+        run: python tooling/security/exception_waiver_reconciliation_gate.py
       - name: Provenance revocation gate
         run: python tooling/security/provenance_revocation_gate.py
       - name: Security gate test coverage gate
@@ -375,6 +379,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_policy_coverage_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_risky_patterns_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_deprecated_invocation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_pin_change_approval_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_schema_validation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_schema_migration_tracker.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_schema_strict_readiness_gate.json
@@ -404,6 +409,8 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/runtime_api_state_schema_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/abuse_telemetry.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/temporary_waiver_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/exception_waiver_reconciliation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/exception_waiver_reconciliation_gate.json.sig
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_revocation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_gate_test_coverage.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/container_provenance.json

@@ -86,6 +86,11 @@ def main(argv: list[str] | None = None) -> int:
         or p.startswith("runtime/glyphser/security/")
         or p.startswith(".github/workflows/")
     ]
+    if security_paths:
+        ticket = os.environ.get("GLYPHSER_CHANGE_TICKET", "")
+        patterns = [p for p in policy.get("required_change_ticket_patterns", []) if isinstance(p, str)]
+        if not any(tok in ticket for tok in patterns):
+            findings.append("security_change_missing_ticket_or_adr")
     changelog = str(policy.get("required_changelog_file", "")).strip()
     if security_paths and changelog and changelog not in changed:
         findings.append("missing_security_changelog_entry")

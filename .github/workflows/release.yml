@@ -86,6 +86,8 @@ jobs:
           python tooling/security/abuse_telemetry_gate.py
       - name: Temporary waiver gate
         run: python tooling/security/temporary_waiver_gate.py
+      - name: Exception waiver reconciliation gate
+        run: python tooling/security/exception_waiver_reconciliation_gate.py
       - name: Provenance revocation gate
         run: python tooling/security/provenance_revocation_gate.py
       - name: Evidence attestation index + gate
@@ -139,6 +141,8 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/live_rollout_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/abuse_telemetry.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/temporary_waiver_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/exception_waiver_reconciliation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/exception_waiver_reconciliation_gate.json.sig
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_revocation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/container_provenance.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/container_registry_provenance_gate.json
@@ -205,6 +209,7 @@ jobs:
           python tooling/security/abuse_telemetry_snapshot.py
           python tooling/security/abuse_telemetry_gate.py
           python tooling/security/temporary_waiver_gate.py
+          python tooling/security/exception_waiver_reconciliation_gate.py
           python tooling/security/provenance_revocation_gate.py
           python tooling/security/evidence_attestation_index.py --strict-key
           python tooling/security/evidence_attestation_gate.py --strict-key

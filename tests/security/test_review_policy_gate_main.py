@@ -49,9 +49,11 @@ def test_review_policy_gate_fails_without_security_changelog_for_security_path_c
         "_run",
         lambda _cmd: "runtime/glyphser/security/example.py\n",
     )
+    monkeypatch.delenv("GLYPHSER_CHANGE_TICKET", raising=False)
     assert review_policy_gate.main([]) == 1
     report = json.loads((repo / "evidence" / "security" / "review_policy_gate.json").read_text(encoding="utf-8"))
     assert "missing_security_changelog_entry" in report["findings"]
+    assert "security_change_missing_ticket_or_adr" in report["findings"]
 
 
 def test_review_policy_gate_passes_when_security_changelog_present(monkeypatch, tmp_path: Path) -> None:
@@ -64,4 +66,5 @@ def test_review_policy_gate_passes_when_security_changelog_present(monkeypatch, 
         "_run",
         lambda _cmd: "runtime/glyphser/security/example.py\ngovernance/security/SECURITY_CHANGELOG.md\n",
     )
+    monkeypatch.setenv("GLYPHSER_CHANGE_TICKET", "SEC-1234")
     assert review_policy_gate.main([]) == 0
