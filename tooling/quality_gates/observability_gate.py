@@ -8,13 +8,6 @@ import time
 from pathlib import Path
 from typing import Any, Dict
 
-from tooling.lib.path_config import (
-    conformance_reports_root,
-    evidence_root,
-    first_existing,
-    rel,
-)
-
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "evidence" / "observability"
 sys.path.insert(0, str(ROOT))
@@ -34,6 +27,8 @@ def _write(path: Path, payload: Dict[str, Any]) -> None:
 
 
 def _synthetic_probe() -> Dict[str, Any]:
+    from tooling.lib.path_config import conformance_reports_root
+
     started = time.perf_counter()
     target = conformance_reports_root() / "latest.json"
     ok = target.exists()
@@ -47,6 +42,8 @@ def _synthetic_probe() -> Dict[str, Any]:
 
 
 def _slo_eval() -> Dict[str, Any]:
+    from tooling.lib.path_config import conformance_reports_root, evidence_root
+
     ev = evidence_root()
     conf = _load_json(conformance_reports_root() / "latest.json")
     deploy = _load_json(ev / "deploy" / "latest.json")
@@ -113,6 +110,8 @@ def _dashboard_inventory() -> Dict[str, Any]:
 
 
 def _lineage_index() -> Dict[str, Any]:
+    from tooling.lib.path_config import conformance_reports_root, evidence_root
+
     ev = evidence_root()
     sources = [
         conformance_reports_root() / "latest.json",
@@ -133,6 +132,8 @@ def _lineage_index() -> Dict[str, Any]:
 
 
 def evaluate() -> Dict[str, Any]:
+    from tooling.lib.path_config import first_existing, rel
+
     OUT.mkdir(parents=True, exist_ok=True)
     required_docs = [
         first_existing([rel("product", "ops", "SLOs.md"), rel("docs", "ops", "SLOs.md")]),
