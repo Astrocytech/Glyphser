@@ -46,6 +46,7 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/secret_scan_gate.py" in ci
     assert "python tooling/security/workflow_pinning_gate.py" in ci
     assert "python tooling/security/incident_response_gate.py" in ci
+    assert "python tooling/security/post_incident_closure_gate.py" in ci
     assert "python tooling/security/org_secret_backend_gate.py" in ci
     assert "python tooling/security/secret_management_gate.py" in ci
     assert "python tooling/security/production_controls_gate.py" in ci
@@ -70,6 +71,7 @@ def test_ci_security_steps_are_wired() -> None:
     assert "security_artifact_signature_coverage_gate.json" in ci
     assert "security_unsigned_json_gate.json" in ci
     assert "stale_policy_review_gate.json" in ci
+    assert "post_incident_closure_gate.json" in ci
     assert "container_registry_provenance_gate.json" in ci
     assert "attestation_digest_match_gate.json" in ci
     assert "python tooling/security/security_gate_test_coverage_gate.py" in ci

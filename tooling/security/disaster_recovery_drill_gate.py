@@ -35,6 +35,12 @@ def main(argv: list[str] | None = None) -> int:
     for key in ("restored_from_cold_backup", "integrity_verified", "provenance_verified"):
         if payload.get(key) is not True:
             findings.append(f"drill_control_failed:{key}")
+    rto_minutes = payload.get("rto_minutes")
+    rpo_minutes = payload.get("rpo_minutes")
+    if not isinstance(rto_minutes, (int, float)) or float(rto_minutes) < 0:
+        findings.append("missing_or_invalid_rto_minutes")
+    if not isinstance(rpo_minutes, (int, float)) or float(rpo_minutes) < 0:
+        findings.append("missing_or_invalid_rpo_minutes")
 
     sig = drill_path.with_suffix(drill_path.suffix + ".sig")
     if drill_path.exists() and not sig.exists():
@@ -46,7 +52,11 @@ def main(argv: list[str] | None = None) -> int:
     report = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
-        "summary": {"drill_path": str(drill_path.relative_to(ROOT)).replace("\\", "/")},
+        "summary": {
+            "drill_path": str(drill_path.relative_to(ROOT)).replace("\\", "/"),
+            "rto_minutes": rto_minutes,
+            "rpo_minutes": rpo_minutes,
+        },
         "metadata": {"gate": "disaster_recovery_drill_gate"},
     }
     out = evidence_root() / "security" / "disaster_recovery_drill_gate.json"

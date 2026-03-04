@@ -15,6 +15,7 @@ def test_release_workflow_enforces_signature_verification() -> None:
     assert "python tooling/security/secret_management_gate.py" in release
     assert "python tooling/security/production_controls_gate.py" in release
     assert "python tooling/security/third_party_pentest_gate.py --strict-key" in release
+    assert "python tooling/security/post_incident_closure_gate.py" in release
     assert "python tooling/security/live_rollout_gate.py" in release
     assert "python tooling/security/container_provenance_gate.py" in release
     assert "python tooling/security/container_registry_provenance_gate.py" in release
