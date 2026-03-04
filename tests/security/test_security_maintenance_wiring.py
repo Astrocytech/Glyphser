@@ -32,6 +32,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/secret_scan_gate.py" in wf
     assert "python tooling/security/workflow_pinning_gate.py" in wf
     assert "python tooling/security/incident_response_gate.py" in wf
+    assert "python tooling/security/containment_verification_gate.py" in wf
     assert "python tooling/security/org_secret_backend_gate.py" in wf
     assert "python tooling/security/secret_management_gate.py" in wf
     assert "python tooling/security/production_controls_gate.py" in wf
@@ -53,6 +54,8 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/workflow_evidence_scope_gate.py" in wf
     assert "python tooling/security/conformance_security_coupling_gate.py" in wf
     assert "python tooling/security/security_super_gate.py --strict-key" in wf
+    assert "python tooling/security/incident_bundle_collect.py --incident-id" in wf
+    assert "python tooling/security/tabletop_replay.py --bundle" in wf
     assert "python tooling/security/security_workflow_trigger_gate.py" in wf
     assert "python tooling/security/security_critical_test_wiring_gate.py" in wf
     assert "security_workflow_contract_gate.json" in wf
@@ -77,6 +80,9 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "security_exception_suppression_gate.json" in wf
     assert "security_dead_gate_wiring_gate.json" in wf
     assert "runtime_api_state_schema_gate.json" in wf
+    assert "containment_verification_gate.json" in wf
+    assert "tabletop_replay.json" in wf
+    assert "incident-bundle-${{ github.run_id }}.tar.gz" in wf
     assert "security_gate_test_coverage.json" in wf
     assert "hardening_todo_consistency_gate.json" in wf
     assert "security_trend_alert.json" in wf

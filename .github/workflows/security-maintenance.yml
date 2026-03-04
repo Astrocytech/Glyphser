@@ -77,6 +77,8 @@ jobs:
         run: python tooling/security/workflow_pinning_gate.py
       - name: Incident response gate
         run: python tooling/security/incident_response_gate.py
+      - name: Containment verification gate
+        run: python tooling/security/containment_verification_gate.py
       - name: Org secret backend gate
         run: python tooling/security/org_secret_backend_gate.py
       - name: Secret management gate
@@ -129,6 +131,8 @@ jobs:
           python tooling/security/security_trend_gate.py
           python tooling/security/security_dashboard_export.py
           python tooling/security/security_schema_normalization_gate.py
+          python tooling/security/incident_bundle_collect.py --incident-id "${{ github.run_id }}"
+          python tooling/security/tabletop_replay.py --bundle "${{ env.GLYPHSER_EVIDENCE_ROOT }}/incident/incident-bundle-${{ github.run_id }}.tar.gz"
           python tooling/security/cosign_attestation_gate.py
           python tooling/security/security_workflow_trigger_gate.py
           python tooling/security/security_critical_test_wiring_gate.py
@@ -166,6 +170,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_exception_suppression_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_dead_gate_wiring_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/incident_response.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/containment_verification_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/org_secret_backend.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/secret_management.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/production_controls.json
@@ -201,7 +206,10 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_trend_alert.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_dashboard.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_schema_normalization_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/tabletop_replay.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/cosign_attestation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/incident/incident-bundle-${{ github.run_id }}.tar.gz
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/incident/incident-bundle-${{ github.run_id }}.manifest.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_chain_of_custody.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_chain_of_custody.json.sig
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_chain_of_custody_build.json

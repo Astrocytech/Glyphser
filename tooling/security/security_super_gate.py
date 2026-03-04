@@ -144,6 +144,7 @@ def main(argv: list[str] | None = None) -> int:
         [sys.executable, "tooling/security/workflow_pinning_gate.py"],
         [sys.executable, "tooling/security/workflow_linter_gate.py"],
         [sys.executable, "tooling/security/incident_response_gate.py"],
+        [sys.executable, "tooling/security/containment_verification_gate.py"],
         [sys.executable, "tooling/security/org_secret_backend_gate.py"],
         [sys.executable, "tooling/security/secret_management_gate.py"],
         [sys.executable, "tooling/security/production_controls_gate.py"],

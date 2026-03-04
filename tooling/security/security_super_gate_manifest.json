@@ -44,6 +44,7 @@
     "tooling/security/workflow_pinning_gate.py",
     "tooling/security/workflow_linter_gate.py",
     "tooling/security/incident_response_gate.py",
+    "tooling/security/containment_verification_gate.py",
     "tooling/security/org_secret_backend_gate.py",
     "tooling/security/secret_management_gate.py",
     "tooling/security/production_controls_gate.py",
