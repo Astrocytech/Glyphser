@@ -164,6 +164,10 @@ jobs:
 
   security-matrix:
     runs-on: ubuntu-latest
+    env:
+      GLYPHSER_ENV: "ci"
+      GLYPHSER_PROVENANCE_HMAC_KEY: "glyphser-provenance-hmac-fallback-v1"
+      GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/security-matrix-${{ matrix.python-version }}
     strategy:
       fail-fast: false
       matrix:
@@ -183,8 +187,12 @@ jobs:
             bandit==1.9.4 \
             pip-audit==2.9.0 \
             semgrep==1.95.0
+      - name: Initialize immutable evidence run directory
+        run: python tooling/security/evidence_run_dir_guard.py --run-id "${{ github.run_id }}-${{ matrix.python-version }}-security"
       - name: Security toolchain gate
         run: python tooling/security/security_toolchain_gate.py
+      - name: Policy signature gate
+        run: python tooling/security/policy_signature_gate.py --strict-key
       - name: Bandit
         run: bandit -q -c tooling/security/bandit.yaml -r glyphser runtime tooling -l -ii
       - name: Bandit (SARIF)
@@ -204,8 +212,6 @@ jobs:
       - name: Production controls gate
         run: python tooling/security/production_controls_gate.py
       - name: Third-party pentest gate
-        env:
-          GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
         run: python tooling/security/third_party_pentest_gate.py --strict-key
       - name: Live integration verify (dry-run)
         run: python tooling/security/live_integrations_verify.py --dry-run
@@ -220,15 +226,11 @@ jobs:
       - name: Abuse telemetry gate
         run: python tooling/security/abuse_telemetry_gate.py
       - name: Evidence attestation index
-        env:
-          GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
         run: python tooling/security/evidence_attestation_index.py --strict-key
       - name: Evidence attestation gate
-        env:
-          GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
         run: python tooling/security/evidence_attestation_gate.py --strict-key
       - name: Provenance signature gate
-        run: python tooling/security/provenance_signature_gate.py
+        run: python tooling/security/provenance_signature_gate.py --strict-key
       - name: SLSA attestation gate
         run: python tooling/security/slsa_attestation_gate.py
       - name: Semgrep (SARIF)
@@ -248,27 +250,28 @@ jobs:
           path: |
             bandit.sarif
             semgrep.sarif
-            evidence/security/pip_audit.json
-            evidence/security/secret_scan.json
-            evidence/security/workflow_pinning.json
-            evidence/security/security_toolchain.json
-            evidence/security/incident_response.json
-            evidence/security/org_secret_backend.json
-            evidence/security/secret_management.json
-            evidence/security/production_controls.json
-            evidence/security/third_party_pentest.json
-            evidence/security/live_integrations.json
-            evidence/security/live_rollout_gate.json
-            evidence/security/abuse_telemetry.json
-            evidence/security/container_provenance.json
-            evidence/security/evidence_attestation_index.json
-            evidence/security/evidence_attestation_index.json.sig
-            evidence/security/evidence_attestation_gate.json
-            evidence/security/sbom.json
-            evidence/security/sbom.json.sig
-            evidence/security/build_provenance.json
-            evidence/security/build_provenance.json.sig
-            evidence/security/slsa_provenance_v1.json
-            evidence/security/slsa_provenance_v1.json.sig
-            evidence/security/provenance_signature.json
-            evidence/security/slsa_attestation.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/pip_audit.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/secret_scan.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_pinning.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_signature.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_toolchain.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/incident_response.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/org_secret_backend.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/secret_management.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/production_controls.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/third_party_pentest.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/live_integrations.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/live_rollout_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/abuse_telemetry.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/container_provenance.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/sbom.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/sbom.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/build_provenance.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/build_provenance.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/slsa_provenance_v1.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/slsa_provenance_v1.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_signature.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/slsa_attestation.json

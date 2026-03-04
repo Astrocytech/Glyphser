@@ -17,6 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    env:
+      GLYPHSER_ENV: "release"
+      GLYPHSER_PROVENANCE_HMAC_KEY: "glyphser-provenance-hmac-fallback-v1"
+      GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/release-build
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - uses: actions/setup-python@42375524a18f07eb0658ddf24b150a0f0f0b274f
@@ -30,15 +34,16 @@ jobs:
         run: |
           cd dist
           sha256sum * > CHECKSUMS.sha256
+      - name: Initialize immutable evidence run directory
+        run: python tooling/security/evidence_run_dir_guard.py --run-id "${{ github.run_id }}-release-build"
       - name: Generate SBOM and provenance
         env:
           GLYPHSER_STRICT_SIGNING: "true"
-          GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
         run: python tooling/security/security_artifacts.py
       - name: Verify provenance signatures (strict)
-        env:
-          GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
         run: python tooling/security/provenance_signature_gate.py --strict-key
+      - name: Policy signature gate
+        run: python tooling/security/policy_signature_gate.py --strict-key
       - name: Verify SLSA attestation
         run: python tooling/security/slsa_attestation_gate.py
       - name: Secret management gate
@@ -48,11 +53,9 @@ jobs:
       - name: Production controls gate
         run: python tooling/security/production_controls_gate.py
       - name: Third-party pentest gate
-        env:
-          GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
         run: python tooling/security/third_party_pentest_gate.py --strict-key
       - name: Live rollout gate (strict)
-        run: python tooling/security/live_rollout_gate.py
+        run: python tooling/security/live_rollout_gate.py --profile release
       - name: Container provenance gate
         env:
           GLYPHSER_CONTAINER_PUBLISHING_ENABLED: "true"
@@ -62,8 +65,6 @@ jobs:
           python tooling/security/abuse_telemetry_snapshot.py
           python tooling/security/abuse_telemetry_gate.py
       - name: Evidence attestation index + gate
-        env:
-          GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
         run: |
           python tooling/security/evidence_attestation_index.py --strict-key
           python tooling/security/evidence_attestation_gate.py --strict-key
@@ -73,30 +74,35 @@ jobs:
           name: dist
           path: |
             dist/
-            evidence/security/sbom.json
-            evidence/security/sbom.json.sig
-            evidence/security/build_provenance.json
-            evidence/security/build_provenance.json.sig
-            evidence/security/slsa_provenance_v1.json
-            evidence/security/slsa_provenance_v1.json.sig
-            evidence/security/provenance_signature.json
-            evidence/security/slsa_attestation.json
-            evidence/security/org_secret_backend.json
-            evidence/security/secret_management.json
-            evidence/security/production_controls.json
-            evidence/security/third_party_pentest.json
-            evidence/security/live_rollout_gate.json
-            evidence/security/abuse_telemetry.json
-            evidence/security/container_provenance.json
-            evidence/security/evidence_attestation_index.json
-            evidence/security/evidence_attestation_index.json.sig
-            evidence/security/evidence_attestation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/sbom.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/sbom.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/build_provenance.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/build_provenance.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/slsa_provenance_v1.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/slsa_provenance_v1.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_signature.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/slsa_attestation.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_signature.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/org_secret_backend.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/secret_management.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/production_controls.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/third_party_pentest.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/live_rollout_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/abuse_telemetry.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/container_provenance.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_gate.json
 
   verify-signatures:
     needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    env:
+      GLYPHSER_ENV: "release"
+      GLYPHSER_PROVENANCE_HMAC_KEY: "glyphser-provenance-hmac-fallback-v1"
+      GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/release-verify
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - uses: actions/setup-python@42375524a18f07eb0658ddf24b150a0f0f0b274f
@@ -105,16 +111,17 @@ jobs:
       - name: Re-generate and verify provenance signatures (strict)
         env:
           GLYPHSER_STRICT_SIGNING: "true"
-          GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
         run: |
+          python tooling/security/evidence_run_dir_guard.py --run-id "${{ github.run_id }}-release-verify"
           python tooling/security/security_artifacts.py
           python tooling/security/provenance_signature_gate.py --strict-key
           python tooling/security/slsa_attestation_gate.py
+          python tooling/security/policy_signature_gate.py --strict-key
           python tooling/security/org_secret_backend_gate.py
           python tooling/security/secret_management_gate.py
           python tooling/security/production_controls_gate.py
           python tooling/security/third_party_pentest_gate.py --strict-key
-          python tooling/security/live_rollout_gate.py
+          python tooling/security/live_rollout_gate.py --profile release
           GLYPHSER_CONTAINER_PUBLISHING_ENABLED=true \
           python tooling/security/container_provenance_gate.py
           python tooling/security/abuse_telemetry_snapshot.py

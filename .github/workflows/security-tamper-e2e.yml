@@ -1,0 +1,38 @@
+name: security-tamper-e2e
+
+on:
+  workflow_dispatch:
+
+jobs:
+  tamper-e2e:
+    runs-on: ubuntu-latest
+    env:
+      GLYPHSER_ENV: "ci"
+      GLYPHSER_PROVENANCE_HMAC_KEY: "glyphser-provenance-hmac-fallback-v1"
+      GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/security-tamper-e2e
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-python@42375524a18f07eb0658ddf24b150a0f0f0b274f
+        with:
+          python-version: "3.12"
+      - name: Install package
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev]
+      - name: Initialize immutable evidence run directory
+        run: python tooling/security/evidence_run_dir_guard.py --run-id "${{ github.run_id }}-tamper-e2e"
+      - name: Build security evidence + signed index
+        env:
+          GLYPHSER_STRICT_SIGNING: "true"
+        run: |
+          python tooling/security/security_artifacts.py
+          python tooling/security/evidence_attestation_index.py --strict-key
+      - name: Tamper evidence file
+        run: |
+          echo "tampered" >> "${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/sbom.json"
+      - name: Assert attestation gate fails on tamper
+        run: |
+          if python tooling/security/evidence_attestation_gate.py --strict-key; then
+            echo "expected evidence_attestation_gate to fail on tampered evidence" >&2
+            exit 1
+          fi

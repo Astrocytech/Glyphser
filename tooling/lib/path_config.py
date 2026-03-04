@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from typing import Iterable
 
@@ -56,6 +57,10 @@ def bundles_root() -> Path:
 
 
 def evidence_root() -> Path:
+    override = os.environ.get("GLYPHSER_EVIDENCE_ROOT", "").strip()
+    if override:
+        path = Path(override)
+        return path if path.is_absolute() else rel(override)
     return rel("evidence")
 
 

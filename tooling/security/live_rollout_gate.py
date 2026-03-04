@@ -77,10 +77,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--allow-dry-run", action="store_true")
     parser.add_argument("--allow-missing", action="store_true")
     parser.add_argument("--max-age-hours", type=int, default=0, help="Override policy max age in hours.")
+    parser.add_argument("--profile", choices=["default", "release"], default="default")
     args = parser.parse_args([] if argv is None else argv)
 
     policy = _load_policy()
-    max_age_hours = args.max_age_hours or int(policy.get("max_evidence_age_hours", 168))
+    policy_age_key = "release_max_evidence_age_hours" if args.profile == "release" else "max_evidence_age_hours"
+    max_age_hours = args.max_age_hours or int(policy.get(policy_age_key, policy.get("max_evidence_age_hours", 168)))
     targets = args.target or list(_TARGET_TO_FILE.keys())
     findings: list[str] = []
     for target in targets:
@@ -99,6 +101,7 @@ def main(argv: list[str] | None = None) -> int:
         "max_evidence_age_hours": max_age_hours,
         "allow_dry_run": args.allow_dry_run,
         "allow_missing": args.allow_missing,
+        "profile": args.profile,
         "findings": findings,
     }
     out = evidence_root() / "security" / "live_rollout_gate.json"

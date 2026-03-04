@@ -1,3 +1,4 @@
 {
-  "max_evidence_age_hours": 168
+  "max_evidence_age_hours": 168,
+  "release_max_evidence_age_hours": 24
 }

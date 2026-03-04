@@ -197,6 +197,9 @@ class RuntimeApiConfig:
     replay_cooldown_seconds: int = 1
     max_requests_per_window: int = 250
     request_window_seconds: int = 60
+    max_replays_per_token_window: int = 30
+    max_replays_per_job_window: int = 10
+    replay_window_seconds: int = 60
 
 
 class RuntimeApiService:
@@ -355,6 +358,14 @@ class RuntimeApiService:
             self._bump_job_read_quota(state, job_id=job_id, limit=self._config.max_reads_per_job)
             self._enforce_replay_cooldown(state, job_id=job_id, cooldown_seconds=self._config.replay_cooldown_seconds)
             self._bump_job_replay_quota(state, job_id=job_id, limit=self._config.max_replays_per_job)
+            self._bump_replay_window_quota(
+                state,
+                token=token,
+                job_id=job_id,
+                token_limit=self._config.max_replays_per_token_window,
+                job_limit=self._config.max_replays_per_job_window,
+                window_seconds=self._config.replay_window_seconds,
+            )
             self._save_state(state)
             ev = self._build_evidence(job_id)
             bundle_line = ev["bundle_manifest_line"]
@@ -450,6 +461,8 @@ class RuntimeApiService:
                     "job_last_replay_ts": {},
                     "token_request_window": {},
                     "auth_failures_by_token": {},
+                    "replay_window_by_token": {},
+                    "replay_window_by_job": {},
                 },
             }
         data = json.loads(self._config.state_path.read_text(encoding="utf-8"))
@@ -467,6 +480,8 @@ class RuntimeApiService:
         quotas.setdefault("job_last_replay_ts", {})
         quotas.setdefault("token_request_window", {})
         quotas.setdefault("auth_failures_by_token", {})
+        quotas.setdefault("replay_window_by_token", {})
+        quotas.setdefault("replay_window_by_job", {})
         return data
 
     def _save_state(self, state: Dict[str, Any]) -> None:
@@ -590,6 +605,53 @@ class RuntimeApiService:
         if not isinstance(current, int) or current < 0:
             current = 0
         counter[token] = current + 1
+
+    @staticmethod
+    def _bump_window_counter(
+        counter: Dict[str, Any],
+        *,
+        key: str,
+        limit: int,
+        window_seconds: int,
+        error: str,
+    ) -> None:
+        if window_seconds <= 0 or limit <= 0:
+            return
+        now = int(time.time())
+        raw = counter.get(key, [])
+        if not isinstance(raw, list):
+            raw = []
+        recent = [int(ts) for ts in raw if isinstance(ts, int) and (now - ts) < window_seconds]
+        if len(recent) >= limit:
+            raise ValueError(error)
+        recent.append(now)
+        counter[key] = recent
+
+    def _bump_replay_window_quota(
+        self,
+        state: Dict[str, Any],
+        *,
+        token: str,
+        job_id: str,
+        token_limit: int,
+        job_limit: int,
+        window_seconds: int,
+    ) -> None:
+        quotas = state["quotas"]
+        self._bump_window_counter(
+            quotas["replay_window_by_token"],
+            key=token,
+            limit=token_limit,
+            window_seconds=window_seconds,
+            error="token replay burst exceeded",
+        )
+        self._bump_window_counter(
+            quotas["replay_window_by_job"],
+            key=job_id,
+            limit=job_limit,
+            window_seconds=window_seconds,
+            error="job replay burst exceeded",
+        )
 
     @staticmethod
     def _enforce_replay_cooldown(state: Dict[str, Any], *, job_id: str, cooldown_seconds: int) -> None:

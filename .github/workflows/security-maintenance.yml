@@ -8,6 +8,10 @@ on:
 jobs:
   security-maintenance:
     runs-on: ubuntu-latest
+    env:
+      GLYPHSER_ENV: "ci"
+      GLYPHSER_PROVENANCE_HMAC_KEY: "glyphser-provenance-hmac-fallback-v1"
+      GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/security-maintenance
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - uses: actions/setup-python@42375524a18f07eb0658ddf24b150a0f0f0b274f
@@ -23,8 +27,12 @@ jobs:
             bandit==1.9.4 \
             pip-audit==2.9.0 \
             semgrep==1.95.0
+      - name: Initialize immutable evidence run directory
+        run: python tooling/security/evidence_run_dir_guard.py --run-id "${{ github.run_id }}-security-maintenance"
       - name: Security toolchain gate
         run: python tooling/security/security_toolchain_gate.py
+      - name: Policy signature gate
+        run: python tooling/security/policy_signature_gate.py --strict-key
       - name: Dependency refresh report
         run: python tooling/security/dependency_refresh_report.py
       - name: pip-audit gate
@@ -42,8 +50,6 @@ jobs:
       - name: Production controls gate
         run: python tooling/security/production_controls_gate.py
       - name: Third-party pentest gate
-        env:
-          GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
         run: python tooling/security/third_party_pentest_gate.py --strict-key
       - name: Live integration verify
         env:
@@ -59,37 +65,36 @@ jobs:
       - name: Container provenance gate
         run: python tooling/security/container_provenance_gate.py
       - name: Security artifacts + attestation checks
-        env:
-          GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
         run: |
           python tooling/security/security_artifacts.py
           python tooling/security/abuse_telemetry_snapshot.py
           python tooling/security/abuse_telemetry_gate.py
           python tooling/security/evidence_attestation_index.py --strict-key
           python tooling/security/evidence_attestation_gate.py --strict-key
-          python tooling/security/provenance_signature_gate.py
+          python tooling/security/provenance_signature_gate.py --strict-key
           python tooling/security/slsa_attestation_gate.py
       - name: Upload maintenance artifacts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: security-maintenance-artifacts
           path: |
-            evidence/security/dependency_outdated.json
-            evidence/security/pip_audit.json
-            evidence/security/secret_scan.json
-            evidence/security/workflow_pinning.json
-            evidence/security/security_toolchain.json
-            evidence/security/incident_response.json
-            evidence/security/org_secret_backend.json
-            evidence/security/secret_management.json
-            evidence/security/production_controls.json
-            evidence/security/third_party_pentest.json
-            evidence/security/live_integrations.json
-            evidence/security/live_rollout_gate.json
-            evidence/security/abuse_telemetry.json
-            evidence/security/container_provenance.json
-            evidence/security/evidence_attestation_index.json
-            evidence/security/evidence_attestation_index.json.sig
-            evidence/security/evidence_attestation_gate.json
-            evidence/security/provenance_signature.json
-            evidence/security/slsa_attestation.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/dependency_outdated.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/pip_audit.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/secret_scan.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_pinning.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_signature.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_toolchain.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/incident_response.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/org_secret_backend.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/secret_management.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/production_controls.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/third_party_pentest.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/live_integrations.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/live_rollout_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/abuse_telemetry.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/container_provenance.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_signature.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/slsa_attestation.json

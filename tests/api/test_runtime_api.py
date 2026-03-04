@@ -247,3 +247,36 @@ def test_replay_cooldown_enforced(tmp_path: Path):
         assert False, "expected ValueError"
     except ValueError as exc:
         assert "replay cooldown active" in str(exc)
+
+
+def test_replay_window_limits_enforced(tmp_path: Path):
+    root = tmp_path / "repo"
+    (root / "evidence" / "conformance" / "reports").mkdir(parents=True)
+    (root / "artifacts" / "bundles").mkdir(parents=True)
+    (root / "evidence" / "repro").mkdir(parents=True)
+    (root / "evidence" / "conformance" / "reports" / "latest.json").write_text(
+        json.dumps({"status": "PASS"}) + "\n", encoding="utf-8"
+    )
+    line = "abc123  hello-core-bundle.tar.gz\n"
+    (root / "artifacts" / "bundles" / "hello-core-bundle.sha256").write_text(line, encoding="utf-8")
+    (root / "evidence" / "repro" / "hashes.txt").write_text(line, encoding="utf-8")
+
+    svc = RuntimeApiService(
+        RuntimeApiConfig(
+            root=root,
+            state_path=tmp_path / "state.json",
+            max_replays_per_job=100,
+            replay_cooldown_seconds=0,
+            max_replays_per_token_window=2,
+            max_replays_per_job_window=2,
+            replay_window_seconds=60,
+        )
+    )
+    job = svc.submit_job(payload={"payload": {"n": 1}}, token="token-window", scope="jobs:write")
+    svc.replay(job["job_id"], token="token-window", scope="replay:run")
+    svc.replay(job["job_id"], token="token-window", scope="replay:run")
+    try:
+        svc.replay(job["job_id"], token="token-window", scope="replay:run")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "replay burst exceeded" in str(exc)
