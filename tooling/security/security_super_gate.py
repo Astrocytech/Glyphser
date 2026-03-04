@@ -238,6 +238,8 @@ def main(argv: list[str] | None = None) -> int:
         [sys.executable, "tooling/security/key_compromise_dual_control_gate.py"],
         [sys.executable, "tooling/security/dependency_trust_gate.py"],
         [sys.executable, "tooling/security/security_workflow_evidence_bundle_gate.py"],
+        [sys.executable, "tooling/security/upload_manifest_generate.py"],
+        [sys.executable, "tooling/security/upload_manifest_completeness_gate.py"],
         [sys.executable, "tooling/security/replay_abuse_regression_gate.py"],
         [sys.executable, "tooling/security/exception_registry_gate.py"],
         [sys.executable, "tooling/security/lockdown_blast_radius_gate.py"],
