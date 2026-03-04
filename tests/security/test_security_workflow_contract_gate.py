@@ -43,6 +43,7 @@ jobs:
       - run: python tooling/security/security_critical_test_wiring_gate.py
       - run: python tooling/security/key_provenance_continuity_gate.py
       - run: python tooling/security/signature_algorithm_policy_gate.py
+      - run: python tooling/security/security_verification_summary.py --strict-key
       - run: echo semgrep.json
 """
     (wf / "ci.yml").write_text(ci_text, encoding="utf-8")
@@ -72,6 +73,7 @@ jobs:
       - run: python tooling/security/security_critical_test_wiring_gate.py
       - run: python tooling/security/key_provenance_continuity_gate.py
       - run: python tooling/security/signature_algorithm_policy_gate.py
+      - run: python tooling/security/security_verification_summary.py --strict-key
 """
     (wf / "security-maintenance.yml").write_text(maintenance_text, encoding="utf-8")
     extended_text = """

@@ -118,6 +118,7 @@ jobs:
           python tooling/security/provenance_signature_gate.py --strict-key
           python tooling/security/key_provenance_continuity_gate.py
           python tooling/security/signature_algorithm_policy_gate.py
+          python tooling/security/security_verification_summary.py --strict-key
           python tooling/security/slsa_attestation_gate.py
           python tooling/security/workflow_evidence_scope_gate.py
           python tooling/security/conformance_security_coupling_gate.py
@@ -186,6 +187,8 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_signature.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/key_provenance_continuity_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/signature_algorithm_policy_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_verification_summary.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_verification_summary.json.sig
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/slsa_attestation.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_evidence_scope_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/conformance_security_coupling.json

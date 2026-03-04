@@ -61,6 +61,7 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/provenance_signature_gate.py --strict-key" in ci
     assert "python tooling/security/key_provenance_continuity_gate.py" in ci
     assert "python tooling/security/signature_algorithm_policy_gate.py" in ci
+    assert "python tooling/security/security_verification_summary.py --strict-key" in ci
     assert "python tooling/security/slsa_attestation_gate.py" in ci
     assert "python tooling/security/workflow_evidence_scope_gate.py" in ci
     assert "python tooling/security/conformance_security_coupling_gate.py" in ci
@@ -69,6 +70,8 @@ def test_ci_security_steps_are_wired() -> None:
     assert "security_trend_alert.json" in ci
     assert "key_provenance_continuity_gate.json" in ci
     assert "signature_algorithm_policy_gate.json" in ci
+    assert "security_verification_summary.json" in ci
+    assert "security_verification_summary.json.sig" in ci
     assert "python tooling/security/branch_protection_policy_gate.py" in ci
     assert "bandit -q -c tooling/security/bandit.yaml -r glyphser runtime tooling -f json -o bandit.json -l -ii" in ci
     assert "python tooling/security/bandit_json_to_sarif.py --input bandit.json --output bandit.sarif" in ci
