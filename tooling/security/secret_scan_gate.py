@@ -53,14 +53,14 @@ def _iter_scan_files() -> list[Path]:
         if root.is_file():
             files.append(root)
             continue
-        for path in root.rglob("*"):
+        for path in sorted(root.rglob("*")):
             if not path.is_file():
                 continue
             rel_parts = path.relative_to(ROOT).parts
             if any(part in SKIP_PARTS for part in rel_parts):
                 continue
             files.append(path)
-    return files
+    return sorted(files)
 
 
 def main() -> int:

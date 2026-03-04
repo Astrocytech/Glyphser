@@ -18,7 +18,7 @@ SECRET_PATTERNS = [
 
 def _secret_scan() -> dict:
     findings = []
-    for path in ROOT.rglob("*"):
+    for path in sorted(ROOT.rglob("*")):
         if not path.is_file():
             continue
         rel = path.relative_to(ROOT).as_posix()

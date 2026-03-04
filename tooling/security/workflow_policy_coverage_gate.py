@@ -31,7 +31,7 @@ def main(argv: list[str] | None = None) -> int:
             raise ValueError("workflow coverage policy must contain list[str] under workflows")
         policy_workflows = set(raw)
 
-    actual_workflows = {p.name for p in (ROOT / ".github" / "workflows").glob("*.yml")}
+    actual_workflows = {p.name for p in sorted((ROOT / ".github" / "workflows").glob("*.yml"))}
     for name in sorted(actual_workflows - policy_workflows):
         findings.append(f"workflow_not_covered_by_policy:{name}")
     for name in sorted(policy_workflows - actual_workflows):

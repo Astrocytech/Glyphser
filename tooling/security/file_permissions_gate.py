@@ -18,10 +18,10 @@ def main(argv: list[str] | None = None) -> int:
     _ = argv
     findings: list[str] = []
     scanned = 0
-    for base in [evidence_root() / "security", ROOT / "governance" / "security"]:
+    for base in sorted([evidence_root() / "security", ROOT / "governance" / "security"]):
         if not base.exists():
             continue
-        for path in base.rglob("*"):
+        for path in sorted(base.rglob("*")):
             if not path.is_file():
                 continue
             scanned += 1

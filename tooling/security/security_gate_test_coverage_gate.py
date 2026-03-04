@@ -22,7 +22,7 @@ def _covered_by_tests(gate_module: str, tests_dir: Path) -> bool:
     if expected_name.exists():
         return True
     pattern = gate_module
-    for test_file in tests_dir.glob("test_*.py"):
+    for test_file in sorted(tests_dir.glob("test_*.py")):
         try:
             if pattern in test_file.read_text(encoding="utf-8"):
                 return True
@@ -38,7 +38,7 @@ def main(argv: list[str] | None = None) -> int:
 
     gate_modules = sorted(
         p.stem
-        for p in security_dir.glob("*_gate.py")
+        for p in sorted(security_dir.glob("*_gate.py"))
         if p.name not in EXCLUDED_GATES
     )
     findings: list[str] = []

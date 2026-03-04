@@ -58,3 +58,21 @@ def test_security_super_gate_reports_prereq_diagnostics(monkeypatch, tmp_path: P
     diagnostics = out["metadata"]["prereq_diagnostics"]
     assert diagnostics
     assert all("finding" in d and "remediation" in d for d in diagnostics)
+
+
+def test_security_super_gate_core_passes_minimal_strict_ci_profile(monkeypatch, tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    ev = repo / "evidence"
+    monkeypatch.setattr(security_super_gate, "ROOT", repo)
+    monkeypatch.setattr(security_super_gate, "evidence_root", lambda: ev)
+    monkeypatch.setattr(security_super_gate, "run_checked", lambda *a, **k: _Proc(0))
+    monkeypatch.setattr(security_super_gate.shutil, "which", lambda _: "/usr/bin/tool")
+    monkeypatch.setenv("TZ", "UTC")
+    monkeypatch.setenv("LC_ALL", "C.UTF-8")
+    monkeypatch.setenv("LANG", "C.UTF-8")
+    monkeypatch.setenv("GLYPHSER_PROVENANCE_HMAC_KEY", "test-key")
+
+    assert security_super_gate.main(["--strict-prereqs", "--strict-key"]) == 0
+    out = json.loads((ev / "security" / "security_super_gate.json").read_text(encoding="utf-8"))
+    assert out["status"] == "PASS"
+    assert out["summary"]["prereq_failures"] == 0

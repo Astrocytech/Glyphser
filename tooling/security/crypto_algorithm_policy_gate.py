@@ -20,8 +20,8 @@ def main(argv: list[str] | None = None) -> int:
     findings: list[str] = []
     hits: list[str] = []
 
-    for base in TARGET_DIRS:
-        for path in base.rglob("*.py"):
+    for base in sorted(TARGET_DIRS):
+        for path in sorted(base.rglob("*.py")):
             text = path.read_text(encoding="utf-8")
             lowered = text.lower()
             for algo in forbidden:

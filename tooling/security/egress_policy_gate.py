@@ -21,7 +21,7 @@ def main(argv: list[str] | None = None) -> int:
     findings: list[str] = []
     seen: dict[str, list[str]] = {}
 
-    for wf in (ROOT / ".github" / "workflows").glob("*.yml"):
+    for wf in sorted((ROOT / ".github" / "workflows").glob("*.yml")):
         text = wf.read_text(encoding="utf-8")
         hosts = sorted(set(URL_RE.findall(text)))
         if not hosts:
