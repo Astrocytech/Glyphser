@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import importlib
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -19,6 +20,39 @@ REQUIRED_EXPLICIT_PERMISSIONS = {
     "release.yml",
 }
 
+REQUIRED_JOB_PERMISSIONS: dict[str, dict[str, tuple[str, ...]]] = {
+    "ci.yml": {"security-matrix": ("permissions:", "security-events: write", "contents: read")},
+    "security-maintenance.yml": {"security-maintenance": ("permissions:", "contents: read")},
+    "security-super-extended.yml": {"security-super-extended": ("permissions:", "contents: read")},
+    "release.yml": {"verify-signatures": ("permissions:", "contents: read")},
+}
+
+_JOB_RE = re.compile(r"^  ([A-Za-z0-9_-]+):\s*$")
+
+
+def _job_blocks(text: str) -> dict[str, str]:
+    lines = text.splitlines()
+    in_jobs = False
+    current_job: str | None = None
+    blocks: dict[str, list[str]] = {}
+
+    for line in lines:
+        if not in_jobs:
+            if line.strip() == "jobs:":
+                in_jobs = True
+            continue
+        match = _JOB_RE.match(line)
+        if match:
+            current_job = match.group(1)
+            blocks[current_job] = []
+            continue
+        if line and not line.startswith(" "):
+            break
+        if current_job is not None:
+            blocks[current_job].append(line)
+
+    return {name: "\n".join(block) for name, block in blocks.items()}
+
 
 def main(argv: list[str] | None = None) -> int:
     _ = argv
@@ -29,6 +63,7 @@ def main(argv: list[str] | None = None) -> int:
 
     for wf in sorted(wf_dir.glob("*.yml")):
         text = wf.read_text(encoding="utf-8")
+        blocks = _job_blocks(text)
         checked += 1
         rel = str(wf.relative_to(ROOT)).replace("\\", "/")
         if "write-all" in text:
@@ -37,6 +72,14 @@ def main(argv: list[str] | None = None) -> int:
             security_workflows += 1
             if "permissions:" not in text:
                 findings.append(f"missing_permissions_block:{rel}")
+        for job_name, required_snippets in REQUIRED_JOB_PERMISSIONS.get(wf.name, {}).items():
+            block = blocks.get(job_name)
+            if block is None:
+                findings.append(f"missing_required_job:{rel}:{job_name}")
+                continue
+            for snippet in required_snippets:
+                if snippet not in block:
+                    findings.append(f"missing_required_job_permission:{rel}:{job_name}:{snippet}")
 
     report = {
         "status": "PASS" if not findings else "FAIL",
