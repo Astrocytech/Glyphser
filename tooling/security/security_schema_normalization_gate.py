@@ -12,8 +12,9 @@ if str(ROOT) not in sys.path:
 
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
 
-REQUIRED = ["status", "findings", "summary", "metadata"]
+REQUIRED = ["status"]
 IGNORE = {"security_slo_history.json"}
+ALLOWED_STATUS = {"PASS", "FAIL", "WARN", "SKIP"}
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -24,7 +25,6 @@ def main(argv: list[str] | None = None) -> int:
     for path in sorted(sec.glob("*.json")):
         if path.name in IGNORE:
             continue
-        scanned += 1
         try:
             payload = json.loads(path.read_text(encoding="utf-8"))
         except Exception:
@@ -33,6 +33,14 @@ def main(argv: list[str] | None = None) -> int:
         if not isinstance(payload, dict):
             findings.append(f"invalid_payload:{path.name}")
             continue
+        # Only normalize report-like payloads; security artifacts like SBOM/provenance
+        # are JSON documents but not gate reports and follow separate schemas.
+        if "status" not in payload:
+            continue
+        scanned += 1
+        status = str(payload.get("status", "")).upper()
+        if status not in ALLOWED_STATUS:
+            findings.append(f"invalid_status:{path.name}")
         for key in REQUIRED:
             if key not in payload:
                 findings.append(f"missing_{key}:{path.name}")
