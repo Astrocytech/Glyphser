@@ -37,6 +37,7 @@ def main(argv: list[str] | None = None) -> int:
     pairs = [
         ("sbom", sec / "sbom.json", sec / "sbom.json.sig"),
         ("build_provenance", sec / "build_provenance.json", sec / "build_provenance.json.sig"),
+        ("slsa_provenance_v1", sec / "slsa_provenance_v1.json", sec / "slsa_provenance_v1.json.sig"),
     ]
     ok_all = True
     for name, path, sig_path in pairs:

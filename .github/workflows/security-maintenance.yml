@@ -1,0 +1,46 @@
+name: security-maintenance
+
+on:
+  schedule:
+    - cron: "17 4 * * 1"
+  workflow_dispatch:
+
+jobs:
+  security-maintenance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-python@42375524a18f07eb0658ddf24b150a0f0f0b274f
+        with:
+          python-version: "3.12"
+      - name: Install package
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev]
+      - name: Dependency refresh report
+        run: python tooling/security/dependency_refresh_report.py
+      - name: pip-audit gate
+        run: python tooling/security/pip_audit_gate.py
+      - name: Secret scan gate
+        run: python tooling/security/secret_scan_gate.py
+      - name: Workflow pinning gate
+        run: python tooling/security/workflow_pinning_gate.py
+      - name: Incident response gate
+        run: python tooling/security/incident_response_gate.py
+      - name: Security artifacts + attestation checks
+        run: |
+          python tooling/security/security_artifacts.py
+          python tooling/security/provenance_signature_gate.py
+          python tooling/security/slsa_attestation_gate.py
+      - name: Upload maintenance artifacts
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: security-maintenance-artifacts
+          path: |
+            evidence/security/dependency_outdated.json
+            evidence/security/pip_audit.json
+            evidence/security/secret_scan.json
+            evidence/security/workflow_pinning.json
+            evidence/security/incident_response.json
+            evidence/security/provenance_signature.json
+            evidence/security/slsa_attestation.json

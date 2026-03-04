@@ -1,0 +1,12 @@
+{
+  "required_status_checks": [
+    "test-matrix",
+    "determinism-matrix",
+    "security-matrix",
+    "branch-protection-policy"
+  ],
+  "required_release_checks": [
+    "build",
+    "verify-signatures"
+  ]
+}

@@ -23,6 +23,8 @@ def main() -> int:
         bundles / "hello-core-bundle.sha256",
         ROOT / "evidence" / "security" / "sbom.json.sig",
         ROOT / "evidence" / "security" / "build_provenance.json.sig",
+        ROOT / "evidence" / "security" / "slsa_provenance_v1.json",
+        ROOT / "evidence" / "security" / "slsa_provenance_v1.json.sig",
     ]
 
     missing = [str(p) for p in required if not p.exists()]

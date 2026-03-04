@@ -74,6 +74,28 @@ def main() -> int:
     prov_path = OUT / "build_provenance.json"
     prov_path.write_text(json.dumps(prov, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     (OUT / "build_provenance.json.sig").write_text(sign_file(prov_path, key=key) + "\n", encoding="utf-8")
+
+    slsa = {
+        "_type": "https://in-toto.io/Statement/v1",
+        "predicateType": "https://slsa.dev/provenance/v1",
+        "subject": [
+            {"name": "evidence/security/sbom.json", "digest": {"sha256": _sha256(sbom_path)}},
+            {"name": "evidence/security/build_provenance.json", "digest": {"sha256": _sha256(prov_path)}},
+        ],
+        "predicate": {
+            "buildDefinition": {
+                "buildType": "https://glyphser.dev/build/security-artifacts@v1",
+                "externalParameters": {"tool": "tooling/security/security_artifacts.py"},
+            },
+            "runDetails": {
+                "builder": {"id": "glyphser-ci"},
+                "metadata": {"invocationId": _git_head(), "startedOn": sbom.get("git_commit", "")},
+            },
+        },
+    }
+    slsa_path = OUT / "slsa_provenance_v1.json"
+    slsa_path.write_text(json.dumps(slsa, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (OUT / "slsa_provenance_v1.json.sig").write_text(sign_file(slsa_path, key=key) + "\n", encoding="utf-8")
     print("SECURITY_ARTIFACTS: PASS")
     return 0
 

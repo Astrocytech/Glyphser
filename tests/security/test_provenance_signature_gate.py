@@ -13,11 +13,14 @@ def test_provenance_signature_gate_passes(monkeypatch, tmp_path: Path) -> None:
     sec.mkdir(parents=True)
     sbom = sec / "sbom.json"
     prov = sec / "build_provenance.json"
+    slsa = sec / "slsa_provenance_v1.json"
     sbom.write_text('{"status":"ok"}\n', encoding="utf-8")
     prov.write_text('{"status":"ok"}\n', encoding="utf-8")
+    slsa.write_text('{"status":"ok"}\n', encoding="utf-8")
     key = b"test-key"
     (sec / "sbom.json.sig").write_text(sign_file(sbom, key=key) + "\n", encoding="utf-8")
     (sec / "build_provenance.json.sig").write_text(sign_file(prov, key=key) + "\n", encoding="utf-8")
+    (sec / "slsa_provenance_v1.json.sig").write_text(sign_file(slsa, key=key) + "\n", encoding="utf-8")
 
     monkeypatch.setattr(provenance_signature_gate, "ROOT", repo)
     monkeypatch.setattr(provenance_signature_gate, "evidence_root", lambda: repo / "evidence")
@@ -35,11 +38,14 @@ def test_provenance_signature_gate_fails_on_tamper(monkeypatch, tmp_path: Path) 
     sec.mkdir(parents=True)
     sbom = sec / "sbom.json"
     prov = sec / "build_provenance.json"
+    slsa = sec / "slsa_provenance_v1.json"
     sbom.write_text('{"status":"ok"}\n', encoding="utf-8")
     prov.write_text('{"status":"ok"}\n', encoding="utf-8")
+    slsa.write_text('{"status":"ok"}\n', encoding="utf-8")
     key = b"test-key"
     (sec / "sbom.json.sig").write_text(sign_file(sbom, key=key) + "\n", encoding="utf-8")
     (sec / "build_provenance.json.sig").write_text(sign_file(prov, key=key) + "\n", encoding="utf-8")
+    (sec / "slsa_provenance_v1.json.sig").write_text(sign_file(slsa, key=key) + "\n", encoding="utf-8")
     sbom.write_text('{"status":"tampered"}\n', encoding="utf-8")
 
     monkeypatch.setattr(provenance_signature_gate, "ROOT", repo)
@@ -58,8 +64,10 @@ def test_provenance_signature_gate_strict_key_missing(monkeypatch, tmp_path: Pat
     sec.mkdir(parents=True)
     (sec / "sbom.json").write_text('{"status":"ok"}\n', encoding="utf-8")
     (sec / "build_provenance.json").write_text('{"status":"ok"}\n', encoding="utf-8")
+    (sec / "slsa_provenance_v1.json").write_text('{"status":"ok"}\n', encoding="utf-8")
     (sec / "sbom.json.sig").write_text("deadbeef\n", encoding="utf-8")
     (sec / "build_provenance.json.sig").write_text("deadbeef\n", encoding="utf-8")
+    (sec / "slsa_provenance_v1.json.sig").write_text("deadbeef\n", encoding="utf-8")
 
     monkeypatch.setattr(provenance_signature_gate, "ROOT", repo)
     monkeypatch.setattr(provenance_signature_gate, "evidence_root", lambda: repo / "evidence")

@@ -39,6 +39,8 @@ jobs:
         env:
           GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
         run: python tooling/security/provenance_signature_gate.py --strict-key
+      - name: Verify SLSA attestation
+        run: python tooling/security/slsa_attestation_gate.py
       - name: Upload artifacts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -49,7 +51,10 @@ jobs:
             evidence/security/sbom.json.sig
             evidence/security/build_provenance.json
             evidence/security/build_provenance.json.sig
+            evidence/security/slsa_provenance_v1.json
+            evidence/security/slsa_provenance_v1.json.sig
             evidence/security/provenance_signature.json
+            evidence/security/slsa_attestation.json
 
   verify-signatures:
     needs: build
@@ -68,6 +73,7 @@ jobs:
         run: |
           python tooling/security/security_artifacts.py
           python tooling/security/provenance_signature_gate.py --strict-key
+          python tooling/security/slsa_attestation_gate.py
 
   publish-pypi:
     needs: [build, verify-signatures]

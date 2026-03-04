@@ -1,0 +1,25 @@
+{
+  "max_runbook_age_days": 180,
+  "max_alert_routing_age_days": 30,
+  "max_key_rotation_drill_age_days": 90,
+  "alert_routing_test": {
+    "last_tested_utc": "2026-03-04T00:00:00Z",
+    "primary_contact": "oncall@glyphser.local",
+    "secondary_contact": "security@glyphser.local",
+    "escalation_contact": "sre-lead@glyphser.local"
+  },
+  "key_rotation_drill": {
+    "last_drill_utc": "2026-03-04T00:00:00Z",
+    "evidence": "evidence/security/key_rotation_drill.json"
+  },
+  "runbooks": [
+    {
+      "path": "governance/security/OPERATIONS.md",
+      "last_reviewed_utc": "2026-03-04T00:00:00Z"
+    },
+    {
+      "path": "governance/security/THREAT_MODEL.md",
+      "last_reviewed_utc": "2026-03-04T00:00:00Z"
+    }
+  ]
+}

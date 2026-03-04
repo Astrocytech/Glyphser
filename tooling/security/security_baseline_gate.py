@@ -109,6 +109,8 @@ def main() -> int:
         OUT / "sbom.json.sig",
         OUT / "build_provenance.json",
         OUT / "build_provenance.json.sig",
+        OUT / "slsa_provenance_v1.json",
+        OUT / "slsa_provenance_v1.json.sig",
     ]
     missing = [p.relative_to(ROOT).as_posix() for p in docs_required + artifacts_required if not p.exists()]
     secret_scan = _secret_scan()
