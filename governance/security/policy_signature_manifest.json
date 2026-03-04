@@ -25,6 +25,7 @@
     "governance/security/security_super_gate_membership_baseline.json",
     "governance/security/secret_management_policy.json",
     "governance/security/security_event_schema.json",
+    "governance/security/security_observability_policy.json",
     "governance/security/security_report_schema_contract.json",
     "governance/security/security_retention_policy.json",
     "governance/security/stage_s_hardening_policy.json",

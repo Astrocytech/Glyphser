@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "slo_target": 0.99,
+  "burn_rate_alert_threshold": 2.0,
+  "history_window_runs": 30,
+  "noise_control": {
+    "dedup_window_runs": 2,
+    "suppression_ttl_runs": 3
+  },
+  "silent_failure_detection": {
+    "max_report_age_hours": 26,
+    "required_security_reports": [
+      "security_slo_report.json",
+      "security_super_gate.json",
+      "policy_signature.json",
+      "provenance_signature.json"
+    ]
+  }
+}
