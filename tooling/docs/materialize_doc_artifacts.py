@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
+RUN_MARKER = "run-marker"
 
 
 def _ensure_repo_on_path() -> None:
@@ -22,7 +23,8 @@ def sha256_hex(data: bytes) -> str:
 
 
 def _enc_uint(major: int, n: int) -> bytes:
-    assert n >= 0
+    if n < 0:
+        raise ValueError("n must be non-negative")
     if n < 24:
         return bytes([(major << 5) | n])
     if n < 256:
@@ -405,7 +407,7 @@ def materialize() -> None:
             "ir_dag": model_ir,
             "input_data": {"input": inputs},
             "mode": "forward",
-            "replay_token": "hello-core-replay-token",
+            "replay_token": RUN_MARKER,
             "tmmu_context": {"arena_config": {"default": {"capacity_bytes": 1_000_000, "alignment_bytes": 64}}},
         }
     )

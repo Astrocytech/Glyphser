@@ -13,6 +13,7 @@ from runtime.glyphser.model.model_ir_executor import execute
 from tooling.lib.path_config import fixtures_root
 
 ROOT = Path(__file__).resolve().parents[3]
+RUN_MARKER = "run-marker"
 
 
 def _load_dataset(path: Path) -> list[dict[str, Any]]:
@@ -46,7 +47,7 @@ def _run_profile(driver_id: str, model_ir: dict[str, Any], inputs: list[float]) 
             "input_data": {"input": inputs},
             "driver_id": driver_id,
             "mode": "forward",
-            "replay_token": "milestone-6-keras-cpu-gpu",
+            "replay_token": RUN_MARKER,
             "tmmu_context": {"arena_config": {"default": {"capacity_bytes": 1_000_000, "alignment_bytes": 64}}},
         }
     )

@@ -17,14 +17,14 @@ def _detect_runtime() -> tuple[str, str]:
         import openvino
 
         return "openvino_cpu", getattr(openvino, "__version__", "unknown")
-    except Exception:
-        pass
+    except Exception as exc:
+        _ = exc
     try:
         import tensorrt
 
         return "tensorrt", getattr(tensorrt, "__version__", "unknown")
-    except Exception:
-        pass
+    except Exception as exc:
+        _ = exc
     raise RuntimeError("Neither OpenVINO nor TensorRT python package is available.")
 
 

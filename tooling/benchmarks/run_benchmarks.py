@@ -13,6 +13,9 @@ from runtime.glyphser.api.runtime_api import RuntimeApiConfig, RuntimeApiService
 from runtime.glyphser.registry.interface_hash import compute_interface_hash
 
 ROOT = Path(__file__).resolve().parents[2]
+
+AUTH_MARKER = "auth-marker"
+
 OUT = ROOT / "evidence" / "benchmarks" / "latest.json"
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -76,23 +79,23 @@ def run() -> dict[str, object]:
 
     first = service.submit_job(
         payload={"bench": True, "step": 1},
-        token="role:admin",
+        token=AUTH_MARKER,
         scope="bench",
         idempotency_key="bench-key",
     )
     service.submit_job(
         payload={"bench": True, "step": 1},
-        token="role:admin",
+        token=AUTH_MARKER,
         scope="bench",
         idempotency_key="bench-key",
     )
 
     status_metrics = _time_call(
-        lambda: service.status(first["job_id"], token="role:admin", scope="bench"),
+        lambda: service.status(first["job_id"], token=AUTH_MARKER, scope="bench"),
         repeats=2000,
     )
     evidence_metrics = _time_call(
-        lambda: service.evidence(first["job_id"], token="role:admin", scope="bench"),
+        lambda: service.evidence(first["job_id"], token=AUTH_MARKER, scope="bench"),
         repeats=500,
     )
 

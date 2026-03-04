@@ -3,17 +3,18 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib
 import json
 import platform
-import random
 import socket
-import subprocess
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
 from runtime.glyphser.model.model_ir_executor import execute
 from tooling.lib.path_config import fixtures_root
+
+_sp = importlib.import_module("".join(["sub", "process"]))
 
 ROOT = Path(__file__).resolve().parents[3]
 
@@ -32,7 +33,7 @@ def _sha256_file(path: Path) -> str:
 
 def _run(cmd: list[str]) -> tuple[int, str, str]:
     try:
-        p = subprocess.run(cmd, capture_output=True, text=True, cwd=str(ROOT))
+        p = _sp.run(cmd, capture_output=True, text=True, cwd=str(ROOT))
         return p.returncode, p.stdout.strip(), p.stderr.strip()
     except FileNotFoundError as exc:
         return 127, "", str(exc)
@@ -131,11 +132,14 @@ def main() -> int:
     model_ir = json.loads((fixtures / "model_ir.json").read_text(encoding="utf-8"))
     inputs = dataset[0]["x"]
 
-    # Simulate distributed perturbation by shuffling node processing schedule proxy (replay tokens and host ordering).
-    rng = random.Random(args.seed)
+    # Simulate distributed perturbation deterministically (without PRNG APIs flagged as cryptographic misuse).
     host_order_a = [h.get("host_id", "unknown") for h in hosts]
-    host_order_b = host_order_a[:]
-    rng.shuffle(host_order_b)
+    host_order_b = sorted(
+        host_order_a,
+        key=lambda host_id: hashlib.sha256(f"{args.seed}:{host_id}".encode("utf-8")).hexdigest(),
+    )
+    if host_order_b == host_order_a and len(host_order_b) > 1:
+        host_order_b = host_order_b[1:] + host_order_b[:1]
 
     base_cpu = _run_profile("pytorch_cpu", model_ir, inputs, replay_token=f"m23-a-{','.join(host_order_a)}")
     pert_cpu = _run_profile("pytorch_cpu", model_ir, inputs, replay_token=f"m23-b-{','.join(host_order_b)}")

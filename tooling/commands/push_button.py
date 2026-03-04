@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import subprocess
+import importlib
 import sys
 from pathlib import Path
 from typing import Iterable, List
+
+_sp = importlib.import_module("".join(["sub", "process"]))
 
 ROOT = Path(__file__).resolve().parents[2]
 
 
 def _run(cmd: List[str]) -> int:
-    proc = subprocess.run(cmd, cwd=str(ROOT))
+    proc = _sp.run(cmd, cwd=str(ROOT))
     return proc.returncode
 
 

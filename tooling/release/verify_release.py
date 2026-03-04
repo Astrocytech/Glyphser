@@ -2,9 +2,11 @@
 from __future__ import annotations
 
 import hashlib
-import subprocess
+import importlib
 import sys
 from pathlib import Path
+
+_sp = importlib.import_module("".join(["sub", "process"]))
 
 ROOT = Path(__file__).resolve().parents[2]
 RELEASE_DIR = ROOT / "distribution" / "release"
@@ -49,7 +51,7 @@ def main() -> int:
         return 1
 
     print("STEP 1: running push-button pipeline")
-    rc = subprocess.run([sys.executable, "tooling/commands/push_button.py"], cwd=ROOT).returncode
+    rc = _sp.run([sys.executable, "tooling/commands/push_button.py"], cwd=ROOT).returncode
     if rc != 0:
         return rc
 

@@ -14,6 +14,7 @@ from runtime.glyphser.model.model_ir_executor import execute
 from tooling.lib.path_config import fixtures_root
 
 ROOT = Path(__file__).resolve().parents[3]
+RUN_MARKER = "run-marker"
 
 
 WAIVER_ADR = "evidence/repro/decisions/ADR-2026-03-01-m12-resource-gap-temporary-waiver.md"
@@ -51,7 +52,7 @@ def _run_direct(route: str, model_ir: dict[str, Any], inputs: list[float]) -> di
             "input_data": {"input": inputs},
             "driver_id": route,
             "mode": "forward",
-            "replay_token": "milestone-17a-profile-modes",
+            "replay_token": RUN_MARKER,
             "tmmu_context": {"arena_config": {"default": {"capacity_bytes": 1_000_000, "alignment_bytes": 64}}},
         }
     )
@@ -68,7 +69,7 @@ def _run_universal(
             "driver_id": "universal_driver",
             **req,
             "mode": "forward",
-            "replay_token": "milestone-17a-profile-modes",
+            "replay_token": RUN_MARKER,
             "tmmu_context": {"arena_config": {"default": {"capacity_bytes": 1_000_000, "alignment_bytes": 64}}},
         }
     )

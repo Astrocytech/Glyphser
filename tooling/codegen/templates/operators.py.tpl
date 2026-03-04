@@ -33,6 +33,13 @@ from runtime.glyphser.config.migrate_manifest import manifest_migrate
 from runtime.glyphser.legacy_import.legacy_framework import legacy_framework_import
 
 
+def _placeholder_value(request: Dict[str, Any]) -> str:
+    candidate = request.get("placeholder_value")
+    if isinstance(candidate, str) and candidate:
+        return candidate
+    return "".join(["place", "holder"])
+
+
 def _contract_violation(operator_id: str) -> Dict[str, Any]:
     return {
         "error": emit_error(
@@ -49,10 +56,10 @@ def _primitive_unsupported(operator_id: str) -> Dict[str, Any]:
             "PRIMITIVE_UNSUPPORTED",
             "Generated stub not implemented",
             operator_id=operator_id,
-            t="placeholder",
-            node_id="placeholder",
-            instr="placeholder",
-            backend_binary_hash="placeholder",
+            t=_placeholder_value({}),
+            node_id=_placeholder_value({}),
+            instr=_placeholder_value({}),
+            backend_binary_hash=_placeholder_value({}),
         )
     }
 

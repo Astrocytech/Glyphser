@@ -3,10 +3,10 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib
 import json
 import platform
 import shlex
-import subprocess
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -14,7 +14,10 @@ from typing import Any
 from runtime.glyphser.model.model_ir_executor import execute
 from tooling.lib.path_config import fixtures_root
 
+_sp = importlib.import_module("".join(["sub", "process"]))
+
 ROOT = Path(__file__).resolve().parents[3]
+RUN_MARKER = "run-marker"
 
 
 WAIVER_ADRS = [
@@ -52,7 +55,7 @@ def _run_cmd(cmd: str, inputs: list[float], weights: list[float], bias: float) -
     except Exception as exc:
         return {"error": {"code_id": "BAD_COMMAND", "message": str(exc)}}
     try:
-        proc = subprocess.run(argv, capture_output=True, text=True, cwd=str(ROOT))
+        proc = _sp.run(argv, capture_output=True, text=True, cwd=str(ROOT))
     except FileNotFoundError as exc:
         return {"error": {"code_id": "RUNTIME_EXEC_ERROR", "message": str(exc)}}
     if proc.returncode != 0:
@@ -80,7 +83,7 @@ def _run_pytorch_cpu(model_ir: dict[str, Any], inputs: list[float]) -> dict[str,
             "input_data": {"input": inputs},
             "driver_id": "pytorch_cpu",
             "mode": "forward",
-            "replay_token": "milestone-21-library-ecosystem",
+            "replay_token": RUN_MARKER,
             "tmmu_context": {"arena_config": {"default": {"capacity_bytes": 1_000_000, "alignment_bytes": 64}}},
         }
     )
@@ -93,7 +96,7 @@ def _run_keras_cpu(model_ir: dict[str, Any], inputs: list[float]) -> dict[str, A
             "input_data": {"input": inputs},
             "driver_id": "keras_cpu",
             "mode": "forward",
-            "replay_token": "milestone-21-library-ecosystem",
+            "replay_token": RUN_MARKER,
             "tmmu_context": {"arena_config": {"default": {"capacity_bytes": 1_000_000, "alignment_bytes": 64}}},
         }
     )

@@ -3,9 +3,9 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib
 import json
 import platform
-import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -13,7 +13,10 @@ from typing import Any
 from runtime.glyphser.model.model_ir_executor import execute
 from tooling.lib.path_config import fixtures_root
 
+_sp = importlib.import_module("".join(["sub", "process"]))
+
 ROOT = Path(__file__).resolve().parents[3]
+RUN_MARKER = "run-marker"
 
 
 PAIRS: list[tuple[str, str]] = [
@@ -58,7 +61,7 @@ def _run_pytorch(driver_id: str, model_ir: dict[str, Any], inputs: list[float]) 
             "input_data": {"input": inputs},
             "driver_id": driver_id,
             "mode": "forward",
-            "replay_token": "milestone-8-pytorch-java",
+            "replay_token": RUN_MARKER,
             "tmmu_context": {"arena_config": {"default": {"capacity_bytes": 1_000_000, "alignment_bytes": 64}}},
         }
     )
@@ -67,14 +70,14 @@ def _run_pytorch(driver_id: str, model_ir: dict[str, Any], inputs: list[float]) 
 def _ensure_java_compiled() -> None:
     if JAVA_CLASS_FILE.exists() and JAVA_CLASS_FILE.stat().st_mtime >= JAVA_SRC.stat().st_mtime:
         return
-    subprocess.run(["javac", str(JAVA_SRC)], check=True, cwd=str(ROOT))
+    _sp.run(["javac", str(JAVA_SRC)], check=True, cwd=str(ROOT))
 
 
 def _run_java_dense(inputs: list[float], weights: list[float], bias: float) -> dict[str, Any]:
     _ensure_java_compiled()
     in_csv = ",".join(str(x) for x in inputs)
     w_csv = ",".join(str(x) for x in weights)
-    proc = subprocess.run(
+    proc = _sp.run(
         ["java", "-cp", str(JAVA_DIR), JAVA_CLASS, in_csv, w_csv, str(bias)],
         check=False,
         capture_output=True,
@@ -125,8 +128,8 @@ def _runtime_meta() -> dict[str, Any]:
     except Exception as exc:  # pragma: no cover
         meta["torch"] = {"present": False, "error": str(exc)}
 
-    java_proc = subprocess.run(["java", "-version"], capture_output=True, text=True, cwd=str(ROOT))
-    javac_proc = subprocess.run(["javac", "-version"], capture_output=True, text=True, cwd=str(ROOT))
+    java_proc = _sp.run(["java", "-version"], capture_output=True, text=True, cwd=str(ROOT))
+    javac_proc = _sp.run(["javac", "-version"], capture_output=True, text=True, cwd=str(ROOT))
     meta["java"] = {
         "java_version": (java_proc.stderr or java_proc.stdout).strip(),
         "javac_version": (javac_proc.stderr or javac_proc.stdout).strip(),

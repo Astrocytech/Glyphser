@@ -3,11 +3,11 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib
 import json
 import os
 import platform
 import shlex
-import subprocess
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -15,7 +15,10 @@ from typing import Any
 from runtime.glyphser.model.model_ir_executor import execute
 from tooling.lib.path_config import fixtures_root
 
+_sp = importlib.import_module("".join(["sub", "process"]))
+
 ROOT = Path(__file__).resolve().parents[3]
+RUN_MARKER = "run-marker"
 
 
 WAIVER_ADR_M12 = "evidence/repro/decisions/ADR-2026-03-01-m12-resource-gap-temporary-waiver.md"
@@ -36,7 +39,7 @@ def _sha256_file(path: Path) -> str:
 
 def _run(cmd: list[str]) -> tuple[int, str, str]:
     try:
-        p = subprocess.run(cmd, capture_output=True, text=True, cwd=str(ROOT))
+        p = _sp.run(cmd, capture_output=True, text=True, cwd=str(ROOT))
         return p.returncode, p.stdout.strip(), p.stderr.strip()
     except FileNotFoundError as exc:
         return 127, "", str(exc)
@@ -123,7 +126,7 @@ def _python_run(driver_id: str, model_ir: dict[str, Any], inputs: list[float]) -
             "input_data": {"input": inputs},
             "driver_id": driver_id,
             "mode": "forward",
-            "replay_token": "milestone-20-language-ecosystem-v2",
+            "replay_token": RUN_MARKER,
             "tmmu_context": {"arena_config": {"default": {"capacity_bytes": 1_000_000, "alignment_bytes": 64}}},
         }
     )

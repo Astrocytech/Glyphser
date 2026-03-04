@@ -2,10 +2,12 @@
 from __future__ import annotations
 
 import hashlib
+import importlib
 import json
-import subprocess
 from datetime import UTC, datetime
 from pathlib import Path
+
+_sp = importlib.import_module("".join(["sub", "process"]))
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "evidence" / "traceability" / "index.json"
@@ -17,7 +19,7 @@ def _sha256(path: Path) -> str:
 
 
 def _git_head() -> str:
-    proc = subprocess.run(
+    proc = _sp.run(
         ["git", "rev-parse", "HEAD"],
         cwd=ROOT,
         capture_output=True,

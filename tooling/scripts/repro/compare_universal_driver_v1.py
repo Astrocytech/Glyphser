@@ -14,6 +14,7 @@ from runtime.glyphser.model.model_ir_executor import execute
 from tooling.lib.path_config import fixtures_root
 
 ROOT = Path(__file__).resolve().parents[3]
+RUN_MARKER = "run-marker"
 
 
 SUPPORTED_ROUTES = ["pytorch_cpu", "pytorch_gpu", "keras_cpu", "keras_gpu"]
@@ -52,7 +53,7 @@ def _run_direct(driver_id: str, model_ir: dict[str, Any], inputs: list[float]) -
             "input_data": {"input": inputs},
             "driver_id": driver_id,
             "mode": "forward",
-            "replay_token": "milestone-17-universal-driver-v1",
+            "replay_token": RUN_MARKER,
             "tmmu_context": {"arena_config": {"default": {"capacity_bytes": 1_000_000, "alignment_bytes": 64}}},
         }
     )
@@ -80,7 +81,7 @@ def _run_universal(route: str, model_ir: dict[str, Any], inputs: list[float]) ->
             "driver_id": "universal_driver",
             "universal_route": route,
             "mode": "forward",
-            "replay_token": "milestone-17-universal-driver-v1",
+            "replay_token": RUN_MARKER,
             "tmmu_context": {"arena_config": {"default": {"capacity_bytes": 1_000_000, "alignment_bytes": 64}}},
         }
     )

@@ -19,6 +19,8 @@ from runtime.glyphser.api.runtime_api import (
 
 ROOT = Path(__file__).resolve().parents[3]
 
+AUTH_MARKER = "auth-marker"
+
 
 WAIVER_ADR = "evidence/repro/decisions/ADR-2026-03-01-m12-resource-gap-temporary-waiver.md"
 
@@ -97,8 +99,8 @@ def main() -> int:
             }
         )
 
-        first = svc.submit_job(payload=payload_a, token="token-a", scope="jobs:write")
-        second = svc.submit_job(payload=payload_b, token="token-a", scope="jobs:write")
+        first = svc.submit_job(payload=payload_a, token=AUTH_MARKER, scope="jobs:write")
+        second = svc.submit_job(payload=payload_b, token=AUTH_MARKER, scope="jobs:write")
         same_job = first["job_id"] == second["job_id"]
         checks.append(
             {
@@ -116,7 +118,7 @@ def main() -> int:
         idem_results = [
             svc.submit_job(
                 payload=payload_a,
-                token="token-a",
+                token=AUTH_MARKER,
                 scope="jobs:write",
                 idempotency_key=idem_key,
             )
@@ -142,7 +144,7 @@ def main() -> int:
             payload = {"payload": {"job": "svc-concurrent", "index": ix % 4}}
             return svc.submit_job(
                 payload=payload,
-                token="token-a",
+                token=AUTH_MARKER,
                 scope="jobs:write",
                 idempotency_key=keys[ix],
             )
@@ -167,10 +169,10 @@ def main() -> int:
         )
 
         replay_job = idem_results[0]["job_id"]
-        ev_a = svc.evidence(replay_job, token="token-a", scope="evidence:read")
-        ev_b = svc.evidence(replay_job, token="token-a", scope="evidence:read")
-        rp_a = svc.replay(replay_job, token="token-a", scope="replay:run")
-        rp_b = svc.replay(replay_job, token="token-a", scope="replay:run")
+        ev_a = svc.evidence(replay_job, token=AUTH_MARKER, scope="evidence:read")
+        ev_b = svc.evidence(replay_job, token=AUTH_MARKER, scope="evidence:read")
+        rp_a = svc.replay(replay_job, token=AUTH_MARKER, scope="replay:run")
+        rp_b = svc.replay(replay_job, token=AUTH_MARKER, scope="replay:run")
         evidence_repro = ev_a == ev_b
         replay_repro = rp_a == rp_b and rp_a.get("replay_verdict") == "PASS"
         checks.append(

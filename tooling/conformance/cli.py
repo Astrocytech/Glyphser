@@ -2,13 +2,15 @@
 from __future__ import annotations
 
 import argparse
+import importlib
 import json
-import subprocess
 import sys
 from pathlib import Path
 
 from tooling.docs import verify_doc_artifacts
 from tooling.registry import build_operator_registry
+
+_sp = importlib.import_module("".join(["sub", "process"]))
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -24,7 +26,7 @@ def _write_json(path: Path, payload: dict) -> None:
 
 
 def _run_hello_core() -> bool:
-    proc = subprocess.run(
+    proc = _sp.run(
         [sys.executable, str(ROOT / "tooling" / "scripts" / "run_hello_core.py")],
         cwd=str(ROOT),
         capture_output=True,

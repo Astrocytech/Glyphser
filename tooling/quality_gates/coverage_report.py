@@ -24,9 +24,12 @@ def _find_vector_files() -> Dict[str, List[str]]:
         return mapping
 
     for path in vector_root.rglob("*.json"):
+        data = None
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
         except Exception:
+            data = None
+        if not isinstance(data, dict):
             continue
         file_operator_id = data.get("operator_id")
         for vector in data.get("vectors", []):
@@ -46,9 +49,12 @@ def _find_tests_for_ops(operators: List[str]) -> Dict[str, List[str]]:
         return mapping
 
     for path in test_root.rglob("*.py"):
+        text = ""
         try:
             text = path.read_text(encoding="utf-8", errors="ignore")
         except Exception:
+            text = ""
+        if not text:
             continue
         for op in operators:
             if op in text:

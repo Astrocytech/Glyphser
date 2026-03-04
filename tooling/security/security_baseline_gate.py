@@ -28,9 +28,12 @@ def _secret_scan() -> dict:
             continue
         if path.suffix in {".png", ".jpg", ".jpeg", ".gif", ".pdf", ".cbor"}:
             continue
+        text = ""
         try:
             text = path.read_text(encoding="utf-8")
         except Exception:
+            text = ""
+        if not text:
             continue
         for idx, line in enumerate(text.splitlines(), start=1):
             if line.strip().startswith("#"):

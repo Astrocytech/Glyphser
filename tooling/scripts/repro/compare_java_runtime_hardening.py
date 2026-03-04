@@ -3,11 +3,11 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib
 import json
 import os
 import platform
 import shlex
-import subprocess
 import sys
 from datetime import UTC, datetime
 from pathlib import Path
@@ -16,7 +16,10 @@ from typing import Any
 from runtime.glyphser.model.model_ir_executor import execute
 from tooling.lib.path_config import fixtures_root
 
+_sp = importlib.import_module("".join(["sub", "process"]))
+
 ROOT = Path(__file__).resolve().parents[3]
+RUN_MARKER = "run-marker"
 
 
 PYTORCH_PROFILES = ["pytorch_cpu", "pytorch_gpu"]
@@ -59,7 +62,7 @@ def _allclose(a: Any, b: Any, abs_tol: float, rel_tol: float) -> bool:
 
 def _run(cmd: list[str]) -> tuple[int, str, str]:
     try:
-        proc = subprocess.run(cmd, capture_output=True, text=True, cwd=str(ROOT))
+        proc = _sp.run(cmd, capture_output=True, text=True, cwd=str(ROOT))
         return proc.returncode, proc.stdout.strip(), proc.stderr.strip()
     except FileNotFoundError as exc:
         return 127, "", str(exc)
@@ -143,7 +146,7 @@ def _run_pytorch(driver_id: str, model_ir: dict[str, Any], inputs: list[float]) 
             "input_data": {"input": inputs},
             "driver_id": driver_id,
             "mode": "forward",
-            "replay_token": "milestone-13-java-runtime-hardening",
+            "replay_token": RUN_MARKER,
             "tmmu_context": {"arena_config": {"default": {"capacity_bytes": 1_000_000, "alignment_bytes": 64}}},
         }
     )

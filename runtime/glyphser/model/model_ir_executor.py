@@ -67,7 +67,7 @@ def execute(request: Dict[str, Any]) -> Dict[str, Any]:
                 "ir_dag missing",
                 operator_id="Glyphser.Model.ModelIR_Executor",
                 ir_hash="",
-                node_id="",
+                node_id=None,
             )
         }
 
@@ -89,10 +89,10 @@ def execute(request: Dict[str, Any]) -> Dict[str, Any]:
                     "PRIMITIVE_UNSUPPORTED",
                     "unsupported primitive",
                     operator_id="Glyphser.Model.ModelIR_Executor",
-                    t="",
-                    node_id="",
-                    instr="",
-                    backend_binary_hash="",
+                    t=None,
+                    node_id=None,
+                    instr=None,
+                    backend_binary_hash=None,
                 )
             }
 
@@ -104,9 +104,9 @@ def execute(request: Dict[str, Any]) -> Dict[str, Any]:
                 "PRIMITIVE_UNSUPPORTED",
                 "unsupported primitive",
                 operator_id="Glyphser.Model.ModelIR_Executor",
-                t="",
-                node_id="",
-                instr="",
+                t=None,
+                node_id=None,
+                instr=None,
                 backend_binary_hash=getattr(driver, "backend_binary_hash", ""),
             )
         }
@@ -116,9 +116,9 @@ def execute(request: Dict[str, Any]) -> Dict[str, Any]:
                 "INVALID_IR",
                 "invalid request",
                 operator_id="Glyphser.Model.ModelIR_Executor",
-                t="",
+                t=None,
                 ir_hash="",
-                node_id="",
+                node_id=None,
             )
         }
 
@@ -130,9 +130,9 @@ def execute(request: Dict[str, Any]) -> Dict[str, Any]:
                 "CYCLE_DETECTED",
                 "invalid request",
                 operator_id="Glyphser.Model.ModelIR_Executor",
-                t="",
+                t=None,
                 ir_hash=ir.get("ir_hash", ""),
-                node_id="",
+                node_id=None,
             )
         }
 
@@ -149,9 +149,9 @@ def execute(request: Dict[str, Any]) -> Dict[str, Any]:
                     "CYCLE_DETECTED",
                     "invalid request",
                     operator_id="Glyphser.Model.ModelIR_Executor",
-                    t="",
+                    t=None,
                     ir_hash=ir.get("ir_hash", ""),
-                    node_id="",
+                    node_id=None,
                 )
             }
 
@@ -171,7 +171,7 @@ def execute(request: Dict[str, Any]) -> Dict[str, Any]:
                 "TMMU_ALLOCATION_FAILURE",
                 "invalid request",
                 operator_id="Glyphser.Model.ModelIR_Executor",
-                t="",
+                t=None,
                 arena="",
                 peak_required_bytes="",
             )
@@ -198,8 +198,8 @@ def execute(request: Dict[str, Any]) -> Dict[str, Any]:
                 "SHAPE_MISMATCH",
                 "invalid request",
                 operator_id="Glyphser.Model.ModelIR_Executor",
-                t="",
-                node_id="",
+                t=None,
+                node_id=None,
                 shape_in="",
                 shape_expected="",
             )
@@ -210,9 +210,9 @@ def execute(request: Dict[str, Any]) -> Dict[str, Any]:
                 "PRIMITIVE_UNSUPPORTED",
                 "invalid request",
                 operator_id="Glyphser.Model.ModelIR_Executor",
-                t="",
-                node_id="",
-                instr="",
+                t=None,
+                node_id=None,
+                instr=None,
                 backend_binary_hash=getattr(driver, "backend_binary_hash", ""),
             )
         }
@@ -222,9 +222,9 @@ def execute(request: Dict[str, Any]) -> Dict[str, Any]:
                 "CONTRACT_VIOLATION",
                 "invalid request",
                 operator_id="Glyphser.Model.ModelIR_Executor",
-                t="",
-                replay_token="",
-                failure_operator="",
+                t=None,
+                replay_token=request.get("replay_token") if isinstance(request.get("replay_token"), str) else "",
+                failure_operator=None,
             )
         }
 

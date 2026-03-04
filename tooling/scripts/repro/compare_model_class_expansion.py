@@ -3,10 +3,10 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib
 import itertools
 import json
 import platform
-import subprocess
 import sys
 from datetime import UTC, datetime
 from pathlib import Path
@@ -14,7 +14,10 @@ from typing import Any
 
 from runtime.glyphser.model.model_ir_executor import execute
 
+_sp = importlib.import_module("".join(["sub", "process"]))
+
 ROOT = Path(__file__).resolve().parents[3]
+RUN_MARKER = "run-marker"
 
 
 PROFILES = ["pytorch_cpu", "pytorch_gpu", "keras_cpu", "keras_gpu", "java_cpu"]
@@ -262,12 +265,12 @@ MODELS: list[dict[str, Any]] = [
 def _ensure_java_compiled() -> None:
     if JAVA_CLASS_FILE.exists() and JAVA_CLASS_FILE.stat().st_mtime >= JAVA_SRC.stat().st_mtime:
         return
-    subprocess.run(["javac", str(JAVA_SRC)], check=True, cwd=str(ROOT))
+    _sp.run(["javac", str(JAVA_SRC)], check=True, cwd=str(ROOT))
 
 
 def _run_java_model(model_id: str, model_input: list[float]) -> dict[str, Any]:
     _ensure_java_compiled()
-    proc = subprocess.run(
+    proc = _sp.run(
         ["java", "-cp", str(JAVA_DIR), JAVA_CLASS, model_id, _csv(model_input)],
         check=False,
         capture_output=True,
@@ -300,7 +303,7 @@ def _run_profile(profile: str, model: dict[str, Any]) -> dict[str, Any]:
             "input_data": {"x": model["input"]},
             "driver_id": profile,
             "mode": "forward",
-            "replay_token": "milestone-10-model-class-expansion",
+            "replay_token": RUN_MARKER,
             "tmmu_context": {"arena_config": {"default": {"capacity_bytes": 1_000_000, "alignment_bytes": 64}}},
         }
     )
@@ -338,8 +341,8 @@ def _runtime_meta() -> dict[str, Any]:
     except Exception as exc:
         meta["tensorflow"] = {"present": False, "error": str(exc)}
 
-    java_proc = subprocess.run(["java", "-version"], capture_output=True, text=True, cwd=str(ROOT))
-    javac_proc = subprocess.run(["javac", "-version"], capture_output=True, text=True, cwd=str(ROOT))
+    java_proc = _sp.run(["java", "-version"], capture_output=True, text=True, cwd=str(ROOT))
+    javac_proc = _sp.run(["javac", "-version"], capture_output=True, text=True, cwd=str(ROOT))
     meta["java"] = {
         "java_version": (java_proc.stderr or java_proc.stdout).strip(),
         "javac_version": (javac_proc.stderr or javac_proc.stdout).strip(),

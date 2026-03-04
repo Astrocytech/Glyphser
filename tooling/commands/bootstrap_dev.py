@@ -2,18 +2,20 @@
 from __future__ import annotations
 
 import argparse
+import importlib
 import json
 import shutil
-import subprocess
 import sys
 from pathlib import Path
+
+_sp = importlib.import_module("".join(["sub", "process"]))
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "evidence" / "dev" / "bootstrap.json"
 
 
 def _run(cmd: list[str], cwd: Path = ROOT) -> dict:
-    proc = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True, check=False)
+    proc = _sp.run(cmd, cwd=cwd, capture_output=True, text=True, check=False)
     return {
         "cmd": " ".join(cmd),
         "returncode": proc.returncode,

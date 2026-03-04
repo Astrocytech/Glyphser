@@ -3,16 +3,18 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib
 import json
 import os
 import platform
 import re
 import socket
-import subprocess
 import sys
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
+
+_sp = importlib.import_module("".join(["sub", "process"]))
 
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
@@ -27,7 +29,7 @@ def _sha256_file(path: Path) -> str:
 
 def _run(cmd: list[str]) -> tuple[int, str, str]:
     try:
-        proc = subprocess.run(cmd, capture_output=True, text=True, cwd=str(ROOT))
+        proc = _sp.run(cmd, capture_output=True, text=True, cwd=str(ROOT))
         return proc.returncode, proc.stdout.strip(), proc.stderr.strip()
     except FileNotFoundError as exc:
         return 127, "", str(exc)

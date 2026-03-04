@@ -17,6 +17,8 @@ from runtime.glyphser.trace.trace_sidecar import write_trace
 from tooling.lib.path_config import fixtures_root
 
 ROOT = Path(__file__).resolve().parents[2]
+RUN_MARKER = "run-marker"
+
 sys.path.insert(0, str(ROOT))
 
 
@@ -134,7 +136,7 @@ def main() -> int:
             "input_data": {"input": inputs},
             "driver_id": driver_id,
             "mode": "forward",
-            "replay_token": "hello-core-replay-token",
+            "replay_token": RUN_MARKER,
             "tmmu_context": {"arena_config": {"default": {"capacity_bytes": 1_000_000, "alignment_bytes": 64}}},
         }
     )

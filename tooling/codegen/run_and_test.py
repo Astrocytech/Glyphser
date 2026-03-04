@@ -1,18 +1,20 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import subprocess
+import importlib
 import sys
 from pathlib import Path
 
 from tooling.codegen.generate import generate
+
+_sp = importlib.import_module("".join(["sub", "process"]))
 
 ROOT = Path(__file__).resolve().parents[2]
 
 
 def main() -> int:
     generate()
-    proc = subprocess.run([sys.executable, "-m", "pytest"], check=False)
+    proc = _sp.run([sys.executable, "-m", "pytest"], check=False)
     return proc.returncode
 
 

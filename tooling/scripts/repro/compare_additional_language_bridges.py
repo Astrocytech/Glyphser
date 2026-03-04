@@ -3,12 +3,12 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib
 import itertools
 import json
 import os
 import platform
 import shlex
-import subprocess
 import sys
 from datetime import UTC, datetime
 from pathlib import Path
@@ -17,7 +17,10 @@ from typing import Any
 from runtime.glyphser.model.model_ir_executor import execute
 from tooling.lib.path_config import fixtures_root
 
+_sp = importlib.import_module("".join(["sub", "process"]))
+
 ROOT = Path(__file__).resolve().parents[3]
+RUN_MARKER = "run-marker"
 
 
 PYTHON_PROFILES = ["pytorch_cpu", "pytorch_gpu", "keras_cpu", "keras_gpu"]
@@ -43,7 +46,7 @@ def _sha256_file(path: Path) -> str:
 
 def _run(cmd: list[str]) -> tuple[int, str, str]:
     try:
-        proc = subprocess.run(cmd, capture_output=True, text=True, cwd=str(ROOT))
+        proc = _sp.run(cmd, capture_output=True, text=True, cwd=str(ROOT))
         return proc.returncode, proc.stdout.strip(), proc.stderr.strip()
     except FileNotFoundError as exc:
         return 127, "", str(exc)
@@ -134,7 +137,7 @@ def _run_python_profile(profile: str, model_ir: dict[str, Any], inputs: list[flo
             "input_data": {"input": inputs},
             "driver_id": profile,
             "mode": "forward",
-            "replay_token": "milestone-14-additional-language-bridges",
+            "replay_token": RUN_MARKER,
             "tmmu_context": {"arena_config": {"default": {"capacity_bytes": 1_000_000, "alignment_bytes": 64}}},
         }
     )

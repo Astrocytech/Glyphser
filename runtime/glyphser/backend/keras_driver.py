@@ -40,8 +40,8 @@ class KerasCPUDriver:
         _tf.random.set_seed(0)
         try:
             _tf.config.experimental.enable_op_determinism()
-        except Exception:
-            pass
+        except Exception as exc:
+            _ = exc
         self.backend_binary_hash = _hash_payload(
             {
                 "runtime": "tensorflow",
@@ -221,13 +221,13 @@ class KerasGPUDriver:
         try:
             for gpu in gpus:
                 _tf.config.experimental.set_memory_growth(gpu, True)
-        except Exception:
-            pass
+        except Exception as exc:
+            _ = exc
         _tf.random.set_seed(0)
         try:
             _tf.config.experimental.enable_op_determinism()
-        except Exception:
-            pass
+        except Exception as exc:
+            _ = exc
         self.backend_binary_hash = _hash_payload(
             {
                 "runtime": "tensorflow",

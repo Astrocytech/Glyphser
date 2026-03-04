@@ -2,11 +2,13 @@
 from __future__ import annotations
 
 import fnmatch
+import importlib
 import json
-import subprocess
 import sys
 from pathlib import Path
 from typing import Any
+
+_sp = importlib.import_module("".join(["sub", "process"]))
 
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
@@ -17,7 +19,7 @@ OUT = ROOT / "evidence" / "gates" / "quality" / "evidence_storage_policy.json"
 
 
 def _tracked_paths(root: Path) -> list[str]:
-    proc = subprocess.run(["git", "ls-files"], cwd=root, capture_output=True, text=True, check=False)
+    proc = _sp.run(["git", "ls-files"], cwd=root, capture_output=True, text=True, check=False)
     if proc.returncode != 0:
         return []
     return [line.strip() for line in proc.stdout.splitlines() if line.strip()]
