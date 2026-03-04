@@ -46,6 +46,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/evidence_attestation_gate.py --strict-key" in wf
     assert "python tooling/security/provenance_signature_gate.py --strict-key" in wf
     assert "python tooling/security/key_provenance_continuity_gate.py" in wf
+    assert "python tooling/security/signature_algorithm_policy_gate.py" in wf
     assert "python tooling/security/slsa_attestation_gate.py" in wf
     assert "python tooling/security/workflow_evidence_scope_gate.py" in wf
     assert "python tooling/security/conformance_security_coupling_gate.py" in wf
@@ -77,6 +78,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "hardening_todo_consistency_gate.json" in wf
     assert "security_trend_alert.json" in wf
     assert "key_provenance_continuity_gate.json" in wf
+    assert "signature_algorithm_policy_gate.json" in wf
     assert "semgrep --version" in wf
     assert 'python -c "import pkg_resources"' in wf
     assert "security-maintenance-artifacts" in wf

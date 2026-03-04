@@ -37,6 +37,8 @@
     "evidence/security/slsa_provenance_v1.json.sig"
   ],
   "forbidden_algorithms": ["md5", "sha1"],
+  "forbidden_signature_adapters": ["md5", "sha1", "none"],
+  "allowed_signature_adapters": ["hmac", "kms"],
   "required_branch_approvals": 2,
   "offline_bundle_dir": "evidence/security/offline_verify_bundle",
   "internal_package_prefixes": ["glyphser", "runtime-glyphser"],
