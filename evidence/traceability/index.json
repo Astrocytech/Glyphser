@@ -106,7 +106,7 @@
       "fixture_id": "tracking-monitoring"
     }
   ],
-  "generated_at_utc": "2026-03-04T00:02:03.443397+00:00",
-  "git_commit": "7659ed0df1673bdc57533a2e3dfd969ec1bbc3f2",
+  "generated_at_utc": "2026-03-04T00:07:37.130722+00:00",
+  "git_commit": "06f5a6e2121d67ac3d1a11ba0b25d745d5cfde1d",
   "schema_version": "glyphser-traceability-index.v1"
 }
