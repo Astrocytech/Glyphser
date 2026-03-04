@@ -26,6 +26,7 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: branch-protection-policy
+          retention-days: 14
           path: evidence/security/branch_protection_policy.json
 
   test-matrix:
@@ -129,18 +130,21 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: coverage-xml
+          retention-days: 14
           path: coverage.xml
       - name: Upload coverage HTML
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: coverage-html
+          retention-days: 14
           path: htmlcov/
       - name: Upload gate telemetry
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: gate-telemetry
+          retention-days: 14
           path: evidence/gates/telemetry/
 
   determinism-matrix:
@@ -206,6 +210,8 @@ jobs:
         run: python tooling/security/security_workflow_contract_gate.py
       - name: Security super gate manifest drift gate
         run: python tooling/security/security_super_gate_manifest_gate.py
+      - name: Workflow artifact retention gate
+        run: python tooling/security/workflow_artifact_retention_gate.py
       - name: Workflow risky patterns gate
         run: python tooling/security/workflow_risky_patterns_gate.py
       - name: Workflow deprecated invocation gate
@@ -326,6 +332,7 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: security-artifacts-${{ matrix.python-version }}
+          retention-days: 14
           path: |
             bandit.sarif
             semgrep.sarif
@@ -339,6 +346,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/subprocess_direct_usage_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_workflow_contract_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_super_gate_manifest_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_artifact_retention_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_risky_patterns_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_deprecated_invocation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_schema_validation_gate.json

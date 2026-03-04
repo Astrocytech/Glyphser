@@ -97,6 +97,7 @@ def main(argv: list[str] | None = None) -> int:
         [sys.executable, "tooling/security/subprocess_direct_usage_gate.py"],
         [sys.executable, "tooling/security/security_workflow_contract_gate.py"],
         [sys.executable, "tooling/security/security_super_gate_manifest_gate.py"],
+        [sys.executable, "tooling/security/workflow_artifact_retention_gate.py"],
         [sys.executable, "tooling/security/workflow_risky_patterns_gate.py"],
         [sys.executable, "tooling/security/workflow_deprecated_invocation_gate.py"],
         [sys.executable, "tooling/security/policy_schema_validation_gate.py"],

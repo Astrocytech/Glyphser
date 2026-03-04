@@ -53,6 +53,8 @@ jobs:
         run: python tooling/security/security_schema_migration_tracker.py
       - name: Security super gate manifest drift gate
         run: python tooling/security/security_super_gate_manifest_gate.py
+      - name: Workflow artifact retention gate
+        run: python tooling/security/workflow_artifact_retention_gate.py
       - name: Security evidence corruption gate
         run: python tooling/security/security_evidence_corruption_gate.py
       - name: Policy signature gate
@@ -121,6 +123,7 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: security-maintenance-artifacts
+          retention-days: 30
           path: |
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/dependency_outdated.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/pip_audit.json
@@ -130,6 +133,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_schema_validation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_schema_migration_tracker.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_super_gate_manifest_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_artifact_retention_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_evidence_corruption_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_toolchain.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_risky_patterns_gate.json
