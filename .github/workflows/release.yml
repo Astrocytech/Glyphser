@@ -66,6 +66,12 @@ jobs:
         env:
           GLYPHSER_CONTAINER_PUBLISHING_ENABLED: "true"
         run: python tooling/security/container_provenance_gate.py
+      - name: Container registry provenance gate
+        env:
+          GLYPHSER_CONTAINER_PUBLISHING_ENABLED: "true"
+        run: python tooling/security/container_registry_provenance_gate.py
+      - name: Attestation digest match gate
+        run: python tooling/security/attestation_digest_match_gate.py
       - name: Governance markdown gate
         run: python tooling/security/governance_markdown_gate.py
       - name: Review policy gate
@@ -132,6 +138,8 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/temporary_waiver_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_revocation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/container_provenance.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/container_registry_provenance_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/attestation_digest_match_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json.sig
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_gate.json
@@ -187,6 +195,9 @@ jobs:
           python tooling/security/live_rollout_gate.py --profile release
           GLYPHSER_CONTAINER_PUBLISHING_ENABLED=true \
           python tooling/security/container_provenance_gate.py
+          GLYPHSER_CONTAINER_PUBLISHING_ENABLED=true \
+          python tooling/security/container_registry_provenance_gate.py
+          python tooling/security/attestation_digest_match_gate.py
           python tooling/security/abuse_telemetry_snapshot.py
           python tooling/security/abuse_telemetry_gate.py
           python tooling/security/temporary_waiver_gate.py

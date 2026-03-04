@@ -276,6 +276,10 @@ jobs:
         run: python tooling/security/live_rollout_gate.py --allow-dry-run --allow-missing
       - name: Container provenance gate
         run: python tooling/security/container_provenance_gate.py
+      - name: Container registry provenance gate
+        run: python tooling/security/container_registry_provenance_gate.py
+      - name: Attestation digest match gate
+        run: python tooling/security/attestation_digest_match_gate.py
       - name: Security artifacts
         run: python tooling/security/security_artifacts.py
       - name: Security unsigned JSON gate
@@ -400,6 +404,8 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_revocation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_gate_test_coverage.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/container_provenance.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/container_registry_provenance_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/attestation_digest_match_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json.sig
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_gate.json

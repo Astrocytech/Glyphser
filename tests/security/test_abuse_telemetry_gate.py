@@ -25,12 +25,21 @@ def test_abuse_telemetry_gate_passes_within_threshold(monkeypatch, tmp_path: Pat
     )
     policy.with_suffix(".json.sig").write_text(sign_file(policy, key=current_key(strict=False)) + "\n", encoding="utf-8")
     (repo / "artifacts" / "generated" / "tmp" / "security" / "runtime_api_state.json").write_text(
-        json.dumps({"quotas": {"token_requests": {"a": 2, "b": 1}, "auth_failures_by_token": {"a": 1}}}) + "\n",
+        json.dumps(
+            {
+                "quotas": {"token_requests": {"a": 2, "b": 1}, "auth_failures_by_token": {"a": 1}},
+                "jobs": {"j1": {"trace_id": "trace-1"}},
+            }
+        )
+        + "\n",
         encoding="utf-8",
     )
     monkeypatch.setattr(abuse_telemetry_gate, "ROOT", repo)
     monkeypatch.setattr(abuse_telemetry_gate, "evidence_root", lambda: repo / "evidence")
     assert abuse_telemetry_gate.main([]) == 0
+    report = json.loads((repo / "evidence" / "security" / "abuse_telemetry.json").read_text(encoding="utf-8"))
+    assert report["summary"]["correlation_ids"] == ["trace-1"]
+    assert report["summary"]["correlation_id_count"] == 1
 
 
 def test_abuse_telemetry_gate_fails_on_token_spray(monkeypatch, tmp_path: Path) -> None:

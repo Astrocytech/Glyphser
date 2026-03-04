@@ -88,10 +88,22 @@ def main(argv: list[str] | None = None) -> int:
             token_requests = {}
         if not isinstance(auth_failures, dict):
             auth_failures = {}
+        jobs = state.get("jobs", {}) if isinstance(state, dict) else {}
+        if not isinstance(jobs, dict):
+            jobs = {}
 
         distinct_tokens = len(token_requests)
         summary["distinct_tokens"] = distinct_tokens
         summary["auth_failures_by_token"] = auth_failures
+        correlation_ids = sorted(
+            {
+                str(job.get("trace_id", "")).strip()
+                for job in jobs.values()
+                if isinstance(job, dict) and str(job.get("trace_id", "")).strip()
+            }
+        )
+        summary["correlation_ids"] = correlation_ids
+        summary["correlation_id_count"] = len(correlation_ids)
         if distinct_tokens > max_distinct_tokens:
             findings.append(f"token spray suspected: {distinct_tokens} distinct tokens")
 

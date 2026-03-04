@@ -15,6 +15,7 @@ if str(ROOT) not in sys.path:
 def main(argv: list[str] | None = None) -> int:
     _ = argv
     findings: list[str] = []
+    correlation_ids: list[str] = []
     state_path = ROOT / "artifacts" / "generated" / "tmp" / "security" / "runtime_api_state.json"
     try:
         policy = json.loads(
@@ -38,6 +39,9 @@ def main(argv: list[str] | None = None) -> int:
 
         try:
             job = svc.submit_job(payload=payload, token=service_actor, scope="jobs:write")
+            trace_id = str(job.get("trace_id", "")).strip()
+            if trace_id:
+                correlation_ids.append(trace_id)
             svc.status(job["job_id"], token=service_actor, scope="jobs:read")
         except Exception as exc:
             findings.append(f"service_token_request_failed:{type(exc).__name__}")
@@ -56,7 +60,10 @@ def main(argv: list[str] | None = None) -> int:
     snapshot = {
         "status": snapshot_status,
         "findings": findings,
-        "summary": {"state_path": str(state_path.relative_to(ROOT)).replace("\\", "/")},
+        "summary": {
+            "state_path": str(state_path.relative_to(ROOT)).replace("\\", "/"),
+            "correlation_ids": sorted(set(correlation_ids)),
+        },
     }
     out = ROOT / "evidence" / "security" / "abuse_telemetry_snapshot.json"
     out.parent.mkdir(parents=True, exist_ok=True)

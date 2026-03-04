@@ -155,6 +155,8 @@ def main(argv: list[str] | None = None) -> int:
         [sys.executable, "tooling/security/live_integrations_verify.py", "--dry-run"],
         [sys.executable, "tooling/security/live_rollout_gate.py", "--allow-dry-run", "--allow-missing"],
         [sys.executable, "tooling/security/container_provenance_gate.py"],
+        [sys.executable, "tooling/security/container_registry_provenance_gate.py"],
+        [sys.executable, "tooling/security/attestation_digest_match_gate.py"],
         (
             [sys.executable, "tooling/security/evidence_attestation_index.py", "--strict-key"]
             if args.strict_key

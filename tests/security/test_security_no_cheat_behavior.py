@@ -44,3 +44,4 @@ def test_abuse_telemetry_snapshot_records_warn_instead_of_false_pass(monkeypatch
     payload = json.loads(out.read_text(encoding="utf-8"))
     assert payload["status"] == "WARN"
     assert any(str(item).startswith("snapshot_setup_failed:") for item in payload["findings"])
+    assert payload["summary"]["correlation_ids"] == []

@@ -55,6 +55,8 @@
     "tooling/security/live_integrations_verify.py",
     "tooling/security/live_rollout_gate.py",
     "tooling/security/container_provenance_gate.py",
+    "tooling/security/container_registry_provenance_gate.py",
+    "tooling/security/attestation_digest_match_gate.py",
     "tooling/security/evidence_attestation_index.py",
     "tooling/security/evidence_attestation_gate.py",
     "tooling/security/provenance_signature_gate.py",

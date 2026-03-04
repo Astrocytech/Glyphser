@@ -50,6 +50,8 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/live_integrations_verify.py --dry-run" in ci
     assert "python tooling/security/live_rollout_gate.py --allow-dry-run --allow-missing" in ci
     assert "python tooling/security/container_provenance_gate.py" in ci
+    assert "python tooling/security/container_registry_provenance_gate.py" in ci
+    assert "python tooling/security/attestation_digest_match_gate.py" in ci
     assert "python tooling/security/abuse_telemetry_snapshot.py" in ci
     assert "python tooling/security/runtime_api_state_schema_gate.py" in ci
     assert "python tooling/security/abuse_telemetry_gate.py" in ci
@@ -58,6 +60,8 @@ def test_ci_security_steps_are_wired() -> None:
     assert "provenance_revocation_gate.json" in ci
     assert "security_artifact_signature_coverage_gate.json" in ci
     assert "security_unsigned_json_gate.json" in ci
+    assert "container_registry_provenance_gate.json" in ci
+    assert "attestation_digest_match_gate.json" in ci
     assert "python tooling/security/security_gate_test_coverage_gate.py" in ci
     assert "python tooling/security/evidence_attestation_index.py --strict-key" in ci
     assert "python tooling/security/evidence_attestation_gate.py --strict-key" in ci
