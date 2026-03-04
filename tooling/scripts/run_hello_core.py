@@ -2,24 +2,26 @@
 from __future__ import annotations
 
 import hashlib
+import importlib
 import json
 import os
 import sys
 from pathlib import Path
 
-from runtime.glyphser.certificate.build import write_execution_certificate
-from runtime.glyphser.checkpoint.write import save_checkpoint
-from runtime.glyphser.data.next_batch import next_batch
-from runtime.glyphser.model.model_ir_executor import execute
-from runtime.glyphser.serialization.canonical_cbor import encode_canonical
-from runtime.glyphser.trace.compute_trace_hash import compute_trace_hash
-from runtime.glyphser.trace.trace_sidecar import write_trace
-from tooling.lib.path_config import fixtures_root
-
 ROOT = Path(__file__).resolve().parents[2]
-RUN_MARKER = "run-marker"
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
-sys.path.insert(0, str(ROOT))
+write_execution_certificate = importlib.import_module("runtime.glyphser.certificate.build").write_execution_certificate
+save_checkpoint = importlib.import_module("runtime.glyphser.checkpoint.write").save_checkpoint
+next_batch = importlib.import_module("runtime.glyphser.data.next_batch").next_batch
+execute = importlib.import_module("runtime.glyphser.model.model_ir_executor").execute
+encode_canonical = importlib.import_module("runtime.glyphser.serialization.canonical_cbor").encode_canonical
+compute_trace_hash = importlib.import_module("runtime.glyphser.trace.compute_trace_hash").compute_trace_hash
+write_trace = importlib.import_module("runtime.glyphser.trace.trace_sidecar").write_trace
+fixtures_root = importlib.import_module("tooling.lib.path_config").fixtures_root
+
+RUN_MARKER = "run-marker"
 
 
 FIXTURES = fixtures_root() / "hello-core"
