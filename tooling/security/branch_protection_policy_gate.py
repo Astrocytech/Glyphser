@@ -47,22 +47,38 @@ def main() -> int:
 
     required_checks = policy.get("required_status_checks", [])
     required_release = policy.get("required_release_checks", [])
+    required_workflow_jobs = policy.get("required_workflow_jobs", {})
     if not isinstance(required_checks, list) or not all(isinstance(x, str) for x in required_checks):
         raise ValueError("required_status_checks must be list[str]")
     if not isinstance(required_release, list) or not all(isinstance(x, str) for x in required_release):
         raise ValueError("required_release_checks must be list[str]")
+    if not isinstance(required_workflow_jobs, dict):
+        raise ValueError("required_workflow_jobs must be dict[str, list[str]]")
 
     ci_jobs = _extract_jobs(ci_path)
     release_jobs = _extract_jobs(release_path)
     missing_ci = sorted([job for job in required_checks if job not in ci_jobs])
     missing_release = sorted([job for job in required_release if job not in release_jobs])
+    missing_workflow_jobs: dict[str, list[str]] = {}
+    for filename, jobs in required_workflow_jobs.items():
+        if not isinstance(filename, str) or not isinstance(jobs, list) or not all(isinstance(x, str) for x in jobs):
+            raise ValueError("required_workflow_jobs entries must be filename -> list[str]")
+        wf_path = ROOT / ".github" / "workflows" / filename
+        if not wf_path.exists():
+            missing_workflow_jobs[filename] = jobs
+            continue
+        wf_jobs = _extract_jobs(wf_path)
+        missing = sorted([job for job in jobs if job not in wf_jobs])
+        if missing:
+            missing_workflow_jobs[filename] = missing
 
-    status = "PASS" if not missing_ci and not missing_release else "FAIL"
+    status = "PASS" if not missing_ci and not missing_release and not missing_workflow_jobs else "FAIL"
     payload: dict[str, Any] = {
         "status": status,
         "policy_path": str(policy_path.relative_to(ROOT)).replace("\\", "/"),
         "missing_ci_jobs": missing_ci,
         "missing_release_jobs": missing_release,
+        "missing_workflow_jobs": missing_workflow_jobs,
     }
     out = evidence_root() / "security" / "branch_protection_policy.json"
     out.parent.mkdir(parents=True, exist_ok=True)

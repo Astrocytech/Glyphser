@@ -8,5 +8,13 @@
   "required_release_checks": [
     "build",
     "verify-signatures"
-  ]
+  ],
+  "required_workflow_jobs": {
+    "reproducible-build.yml": [
+      "reproducible-build"
+    ],
+    "security-penetration.yml": [
+      "penetration"
+    ]
+  }
 }

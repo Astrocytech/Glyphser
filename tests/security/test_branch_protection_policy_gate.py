@@ -15,6 +15,7 @@ def test_branch_protection_policy_gate_passes(monkeypatch, tmp_path: Path) -> No
             {
                 "required_status_checks": ["test-matrix", "security-matrix"],
                 "required_release_checks": ["build", "verify-signatures"],
+                "required_workflow_jobs": {"reproducible-build.yml": ["reproducible-build"]},
             }
         )
         + "\n",
@@ -22,6 +23,7 @@ def test_branch_protection_policy_gate_passes(monkeypatch, tmp_path: Path) -> No
     )
     (wf / "ci.yml").write_text("jobs:\n  test-matrix:\n    runs-on: ubuntu-latest\n  security-matrix:\n    runs-on: ubuntu-latest\n", encoding="utf-8")
     (wf / "release.yml").write_text("jobs:\n  build:\n    runs-on: ubuntu-latest\n  verify-signatures:\n    runs-on: ubuntu-latest\n", encoding="utf-8")
+    (wf / "reproducible-build.yml").write_text("jobs:\n  reproducible-build:\n    runs-on: ubuntu-latest\n", encoding="utf-8")
 
     monkeypatch.setattr(branch_protection_policy_gate, "ROOT", repo)
     monkeypatch.setattr(branch_protection_policy_gate, "evidence_root", lambda: repo / "evidence")

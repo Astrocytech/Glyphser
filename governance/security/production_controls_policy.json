@@ -1,0 +1,9 @@
+{
+  "required_controls": [
+    "waf_ingress",
+    "siem_pipeline",
+    "oncall_paging"
+  ],
+  "max_snapshot_age_days": 30,
+  "snapshot_path": "evidence/security/production_controls_snapshot.json"
+}

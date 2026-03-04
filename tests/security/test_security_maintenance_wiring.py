@@ -13,6 +13,8 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/secret_scan_gate.py" in wf
     assert "python tooling/security/workflow_pinning_gate.py" in wf
     assert "python tooling/security/incident_response_gate.py" in wf
+    assert "python tooling/security/secret_management_gate.py" in wf
+    assert "python tooling/security/production_controls_gate.py" in wf
     assert "python tooling/security/provenance_signature_gate.py" in wf
     assert "python tooling/security/slsa_attestation_gate.py" in wf
     assert "security-maintenance-artifacts" in wf
