@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "contract_id": "glyphser-security-report-v1",
+  "required_fields": [
+    "status",
+    "findings",
+    "summary",
+    "metadata",
+    "schema_version"
+  ],
+  "optional_fields": [
+    "advisories",
+    "checks",
+    "results",
+    "diagnostics",
+    "artifacts",
+    "metrics"
+  ],
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "WARN"
+  ],
+  "compatibility_policy": {
+    "minor_change_rules": [
+      "optional_fields_may_expand",
+      "summary_keys_may_expand",
+      "metadata_keys_may_expand"
+    ],
+    "major_change_requires": [
+      "schema_version_increment",
+      "migration_plan",
+      "backward_compatibility_notes"
+    ]
+  }
+}

@@ -111,7 +111,9 @@ def main(argv: list[str] | None = None) -> int:
         [sys.executable, "tooling/security/workflow_deprecated_invocation_gate.py"],
         [sys.executable, "tooling/security/workflow_pin_change_approval_gate.py"],
         [sys.executable, "tooling/security/policy_schema_validation_gate.py"],
+        [sys.executable, "tooling/security/security_report_schema_contract_gate.py"],
         [sys.executable, "tooling/security/policy_semantic_validation_gate.py"],
+        [sys.executable, "tooling/security/security_retention_policy_gate.py"],
         [sys.executable, "tooling/security/environment_profile_policy_gate.py"],
         [sys.executable, "tooling/security/security_schema_compatibility_policy_gate.py"],
         [sys.executable, "tooling/security/security_schema_migration_tracker.py"],
@@ -253,6 +255,8 @@ def main(argv: list[str] | None = None) -> int:
         [sys.executable, "tooling/security/deterministic_env_gate.py"],
         [sys.executable, "tooling/security/archive_integrity_revalidation_gate.py"],
         [sys.executable, "tooling/security/compromised_runner_drill.py"],
+        [sys.executable, "tooling/security/independent_verifier_profile_gate.py"],
+        [sys.executable, "tooling/security/offline_verification_gate.py"],
     ]
     if args.include_extended:
         gates.extend(extended_gates)

@@ -47,3 +47,7 @@ jobs:
           path: |
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_super_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_super_extended_compare_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_report_schema_contract_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_retention_policy_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/independent_verifier_profile_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/offline_verification_gate.json

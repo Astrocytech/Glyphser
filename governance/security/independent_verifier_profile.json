@@ -1,0 +1,16 @@
+{
+  "profile_id": "read_only_verifier_v1",
+  "role": "read_only_verifier",
+  "allowed_commands": [
+    "python tooling/security/offline_verification_gate.py",
+    "python tooling/security/security_artifact_bundle_manifest.py",
+    "python tooling/security/external_audit_simulation_gate.py"
+  ],
+  "forbidden_command_patterns": [
+    " rm ",
+    " chmod ",
+    " chown ",
+    " mv ",
+    " git push "
+  ]
+}

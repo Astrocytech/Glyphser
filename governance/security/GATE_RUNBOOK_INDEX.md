@@ -743,3 +743,31 @@ Inputs: `evidence/security/security_super_gate.json`, `tooling/security/security
 Outputs: `evidence/security/security_super_extended_compare_gate.json`.
 Fail reasons: Missing source reports/manifests or failures that cannot be classified by manifest.
 Triage steps: Ensure the super-gate report exists, keep manifest aligned, and remediate unknown gate references.
+
+## `security_report_schema_contract_gate.py`
+Purpose: Validate the formal versioned security report schema contract used by gates.
+Inputs: `governance/security/security_report_schema_contract.json`.
+Outputs: `evidence/security/security_report_schema_contract_gate.json`.
+Fail reasons: Missing contract, invalid required field set, invalid schema version, missing required status values.
+Triage steps: Restore contract file, keep required field set stable, and bump schema version only with approved migration docs.
+
+## `security_retention_policy_gate.py`
+Purpose: Enforce baseline retention policy structure for immutable security evidence storage.
+Inputs: `governance/security/security_retention_policy.json`.
+Outputs: `evidence/security/security_retention_policy_gate.json`.
+Fail reasons: Missing policy, missing required fields, invalid booleans, empty storage/retention fields.
+Triage steps: Update retention policy to include all required fields and signed policy coverage.
+
+## `independent_verifier_profile_gate.py`
+Purpose: Validate read-only independent verifier command profile and forbidden command pattern protections.
+Inputs: `governance/security/independent_verifier_profile.json`.
+Outputs: `evidence/security/independent_verifier_profile_gate.json`.
+Fail reasons: Missing profile, invalid role, missing allowed commands, forbidden patterns present in allowed commands.
+Triage steps: Restrict verifier profile to read-only commands and remove unsafe command patterns.
+
+## `offline_verification_gate.py`
+Purpose: Verify policy signature manifest and chain-of-custody checks without network dependencies.
+Inputs: `governance/security/policy_signature_manifest.json`, policy signatures, `evidence/security/evidence_chain_of_custody.json`.
+Outputs: `evidence/security/offline_verification_gate.json`.
+Fail reasons: Missing manifest, missing/invalid policy signatures, or chain-of-custody verification failures.
+Triage steps: Regenerate signatures with approved key, restore manifest coverage, and rerun chain-of-custody generation/verification.

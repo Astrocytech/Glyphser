@@ -1,0 +1,6 @@
+{
+  "storage_location": "immutable://glyphser-security-evidence",
+  "retention_class": "long_term",
+  "legal_hold_supported": true,
+  "manifest_required": true
+}

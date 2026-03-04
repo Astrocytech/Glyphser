@@ -22,9 +22,13 @@ def _scan_text_files(base: Path, exts: set[str]) -> List[Path]:
 
 def _check_no_json_vectors_in_tests() -> Dict[str, object]:
     violations: List[str] = []
+    allowed_prefixes = (
+        "tests/security/corpus/",
+        "tests/security/semgrep_fixtures/",
+    )
     for path in (ROOT / "tests").rglob("*.json"):
         rel = str(path.relative_to(ROOT)).replace("\\", "/")
-        if rel.startswith("tests/security/corpus/"):
+        if rel.startswith(allowed_prefixes):
             continue
         violations.append(rel)
     return {

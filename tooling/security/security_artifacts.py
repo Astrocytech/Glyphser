@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import hashlib
-import importlib
 import json
 import os
 import sys
@@ -12,11 +11,10 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-_sp = importlib.import_module("".join(["sub", "process"]))
-artifact_signing = importlib.import_module("runtime.glyphser.security.artifact_signing")
-current_key = artifact_signing.current_key
-sign_file = artifact_signing.sign_file
-evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+import subprocess
+
+from runtime.glyphser.security.artifact_signing import current_key, sign_file
+from tooling.lib.path_config import evidence_root
 
 
 def _sha256(path: Path) -> str:
@@ -24,7 +22,7 @@ def _sha256(path: Path) -> str:
 
 
 def _git_head() -> str:
-    proc = _sp.run(
+    proc = subprocess.run(
         ["git", "rev-parse", "HEAD"],
         cwd=ROOT,
         check=False,

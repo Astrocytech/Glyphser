@@ -19,7 +19,9 @@
     "tooling/security/workflow_deprecated_invocation_gate.py",
     "tooling/security/workflow_pin_change_approval_gate.py",
     "tooling/security/policy_schema_validation_gate.py",
+    "tooling/security/security_report_schema_contract_gate.py",
     "tooling/security/policy_semantic_validation_gate.py",
+    "tooling/security/security_retention_policy_gate.py",
     "tooling/security/environment_profile_policy_gate.py",
     "tooling/security/security_schema_compatibility_policy_gate.py",
     "tooling/security/security_schema_migration_tracker.py",
@@ -127,6 +129,8 @@
     "tooling/security/dependency_confusion_gate.py",
     "tooling/security/deterministic_env_gate.py",
     "tooling/security/archive_integrity_revalidation_gate.py",
-    "tooling/security/compromised_runner_drill.py"
+    "tooling/security/compromised_runner_drill.py",
+    "tooling/security/independent_verifier_profile_gate.py",
+    "tooling/security/offline_verification_gate.py"
   ]
 }
