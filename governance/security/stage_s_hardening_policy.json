@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "provenance_witness": {
+    "witness_file": "evidence/security/provenance_witnesses.json",
+    "minimum_unique_witnesses": 2,
+    "minimum_unique_roles": 2
+  },
+  "transparency_log": {
+    "log_path": "evidence/security/transparency_log.json",
+    "tracked_paths": [
+      "evidence/security/sbom.json",
+      "evidence/security/build_provenance.json",
+      "evidence/security/slsa_provenance_v1.json"
+    ]
+  },
+  "time_attestation": {
+    "max_skew_seconds": 300,
+    "trusted_unix_time_env": "GLYPHSER_TRUSTED_UNIX_TIME"
+  },
+  "build_environment": {
+    "allow_python_prefixes": ["3.11", "3.12"],
+    "allow_platform_prefixes": ["Linux", "Darwin"],
+    "baseline_file": "governance/security/build_env_baseline.json",
+    "drift_approval_file": "governance/security/build_env_drift_approval.json"
+  },
+  "artifact_classification": {
+    "manifest_path": "governance/security/artifact_classification_manifest.json",
+    "required_retention_classes": ["short", "long", "regulatory"]
+  },
+  "redaction": {
+    "forbidden_literals": ["token-a", "role:admin"],
+    "allowed_redaction_prefix": "REDACTED[sha256:",
+    "scan_glob": "evidence/security/*.json"
+  },
+  "drills": {
+    "disaster_recovery_path": "evidence/security/disaster_recovery_drill.json",
+    "key_compromise_path": "evidence/security/key_compromise_drill.json"
+  },
+  "dependency_trust": {
+    "allowed_action_owners": ["actions", "github", "codeql-action", "ossf", "astrocytech"],
+    "allow_local_actions": true
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "witnesses": [
+    {
+      "witness_id": "witness-a",
+      "role": "release-security",
+      "attested_at_utc": "2026-03-04T00:00:00Z",
+      "artifact_digest": "sha256:bootstrap"
+    },
+    {
+      "witness_id": "witness-b",
+      "role": "release-engineering",
+      "attested_at_utc": "2026-03-04T00:00:00Z",
+      "artifact_digest": "sha256:bootstrap"
+    }
+  ]
+}

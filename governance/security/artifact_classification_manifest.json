@@ -1,0 +1,24 @@
+{
+  "artifacts": [
+    {
+      "path": "evidence/security/sbom.json",
+      "classification": "public",
+      "retention_class": "long"
+    },
+    {
+      "path": "evidence/security/build_provenance.json",
+      "classification": "internal",
+      "retention_class": "long"
+    },
+    {
+      "path": "evidence/security/slsa_provenance_v1.json",
+      "classification": "internal",
+      "retention_class": "regulatory"
+    },
+    {
+      "path": "evidence/security/security_super_gate.json",
+      "classification": "internal",
+      "retention_class": "short"
+    }
+  ]
+}
