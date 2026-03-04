@@ -27,11 +27,15 @@ def main(argv: list[str] | None = None) -> int:
     policy = json.loads((ROOT / "governance" / "security" / "temporary_waiver_policy.json").read_text(encoding="utf-8"))
     max_active = int(policy.get("max_active_waivers", 5))
     required = [f for f in policy.get("required_fields", []) if isinstance(f, str)]
+    glob_pattern = str(policy.get("waiver_file_glob", "**/waivers.json")).strip() or "**/waivers.json"
+    if glob_pattern.startswith("evidence/"):
+        glob_pattern = glob_pattern[len("evidence/") :]
+    evidence_base = evidence_root()
     findings: list[str] = []
     active_count = 0
     now = datetime.now(UTC)
 
-    for path in sorted(ROOT.glob("evidence/**/waivers.json")):
+    for path in sorted(evidence_base.glob(glob_pattern)):
         try:
             payload = json.loads(path.read_text(encoding="utf-8"))
         except Exception:
