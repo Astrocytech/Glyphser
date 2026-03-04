@@ -4,6 +4,7 @@ from __future__ import annotations
 import importlib
 import json
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -14,6 +15,7 @@ if str(ROOT) not in sys.path:
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
 
 DEFAULT_TODO = ""
+SECTION_RE = re.compile(r"^([A-Z0-9]{1,4})\.\s+")
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -25,13 +27,29 @@ def main(argv: list[str] | None = None) -> int:
     skipped = False
     pending_count = 0
     done_marker_present = False
+    section_counts: dict[str, dict[str, int]] = {}
 
     if not configured or not todo_path.exists():
         skipped = True
     else:
         text = todo_path.read_text(encoding="utf-8")
         done_marker_present = "DONE" in text
-        pending_count = sum(1 for line in text.splitlines() if line.strip().startswith("[ ]"))
+        current_section = "GLOBAL"
+        section_counts.setdefault(current_section, {"pending": 0, "in_progress": 0, "done": 0})
+        for line in text.splitlines():
+            match = SECTION_RE.match(line.strip())
+            if match:
+                current_section = match.group(1)
+                section_counts.setdefault(current_section, {"pending": 0, "in_progress": 0, "done": 0})
+                continue
+            stripped = line.strip()
+            if stripped.startswith("[ ]"):
+                pending_count += 1
+                section_counts[current_section]["pending"] += 1
+            elif stripped.startswith("[~]"):
+                section_counts[current_section]["in_progress"] += 1
+            elif stripped.startswith("[x]"):
+                section_counts[current_section]["done"] += 1
         if done_marker_present and pending_count > 0:
             status = "FAIL"
             findings.append("done_marker_present_with_pending_items")
@@ -41,9 +59,10 @@ def main(argv: list[str] | None = None) -> int:
         "skipped": skipped,
         "findings": findings,
         "summary": {
-            "todo_path": str(todo_path),
+            "todo_path": str(todo_path) if configured else "",
             "pending_items": pending_count,
             "done_marker_present": done_marker_present,
+            "section_counts": section_counts,
         },
         "metadata": {"gate": "hardening_todo_consistency_gate"},
     }

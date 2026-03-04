@@ -29,3 +29,4 @@ def test_hardening_todo_consistency_gate_fails_on_done_with_pending(monkeypatch,
     report = json.loads((ev / "hardening_todo_consistency_gate.json").read_text(encoding="utf-8"))
     assert report["status"] == "FAIL"
     assert "done_marker_present_with_pending_items" in report["findings"]
+    assert report["summary"]["section_counts"]["GLOBAL"]["pending"] >= 1
