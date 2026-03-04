@@ -10,6 +10,7 @@ def test_new_security_workflows_exist_and_are_wired() -> None:
         ROOT / ".github" / "workflows" / "security-baseline-update.yml",
         ROOT / ".github" / "workflows" / "security-audit-archive.yml",
         ROOT / ".github" / "workflows" / "emergency-lockdown.yml",
+        ROOT / ".github" / "workflows" / "security-tamper-canary.yml",
     ]:
         text = wf.read_text(encoding="utf-8")
         assert "evidence_run_dir_guard.py" in text

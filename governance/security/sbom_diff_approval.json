@@ -1,0 +1,7 @@
+{
+  "approved_by": "security-automation",
+  "ticket": "SEC-0000",
+  "notes": "No sbom.previous.json present; bootstrap state approved.",
+  "expires_at_utc": "2027-01-01T00:00:00Z",
+  "allowed_changes": []
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "security_workflow_evidence_required": [
+    "security_super_gate.json",
+    "evidence_chain_of_custody.json",
+    "evidence_chain_of_custody.json.sig"
+  ],
+  "allowed_security_workflows": [
+    "ci.yml",
+    "security-maintenance.yml",
+    "release.yml",
+    "conformance-gate.yml",
+    "reproducible-build.yml",
+    "security-penetration.yml",
+    "fuzz-nightly.yml"
+  ],
+  "exception_registry_path": "governance/security/temporary_exceptions.json",
+  "max_active_exceptions": 3,
+  "lockdown_max_duration_minutes": 240,
+  "lockdown_allowed_operations": ["publish", "replay"],
+  "rollback_attestation_path": "evidence/security/lockdown_rollback_attestation.json",
+  "sbom_current_path": "evidence/security/sbom.json",
+  "sbom_previous_path": "evidence/security/sbom.previous.json",
+  "sbom_diff_approval_path": "governance/security/sbom_diff_approval.json",
+  "sbom_allowed_changes": [],
+  "allowed_egress_domains": [
+    "api.github.com",
+    "github.com",
+    "objects.githubusercontent.com",
+    "pypi.org",
+    "files.pythonhosted.org"
+  ],
+  "max_attestation_age_hours": 168,
+  "required_attestation_files": [
+    "evidence/security/sbom.json.sig",
+    "evidence/security/build_provenance.json.sig",
+    "evidence/security/slsa_provenance_v1.json.sig"
+  ],
+  "forbidden_algorithms": ["md5", "sha1"],
+  "required_branch_approvals": 2,
+  "offline_bundle_dir": "evidence/security/offline_verify_bundle",
+  "internal_package_prefixes": ["glyphser", "runtime-glyphser"],
+  "allow_external_packages": ["bandit", "pip-audit", "semgrep", "pytest", "mypy", "ruff", "black"],
+  "security_script_globs": ["tooling/security/*.py", "runtime/glyphser/security/*.py"],
+  "required_env_vars": ["TZ", "LC_ALL", "LANG"],
+  "required_timezone": "UTC",
+  "tamper_canary_reason_codes": [
+    "policy_signature_tamper",
+    "evidence_index_tamper",
+    "provenance_signature_tamper"
+  ],
+  "archive_integrity_index": "evidence/security/archive_integrity_index.json",
+  "archive_integrity_targets": [
+    "evidence/security/sbom.json",
+    "evidence/security/build_provenance.json",
+    "evidence/security/slsa_provenance_v1.json"
+  ]
+}

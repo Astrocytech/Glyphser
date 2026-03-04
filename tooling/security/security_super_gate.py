@@ -4,6 +4,8 @@ from __future__ import annotations
 import argparse
 import importlib
 import json
+import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -27,10 +29,31 @@ def _run(cmd: list[str]) -> dict[str, Any]:
     }
 
 
+def _prereq_failures(*, strict_prereqs: bool, strict_key: bool) -> list[str]:
+    findings: list[str] = []
+    if strict_prereqs and shutil.which("semgrep") is None:
+        findings.append("missing_tool:semgrep")
+    if strict_prereqs and shutil.which("pip-audit") is None:
+        findings.append("missing_tool:pip-audit")
+    if strict_key and not os.environ.get("GLYPHSER_PROVENANCE_HMAC_KEY", "").strip():
+        findings.append("missing_env:GLYPHSER_PROVENANCE_HMAC_KEY")
+    if strict_prereqs:
+        for name in ("TZ", "LC_ALL", "LANG"):
+            if not os.environ.get(name, "").strip():
+                findings.append(f"missing_env:{name}")
+    return findings
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Run consolidated security super gate.")
     parser.add_argument("--strict-key", action="store_true", help="Run signing-sensitive checks with strict key mode.")
+    parser.add_argument(
+        "--strict-prereqs",
+        action="store_true",
+        help="Fail early if required tools/env/evidence prerequisites are missing.",
+    )
     args = parser.parse_args([] if argv is None else argv)
+    prereq_findings = _prereq_failures(strict_prereqs=args.strict_prereqs, strict_key=args.strict_key)
 
     gates: list[list[str]] = [
         [sys.executable, "tooling/security/security_toolchain_gate.py"],
@@ -38,7 +61,11 @@ def main(argv: list[str] | None = None) -> int:
         [sys.executable, "tooling/security/governance_markdown_gate.py"],
         [sys.executable, "tooling/security/review_policy_gate.py"],
         [sys.executable, "tooling/security/file_permissions_gate.py"],
-        [sys.executable, "tooling/security/policy_signature_gate.py", "--strict-key"] if args.strict_key else [sys.executable, "tooling/security/policy_signature_gate.py"],
+        (
+            [sys.executable, "tooling/security/policy_signature_gate.py", "--strict-key"]
+            if args.strict_key
+            else [sys.executable, "tooling/security/policy_signature_gate.py"]
+        ),
         [sys.executable, "tooling/security/pip_audit_gate.py"],
         [sys.executable, "tooling/security/secret_scan_gate.py"],
         [sys.executable, "tooling/security/workflow_pinning_gate.py"],
@@ -53,28 +80,57 @@ def main(argv: list[str] | None = None) -> int:
         [sys.executable, "tooling/security/cosign_attestation_gate.py"],
         [sys.executable, "tooling/security/release_rollback_provenance_gate.py"],
         [sys.executable, "tooling/security/emergency_lockdown_gate.py"],
-        [sys.executable, "tooling/security/evidence_chain_of_custody.py", "--strict-key"] if args.strict_key else [sys.executable, "tooling/security/evidence_chain_of_custody.py"],
-        [sys.executable, "tooling/security/evidence_chain_of_custody.py", "--verify", "--strict-key"] if args.strict_key else [sys.executable, "tooling/security/evidence_chain_of_custody.py", "--verify"],
+        (
+            [sys.executable, "tooling/security/evidence_chain_of_custody.py", "--strict-key"]
+            if args.strict_key
+            else [sys.executable, "tooling/security/evidence_chain_of_custody.py"]
+        ),
+        (
+            [sys.executable, "tooling/security/evidence_chain_of_custody.py", "--verify", "--strict-key"]
+            if args.strict_key
+            else [sys.executable, "tooling/security/evidence_chain_of_custody.py", "--verify"]
+        ),
         [sys.executable, "tooling/security/conformance_security_coupling_gate.py"],
         [sys.executable, "tooling/security/security_slo_report.py"],
         [sys.executable, "tooling/security/security_trend_gate.py"],
         [sys.executable, "tooling/security/security_dashboard_export.py"],
         [sys.executable, "tooling/security/security_schema_normalization_gate.py"],
+        [sys.executable, "tooling/security/security_workflow_evidence_bundle_gate.py"],
+        [sys.executable, "tooling/security/replay_abuse_regression_gate.py"],
+        [sys.executable, "tooling/security/exception_registry_gate.py"],
+        [sys.executable, "tooling/security/lockdown_blast_radius_gate.py"],
+        [sys.executable, "tooling/security/canonical_json_roundtrip_gate.py"],
+        [sys.executable, "tooling/security/file_permission_matrix_gate.py"],
+        [sys.executable, "tooling/security/tamper_canary_gate.py"],
+        [sys.executable, "tooling/security/security_docs_traceability_gate.py"],
+        [sys.executable, "tooling/security/sbom_diff_review_gate.py"],
+        [sys.executable, "tooling/security/egress_policy_gate.py"],
+        [sys.executable, "tooling/security/attestation_freshness_gate.py"],
+        [sys.executable, "tooling/security/crypto_algorithm_policy_gate.py"],
+        [sys.executable, "tooling/security/split_duty_gate.py"],
+        [sys.executable, "tooling/security/export_offline_verify_bundle.py"],
+        [sys.executable, "tooling/security/dependency_confusion_gate.py"],
+        [sys.executable, "tooling/security/deterministic_env_gate.py"],
+        [sys.executable, "tooling/security/archive_integrity_revalidation_gate.py"],
+        [sys.executable, "tooling/security/compromised_runner_drill.py"],
     ]
 
     results = [_run(cmd) for cmd in gates]
     failures = [r for r in results if r["status"] != "PASS"]
+    findings = ["gate_failed:" + " ".join(r["cmd"]) for r in failures] + prereq_findings
     report = {
-        "status": "PASS" if not failures else "FAIL",
-        "findings": ["gate_failed:" + " ".join(r["cmd"]) for r in failures],
+        "status": "PASS" if not findings else "FAIL",
+        "findings": findings,
         "summary": {
             "total": len(results),
             "passed": sum(1 for r in results if r["status"] == "PASS"),
             "failed": len(failures),
+            "prereq_failures": len(prereq_findings),
         },
         "metadata": {
             "runner": "security_super_gate",
             "strict_key": args.strict_key,
+            "strict_prereqs": args.strict_prereqs,
         },
         "results": results,
     }

@@ -13,6 +13,9 @@ jobs:
       GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
       GLYPHSER_PROVENANCE_KEY_ROTATED_AT: "2026-03-01T00:00:00+00:00"
       GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/security-maintenance
+      TZ: "UTC"
+      LC_ALL: "C.UTF-8"
+      LANG: "C.UTF-8"
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - uses: actions/setup-python@42375524a18f07eb0658ddf24b150a0f0f0b274f
@@ -86,7 +89,7 @@ jobs:
           python tooling/security/slsa_attestation_gate.py
           python tooling/security/workflow_evidence_scope_gate.py
           python tooling/security/conformance_security_coupling_gate.py
-          python tooling/security/security_super_gate.py --strict-key
+          python tooling/security/security_super_gate.py --strict-key --strict-prereqs
           python tooling/security/security_slo_report.py
           python tooling/security/security_trend_gate.py
           python tooling/security/security_dashboard_export.py

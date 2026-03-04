@@ -169,6 +169,9 @@ jobs:
       GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
       GLYPHSER_PROVENANCE_KEY_ROTATED_AT: "2026-03-01T00:00:00+00:00"
       GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/security-matrix-${{ matrix.python-version }}
+      TZ: "UTC"
+      LC_ALL: "C.UTF-8"
+      LANG: "C.UTF-8"
     strategy:
       fail-fast: false
       matrix:
@@ -249,7 +252,7 @@ jobs:
       - name: Conformance-security coupling gate
         run: python tooling/security/conformance_security_coupling_gate.py
       - name: Security super gate
-        run: python tooling/security/security_super_gate.py --strict-key
+        run: python tooling/security/security_super_gate.py --strict-key --strict-prereqs
       - name: Security SLO report
         run: python tooling/security/security_slo_report.py
       - name: Security trend gate
@@ -262,6 +265,8 @@ jobs:
         run: python tooling/security/cosign_attestation_gate.py
       - name: Semgrep (SARIF)
         run: semgrep --config tooling/security/semgrep-rules.yml --error --sarif --output semgrep.sarif runtime glyphser tooling
+      - name: Semgrep rule regression tests
+        run: pytest -q tests/security/test_semgrep_rules.py
       - name: Upload Bandit SARIF to Code Scanning
         uses: github/codeql-action/upload-sarif@c793e31f5d8b407fc63e2f79f4fc0488b92581e6
         with:

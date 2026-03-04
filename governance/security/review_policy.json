@@ -5,6 +5,16 @@
     ".github/workflows/**"
   ],
   "minimum_required_approvals": 2,
+  "approval_groups": {
+    "policy_changes": [
+      "security-governance",
+      "security-architecture"
+    ],
+    "workflow_unlock": [
+      "release-engineering",
+      "security-operations"
+    ]
+  },
   "security_baseline_paths": [
     "tooling/security/security_toolchain_lock.json",
     "tooling/security/semgrep-rules.yml",
