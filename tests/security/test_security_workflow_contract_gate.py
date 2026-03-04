@@ -25,6 +25,7 @@ jobs:
       - if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
       - run: semgrep --version
       - run: python -c "import pkg_resources"
+      - run: python tooling/security/security_workflow_trigger_gate.py
 """
     (wf / "ci.yml").write_text(ci_text, encoding="utf-8")
     maintenance_text = """
@@ -35,6 +36,7 @@ jobs:
       - run: python tooling/security/evidence_run_dir_guard.py --run-id x
       - run: semgrep --version
       - run: python -c "import pkg_resources"
+      - run: python tooling/security/security_workflow_trigger_gate.py
 """
     (wf / "security-maintenance.yml").write_text(maintenance_text, encoding="utf-8")
     extended_text = """

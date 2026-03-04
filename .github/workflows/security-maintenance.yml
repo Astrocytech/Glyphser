@@ -104,6 +104,7 @@ jobs:
           python tooling/security/security_dashboard_export.py
           python tooling/security/security_schema_normalization_gate.py
           python tooling/security/cosign_attestation_gate.py
+          python tooling/security/security_workflow_trigger_gate.py
       - name: Upload maintenance artifacts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -116,6 +117,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_signature.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_toolchain.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_workflow_contract_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_workflow_trigger_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_sarif_permissions_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_workflow_permissions_policy_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_exception_suppression_gate.json
