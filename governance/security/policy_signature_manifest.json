@@ -7,6 +7,7 @@
     "governance/security/build_env_baseline.json",
     "governance/security/build_env_drift_approval.json",
     "governance/security/container_provenance_policy.json",
+    "governance/security/environment_profile_policy.json",
     "governance/security/emergency_lockdown_policy.json",
     "governance/security/incident_response_policy.json",
     "governance/security/key_management_policy.json",

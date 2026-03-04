@@ -1,0 +1,25 @@
+{
+  "profiles": {
+    "dev": {
+      "require_strict_key": false,
+      "require_signed_attestations": false,
+      "allow_policy_fallbacks": true
+    },
+    "ci": {
+      "require_strict_key": true,
+      "require_signed_attestations": true,
+      "allow_policy_fallbacks": false
+    },
+    "staging": {
+      "require_strict_key": true,
+      "require_signed_attestations": true,
+      "allow_policy_fallbacks": false
+    },
+    "prod": {
+      "require_strict_key": true,
+      "require_signed_attestations": true,
+      "allow_policy_fallbacks": false
+    }
+  },
+  "inheritance_order": ["dev", "ci", "staging", "prod"]
+}
