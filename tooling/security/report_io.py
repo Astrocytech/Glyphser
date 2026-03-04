@@ -10,6 +10,19 @@ from typing import Any
 SCHEMA_VERSION = 1
 
 
+def _generated_at_utc() -> str:
+    fixed = os.environ.get("GLYPHSER_FIXED_UTC", "").strip()
+    if fixed:
+        return fixed
+    source_date_epoch = os.environ.get("SOURCE_DATE_EPOCH", "").strip()
+    if source_date_epoch:
+        try:
+            return datetime.fromtimestamp(int(source_date_epoch), UTC).isoformat()
+        except ValueError:
+            pass
+    return datetime.now(UTC).isoformat()
+
+
 def _normalize_report_payload(payload: dict[str, Any]) -> dict[str, Any]:
     normalized = dict(payload)
     if "status" in normalized:
@@ -18,7 +31,7 @@ def _normalize_report_payload(payload: dict[str, Any]) -> dict[str, Any]:
         normalized.setdefault("summary", {})
         metadata = normalized.setdefault("metadata", {})
         if isinstance(metadata, dict):
-            metadata.setdefault("generated_at_utc", datetime.now(UTC).isoformat())
+            metadata.setdefault("generated_at_utc", _generated_at_utc())
             metadata.setdefault("tz", os.environ.get("TZ", ""))
             metadata.setdefault("lc_all", os.environ.get("LC_ALL", ""))
             metadata.setdefault("lang", os.environ.get("LANG", ""))
