@@ -30,6 +30,7 @@ jobs:
       - run: python tooling/security/workflow_risky_patterns_gate.py
       - run: python tooling/security/policy_schema_validation_gate.py
       - run: python tooling/security/security_schema_migration_tracker.py
+      - run: python tooling/security/security_evidence_corruption_gate.py
       - run: python tooling/security/security_workflow_trigger_gate.py
       - run: python tooling/security/security_critical_test_wiring_gate.py
       - run: echo semgrep.json
@@ -48,6 +49,7 @@ jobs:
       - run: python tooling/security/workflow_risky_patterns_gate.py
       - run: python tooling/security/policy_schema_validation_gate.py
       - run: python tooling/security/security_schema_migration_tracker.py
+      - run: python tooling/security/security_evidence_corruption_gate.py
       - run: python tooling/security/security_workflow_trigger_gate.py
       - run: python tooling/security/security_critical_test_wiring_gate.py
 """
