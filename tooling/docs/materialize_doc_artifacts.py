@@ -8,18 +8,13 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from runtime.glyphser.registry.registry_builder import (
-    build_operator_registry_from_list,
-    parse_api_interfaces,
-)
-from tooling.lib.path_config import (
-    fixtures_root,
-    goldens_root,
-    vectors_root,
-)
-
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT))
+
+
+def _ensure_repo_on_path() -> None:
+    root = str(ROOT)
+    if root not in sys.path:
+        sys.path.insert(0, root)
 
 
 def sha256_hex(data: bytes) -> str:
@@ -197,6 +192,12 @@ def compute_signature_digest(
 
 
 def build_operator_registry(digest_map: dict[str, bytes]) -> dict[str, Any]:
+    _ensure_repo_on_path()
+    from runtime.glyphser.registry.registry_builder import (
+        build_operator_registry_from_list,
+        parse_api_interfaces,
+    )
+
     api_path = ROOT / "specs" / "layers" / "L1-foundation" / "API-Interfaces.md"
     operator_ids = parse_api_interfaces(api_path)
     return build_operator_registry_from_list(operator_ids, digest_map)
@@ -243,6 +244,13 @@ def write_text(path: Path, text: str) -> None:
 
 
 def materialize() -> None:
+    _ensure_repo_on_path()
+    from tooling.lib.path_config import (
+        fixtures_root,
+        goldens_root,
+        vectors_root,
+    )
+
     contracts_dir = ROOT / "specs" / "contracts"
     fixtures_dir = fixtures_root() / "hello-core"
     goldens_dir = goldens_root() / "hello-core"
@@ -531,6 +539,9 @@ def materialize() -> None:
 
 
 if __name__ == "__main__":
+    _ensure_repo_on_path()
+    from tooling.lib.path_config import fixtures_root, goldens_root, vectors_root
+
     materialize()
     print("Materialized deterministic doc-phase artifacts:")
     print(f"  - contracts: {ROOT / 'specs' / 'contracts'}")

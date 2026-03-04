@@ -5,16 +5,21 @@ import argparse
 import json
 import sys
 from pathlib import Path
-
-from runtime.glyphser.api.runtime_api import (
-    RuntimeApiConfig,
-    RuntimeApiService,
-)
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def _service(state_path: str | None) -> RuntimeApiService:
+def _ensure_repo_on_path() -> None:
+    root = str(ROOT)
+    if root not in sys.path:
+        sys.path.insert(0, root)
+
+
+def _service(state_path: str | None) -> Any:
+    _ensure_repo_on_path()
+    from runtime.glyphser.api.runtime_api import RuntimeApiConfig, RuntimeApiService
+
     path = Path(state_path) if state_path else ROOT / "evidence" / "state" / "api" / "state.json"
     return RuntimeApiService(RuntimeApiConfig(root=ROOT, state_path=path))
 
