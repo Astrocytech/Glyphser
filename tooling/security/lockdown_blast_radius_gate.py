@@ -17,8 +17,8 @@ def _parse(ts: str) -> datetime | None:
     except Exception:
         return None
 
-ROOT = Path(__file__).resolve().parents[2]
 
+ROOT = Path(__file__).resolve().parents[2]
 
 
 def main(argv: list[str] | None = None) -> int:

@@ -19,8 +19,8 @@ def _parse_ts(value: str) -> datetime | None:
     except Exception:
         return None
 
-ROOT = Path(__file__).resolve().parents[2]
 
+ROOT = Path(__file__).resolve().parents[2]
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -61,7 +61,7 @@ def main(argv: list[str] | None = None) -> int:
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
         "summary": {"active_exceptions": active, "max_active_exceptions": max_active},
-        "metadata": {"gate": "exception_registry_gate", "registry": str(path.relative_to(ROOT)).replace('\\', '/')},
+        "metadata": {"gate": "exception_registry_gate", "registry": str(path.relative_to(ROOT)).replace("\\", "/")},
     }
     out = evidence_root() / "security" / "exception_registry_gate.json"
     out.parent.mkdir(parents=True, exist_ok=True)

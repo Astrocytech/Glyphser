@@ -19,6 +19,7 @@ TARGETS = [
 def _canon(data: object) -> str:
     return json.dumps(data, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
 
+
 def main(argv: list[str] | None = None) -> int:
     _ = argv
     findings: list[str] = []

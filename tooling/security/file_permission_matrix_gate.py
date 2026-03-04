@@ -13,8 +13,8 @@ from tooling.lib.path_config import evidence_root
 def _mode(path: Path) -> int:
     return stat.S_IMODE(path.stat().st_mode)
 
-ROOT = Path(__file__).resolve().parents[2]
 
+ROOT = Path(__file__).resolve().parents[2]
 
 
 def main(argv: list[str] | None = None) -> int:

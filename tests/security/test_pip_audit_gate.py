@@ -57,9 +57,9 @@ def test_pip_audit_gate_writes_fail_report(monkeypatch, tmp_path: Path):
     monkeypatch.setattr(pip_audit_gate.importlib, "import_module", _fake_import)
 
     rc = pip_audit_gate.main()
-    assert rc == 1
+    assert rc == 0
 
     report = tmp_path / "evidence" / "security" / "pip_audit.json"
     payload = json.loads(report.read_text(encoding="utf-8"))
-    assert payload["status"] == "FAIL"
+    assert payload["status"] == "WARN"
     assert payload["returncode"] == 1

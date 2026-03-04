@@ -39,9 +39,7 @@ def build_index(strict_key: bool) -> Path:
     sec.mkdir(parents=True, exist_ok=True)
 
     files = sorted(
-        p
-        for p in ev.rglob("*")
-        if p.is_file() and p.name not in {INDEX, SIG} and not p.name.endswith(".sig")
+        p for p in ev.rglob("*") if p.is_file() and p.name not in {INDEX, SIG} and not p.name.endswith(".sig")
     )
 
     rows: list[dict[str, Any]] = []

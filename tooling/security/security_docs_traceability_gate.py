@@ -19,6 +19,7 @@ DOCS = [
 
 LINK_RE = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 
+
 def main(argv: list[str] | None = None) -> int:
     _ = argv
     findings: list[str] = []

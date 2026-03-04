@@ -30,8 +30,8 @@ def _score(case: dict[str, object]) -> int:
 def _python_version() -> str:
     return platform.python_version()
 
-ROOT = Path(__file__).resolve().parents[2]
 
+ROOT = Path(__file__).resolve().parents[2]
 
 
 def main(argv: list[str] | None = None) -> int:

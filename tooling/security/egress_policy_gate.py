@@ -14,7 +14,6 @@ URL_RE = re.compile(r"https://([A-Za-z0-9_.-]+)")
 ROOT = Path(__file__).resolve().parents[2]
 
 
-
 def main(argv: list[str] | None = None) -> int:
     _ = argv
     policy = load_policy()

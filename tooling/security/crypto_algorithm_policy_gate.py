@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 TARGET_DIRS = [ROOT / "runtime", ROOT / "tooling", ROOT / "governance" / "security"]
 
+
 def main(argv: list[str] | None = None) -> int:
     _ = argv
     policy = load_policy()

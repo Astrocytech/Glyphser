@@ -10,7 +10,6 @@ from tooling.lib.path_config import evidence_root
 ROOT = Path(__file__).resolve().parents[2]
 
 
-
 def main(argv: list[str] | None = None) -> int:
     _ = argv
     # Synthetic drill validates that expected containment reason-codes are represented.

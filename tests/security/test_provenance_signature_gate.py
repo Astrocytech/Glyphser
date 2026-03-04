@@ -71,6 +71,10 @@ def test_provenance_signature_gate_strict_key_missing(monkeypatch, tmp_path: Pat
 
     monkeypatch.setattr(provenance_signature_gate, "ROOT", repo)
     monkeypatch.setattr(provenance_signature_gate, "evidence_root", lambda: repo / "evidence")
-    monkeypatch.setattr(provenance_signature_gate, "current_key", lambda strict=False: (_ for _ in ()).throw(ValueError("missing required signing key env")))
+    monkeypatch.setattr(
+        provenance_signature_gate,
+        "current_key",
+        lambda strict=False: (_ for _ in ()).throw(ValueError("missing required signing key env")),
+    )
     rc = provenance_signature_gate.main(["--strict-key"])
     assert rc == 1

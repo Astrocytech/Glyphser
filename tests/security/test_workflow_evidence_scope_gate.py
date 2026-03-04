@@ -51,5 +51,7 @@ jobs:
     monkeypatch.setattr(workflow_evidence_scope_gate, "WORKFLOWS", wf)
     monkeypatch.setattr(workflow_evidence_scope_gate, "evidence_root", lambda: repo / "evidence")
     assert workflow_evidence_scope_gate.main([]) == 0
-    report = json.loads((repo / "evidence" / "security" / "workflow_evidence_scope_gate.json").read_text(encoding="utf-8"))
+    report = json.loads(
+        (repo / "evidence" / "security" / "workflow_evidence_scope_gate.json").read_text(encoding="utf-8")
+    )
     assert report["status"] == "PASS"

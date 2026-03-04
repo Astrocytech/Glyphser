@@ -11,7 +11,7 @@ def test_chain_of_custody_build_and_verify_pass(monkeypatch, tmp_path: Path) -> 
     ev = repo / "evidence"
     (ev / "security").mkdir(parents=True)
     (ev / "conformance").mkdir(parents=True)
-    (ev / "security" / "a.json" ).write_text('{"a":1}\n', encoding="utf-8")
+    (ev / "security" / "a.json").write_text('{"a":1}\n', encoding="utf-8")
     (ev / "conformance" / "b.json").write_text('{"b":1}\n', encoding="utf-8")
 
     monkeypatch.setattr(evidence_chain_of_custody, "ROOT", repo)

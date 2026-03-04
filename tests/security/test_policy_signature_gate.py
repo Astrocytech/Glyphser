@@ -17,7 +17,9 @@ def test_policy_signature_gate_passes(monkeypatch, tmp_path: Path) -> None:
         json.dumps({"policies": ["governance/security/a_policy.json"]}) + "\n",
         encoding="utf-8",
     )
-    (policy.with_suffix(".json.sig")).write_text(sign_file(policy, key=current_key(strict=False)) + "\n", encoding="utf-8")
+    (policy.with_suffix(".json.sig")).write_text(
+        sign_file(policy, key=current_key(strict=False)) + "\n", encoding="utf-8"
+    )
     monkeypatch.setattr(policy_signature_gate, "ROOT", repo)
     monkeypatch.setattr(policy_signature_gate, "evidence_root", lambda: repo / "evidence")
     assert policy_signature_gate.main([]) == 0

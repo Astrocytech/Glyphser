@@ -25,9 +25,7 @@ def test_verify_branch_protection_live_dry_run(monkeypatch, tmp_path: Path) -> N
     assert "checked_at_utc" in payload
 
 
-def test_verify_branch_protection_live_rejects_placeholder_repo_in_live_mode(
-    monkeypatch, tmp_path: Path
-) -> None:
+def test_verify_branch_protection_live_rejects_placeholder_repo_in_live_mode(monkeypatch, tmp_path: Path) -> None:
     repo = tmp_path / "repo"
     (repo / ".github").mkdir(parents=True)
     (repo / ".github" / "branch-protection.required.json").write_text(

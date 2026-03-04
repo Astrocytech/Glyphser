@@ -13,8 +13,8 @@ from tooling.security.advanced_policy import load_policy
 def _sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
-ROOT = Path(__file__).resolve().parents[2]
 
+ROOT = Path(__file__).resolve().parents[2]
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -49,7 +49,7 @@ def main(argv: list[str] | None = None) -> int:
     report = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
-        "summary": {"targets": list(hashes.keys()), "index": str(index_path.relative_to(ROOT)).replace('\\', '/')},
+        "summary": {"targets": list(hashes.keys()), "index": str(index_path.relative_to(ROOT)).replace("\\", "/")},
         "metadata": {"gate": "archive_integrity_revalidation_gate"},
     }
     out = evidence_root() / "security" / "archive_integrity_revalidation_gate.json"

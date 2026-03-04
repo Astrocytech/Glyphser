@@ -28,8 +28,8 @@ def test_release_workflow_enforces_signature_verification() -> None:
     assert "GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/release-build" in release
     assert "GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/release-verify" in release
     assert "python tooling/security/evidence_run_dir_guard.py --run-id" in release
-    assert "GLYPHSER_CONTAINER_PUBLISHING_ENABLED: \"true\"" in release
-    assert "GLYPHSER_STRICT_SIGNING: \"true\"" in release
+    assert 'GLYPHSER_CONTAINER_PUBLISHING_ENABLED: "true"' in release
+    assert 'GLYPHSER_STRICT_SIGNING: "true"' in release
     assert "GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}" in release
 
 

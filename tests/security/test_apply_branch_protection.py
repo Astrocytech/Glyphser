@@ -23,9 +23,7 @@ def test_apply_branch_protection_dry_run(monkeypatch, tmp_path: Path, capsys) ->
     assert "required_status_checks" in out
 
 
-def test_apply_branch_protection_rejects_placeholder_repo_in_live_mode(
-    monkeypatch, tmp_path: Path
-) -> None:
+def test_apply_branch_protection_rejects_placeholder_repo_in_live_mode(monkeypatch, tmp_path: Path) -> None:
     repo = tmp_path / "repo"
     (repo / ".github").mkdir(parents=True)
     (repo / ".github" / "branch-protection.required.json").write_text(

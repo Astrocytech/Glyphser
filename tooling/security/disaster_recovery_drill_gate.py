@@ -46,7 +46,7 @@ def main(argv: list[str] | None = None) -> int:
     report = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
-        "summary": {"drill_path": str(drill_path.relative_to(ROOT)).replace('\\', '/')},
+        "summary": {"drill_path": str(drill_path.relative_to(ROOT)).replace("\\", "/")},
         "metadata": {"gate": "disaster_recovery_drill_gate"},
     }
     out = evidence_root() / "security" / "disaster_recovery_drill_gate.json"

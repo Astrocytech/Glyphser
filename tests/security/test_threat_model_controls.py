@@ -58,7 +58,9 @@ def test_threat_model_api_actions_emit_audit_events(tmp_path: Path):
 def test_threat_model_audit_chain_fails_closed_on_partial_append(tmp_path: Path):
     log = tmp_path / "audit.log.jsonl"
     append_event(log, {"operation": "submit", "actor": "role:operator"})
-    log.write_text(log.read_text(encoding="utf-8") + '{"event":{"operation":"status"},"prev_hash":"x"', encoding="utf-8")
+    log.write_text(
+        log.read_text(encoding="utf-8") + '{"event":{"operation":"status"},"prev_hash":"x"', encoding="utf-8"
+    )
     result = verify_chain(log)
     assert result["status"] == "FAIL"
     assert result["reason"] == "invalid_json"

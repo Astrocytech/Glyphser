@@ -11,7 +11,6 @@ from tooling.security.advanced_policy import load_policy
 ROOT = Path(__file__).resolve().parents[2]
 
 
-
 def main(argv: list[str] | None = None) -> int:
     _ = argv
     policy = load_policy()
@@ -44,7 +43,7 @@ def main(argv: list[str] | None = None) -> int:
     report = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
-        "summary": {"bundle_dir": str(out_dir.relative_to(ROOT)).replace('\\', '/'), "exported_files": exported},
+        "summary": {"bundle_dir": str(out_dir.relative_to(ROOT)).replace("\\", "/"), "exported_files": exported},
         "metadata": {"gate": "export_offline_verify_bundle"},
     }
     out = evidence_root() / "security" / "offline_verify_bundle_export.json"

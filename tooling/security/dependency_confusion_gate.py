@@ -23,8 +23,8 @@ def _req_packages(lock: Path) -> set[str]:
             out.add(m.group(1).lower())
     return out
 
-ROOT = Path(__file__).resolve().parents[2]
 
+ROOT = Path(__file__).resolve().parents[2]
 
 
 def main(argv: list[str] | None = None) -> int:

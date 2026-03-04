@@ -18,4 +18,3 @@ def sign_payload(payload: bytes) -> str:
     if not raw:
         raise ValueError(f"missing required KMS adapter key env: {_KMS_KEY_ENV}")
     return hmac.new(raw.encode("utf-8"), payload, hashlib.sha256).hexdigest()
-

@@ -12,7 +12,6 @@ from tooling.security.advanced_policy import load_policy
 ROOT = Path(__file__).resolve().parents[2]
 
 
-
 def main(argv: list[str] | None = None) -> int:
     _ = argv
     policy = load_policy()

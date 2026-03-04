@@ -15,7 +15,10 @@ def test_temporary_waiver_gate_passes(monkeypatch, tmp_path: Path) -> None:
     )
     (repo / "evidence" / "repro").mkdir(parents=True)
     (repo / "evidence" / "repro" / "waivers.json").write_text(
-        json.dumps({"waivers": [{"id": "w1", "reason": "x", "expires_at_utc": "2099-01-01T00:00:00+00:00", "owner": "sec"}]}) + "\n",
+        json.dumps(
+            {"waivers": [{"id": "w1", "reason": "x", "expires_at_utc": "2099-01-01T00:00:00+00:00", "owner": "sec"}]}
+        )
+        + "\n",
         encoding="utf-8",
     )
     monkeypatch.setattr(temporary_waiver_gate, "ROOT", repo)

@@ -11,10 +11,7 @@ def test_workflow_pinning_gate_passes_for_sha_pins(monkeypatch, tmp_path: Path) 
     wf = repo / ".github" / "workflows"
     wf.mkdir(parents=True)
     (wf / "ci.yml").write_text(
-        "jobs:\n"
-        "  test:\n"
-        "    steps:\n"
-        "      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683\n",
+        "jobs:\n  test:\n    steps:\n      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683\n",
         encoding="utf-8",
     )
 
@@ -34,10 +31,7 @@ def test_workflow_pinning_gate_fails_for_tag_refs(monkeypatch, tmp_path: Path) -
     wf = repo / ".github" / "workflows"
     wf.mkdir(parents=True)
     (wf / "ci.yml").write_text(
-        "jobs:\n"
-        "  test:\n"
-        "    steps:\n"
-        "      - uses: actions/checkout@v4\n",
+        "jobs:\n  test:\n    steps:\n      - uses: actions/checkout@v4\n",
         encoding="utf-8",
     )
 

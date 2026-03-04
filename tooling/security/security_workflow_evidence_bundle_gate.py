@@ -15,8 +15,8 @@ def _workflow_names() -> list[str]:
         names.append(path.name)
     return sorted(names)
 
-ROOT = Path(__file__).resolve().parents[2]
 
+ROOT = Path(__file__).resolve().parents[2]
 
 
 def main(argv: list[str] | None = None) -> int:

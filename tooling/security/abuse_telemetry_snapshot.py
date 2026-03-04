@@ -16,6 +16,7 @@ runtime_api = importlib.import_module("runtime.glyphser.api.runtime_api")
 RuntimeApiConfig = runtime_api.RuntimeApiConfig
 RuntimeApiService = runtime_api.RuntimeApiService
 
+
 def main(argv: list[str] | None = None) -> int:
     _ = argv
     policy = json.loads((ROOT / "governance" / "security" / "abuse_telemetry_policy.json").read_text(encoding="utf-8"))

@@ -23,8 +23,8 @@ def _packages(path: Path) -> set[str]:
                     out.add(f"{name}=={version}")
     return out
 
-ROOT = Path(__file__).resolve().parents[2]
 
+ROOT = Path(__file__).resolve().parents[2]
 
 
 def main(argv: list[str] | None = None) -> int:
