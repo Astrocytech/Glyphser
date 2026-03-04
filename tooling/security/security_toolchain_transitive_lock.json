@@ -20,5 +20,10 @@
       "attrs",
       "typing-extensions"
     ]
+  },
+  "setuptools": {
+    "transitive": [
+      "wheel"
+    ]
   }
 }

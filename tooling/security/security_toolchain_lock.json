@@ -10,5 +10,9 @@
   "semgrep": {
     "version": "1.95.0",
     "version_hash": "sha256:8db20a98162fcba6180a92681f421850edb83b3145d0f8522a9a7ad227fb4842"
+  },
+  "setuptools": {
+    "version": "75.8.0",
+    "version_hash": "sha256:16d791e61f91d2c18a241da895ec211ff3bd2d0669b3496d53bd41060d99c021"
   }
 }

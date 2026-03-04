@@ -2,6 +2,7 @@
   "core": [
     "tooling/security/security_toolchain_gate.py",
     "tooling/security/security_toolchain_lock_signature_gate.py",
+    "tooling/security/security_toolchain_reproducibility_gate.py",
     "tooling/security/security_scan_ordering_gate.py",
     "tooling/security/mypy_security_profile_gate.py",
     "tooling/security/ruff_security_profile_gate.py",
