@@ -174,10 +174,11 @@ def main(argv: list[str] | None = None) -> int:
         [sys.executable, "tooling/security/key_rotation_cadence_gate.py"],
         [sys.executable, "tooling/security/signature_algorithm_policy_gate.py"],
         (
-            [sys.executable, "tooling/security/security_verification_summary.py", "--strict-key"]
+        [sys.executable, "tooling/security/security_verification_summary.py", "--strict-key"]
             if args.strict_key
             else [sys.executable, "tooling/security/security_verification_summary.py"]
         ),
+        [sys.executable, "tooling/security/security_cross_gate_consistency_gate.py"],
         [sys.executable, "tooling/security/slsa_attestation_gate.py"],
         [sys.executable, "tooling/security/workflow_evidence_scope_gate.py"],
         [sys.executable, "tooling/security/conformance_security_coupling_gate.py"],

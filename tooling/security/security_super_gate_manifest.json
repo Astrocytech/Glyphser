@@ -58,6 +58,7 @@
     "tooling/security/key_rotation_cadence_gate.py",
     "tooling/security/signature_algorithm_policy_gate.py",
     "tooling/security/security_verification_summary.py",
+    "tooling/security/security_cross_gate_consistency_gate.py",
     "tooling/security/slsa_attestation_gate.py",
     "tooling/security/workflow_evidence_scope_gate.py",
     "tooling/security/conformance_security_coupling_gate.py"
