@@ -53,6 +53,7 @@
     "tooling/security/evidence_attestation_index.py",
     "tooling/security/evidence_attestation_gate.py",
     "tooling/security/provenance_signature_gate.py",
+    "tooling/security/integrity_envelope_gate.py",
     "tooling/security/key_provenance_continuity_gate.py",
     "tooling/security/signature_algorithm_policy_gate.py",
     "tooling/security/security_verification_summary.py",
