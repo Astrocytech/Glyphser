@@ -308,6 +308,8 @@ jobs:
         run: python tooling/security/exception_waiver_reconciliation_gate.py
       - name: Provenance revocation gate
         run: python tooling/security/provenance_revocation_gate.py
+      - name: Promotion policy gate
+        run: python tooling/security/promotion_policy_gate.py
       - name: Security gate test coverage gate
         run: python tooling/security/security_gate_test_coverage_gate.py
       - name: Evidence attestation index
@@ -415,6 +417,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/exception_waiver_reconciliation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/exception_waiver_reconciliation_gate.json.sig
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_revocation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/promotion_policy_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_gate_test_coverage.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/container_provenance.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/container_registry_provenance_gate.json

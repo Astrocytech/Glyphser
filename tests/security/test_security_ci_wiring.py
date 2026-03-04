@@ -59,9 +59,11 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/runtime_api_state_schema_gate.py" in ci
     assert "python tooling/security/abuse_telemetry_gate.py" in ci
     assert "python tooling/security/provenance_revocation_gate.py" in ci
+    assert "python tooling/security/promotion_policy_gate.py" in ci
     assert "python tooling/security/exception_waiver_reconciliation_gate.py" in ci
     assert "runtime_api_state_schema_gate.json" in ci
     assert "provenance_revocation_gate.json" in ci
+    assert "promotion_policy_gate.json" in ci
     assert "workflow_pin_change_approval_gate.json" in ci
     assert "exception_waiver_reconciliation_gate.json" in ci
     assert "audit_archive_verify.json" in ci

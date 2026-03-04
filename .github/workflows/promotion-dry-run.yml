@@ -1,0 +1,54 @@
+name: Promotion Dry Run
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 3 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  promotion-dry-run:
+    runs-on: ubuntu-latest
+    env:
+      GLYPHSER_ENV: "release"
+      GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
+      GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/promotion-dry-run
+      TZ: "UTC"
+      LC_ALL: "C.UTF-8"
+      LANG: "C.UTF-8"
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38
+        with:
+          python-version: "3.12"
+      - name: Install package
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev]
+      - name: Initialize immutable evidence run directory
+        run: python tooling/security/evidence_run_dir_guard.py --run-id "${{ github.run_id }}-promotion-dry-run"
+      - name: Generate security artifacts and attestations
+        run: |
+          python tooling/security/security_artifacts.py
+          python tooling/security/policy_signature_generate.py --strict-key
+          python tooling/security/policy_signature_gate.py --strict-key
+          python tooling/security/provenance_signature_gate.py --strict-key
+          python tooling/security/evidence_attestation_index.py --strict-key
+          python tooling/security/evidence_attestation_gate.py --strict-key
+          python tooling/security/provenance_revocation_gate.py
+          python tooling/security/promotion_policy_gate.py
+      - name: Upload promotion dry-run artifacts
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: promotion-dry-run-security-artifacts
+          retention-days: 14
+          path: |
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_signature.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_signature.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_revocation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/promotion_policy_gate.json

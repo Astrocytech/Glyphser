@@ -92,6 +92,8 @@ jobs:
         run: python tooling/security/exception_waiver_reconciliation_gate.py
       - name: Provenance revocation gate
         run: python tooling/security/provenance_revocation_gate.py
+      - name: Promotion policy gate
+        run: python tooling/security/promotion_policy_gate.py
       - name: Evidence attestation index + gate
         run: |
           python tooling/security/evidence_attestation_index.py --strict-key
@@ -147,6 +149,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/exception_waiver_reconciliation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/exception_waiver_reconciliation_gate.json.sig
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_revocation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/promotion_policy_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/container_provenance.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/container_registry_provenance_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/attestation_digest_match_gate.json
@@ -215,6 +218,7 @@ jobs:
           python tooling/security/temporary_waiver_gate.py
           python tooling/security/exception_waiver_reconciliation_gate.py
           python tooling/security/provenance_revocation_gate.py
+          python tooling/security/promotion_policy_gate.py
           python tooling/security/evidence_attestation_index.py --strict-key
           python tooling/security/evidence_attestation_gate.py --strict-key
           python tooling/security/workflow_evidence_scope_gate.py

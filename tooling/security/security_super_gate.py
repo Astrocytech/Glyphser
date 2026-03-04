@@ -153,6 +153,7 @@ def main(argv: list[str] | None = None) -> int:
         [sys.executable, "tooling/security/exception_waiver_reconciliation_gate.py"],
         [sys.executable, "tooling/security/exception_debt_gate.py"],
         [sys.executable, "tooling/security/provenance_revocation_gate.py"],
+        [sys.executable, "tooling/security/promotion_policy_gate.py"],
         [sys.executable, "tooling/security/report_secret_leak_gate.py"],
         [sys.executable, "tooling/security/security_gate_test_coverage_gate.py"],
         [sys.executable, "tooling/security/third_party_pentest_gate.py", "--strict-key"],
