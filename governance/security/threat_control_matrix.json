@@ -1,0 +1,91 @@
+{
+  "controls": [
+    {
+      "id": "CTRL-IDENTITY-SCOPE",
+      "threat": "Unauthorized runtime API calls with over-scoped credentials.",
+      "owner": "security-team",
+      "gates": [
+        "tooling/security/review_policy_gate.py",
+        "tooling/security/abuse_telemetry_gate.py",
+        "tooling/security/runtime_api_state_schema_gate.py"
+      ],
+      "workflows": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/security-maintenance.yml"
+      ],
+      "evidence": [
+        "evidence/security/review_policy_gate.json",
+        "evidence/security/abuse_telemetry.json",
+        "evidence/security/runtime_api_state_schema_gate.json"
+      ]
+    },
+    {
+      "id": "CTRL-PROVENANCE-SIGNATURE",
+      "threat": "Unsigned or tampered policy/provenance artifacts entering release and promotion paths.",
+      "owner": "security-team",
+      "gates": [
+        "tooling/security/policy_signature_gate.py",
+        "tooling/security/provenance_signature_gate.py",
+        "tooling/security/evidence_attestation_gate.py",
+        "tooling/security/signature_algorithm_policy_gate.py"
+      ],
+      "workflows": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/release.yml",
+        ".github/workflows/security-maintenance.yml"
+      ],
+      "evidence": [
+        "evidence/security/policy_signature.json",
+        "evidence/security/provenance_signature.json",
+        "evidence/security/evidence_attestation_gate.json",
+        "evidence/security/signature_algorithm_policy_gate.json"
+      ]
+    },
+    {
+      "id": "CTRL-SUPPLY-CHAIN-TOOLING",
+      "threat": "Security scanning or dependency controls bypassed due to workflow/toolchain drift.",
+      "owner": "security-team",
+      "gates": [
+        "tooling/security/security_toolchain_gate.py",
+        "tooling/security/workflow_pinning_gate.py",
+        "tooling/security/pip_audit_gate.py"
+      ],
+      "workflows": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/security-maintenance.yml"
+      ],
+      "evidence": [
+        "evidence/security/security_toolchain.json",
+        "evidence/security/workflow_pinning.json",
+        "evidence/security/pip_audit.json"
+      ]
+    },
+    {
+      "id": "CTRL-EVIDENCE-INTEGRITY",
+      "threat": "Evidence omission/tamper in archived security outputs.",
+      "owner": "security-team",
+      "gates": [
+        "tooling/security/audit_archive_verify.py",
+        "tooling/security/security_artifact_signature_coverage_gate.py",
+        "tooling/security/security_super_gate.py"
+      ],
+      "workflows": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/release.yml",
+        ".github/workflows/security-maintenance.yml",
+        ".github/workflows/security-super-extended.yml"
+      ],
+      "evidence": [
+        "evidence/security/audit_archive_verify.json",
+        "evidence/security/security_artifact_signature_coverage_gate.json",
+        "evidence/security/security_super_gate.json"
+      ]
+    }
+  ],
+  "critical_gates": [
+    "tooling/security/policy_signature_gate.py",
+    "tooling/security/provenance_signature_gate.py",
+    "tooling/security/evidence_attestation_gate.py",
+    "tooling/security/security_super_gate.py"
+  ]
+}

@@ -131,6 +131,7 @@ def main(argv: list[str] | None = None) -> int:
         [sys.executable, "tooling/security/stale_policy_review_gate.py"],
         [sys.executable, "tooling/security/runbook_index_health_gate.py"],
         [sys.executable, "tooling/security/gate_runbook_coverage_gate.py"],
+        [sys.executable, "tooling/security/threat_control_mapping_gate.py"],
         [sys.executable, "tooling/security/review_policy_gate.py"],
         [sys.executable, "tooling/security/file_permissions_gate.py"],
         (

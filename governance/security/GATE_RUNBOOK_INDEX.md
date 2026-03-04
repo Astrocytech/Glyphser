@@ -722,3 +722,10 @@ Inputs: `tooling/security/compromised_runner_drill.py`, governance policies, and
 Outputs: `evidence/security/compromised_runner_drill.json` (or gate-specific report).
 Fail reasons: Missing prerequisites, policy violations, integrity mismatches, stale or malformed evidence.
 Triage steps: Re-run gate locally, inspect report findings, fix root cause, regenerate signed evidence if required.
+
+## `threat_control_mapping_gate.py`
+Purpose: Validate threat-to-control mappings, owners, workflow wiring, and critical gate ownership coverage.
+Inputs: `governance/security/threat_control_matrix.json`, `governance/security/metadata/THREAT_MODEL.meta.json`, `tooling/security/security_super_gate_manifest.json`, workflow files.
+Outputs: `evidence/security/threat_control_mapping_gate.json`.
+Fail reasons: Unmapped controls, missing owners, missing gate/workflow references, critical gates without mapped owners, metadata/matrix drift.
+Triage steps: Update threat control matrix and threat metadata IDs, wire missing gates in workflows, ensure owners and evidence paths are complete.

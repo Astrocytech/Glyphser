@@ -1,4 +1,10 @@
 {
+  "control_ids": [
+    "CTRL-IDENTITY-SCOPE",
+    "CTRL-PROVENANCE-SIGNATURE",
+    "CTRL-SUPPLY-CHAIN-TOOLING",
+    "CTRL-EVIDENCE-INTEGRITY"
+  ],
   "title": "Threat Model",
   "owner": "security-team",
   "version": "1.0.0",

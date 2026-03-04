@@ -35,6 +35,7 @@
     "tooling/security/stale_policy_review_gate.py",
     "tooling/security/runbook_index_health_gate.py",
     "tooling/security/gate_runbook_coverage_gate.py",
+    "tooling/security/threat_control_mapping_gate.py",
     "tooling/security/review_policy_gate.py",
     "tooling/security/file_permissions_gate.py",
     "tooling/security/policy_signature_gate.py",
