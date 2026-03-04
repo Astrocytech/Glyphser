@@ -21,8 +21,15 @@ def _sha256_text(text: str) -> str:
 def main(argv: list[str] | None = None) -> int:
     _ = argv
     lock = json.loads((ROOT / "tooling" / "security" / "security_toolchain_lock.json").read_text(encoding="utf-8"))
+    transitive_path = ROOT / "tooling" / "security" / "security_toolchain_transitive_lock.json"
+    if transitive_path.exists():
+        transitive_lock = json.loads(transitive_path.read_text(encoding="utf-8"))
+    else:
+        transitive_lock = {}
     if not isinstance(lock, dict):
         raise ValueError("invalid security toolchain lock")
+    if not isinstance(transitive_lock, dict):
+        raise ValueError("invalid transitive lock")
 
     findings: list[str] = []
     checks: dict[str, dict[str, str | bool]] = {}
@@ -50,8 +57,18 @@ def main(argv: list[str] | None = None) -> int:
         }
         if not ok:
             findings.append(f"{package} version/hash mismatch")
+        if transitive_path.exists():
+            transitive = transitive_lock.get(package, {})
+            if not isinstance(transitive, dict) or not isinstance(transitive.get("transitive", []), list):
+                findings.append(f"{package} missing transitive lock entry")
 
-    payload = {"status": "PASS" if not findings else "FAIL", "findings": findings, "checks": checks}
+    payload = {
+        "status": "PASS" if not findings else "FAIL",
+        "findings": findings,
+        "checks": checks,
+        "summary": {"locked_packages": len(lock), "has_transitive_lock": transitive_path.exists()},
+        "metadata": {"gate": "security_toolchain_gate"},
+    }
     out = evidence_root() / "security" / "security_toolchain.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")

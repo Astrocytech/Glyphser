@@ -35,6 +35,9 @@ def main(argv: list[str] | None = None) -> int:
     gates: list[list[str]] = [
         [sys.executable, "tooling/security/security_toolchain_gate.py"],
         [sys.executable, "tooling/security/key_management_gate.py"],
+        [sys.executable, "tooling/security/governance_markdown_gate.py"],
+        [sys.executable, "tooling/security/review_policy_gate.py"],
+        [sys.executable, "tooling/security/file_permissions_gate.py"],
         [sys.executable, "tooling/security/policy_signature_gate.py", "--strict-key"] if args.strict_key else [sys.executable, "tooling/security/policy_signature_gate.py"],
         [sys.executable, "tooling/security/pip_audit_gate.py"],
         [sys.executable, "tooling/security/secret_scan_gate.py"],
@@ -44,10 +47,19 @@ def main(argv: list[str] | None = None) -> int:
         [sys.executable, "tooling/security/secret_management_gate.py"],
         [sys.executable, "tooling/security/production_controls_gate.py"],
         [sys.executable, "tooling/security/abuse_telemetry_gate.py"],
+        [sys.executable, "tooling/security/temporary_waiver_gate.py"],
+        [sys.executable, "tooling/security/provenance_revocation_gate.py"],
         [sys.executable, "tooling/security/report_secret_leak_gate.py"],
+        [sys.executable, "tooling/security/cosign_attestation_gate.py"],
+        [sys.executable, "tooling/security/release_rollback_provenance_gate.py"],
+        [sys.executable, "tooling/security/emergency_lockdown_gate.py"],
         [sys.executable, "tooling/security/evidence_chain_of_custody.py", "--strict-key"] if args.strict_key else [sys.executable, "tooling/security/evidence_chain_of_custody.py"],
         [sys.executable, "tooling/security/evidence_chain_of_custody.py", "--verify", "--strict-key"] if args.strict_key else [sys.executable, "tooling/security/evidence_chain_of_custody.py", "--verify"],
         [sys.executable, "tooling/security/conformance_security_coupling_gate.py"],
+        [sys.executable, "tooling/security/security_slo_report.py"],
+        [sys.executable, "tooling/security/security_trend_gate.py"],
+        [sys.executable, "tooling/security/security_dashboard_export.py"],
+        [sys.executable, "tooling/security/security_schema_normalization_gate.py"],
     ]
 
     results = [_run(cmd) for cmd in gates]

@@ -187,6 +187,17 @@ def _validate_job_id(job_id: str) -> None:
         raise ValueError("invalid job_id")
 
 
+def _load_lockdown_policy(root: Path) -> dict[str, Any]:
+    path = root / "governance" / "security" / "emergency_lockdown_policy.json"
+    if not path.exists():
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
 def _shannon_entropy_bits(text: str) -> float:
     if not text:
         return 0.0
@@ -252,6 +263,7 @@ class RuntimeApiService:
             },
         )
         _validate_scope(scope, expected="jobs:write")
+        self._enforce_lockdown("publish")
         self._require_auth_with_tracking(token=token, action="jobs:write", scope=scope, job_id="")
         _validate_payload(payload)
         _validate_submit_payload_schema(payload)
@@ -373,6 +385,7 @@ class RuntimeApiService:
     def replay(self, job_id: str, token: str, scope: str) -> Dict[str, Any]:
         _validate_against_schema("replay_request", {"job_id": job_id, "token": token, "scope": scope})
         _validate_scope(scope, expected="replay:run")
+        self._enforce_lockdown("replay")
         _validate_job_id(job_id)
         self._require_auth_with_tracking(token=token, action="replay:run", scope=scope, job_id=job_id)
         with self._lock:
@@ -445,6 +458,17 @@ class RuntimeApiService:
             return False
         env_hint = os.environ.get("GLYPHSER_ENV", "").strip().lower()
         return env_hint not in {"", "local", "dev", "test"}
+
+    def _enforce_lockdown(self, operation: str) -> None:
+        policy = _load_lockdown_policy(self._config.root)
+        if not policy:
+            return
+        if policy.get("lockdown_enabled") is not True:
+            return
+        if operation == "publish" and policy.get("disable_publish") is True:
+            raise ValueError("operation disabled by emergency lockdown policy")
+        if operation == "replay" and policy.get("disable_replay") is True:
+            raise ValueError("operation disabled by emergency lockdown policy")
 
     def _effective_request_limit(self, *, token: str, action: str) -> int:
         roles = self._roles_from_token(token)

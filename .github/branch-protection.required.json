@@ -9,6 +9,7 @@
     "build",
     "verify-signatures"
   ],
+  "minimum_required_approvals": 2,
   "required_workflow_jobs": {
     "reproducible-build.yml": [
       "reproducible-build"

@@ -2,12 +2,16 @@
   "policies": [
     "governance/security/abuse_telemetry_policy.json",
     "governance/security/container_provenance_policy.json",
+    "governance/security/emergency_lockdown_policy.json",
     "governance/security/incident_response_policy.json",
     "governance/security/key_management_policy.json",
     "governance/security/live_rollout_policy.json",
     "governance/security/org_secret_backend_policy.json",
+    "governance/security/provenance_revocation_list.json",
     "governance/security/production_controls_policy.json",
+    "governance/security/review_policy.json",
     "governance/security/secret_management_policy.json",
+    "governance/security/temporary_waiver_policy.json",
     "governance/security/third_party_pentest_policy.json"
   ]
 }

@@ -51,6 +51,18 @@ jobs:
           python tooling/security/evidence_attestation_index.py --strict-key
           python tooling/security/evidence_attestation_gate.py --strict-key
           python tooling/security/conformance_security_coupling_gate.py
+      - name: Upload conformance + security evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: conformance-security-evidence
+          path: |
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/conformance/results/latest.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/conformance/reports/latest.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_signature.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/conformance_security_coupling.json
 
   hello-core:
     runs-on: ubuntu-latest

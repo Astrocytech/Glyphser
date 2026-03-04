@@ -1,0 +1,5 @@
+{
+  "max_active_waivers": 5,
+  "required_fields": ["id", "reason", "expires_at_utc", "owner"],
+  "waiver_file_glob": "evidence/**/waivers.json"
+}

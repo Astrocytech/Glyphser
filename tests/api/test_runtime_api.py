@@ -368,3 +368,26 @@ def test_idempotency_ttl_prunes_and_refreshes_meta(tmp_path: Path):
     _ = svc.submit_job(payload=payload, token="entropy-token-12345", scope="jobs:write", idempotency_key="ttl-key")
     state2 = json.loads((tmp_path / "state.json").read_text(encoding="utf-8"))
     assert int(state2["idempotency_meta"]["ttl-key"]["ts"]) > 0
+
+
+def test_emergency_lockdown_blocks_publish_and_replay(tmp_path: Path):
+    root = tmp_path / "repo"
+    (root / "governance" / "security").mkdir(parents=True)
+    (root / "governance" / "security" / "emergency_lockdown_policy.json").write_text(
+        json.dumps(
+            {
+                "lockdown_enabled": True,
+                "disable_publish": True,
+                "disable_replay": True,
+                "reason": "incident",
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    svc = RuntimeApiService(RuntimeApiConfig(root=root, state_path=tmp_path / "state.json"))
+    try:
+        svc.submit_job(payload={"payload": {"x": 1}}, token="token-long-123", scope="jobs:write")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "emergency lockdown" in str(exc)

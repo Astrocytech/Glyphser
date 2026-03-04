@@ -1,0 +1,9 @@
+{
+  "lockdown_enabled": false,
+  "disable_publish": false,
+  "disable_replay": false,
+  "reason": "",
+  "approved_by": "",
+  "expires_at_utc": "",
+  "updated_at_utc": "2026-03-04T00:00:00+00:00"
+}

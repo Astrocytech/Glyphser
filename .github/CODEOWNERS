@@ -1,0 +1,4 @@
+# Security-critical ownership
+/tooling/security/ @security-team @platform-team
+/governance/security/ @security-team @governance-team
+/.github/workflows/ @security-team @platform-team

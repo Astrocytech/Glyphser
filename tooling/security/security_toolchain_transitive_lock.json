@@ -1,0 +1,24 @@
+{
+  "bandit": {
+    "transitive": [
+      "PyYAML",
+      "stevedore",
+      "rich",
+      "markdown-it-py"
+    ]
+  },
+  "pip-audit": {
+    "transitive": [
+      "packaging",
+      "cyclonedx-python-lib",
+      "pip-api"
+    ]
+  },
+  "semgrep": {
+    "transitive": [
+      "ruamel.yaml",
+      "attrs",
+      "typing-extensions"
+    ]
+  }
+}

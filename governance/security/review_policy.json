@@ -1,0 +1,19 @@
+{
+  "required_codeowners_paths": [
+    "tooling/security/**",
+    "governance/security/**",
+    ".github/workflows/**"
+  ],
+  "minimum_required_approvals": 2,
+  "security_baseline_paths": [
+    "tooling/security/security_toolchain_lock.json",
+    "tooling/security/semgrep-rules.yml",
+    "tooling/security/bandit.yaml"
+  ],
+  "required_change_ticket_patterns": [
+    "ADR-",
+    "SEC-",
+    "TICKET-"
+  ],
+  "required_changelog_file": "governance/security/SECURITY_CHANGELOG.md"
+}

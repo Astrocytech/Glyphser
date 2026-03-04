@@ -1,0 +1,14 @@
+{
+  "documents": [
+    {
+      "path": "governance/security/THREAT_MODEL.md",
+      "metadata_path": "governance/security/metadata/THREAT_MODEL.meta.json",
+      "signature_path": "governance/security/metadata/THREAT_MODEL.meta.json.sig"
+    },
+    {
+      "path": "governance/security/OPERATIONS.md",
+      "metadata_path": "governance/security/metadata/OPERATIONS.meta.json",
+      "signature_path": "governance/security/metadata/OPERATIONS.meta.json.sig"
+    }
+  ]
+}

@@ -61,10 +61,20 @@ jobs:
         env:
           GLYPHSER_CONTAINER_PUBLISHING_ENABLED: "true"
         run: python tooling/security/container_provenance_gate.py
+      - name: Governance markdown gate
+        run: python tooling/security/governance_markdown_gate.py
+      - name: Review policy gate
+        run: python tooling/security/review_policy_gate.py
+      - name: File permissions gate
+        run: python tooling/security/file_permissions_gate.py
       - name: Abuse telemetry snapshot + gate
         run: |
           python tooling/security/abuse_telemetry_snapshot.py
           python tooling/security/abuse_telemetry_gate.py
+      - name: Temporary waiver gate
+        run: python tooling/security/temporary_waiver_gate.py
+      - name: Provenance revocation gate
+        run: python tooling/security/provenance_revocation_gate.py
       - name: Evidence attestation index + gate
         run: |
           python tooling/security/evidence_attestation_index.py --strict-key
@@ -75,6 +85,18 @@ jobs:
         run: python tooling/security/conformance_security_coupling_gate.py
       - name: Security super gate
         run: python tooling/security/security_super_gate.py --strict-key
+      - name: Security SLO report
+        run: python tooling/security/security_slo_report.py
+      - name: Security trend gate
+        run: python tooling/security/security_trend_gate.py
+      - name: Security dashboard export
+        run: python tooling/security/security_dashboard_export.py
+      - name: Security schema normalization gate
+        run: python tooling/security/security_schema_normalization_gate.py
+      - name: External attestation gate
+        run: python tooling/security/cosign_attestation_gate.py
+      - name: Release rollback provenance gate
+        run: python tooling/security/release_rollback_provenance_gate.py
       - name: Upload artifacts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -93,11 +115,16 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/org_secret_backend.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/secret_management.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/production_controls.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/governance_markdown_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/review_policy_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/file_permissions_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/key_management.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/report_secret_leak.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/third_party_pentest.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/live_rollout_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/abuse_telemetry.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/temporary_waiver_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_revocation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/container_provenance.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json.sig
@@ -105,6 +132,12 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_evidence_scope_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/conformance_security_coupling.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_super_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_slo_report.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_trend_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_dashboard.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_schema_normalization_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/cosign_attestation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/release_rollback_provenance_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_chain_of_custody.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_chain_of_custody.json.sig
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_chain_of_custody_build.json
@@ -138,16 +171,27 @@ jobs:
           python tooling/security/secret_management_gate.py
           python tooling/security/production_controls_gate.py
           python tooling/security/third_party_pentest_gate.py --strict-key
+          python tooling/security/governance_markdown_gate.py
+          python tooling/security/review_policy_gate.py
+          python tooling/security/file_permissions_gate.py
           python tooling/security/live_rollout_gate.py --profile release
           GLYPHSER_CONTAINER_PUBLISHING_ENABLED=true \
           python tooling/security/container_provenance_gate.py
           python tooling/security/abuse_telemetry_snapshot.py
           python tooling/security/abuse_telemetry_gate.py
+          python tooling/security/temporary_waiver_gate.py
+          python tooling/security/provenance_revocation_gate.py
           python tooling/security/evidence_attestation_index.py --strict-key
           python tooling/security/evidence_attestation_gate.py --strict-key
           python tooling/security/workflow_evidence_scope_gate.py
           python tooling/security/conformance_security_coupling_gate.py
           python tooling/security/security_super_gate.py --strict-key
+          python tooling/security/security_slo_report.py
+          python tooling/security/security_trend_gate.py
+          python tooling/security/security_dashboard_export.py
+          python tooling/security/security_schema_normalization_gate.py
+          python tooling/security/cosign_attestation_gate.py
+          python tooling/security/release_rollback_provenance_gate.py
 
   publish-pypi:
     needs: [build, verify-signatures]
