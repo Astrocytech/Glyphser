@@ -7,10 +7,6 @@ import json
 import sys
 from pathlib import Path
 
-from runtime.glyphser.trace.compute_trace_hash import compute_trace_hash
-from tooling.quality_gates.telemetry import emit_gate_trace
-from tooling.scripts import run_hello_core
-
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -21,6 +17,10 @@ GOLDEN = ROOT / "specs" / "examples" / "hello-core" / "hello-core-golden.json"
 
 
 def evaluate() -> dict:
+    from runtime.glyphser.trace.compute_trace_hash import compute_trace_hash
+    from tooling.quality_gates.telemetry import emit_gate_trace
+    from tooling.scripts import run_hello_core
+
     with contextlib.redirect_stdout(io.StringIO()):
         rc = run_hello_core.main()
 

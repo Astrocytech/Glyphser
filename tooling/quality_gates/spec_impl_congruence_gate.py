@@ -7,9 +7,6 @@ import json
 import sys
 from pathlib import Path
 
-from runtime.glyphser.registry.interface_hash import compute_interface_hash
-from tooling.quality_gates.telemetry import emit_gate_trace
-
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -46,6 +43,9 @@ def _sha256(path: Path) -> str:
 
 
 def evaluate() -> dict:
+    from runtime.glyphser.registry.interface_hash import compute_interface_hash
+    from tooling.quality_gates.telemetry import emit_gate_trace
+
     findings: list[str] = []
 
     openapi_doc = OPENAPI.read_text(encoding="utf-8")

@@ -5,8 +5,6 @@ import json
 import sys
 from pathlib import Path
 
-from tooling.quality_gates.telemetry import emit_gate_trace
-
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -18,6 +16,8 @@ OUT = ROOT / "evidence" / "gates" / "quality" / "benchmark_registry.json"
 
 
 def evaluate() -> dict:
+    from tooling.quality_gates.telemetry import emit_gate_trace
+
     findings: list[str] = []
     if not REGISTRY.exists():
         findings.append("missing_registry")

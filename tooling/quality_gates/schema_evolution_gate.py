@@ -5,8 +5,6 @@ import json
 import sys
 from pathlib import Path
 
-from tooling.quality_gates.telemetry import emit_gate_trace
-
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -36,6 +34,8 @@ def _migrate_entry(legacy: dict) -> dict:
 
 
 def evaluate() -> dict:
+    from tooling.quality_gates.telemetry import emit_gate_trace
+
     findings: list[str] = []
     schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
     required_entry = set(schema["properties"]["entries"]["items"]["required"])
