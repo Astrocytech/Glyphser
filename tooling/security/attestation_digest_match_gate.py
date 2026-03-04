@@ -7,6 +7,7 @@ import sys
 from pathlib import Path
 
 from tooling.lib.path_config import evidence_root
+from tooling.security.report_io import write_json_report
 
 ROOT = Path(__file__).resolve().parents[2]
 DIGEST_MANIFEST = ROOT / "distribution" / "container" / "image-digests.txt"
@@ -33,8 +34,7 @@ def main(argv: list[str] | None = None) -> int:
             "metadata": {"gate": "attestation_digest_match_gate"},
         }
         out = sec / "attestation_digest_match_gate.json"
-        out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        write_json_report(out, report)
         print("ATTESTATION_DIGEST_MATCH_GATE: PASS")
         print(f"Report: {out}")
         return 0
@@ -65,8 +65,7 @@ def main(argv: list[str] | None = None) -> int:
         "metadata": {"gate": "attestation_digest_match_gate"},
     }
     out = sec / "attestation_digest_match_gate.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, report)
     print(f"ATTESTATION_DIGEST_MATCH_GATE: {report['status']}")
     print(f"Report: {out}")
     return 0 if report["status"] == "PASS" else 1

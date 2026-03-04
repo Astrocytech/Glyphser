@@ -8,6 +8,7 @@ from pathlib import Path
 
 from tooling.lib.path_config import evidence_root
 from tooling.security.advanced_policy import load_policy
+from tooling.security.report_io import write_json_report
 
 REQUIRED = ["id", "ticket", "owner", "reason", "expires_at_utc", "created_at_utc"]
 
@@ -64,8 +65,7 @@ def main(argv: list[str] | None = None) -> int:
         "metadata": {"gate": "exception_registry_gate", "registry": str(path.relative_to(ROOT)).replace("\\", "/")},
     }
     out = evidence_root() / "security" / "exception_registry_gate.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, report)
     print(f"EXCEPTION_REGISTRY_GATE: {report['status']}")
     print(f"Report: {out}")
     return 0 if report["status"] == "PASS" else 1

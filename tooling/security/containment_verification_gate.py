@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from tooling.lib.path_config import evidence_root
+from tooling.security.report_io import write_json_report
 
 ROOT = Path(__file__).resolve().parents[2]
 LOCKDOWN_POLICY = ROOT / "governance" / "security" / "emergency_lockdown_policy.json"
@@ -54,8 +55,7 @@ def main(argv: list[str] | None = None) -> int:
         "metadata": {"gate": "containment_verification_gate"},
     }
     out = sec / "containment_verification_gate.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, report)
     print(f"CONTAINMENT_VERIFICATION_GATE: {report['status']}")
     print(f"Report: {out}")
     return 0 if report["status"] == "PASS" else 1

@@ -12,6 +12,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -58,8 +59,7 @@ def main(argv: list[str] | None = None) -> int:
         "metadata": {"gate": "conformance_security_coupling"},
     }
     out = root / "security" / "conformance_security_coupling.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, report)
     print(f"CONFORMANCE_SECURITY_COUPLING_GATE: {report['status']}")
     print(f"Report: {out}")
     return 0 if report["status"] == "PASS" else 1
