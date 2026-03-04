@@ -26,3 +26,21 @@ def test_audit_tamper_detection(tmp_path: Path):
     lines[1] = json.dumps(record, sort_keys=True, separators=(",", ":"))
     log.write_text("\n".join(lines) + "\n", encoding="utf-8")
     assert verify_chain(log)["status"] == "FAIL"
+
+
+def test_audit_append_rejects_corrupt_tail(tmp_path: Path):
+    log = tmp_path / "audit.log.jsonl"
+    log.write_text('{"event":{"op":"submit"},"prev_hash":"","hash":"h"}\nnot-json\n', encoding="utf-8")
+    try:
+        append_event(log, {"op": "status"})
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "invalid JSON" in str(exc)
+
+
+def test_verify_chain_fails_closed_on_invalid_json(tmp_path: Path):
+    log = tmp_path / "audit.log.jsonl"
+    log.write_text("not-json\n", encoding="utf-8")
+    result = verify_chain(log)
+    assert result["status"] == "FAIL"
+    assert result["reason"] == "invalid_json"

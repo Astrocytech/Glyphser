@@ -5,8 +5,8 @@ from glyphser import RuntimeApiConfig, RuntimeService, verify
 
 def test_public_runtime_service_wrapper(tmp_path):
     svc = RuntimeService(RuntimeApiConfig(root=tmp_path, state_path=tmp_path / "state.json"))
-    created = svc.submit_job(payload={"x": 1}, token="role:admin", scope="unit")
-    loaded = svc.status(created["job_id"], token="role:admin", scope="unit")
+    created = svc.submit_job(payload={"x": 1}, token="role:admin", scope="jobs:write")
+    loaded = svc.status(created["job_id"], token="role:admin", scope="jobs:read")
     assert loaded["job_id"] == created["job_id"]
 
 

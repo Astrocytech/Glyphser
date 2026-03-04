@@ -87,3 +87,54 @@ def test_submit_rejects_long_idempotency_key(tmp_path: Path):
         assert False, "expected ValueError"
     except ValueError as exc:
         assert "idempotency_key too long" in str(exc)
+
+
+def test_scope_allowlist_enforced(tmp_path: Path):
+    svc = RuntimeApiService(RuntimeApiConfig(root=ROOT, state_path=tmp_path / "state.json"))
+    try:
+        svc.submit_job(payload={"payload": {"x": 1}}, token="token-a", scope="jobs:read")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "invalid scope" in str(exc)
+
+
+def test_token_request_quota_enforced(tmp_path: Path):
+    svc = RuntimeApiService(
+        RuntimeApiConfig(
+            root=ROOT,
+            state_path=tmp_path / "state.json",
+            max_requests_per_token=3,
+            max_submits_per_token=3,
+            max_reads_per_job=10,
+        )
+    )
+    payload = {"payload": {"job": "demo"}}
+    job = svc.submit_job(payload=payload, token="token-a", scope="jobs:write")
+    svc.status(job["job_id"], token="token-a", scope="jobs:read")
+    svc.status(job["job_id"], token="token-a", scope="jobs:read")
+    try:
+        svc.status(job["job_id"], token="token-a", scope="jobs:read")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "token request quota exceeded" in str(exc)
+
+
+def test_job_read_quota_enforced(tmp_path: Path):
+    svc = RuntimeApiService(
+        RuntimeApiConfig(
+            root=ROOT,
+            state_path=tmp_path / "state.json",
+            max_requests_per_token=10,
+            max_submits_per_token=10,
+            max_reads_per_job=2,
+        )
+    )
+    payload = {"payload": {"job": "demo"}}
+    job = svc.submit_job(payload=payload, token="token-a", scope="jobs:write")
+    svc.status(job["job_id"], token="token-a", scope="jobs:read")
+    svc.status(job["job_id"], token="token-a", scope="jobs:read")
+    try:
+        svc.status(job["job_id"], token="token-a", scope="jobs:read")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "job read quota exceeded" in str(exc)
