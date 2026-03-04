@@ -35,6 +35,7 @@
     "tooling/security/bandit_baseline_gate.py",
     "tooling/security/secret_scan_gate.py",
     "tooling/security/workflow_pinning_gate.py",
+    "tooling/security/workflow_linter_gate.py",
     "tooling/security/incident_response_gate.py",
     "tooling/security/org_secret_backend_gate.py",
     "tooling/security/secret_management_gate.py",
