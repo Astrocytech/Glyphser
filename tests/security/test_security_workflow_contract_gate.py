@@ -26,6 +26,7 @@ jobs:
       - run: semgrep --version
       - run: python -c "import pkg_resources"
       - run: python tooling/security/security_workflow_trigger_gate.py
+      - run: python tooling/security/security_critical_test_wiring_gate.py
 """
     (wf / "ci.yml").write_text(ci_text, encoding="utf-8")
     maintenance_text = """
@@ -37,6 +38,7 @@ jobs:
       - run: semgrep --version
       - run: python -c "import pkg_resources"
       - run: python tooling/security/security_workflow_trigger_gate.py
+      - run: python tooling/security/security_critical_test_wiring_gate.py
 """
     (wf / "security-maintenance.yml").write_text(maintenance_text, encoding="utf-8")
     extended_text = """

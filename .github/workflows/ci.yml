@@ -207,6 +207,8 @@ jobs:
         run: python tooling/security/security_workflow_contract_gate.py
       - name: Security workflow trigger gate
         run: python tooling/security/security_workflow_trigger_gate.py
+      - name: Security critical test wiring gate
+        run: python tooling/security/security_critical_test_wiring_gate.py
       - name: Security SARIF permissions gate
         run: python tooling/security/security_sarif_permissions_gate.py
       - name: Security workflow permissions policy gate
@@ -321,6 +323,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_toolchain.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_workflow_contract_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_workflow_trigger_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_critical_test_wiring_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_sarif_permissions_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_workflow_permissions_policy_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_exception_suppression_gate.json
