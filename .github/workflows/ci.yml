@@ -164,6 +164,10 @@ jobs:
         run: python tooling/security/pip_audit_gate.py
       - name: Semgrep (SARIF)
         run: semgrep --config tooling/security/semgrep-rules.yml --error --sarif --output semgrep.sarif runtime glyphser tooling
+      - name: Upload SARIF to Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: semgrep.sarif
       - name: Upload security artifacts
         uses: actions/upload-artifact@v4
         with:
