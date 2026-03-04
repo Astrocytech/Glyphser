@@ -11,6 +11,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 SARIF_ACTION = "github/codeql-action/upload-sarif@"
 FORK_GUARD = "if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false"
@@ -43,8 +44,7 @@ def main(argv: list[str] | None = None) -> int:
         "metadata": {"gate": "security_sarif_permissions_gate"},
     }
     out = evidence_root() / "security" / "security_sarif_permissions_gate.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, report)
     print(f"SECURITY_SARIF_PERMISSIONS_GATE: {report['status']}")
     print(f"Report: {out}")
     return 0 if report["status"] == "PASS" else 1

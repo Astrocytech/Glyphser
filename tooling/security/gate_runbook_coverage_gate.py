@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 
 from tooling.lib.path_config import evidence_root
+from tooling.security.report_io import write_json_report
 
 ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = ROOT / "tooling" / "security" / "security_super_gate_manifest.json"
@@ -36,8 +37,7 @@ def main(argv: list[str] | None = None) -> int:
         "metadata": {"gate": "gate_runbook_coverage_gate"},
     }
     out = evidence_root() / "security" / "gate_runbook_coverage_gate.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, report)
     print(f"GATE_RUNBOOK_COVERAGE_GATE: {report['status']}")
     print(f"Report: {out}")
     return 0 if report["status"] == "PASS" else 1

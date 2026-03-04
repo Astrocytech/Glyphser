@@ -15,6 +15,7 @@ artifact_signing = importlib.import_module("runtime.glyphser.security.artifact_s
 verify_file = artifact_signing.verify_file
 current_key = artifact_signing.current_key
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 
 def _valid_meta(meta: dict[str, Any]) -> bool:
@@ -63,8 +64,7 @@ def main(argv: list[str] | None = None) -> int:
         "metadata": {"gate": "governance_markdown_gate"},
     }
     out = evidence_root() / "security" / "governance_markdown_gate.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, report)
     print(f"GOVERNANCE_MARKDOWN_GATE: {report['status']}")
     print(f"Report: {out}")
     return 0 if report["status"] == "PASS" else 1

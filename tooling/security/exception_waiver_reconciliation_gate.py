@@ -14,6 +14,7 @@ if str(ROOT) not in sys.path:
 
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
 artifact_signing = importlib.import_module("runtime.glyphser.security.artifact_signing")
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 EXCEPTIONS_FILE = ROOT / "governance" / "security" / "temporary_exceptions.json"
 WAIVER_POLICY = ROOT / "governance" / "security" / "temporary_waiver_policy.json"
@@ -87,8 +88,7 @@ def main(argv: list[str] | None = None) -> int:
         "metadata": {"gate": "exception_waiver_reconciliation_gate"},
     }
     out = evidence_root() / "security" / "exception_waiver_reconciliation_gate.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, report)
     sig = artifact_signing.sign_file(out, key=artifact_signing.current_key(strict=False))
     out.with_suffix(".json.sig").write_text(sig + "\n", encoding="utf-8")
     print(f"EXCEPTION_WAIVER_RECONCILIATION_GATE: {report['status']}")

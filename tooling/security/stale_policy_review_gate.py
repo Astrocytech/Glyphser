@@ -20,14 +20,14 @@ def _now_utc() -> datetime:
     if sde:
         try:
             return datetime.fromtimestamp(int(sde), tz=UTC)
-        except Exception:
-            pass
+        except (ValueError, OSError):
+            ...
     fixed = os.environ.get("GLYPHSER_FIXED_UTC", "").strip()
     if fixed:
         try:
             return datetime.fromisoformat(fixed)
-        except Exception:
-            pass
+        except ValueError:
+            ...
     return datetime.now(UTC)
 
 

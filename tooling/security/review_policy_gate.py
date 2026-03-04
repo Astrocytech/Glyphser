@@ -13,6 +13,7 @@ if str(ROOT) not in sys.path:
 
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
 run_checked = importlib.import_module("tooling.security.subprocess_policy").run_checked
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 
 def _run(cmd: list[str]) -> str:
@@ -103,8 +104,7 @@ def main(argv: list[str] | None = None) -> int:
         "metadata": {"gate": "review_policy_gate", "min_approvals": min_approvals},
     }
     out = evidence_root() / "security" / "review_policy_gate.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, report)
     print(f"REVIEW_POLICY_GATE: {report['status']}")
     print(f"Report: {out}")
     return 0 if report["status"] == "PASS" else 1
