@@ -6,6 +6,7 @@
     "conformance-gate.yml",
     "emergency-lockdown.yml",
     "fuzz-nightly.yml",
+    "promotion-dry-run.yml",
     "push-button.yml",
     "registry-gate.yml",
     "release.yml",
@@ -15,8 +16,10 @@
     "security-baseline-update.yml",
     "security-live-integrations.yml",
     "security-maintenance.yml",
+    "security-compromised-runner-drill.yml",
     "security-pin-drift-monthly.yml",
     "security-penetration.yml",
+    "security-replay-abuse-regression.yml",
     "security-super-extended.yml",
     "security-tamper-canary.yml",
     "security-tamper-e2e.yml"

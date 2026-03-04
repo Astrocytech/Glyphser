@@ -33,6 +33,7 @@
     "governance/security/threat_control_matrix.json",
     "governance/security/third_party_pentest_policy.json",
     "governance/security/workflow_pin_change_approval.json",
-    "governance/security/workflow_pinning_exceptions.json"
+    "governance/security/workflow_pinning_exceptions.json",
+    "governance/security/workflow_policy_coverage.json"
   ]
 }
