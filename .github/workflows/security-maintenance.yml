@@ -117,6 +117,8 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_toolchain.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_workflow_contract_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_sarif_permissions_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_workflow_permissions_policy_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_exception_suppression_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_dead_gate_wiring_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/incident_response.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/org_secret_backend.json
