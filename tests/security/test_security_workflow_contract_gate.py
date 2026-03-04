@@ -29,6 +29,7 @@ jobs:
       - run: python tooling/security/subprocess_direct_usage_gate.py
       - run: python tooling/security/security_super_gate_manifest_gate.py
       - run: python tooling/security/workflow_artifact_retention_gate.py
+      - run: python tooling/security/semgrep_rules_self_check_gate.py
       - run: python tooling/security/workflow_risky_patterns_gate.py
       - run: python tooling/security/workflow_deprecated_invocation_gate.py
       - run: python tooling/security/policy_schema_validation_gate.py
@@ -51,6 +52,7 @@ jobs:
       - run: python tooling/security/subprocess_direct_usage_gate.py
       - run: python tooling/security/security_super_gate_manifest_gate.py
       - run: python tooling/security/workflow_artifact_retention_gate.py
+      - run: python tooling/security/semgrep_rules_self_check_gate.py
       - run: python tooling/security/workflow_risky_patterns_gate.py
       - run: python tooling/security/workflow_deprecated_invocation_gate.py
       - run: python tooling/security/policy_schema_validation_gate.py

@@ -212,6 +212,8 @@ jobs:
         run: python tooling/security/security_super_gate_manifest_gate.py
       - name: Workflow artifact retention gate
         run: python tooling/security/workflow_artifact_retention_gate.py
+      - name: Semgrep rules self-check gate
+        run: python tooling/security/semgrep_rules_self_check_gate.py
       - name: Workflow risky patterns gate
         run: python tooling/security/workflow_risky_patterns_gate.py
       - name: Workflow deprecated invocation gate
@@ -347,6 +349,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_workflow_contract_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_super_gate_manifest_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_artifact_retention_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/semgrep_rules_self_check_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_risky_patterns_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_deprecated_invocation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_schema_validation_gate.json
