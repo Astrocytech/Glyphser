@@ -1,0 +1,9 @@
+{
+  "max_severity_counts": {
+    "LOW": 0,
+    "MEDIUM": 0,
+    "HIGH": 0
+  },
+  "allowed_findings": [],
+  "enforce_approved_findings_only": true
+}

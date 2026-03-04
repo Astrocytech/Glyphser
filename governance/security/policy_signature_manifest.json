@@ -3,6 +3,7 @@
     "governance/security/abuse_telemetry_policy.json",
     "governance/security/advanced_hardening_policy.json",
     "governance/security/artifact_classification_manifest.json",
+    "governance/security/bandit_baseline_policy.json",
     "governance/security/build_env_baseline.json",
     "governance/security/build_env_drift_approval.json",
     "governance/security/container_provenance_policy.json",

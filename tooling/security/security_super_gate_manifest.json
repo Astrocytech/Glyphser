@@ -31,6 +31,7 @@
     "tooling/security/file_permissions_gate.py",
     "tooling/security/policy_signature_gate.py",
     "tooling/security/pip_audit_gate.py",
+    "tooling/security/bandit_baseline_gate.py",
     "tooling/security/secret_scan_gate.py",
     "tooling/security/workflow_pinning_gate.py",
     "tooling/security/incident_response_gate.py",

@@ -131,6 +131,7 @@ def main(argv: list[str] | None = None) -> int:
             else [sys.executable, "tooling/security/policy_signature_gate.py"]
         ),
         [sys.executable, "tooling/security/pip_audit_gate.py"],
+        [sys.executable, "tooling/security/bandit_baseline_gate.py"],
         [sys.executable, "tooling/security/secret_scan_gate.py"],
         [sys.executable, "tooling/security/workflow_pinning_gate.py"],
         [sys.executable, "tooling/security/incident_response_gate.py"],
