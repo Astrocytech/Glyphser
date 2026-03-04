@@ -1,0 +1,4 @@
+bandit==1.9.4
+pip-audit==2.9.0
+semgrep==1.95.0
+setuptools==75.8.0

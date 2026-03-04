@@ -18,6 +18,13 @@ def test_new_security_workflows_exist_and_are_wired() -> None:
         assert "evidence_run_dir_guard.py" in text
 
 
+def test_replay_abuse_regression_workflow_runs_multi_python_matrix() -> None:
+    wf = (ROOT / ".github" / "workflows" / "security-replay-abuse-regression.yml").read_text(encoding="utf-8")
+    assert "matrix:" in wf
+    assert 'python-version: ["3.11", "3.12"]' in wf
+    assert "replay_abuse_regression_gate.py" in wf
+
+
 def test_codeowners_and_review_policy_present() -> None:
     codeowners = (ROOT / ".github" / "CODEOWNERS").read_text(encoding="utf-8")
     assert "/tooling/security/" in codeowners

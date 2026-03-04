@@ -92,6 +92,8 @@ jobs:
           python tooling/security/abuse_telemetry_gate.py
       - name: Temporary waiver gate
         run: python tooling/security/temporary_waiver_gate.py
+      - name: Emergency lockdown gate
+        run: python tooling/security/emergency_lockdown_gate.py
       - name: Exception waiver reconciliation gate
         run: python tooling/security/exception_waiver_reconciliation_gate.py
       - name: Provenance revocation gate
@@ -156,6 +158,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/live_rollout_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/abuse_telemetry.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/temporary_waiver_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/emergency_lockdown_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/exception_waiver_reconciliation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/exception_waiver_reconciliation_gate.json.sig
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_revocation_gate.json
@@ -231,6 +234,7 @@ jobs:
           python tooling/security/abuse_telemetry_snapshot.py
           python tooling/security/abuse_telemetry_gate.py
           python tooling/security/temporary_waiver_gate.py
+          python tooling/security/emergency_lockdown_gate.py
           python tooling/security/exception_waiver_reconciliation_gate.py
           python tooling/security/provenance_revocation_gate.py
           python tooling/security/promotion_policy_gate.py

@@ -28,17 +28,28 @@ def main(argv: list[str] | None = None) -> int:
     sec = evidence_root() / "security"
     deploy = evidence_root() / "deploy" / "latest.json"
     rollback = evidence_root() / "deploy" / "rollback.json"
+    checklist = ROOT / "governance" / "security" / "EMERGENCY_LOCKDOWN_ROLLBACK_CHECKLIST.md"
     statuses = {
         "deploy": _status(deploy),
         "rollback": _status(rollback),
         "provenance_signature": _status(sec / "provenance_signature.json"),
         "policy_signature": _status(sec / "policy_signature.json"),
+        "emergency_lockdown": _status(sec / "emergency_lockdown_gate.json"),
     }
     findings = [f"{k}_not_pass" for k, v in statuses.items() if v != "PASS"]
+    if not checklist.exists():
+        findings.append("missing_emergency_lockdown_rollback_checklist")
+    else:
+        text = checklist.read_text(encoding="utf-8", errors="ignore")
+        if "rollback attestation verification gate" not in text.lower():
+            findings.append("rollback_checklist_missing_attestation_step")
     report = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
-        "summary": statuses,
+        "summary": {
+            **statuses,
+            "checklist_path": str(checklist.relative_to(ROOT)).replace("\\", "/"),
+        },
         "metadata": {"gate": "release_rollback_provenance_gate"},
     }
     out = sec / "release_rollback_provenance_gate.json"
