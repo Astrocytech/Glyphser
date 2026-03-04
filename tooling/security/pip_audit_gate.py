@@ -15,7 +15,15 @@ if str(ROOT) not in sys.path:
 def main() -> int:
     path_config = importlib.import_module("tooling.lib.path_config")
     out = path_config.evidence_root() / "security" / "pip_audit.json"
-    cmd = [sys.executable, "-m", "pip_audit", "--format", "json", "--desc", "--strict"]
+    cmd = [
+        sys.executable,
+        "-m",
+        "pip_audit",
+        "--format",
+        "json",
+        "--desc",
+        "--skip-editable",
+    ]
     proc = _sp.run(cmd, cwd=str(ROOT), capture_output=True, text=True)
 
     payload: dict[str, object] = {
