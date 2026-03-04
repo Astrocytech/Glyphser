@@ -16,6 +16,7 @@ evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
 WORKFLOWS = ROOT / ".github" / "workflows"
 EVIDENCE_ROOT_ENV_NAME = "GLYPHSER_EVIDENCE_ROOT"
 GUARD_CMD = "tooling/security/evidence_run_dir_guard.py"
+RUN_SCOPE_PREFIX = "evidence/runs/${{ github.run_id }}/"
 
 
 def _needs_evidence_scope(text: str) -> bool:
@@ -32,6 +33,8 @@ def _report_for(path: Path) -> dict[str, Any]:
     findings: list[str] = []
     if needs and EVIDENCE_ROOT_ENV_NAME not in text:
         findings.append("missing_GLYPHSER_EVIDENCE_ROOT")
+    if needs and EVIDENCE_ROOT_ENV_NAME in text and RUN_SCOPE_PREFIX not in text:
+        findings.append("invalid_GLYPHSER_EVIDENCE_ROOT_scope")
     if needs and GUARD_CMD not in text:
         findings.append("missing_evidence_run_dir_guard")
     return {
