@@ -2,8 +2,6 @@ from __future__ import annotations
 
 import random
 
-import pytest
-
 from runtime.glyphser.model.ir_schema import IRValidationError, validate_ir_dag
 
 

@@ -1,13 +1,19 @@
 """Deterministic TMMU prepare memory implementation."""
+
 from __future__ import annotations
 
 import hashlib
 from typing import Any, Dict, List, Tuple
 
-from runtime.glyphser.serialization.canonical_cbor import encode_canonical
-from runtime.glyphser.model.ir_schema import IRValidationError, validate_ir_dag, tensor_size_bytes, dtype_size_bytes
-from runtime.glyphser.model.topo_sort_nodes import topo_sort_nodes
 from runtime.glyphser.error.emit import emit_error
+from runtime.glyphser.model.ir_schema import (
+    IRValidationError,
+    dtype_size_bytes,
+    tensor_size_bytes,
+    validate_ir_dag,
+)
+from runtime.glyphser.model.topo_sort_nodes import topo_sort_nodes
+from runtime.glyphser.serialization.canonical_cbor import encode_canonical
 
 
 class TMMUError(RuntimeError):
@@ -108,7 +114,13 @@ def _assign_logical_slots(
     slot_alignments: Dict[Tuple[str, int], int] = {}
 
     for arena, lives in per_arena.items():
-        lives.sort(key=lambda x: (x["birth"], -tensor_size_bytes(x["shape"], x["dtype"]), x["tensor_id"]))
+        lives.sort(
+            key=lambda x: (
+                x["birth"],
+                -tensor_size_bytes(x["shape"], x["dtype"]),
+                x["tensor_id"],
+            )
+        )
         active: List[Tuple[int, int]] = []  # (death, slot_id)
         free_slots: List[int] = []
         next_slot_id = 0
@@ -149,7 +161,10 @@ def _map_to_virtual_addresses(
         slots = sorted({slot for (a, slot) in slot_sizes if a == arena})
         offset = 0
         for slot_id in slots:
-            align = max(slot_alignments.get((arena, slot_id), 1), config.get("alignment_bytes", 1))
+            align = max(
+                slot_alignments.get((arena, slot_id), 1),
+                config.get("alignment_bytes", 1),
+            )
             offset = _align_up(offset, align)
             if offset < 0 or offset > (2**64 - 1):
                 raise TMMUError("allocation overflow")
@@ -173,13 +188,8 @@ def _plan_hash(
     execution_order_hash = hashlib.sha256(encode_canonical(execution_order_ids)).hexdigest()
     arena_config_hash = hashlib.sha256(encode_canonical(arena_config)).hexdigest()
     shard_spec_hash = hashlib.sha256(encode_canonical({})).hexdigest()
-    slot_assignment_table = [
-        [tensor_id, arena, slot] for tensor_id, (arena, slot) in sorted(assignment.items())
-    ]
-    logical_address_table = [
-        [arena, slot, offsets[(arena, slot)]]
-        for (arena, slot) in sorted(offsets.keys())
-    ]
+    slot_assignment_table = [[tensor_id, arena, slot] for tensor_id, (arena, slot) in sorted(assignment.items())]
+    logical_address_table = [[arena, slot, offsets[(arena, slot)]] for (arena, slot) in sorted(offsets.keys())]
     payload = [
         "tmmu_plan",
         [
@@ -199,18 +209,51 @@ def _plan_hash(
 
 def prepare_memory(request: Dict[str, Any]) -> Dict[str, Any]:
     if not isinstance(request, dict):
-        return {"error": emit_error("CONTRACT_VIOLATION", "invalid request", operator_id="Glyphser.TMMU.PrepareMemory")}
+        return {
+            "error": emit_error(
+                "CONTRACT_VIOLATION",
+                "invalid request",
+                operator_id="Glyphser.TMMU.PrepareMemory",
+            )
+        }
     ir_dag = request.get("ir_dag") or request.get("uml_model_ir_dag")
     if ir_dag is None:
-        return {"error": emit_error("INVALID_IR_SHAPES", "invalid request", operator_id="Glyphser.TMMU.PrepareMemory", t="", ir_hash="", node_id="")}
+        return {
+            "error": emit_error(
+                "INVALID_IR_SHAPES",
+                "invalid request",
+                operator_id="Glyphser.TMMU.PrepareMemory",
+                t="",
+                ir_hash="",
+                node_id="",
+            )
+        }
     try:
         ir = validate_ir_dag(ir_dag)
     except IRValidationError:
-        return {"error": emit_error("INVALID_IR_SHAPES", "invalid request", operator_id="Glyphser.TMMU.PrepareMemory", t="", ir_hash="", node_id="")}
+        return {
+            "error": emit_error(
+                "INVALID_IR_SHAPES",
+                "invalid request",
+                operator_id="Glyphser.TMMU.PrepareMemory",
+                t="",
+                ir_hash="",
+                node_id="",
+            )
+        }
     try:
         execution_order = _execution_order_nodes(ir, request.get("execution_order"))
     except Exception:
-        return {"error": emit_error("LIVENESS_CYCLE", "invalid request", operator_id="Glyphser.TMMU.PrepareMemory", t="", ir_hash=ir.get("ir_hash", ""), node_id="")}
+        return {
+            "error": emit_error(
+                "LIVENESS_CYCLE",
+                "invalid request",
+                operator_id="Glyphser.TMMU.PrepareMemory",
+                t="",
+                ir_hash=ir.get("ir_hash", ""),
+                node_id="",
+            )
+        }
     mode = request.get("mode", "forward")
     arena_config = request.get("arena_config") or request.get("tmmu_context", {}).get("arena_config")
     if arena_config is None:
@@ -223,12 +266,50 @@ def prepare_memory(request: Dict[str, Any]) -> Dict[str, Any]:
     except TMMUError as exc:
         msg = str(exc)
         if "arena too small" in msg:
-            return {"error": emit_error("ARENA_TOO_SMALL", "invalid request", operator_id="Glyphser.TMMU.PrepareMemory", t="", arena="", capacity="", required="")}
+            return {
+                "error": emit_error(
+                    "ARENA_TOO_SMALL",
+                    "invalid request",
+                    operator_id="Glyphser.TMMU.PrepareMemory",
+                    t="",
+                    arena="",
+                    capacity="",
+                    required="",
+                )
+            }
         if "allocation overflow" in msg:
-            return {"error": emit_error("ALLOCATION_OVERFLOW", "invalid request", operator_id="Glyphser.TMMU.PrepareMemory", t="", arena="", offset="", size="")}
+            return {
+                "error": emit_error(
+                    "ALLOCATION_OVERFLOW",
+                    "invalid request",
+                    operator_id="Glyphser.TMMU.PrepareMemory",
+                    t="",
+                    arena="",
+                    offset="",
+                    size="",
+                )
+            }
         if "alignment" in msg:
-            return {"error": emit_error("ALIGNMENT_VIOLATION", "invalid request", operator_id="Glyphser.TMMU.PrepareMemory", t="", arena="", logical_slot="")}
-        return {"error": emit_error("ADDRESS_COLLISION", "invalid request", operator_id="Glyphser.TMMU.PrepareMemory", t="", arena="", logical_slot="")}
+            return {
+                "error": emit_error(
+                    "ALIGNMENT_VIOLATION",
+                    "invalid request",
+                    operator_id="Glyphser.TMMU.PrepareMemory",
+                    t="",
+                    arena="",
+                    logical_slot="",
+                )
+            }
+        return {
+            "error": emit_error(
+                "ADDRESS_COLLISION",
+                "invalid request",
+                operator_id="Glyphser.TMMU.PrepareMemory",
+                t="",
+                arena="",
+                logical_slot="",
+            )
+        }
 
     tensor_map: Dict[str, Dict[str, Any]] = {}
     for live in live_ranges:
@@ -253,7 +334,7 @@ def prepare_memory(request: Dict[str, Any]) -> Dict[str, Any]:
     if tensor_count:
         memory_reuse_ratio = max(0.0, 1.0 - (slot_count / tensor_count))
     total_slot_bytes = sum(slot_sizes.values()) if slot_sizes else 0
-    total_tensor_bytes = sum(tensor_size_bytes(l["shape"], l["dtype"]) for l in live_ranges)
+    total_tensor_bytes = sum(tensor_size_bytes(live["shape"], live["dtype"]) for live in live_ranges)
     internal_fragmentation_ratio = 0.0
     if total_slot_bytes:
         internal_fragmentation_ratio = max(0.0, 1.0 - (total_tensor_bytes / total_slot_bytes))

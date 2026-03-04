@@ -9,13 +9,13 @@ import time
 from datetime import UTC, datetime
 from pathlib import Path
 
+from runtime.glyphser.api.runtime_api import RuntimeApiConfig, RuntimeApiService
+from runtime.glyphser.registry.interface_hash import compute_interface_hash
+
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "evidence" / "benchmarks" / "latest.json"
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
-
-from runtime.glyphser.api.runtime_api import RuntimeApiConfig, RuntimeApiService
-from runtime.glyphser.registry.interface_hash import compute_interface_hash
 
 
 def _time_call(fn, repeats: int = 1000) -> dict[str, float]:
@@ -38,7 +38,14 @@ def run() -> dict[str, object]:
 
     class _NoAuditRuntimeApiService(RuntimeApiService):
         # Keep benchmark focused on runtime operations, not log growth overhead.
-        def _audit(self, operation: str, token: str, job_id: str, scope: str, replay_verdict: str = "") -> None:
+        def _audit(
+            self,
+            operation: str,
+            token: str,
+            job_id: str,
+            scope: str,
+            replay_verdict: str = "",
+        ) -> None:
             return None
 
     service = _NoAuditRuntimeApiService(
@@ -52,8 +59,16 @@ def run() -> dict[str, object]:
     registry = {
         "registry_schema_version": "1.0.0",
         "operator_records": [
-            {"operator_id": "Glyphser.Model.Forward", "version": "1.0.0", "method": "POST"},
-            {"operator_id": "Glyphser.Trace.TraceSidecar", "version": "1.0.0", "method": "POST"},
+            {
+                "operator_id": "Glyphser.Model.Forward",
+                "version": "1.0.0",
+                "method": "POST",
+            },
+            {
+                "operator_id": "Glyphser.Trace.TraceSidecar",
+                "version": "1.0.0",
+                "method": "POST",
+            },
         ],
     }
 
@@ -72,8 +87,14 @@ def run() -> dict[str, object]:
         idempotency_key="bench-key",
     )
 
-    status_metrics = _time_call(lambda: service.status(first["job_id"], token="role:admin", scope="bench"), repeats=2000)
-    evidence_metrics = _time_call(lambda: service.evidence(first["job_id"], token="role:admin", scope="bench"), repeats=500)
+    status_metrics = _time_call(
+        lambda: service.status(first["job_id"], token="role:admin", scope="bench"),
+        repeats=2000,
+    )
+    evidence_metrics = _time_call(
+        lambda: service.evidence(first["job_id"], token="role:admin", scope="bench"),
+        repeats=500,
+    )
 
     return {
         "schema_version": "glyphser-benchmark.v1",

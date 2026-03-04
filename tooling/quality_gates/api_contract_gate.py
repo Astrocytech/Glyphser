@@ -31,7 +31,12 @@ def validate_contract(doc: Dict[str, Any]) -> None:
     if int(semver_policy.get("minimum_support_window_months", 0)) < 12:
         raise ValueError("invalid minimum support window")
     paths = doc.get("paths", {})
-    required = ["/v1/jobs", "/v1/jobs/{job_id}", "/v1/jobs/{job_id}/evidence", "/v1/jobs/{job_id}/replay"]
+    required = [
+        "/v1/jobs",
+        "/v1/jobs/{job_id}",
+        "/v1/jobs/{job_id}/evidence",
+        "/v1/jobs/{job_id}/replay",
+    ]
     for p in required:
         if p not in paths:
             raise ValueError(f"missing required endpoint: {p}")

@@ -1,4 +1,5 @@
 """Deterministic evidence validate (minimal)."""
+
 from __future__ import annotations
 
 from typing import Any, Dict

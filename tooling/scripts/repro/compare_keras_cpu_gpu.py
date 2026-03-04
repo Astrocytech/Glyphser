@@ -153,7 +153,8 @@ def main() -> int:
         "excluded_operators": [],
     }
     (out_dir / "repro-classification.json").write_text(
-        json.dumps(repro_classification, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        json.dumps(repro_classification, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
     )
     (out_dir / "env-matrix.json").write_text(json.dumps(meta, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
@@ -171,7 +172,8 @@ def main() -> int:
             "sha256": _sha256_file(report_path),
         }
     (out_dir / "conformance-hashes.json").write_text(
-        json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
     )
 
     summary_lines = [
@@ -191,7 +193,13 @@ def main() -> int:
         encoding="utf-8",
     )
 
-    print(json.dumps({"status": status, "classification": classification, "reason": reason}, indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            {"status": status, "classification": classification, "reason": reason},
+            indent=2,
+            sort_keys=True,
+        )
+    )
     if status == "PASS":
         return 0
     if status == "BLOCKED":

@@ -2,11 +2,9 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
-from typing import List
-
 import sys
 from pathlib import Path
+from typing import List
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
@@ -17,6 +15,7 @@ from tooling.registry.operator_vectors import (  # noqa: E402
     load_vectors_file,
     validate_vectors_payload,
 )
+
 REGISTRY = ROOT / "specs" / "contracts" / "operator_registry.json"
 
 

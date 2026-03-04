@@ -64,7 +64,14 @@ def _run_universal(route: str, model_ir: dict[str, Any], inputs: list[float]) ->
         route_info = load_driver({"driver_id": "universal_driver", "universal_route": route})
     except Exception as exc:
         return (
-            {"status": "ERROR", "selected_route": route, "error": {"code_id": "UNIVERSAL_ROUTE_UNAVAILABLE", "message": str(exc)}},
+            {
+                "status": "ERROR",
+                "selected_route": route,
+                "error": {
+                    "code_id": "UNIVERSAL_ROUTE_UNAVAILABLE",
+                    "message": str(exc),
+                },
+            },
             {"error": {"code_id": "UNIVERSAL_ROUTE_UNAVAILABLE", "message": str(exc)}},
         )
     result = execute(
@@ -95,7 +102,11 @@ def main() -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     fixtures = fixtures_root() / "hello-core"
-    dataset = [json.loads(line) for line in (fixtures / "tiny_synth_dataset.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
+    dataset = [
+        json.loads(line)
+        for line in (fixtures / "tiny_synth_dataset.jsonl").read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
     model_ir = json.loads((fixtures / "model_ir.json").read_text(encoding="utf-8"))
     inputs = dataset[0]["x"]
 
@@ -117,16 +128,30 @@ def main() -> int:
                     "universal_result": universal,
                 }
             )
-            route_rows.append({"route": route, "status": "BLOCKED", "selected_route": route_info.get("selected_route", "")})
+            route_rows.append(
+                {
+                    "route": route,
+                    "status": "BLOCKED",
+                    "selected_route": route_info.get("selected_route", ""),
+                }
+            )
             normalization_rows.append({"route": route, "status": "BLOCKED"})
             continue
 
         outputs_equal = direct.get("outputs") == universal.get("outputs")
         fp_equal = direct.get("execution_fp") == universal.get("execution_fp")
         if outputs_equal and fp_equal:
-            status, cls, reason = "PASS", "E0", "Exact output and execution fingerprint match."
+            status, cls, reason = (
+                "PASS",
+                "E0",
+                "Exact output and execution fingerprint match.",
+            )
         elif _allclose(direct.get("outputs"), universal.get("outputs"), args.abs_tol, args.rel_tol):
-            status, cls, reason = "PASS", "E1", "Outputs within tolerance; runtime fingerprint differs."
+            status, cls, reason = (
+                "PASS",
+                "E1",
+                "Outputs within tolerance; runtime fingerprint differs.",
+            )
         else:
             status, cls, reason = "FAIL", "E2", "Outputs diverge beyond tolerance."
 
@@ -165,18 +190,40 @@ def main() -> int:
         "driver_id": "universal_driver",
         "version": "v1",
         "rules": [
-            {"rule": "explicit_route", "behavior": "Route exactly to universal_route if supported."},
-            {"rule": "framework_preference", "behavior": "Prefer pytorch (default) or keras with gpu-first by default."},
-            {"rule": "fallback", "behavior": "If preferred route is unavailable, fallback deterministically by ordered candidate list."},
-            {"rule": "unsupported_language_route", "behavior": "Reject java_cpu and rust_cpu with deterministic ValueError."},
+            {
+                "rule": "explicit_route",
+                "behavior": "Route exactly to universal_route if supported.",
+            },
+            {
+                "rule": "framework_preference",
+                "behavior": "Prefer pytorch (default) or keras with gpu-first by default.",
+            },
+            {
+                "rule": "fallback",
+                "behavior": "If preferred route is unavailable, fallback deterministically by ordered candidate list.",
+            },
+            {
+                "rule": "unsupported_language_route",
+                "behavior": "Reject java_cpu and rust_cpu with deterministic ValueError.",
+            },
         ],
     }
 
-    statuses = [p["status"] for p in pair_rows] + [r["status"] for r in route_rows] + [n["status"] for n in normalization_rows]
+    statuses = (
+        [p["status"] for p in pair_rows] + [r["status"] for r in route_rows] + [n["status"] for n in normalization_rows]
+    )
     if any(s == "FAIL" for s in statuses):
-        overall_status, overall_class, overall_reason = "FAIL", "E2", "At least one universal-driver check failed."
+        overall_status, overall_class, overall_reason = (
+            "FAIL",
+            "E2",
+            "At least one universal-driver check failed.",
+        )
     elif any(s == "BLOCKED" for s in statuses):
-        overall_status, overall_class, overall_reason = "BLOCKED", "E2", "At least one universal-driver check is blocked."
+        overall_status, overall_class, overall_reason = (
+            "BLOCKED",
+            "E2",
+            "At least one universal-driver check is blocked.",
+        )
     else:
         overall_status = "PASS"
         overall_class = "E0" if all(p["classification"] == "E0" for p in pair_rows) else "E1"
@@ -213,13 +260,24 @@ def main() -> int:
         + "\n",
         encoding="utf-8",
     )
-    (out_dir / "pair-matrix.json").write_text(json.dumps({"pairs": pair_rows}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "route-matrix.json").write_text(json.dumps({"routes": route_rows}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "normalization-parity.json").write_text(
-        json.dumps({"normalization_parity": normalization_rows}, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    (out_dir / "pair-matrix.json").write_text(
+        json.dumps({"pairs": pair_rows}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
     )
-    (out_dir / "fallback-policy.json").write_text(json.dumps(fallback_policy, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "env-matrix.json").write_text(json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "route-matrix.json").write_text(
+        json.dumps({"routes": route_rows}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "normalization-parity.json").write_text(
+        json.dumps({"normalization_parity": normalization_rows}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "fallback-policy.json").write_text(
+        json.dumps(fallback_policy, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    (out_dir / "env-matrix.json").write_text(
+        json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
     (out_dir / "coverage-summary.json").write_text(
         json.dumps(
             {
@@ -243,15 +301,27 @@ def main() -> int:
                 "status": "ACTIVE",
             }
         )
-    (out_dir / "waivers.json").write_text(json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "waivers.json").write_text(
+        json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     conformance_hashes: dict[str, Any] = {"status": overall_status}
     results_path = ROOT / "evidence" / "conformance" / "results" / "latest.json"
     report_path = ROOT / "evidence" / "conformance" / "reports" / "latest.json"
     if results_path.exists():
-        conformance_hashes["conformance_results"] = {"path": "evidence/conformance/results/latest.json", "sha256": _sha256_file(results_path)}
+        conformance_hashes["conformance_results"] = {
+            "path": "evidence/conformance/results/latest.json",
+            "sha256": _sha256_file(results_path),
+        }
     if report_path.exists():
-        conformance_hashes["conformance_report"] = {"path": "evidence/conformance/reports/latest.json", "sha256": _sha256_file(report_path)}
-    (out_dir / "conformance-hashes.json").write_text(json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        conformance_hashes["conformance_report"] = {
+            "path": "evidence/conformance/reports/latest.json",
+            "sha256": _sha256_file(report_path),
+        }
+    (out_dir / "conformance-hashes.json").write_text(
+        json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     (out_dir / "summary.md").write_text(
         "\n".join(
             [
@@ -298,7 +368,17 @@ def main() -> int:
         encoding="utf-8",
     )
 
-    print(json.dumps({"status": overall_status, "classification": overall_class, "reason": overall_reason}, indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "status": overall_status,
+                "classification": overall_class,
+                "reason": overall_reason,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
     return 0 if overall_status == "PASS" else 1
 
 

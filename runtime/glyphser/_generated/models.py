@@ -5,22 +5,33 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional
 
+
 @dataclass
-class API Interfaces:
+class GlyphserEvidenceMetadataCatalog:
+    entries: List[Any]
+    generated_at_utc: str
+    generator: str
+    schema_version: str
+
+
+@dataclass
+class APIInterfaces:
     interface_hash: str
     interfaces: List[Any]
     spec_version: str
 
+
 @dataclass
-class Canonical CBOR Profile:
+class CanonicalCBORProfile:
     float_format: str
     map_key_ordering: str
     simple_values: Optional[List[Any]] = None
     string_normalization: Optional[str] = None
     tag_policy: Optional[str] = None
 
+
 @dataclass
-class Data Structures:
+class DataStructures:
     CheckpointHeader: Dict[str, Any]
     FieldDecl: Dict[str, Any]
     StructDecl: Dict[str, Any]
@@ -28,8 +39,9 @@ class Data Structures:
     TraceIterRecord: Dict[str, Any]
     TraceRunHeader: Dict[str, Any]
 
+
 @dataclass
-class Dependency Lock Policy:
+class DependencyLockPolicy:
     artifact_index_hash: Optional[str] = None
     dependencies_lock_hash: str
     lockfile_hash: str
@@ -38,8 +50,9 @@ class Dependency Lock Policy:
     sbom_hash: Optional[str] = None
     toolchain_hash: Optional[str] = None
 
+
 @dataclass
-class Determinism Profiles:
+class DeterminismProfiles:
     default_compare_policy: Optional[str] = None
     determinism_profile_hash: str
     determinism_profile_id: str
@@ -47,13 +60,15 @@ class Determinism Profiles:
     profile_rules: Optional[Dict[str, Any]] = None
     tolerance_map: Optional[Dict[str, Any]] = None
 
+
 @dataclass
-class Digest Catalog:
+class DigestCatalog:
     catalog_version: int
     entries: List[Any]
 
+
 @dataclass
-class Environment Manifest:
+class EnvironmentManifest:
     arch: Optional[str] = None
     backend_binary_hash: str
     dependencies_lock_hash: Optional[str] = None
@@ -63,17 +78,20 @@ class Environment Manifest:
     runtime_env_hash: str
     toolchain_hash: Optional[str] = None
 
-@dataclass
-class Glyphser Error Codes:
-    error_codes: List[Any]
 
 @dataclass
-class Normativity Legend:
+class GlyphserErrorCodes:
+    error_codes: List[Any]
+
+
+@dataclass
+class NormativityLegend:
     default_rules: Optional[str] = None
     tags: List[Any]
 
+
 @dataclass
-class Operator Registry Schema:
+class OperatorRegistrySchema:
     allowed_error_codes: List[Any]
     determinism_class: str
     method: str
@@ -87,21 +105,24 @@ class Operator Registry Schema:
     surface: str
     version: str
 
+
 @dataclass
-class Redaction Policy:
+class RedactionPolicy:
     classification: str
     redaction_key_id: Optional[str] = None
     redaction_mode: str
     redaction_policy_hash: Optional[str] = None
     transform: str
 
+
 @dataclass
-class AuthZCapabilityMatrix (L2):
+class AuthZCapabilityMatrixL2:
     capabilities: List[Any]
     roles: List[Any]
 
+
 @dataclass
-class CheckpointSchema (L2):
+class CheckpointSchemaL2:
     artifact_index_hash: Optional[str] = None
     backend_binary_hash: Optional[str] = None
     checkpoint_hash: str
@@ -127,8 +148,9 @@ class CheckpointSchema (L2):
     trace_final_hash: Optional[str] = None
     weights_manifest_hash: Optional[str] = None
 
+
 @dataclass
-class ConfigSchema (L2):
+class ConfigSchemaL2:
     checkpoint_frequency: Optional[int] = None
     custom_operators: Optional[List[Any]] = None
     data: Optional[Dict[str, Any]] = None
@@ -151,47 +173,54 @@ class ConfigSchema (L2):
     task_type: Optional[str] = None
     tenant_id: str
 
+
 @dataclass
-class DataLineage (L2):
+class DataLineageL2:
     data_access_plan_hash: str
     dataset_snapshot_id: str
     lineage_root_hash: str
     split_hashes: Optional[List[Any]] = None
     transform_chain_hash: Optional[str] = None
 
+
 @dataclass
-class DataNextBatch (L2):
+class DataNextBatchL2:
     dataset_key: str
     global_batch_size: int
     seed: int
     world_size: int
 
+
 @dataclass
-class DeploymentRunbook (L2):
+class DeploymentRunbookL2:
     commands: List[Any]
     environment: str
     runbook_version: str
 
+
 @dataclass
-class DifferentialPrivacyApply (L2):
+class DifferentialPrivacyApplyL2:
     accountant: str
     clipping_strategy: str
     delta: float
     epsilon: float
 
+
 @dataclass
-class EvaluationHarness (L2):
+class EvaluationHarnessL2:
     metrics: List[Any]
     thresholds: Optional[Dict[str, Any]] = None
 
+
 @dataclass
-class ExecutionCertificate (L2):
+class ExecutionCertificateL2:
     certificate_hash: str
     signed_payload: Dict[str, Any]
     unsigned_metadata: Optional[Dict[str, Any]] = None
 
+
 @dataclass
-class ExperimentTracking (L2):
+class ExperimentTrackingL2:
     checkpoint_hash: str
     created_at: str
     ended_at: Optional[str] = None
@@ -203,26 +232,30 @@ class ExperimentTracking (L2):
     tenant_id: str
     trace_final_hash: str
 
+
 @dataclass
-class GlyphserKernelV322OS (L2):
+class GlyphserKernelV322OSL2:
     execution_mode: Optional[str] = None
     manifest_hash: Optional[str] = None
     replay_token: Optional[str] = None
     run_id: Optional[str] = None
 
+
 @dataclass
-class ModelRegistry (L2):
+class ModelRegistryL2:
     model_hash: str
     model_id: str
 
+
 @dataclass
-class ModelIRExecutor (L2):
+class ModelIRExecutorL2:
     ir_hash: str
     outputs: Optional[List[Any]] = None
     replay_token: str
 
+
 @dataclass
-class MonitoringPolicy (L2):
+class MonitoringPolicyL2:
     baselines: Optional[List[Any]] = None
     metrics: Optional[List[Any]] = None
     monitor_policy_hash: str
@@ -230,14 +263,16 @@ class MonitoringPolicy (L2):
     policy_gate_hash: str
     thresholds: Optional[Dict[str, Any]] = None
 
+
 @dataclass
-class PipelineOrchestrator (L2):
+class PipelineOrchestratorL2:
     pipeline_stages: List[Any]
     task_type: str
     world_size: int
 
+
 @dataclass
-class ReplayDeterminism (L2):
+class ReplayDeterminismL2:
     determinism_profile_hash: str
     driver_runtime_fingerprint_hash: Optional[str] = None
     env_manifest_hash: Optional[str] = None
@@ -247,14 +282,16 @@ class ReplayDeterminism (L2):
     replay_token: str
     seed: Optional[int] = None
 
+
 @dataclass
-class RunCommitWAL (L2):
+class RunCommitWALL2:
     record_hash: str
     run_id: str
     wal_seq: int
 
+
 @dataclass
-class SecurityComplianceProfile (L2):
+class SecurityComplianceProfileL2:
     attestation_bundle_hash: Optional[str] = None
     attestation_quote_hash: Optional[str] = None
     execution_mode: str
@@ -264,8 +301,9 @@ class SecurityComplianceProfile (L2):
     tee_type: Optional[str] = None
     verification_report_hash: Optional[str] = None
 
+
 @dataclass
-class TMMUAllocation (L2):
+class TMMUAllocationL2:
     allocation_header: Dict[str, Any]
     arena_config: Dict[str, Any]
     ir_hash: str
@@ -273,358 +311,441 @@ class TMMUAllocation (L2):
     replay_token: str
     tensor_map: Optional[Dict[str, Any]] = None
 
+
 @dataclass
-class TraceSidecar (L2):
+class TraceSidecarL2:
     error_records: List[Any]
     iter_records: List[Any]
     run_header: Dict[str, Any]
     trace_final_hash: str
 
+
 @dataclass
-class CompatibilityTestMatrix (L3):
+class CompatibilityTestMatrixL3:
     cases: List[Any]
     matrix: List[Any]
     status: Optional[str] = None
 
+
 @dataclass
-class ConformanceCIPipeline (L3):
+class ConformanceCIPipelineL3:
     artifacts: Optional[List[Any]] = None
     gates: List[Any]
     steps: List[Any]
 
+
 @dataclass
-class ConformanceHarnessGuide (L3):
+class ConformanceHarnessGuideL3:
     commands: List[Any]
     inputs: List[Any]
 
+
 @dataclass
-class CoverageTargets (L3):
+class CoverageTargetsL3:
     targets: List[Any]
     thresholds: Optional[Dict[str, Any]] = None
 
+
 @dataclass
-class DataContractFuzzingGuide (L3):
+class DataContractFuzzingGuideL3:
     fuzz_cases: List[Any]
 
-@dataclass
-class FailureInjectionIndex (L3):
-    scenarios: List[Any]
 
 @dataclass
-class FailureInjectionScenarios (L3):
+class FailureInjectionIndexL3:
     scenarios: List[Any]
 
-@dataclass
-class GameDayScenarios (L3):
-    scenarios: List[Any]
 
 @dataclass
-class IntegrationTestMatrix (L3):
+class FailureInjectionScenariosL3:
+    scenarios: List[Any]
+
+
+@dataclass
+class GameDayScenariosL3:
+    scenarios: List[Any]
+
+
+@dataclass
+class IntegrationTestMatrixL3:
     cases: List[Any]
     matrix: List[Any]
     status: Optional[str] = None
 
+
 @dataclass
-class Glyphser Operator Error Vectors:
+class GlyphserOperatorErrorVectors:
     operator_id: str
     vectors: List[Any]
 
+
 @dataclass
-class Glyphser Operator Vectors:
+class GlyphserOperatorVectors:
     operator_id: str
     vectors: List[Any]
 
+
 @dataclass
-class PerformancePlan (L3):
+class PerformancePlanL3:
     metrics: List[Any]
     thresholds: Optional[Dict[str, Any]] = None
 
+
 @dataclass
-class ReleaseGates (L3):
+class ReleaseGatesL3:
     gates: List[Any]
     pass_criteria: Optional[str] = None
 
-@dataclass
-class StorageRecoveryTestMatrix (L3):
-    cases: List[Any]
 
 @dataclass
-class TestPlan (L3):
+class StorageRecoveryTestMatrixL3:
+    cases: List[Any]
+
+
+@dataclass
+class TestPlanL3:
     coverage: Optional[str] = None
     pass_criteria: str
     tests: List[Any]
 
+
 @dataclass
-class TestVectorsCatalog (L3):
+class TestVectorsCatalogL3:
     catalog_version: str
     coverage: Optional[str] = None
     vectors: List[Any]
 
+
 @dataclass
-class APILifecycleAndDeprecationPolicy (L4):
+class APILifecycleAndDeprecationPolicyL4:
     pass
+
 
 @dataclass
-class ArchitectureDecisionsLog (L4):
+class ArchitectureDecisionsLogL4:
     pass
 
+
 @dataclass
-class ArtifactStoreAdapterGuide (L4):
+class ArtifactStoreAdapterGuideL4:
     pass
+
 
 @dataclass
-class BackendAdapterGuide (L4):
+class BackendAdapterGuideL4:
     pass
 
+
 @dataclass
-class BackendFeatureMatrix (L4):
+class BackendFeatureMatrixL4:
     pass
+
 
 @dataclass
-class BenchmarkEvidenceSpec (L4):
+class BenchmarkEvidenceSpecL4:
     pass
 
+
 @dataclass
-class BrownfieldDeploymentGuide (L4):
+class BrownfieldDeploymentGuideL4:
     pass
+
 
 @dataclass
-class BuildAndCIMatrix (L4):
+class BuildAndCIMatrixL4:
     pass
 
+
 @dataclass
-class CanonicalHashingReference (L4):
+class CanonicalHashingReferenceL4:
     pass
+
 
 @dataclass
-class ChangeControlPlaybook (L4):
+class ChangeControlPlaybookL4:
     pass
 
+
 @dataclass
-class CLICommandProfiles (L4):
+class CLICommandProfilesL4:
     pass
+
 
 @dataclass
-class CodeGenerationMapping (L4):
+class CodeGenerationMappingL4:
     pass
 
+
 @dataclass
-class CodingStandards (L4):
+class CodingStandardsL4:
     pass
+
 
 @dataclass
-class CommandReference (L4):
+class CommandReferenceL4:
     pass
 
+
 @dataclass
-class CommonPitfallsGuide (L4):
+class CommonPitfallsGuideL4:
     pass
 
+
 @dataclass
-class CommunityGovernanceModel (L4):
+class CommunityGovernanceModelL4:
     pass
+
 
 @dataclass
-class ContractsArtifactLifecycle (L4):
+class ContractsArtifactLifecycleL4:
     pass
 
+
 @dataclass
-class ContributingWorkflow (L4):
+class ContributingWorkflowL4:
     pass
+
 
 @dataclass
-class DebuggingPlaybook (L4):
+class DebuggingPlaybookL4:
     pass
 
+
 @dataclass
-class DeterminismAuditPlaybook (L4):
+class DeterminismAuditPlaybookL4:
     pass
+
 
 @dataclass
-class DeterminismDebugChecklist (L4):
+class DeterminismDebugChecklistL4:
     pass
 
+
 @dataclass
-class DeterministicRNGImplementationGuide (L4):
+class DeterministicRNGImplementationGuideL4:
     pass
+
 
 @dataclass
-class DeveloperSetup (L4):
+class DeveloperSetupL4:
     pass
 
+
 @dataclass
-class DeveloperTroubleshootingFAQ (L4):
+class DeveloperTroubleshootingFAQL4:
     pass
+
 
 @dataclass
-class DisasterRecoveryOperationsRunbook (L4):
+class DisasterRecoveryOperationsRunbookL4:
     pass
 
+
 @dataclass
-class DistributedFailureRecoveryGuide (L4):
+class DistributedFailureRecoveryGuideL4:
     pass
+
 
 @dataclass
-class EcosystemExpansionRoadmap (L4):
+class EcosystemExpansionRoadmapL4:
     pass
 
+
 @dataclass
-class EQCCIPolicy (L4):
+class EQCCIPolicyL4:
     pass
+
 
 @dataclass
-class EvidenceCatalog (L4):
+class EvidenceCatalogL4:
     pass
 
+
 @dataclass
-class ExpansionCatalog041250 (L4):
+class ExpansionCatalog041250L4:
     pass
+
 
 @dataclass
-class ExternalInterfaceStandard (L4):
+class ExternalInterfaceStandardL4:
     pass
 
+
 @dataclass
-class FixturesAndGoldenData (L4):
+class FixturesAndGoldenDataL4:
     pass
 
+
 @dataclass
-class FormalVerificationRoadmap (L4):
+class FormalVerificationRoadmapL4:
     pass
+
 
 @dataclass
-class GentleIntroduction (L4):
+class GentleIntroductionL4:
     pass
 
+
 @dataclass
-class HelloWorldEndToEndExample (L4):
+class HelloWorldEndToEndExampleL4:
     pass
+
 
 @dataclass
-class ImplementationBacklog (L4):
+class ImplementationBacklogL4:
     pass
 
+
 @dataclass
-class ImplementationRoadmap (L4):
+class ImplementationRoadmapL4:
     pass
+
 
 @dataclass
-class IncidentPostmortemTemplate (L4):
+class IncidentPostmortemTemplateL4:
     pass
 
+
 @dataclass
-class IndustryProductizationUpgradePlan (L4):
+class IndustryProductizationUpgradePlanL4:
     pass
+
 
 @dataclass
-class InteroperabilityStandardsBridge (L4):
+class InteroperabilityStandardsBridgeL4:
     pass
 
+
 @dataclass
-class LocalReplayRunbook (L4):
+class LocalReplayRunbookL4:
     pass
+
 
 @dataclass
-class MigrationExecutionGuide (L4):
+class MigrationExecutionGuideL4:
     pass
 
+
 @dataclass
-class ModuleScaffoldingGuide (L4):
+class ModuleScaffoldingGuideL4:
     pass
+
 
 @dataclass
-class OperatorConformanceMatrix (L4):
+class OperatorConformanceMatrixL4:
     pass
 
+
 @dataclass
-class OperatorRegistryCBORContract (L4):
+class OperatorRegistryCBORContractL4:
     pass
+
 
 @dataclass
-class OperatorSDKScaffoldTemplate (L4):
+class OperatorSDKScaffoldTemplateL4:
     pass
 
+
 @dataclass
-class PRReviewChecklist (L4):
+class PRReviewChecklistL4:
     pass
+
 
 @dataclass
-class ProfilingAndOptimizationGuide (L4):
+class ProfilingAndOptimizationGuideL4:
     pass
 
+
 @dataclass
-class ReferenceImplementations (L4):
+class ReferenceImplementationsL4:
     pass
 
+
 @dataclass
-class ReferenceStackMinimal (L4):
+class ReferenceStackMinimalL4:
     pass
+
 
 @dataclass
-class ReleaseEvidenceAssembler (L4):
+class ReleaseEvidenceAssemblerL4:
     pass
 
+
 @dataclass
-class RepoLayoutAndInterfaces (L4):
+class RepoLayoutAndInterfacesL4:
     pass
+
 
 @dataclass
-class ResearchExtensionsRoadmap (L4):
+class ResearchExtensionsRoadmapL4:
     pass
 
+
 @dataclass
-class RuntimeStateMachineReference (L4):
+class RuntimeStateMachineReferenceL4:
     pass
+
 
 @dataclass
-class SchemaEvolutionPlaybook (L4):
+class SchemaEvolutionPlaybookL4:
     pass
 
+
 @dataclass
-class ScopeAndNonGoals (L4):
+class ScopeAndNonGoalsL4:
     pass
+
 
 @dataclass
-class SDKUsageGuide (L4):
+class SDKUsageGuideL4:
     pass
 
+
 @dataclass
-class SecurityCaseTemplate (L4):
+class SecurityCaseTemplateL4:
     pass
+
 
 @dataclass
-class SecurityCodingChecklist (L4):
+class SecurityCodingChecklistL4:
     pass
 
+
 @dataclass
-class SpecLintImplementation (L4):
+class SpecLintImplementationL4:
     pass
+
 
 @dataclass
-class SpecLintRules (L4):
+class SpecLintRulesL4:
     pass
 
+
 @dataclass
-class SREIncidentTriagePlaybook (L4):
+class SREIncidentTriagePlaybookL4:
     pass
+
 
 @dataclass
-class TestHarnessImplementation (L4):
+class TestHarnessImplementationL4:
     pass
 
+
 @dataclass
-class ThirdPartyOperatorCertificationProgram (L4):
+class ThirdPartyOperatorCertificationProgramL4:
     pass
+
 
 @dataclass
-class ThreatModelAndControlCrosswalk (L4):
+class ThreatModelAndControlCrosswalkL4:
     pass
 
+
 @dataclass
-class ToolingAndAutomationSuite (L4):
+class ToolingAndAutomationSuiteL4:
     pass
 
+
 @dataclass
-class ToolingSuite (L4):
+class ToolingSuiteL4:
     pass
-

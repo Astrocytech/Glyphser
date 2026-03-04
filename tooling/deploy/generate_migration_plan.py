@@ -2,14 +2,14 @@
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 from typing import Dict
-import sys
+
+from tooling.lib.path_config import generated_root
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from tooling.lib.path_config import generated_root
-
 OUT_DIR = generated_root() / "deploy"
 CATALOG_MANIFEST = ROOT / "specs" / "contracts" / "catalog-manifest.json"
 
@@ -23,7 +23,9 @@ def generate(previous_manifest: Path | None = None) -> Path:
     previous = _read_manifest(previous_manifest) if previous_manifest and previous_manifest.exists() else {}
 
     plan = {
-        "current_manifest": str(CATALOG_MANIFEST.relative_to(ROOT)).replace("\\", "/") if CATALOG_MANIFEST.exists() else "",
+        "current_manifest": str(CATALOG_MANIFEST.relative_to(ROOT)).replace("\\", "/")
+        if CATALOG_MANIFEST.exists()
+        else "",
         "previous_manifest": str(previous_manifest.relative_to(ROOT)).replace("\\", "/") if previous_manifest else "",
         "actions": [],
         "rollback": [],

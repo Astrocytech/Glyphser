@@ -1,11 +1,11 @@
 """UML Model IR validation and hashing."""
+
 from __future__ import annotations
 
 import hashlib
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List
 
 from runtime.glyphser.serialization.canonical_cbor import encode_canonical
-
 
 _ALLOWED_DTYPES = {
     "float16": 2,
@@ -49,7 +49,12 @@ def _normalize_inputs(inputs: Any) -> List[Dict[str, Any]]:
                 normalized.append({"node_id": entry, "output_idx": 0})
             elif isinstance(entry, dict):
                 if "node_id" in entry:
-                    normalized.append({"node_id": entry["node_id"], "output_idx": entry.get("output_idx", 0)})
+                    normalized.append(
+                        {
+                            "node_id": entry["node_id"],
+                            "output_idx": entry.get("output_idx", 0),
+                        }
+                    )
                 elif "input_key" in entry:
                     normalized.append({"input_key": entry["input_key"]})
                 else:

@@ -3,15 +3,15 @@ from __future__ import annotations
 
 import hashlib
 import json
+import sys
 from pathlib import Path
 from typing import Dict, List
-import sys
+
+from tooling.lib.path_config import generated_root
 
 ROOT = Path(__file__).resolve().parents[2]
 TEMPLATES = ROOT / "tooling" / "deploy" / "templates"
 sys.path.insert(0, str(ROOT))
-from tooling.lib.path_config import generated_root
-
 OUT_DIR = generated_root() / "deploy"
 CATALOG_MANIFEST = ROOT / "specs" / "contracts" / "catalog-manifest.json"
 
@@ -63,13 +63,21 @@ def generate(profile: str) -> Path:
 
     catalog_hash = ""
     if CATALOG_MANIFEST.exists():
-        catalog_hash = json.loads(CATALOG_MANIFEST.read_text(encoding="utf-8")).get(
-            "derived_identities", {}
-        ).get("digest_catalog_hash", "")
+        catalog_hash = (
+            json.loads(CATALOG_MANIFEST.read_text(encoding="utf-8"))
+            .get("derived_identities", {})
+            .get("digest_catalog_hash", "")
+        )
 
     entries = [
-        {"path": str(runtime_path.relative_to(ROOT)).replace("\\", "/"), "sha256": _sha256_hex(runtime_path.read_bytes())},
-        {"path": str(policy_path.relative_to(ROOT)).replace("\\", "/"), "sha256": _sha256_hex(policy_path.read_bytes())},
+        {
+            "path": str(runtime_path.relative_to(ROOT)).replace("\\", "/"),
+            "sha256": _sha256_hex(runtime_path.read_bytes()),
+        },
+        {
+            "path": str(policy_path.relative_to(ROOT)).replace("\\", "/"),
+            "sha256": _sha256_hex(policy_path.read_bytes()),
+        },
     ]
     manifest = {
         "profile": profile,

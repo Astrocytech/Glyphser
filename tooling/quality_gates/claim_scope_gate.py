@@ -29,7 +29,9 @@ def main() -> int:
 
     report_path = Path(args.report)
     report_path.parent.mkdir(parents=True, exist_ok=True)
-    check_paths = [Path(p) for p in args.check_path] if args.check_path else [report_path.parent / "known-limitations.md"]
+    check_paths = (
+        [Path(p) for p in args.check_path] if args.check_path else [report_path.parent / "known-limitations.md"]
+    )
 
     text = _load_text(check_paths).lower()
     has_universal = "universal" in text

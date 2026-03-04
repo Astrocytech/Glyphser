@@ -15,7 +15,6 @@ def load_json(path: Path) -> dict:
 
 
 def main() -> int:
-    api_path = ROOT / "specs" / "layers" / "L1-foundation" / "API-Interfaces.md"
     reg_path = ROOT / "specs" / "contracts" / "operator_registry.json"
     err_doc = ROOT / "specs" / "layers" / "L1-foundation" / "Error-Codes.md"
 
@@ -67,7 +66,11 @@ def main() -> int:
         for code in rec.get("allowed_error_codes", []):
             if valid_error_codes and code not in valid_error_codes:
                 raise SystemExit(f"Unknown error code {code} in {rec.get('operator_id')}")
-        for key in ["request_schema_digest", "response_schema_digest", "signature_digest"]:
+        for key in [
+            "request_schema_digest",
+            "response_schema_digest",
+            "signature_digest",
+        ]:
             val = rec.get(key, "")
             if isinstance(val, str) and not val.startswith("sha256:"):
                 # allow labels like sha256:label and raw hex

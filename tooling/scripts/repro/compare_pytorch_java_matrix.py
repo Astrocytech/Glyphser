@@ -16,7 +16,6 @@ sys.path.insert(0, str(ROOT))
 from runtime.glyphser.model.model_ir_executor import execute  # noqa: E402
 from tooling.lib.path_config import fixtures_root  # noqa: E402
 
-
 PAIRS: list[tuple[str, str]] = [
     ("pytorch_cpu", "java_cpu"),
     ("pytorch_gpu", "java_cpu"),
@@ -135,7 +134,13 @@ def _runtime_meta() -> dict[str, Any]:
     return meta
 
 
-def _classify_pair(a_id: str, a_res: dict[str, Any], b_res: dict[str, Any], abs_tol: float, rel_tol: float) -> dict[str, Any]:
+def _classify_pair(
+    a_id: str,
+    a_res: dict[str, Any],
+    b_res: dict[str, Any],
+    abs_tol: float,
+    rel_tol: float,
+) -> dict[str, Any]:
     if "error" in a_res:
         return {
             "pair": f"{a_id}__vs__java_cpu",
@@ -257,7 +262,8 @@ def main() -> int:
         "excluded_operators": [],
     }
     (out_dir / "repro-classification.json").write_text(
-        json.dumps(repro_classification, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        json.dumps(repro_classification, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
     )
     (out_dir / "env-matrix.json").write_text(
         json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8"
@@ -277,7 +283,8 @@ def main() -> int:
             "sha256": _sha256_file(report_path),
         }
     (out_dir / "conformance-hashes.json").write_text(
-        json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
     )
 
     summary_lines = [
@@ -298,7 +305,17 @@ def main() -> int:
         encoding="utf-8",
     )
 
-    print(json.dumps({"status": overall_status, "classification": overall_class, "reason": overall_reason}, indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "status": overall_status,
+                "classification": overall_class,
+                "reason": overall_reason,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
     if overall_status == "PASS":
         return 0
     if overall_status == "BLOCKED":

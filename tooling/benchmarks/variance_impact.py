@@ -10,12 +10,12 @@ import sys
 from datetime import UTC, datetime
 from pathlib import Path
 
+from runtime.glyphser.trace.compute_trace_hash import compute_trace_hash
+from tooling.scripts import run_hello_core
+
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
-
-from runtime.glyphser.trace.compute_trace_hash import compute_trace_hash
-from tooling.scripts import run_hello_core
 
 OUT = ROOT / "evidence" / "benchmarks" / "variance_impact.json"
 FIXTURE_TRACE = ROOT / "artifacts" / "inputs" / "fixtures" / "hello-core" / "trace.json"

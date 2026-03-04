@@ -31,4 +31,3 @@ def test_corruption_quarantine_and_wal_replay(tmp_path: Path):
     current = recovered.recover()
     assert current["state_hash"] == first["state_hash"]
     assert list(recovered.quarantine_dir.glob("state.json.corrupt.*"))
-

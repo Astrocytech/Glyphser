@@ -23,7 +23,17 @@ def test_verify_cli_json_output(tmp_path, capsys):
     )
     _write_json(input_path, {"x": [1.0]})
 
-    rc = main(["verify", "--model", str(model_path), "--input", str(input_path), "--format", "json"])
+    rc = main(
+        [
+            "verify",
+            "--model",
+            str(model_path),
+            "--input",
+            str(input_path),
+            "--format",
+            "json",
+        ]
+    )
     out = capsys.readouterr().out
     payload = json.loads(out)
 
@@ -67,7 +77,17 @@ def test_snapshot_cli_writes_manifest(tmp_path):
     )
     _write_json(input_path, {"x": [1.0]})
 
-    rc = main(["snapshot", "--model", str(model_path), "--input", str(input_path), "--out", str(out_path)])
+    rc = main(
+        [
+            "snapshot",
+            "--model",
+            str(model_path),
+            "--input",
+            str(input_path),
+            "--out",
+            str(out_path),
+        ]
+    )
     payload = json.loads(out_path.read_text(encoding="utf-8"))
 
     assert rc == 0

@@ -10,12 +10,48 @@ ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "evidence" / "metadata" / "catalog.json"
 
 TARGETS = [
-    ("evidence/benchmarks/latest.json", "benchmark", "hello-core", "tooling/benchmarks/run_benchmarks.py", "glyphser-benchmark.v1"),
-    ("evidence/benchmarks/variance_impact.json", "benchmark", "hello-core", "tooling/benchmarks/variance_impact.py", "glyphser-variance-impact.v1"),
-    ("evidence/gates/structure/spec_impl_congruence.json", "gate", "contracts", "tooling/quality_gates/spec_impl_congruence_gate.py", "glyphser-gate-report.v1"),
-    ("evidence/traceability/index.json", "traceability", "all", "tooling/release/generate_traceability_index.py", "glyphser-traceability-index.v1"),
-    ("evidence/security/sbom.json", "security", "release", "tooling/security/security_artifacts.py", "glyphser-sbom-v1"),
-    ("evidence/security/build_provenance.json", "security", "release", "tooling/security/security_artifacts.py", "glyphser-provenance-v1")
+    (
+        "evidence/benchmarks/latest.json",
+        "benchmark",
+        "hello-core",
+        "tooling/benchmarks/run_benchmarks.py",
+        "glyphser-benchmark.v1",
+    ),
+    (
+        "evidence/benchmarks/variance_impact.json",
+        "benchmark",
+        "hello-core",
+        "tooling/benchmarks/variance_impact.py",
+        "glyphser-variance-impact.v1",
+    ),
+    (
+        "evidence/gates/structure/spec_impl_congruence.json",
+        "gate",
+        "contracts",
+        "tooling/quality_gates/spec_impl_congruence_gate.py",
+        "glyphser-gate-report.v1",
+    ),
+    (
+        "evidence/traceability/index.json",
+        "traceability",
+        "all",
+        "tooling/release/generate_traceability_index.py",
+        "glyphser-traceability-index.v1",
+    ),
+    (
+        "evidence/security/sbom.json",
+        "security",
+        "release",
+        "tooling/security/security_artifacts.py",
+        "glyphser-sbom-v1",
+    ),
+    (
+        "evidence/security/build_provenance.json",
+        "security",
+        "release",
+        "tooling/security/security_artifacts.py",
+        "glyphser-provenance-v1",
+    ),
 ]
 
 

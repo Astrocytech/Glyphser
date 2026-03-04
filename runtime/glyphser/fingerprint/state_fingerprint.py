@@ -1,4 +1,5 @@
 """Deterministic state fingerprint helper."""
+
 from __future__ import annotations
 
 import hashlib

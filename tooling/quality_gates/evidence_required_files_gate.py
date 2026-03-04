@@ -17,7 +17,11 @@ REQUIRED = {
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Validate required milestone evidence files exist.")
-    parser.add_argument("--milestone-dir", required=True, help="Path to evidence/repro/milestone-*/ directory.")
+    parser.add_argument(
+        "--milestone-dir",
+        required=True,
+        help="Path to evidence/repro/milestone-*/ directory.",
+    )
     parser.add_argument("--report", default="", help="Optional JSON report path.")
     args = parser.parse_args()
 

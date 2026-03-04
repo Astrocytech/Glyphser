@@ -1,16 +1,34 @@
 """Deterministic backend driver load (minimal)."""
+
 from __future__ import annotations
 
 from typing import Any, Dict
 
-from runtime.glyphser.backend.keras_driver import get_keras_cpu_driver, get_keras_gpu_driver
-from runtime.glyphser.backend.pytorch_driver import get_pytorch_cpu_driver, get_pytorch_gpu_driver
+from runtime.glyphser.backend.keras_driver import (
+    get_keras_cpu_driver,
+    get_keras_gpu_driver,
+)
+from runtime.glyphser.backend.pytorch_driver import (
+    get_pytorch_cpu_driver,
+    get_pytorch_gpu_driver,
+)
 from runtime.glyphser.backend.reference_driver import get_default_driver
 
-
-DIRECT_DRIVER_IDS = {"default", "reference", "pytorch_cpu", "pytorch_gpu", "keras_cpu", "keras_gpu"}
+DIRECT_DRIVER_IDS = {
+    "default",
+    "reference",
+    "pytorch_cpu",
+    "pytorch_gpu",
+    "keras_cpu",
+    "keras_gpu",
+}
 UNSUPPORTED_LANGUAGE_ROUTES = {"java_cpu", "rust_cpu"}
-UNIVERSAL_PROFILE_MODES = {"strict_universal", "balanced", "optimized_native", "pinned_profile"}
+UNIVERSAL_PROFILE_MODES = {
+    "strict_universal",
+    "balanced",
+    "optimized_native",
+    "pinned_profile",
+}
 PINNED_PROFILES: dict[str, list[str]] = {
     "universal_v1": ["pytorch_cpu", "keras_cpu", "pytorch_gpu", "keras_gpu"],
     "universal_v1_gpu": ["pytorch_gpu", "keras_gpu", "pytorch_cpu", "keras_cpu"],
@@ -87,13 +105,29 @@ def _universal_route_candidates(request: Dict[str, Any]) -> list[str]:
         return ["keras_gpu", "keras_cpu"] if prefer_gpu else ["keras_cpu", "keras_gpu"]
     if mode == "optimized_native":
         if framework == "pytorch":
-            return ["pytorch_gpu", "pytorch_cpu", "keras_gpu", "keras_cpu"] if prefer_gpu else ["pytorch_cpu", "pytorch_gpu", "keras_cpu", "keras_gpu"]
-        return ["keras_gpu", "keras_cpu", "pytorch_gpu", "pytorch_cpu"] if prefer_gpu else ["keras_cpu", "keras_gpu", "pytorch_cpu", "pytorch_gpu"]
+            return (
+                ["pytorch_gpu", "pytorch_cpu", "keras_gpu", "keras_cpu"]
+                if prefer_gpu
+                else ["pytorch_cpu", "pytorch_gpu", "keras_cpu", "keras_gpu"]
+            )
+        return (
+            ["keras_gpu", "keras_cpu", "pytorch_gpu", "pytorch_cpu"]
+            if prefer_gpu
+            else ["keras_cpu", "keras_gpu", "pytorch_cpu", "pytorch_gpu"]
+        )
 
     # balanced mode: prefer framework, then portability-biased CPU fallback on secondary framework.
     if framework == "pytorch":
-        return ["pytorch_gpu", "pytorch_cpu", "keras_cpu", "keras_gpu"] if prefer_gpu else ["pytorch_cpu", "pytorch_gpu", "keras_cpu", "keras_gpu"]
-    return ["keras_gpu", "keras_cpu", "pytorch_cpu", "pytorch_gpu"] if prefer_gpu else ["keras_cpu", "keras_gpu", "pytorch_cpu", "pytorch_gpu"]
+        return (
+            ["pytorch_gpu", "pytorch_cpu", "keras_cpu", "keras_gpu"]
+            if prefer_gpu
+            else ["pytorch_cpu", "pytorch_gpu", "keras_cpu", "keras_gpu"]
+        )
+    return (
+        ["keras_gpu", "keras_cpu", "pytorch_cpu", "pytorch_gpu"]
+        if prefer_gpu
+        else ["keras_cpu", "keras_gpu", "pytorch_cpu", "pytorch_gpu"]
+    )
 
 
 def _resolve_universal_driver(request: Dict[str, Any]) -> tuple[str, Any]:

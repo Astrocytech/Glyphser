@@ -91,7 +91,12 @@ def _ensure_rust_compiled() -> None:
 
 def _exec_with_template(template: str, inputs: list[float], weights: list[float], bias: float) -> dict[str, Any]:
     if not template.strip():
-        return {"error": {"code_id": "RUNTIME_NOT_CONFIGURED", "message": "Missing runtime command template."}}
+        return {
+            "error": {
+                "code_id": "RUNTIME_NOT_CONFIGURED",
+                "message": "Missing runtime command template.",
+            }
+        }
 
     command = template
     command = command.replace("{input_csv}", ",".join(str(x) for x in inputs))
@@ -104,7 +109,12 @@ def _exec_with_template(template: str, inputs: list[float], weights: list[float]
 
     code, out, err = _run(argv)
     if code != 0:
-        return {"error": {"code_id": "RUNTIME_EXEC_ERROR", "message": err or out or f"command failed ({code})"}}
+        return {
+            "error": {
+                "code_id": "RUNTIME_EXEC_ERROR",
+                "message": err or out or f"command failed ({code})",
+            }
+        }
     try:
         payload = json.loads(out)
     except json.JSONDecodeError as exc:
@@ -172,7 +182,11 @@ def _runtime_meta(onnx_cmd: str, djl_cmd: str, rust_cmd: str) -> dict[str, Any]:
         import tensorflow as tf
 
         gpus = tf.config.list_physical_devices("GPU")
-        meta["tensorflow"] = {"version": tf.__version__, "gpu_visible": bool(gpus), "gpu_devices": [str(g) for g in gpus]}
+        meta["tensorflow"] = {
+            "version": tf.__version__,
+            "gpu_visible": bool(gpus),
+            "gpu_devices": [str(g) for g in gpus],
+        }
     except Exception as exc:
         meta["tensorflow"] = {"present": False, "error": str(exc)}
 
@@ -185,7 +199,10 @@ def _runtime_meta(onnx_cmd: str, djl_cmd: str, rust_cmd: str) -> dict[str, Any]:
         "java_version": java_err or java_out,
         "javac_version": javac_err or javac_out,
     }
-    meta["rust"] = {"rustc_ok": rustc_code == 0, "rustc_version": rustc_out or rustc_err}
+    meta["rust"] = {
+        "rustc_ok": rustc_code == 0,
+        "rustc_version": rustc_out or rustc_err,
+    }
     return meta
 
 
@@ -244,7 +261,7 @@ def main() -> int:
         f"java -cp {_quote_arg(_classpath_with_local(args.djl_classpath))} {DJL_RUNNER_CLASS} "
         "{input_csv} {weights_csv} {bias}"
     )
-    rust_cmd = args.rust_cmd.strip() or f"{_quote_arg(str(RUST_RUNNER_BIN))} " "{input_csv} {weights_csv} {bias}"
+    rust_cmd = args.rust_cmd.strip() or f"{_quote_arg(str(RUST_RUNNER_BIN))} {{input_csv}} {{weights_csv}} {{bias}}"
 
     profile_results: dict[str, Any] = {}
     for profile in PYTHON_PROFILES:
@@ -255,7 +272,9 @@ def main() -> int:
     profile_results["java_djl_cpu"] = lane_bootstrap_errors.get("java_djl_cpu") or _exec_with_template(
         djl_cmd, inputs, weights, bias
     )
-    profile_results["rust_cpu"] = lane_bootstrap_errors.get("rust_cpu") or _exec_with_template(rust_cmd, inputs, weights, bias)
+    profile_results["rust_cpu"] = lane_bootstrap_errors.get("rust_cpu") or _exec_with_template(
+        rust_cmd, inputs, weights, bias
+    )
 
     pair_matrix: list[dict[str, Any]] = []
     pair_statuses: list[str] = []
@@ -279,9 +298,17 @@ def main() -> int:
         )
 
     if any(s == "FAIL" for s in pair_statuses):
-        overall_status, overall_class, overall_reason = "FAIL", "E2", "At least one required pair failed."
+        overall_status, overall_class, overall_reason = (
+            "FAIL",
+            "E2",
+            "At least one required pair failed.",
+        )
     elif any(s == "BLOCKED" for s in pair_statuses):
-        overall_status, overall_class, overall_reason = "BLOCKED", "E2", "At least one required pair is blocked."
+        overall_status, overall_class, overall_reason = (
+            "BLOCKED",
+            "E2",
+            "At least one required pair is blocked.",
+        )
     else:
         overall_status = "PASS"
         overall_class = "E0" if all(p["classification"] == "E0" for p in pair_matrix) else "E1"
@@ -295,7 +322,11 @@ def main() -> int:
         "reason": overall_reason,
         "profiles": profile_results,
         "pairs": pair_matrix,
-        "meta": {"abs_tol": args.abs_tol, "rel_tol": args.rel_tol, **_runtime_meta(onnx_cmd, djl_cmd, rust_cmd)},
+        "meta": {
+            "abs_tol": args.abs_tol,
+            "rel_tol": args.rel_tol,
+            **_runtime_meta(onnx_cmd, djl_cmd, rust_cmd),
+        },
     }
     (out_dir / "report.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     (out_dir / "repro-classification.json").write_text(
@@ -316,8 +347,13 @@ def main() -> int:
         + "\n",
         encoding="utf-8",
     )
-    (out_dir / "pair-matrix.json").write_text(json.dumps({"pairs": pair_matrix}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "env-matrix.json").write_text(json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "pair-matrix.json").write_text(
+        json.dumps({"pairs": pair_matrix}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "env-matrix.json").write_text(
+        json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
     (out_dir / "coverage-summary.json").write_text(
         json.dumps(
             {
@@ -345,16 +381,28 @@ def main() -> int:
                 "status": "ACTIVE",
             }
         )
-    (out_dir / "waivers.json").write_text(json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "waivers.json").write_text(
+        json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     conformance_hashes: dict[str, Any] = {"status": overall_status}
     results_path = ROOT / "evidence" / "conformance" / "results" / "latest.json"
     report_path = ROOT / "evidence" / "conformance" / "reports" / "latest.json"
     if results_path.exists():
-        conformance_hashes["conformance_results"] = {"path": "evidence/conformance/results/latest.json", "sha256": _sha256_file(results_path)}
+        conformance_hashes["conformance_results"] = {
+            "path": "evidence/conformance/results/latest.json",
+            "sha256": _sha256_file(results_path),
+        }
     if report_path.exists():
-        conformance_hashes["conformance_report"] = {"path": "evidence/conformance/reports/latest.json", "sha256": _sha256_file(report_path)}
-    (out_dir / "conformance-hashes.json").write_text(json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        conformance_hashes["conformance_report"] = {
+            "path": "evidence/conformance/reports/latest.json",
+            "sha256": _sha256_file(report_path),
+        }
+    (out_dir / "conformance-hashes.json").write_text(
+        json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     summary = [
         "# Milestone 14: Additional Language Bridges (Rust)",
@@ -388,9 +436,22 @@ def main() -> int:
         "classification": overall_class,
         "evidence_dir": "evidence/repro/milestone-14-additional-language-bridges/",
     }
-    (out_dir / "milestone.json").write_text(json.dumps(milestone_manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "milestone.json").write_text(
+        json.dumps(milestone_manifest, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
-    print(json.dumps({"status": overall_status, "classification": overall_class, "reason": overall_reason}, indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "status": overall_status,
+                "classification": overall_class,
+                "reason": overall_reason,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
     return 0 if overall_status == "PASS" else 1
 
 

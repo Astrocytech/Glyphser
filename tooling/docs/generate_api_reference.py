@@ -9,12 +9,12 @@ from dataclasses import is_dataclass
 from pathlib import Path
 from typing import Any
 
+from glyphser import RuntimeApiConfig, RuntimeService, VerificationResult, verify
+
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "docs" / "API_REFERENCE.md"
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
-
-from glyphser import RuntimeApiConfig, RuntimeService, VerificationResult, verify
 
 
 def _format_signature(obj: Any) -> str:

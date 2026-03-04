@@ -6,16 +6,9 @@ import shutil
 import sys
 import tempfile
 from pathlib import Path
-import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from tooling.lib.path_config import evidence_root
-sys.path.insert(0, str(ROOT))
-
-from runtime.glyphser.storage.state_store import DurableStateStore, SCHEMA_VERSION
-
-OUT_DIR = evidence_root() / "recovery"
 
 
 def _write(path: Path, payload: dict) -> None:
@@ -24,6 +17,10 @@ def _write(path: Path, payload: dict) -> None:
 
 
 def main() -> int:
+    from runtime.glyphser.storage.state_store import SCHEMA_VERSION, DurableStateStore
+    from tooling.lib.path_config import evidence_root
+
+    OUT_DIR = evidence_root() / "recovery"
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="glyphser-recovery-") as td:
         work = Path(td)

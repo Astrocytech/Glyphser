@@ -87,10 +87,7 @@ def _ensure_runner_compiled(src: Path, class_name: str) -> None:
 
 def _default_lane_cmd(runner_class: str, classpath_extra: str) -> str:
     cp = _classpath_with_local(classpath_extra)
-    return (
-        f"java -cp {_quote_arg(cp)} {runner_class} "
-        "{input_csv} {weights_csv} {bias}"
-    )
+    return f"java -cp {_quote_arg(cp)} {runner_class} {{input_csv}} {{weights_csv}} {{bias}}"
 
 
 def _exec_with_template(template: str, inputs: list[float], weights: list[float], bias: float) -> dict[str, Any]:
@@ -208,18 +205,12 @@ def main() -> int:
     parser.add_argument(
         "--onnx-java-cmd",
         default="",
-        help=(
-            "Command template for ONNX Runtime Java lane. "
-            "Use placeholders: {input_csv} {weights_csv} {bias}"
-        ),
+        help=("Command template for ONNX Runtime Java lane. Use placeholders: {input_csv} {weights_csv} {bias}"),
     )
     parser.add_argument(
         "--djl-java-cmd",
         default="",
-        help=(
-            "Command template for DJL lane. "
-            "Use placeholders: {input_csv} {weights_csv} {bias}"
-        ),
+        help=("Command template for DJL lane. Use placeholders: {input_csv} {weights_csv} {bias}"),
     )
     parser.add_argument(
         "--onnx-classpath",
@@ -293,9 +284,17 @@ def main() -> int:
         )
 
     if any(s == "FAIL" for s in pair_statuses):
-        overall_status, overall_class, overall_reason = "FAIL", "E2", "At least one required pair failed."
+        overall_status, overall_class, overall_reason = (
+            "FAIL",
+            "E2",
+            "At least one required pair failed.",
+        )
     elif any(s == "BLOCKED" for s in pair_statuses):
-        overall_status, overall_class, overall_reason = "BLOCKED", "E2", "At least one required pair is blocked."
+        overall_status, overall_class, overall_reason = (
+            "BLOCKED",
+            "E2",
+            "At least one required pair is blocked.",
+        )
     else:
         overall_status = "PASS"
         overall_class = "E0" if all(p["classification"] == "E0" for p in pair_matrix) else "E1"
@@ -327,18 +326,37 @@ def main() -> int:
         "rel_tol": args.rel_tol,
         "excluded_operators": [],
     }
-    (out_dir / "repro-classification.json").write_text(json.dumps(repro, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "pair-matrix.json").write_text(json.dumps({"pairs": pair_matrix}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "env-matrix.json").write_text(json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "repro-classification.json").write_text(
+        json.dumps(repro, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    (out_dir / "pair-matrix.json").write_text(
+        json.dumps({"pairs": pair_matrix}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "env-matrix.json").write_text(
+        json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
 
     coverage = {
         "milestone": 13,
-        "profiles": ["pytorch_cpu", "pytorch_gpu", "java_onnxruntime_cpu", "java_djl_cpu"],
-        "mandatory_profiles": ["pytorch_cpu", "pytorch_gpu", "java_onnxruntime_cpu", "java_djl_cpu"],
+        "profiles": [
+            "pytorch_cpu",
+            "pytorch_gpu",
+            "java_onnxruntime_cpu",
+            "java_djl_cpu",
+        ],
+        "mandatory_profiles": [
+            "pytorch_cpu",
+            "pytorch_gpu",
+            "java_onnxruntime_cpu",
+            "java_djl_cpu",
+        ],
         "java_runtime_lanes": ["onnxruntime_java", "djl"],
         "status": overall_status,
     }
-    (out_dir / "coverage-summary.json").write_text(json.dumps(coverage, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "coverage-summary.json").write_text(
+        json.dumps(coverage, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
 
     waivers: list[dict[str, Any]] = []
     if (ROOT / WAIVER_ADR).exists():
@@ -350,7 +368,10 @@ def main() -> int:
                 "status": "ACTIVE",
             }
         )
-    (out_dir / "waivers.json").write_text(json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "waivers.json").write_text(
+        json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     conformance_hashes: dict[str, Any] = {"status": overall_status}
     results_path = ROOT / "evidence" / "conformance" / "results" / "latest.json"
@@ -365,7 +386,10 @@ def main() -> int:
             "path": "evidence/conformance/reports/latest.json",
             "sha256": _sha256_file(report_path),
         }
-    (out_dir / "conformance-hashes.json").write_text(json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "conformance-hashes.json").write_text(
+        json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     summary = [
         "# Milestone 13: Java Runtime Hardening",
@@ -401,14 +425,32 @@ def main() -> int:
         "target_date": "2026-05-31",
         "dependencies": [11],
         "waiver_dependencies": [12],
-        "profiles": ["pytorch_cpu", "pytorch_gpu", "java_onnxruntime_cpu", "java_djl_cpu"],
+        "profiles": [
+            "pytorch_cpu",
+            "pytorch_gpu",
+            "java_onnxruntime_cpu",
+            "java_djl_cpu",
+        ],
         "result": overall_status,
         "classification": overall_class,
         "evidence_dir": "evidence/repro/milestone-13-java-runtime-hardening/",
     }
-    (out_dir / "milestone.json").write_text(json.dumps(milestone_manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "milestone.json").write_text(
+        json.dumps(milestone_manifest, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
-    print(json.dumps({"status": overall_status, "classification": overall_class, "reason": overall_reason}, indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "status": overall_status,
+                "classification": overall_class,
+                "reason": overall_reason,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
     return 0 if overall_status == "PASS" else 1
 
 

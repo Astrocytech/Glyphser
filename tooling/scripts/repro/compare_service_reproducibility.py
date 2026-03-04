@@ -15,7 +15,11 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
 
-from runtime.glyphser.api.runtime_api import RuntimeApiConfig, RuntimeApiService, _canonical_json  # noqa: E402
+from runtime.glyphser.api.runtime_api import (  # noqa: E402
+    RuntimeApiConfig,
+    RuntimeApiService,
+    _canonical_json,
+)
 
 WAIVER_ADR = "evidence/repro/decisions/ADR-2026-03-01-m12-resource-gap-temporary-waiver.md"
 
@@ -37,7 +41,9 @@ def _prepare_minimal_evidence_root(root: Path) -> None:
     (root / "conformance" / "reports").mkdir(parents=True, exist_ok=True)
     (root / "artifacts" / "bundles").mkdir(parents=True, exist_ok=True)
     (root / "evidence" / "repro").mkdir(parents=True, exist_ok=True)
-    (root / "conformance" / "reports" / "latest.json").write_text(json.dumps({"status": "PASS"}) + "\n", encoding="utf-8")
+    (root / "conformance" / "reports" / "latest.json").write_text(
+        json.dumps({"status": "PASS"}) + "\n", encoding="utf-8"
+    )
     line = "abc123  hello-core-bundle.tar.gz\n"
     (root / "artifacts" / "bundles" / "hello-core-bundle.sha256").write_text(line, encoding="utf-8")
     (root / "evidence" / "repro" / "hashes.txt").write_text(line, encoding="utf-8")
@@ -85,7 +91,9 @@ def main() -> int:
                 "check": "canonical_request_equivalence",
                 "status": c_status,
                 "classification": "E0" if c_status == "PASS" else "E2",
-                "reason": "Canonical JSON matches for semantically equivalent payloads." if c_status == "PASS" else "Canonical JSON mismatch.",
+                "reason": "Canonical JSON matches for semantically equivalent payloads."
+                if c_status == "PASS"
+                else "Canonical JSON mismatch.",
                 "details": {"canonical_a": canon_a, "canonical_b": canon_b},
             }
         )
@@ -98,13 +106,23 @@ def main() -> int:
                 "check": "canonical_submit_determinism",
                 "status": "PASS" if same_job else "FAIL",
                 "classification": "E0" if same_job else "E2",
-                "reason": "Equivalent canonical payloads map to identical job_id." if same_job else "Equivalent payloads produced different job_id.",
+                "reason": "Equivalent canonical payloads map to identical job_id."
+                if same_job
+                else "Equivalent payloads produced different job_id.",
                 "details": {"job_id_a": first["job_id"], "job_id_b": second["job_id"]},
             }
         )
 
         idem_key = "idem-m15-key"
-        idem_results = [svc.submit_job(payload=payload_a, token="token-a", scope="jobs:write", idempotency_key=idem_key) for _ in range(5)]
+        idem_results = [
+            svc.submit_job(
+                payload=payload_a,
+                token="token-a",
+                scope="jobs:write",
+                idempotency_key=idem_key,
+            )
+            for _ in range(5)
+        ]
         idem_ids = sorted({r["job_id"] for r in idem_results})
         idem_ok = len(idem_ids) == 1
         checks.append(
@@ -112,7 +130,9 @@ def main() -> int:
                 "check": "idempotency_single_thread",
                 "status": "PASS" if idem_ok else "FAIL",
                 "classification": "E0" if idem_ok else "E2",
-                "reason": "Repeated idempotent submits return same job_id." if idem_ok else "Idempotent submits diverged.",
+                "reason": "Repeated idempotent submits return same job_id."
+                if idem_ok
+                else "Idempotent submits diverged.",
                 "details": {"job_ids": idem_ids},
             }
         )
@@ -121,7 +141,12 @@ def main() -> int:
 
         def _submit(ix: int) -> dict[str, Any]:
             payload = {"payload": {"job": "svc-concurrent", "index": ix % 4}}
-            return svc.submit_job(payload=payload, token="token-a", scope="jobs:write", idempotency_key=keys[ix])
+            return svc.submit_job(
+                payload=payload,
+                token="token-a",
+                scope="jobs:write",
+                idempotency_key=keys[ix],
+            )
 
         with ThreadPoolExecutor(max_workers=args.workers) as ex:
             results = list(ex.map(_submit, range(args.requests)))
@@ -135,7 +160,9 @@ def main() -> int:
                 "check": "idempotency_concurrent_load",
                 "status": "PASS" if concurrent_ok else "FAIL",
                 "classification": "E1" if concurrent_ok else "E2",
-                "reason": "Concurrent idempotent submissions are stable per key." if concurrent_ok else "Concurrent idempotent submissions diverged.",
+                "reason": "Concurrent idempotent submissions are stable per key."
+                if concurrent_ok
+                else "Concurrent idempotent submissions diverged.",
                 "details": {k: sorted(v) for k, v in by_key.items()},
             }
         )
@@ -155,7 +182,12 @@ def main() -> int:
                 "reason": "Evidence and replay responses are stable and PASS under repeat calls."
                 if evidence_repro and replay_repro
                 else "Evidence or replay responses changed across repeated calls.",
-                "details": {"evidence_a": ev_a, "evidence_b": ev_b, "replay_a": rp_a, "replay_b": rp_b},
+                "details": {
+                    "evidence_a": ev_a,
+                    "evidence_b": ev_b,
+                    "replay_a": rp_a,
+                    "replay_b": rp_b,
+                },
             }
         )
 
@@ -197,8 +229,13 @@ def main() -> int:
             "checks": [c["check"] for c in checks],
         }
     ]
-    (out_dir / "pair-matrix.json").write_text(json.dumps({"pairs": pair_rows}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "env-matrix.json").write_text(json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "pair-matrix.json").write_text(
+        json.dumps({"pairs": pair_rows}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "env-matrix.json").write_text(
+        json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
 
     coverage = {
         "milestone": 15,
@@ -206,7 +243,9 @@ def main() -> int:
         "checks": [c["check"] for c in checks],
         "status": overall_status,
     }
-    (out_dir / "coverage-summary.json").write_text(json.dumps(coverage, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "coverage-summary.json").write_text(
+        json.dumps(coverage, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
 
     waivers: list[dict[str, Any]] = []
     if (ROOT / WAIVER_ADR).exists():
@@ -218,25 +257,51 @@ def main() -> int:
                 "status": "ACTIVE",
             }
         )
-    (out_dir / "waivers.json").write_text(json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "waivers.json").write_text(
+        json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     conformance_hashes: dict[str, Any] = {"status": overall_status}
     results_path = ROOT / "evidence" / "conformance" / "results" / "latest.json"
     report_path = ROOT / "evidence" / "conformance" / "reports" / "latest.json"
     if results_path.exists():
-        conformance_hashes["conformance_results"] = {"path": "evidence/conformance/results/latest.json", "sha256": _sha256_file(results_path)}
+        conformance_hashes["conformance_results"] = {
+            "path": "evidence/conformance/results/latest.json",
+            "sha256": _sha256_file(results_path),
+        }
     if report_path.exists():
-        conformance_hashes["conformance_report"] = {"path": "evidence/conformance/reports/latest.json", "sha256": _sha256_file(report_path)}
-    (out_dir / "conformance-hashes.json").write_text(json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        conformance_hashes["conformance_report"] = {
+            "path": "evidence/conformance/reports/latest.json",
+            "sha256": _sha256_file(report_path),
+        }
+    (out_dir / "conformance-hashes.json").write_text(
+        json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     playbook_hooks = {
         "hooks": [
-            {"event": "idempotency_violation", "severity": "high", "action": "freeze write path and inspect audit chain"},
-            {"event": "replay_verdict_fail", "severity": "high", "action": "trigger reproducibility incident workflow"},
-            {"event": "canonicalization_mismatch", "severity": "medium", "action": "block deploy and diff canonical payload bytes"},
+            {
+                "event": "idempotency_violation",
+                "severity": "high",
+                "action": "freeze write path and inspect audit chain",
+            },
+            {
+                "event": "replay_verdict_fail",
+                "severity": "high",
+                "action": "trigger reproducibility incident workflow",
+            },
+            {
+                "event": "canonicalization_mismatch",
+                "severity": "medium",
+                "action": "block deploy and diff canonical payload bytes",
+            },
         ]
     }
-    (out_dir / "incident-playbook-hooks.json").write_text(json.dumps(playbook_hooks, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "incident-playbook-hooks.json").write_text(
+        json.dumps(playbook_hooks, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
 
     summary = [
         "# Milestone 15: End-to-End Service Reproducibility",
@@ -267,9 +332,22 @@ def main() -> int:
         "classification": overall_class,
         "evidence_dir": "evidence/repro/milestone-15-service-reproducibility/",
     }
-    (out_dir / "milestone.json").write_text(json.dumps(milestone_manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "milestone.json").write_text(
+        json.dumps(milestone_manifest, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
-    print(json.dumps({"status": overall_status, "classification": overall_class, "reason": overall_reason}, indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "status": overall_status,
+                "classification": overall_class,
+                "reason": overall_reason,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
     return 0 if overall_status == "PASS" else 1
 
 

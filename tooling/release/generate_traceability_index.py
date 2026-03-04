@@ -17,7 +17,13 @@ def _sha256(path: Path) -> str:
 
 
 def _git_head() -> str:
-    proc = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True, check=False)
+    proc = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
     return proc.stdout.strip() if proc.returncode == 0 else ""
 
 

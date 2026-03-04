@@ -18,8 +18,7 @@ try:
     import torch
 except Exception as exc:  # pragma: no cover - optional dependency
     raise SystemExit(
-        "This example requires PyTorch and NumPy. "
-        "Install with: python -m pip install torch numpy"
+        "This example requires PyTorch and NumPy. Install with: python -m pip install torch numpy"
     ) from exc
 
 from glyphser.internal.hashing import canonical_sha256

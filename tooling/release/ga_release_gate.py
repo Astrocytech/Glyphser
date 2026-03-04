@@ -11,8 +11,6 @@ ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "evidence" / "ga"
 sys.path.insert(0, str(ROOT))
 
-from tooling.lib.path_config import bundles_root, conformance_reports_root, evidence_root, first_existing, rel
-
 
 def _load_json(path: Path) -> Dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
@@ -27,33 +25,176 @@ def _status_ok(path: Path) -> bool:
 
 
 def main() -> int:
+    from tooling.lib.path_config import (
+        bundles_root,
+        conformance_reports_root,
+        evidence_root,
+        first_existing,
+        rel,
+    )
+
     OUT.mkdir(parents=True, exist_ok=True)
     required_docs = [
-        first_existing([rel("product", "handbook", "policies", "GA_SUPPORT_MATRIX.md"), rel("docs", "product", "GA_SUPPORT_MATRIX.md")]),
-        first_existing([rel("product", "handbook", "guides", "GA_MIGRATION_GUIDE.md"), rel("docs", "product", "GA_MIGRATION_GUIDE.md")]),
-        first_existing([rel("product", "handbook", "policies", "GA_SUPPORT_LIFECYCLE.md"), rel("docs", "product", "GA_SUPPORT_LIFECYCLE.md")]),
-        first_existing([rel("product", "handbook", "policies", "GA_STATUS_INCIDENT_COMMUNICATION.md"), rel("docs", "product", "GA_STATUS_INCIDENT_COMMUNICATION.md")]),
-        first_existing([rel("product", "handbook", "policies", "GA_RELEASE_TRAIN_POLICY.md"), rel("docs", "product", "GA_RELEASE_TRAIN_POLICY.md")]),
-        first_existing([rel("product", "handbook", "policies", "GA_CONTRACTUAL_SUPPORT_SLA.md"), rel("docs", "product", "GA_CONTRACTUAL_SUPPORT_SLA.md")]),
-        first_existing([rel("product", "handbook", "policies", "GA_GO_NO_GO_CHECKLIST.md"), rel("docs", "product", "GA_GO_NO_GO_CHECKLIST.md")]),
-        first_existing([rel("product", "handbook", "policies", "COMPLIANCE_EVIDENCE_INDEX.md"), rel("docs", "product", "COMPLIANCE_EVIDENCE_INDEX.md")]),
-        first_existing([rel("product", "handbook", "policies", "DEPENDENCY_LICENSE_REVIEW.md"), rel("docs", "product", "DEPENDENCY_LICENSE_REVIEW.md")]),
-        first_existing([rel("product", "handbook", "policies", "GA_COMPATIBILITY_GUARANTEES.md"), rel("docs", "product", "GA_COMPATIBILITY_GUARANTEES.md")]),
-        first_existing([rel("product", "handbook", "policies", "POST_GA_GOVERNANCE.md"), rel("docs", "product", "POST_GA_GOVERNANCE.md")]),
-        first_existing([rel("product", "handbook", "reports", "ACCESSIBILITY_REVIEW.md"), rel("docs", "product", "ACCESSIBILITY_REVIEW.md")]),
-        first_existing([rel("product", "handbook", "policies", "SUPPLY_CHAIN_TRUST_POLICY.md"), rel("docs", "product", "SUPPLY_CHAIN_TRUST_POLICY.md")]),
-        first_existing([rel("product", "handbook", "policies", "PRIVACY_IMPACT_ASSESSMENT_WORKFLOW.md"), rel("docs", "product", "PRIVACY_IMPACT_ASSESSMENT_WORKFLOW.md")]),
-        first_existing([rel("product", "handbook", "policies", "DOCS_VERSIONING_POLICY.md"), rel("docs", "product", "DOCS_VERSIONING_POLICY.md")]),
-        first_existing([rel("product", "handbook", "policies", "CHANGE_COMMUNICATION_SLA.md"), rel("docs", "product", "CHANGE_COMMUNICATION_SLA.md")]),
-        first_existing([rel("product", "handbook", "policies", "ANNUAL_SECURITY_REVIEW_POLICY.md"), rel("docs", "product", "ANNUAL_SECURITY_REVIEW_POLICY.md")]),
-        first_existing([rel("product", "handbook", "policies", "GA_SIGNOFF.md"), rel("docs", "product", "GA_SIGNOFF.md")]),
-        first_existing([rel("product", "handbook", "policies", "GA_SUPPORT_OPERATIONS_READINESS.md"), rel("docs", "product", "GA_SUPPORT_OPERATIONS_READINESS.md")]),
+        first_existing(
+            [
+                rel("product", "handbook", "policies", "GA_SUPPORT_MATRIX.md"),
+                rel("docs", "product", "GA_SUPPORT_MATRIX.md"),
+            ]
+        ),
+        first_existing(
+            [
+                rel("product", "handbook", "guides", "GA_MIGRATION_GUIDE.md"),
+                rel("docs", "product", "GA_MIGRATION_GUIDE.md"),
+            ]
+        ),
+        first_existing(
+            [
+                rel("product", "handbook", "policies", "GA_SUPPORT_LIFECYCLE.md"),
+                rel("docs", "product", "GA_SUPPORT_LIFECYCLE.md"),
+            ]
+        ),
+        first_existing(
+            [
+                rel(
+                    "product",
+                    "handbook",
+                    "policies",
+                    "GA_STATUS_INCIDENT_COMMUNICATION.md",
+                ),
+                rel("docs", "product", "GA_STATUS_INCIDENT_COMMUNICATION.md"),
+            ]
+        ),
+        first_existing(
+            [
+                rel("product", "handbook", "policies", "GA_RELEASE_TRAIN_POLICY.md"),
+                rel("docs", "product", "GA_RELEASE_TRAIN_POLICY.md"),
+            ]
+        ),
+        first_existing(
+            [
+                rel("product", "handbook", "policies", "GA_CONTRACTUAL_SUPPORT_SLA.md"),
+                rel("docs", "product", "GA_CONTRACTUAL_SUPPORT_SLA.md"),
+            ]
+        ),
+        first_existing(
+            [
+                rel("product", "handbook", "policies", "GA_GO_NO_GO_CHECKLIST.md"),
+                rel("docs", "product", "GA_GO_NO_GO_CHECKLIST.md"),
+            ]
+        ),
+        first_existing(
+            [
+                rel("product", "handbook", "policies", "COMPLIANCE_EVIDENCE_INDEX.md"),
+                rel("docs", "product", "COMPLIANCE_EVIDENCE_INDEX.md"),
+            ]
+        ),
+        first_existing(
+            [
+                rel("product", "handbook", "policies", "DEPENDENCY_LICENSE_REVIEW.md"),
+                rel("docs", "product", "DEPENDENCY_LICENSE_REVIEW.md"),
+            ]
+        ),
+        first_existing(
+            [
+                rel("product", "handbook", "policies", "GA_COMPATIBILITY_GUARANTEES.md"),
+                rel("docs", "product", "GA_COMPATIBILITY_GUARANTEES.md"),
+            ]
+        ),
+        first_existing(
+            [
+                rel("product", "handbook", "policies", "POST_GA_GOVERNANCE.md"),
+                rel("docs", "product", "POST_GA_GOVERNANCE.md"),
+            ]
+        ),
+        first_existing(
+            [
+                rel("product", "handbook", "reports", "ACCESSIBILITY_REVIEW.md"),
+                rel("docs", "product", "ACCESSIBILITY_REVIEW.md"),
+            ]
+        ),
+        first_existing(
+            [
+                rel("product", "handbook", "policies", "SUPPLY_CHAIN_TRUST_POLICY.md"),
+                rel("docs", "product", "SUPPLY_CHAIN_TRUST_POLICY.md"),
+            ]
+        ),
+        first_existing(
+            [
+                rel(
+                    "product",
+                    "handbook",
+                    "policies",
+                    "PRIVACY_IMPACT_ASSESSMENT_WORKFLOW.md",
+                ),
+                rel("docs", "product", "PRIVACY_IMPACT_ASSESSMENT_WORKFLOW.md"),
+            ]
+        ),
+        first_existing(
+            [
+                rel("product", "handbook", "policies", "DOCS_VERSIONING_POLICY.md"),
+                rel("docs", "product", "DOCS_VERSIONING_POLICY.md"),
+            ]
+        ),
+        first_existing(
+            [
+                rel("product", "handbook", "policies", "CHANGE_COMMUNICATION_SLA.md"),
+                rel("docs", "product", "CHANGE_COMMUNICATION_SLA.md"),
+            ]
+        ),
+        first_existing(
+            [
+                rel(
+                    "product",
+                    "handbook",
+                    "policies",
+                    "ANNUAL_SECURITY_REVIEW_POLICY.md",
+                ),
+                rel("docs", "product", "ANNUAL_SECURITY_REVIEW_POLICY.md"),
+            ]
+        ),
+        first_existing(
+            [
+                rel("product", "handbook", "policies", "GA_SIGNOFF.md"),
+                rel("docs", "product", "GA_SIGNOFF.md"),
+            ]
+        ),
+        first_existing(
+            [
+                rel(
+                    "product",
+                    "handbook",
+                    "policies",
+                    "GA_SUPPORT_OPERATIONS_READINESS.md",
+                ),
+                rel("docs", "product", "GA_SUPPORT_OPERATIONS_READINESS.md"),
+            ]
+        ),
     ]
     required_artifacts = [
-        first_existing([rel("distribution", "release", "CHECKSUMS_v0.1.0.sha256"), rel("docs", "release", "CHECKSUMS_v0.1.0.sha256")]),
-        first_existing([rel("distribution", "release", "CHECKSUMS_v0.1.0.sha256.asc"), rel("docs", "release", "CHECKSUMS_v0.1.0.sha256.asc")]),
-        first_existing([rel("distribution", "release", "RELEASE_PUBKEY.asc"), rel("docs", "release", "RELEASE_PUBKEY.asc")]),
-        first_existing([rel("distribution", "release", "RELEASE_NOTES_v0.1.0.md"), rel("RELEASE_NOTES_v0.1.0.md")]),
+        first_existing(
+            [
+                rel("distribution", "release", "CHECKSUMS_v0.1.0.sha256"),
+                rel("docs", "release", "CHECKSUMS_v0.1.0.sha256"),
+            ]
+        ),
+        first_existing(
+            [
+                rel("distribution", "release", "CHECKSUMS_v0.1.0.sha256.asc"),
+                rel("docs", "release", "CHECKSUMS_v0.1.0.sha256.asc"),
+            ]
+        ),
+        first_existing(
+            [
+                rel("distribution", "release", "RELEASE_PUBKEY.asc"),
+                rel("docs", "release", "RELEASE_PUBKEY.asc"),
+            ]
+        ),
+        first_existing(
+            [
+                rel("distribution", "release", "RELEASE_NOTES_v0.1.0.md"),
+                rel("RELEASE_NOTES_v0.1.0.md"),
+            ]
+        ),
         conformance_reports_root() / "latest.json",
         bundles_root() / "hello-core-bundle.tar.gz",
         bundles_root() / "hello-core-bundle.sha256",
@@ -70,25 +211,34 @@ def main() -> int:
         "conformance": _status_ok(conformance_reports_root() / "latest.json"),
     }
     signatures = {
-        "checksum_signed": first_existing([rel("distribution", "release", "CHECKSUMS_v0.1.0.sha256.asc"), rel("docs", "release", "CHECKSUMS_v0.1.0.sha256.asc")]).exists(),
-        "pubkey_present": first_existing([rel("distribution", "release", "RELEASE_PUBKEY.asc"), rel("docs", "release", "RELEASE_PUBKEY.asc")]).exists(),
+        "checksum_signed": first_existing(
+            [
+                rel("distribution", "release", "CHECKSUMS_v0.1.0.sha256.asc"),
+                rel("docs", "release", "CHECKSUMS_v0.1.0.sha256.asc"),
+            ]
+        ).exists(),
+        "pubkey_present": first_existing(
+            [
+                rel("distribution", "release", "RELEASE_PUBKEY.asc"),
+                rel("docs", "release", "RELEASE_PUBKEY.asc"),
+            ]
+        ).exists(),
     }
 
     bundle_path = bundles_root() / "hello-core-bundle.tar.gz"
     conformance_report_path = conformance_reports_root() / "latest.json"
-    checksums_path = first_existing([rel("distribution", "release", "CHECKSUMS_v0.1.0.sha256"), rel("docs", "release", "CHECKSUMS_v0.1.0.sha256")])
+    checksums_path = first_existing(
+        [
+            rel("distribution", "release", "CHECKSUMS_v0.1.0.sha256"),
+            rel("docs", "release", "CHECKSUMS_v0.1.0.sha256"),
+        ]
+    )
 
     rc_report = {
         "status": "PASS",
-        "bundle_hash": _sha256(bundle_path)
-        if bundle_path.exists()
-        else "",
-        "conformance_report_hash": _sha256(conformance_report_path)
-        if conformance_report_path.exists()
-        else "",
-        "checksums_file_hash": _sha256(checksums_path)
-        if checksums_path.exists()
-        else "",
+        "bundle_hash": _sha256(bundle_path) if bundle_path.exists() else "",
+        "conformance_report_hash": _sha256(conformance_report_path) if conformance_report_path.exists() else "",
+        "checksums_file_hash": _sha256(checksums_path) if checksums_path.exists() else "",
         "security_gate_status": "PASS" if gate_checks["security"] else "FAIL",
         "recovery_gate_status": "PASS" if gate_checks["recovery"] else "FAIL",
         "deploy_gate_status": "PASS" if gate_checks["deploy"] else "FAIL",

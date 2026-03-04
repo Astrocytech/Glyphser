@@ -17,7 +17,6 @@ sys.path.insert(0, str(ROOT))
 
 from runtime.glyphser.backend.load_driver import load_driver  # noqa: E402
 
-
 PROFILE_LABELS = {"available_local", "available_local_partial", "strict_universal"}
 
 
@@ -52,8 +51,25 @@ def _emit_common_evidence(
 ) -> None:
     out_dir = out_dir.resolve()
     dependencies = dependencies or []
-    _write_json(out_dir / "env-matrix.json", {"platform": platform.platform(), "kernel": platform.release(), "python": platform.python_version(), "timestamp_utc": _now_utc()})
-    _write_json(out_dir / "repro-classification.json", {"milestone": milestone, "profile": profile, "status": status, "classification": classification, "reason": reason})
+    _write_json(
+        out_dir / "env-matrix.json",
+        {
+            "platform": platform.platform(),
+            "kernel": platform.release(),
+            "python": platform.python_version(),
+            "timestamp_utc": _now_utc(),
+        },
+    )
+    _write_json(
+        out_dir / "repro-classification.json",
+        {
+            "milestone": milestone,
+            "profile": profile,
+            "status": status,
+            "classification": classification,
+            "reason": reason,
+        },
+    )
     _write_json(out_dir / "conformance-hashes.json", {"status": status})
     _write_json(
         out_dir / "milestone.json",
@@ -120,7 +136,11 @@ def _framework_meta() -> dict[str, Any]:
         import tensorflow as tf
 
         gpus = tf.config.list_physical_devices("GPU")
-        out["tensorflow"] = {"present": True, "version": tf.__version__, "gpu_visible": bool(gpus)}
+        out["tensorflow"] = {
+            "present": True,
+            "version": tf.__version__,
+            "gpu_visible": bool(gpus),
+        }
     except Exception as exc:  # pragma: no cover - import-path dependent
         out["tensorflow"] = {"present": False, "error": str(exc)}
     return out
@@ -186,30 +206,74 @@ def _cmd_doctor(args: argparse.Namespace) -> int:
         print(json.dumps(payload, indent=2, sort_keys=True))
     else:
         print(f"DOCTOR: PASS {out_path}")
-    _emit_common_evidence(out_path.parent, milestone=26, slug="doctor", profile="doctor", status="PASS", classification="E1", reason="Host capability manifest generated.")
+    _emit_common_evidence(
+        out_path.parent,
+        milestone=26,
+        slug="doctor",
+        profile="doctor",
+        status="PASS",
+        classification="E1",
+        reason="Host capability manifest generated.",
+    )
     return 0
 
 
 def _setup_requirements(profile: str) -> dict[str, Any]:
     if profile == "strict_universal":
-        return {"need_torch": True, "need_tensorflow": True, "need_java": True, "need_gpu": True}
+        return {
+            "need_torch": True,
+            "need_tensorflow": True,
+            "need_java": True,
+            "need_gpu": True,
+        }
     # available_local and available_local_partial
-    return {"need_torch": True, "need_tensorflow": True, "need_java": True, "need_gpu": False}
+    return {
+        "need_torch": True,
+        "need_tensorflow": True,
+        "need_java": True,
+        "need_gpu": False,
+    }
 
 
 def _cmd_setup(args: argparse.Namespace) -> int:
     doctor_path = Path(args.doctor)
     if not doctor_path.exists():
-        print(json.dumps({"status": "BLOCKED", "classification": "E2", "reason": f"missing doctor manifest: {doctor_path}"}, indent=2, sort_keys=True))
+        print(
+            json.dumps(
+                {
+                    "status": "BLOCKED",
+                    "classification": "E2",
+                    "reason": f"missing doctor manifest: {doctor_path}",
+                },
+                indent=2,
+                sort_keys=True,
+            )
+        )
         return 1
     manifest = json.loads(doctor_path.read_text(encoding="utf-8"))
     req = _setup_requirements(args.profile)
     caps = manifest.get("capabilities", {})
     actions = [
-        {"action": "check_torch", "required": req["need_torch"], "ok": bool(caps.get("torch_present", False))},
-        {"action": "check_tensorflow", "required": req["need_tensorflow"], "ok": bool(caps.get("tensorflow_present", False))},
-        {"action": "check_java", "required": req["need_java"], "ok": bool(caps.get("java_present", False))},
-        {"action": "check_gpu", "required": req["need_gpu"], "ok": bool(caps.get("gpu_present", False))},
+        {
+            "action": "check_torch",
+            "required": req["need_torch"],
+            "ok": bool(caps.get("torch_present", False)),
+        },
+        {
+            "action": "check_tensorflow",
+            "required": req["need_tensorflow"],
+            "ok": bool(caps.get("tensorflow_present", False)),
+        },
+        {
+            "action": "check_java",
+            "required": req["need_java"],
+            "ok": bool(caps.get("java_present", False)),
+        },
+        {
+            "action": "check_gpu",
+            "required": req["need_gpu"],
+            "ok": bool(caps.get("gpu_present", False)),
+        },
     ]
     failed = [a["action"] for a in actions if a["required"] and not a["ok"]]
     plan = {
@@ -224,7 +288,12 @@ def _cmd_setup(args: argparse.Namespace) -> int:
     _write_json(out_path.with_name("setup-plan.json"), plan)
 
     if args.dry_run:
-        dry = {"status": "PASS" if not failed else "BLOCKED", "classification": "E1" if not failed else "E2", "plan_hash": _sha256_json(plan), "failed_actions": failed}
+        dry = {
+            "status": "PASS" if not failed else "BLOCKED",
+            "classification": "E1" if not failed else "E2",
+            "plan_hash": _sha256_json(plan),
+            "failed_actions": failed,
+        }
         _write_json(out_path, dry)
         _emit_common_evidence(
             out_path.parent,
@@ -233,7 +302,9 @@ def _cmd_setup(args: argparse.Namespace) -> int:
             profile=args.profile,
             status=str(dry["status"]),
             classification=str(dry["classification"]),
-            reason="dry-run setup evaluation complete" if not failed else "dry-run setup blocked due missing capabilities",
+            reason="dry-run setup evaluation complete"
+            if not failed
+            else "dry-run setup blocked due missing capabilities",
             dependencies=[26],
         )
         print(json.dumps(dry, indent=2, sort_keys=True))
@@ -306,13 +377,27 @@ def _select_route(manifest: dict[str, Any]) -> str:
 def _cmd_run(args: argparse.Namespace) -> int:
     doctor_path = Path(args.doctor)
     if not doctor_path.exists():
-        print(json.dumps({"status": "BLOCKED", "classification": "E2", "reason": f"missing doctor manifest: {doctor_path}"}, indent=2, sort_keys=True))
+        print(
+            json.dumps(
+                {
+                    "status": "BLOCKED",
+                    "classification": "E2",
+                    "reason": f"missing doctor manifest: {doctor_path}",
+                },
+                indent=2,
+                sort_keys=True,
+            )
+        )
         return 1
     manifest = json.loads(doctor_path.read_text(encoding="utf-8"))
     selected_profile = _profile_from_manifest(manifest) if args.profile == "auto" else args.profile
     selected_route = _select_route(manifest)
 
-    policy = {"profile_mode": "balanced", "profile_label": selected_profile, "route": selected_route}
+    policy = {
+        "profile_mode": "balanced",
+        "profile_label": selected_profile,
+        "route": selected_route,
+    }
     route_payload = {
         "route_schema_version": "route_decision.v1",
         "route_policy_hash": _sha256_json(policy),
@@ -323,12 +408,30 @@ def _cmd_run(args: argparse.Namespace) -> int:
     }
     # Keep route behavior aligned with runtime route validator when possible.
     if selected_route != "reference":
-        load_driver({"driver_id": "universal_driver", "universal_route": selected_route, "profile_mode": "balanced"})
+        load_driver(
+            {
+                "driver_id": "universal_driver",
+                "universal_route": selected_route,
+                "profile_mode": "balanced",
+            }
+        )
     out_path = Path(args.emit_route)
     _write_json(out_path, route_payload)
-    _write_json(out_path.with_name("route-policy-hash.json"), {"route_policy_hash": route_payload["route_policy_hash"]})
-    _write_json(out_path.with_name("fallback-policy.json"), {"profile": selected_profile, "fallback_order": [selected_route, "reference"]})
-    _write_json(out_path.with_name("route-replay-check.json"), {"status": "PASS", "reason": "deterministic route hash from canonical doctor+policy"})
+    _write_json(
+        out_path.with_name("route-policy-hash.json"),
+        {"route_policy_hash": route_payload["route_policy_hash"]},
+    )
+    _write_json(
+        out_path.with_name("fallback-policy.json"),
+        {"profile": selected_profile, "fallback_order": [selected_route, "reference"]},
+    )
+    _write_json(
+        out_path.with_name("route-replay-check.json"),
+        {
+            "status": "PASS",
+            "reason": "deterministic route hash from canonical doctor+policy",
+        },
+    )
     _emit_common_evidence(
         out_path.parent,
         milestone=28,
@@ -339,20 +442,54 @@ def _cmd_run(args: argparse.Namespace) -> int:
         reason=f"Route selected deterministically: {selected_route}",
         dependencies=[27],
     )
-    print(json.dumps({"status": "PASS", "classification": "E1", **route_payload}, indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            {"status": "PASS", "classification": "E1", **route_payload},
+            indent=2,
+            sort_keys=True,
+        )
+    )
     return 0
 
 
 def _cert_required_by_profile(profile: str) -> dict[int, str]:
     if profile == "strict_universal":
-        return {12: "milestone-12-multi-host-multi-os", 16: "milestone-16-universal-profile-v1", 18: "milestone-18-device-class-expansion", 19: "milestone-19-os-universality", 20: "milestone-20-language-ecosystem-v2", 21: "milestone-21-library-ecosystem", 22: "milestone-22-artifact-portability", 23: "milestone-23-distributed-heterogeneous", 24: "milestone-24-edge-mobile-web"}
-    return {12: "milestone-12-multi-host-multi-os", 16: "milestone-16-universal-profile-v1", 20: "milestone-20-language-ecosystem-v2", 21: "milestone-21-library-ecosystem", 22: "milestone-22-artifact-portability", 23: "milestone-23-distributed-heterogeneous", 24: "milestone-24-edge-mobile-web"}
+        return {
+            12: "milestone-12-multi-host-multi-os",
+            16: "milestone-16-universal-profile-v1",
+            18: "milestone-18-device-class-expansion",
+            19: "milestone-19-os-universality",
+            20: "milestone-20-language-ecosystem-v2",
+            21: "milestone-21-library-ecosystem",
+            22: "milestone-22-artifact-portability",
+            23: "milestone-23-distributed-heterogeneous",
+            24: "milestone-24-edge-mobile-web",
+        }
+    return {
+        12: "milestone-12-multi-host-multi-os",
+        16: "milestone-16-universal-profile-v1",
+        20: "milestone-20-language-ecosystem-v2",
+        21: "milestone-21-library-ecosystem",
+        22: "milestone-22-artifact-portability",
+        23: "milestone-23-distributed-heterogeneous",
+        24: "milestone-24-edge-mobile-web",
+    }
 
 
 def _cmd_certify(args: argparse.Namespace) -> int:
     profile = args.profile
     if profile not in PROFILE_LABELS:
-        print(json.dumps({"status": "BLOCKED", "classification": "E2", "reason": f"unsupported profile: {profile}"}, indent=2, sort_keys=True))
+        print(
+            json.dumps(
+                {
+                    "status": "BLOCKED",
+                    "classification": "E2",
+                    "reason": f"unsupported profile: {profile}",
+                },
+                indent=2,
+                sort_keys=True,
+            )
+        )
         return 1
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -362,7 +499,15 @@ def _cmd_certify(args: argparse.Namespace) -> int:
     for mid, slug in required.items():
         path = ROOT / "evidence" / "repro" / slug / "report.json"
         if not path.exists():
-            rows.append({"milestone": mid, "slug": slug, "status": "BLOCKED", "classification": "E2", "reason": "missing report.json"})
+            rows.append(
+                {
+                    "milestone": mid,
+                    "slug": slug,
+                    "status": "BLOCKED",
+                    "classification": "E2",
+                    "reason": "missing report.json",
+                }
+            )
             blocked.append(mid)
             continue
         report = json.loads(path.read_text(encoding="utf-8"))
@@ -372,12 +517,31 @@ def _cmd_certify(args: argparse.Namespace) -> int:
         if profile == "available_local_partial" and mid == 24 and status == "BLOCKED":
             gate_status = "PASS"
             reason = "partial acceptance: milestone 24 accepted for available_local_partial"
-        rows.append({"milestone": mid, "slug": slug, "status": status, "gate_status": gate_status, "classification": report.get("classification", "E2"), "reason": reason})
+        rows.append(
+            {
+                "milestone": mid,
+                "slug": slug,
+                "status": status,
+                "gate_status": gate_status,
+                "classification": report.get("classification", "E2"),
+                "reason": reason,
+            }
+        )
         if gate_status != "PASS":
             blocked.append(mid)
 
-    overall = {"status": "PASS" if not blocked else "BLOCKED", "classification": "E0" if not blocked else "E2", "reason": "All prerequisites satisfied." if not blocked else "Blocked prerequisite milestones: " + ", ".join(str(x) for x in sorted(blocked))}
-    scope = {"scope_label": profile, "timestamp_utc": _now_utc(), "required_milestones": sorted(required.keys())}
+    overall = {
+        "status": "PASS" if not blocked else "BLOCKED",
+        "classification": "E0" if not blocked else "E2",
+        "reason": "All prerequisites satisfied."
+        if not blocked
+        else "Blocked prerequisite milestones: " + ", ".join(str(x) for x in sorted(blocked)),
+    }
+    scope = {
+        "scope_label": profile,
+        "timestamp_utc": _now_utc(),
+        "required_milestones": sorted(required.keys()),
+    }
     bundle = {
         "bundle_schema_version": "cert_bundle.v1",
         "scope_label": profile,
@@ -387,17 +551,38 @@ def _cmd_certify(args: argparse.Namespace) -> int:
         "prerequisites": rows,
     }
     _write_json(out_dir / "certification-scope.json", scope)
-    _write_json(out_dir / "compatibility-matrix.json", {"rows": rows, "status": overall["status"], "scope_label": profile})
+    _write_json(
+        out_dir / "compatibility-matrix.json",
+        {"rows": rows, "status": overall["status"], "scope_label": profile},
+    )
     _write_json(out_dir / "certification-bundle.json", bundle)
-    _write_json(out_dir / "signature-verification.json", {"status": "PASS", "reason": "local detached signature placeholder accepted for milestone workflow"})
-    (out_dir / "bundle-signature.asc").write_text("-----BEGIN PSEUDO SIGNATURE-----\n" + hashlib.sha256(json.dumps(bundle, sort_keys=True).encode("utf-8")).hexdigest() + "\n-----END PSEUDO SIGNATURE-----\n", encoding="utf-8")
+    _write_json(
+        out_dir / "signature-verification.json",
+        {
+            "status": "PASS",
+            "reason": "local detached signature placeholder accepted for milestone workflow",
+        },
+    )
+    (out_dir / "bundle-signature.asc").write_text(
+        "-----BEGIN PSEUDO SIGNATURE-----\n"
+        + hashlib.sha256(json.dumps(bundle, sort_keys=True).encode("utf-8")).hexdigest()
+        + "\n-----END PSEUDO SIGNATURE-----\n",
+        encoding="utf-8",
+    )
     (out_dir / "known-limitations.md").write_text(
         "# Known Limitations\n\n"
         f"- Certification scope: `{profile}`.\n"
         "- Do not claim unscoped universality; use scope label in all claims.\n",
         encoding="utf-8",
     )
-    _write_json(out_dir / "claim-language-check.json", {"status": "PASS", "scope_label": profile, "rule": "no unscoped universality claims"})
+    _write_json(
+        out_dir / "claim-language-check.json",
+        {
+            "status": "PASS",
+            "scope_label": profile,
+            "rule": "no unscoped universality claims",
+        },
+    )
     _emit_common_evidence(
         out_dir,
         milestone=29,

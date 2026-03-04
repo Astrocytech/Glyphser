@@ -57,7 +57,12 @@ def _run_cmd(cmd: str, inputs: list[float], weights: list[float], bias: float) -
     except FileNotFoundError as exc:
         return {"error": {"code_id": "RUNTIME_EXEC_ERROR", "message": str(exc)}}
     if proc.returncode != 0:
-        return {"error": {"code_id": "RUNTIME_EXEC_ERROR", "message": proc.stderr.strip() or proc.stdout.strip() or f"code={proc.returncode}"}}
+        return {
+            "error": {
+                "code_id": "RUNTIME_EXEC_ERROR",
+                "message": proc.stderr.strip() or proc.stdout.strip() or f"code={proc.returncode}",
+            }
+        }
     try:
         payload = json.loads(proc.stdout.strip())
     except Exception as exc:
@@ -97,8 +102,8 @@ def _run_keras_cpu(model_ir: dict[str, Any], inputs: list[float]) -> dict[str, A
 
 def _run_jax(inputs: list[float], weights: list[float], bias: float) -> dict[str, Any]:
     try:
-        import jax.numpy as jnp  # type: ignore
         import jax  # type: ignore  # noqa: F401
+        import jax.numpy as jnp  # type: ignore
     except Exception as exc:
         return {"error": {"code_id": "LIBRARY_MISSING", "message": str(exc)}}
     x = jnp.array(inputs, dtype=jnp.float64)
@@ -158,7 +163,10 @@ def _runtime_meta() -> dict[str, Any]:
     for pkg in ("jax", "onnxruntime", "onnx", "openvino", "tensorrt"):
         try:
             mod = __import__(pkg)
-            meta[pkg] = {"present": True, "version": getattr(mod, "__version__", "unknown")}
+            meta[pkg] = {
+                "present": True,
+                "version": getattr(mod, "__version__", "unknown"),
+            }
         except Exception as exc:
             meta[pkg] = {"present": False, "error": str(exc)}
     return meta
@@ -183,7 +191,11 @@ def main() -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     fixtures = fixtures_root() / "hello-core"
-    dataset = [json.loads(line) for line in (fixtures / "tiny_synth_dataset.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
+    dataset = [
+        json.loads(line)
+        for line in (fixtures / "tiny_synth_dataset.jsonl").read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
     model_ir = json.loads((fixtures / "model_ir.json").read_text(encoding="utf-8"))
     inputs = dataset[0]["x"]
     dense = next(n for n in model_ir["nodes"] if n.get("instr") == "Dense")
@@ -198,7 +210,12 @@ def main() -> int:
         "openvino_tensorrt": (
             _run_cmd(args.ovtrt_cmd, inputs, weights, bias)
             if args.ovtrt_cmd.strip()
-            else {"error": {"code_id": "LIBRARY_NOT_CONFIGURED", "message": "set --ovtrt-cmd for OpenVINO/TensorRT lane"}}
+            else {
+                "error": {
+                    "code_id": "LIBRARY_NOT_CONFIGURED",
+                    "message": "set --ovtrt-cmd for OpenVINO/TensorRT lane",
+                }
+            }
         ),
     }
 
@@ -223,19 +240,40 @@ def main() -> int:
             library_rows.append({"library_lane": lane, "status": "BLOCKED"})
             continue
         if baseline.get("outputs") == out.get("outputs") and baseline.get("execution_fp") == out.get("execution_fp"):
-            status, cls, reason = "PASS", "E0", "Exact output and execution fingerprint match."
+            status, cls, reason = (
+                "PASS",
+                "E0",
+                "Exact output and execution fingerprint match.",
+            )
         elif _allclose(baseline.get("outputs"), out.get("outputs"), args.abs_tol, args.rel_tol):
             status, cls, reason = "PASS", "E1", "Outputs within tolerance."
         else:
             status, cls, reason = "FAIL", "E2", "Outputs diverge."
-        pair_rows.append({"pair": f"python_pytorch_cpu__vs__{lane}", "status": status, "classification": cls, "reason": reason, "a_result": baseline, "b_result": out})
+        pair_rows.append(
+            {
+                "pair": f"python_pytorch_cpu__vs__{lane}",
+                "status": status,
+                "classification": cls,
+                "reason": reason,
+                "a_result": baseline,
+                "b_result": out,
+            }
+        )
         library_rows.append({"library_lane": lane, "status": status})
 
     statuses = [r["status"] for r in pair_rows]
     if any(s == "FAIL" for s in statuses):
-        overall_status, overall_class, overall_reason = "FAIL", "E2", "At least one library lane failed."
+        overall_status, overall_class, overall_reason = (
+            "FAIL",
+            "E2",
+            "At least one library lane failed.",
+        )
     elif any(s == "BLOCKED" for s in statuses):
-        overall_status, overall_class, overall_reason = "BLOCKED", "E2", "At least one library lane is blocked."
+        overall_status, overall_class, overall_reason = (
+            "BLOCKED",
+            "E2",
+            "At least one library lane is blocked.",
+        )
     else:
         overall_status = "PASS"
         overall_class = "E0" if all(r["classification"] == "E0" for r in pair_rows) else "E1"
@@ -253,14 +291,68 @@ def main() -> int:
         "meta": {"abs_tol": args.abs_tol, "rel_tol": args.rel_tol, **_runtime_meta()},
     }
     (out_dir / "report.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "repro-classification.json").write_text(json.dumps({"milestone": 21, "profile": "library_ecosystem", "classification": overall_class, "status": overall_status, "reason": overall_reason}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "pair-matrix.json").write_text(json.dumps({"pairs": pair_rows}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "library-matrix.json").write_text(json.dumps({"library_matrix": library_rows}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "env-matrix.json").write_text(json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "coverage-summary.json").write_text(json.dumps({"milestone": 21, "lane_count": len(results), "status": overall_status}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "device-matrix.json").write_text(json.dumps({"note": "Milestone 21 focuses on runtime/library lanes."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "os-matrix.json").write_text(json.dumps({"note": "Milestone 21 focuses on runtime/library lanes."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "language-matrix.json").write_text(json.dumps({"note": "Milestone 21 follows language expansion from milestone 20."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "repro-classification.json").write_text(
+        json.dumps(
+            {
+                "milestone": 21,
+                "profile": "library_ecosystem",
+                "classification": overall_class,
+                "status": overall_status,
+                "reason": overall_reason,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "pair-matrix.json").write_text(
+        json.dumps({"pairs": pair_rows}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "library-matrix.json").write_text(
+        json.dumps({"library_matrix": library_rows}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "env-matrix.json").write_text(
+        json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    (out_dir / "coverage-summary.json").write_text(
+        json.dumps(
+            {"milestone": 21, "lane_count": len(results), "status": overall_status},
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "device-matrix.json").write_text(
+        json.dumps(
+            {"note": "Milestone 21 focuses on runtime/library lanes."},
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "os-matrix.json").write_text(
+        json.dumps(
+            {"note": "Milestone 21 focuses on runtime/library lanes."},
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "language-matrix.json").write_text(
+        json.dumps(
+            {"note": "Milestone 21 follows language expansion from milestone 20."},
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     (out_dir / "portability-gaps.md").write_text(
         "# Portability Gaps (Milestone 21)\n\n"
         + "\n".join(
@@ -275,15 +367,27 @@ def main() -> int:
     for adr in WAIVER_ADRS:
         if (ROOT / adr).exists():
             waivers.append({"adr": adr, "status": "ACTIVE"})
-    (out_dir / "waivers.json").write_text(json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "waivers.json").write_text(
+        json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     conformance_hashes = {"status": overall_status}
     rp = ROOT / "evidence" / "conformance" / "reports" / "latest.json"
     rs = ROOT / "evidence" / "conformance" / "results" / "latest.json"
     if rp.exists():
-        conformance_hashes["conformance_report"] = {"path": "evidence/conformance/reports/latest.json", "sha256": _sha256_file(rp)}
+        conformance_hashes["conformance_report"] = {
+            "path": "evidence/conformance/reports/latest.json",
+            "sha256": _sha256_file(rp),
+        }
     if rs.exists():
-        conformance_hashes["conformance_results"] = {"path": "evidence/conformance/results/latest.json", "sha256": _sha256_file(rs)}
-    (out_dir / "conformance-hashes.json").write_text(json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        conformance_hashes["conformance_results"] = {
+            "path": "evidence/conformance/results/latest.json",
+            "sha256": _sha256_file(rs),
+        }
+    (out_dir / "conformance-hashes.json").write_text(
+        json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     (out_dir / "summary.md").write_text(
         "\n".join(
             [
@@ -322,7 +426,17 @@ def main() -> int:
         + "\n",
         encoding="utf-8",
     )
-    print(json.dumps({"status": overall_status, "classification": overall_class, "reason": overall_reason}, indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "status": overall_status,
+                "classification": overall_class,
+                "reason": overall_reason,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
     return 0 if overall_status == "PASS" else 1
 
 

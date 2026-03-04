@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import json
 import hashlib
-from pathlib import Path
-from typing import Dict
+import json
 import sys
+from pathlib import Path
+
+from tooling.lib.path_config import generated_root
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from tooling.lib.path_config import generated_root
-
 MANIFEST = generated_root() / "metadata" / "codegen_manifest.json"
 
 

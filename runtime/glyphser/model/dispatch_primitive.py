@@ -1,7 +1,9 @@
 """Deterministic primitive dispatch."""
+
 from __future__ import annotations
 
 from typing import Any, Dict, Tuple
+
 
 class PrimitiveUnsupportedError(RuntimeError):
     pass

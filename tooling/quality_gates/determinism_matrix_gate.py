@@ -7,13 +7,13 @@ import json
 import sys
 from pathlib import Path
 
+from runtime.glyphser.trace.compute_trace_hash import compute_trace_hash
+from tooling.quality_gates.telemetry import emit_gate_trace
+from tooling.scripts import run_hello_core
+
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
-
-from runtime.glyphser.trace.compute_trace_hash import compute_trace_hash
-from tooling.scripts import run_hello_core
-from tooling.quality_gates.telemetry import emit_gate_trace
 
 OUT = ROOT / "evidence" / "gates" / "quality" / "determinism_matrix.json"
 FIXTURE_TRACE = ROOT / "artifacts" / "inputs" / "fixtures" / "hello-core" / "trace.json"

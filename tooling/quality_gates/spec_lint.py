@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import json
 import re
-import sys
 from pathlib import Path
 from typing import Dict, List
 
@@ -49,7 +48,11 @@ def _lint_registry(records: List[Dict[str, object]]) -> List[str]:
     errors: List[str] = []
     for rec in records:
         op_id = rec.get("operator_id", "")
-        for key in ["request_schema_digest", "response_schema_digest", "signature_digest"]:
+        for key in [
+            "request_schema_digest",
+            "response_schema_digest",
+            "signature_digest",
+        ]:
             val = rec.get(key)
             if not isinstance(val, str) or not DIGEST_RE.match(val):
                 errors.append(f"{op_id}: invalid digest {key}={val}")

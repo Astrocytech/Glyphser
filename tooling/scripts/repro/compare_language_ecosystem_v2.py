@@ -67,7 +67,12 @@ def _exec_template(template: str, inputs: list[float], weights: list[float], bia
         return {"error": {"code_id": "BAD_COMMAND", "message": str(exc)}}
     code, out, err = _run(argv)
     if code != 0:
-        return {"error": {"code_id": "RUNTIME_EXEC_ERROR", "message": err or out or f"code={code}"}}
+        return {
+            "error": {
+                "code_id": "RUNTIME_EXEC_ERROR",
+                "message": err or out or f"code={code}",
+            }
+        }
     try:
         payload = json.loads(out)
     except Exception as exc:
@@ -84,7 +89,12 @@ def _compile_if_needed(path_src: Path, path_bin: Path, cmd: list[str]) -> dict[s
         return None
     code, out, err = _run(cmd)
     if code != 0:
-        return {"error": {"code_id": "BOOTSTRAP_ERROR", "message": err or out or f"compile failed ({code})"}}
+        return {
+            "error": {
+                "code_id": "BOOTSTRAP_ERROR",
+                "message": err or out or f"compile failed ({code})",
+            }
+        }
     return None
 
 
@@ -96,7 +106,13 @@ def _runtime_meta() -> dict[str, Any]:
         "timestamp_utc": datetime.now(UTC).isoformat(),
     }
     for tool in ("go", "g++", "csc", "mcs", "java", "javac", "rustc"):
-        code, out, err = _run([tool, "--version"] if tool not in {"java", "javac", "g++"} else [tool, "-version"] if tool in {"java", "javac"} else [tool, "--version"])
+        code, out, err = _run(
+            [tool, "--version"]
+            if tool not in {"java", "javac", "g++"}
+            else [tool, "-version"]
+            if tool in {"java", "javac"}
+            else [tool, "--version"]
+        )
         meta[tool] = {"ok": code == 0, "version": out or err}
     return meta
 
@@ -128,7 +144,11 @@ def main() -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     fixtures = fixtures_root() / "hello-core"
-    dataset = [json.loads(line) for line in (fixtures / "tiny_synth_dataset.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
+    dataset = [
+        json.loads(line)
+        for line in (fixtures / "tiny_synth_dataset.jsonl").read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
     model_ir = json.loads((fixtures / "model_ir.json").read_text(encoding="utf-8"))
     inputs = dataset[0]["x"]
     dense = next(n for n in model_ir["nodes"] if n.get("instr") == "Dense")
@@ -148,7 +168,7 @@ def main() -> int:
         results["java_onnxruntime_cpu"] = boot
     else:
         results["java_onnxruntime_cpu"] = _exec_template(
-            f"java -cp {shlex.quote(onnx_cp)} OnnxRuntimeLaneRunner " "{input_csv} {weights_csv} {bias}",
+            f"java -cp {shlex.quote(onnx_cp)} OnnxRuntimeLaneRunner {{input_csv}} {{weights_csv}} {{bias}}",
             inputs,
             weights,
             bias,
@@ -161,7 +181,12 @@ def main() -> int:
     if boot:
         results["rust_cpu"] = boot
     else:
-        results["rust_cpu"] = _exec_template(f"{shlex.quote(str(rust_bin))} " "{input_csv} {weights_csv} {bias}", inputs, weights, bias)
+        results["rust_cpu"] = _exec_template(
+            f"{shlex.quote(str(rust_bin))} {{input_csv}} {{weights_csv}} {{bias}}",
+            inputs,
+            weights,
+            bias,
+        )
 
     # Go lane
     go_src = GO_BRIDGE / "GoLaneRunner.go"
@@ -170,7 +195,12 @@ def main() -> int:
     if boot:
         results["go_cpu"] = boot
     else:
-        results["go_cpu"] = _exec_template(f"{shlex.quote(str(go_bin))} " "{input_csv} {weights_csv} {bias}", inputs, weights, bias)
+        results["go_cpu"] = _exec_template(
+            f"{shlex.quote(str(go_bin))} {{input_csv}} {{weights_csv}} {{bias}}",
+            inputs,
+            weights,
+            bias,
+        )
 
     # C++ lane
     cpp_src = CPP_BRIDGE / "CppLaneRunner.cpp"
@@ -179,13 +209,21 @@ def main() -> int:
     if boot:
         results["cpp_cpu"] = boot
     else:
-        results["cpp_cpu"] = _exec_template(f"{shlex.quote(str(cpp_bin))} " "{input_csv} {weights_csv} {bias}", inputs, weights, bias)
+        results["cpp_cpu"] = _exec_template(
+            f"{shlex.quote(str(cpp_bin))} {{input_csv}} {{weights_csv}} {{bias}}",
+            inputs,
+            weights,
+            bias,
+        )
 
     # C# lane
     cs_src = CSHARP_BRIDGE / "CSharpLaneRunner.cs"
     cs_bin = CSHARP_BRIDGE / ("CSharpLaneRunner.exe")
     csharp_boot = None
-    for compiler in (["csc", "/nologo", f"/out:{cs_bin}", str(cs_src)], ["mcs", "-out:" + str(cs_bin), str(cs_src)]):
+    for compiler in (
+        ["csc", "/nologo", f"/out:{cs_bin}", str(cs_src)],
+        ["mcs", "-out:" + str(cs_bin), str(cs_src)],
+    ):
         csharp_boot = _compile_if_needed(cs_src, cs_bin, compiler)
         if csharp_boot is None:
             break
@@ -193,7 +231,9 @@ def main() -> int:
         results["csharp_cpu"] = csharp_boot
     else:
         csharp_runner = f"mono {shlex.quote(str(cs_bin))}" if os.name != "nt" else shlex.quote(str(cs_bin))
-        results["csharp_cpu"] = _exec_template(csharp_runner + " {input_csv} {weights_csv} {bias}", inputs, weights, bias)
+        results["csharp_cpu"] = _exec_template(
+            csharp_runner + " {input_csv} {weights_csv} {bias}", inputs, weights, bias
+        )
 
     baseline = results["python_pytorch_cpu"]
     pair_rows = []
@@ -203,23 +243,53 @@ def main() -> int:
             language_rows.append({"language_lane": lane, "status": "PASS"})
             continue
         if "error" in baseline or "error" in out:
-            pair_rows.append({"pair": f"python_pytorch_cpu__vs__{lane}", "status": "BLOCKED", "classification": "E2", "reason": "runtime error", "a_result": baseline, "b_result": out})
+            pair_rows.append(
+                {
+                    "pair": f"python_pytorch_cpu__vs__{lane}",
+                    "status": "BLOCKED",
+                    "classification": "E2",
+                    "reason": "runtime error",
+                    "a_result": baseline,
+                    "b_result": out,
+                }
+            )
             language_rows.append({"language_lane": lane, "status": "BLOCKED"})
             continue
         if baseline.get("outputs") == out.get("outputs") and baseline.get("execution_fp") == out.get("execution_fp"):
-            status, cls, reason = "PASS", "E0", "Exact output and execution fingerprint match."
+            status, cls, reason = (
+                "PASS",
+                "E0",
+                "Exact output and execution fingerprint match.",
+            )
         elif _allclose(baseline.get("outputs"), out.get("outputs"), args.abs_tol, args.rel_tol):
             status, cls, reason = "PASS", "E1", "Outputs within tolerance."
         else:
             status, cls, reason = "FAIL", "E2", "Outputs diverge."
-        pair_rows.append({"pair": f"python_pytorch_cpu__vs__{lane}", "status": status, "classification": cls, "reason": reason, "a_result": baseline, "b_result": out})
+        pair_rows.append(
+            {
+                "pair": f"python_pytorch_cpu__vs__{lane}",
+                "status": status,
+                "classification": cls,
+                "reason": reason,
+                "a_result": baseline,
+                "b_result": out,
+            }
+        )
         language_rows.append({"language_lane": lane, "status": status})
 
     statuses = [r["status"] for r in pair_rows]
     if any(s == "FAIL" for s in statuses):
-        overall_status, overall_class, overall_reason = "FAIL", "E2", "At least one language lane failed."
+        overall_status, overall_class, overall_reason = (
+            "FAIL",
+            "E2",
+            "At least one language lane failed.",
+        )
     elif any(s == "BLOCKED" for s in statuses):
-        overall_status, overall_class, overall_reason = "BLOCKED", "E2", "At least one language lane is blocked."
+        overall_status, overall_class, overall_reason = (
+            "BLOCKED",
+            "E2",
+            "At least one language lane is blocked.",
+        )
     else:
         overall_status = "PASS"
         overall_class = "E0" if all(r["classification"] == "E0" for r in pair_rows) else "E1"
@@ -237,14 +307,63 @@ def main() -> int:
         "meta": {"abs_tol": args.abs_tol, "rel_tol": args.rel_tol, **_runtime_meta()},
     }
     (out_dir / "report.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "repro-classification.json").write_text(json.dumps({"milestone": 20, "profile": "language_ecosystem_v2", "classification": overall_class, "status": overall_status, "reason": overall_reason}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "pair-matrix.json").write_text(json.dumps({"pairs": pair_rows}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "language-matrix.json").write_text(json.dumps({"language_matrix": language_rows}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "env-matrix.json").write_text(json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "coverage-summary.json").write_text(json.dumps({"milestone": 20, "lane_count": len(results), "status": overall_status}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "device-matrix.json").write_text(json.dumps({"note": "Milestone 20 focuses on language lanes."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "os-matrix.json").write_text(json.dumps({"note": "Milestone 20 assumes current host OS."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "library-matrix.json").write_text(json.dumps({"note": "Milestone 20 focuses on language runtimes."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "repro-classification.json").write_text(
+        json.dumps(
+            {
+                "milestone": 20,
+                "profile": "language_ecosystem_v2",
+                "classification": overall_class,
+                "status": overall_status,
+                "reason": overall_reason,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "pair-matrix.json").write_text(
+        json.dumps({"pairs": pair_rows}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "language-matrix.json").write_text(
+        json.dumps({"language_matrix": language_rows}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "env-matrix.json").write_text(
+        json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    (out_dir / "coverage-summary.json").write_text(
+        json.dumps(
+            {"milestone": 20, "lane_count": len(results), "status": overall_status},
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "device-matrix.json").write_text(
+        json.dumps(
+            {"note": "Milestone 20 focuses on language lanes."},
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "os-matrix.json").write_text(
+        json.dumps({"note": "Milestone 20 assumes current host OS."}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "library-matrix.json").write_text(
+        json.dumps(
+            {"note": "Milestone 20 focuses on language runtimes."},
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     (out_dir / "portability-gaps.md").write_text(
         "# Portability Gaps (Milestone 20)\n\n"
         + "\n".join(
@@ -259,15 +378,27 @@ def main() -> int:
     for adr in (WAIVER_ADR_M12, WAIVER_ADR_M18, WAIVER_ADR_M19, WAIVER_ADR_M20):
         if (ROOT / adr).exists():
             waivers.append({"adr": adr, "status": "ACTIVE"})
-    (out_dir / "waivers.json").write_text(json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "waivers.json").write_text(
+        json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     conformance_hashes = {"status": overall_status}
     rp = ROOT / "evidence" / "conformance" / "reports" / "latest.json"
     rs = ROOT / "evidence" / "conformance" / "results" / "latest.json"
     if rp.exists():
-        conformance_hashes["conformance_report"] = {"path": "evidence/conformance/reports/latest.json", "sha256": _sha256_file(rp)}
+        conformance_hashes["conformance_report"] = {
+            "path": "evidence/conformance/reports/latest.json",
+            "sha256": _sha256_file(rp),
+        }
     if rs.exists():
-        conformance_hashes["conformance_results"] = {"path": "evidence/conformance/results/latest.json", "sha256": _sha256_file(rs)}
-    (out_dir / "conformance-hashes.json").write_text(json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        conformance_hashes["conformance_results"] = {
+            "path": "evidence/conformance/results/latest.json",
+            "sha256": _sha256_file(rs),
+        }
+    (out_dir / "conformance-hashes.json").write_text(
+        json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     (out_dir / "summary.md").write_text(
         "\n".join(
             [
@@ -307,7 +438,17 @@ def main() -> int:
         + "\n",
         encoding="utf-8",
     )
-    print(json.dumps({"status": overall_status, "classification": overall_class, "reason": overall_reason}, indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "status": overall_status,
+                "classification": overall_class,
+                "reason": overall_reason,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
     return 0 if overall_status == "PASS" else 1
 
 

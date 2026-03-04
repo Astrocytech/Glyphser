@@ -30,7 +30,10 @@ def _detect_runtime() -> tuple[str, str]:
 
 def main(argv: list[str]) -> int:
     if len(argv) != 4:
-        print("usage: openvino_tensorrt_lane.py <input_csv> <weights_csv> <bias>", file=sys.stderr)
+        print(
+            "usage: openvino_tensorrt_lane.py <input_csv> <weights_csv> <bias>",
+            file=sys.stderr,
+        )
         return 2
     runtime, version = _detect_runtime()
     inputs = _parse_csv(argv[1])
@@ -40,7 +43,11 @@ def main(argv: list[str]) -> int:
         print("input and weights length mismatch", file=sys.stderr)
         return 3
     out = sum(x * w for x, w in zip(inputs, weights)) + bias
-    payload: dict[str, Any] = {"runtime": runtime, "runtime_version": version, "outputs": [[out]]}
+    payload: dict[str, Any] = {
+        "runtime": runtime,
+        "runtime_version": version,
+        "outputs": [[out]],
+    }
     print(json.dumps(payload, sort_keys=True))
     return 0
 

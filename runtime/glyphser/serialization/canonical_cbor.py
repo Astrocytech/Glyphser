@@ -1,4 +1,5 @@
 """Canonical CBOR encoding (minimal, deterministic subset)."""
+
 from __future__ import annotations
 
 import struct

@@ -1,6 +1,10 @@
 {
   "inputs": [
     {
+      "path": "specs/schemas/evidence_metadata.schema.json",
+      "sha256": "8c5994ab8f4ea11ed602ddbd256698d3ee8769c49d1cda8a7cc0274a07197c40"
+    },
+    {
       "path": "specs/schemas/layers/L1/l1_api_interfaces.schema.json",
       "sha256": "cb2f07cf16b6ca113fbb4d3f68de86fe0e9d8d6342a591fc75511703aa950191"
     },

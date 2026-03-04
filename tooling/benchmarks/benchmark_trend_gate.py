@@ -5,11 +5,11 @@ import json
 import sys
 from pathlib import Path
 
+from tooling.quality_gates.telemetry import emit_gate_trace
+
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
-
-from tooling.quality_gates.telemetry import emit_gate_trace
 
 BASELINE = ROOT / "artifacts" / "expected" / "benchmarks" / "trend_baseline_v0.2.0.json"
 LATEST = ROOT / "evidence" / "benchmarks" / "latest.json"
@@ -43,7 +43,14 @@ def evaluate() -> dict:
     for key, base_val in baseline.get("metrics", {}).items():
         actual = _extract(latest, key)
         threshold = float(base_val) * factor
-        checks.append({"metric": key, "baseline": float(base_val), "threshold": threshold, "actual": actual})
+        checks.append(
+            {
+                "metric": key,
+                "baseline": float(base_val),
+                "threshold": threshold,
+                "actual": actual,
+            }
+        )
         if actual > threshold:
             findings.append(f"trend_regression:{key}:{actual:.6f}>{threshold:.6f}")
 

@@ -3,8 +3,6 @@ from __future__ import annotations
 import json
 import random
 
-import pytest
-
 from runtime.glyphser.checkpoint.restore import restore_checkpoint
 
 

@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import hashlib
 import gzip
+import hashlib
+import sys
 import tarfile
 from pathlib import Path
-import sys
 
-ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT))
 from tooling.lib.path_config import (
     bundles_root,
     conformance_reports_root,
     conformance_results_root,
+    first_existing,
     fixtures_root,
     goldens_root,
-    first_existing,
     rel,
 )
 
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
 DIST = bundles_root()
 
 

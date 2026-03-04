@@ -21,10 +21,7 @@ __all__ = [
 def __getattr__(name: str):
     if name == "RuntimeApiService":
         warnings.warn(
-            (
-                "glyphser.RuntimeApiService is deprecated; "
-                "use glyphser.RuntimeService instead."
-            ),
+            ("glyphser.RuntimeApiService is deprecated; use glyphser.RuntimeService instead."),
             DeprecationWarning,
             stacklevel=2,
         )

@@ -58,7 +58,9 @@ def _run_direct(route: str, model_ir: dict[str, Any], inputs: list[float]) -> di
     )
 
 
-def _run_universal(req: dict[str, Any], model_ir: dict[str, Any], inputs: list[float]) -> tuple[dict[str, Any], dict[str, Any]]:
+def _run_universal(
+    req: dict[str, Any], model_ir: dict[str, Any], inputs: list[float]
+) -> tuple[dict[str, Any], dict[str, Any]]:
     route_info = load_driver({"driver_id": "universal_driver", **req})
     result = execute(
         {
@@ -74,10 +76,14 @@ def _run_universal(req: dict[str, Any], model_ir: dict[str, Any], inputs: list[f
     return route_info, result
 
 
-def _status_from_pair(direct: dict[str, Any], universal: dict[str, Any], abs_tol: float, rel_tol: float) -> tuple[str, str, str]:
+def _status_from_pair(
+    direct: dict[str, Any], universal: dict[str, Any], abs_tol: float, rel_tol: float
+) -> tuple[str, str, str]:
     if "error" in direct or "error" in universal:
         return "BLOCKED", "E2", "One side returned runtime error."
-    if direct.get("outputs") == universal.get("outputs") and direct.get("execution_fp") == universal.get("execution_fp"):
+    if direct.get("outputs") == universal.get("outputs") and direct.get("execution_fp") == universal.get(
+        "execution_fp"
+    ):
         return "PASS", "E0", "Exact output and execution fingerprint match."
     if _allclose(direct.get("outputs"), universal.get("outputs"), abs_tol, rel_tol):
         return "PASS", "E1", "Outputs within tolerance."
@@ -98,15 +104,39 @@ def main() -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     fixtures = fixtures_root() / "hello-core"
-    dataset = [json.loads(line) for line in (fixtures / "tiny_synth_dataset.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
+    dataset = [
+        json.loads(line)
+        for line in (fixtures / "tiny_synth_dataset.jsonl").read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
     model_ir = json.loads((fixtures / "model_ir.json").read_text(encoding="utf-8"))
     inputs = dataset[0]["x"]
 
     mode_cases = [
-        ("strict_universal_cpu", {"profile_mode": "strict_universal", "universal_route": "pytorch_cpu"}),
-        ("balanced_default", {"profile_mode": "balanced", "universal_framework": "pytorch", "universal_prefer_gpu": True}),
-        ("optimized_native_default", {"profile_mode": "optimized_native", "universal_framework": "pytorch", "universal_prefer_gpu": True}),
-        ("pinned_profile_v1", {"profile_mode": "pinned_profile", "profile_id": "universal_v1"}),
+        (
+            "strict_universal_cpu",
+            {"profile_mode": "strict_universal", "universal_route": "pytorch_cpu"},
+        ),
+        (
+            "balanced_default",
+            {
+                "profile_mode": "balanced",
+                "universal_framework": "pytorch",
+                "universal_prefer_gpu": True,
+            },
+        ),
+        (
+            "optimized_native_default",
+            {
+                "profile_mode": "optimized_native",
+                "universal_framework": "pytorch",
+                "universal_prefer_gpu": True,
+            },
+        ),
+        (
+            "pinned_profile_v1",
+            {"profile_mode": "pinned_profile", "profile_id": "universal_v1"},
+        ),
     ]
 
     pair_rows: list[dict[str, Any]] = []
@@ -117,7 +147,16 @@ def main() -> int:
         try:
             route_info, universal = _run_universal(req, model_ir, inputs)
             route = route_info.get("selected_route", "")
-            direct = _run_direct(route, model_ir, inputs) if route else {"error": {"code_id": "ROUTE_MISSING", "message": "selected_route missing"}}
+            direct = (
+                _run_direct(route, model_ir, inputs)
+                if route
+                else {
+                    "error": {
+                        "code_id": "ROUTE_MISSING",
+                        "message": "selected_route missing",
+                    }
+                }
+            )
             status, cls, reason = _status_from_pair(direct, universal, args.abs_tol, args.rel_tol)
             pair_rows.append(
                 {
@@ -139,7 +178,13 @@ def main() -> int:
                     "profile_id": route_info.get("routing_policy", {}).get("profile_id", ""),
                 }
             )
-            policy_rows.append({"case_id": case_id, "request": req, "routing_policy": route_info.get("routing_policy", {})})
+            policy_rows.append(
+                {
+                    "case_id": case_id,
+                    "request": req,
+                    "routing_policy": route_info.get("routing_policy", {}),
+                }
+            )
         except Exception as exc:
             pair_rows.append(
                 {
@@ -156,7 +201,13 @@ def main() -> int:
     rejection_rows: list[dict[str, Any]] = []
     for bad_route in ("java_cpu", "rust_cpu"):
         try:
-            _ = load_driver({"driver_id": "universal_driver", "profile_mode": "balanced", "universal_route": bad_route})
+            _ = load_driver(
+                {
+                    "driver_id": "universal_driver",
+                    "profile_mode": "balanced",
+                    "universal_route": bad_route,
+                }
+            )
             rejection_rows.append(
                 {
                     "route": bad_route,
@@ -175,9 +226,17 @@ def main() -> int:
 
     statuses = [p["status"] for p in pair_rows] + [r["status"] for r in rejection_rows]
     if any(s == "FAIL" for s in statuses):
-        overall_status, overall_class, overall_reason = "FAIL", "E2", "At least one profile-mode check failed."
+        overall_status, overall_class, overall_reason = (
+            "FAIL",
+            "E2",
+            "At least one profile-mode check failed.",
+        )
     elif any(s == "BLOCKED" for s in statuses):
-        overall_status, overall_class, overall_reason = "BLOCKED", "E2", "At least one profile-mode check is blocked."
+        overall_status, overall_class, overall_reason = (
+            "BLOCKED",
+            "E2",
+            "At least one profile-mode check is blocked.",
+        )
     else:
         overall_status = "PASS"
         overall_class = "E0" if all(p["classification"] == "E0" for p in pair_rows) else "E1"
@@ -214,10 +273,26 @@ def main() -> int:
         + "\n",
         encoding="utf-8",
     )
-    (out_dir / "pair-matrix.json").write_text(json.dumps({"pairs": pair_rows}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "profile-mode-matrix.json").write_text(json.dumps({"profile_modes": mode_rows, "rejections": rejection_rows}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "profile-mode-policy.json").write_text(json.dumps({"policies": policy_rows}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "env-matrix.json").write_text(json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "pair-matrix.json").write_text(
+        json.dumps({"pairs": pair_rows}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "profile-mode-matrix.json").write_text(
+        json.dumps(
+            {"profile_modes": mode_rows, "rejections": rejection_rows},
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "profile-mode-policy.json").write_text(
+        json.dumps({"policies": policy_rows}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "env-matrix.json").write_text(
+        json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
     (out_dir / "coverage-summary.json").write_text(
         json.dumps(
             {
@@ -241,15 +316,27 @@ def main() -> int:
                 "status": "ACTIVE",
             }
         )
-    (out_dir / "waivers.json").write_text(json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "waivers.json").write_text(
+        json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     conformance_hashes: dict[str, Any] = {"status": overall_status}
     results_path = ROOT / "evidence" / "conformance" / "results" / "latest.json"
     report_path = ROOT / "evidence" / "conformance" / "reports" / "latest.json"
     if results_path.exists():
-        conformance_hashes["conformance_results"] = {"path": "evidence/conformance/results/latest.json", "sha256": _sha256_file(results_path)}
+        conformance_hashes["conformance_results"] = {
+            "path": "evidence/conformance/results/latest.json",
+            "sha256": _sha256_file(results_path),
+        }
     if report_path.exists():
-        conformance_hashes["conformance_report"] = {"path": "evidence/conformance/reports/latest.json", "sha256": _sha256_file(report_path)}
-    (out_dir / "conformance-hashes.json").write_text(json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        conformance_hashes["conformance_report"] = {
+            "path": "evidence/conformance/reports/latest.json",
+            "sha256": _sha256_file(report_path),
+        }
+    (out_dir / "conformance-hashes.json").write_text(
+        json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     (out_dir / "summary.md").write_text(
         "\n".join(
             [
@@ -271,7 +358,8 @@ def main() -> int:
     )
     (out_dir / "known-limitations.md").write_text(
         "# Known Limitations (Milestone 17A)\n\n"
-        "- Pinned profiles are currently static in code and should be migrated to policy registry in later hardening.\n",
+        "- Pinned profiles are currently static in code and should be migrated to policy "
+        "registry in later hardening.\n",
         encoding="utf-8",
     )
     (out_dir / "milestone.json").write_text(
@@ -294,7 +382,17 @@ def main() -> int:
         encoding="utf-8",
     )
 
-    print(json.dumps({"status": overall_status, "classification": overall_class, "reason": overall_reason}, indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "status": overall_status,
+                "classification": overall_class,
+                "reason": overall_reason,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
     return 0 if overall_status == "PASS" else 1
 
 

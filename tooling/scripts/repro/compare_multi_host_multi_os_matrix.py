@@ -4,7 +4,6 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import os
 import platform
 import re
 import socket
@@ -18,7 +17,13 @@ ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
 
 
-MANDATORY_PROFILES = ["pytorch_cpu", "pytorch_gpu", "keras_cpu", "keras_gpu", "java_cpu"]
+MANDATORY_PROFILES = [
+    "pytorch_cpu",
+    "pytorch_gpu",
+    "keras_cpu",
+    "keras_gpu",
+    "java_cpu",
+]
 
 
 def _sha256_file(path: Path) -> str:
@@ -300,8 +305,13 @@ def main() -> int:
         "reason": overall_reason,
         "excluded_operators": [],
     }
-    (out_dir / "repro-classification.json").write_text(json.dumps(repro, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "pair-matrix.json").write_text(json.dumps({"pairs": matrix_rows}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "repro-classification.json").write_text(
+        json.dumps(repro, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    (out_dir / "pair-matrix.json").write_text(
+        json.dumps({"pairs": matrix_rows}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     coverage = {
         "milestone": 12,
@@ -314,9 +324,16 @@ def main() -> int:
         "mandatory_profiles": MANDATORY_PROFILES,
         "constraints": constraints,
     }
-    (out_dir / "coverage-summary.json").write_text(json.dumps(coverage, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "waivers.json").write_text(json.dumps({"waivers": []}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "env-matrix.json").write_text(json.dumps({"hosts": hosts, "constraints": constraints}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "coverage-summary.json").write_text(
+        json.dumps(coverage, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    (out_dir / "waivers.json").write_text(
+        json.dumps({"waivers": []}, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    (out_dir / "env-matrix.json").write_text(
+        json.dumps({"hosts": hosts, "constraints": constraints}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     conformance_hashes: dict[str, Any] = {"status": overall_status}
     results_path = ROOT / "evidence" / "conformance" / "results" / "latest.json"
@@ -331,7 +348,10 @@ def main() -> int:
             "path": "evidence/conformance/reports/latest.json",
             "sha256": _sha256_file(report_path),
         }
-    (out_dir / "conformance-hashes.json").write_text(json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "conformance-hashes.json").write_text(
+        json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     summary = [
         "# Milestone 12: Multi-Host and Multi-OS Matrix",
@@ -367,7 +387,17 @@ def main() -> int:
     }
     (out_dir / "milestone.json").write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
-    print(json.dumps({"status": overall_status, "classification": overall_class, "reason": overall_reason}, indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "status": overall_status,
+                "classification": overall_class,
+                "reason": overall_reason,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
     return 0 if overall_status == "PASS" else 1
 
 

@@ -6,15 +6,17 @@ import sys
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT))
-
-from tooling.docs import materialize_doc_artifacts as mda  # noqa: E402
-from runtime.glyphser.registry.interface_hash import compute_interface_hash  # noqa: E402
+from runtime.glyphser.registry.interface_hash import (
+    compute_interface_hash,  # noqa: E402
+)
 from runtime.glyphser.registry.registry_builder import (  # noqa: E402
     build_operator_registry_from_list,
     parse_api_interfaces,
 )
+from tooling.docs import materialize_doc_artifacts as mda  # noqa: E402
+
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
 
 
 def _jsonify(obj: Any) -> Any:
@@ -40,7 +42,14 @@ def main() -> int:
 
     src_path = contracts_dir / "operator_registry_source.json"
     src_path.write_text(
-        json.dumps({"source": str(api_path), "operators": [r["operator_id"] for r in api_records]}, indent=2, sort_keys=True)
+        json.dumps(
+            {
+                "source": str(api_path),
+                "operators": [r["operator_id"] for r in api_records],
+            },
+            indent=2,
+            sort_keys=True,
+        )
         + "\n",
         encoding="utf-8",
     )

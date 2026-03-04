@@ -121,7 +121,9 @@ def main() -> int:
         gate_reason = reason
         if args.universality_profile == "available_local_partial" and mid == 24 and status == "BLOCKED":
             gate_status = "PASS"
-            gate_reason = "Accepted partial milestone under available_local_partial profile (Android multi-device rerun TODO)."
+            gate_reason = (
+                "Accepted partial milestone under available_local_partial profile (Android multi-device rerun TODO)."
+            )
         prereq_rows.append(
             {
                 "milestone": mid,
@@ -148,7 +150,10 @@ def main() -> int:
         overall_reason = "Blocked prerequisite milestones: " + ", ".join(str(m) for m in all_blocked)
     else:
         overall_status, overall_class = "PASS", "E0"
-        overall_reason = f"All prerequisite milestones satisfied for Universal Profile v2 certification profile '{args.universality_profile}'."
+        overall_reason = (
+            "All prerequisite milestones satisfied for Universal Profile v2 certification profile "
+            f"'{args.universality_profile}'."
+        )
 
     compatibility_matrix = {
         "milestone": 25,
@@ -196,7 +201,16 @@ def main() -> int:
     )
     (out_dir / "pair-matrix.json").write_text(
         json.dumps(
-            {"pairs": [{"pair": "global_certification_gate", "status": overall_status, "classification": overall_class, "reason": overall_reason}]},
+            {
+                "pairs": [
+                    {
+                        "pair": "global_certification_gate",
+                        "status": overall_status,
+                        "classification": overall_class,
+                        "reason": overall_reason,
+                    }
+                ]
+            },
             indent=2,
             sort_keys=True,
         )
@@ -217,11 +231,45 @@ def main() -> int:
         + "\n",
         encoding="utf-8",
     )
-    (out_dir / "env-matrix.json").write_text(json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "device-matrix.json").write_text(json.dumps({"note": "Derived from prerequisite milestone reports."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "os-matrix.json").write_text(json.dumps({"note": "Derived from prerequisite milestone reports."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "language-matrix.json").write_text(json.dumps({"note": "Derived from prerequisite milestone reports."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "library-matrix.json").write_text(json.dumps({"note": "Derived from prerequisite milestone reports."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "env-matrix.json").write_text(
+        json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    (out_dir / "device-matrix.json").write_text(
+        json.dumps(
+            {"note": "Derived from prerequisite milestone reports."},
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "os-matrix.json").write_text(
+        json.dumps(
+            {"note": "Derived from prerequisite milestone reports."},
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "language-matrix.json").write_text(
+        json.dumps(
+            {"note": "Derived from prerequisite milestone reports."},
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "library-matrix.json").write_text(
+        json.dumps(
+            {"note": "Derived from prerequisite milestone reports."},
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     gaps = ["# Portability Gaps (Milestone 25)", ""]
     gaps.append(f"- Universality profile: `{args.universality_profile}`")
     for row in prereq_rows:
@@ -230,23 +278,41 @@ def main() -> int:
     if len(gaps) == 2:
         gaps.append("- No portability gaps detected.")
     (out_dir / "portability-gaps.md").write_text("\n".join(gaps) + "\n", encoding="utf-8")
-    (out_dir / "compatibility-matrix.json").write_text(json.dumps(compatibility_matrix, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "certification-bundle.json").write_text(json.dumps(certification_bundle, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "compatibility-matrix.json").write_text(
+        json.dumps(compatibility_matrix, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "certification-bundle.json").write_text(
+        json.dumps(certification_bundle, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     waivers = []
     for adr in WAIVER_ADRS:
         if (ROOT / adr).exists():
             waivers.append({"adr": adr, "status": "ACTIVE"})
-    (out_dir / "waivers.json").write_text(json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "waivers.json").write_text(
+        json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     conformance_hashes = {"status": overall_status}
     rp = ROOT / "evidence" / "conformance" / "reports" / "latest.json"
     rs = ROOT / "evidence" / "conformance" / "results" / "latest.json"
     if rp.exists():
-        conformance_hashes["conformance_report"] = {"path": "evidence/conformance/reports/latest.json", "sha256": _sha256_file(rp)}
+        conformance_hashes["conformance_report"] = {
+            "path": "evidence/conformance/reports/latest.json",
+            "sha256": _sha256_file(rp),
+        }
     if rs.exists():
-        conformance_hashes["conformance_results"] = {"path": "evidence/conformance/results/latest.json", "sha256": _sha256_file(rs)}
-    (out_dir / "conformance-hashes.json").write_text(json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        conformance_hashes["conformance_results"] = {
+            "path": "evidence/conformance/results/latest.json",
+            "sha256": _sha256_file(rs),
+        }
+    (out_dir / "conformance-hashes.json").write_text(
+        json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     (out_dir / "summary.md").write_text(
         "\n".join(
             [
@@ -264,7 +330,8 @@ def main() -> int:
     (out_dir / "known-limitations.md").write_text(
         "# Known Limitations (Milestone 25)\n\n"
         "- Certification status is computed from prerequisite milestone reports.\n"
-        "- `strict_universal` remains stricter and may remain blocked until expanded hardware/OS targets are available.\n",
+        "- `strict_universal` remains stricter and may remain blocked until expanded hardware/OS "
+        "targets are available.\n",
         encoding="utf-8",
     )
     (out_dir / "milestone.json").write_text(
@@ -287,7 +354,17 @@ def main() -> int:
         encoding="utf-8",
     )
 
-    print(json.dumps({"status": overall_status, "classification": overall_class, "reason": overall_reason}, indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "status": overall_status,
+                "classification": overall_class,
+                "reason": overall_reason,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
     return 0 if overall_status == "PASS" else 1
 
 

@@ -3,13 +3,13 @@ from __future__ import annotations
 
 import hashlib
 import json
-from pathlib import Path
 import sys
+from pathlib import Path
+
+from tooling.lib.path_config import generated_root
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from tooling.lib.path_config import generated_root
-
 OUT = generated_root() / "metadata" / "input_hashes.json"
 
 
@@ -21,14 +21,32 @@ def main() -> int:
     OUT.parent.mkdir(parents=True, exist_ok=True)
     inputs = []
     for path in sorted((ROOT / "specs" / "schemas").rglob("*.schema.json")):
-        inputs.append({"path": str(path.relative_to(ROOT)).replace("\\", "/"), "sha256": _sha256(path)})
+        inputs.append(
+            {
+                "path": str(path.relative_to(ROOT)).replace("\\", "/"),
+                "sha256": _sha256(path),
+            }
+        )
     reg = ROOT / "specs" / "contracts" / "operator_registry.json"
     if reg.exists():
-        inputs.append({"path": str(reg.relative_to(ROOT)).replace("\\", "/"), "sha256": _sha256(reg)})
+        inputs.append(
+            {
+                "path": str(reg.relative_to(ROOT)).replace("\\", "/"),
+                "sha256": _sha256(reg),
+            }
+        )
     for path in sorted((ROOT / "tooling" / "codegen" / "templates").glob("*.tpl")):
-        inputs.append({"path": str(path.relative_to(ROOT)).replace("\\", "/"), "sha256": _sha256(path)})
+        inputs.append(
+            {
+                "path": str(path.relative_to(ROOT)).replace("\\", "/"),
+                "sha256": _sha256(path),
+            }
+        )
 
-    OUT.write_text(json.dumps({"inputs": inputs}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    OUT.write_text(
+        json.dumps({"inputs": inputs}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     return 0
 
 

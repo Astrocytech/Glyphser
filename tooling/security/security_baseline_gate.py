@@ -9,13 +9,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from runtime.glyphser.security.audit import append_event, verify_chain
-from runtime.glyphser.security.authz import authorize
-sys.path.insert(0, str(ROOT))
-from tooling.lib.path_config import evidence_root, first_existing, rel
-
-OUT = evidence_root() / "security"
-
 SECRET_PATTERNS = [
     re.compile(r"-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----"),
     re.compile(r"AKIA[0-9A-Z]{16}"),
@@ -49,6 +42,8 @@ def _secret_scan() -> dict:
 
 
 def _rbac_checks() -> dict:
+    from runtime.glyphser.security.authz import authorize
+
     checks = [
         ("jobs:write", ["operator"], True),
         ("jobs:write", ["viewer"], False),
@@ -64,6 +59,8 @@ def _rbac_checks() -> dict:
 
 
 def _audit_checks(tmp_dir: Path) -> dict:
+    from runtime.glyphser.security.audit import append_event, verify_chain
+
     log = tmp_dir / "audit.log.jsonl"
     if log.exists():
         log.unlink()
@@ -78,14 +75,31 @@ def _audit_checks(tmp_dir: Path) -> dict:
     log.write_text("\n".join(lines) + "\n", encoding="utf-8")
     tampered = verify_chain(log)
     pass_ok = initial.get("status") == "PASS" and tampered.get("status") == "FAIL"
-    return {"status": "PASS" if pass_ok else "FAIL", "initial": initial, "tampered": tampered}
+    return {
+        "status": "PASS" if pass_ok else "FAIL",
+        "initial": initial,
+        "tampered": tampered,
+    }
 
 
 def main() -> int:
+    from tooling.lib.path_config import evidence_root, first_existing, rel
+
+    OUT = evidence_root() / "security"
     OUT.mkdir(parents=True, exist_ok=True)
     docs_required = [
-        first_existing([rel("governance", "security", "THREAT_MODEL.md"), rel("docs", "security", "THREAT_MODEL.md")]),
-        first_existing([rel("governance", "security", "OPERATIONS.md"), rel("docs", "security", "OPERATIONS.md")]),
+        first_existing(
+            [
+                rel("governance", "security", "THREAT_MODEL.md"),
+                rel("docs", "security", "THREAT_MODEL.md"),
+            ]
+        ),
+        first_existing(
+            [
+                rel("governance", "security", "OPERATIONS.md"),
+                rel("docs", "security", "OPERATIONS.md"),
+            ]
+        ),
     ]
     artifacts_required = [
         OUT / "sbom.json",

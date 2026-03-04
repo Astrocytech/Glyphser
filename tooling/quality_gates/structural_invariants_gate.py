@@ -53,7 +53,15 @@ def _check_runtime_import_boundaries() -> Dict[str, object]:
 
 def _check_no_legacy_test_vector_paths() -> Dict[str, object]:
     violations: List[Dict[str, object]] = []
-    targets = [ROOT / ".github", ROOT / "tooling", ROOT / "tests", ROOT / "governance", ROOT / "specs", ROOT / "docs", ROOT / "product"]
+    targets = [
+        ROOT / ".github",
+        ROOT / "tooling",
+        ROOT / "tests",
+        ROOT / "governance",
+        ROOT / "specs",
+        ROOT / "docs",
+        ROOT / "product",
+    ]
     allowlist = {
         "tooling/quality_gates/structural_invariants_gate.py",
         "governance/structure/STRUCTURAL_INVARIANTS.md",
@@ -202,6 +210,7 @@ def _check_evidence_write_contract() -> Dict[str, object]:
         "status": "PASS" if not violations else "FAIL",
         "violations": violations,
     }
+
 
 def evaluate() -> Dict[str, object]:
     OUT.parent.mkdir(parents=True, exist_ok=True)

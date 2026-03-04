@@ -25,7 +25,11 @@ def _run(cmd: list[str], cwd: Path = ROOT) -> dict:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Bootstrap and verify local Glyphser development environment.")
     parser.add_argument("--venv", default=".venv", help="Virtual environment path")
-    parser.add_argument("--install", action="store_true", help="Create venv and install dev dependencies")
+    parser.add_argument(
+        "--install",
+        action="store_true",
+        help="Create venv and install dev dependencies",
+    )
     parser.add_argument("--verify", action="store_true", help="Run quick verification commands")
     args = parser.parse_args(argv)
 
@@ -47,7 +51,12 @@ def main(argv: list[str] | None = None) -> int:
     pip_bin = venv_path / "bin" / "pip"
 
     if args.install:
-        results.append({"step": "create_venv", **_run([sys.executable, "-m", "venv", str(venv_path)])})
+        results.append(
+            {
+                "step": "create_venv",
+                **_run([sys.executable, "-m", "venv", str(venv_path)]),
+            }
+        )
         results.append({"step": "install_dev", **_run([str(pip_bin), "install", "-e", ".[dev]"])})
         if results[-1]["returncode"] != 0:
             status = "FAIL"
@@ -55,7 +64,14 @@ def main(argv: list[str] | None = None) -> int:
     if args.verify:
         runner = str(py_bin) if py_bin.exists() else sys.executable
         verify_cmds = [
-            [runner, "-m", "pytest", "-q", "tests/public/test_public_api.py", "tests/public/test_public_cli.py"],
+            [
+                runner,
+                "-m",
+                "pytest",
+                "-q",
+                "tests/public/test_public_api.py",
+                "tests/public/test_public_cli.py",
+            ],
             [runner, "tooling/quality_gates/spec_impl_congruence_gate.py"],
             [runner, "tooling/release/generate_traceability_index.py"],
         ]

@@ -3,13 +3,13 @@ from __future__ import annotations
 
 import hashlib
 import json
-from pathlib import Path
 import sys
+from pathlib import Path
+
+from tooling.lib.path_config import generated_tmp_root
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from tooling.lib.path_config import generated_tmp_root
-
 SNAPSHOT = generated_tmp_root() / "codegen_staging" / "cleanroom_validation" / "hashes.json"
 
 FILES = [

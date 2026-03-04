@@ -1,4 +1,5 @@
 """Deterministic checkpoint writer (minimal)."""
+
 from __future__ import annotations
 
 import hashlib

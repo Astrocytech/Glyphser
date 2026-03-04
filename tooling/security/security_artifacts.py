@@ -9,9 +9,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from tooling.lib.path_config import evidence_root
-
-OUT = evidence_root() / "security"
 
 
 def _sha256(path: Path) -> str:
@@ -19,7 +16,13 @@ def _sha256(path: Path) -> str:
 
 
 def _git_head() -> str:
-    proc = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, check=False, text=True, capture_output=True)
+    proc = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=ROOT,
+        check=False,
+        text=True,
+        capture_output=True,
+    )
     return proc.stdout.strip() if proc.returncode == 0 else ""
 
 
@@ -37,6 +40,9 @@ def _load_lock_packages(path: Path) -> list[dict]:
 
 
 def main() -> int:
+    from tooling.lib.path_config import evidence_root
+
+    OUT = evidence_root() / "security"
     OUT.mkdir(parents=True, exist_ok=True)
     lock = ROOT / "requirements.lock"
     pyproject = ROOT / "pyproject.toml"

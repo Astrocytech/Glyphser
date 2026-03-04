@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import json
 import hashlib
+import json
 import sys
 from pathlib import Path
 
@@ -26,9 +26,9 @@ def main() -> int:
     generate()
 
     # Persist a cleanroom hash snapshot; do not persist duplicate generated modules.
-    outputs = json.loads(
-        (generated_root() / "metadata" / "codegen_manifest.json").read_text(encoding="utf-8")
-    )["outputs"]
+    outputs = json.loads((generated_root() / "metadata" / "codegen_manifest.json").read_text(encoding="utf-8"))[
+        "outputs"
+    ]
     snapshot = {
         "source_manifest": "artifacts/generated/stable/metadata/codegen_manifest.json",
         "hashes": {Path(rel).name: _norm_sha256(ROOT / rel) for rel in outputs},

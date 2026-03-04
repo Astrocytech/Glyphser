@@ -1,4 +1,5 @@
 """Deterministic differential privacy apply (minimal)."""
+
 from __future__ import annotations
 
 from typing import Any, Dict

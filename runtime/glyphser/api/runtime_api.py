@@ -1,4 +1,5 @@
 """Versioned runtime API surface for Milestone 18."""
+
 from __future__ import annotations
 
 import hashlib
@@ -17,6 +18,7 @@ def _first_existing(candidates: list[Path]) -> Path:
         if path.exists():
             return path
     return candidates[0]
+
 
 def _canonical_json(obj: Any) -> str:
     return json.dumps(obj, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
@@ -46,7 +48,13 @@ class RuntimeApiService:
         self._lock = threading.RLock()
         self._config.state_path.parent.mkdir(parents=True, exist_ok=True)
 
-    def submit_job(self, payload: Dict[str, Any], token: str, scope: str, idempotency_key: str | None = None) -> Dict[str, Any]:
+    def submit_job(
+        self,
+        payload: Dict[str, Any],
+        token: str,
+        scope: str,
+        idempotency_key: str | None = None,
+    ) -> Dict[str, Any]:
         self._require_auth(token=token, action="jobs:write")
         with self._lock:
             state = self._load_state()
@@ -94,14 +102,24 @@ class RuntimeApiService:
             root = self._config.root
             conformance = root / "conformance" / "reports" / "latest.json"
             bundle_manifest = _first_existing(
-                [root / "artifacts" / "bundles" / "hello-core-bundle.sha256", root / "dist" / "hello-core-bundle.sha256"]
+                [
+                    root / "artifacts" / "bundles" / "hello-core-bundle.sha256",
+                    root / "dist" / "hello-core-bundle.sha256",
+                ]
             )
-            repro = _first_existing([root / "evidence" / "repro" / "hashes.txt", root / "reports" / "repro" / "hashes.txt"])
+            repro = _first_existing(
+                [
+                    root / "evidence" / "repro" / "hashes.txt",
+                    root / "reports" / "repro" / "hashes.txt",
+                ]
+            )
             out = {
                 "job_id": job_id,
                 "api_version": self._config.api_version,
                 "conformance_report_hash": _sha256_file(conformance) if conformance.exists() else "",
-                "bundle_manifest_line": bundle_manifest.read_text(encoding="utf-8").strip() if bundle_manifest.exists() else "",
+                "bundle_manifest_line": bundle_manifest.read_text(encoding="utf-8").strip()
+                if bundle_manifest.exists()
+                else "",
                 "repro_hash_line": repro.read_text(encoding="utf-8").strip() if repro.exists() else "",
             }
             self._audit("evidence", token=token, job_id=job_id, scope=scope)
@@ -120,11 +138,27 @@ class RuntimeApiService:
                     "replay_verdict": "FAIL",
                     "reason": "missing evidence",
                 }
-                self._audit("replay", token=token, job_id=job_id, scope=scope, replay_verdict="FAIL")
+                self._audit(
+                    "replay",
+                    token=token,
+                    job_id=job_id,
+                    scope=scope,
+                    replay_verdict="FAIL",
+                )
                 return out
             verdict = "PASS" if bundle_line == repro_line else "FAIL"
-            out = {"job_id": job_id, "api_version": self._config.api_version, "replay_verdict": verdict}
-            self._audit("replay", token=token, job_id=job_id, scope=scope, replay_verdict=verdict)
+            out = {
+                "job_id": job_id,
+                "api_version": self._config.api_version,
+                "replay_verdict": verdict,
+            }
+            self._audit(
+                "replay",
+                token=token,
+                job_id=job_id,
+                scope=scope,
+                replay_verdict=verdict,
+            )
             return out
 
     @staticmethod
@@ -140,7 +174,14 @@ class RuntimeApiService:
         if not authorize(action, roles):
             raise ValueError(f"unauthorized action: {action}")
 
-    def _audit(self, operation: str, token: str, job_id: str, scope: str, replay_verdict: str = "") -> None:
+    def _audit(
+        self,
+        operation: str,
+        token: str,
+        job_id: str,
+        scope: str,
+        replay_verdict: str = "",
+    ) -> None:
         path = self._config.audit_log_path or self._config.state_path.parent / "audit.log.jsonl"
         append_event(
             path,

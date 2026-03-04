@@ -3,14 +3,18 @@ from __future__ import annotations
 
 import hashlib
 import json
+import sys
 from pathlib import Path
 from typing import Any, Dict, List
-import sys
+
+from tooling.lib.path_config import (
+    evidence_root,
+    evidence_runtime_state_root,
+    generated_root,
+)
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from tooling.lib.path_config import evidence_root, evidence_runtime_state_root, generated_root
-
 GEN = generated_root() / "deploy"
 OUT = evidence_root() / "deploy"
 STATE_DIR = evidence_runtime_state_root() / "deploy"

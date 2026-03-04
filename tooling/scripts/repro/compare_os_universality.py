@@ -119,7 +119,12 @@ def _runtime_meta() -> dict[str, Any]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Milestone 19 OS universality matrix.")
-    parser.add_argument("--host-manifest", action="append", default=[], help="Additional host manifest json files.")
+    parser.add_argument(
+        "--host-manifest",
+        action="append",
+        default=[],
+        help="Additional host manifest json files.",
+    )
     parser.add_argument(
         "--output-dir",
         default=str(ROOT / "evidence" / "repro" / "milestone-19-os-universality"),
@@ -154,7 +159,13 @@ def main() -> int:
         present = bool(matches)
         if not present:
             missing.append(name)
-        matrix_rows.append({"os_target": name, "status": "PASS" if present else "BLOCKED", "present_hosts": matches})
+        matrix_rows.append(
+            {
+                "os_target": name,
+                "status": "PASS" if present else "BLOCKED",
+                "present_hosts": matches,
+            }
+        )
 
     if missing:
         overall_status, overall_class = "BLOCKED", "E2"
@@ -190,7 +201,10 @@ def main() -> int:
         + "\n",
         encoding="utf-8",
     )
-    (out_dir / "os-matrix.json").write_text(json.dumps({"os_matrix": matrix_rows}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "os-matrix.json").write_text(
+        json.dumps({"os_matrix": matrix_rows}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     (out_dir / "pair-matrix.json").write_text(
         json.dumps(
             {
@@ -209,7 +223,9 @@ def main() -> int:
         + "\n",
         encoding="utf-8",
     )
-    (out_dir / "env-matrix.json").write_text(json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "env-matrix.json").write_text(
+        json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
     (out_dir / "coverage-summary.json").write_text(
         json.dumps(
             {
@@ -263,16 +279,28 @@ def main() -> int:
     for adr in (WAIVER_ADR_M18, WAIVER_ADR_M19):
         if (ROOT / adr).exists():
             waivers.append({"adr": adr, "status": "ACTIVE"})
-    (out_dir / "waivers.json").write_text(json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "waivers.json").write_text(
+        json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     conformance_hashes: dict[str, Any] = {"status": overall_status}
     results_path = ROOT / "evidence" / "conformance" / "results" / "latest.json"
     report_path = ROOT / "evidence" / "conformance" / "reports" / "latest.json"
     if results_path.exists():
-        conformance_hashes["conformance_results"] = {"path": "evidence/conformance/results/latest.json", "sha256": _sha256_file(results_path)}
+        conformance_hashes["conformance_results"] = {
+            "path": "evidence/conformance/results/latest.json",
+            "sha256": _sha256_file(results_path),
+        }
     if report_path.exists():
-        conformance_hashes["conformance_report"] = {"path": "evidence/conformance/reports/latest.json", "sha256": _sha256_file(report_path)}
-    (out_dir / "conformance-hashes.json").write_text(json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        conformance_hashes["conformance_report"] = {
+            "path": "evidence/conformance/reports/latest.json",
+            "sha256": _sha256_file(report_path),
+        }
+    (out_dir / "conformance-hashes.json").write_text(
+        json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     (out_dir / "summary.md").write_text(
         "\n".join(
@@ -317,7 +345,17 @@ def main() -> int:
         encoding="utf-8",
     )
 
-    print(json.dumps({"status": overall_status, "classification": overall_class, "reason": overall_reason}, indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "status": overall_status,
+                "classification": overall_class,
+                "reason": overall_reason,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
     return 0 if overall_status == "PASS" else 1
 
 

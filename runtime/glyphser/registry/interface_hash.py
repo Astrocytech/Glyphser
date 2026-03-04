@@ -1,4 +1,5 @@
 """Interface hash computation for operator registry."""
+
 from __future__ import annotations
 
 import hashlib

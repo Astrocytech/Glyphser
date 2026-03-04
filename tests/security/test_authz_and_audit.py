@@ -26,4 +26,3 @@ def test_audit_tamper_detection(tmp_path: Path):
     lines[1] = json.dumps(record, sort_keys=True, separators=(",", ":"))
     log.write_text("\n".join(lines) + "\n", encoding="utf-8")
     assert verify_chain(log)["status"] == "FAIL"
-

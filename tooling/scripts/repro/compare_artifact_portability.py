@@ -5,8 +5,8 @@ import argparse
 import hashlib
 import json
 import platform
-import tempfile
 import sys
+import tempfile
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -14,7 +14,10 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
 
-from runtime.glyphser.serialization.canonical_cbor import encode_canonical, encode_canonical_hex  # noqa: E402
+from runtime.glyphser.serialization.canonical_cbor import (  # noqa: E402
+    encode_canonical,
+    encode_canonical_hex,
+)
 from tooling.lib.path_config import fixtures_root  # noqa: E402
 
 WAIVER_ADRS = [
@@ -41,14 +44,25 @@ def _allclose(a: Any, b: Any, abs_tol: float, rel_tol: float) -> bool:
     return a == b
 
 
-def _check_onnx_roundtrip(inputs: list[float], weights: list[float], bias: float, abs_tol: float, rel_tol: float) -> dict[str, Any]:
+def _check_onnx_roundtrip(
+    inputs: list[float],
+    weights: list[float],
+    bias: float,
+    abs_tol: float,
+    rel_tol: float,
+) -> dict[str, Any]:
     try:
         import numpy as np  # type: ignore
         import onnx  # type: ignore
         import onnxruntime as ort  # type: ignore
         from onnx import TensorProto, helper  # type: ignore
     except Exception as exc:
-        return {"check": "onnx_roundtrip", "status": "BLOCKED", "classification": "E2", "reason": str(exc)}
+        return {
+            "check": "onnx_roundtrip",
+            "status": "BLOCKED",
+            "classification": "E2",
+            "reason": str(exc),
+        }
 
     dim = len(inputs)
     node = helper.make_node("Gemm", inputs=["X", "W", "B"], outputs=["Y"], alpha=1.0, beta=1.0, transB=0)
@@ -65,7 +79,17 @@ def _check_onnx_roundtrip(inputs: list[float], weights: list[float], bias: float
     model = helper.make_model(graph, producer_name="glyphser-m22")
     onnx.checker.check_model(model)
     x = np.array([inputs], dtype=np.float64)
-    expected = [[float(np.dot(np.array(inputs, dtype=np.float64), np.array(weights, dtype=np.float64)) + bias)]]
+    expected = [
+        [
+            float(
+                np.dot(
+                    np.array(inputs, dtype=np.float64),
+                    np.array(weights, dtype=np.float64),
+                )
+                + bias
+            )
+        ]
+    ]
     with tempfile.TemporaryDirectory(prefix="glyphser-m22-onnx-") as td:
         p = Path(td) / "model.onnx"
         p.write_bytes(model.SerializeToString())
@@ -83,12 +107,23 @@ def _check_onnx_roundtrip(inputs: list[float], weights: list[float], bias: float
     }
 
 
-def _check_safetensors_roundtrip(inputs: list[float], weights: list[float], bias: float, abs_tol: float, rel_tol: float) -> dict[str, Any]:
+def _check_safetensors_roundtrip(
+    inputs: list[float],
+    weights: list[float],
+    bias: float,
+    abs_tol: float,
+    rel_tol: float,
+) -> dict[str, Any]:
     try:
         import numpy as np  # type: ignore
         from safetensors.numpy import load_file, save_file  # type: ignore
     except Exception as exc:
-        return {"check": "safetensors_roundtrip", "status": "BLOCKED", "classification": "E2", "reason": str(exc)}
+        return {
+            "check": "safetensors_roundtrip",
+            "status": "BLOCKED",
+            "classification": "E2",
+            "reason": str(exc),
+        }
 
     arr_in = np.array(inputs, dtype=np.float64)
     arr_w = np.array(weights, dtype=np.float64)
@@ -104,7 +139,9 @@ def _check_safetensors_roundtrip(inputs: list[float], weights: list[float], bias
         "check": "safetensors_roundtrip",
         "status": "PASS" if ok else "FAIL",
         "classification": "E1" if ok else "E2",
-        "reason": "SafeTensors roundtrip output matches expected tolerance." if ok else "SafeTensors roundtrip output mismatch.",
+        "reason": "SafeTensors roundtrip output matches expected tolerance."
+        if ok
+        else "SafeTensors roundtrip output mismatch.",
         "expected": expected,
         "observed": observed,
     }
@@ -153,7 +190,10 @@ def _runtime_meta() -> dict[str, Any]:
     for pkg in ("onnx", "onnxruntime", "safetensors"):
         try:
             mod = __import__(pkg)
-            meta[pkg] = {"present": True, "version": getattr(mod, "__version__", "unknown")}
+            meta[pkg] = {
+                "present": True,
+                "version": getattr(mod, "__version__", "unknown"),
+            }
         except Exception as exc:
             meta[pkg] = {"present": False, "error": str(exc)}
     return meta
@@ -173,7 +213,11 @@ def main() -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     fixtures = fixtures_root() / "hello-core"
-    dataset = [json.loads(line) for line in (fixtures / "tiny_synth_dataset.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
+    dataset = [
+        json.loads(line)
+        for line in (fixtures / "tiny_synth_dataset.jsonl").read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
     model_ir = json.loads((fixtures / "model_ir.json").read_text(encoding="utf-8"))
     inputs = dataset[0]["x"]
     dense = next(n for n in model_ir["nodes"] if n.get("instr") == "Dense")
@@ -189,9 +233,17 @@ def main() -> int:
 
     statuses = [c["status"] for c in checks]
     if any(s == "FAIL" for s in statuses):
-        overall_status, overall_class, overall_reason = "FAIL", "E2", "At least one artifact portability check failed."
+        overall_status, overall_class, overall_reason = (
+            "FAIL",
+            "E2",
+            "At least one artifact portability check failed.",
+        )
     elif any(s == "BLOCKED" for s in statuses):
-        overall_status, overall_class, overall_reason = "BLOCKED", "E2", "At least one artifact portability check is blocked."
+        overall_status, overall_class, overall_reason = (
+            "BLOCKED",
+            "E2",
+            "At least one artifact portability check is blocked.",
+        )
     else:
         overall_status = "PASS"
         overall_class = "E0" if all(c["classification"] == "E0" for c in checks) else "E1"
@@ -207,7 +259,21 @@ def main() -> int:
         "meta": {"abs_tol": args.abs_tol, "rel_tol": args.rel_tol, **_runtime_meta()},
     }
     (out_dir / "report.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "repro-classification.json").write_text(json.dumps({"milestone": 22, "profile": "artifact_portability", "classification": overall_class, "status": overall_status, "reason": overall_reason}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "repro-classification.json").write_text(
+        json.dumps(
+            {
+                "milestone": 22,
+                "profile": "artifact_portability",
+                "classification": overall_class,
+                "status": overall_status,
+                "reason": overall_reason,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     (out_dir / "pair-matrix.json").write_text(
         json.dumps(
             {
@@ -227,12 +293,54 @@ def main() -> int:
         + "\n",
         encoding="utf-8",
     )
-    (out_dir / "env-matrix.json").write_text(json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "coverage-summary.json").write_text(json.dumps({"milestone": 22, "check_count": len(checks), "status": overall_status}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "device-matrix.json").write_text(json.dumps({"note": "Milestone 22 focuses on artifact formats and serialization determinism."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "os-matrix.json").write_text(json.dumps({"note": "Milestone 22 is host-local artifact portability validation."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "language-matrix.json").write_text(json.dumps({"note": "Milestone 22 validates portable artifacts consumable across language lanes."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "library-matrix.json").write_text(json.dumps({"note": "Milestone 22 validates ONNX + SafeTensors + canonical JSON/CBOR contracts."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "env-matrix.json").write_text(
+        json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    (out_dir / "coverage-summary.json").write_text(
+        json.dumps(
+            {"milestone": 22, "check_count": len(checks), "status": overall_status},
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "device-matrix.json").write_text(
+        json.dumps(
+            {"note": "Milestone 22 focuses on artifact formats and serialization determinism."},
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "os-matrix.json").write_text(
+        json.dumps(
+            {"note": "Milestone 22 is host-local artifact portability validation."},
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "language-matrix.json").write_text(
+        json.dumps(
+            {"note": "Milestone 22 validates portable artifacts consumable across language lanes."},
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "library-matrix.json").write_text(
+        json.dumps(
+            {"note": "Milestone 22 validates ONNX + SafeTensors + canonical JSON/CBOR contracts."},
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     gaps = ["# Portability Gaps (Milestone 22)", ""]
     for c in checks:
         if c["status"] != "PASS":
@@ -244,15 +352,27 @@ def main() -> int:
     for adr in WAIVER_ADRS:
         if (ROOT / adr).exists():
             waivers.append({"adr": adr, "status": "ACTIVE"})
-    (out_dir / "waivers.json").write_text(json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "waivers.json").write_text(
+        json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     conformance_hashes = {"status": overall_status}
     rp = ROOT / "evidence" / "conformance" / "reports" / "latest.json"
     rs = ROOT / "evidence" / "conformance" / "results" / "latest.json"
     if rp.exists():
-        conformance_hashes["conformance_report"] = {"path": "evidence/conformance/reports/latest.json", "sha256": _sha256_file(rp)}
+        conformance_hashes["conformance_report"] = {
+            "path": "evidence/conformance/reports/latest.json",
+            "sha256": _sha256_file(rp),
+        }
     if rs.exists():
-        conformance_hashes["conformance_results"] = {"path": "evidence/conformance/results/latest.json", "sha256": _sha256_file(rs)}
-    (out_dir / "conformance-hashes.json").write_text(json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        conformance_hashes["conformance_results"] = {
+            "path": "evidence/conformance/results/latest.json",
+            "sha256": _sha256_file(rs),
+        }
+    (out_dir / "conformance-hashes.json").write_text(
+        json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     (out_dir / "summary.md").write_text(
         "\n".join(
             [
@@ -291,7 +411,17 @@ def main() -> int:
         + "\n",
         encoding="utf-8",
     )
-    print(json.dumps({"status": overall_status, "classification": overall_class, "reason": overall_reason}, indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "status": overall_status,
+                "classification": overall_class,
+                "reason": overall_reason,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
     return 0 if overall_status == "PASS" else 1
 
 

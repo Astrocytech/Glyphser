@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 import json
 from pathlib import Path
 
@@ -7,9 +8,11 @@ from runtime.glyphser._generated import operators as gen_ops
 ROOT = Path(__file__).resolve().parents[2]
 VEC_ROOT = ROOT / "artifacts" / "inputs" / "conformance" / "primitive_vectors" / "operators"
 
+
 def _load(op_id: str) -> dict:
     path = VEC_ROOT / (op_id.replace(".", "_") + ".json")
     return json.loads(path.read_text(encoding="utf-8"))
+
 
 def test_glyphser_tracking_artifactget_vector():
     data = _load("Glyphser.Tracking.ArtifactGet")
@@ -26,6 +29,7 @@ def test_glyphser_tracking_artifactget_vector():
     else:
         assert result == expected["response"]
 
+
 def test_glyphser_tracking_artifactlist_vector():
     data = _load("Glyphser.Tracking.ArtifactList")
     vector = data["vectors"][0]
@@ -40,6 +44,7 @@ def test_glyphser_tracking_artifactlist_vector():
             assert result["error"]["context"].get(key) == val
     else:
         assert result == expected["response"]
+
 
 def test_glyphser_tracking_artifactput_vector():
     data = _load("Glyphser.Tracking.ArtifactPut")
@@ -56,6 +61,7 @@ def test_glyphser_tracking_artifactput_vector():
     else:
         assert result == expected["response"]
 
+
 def test_glyphser_tracking_artifacttombstone_vector():
     data = _load("Glyphser.Tracking.ArtifactTombstone")
     vector = data["vectors"][0]
@@ -70,6 +76,7 @@ def test_glyphser_tracking_artifacttombstone_vector():
             assert result["error"]["context"].get(key) == val
     else:
         assert result == expected["response"]
+
 
 def test_glyphser_tracking_metriclog_vector():
     data = _load("Glyphser.Tracking.MetricLog")
@@ -86,6 +93,7 @@ def test_glyphser_tracking_metriclog_vector():
     else:
         assert result == expected["response"]
 
+
 def test_glyphser_tracking_runcreate_vector():
     data = _load("Glyphser.Tracking.RunCreate")
     vector = data["vectors"][0]
@@ -100,6 +108,7 @@ def test_glyphser_tracking_runcreate_vector():
             assert result["error"]["context"].get(key) == val
     else:
         assert result == expected["response"]
+
 
 def test_glyphser_tracking_runend_vector():
     data = _load("Glyphser.Tracking.RunEnd")
@@ -116,6 +125,7 @@ def test_glyphser_tracking_runend_vector():
     else:
         assert result == expected["response"]
 
+
 def test_glyphser_tracking_runstart_vector():
     data = _load("Glyphser.Tracking.RunStart")
     vector = data["vectors"][0]
@@ -130,4 +140,3 @@ def test_glyphser_tracking_runstart_vector():
             assert result["error"]["context"].get(key) == val
     else:
         assert result == expected["response"]
-

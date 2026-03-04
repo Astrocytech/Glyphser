@@ -1,13 +1,13 @@
 """Operator registry builder from API-Interfaces.md."""
+
 from __future__ import annotations
 
+import hashlib
 import json
-import re
 from pathlib import Path
 from typing import Any
 
 from runtime.glyphser.serialization.canonical_cbor import encode_canonical
-import hashlib
 
 
 def _strip_ticks(value: str) -> str:

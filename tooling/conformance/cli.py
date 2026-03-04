@@ -39,7 +39,7 @@ def _run_hello_core() -> bool:
 def run() -> int:
     results = []
 
-    verify_ok = (verify_doc_artifacts.main() == 0)
+    verify_ok = verify_doc_artifacts.main() == 0
     results.append({"check": "verify_doc_artifacts", "status": "PASS" if verify_ok else "FAIL"})
 
     try:
@@ -51,7 +51,10 @@ def run() -> int:
     hello_ok = _run_hello_core()
     results.append({"check": "hello_core", "status": "PASS" if hello_ok else "FAIL"})
 
-    payload = {"status": "PASS" if all(r["status"] == "PASS" for r in results) else "FAIL", "results": results}
+    payload = {
+        "status": "PASS" if all(r["status"] == "PASS" for r in results) else "FAIL",
+        "results": results,
+    }
     _write_json(RESULTS_DIR / "latest.json", payload)
     print(json.dumps(payload, indent=2, sort_keys=True))
     return 0 if payload["status"] == "PASS" else 1

@@ -4,13 +4,13 @@ from __future__ import annotations
 import hashlib
 import json
 import platform
-from pathlib import Path
 import sys
+from pathlib import Path
+
+from tooling.lib.path_config import generated_root
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from tooling.lib.path_config import generated_root
-
 OUT = generated_root() / "deploy" / "env_manifest.json"
 
 
@@ -28,7 +28,14 @@ def generate() -> Path:
     }
     text = json.dumps(payload, sort_keys=True, separators=(",", ":"))
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps({"env": payload, "env_hash": _sha256_hex(text.encode("utf-8"))}, indent=2, sort_keys=True) + "\n")
+    OUT.write_text(
+        json.dumps(
+            {"env": payload, "env_hash": _sha256_hex(text.encode("utf-8"))},
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n"
+    )
     return OUT
 
 

@@ -197,7 +197,13 @@ def main() -> int:
         encoding="utf-8",
     )
 
-    print(json.dumps({"status": status, "classification": classification, "reason": reason}, indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            {"status": status, "classification": classification, "reason": reason},
+            indent=2,
+            sort_keys=True,
+        )
+    )
     if status == "PASS":
         return 0
     if status == "BLOCKED":

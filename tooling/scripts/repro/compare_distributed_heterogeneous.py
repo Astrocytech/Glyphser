@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import itertools
 import json
 import platform
 import random
@@ -93,7 +92,12 @@ def _run_profile(driver_id: str, model_ir: dict[str, Any], inputs: list[float], 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Milestone 23 distributed heterogeneous reproducibility.")
-    parser.add_argument("--host-manifest", action="append", default=[], help="Additional host manifest json paths.")
+    parser.add_argument(
+        "--host-manifest",
+        action="append",
+        default=[],
+        help="Additional host manifest json paths.",
+    )
     parser.add_argument("--seed", type=int, default=1337)
     parser.add_argument(
         "--output-dir",
@@ -120,7 +124,11 @@ def main() -> int:
     hetero_ok = len(hosts) >= 2 and (len(unique_os) >= 2 or len(unique_arch) >= 2)
 
     fixtures = fixtures_root() / "hello-core"
-    dataset = [json.loads(line) for line in (fixtures / "tiny_synth_dataset.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
+    dataset = [
+        json.loads(line)
+        for line in (fixtures / "tiny_synth_dataset.jsonl").read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
     model_ir = json.loads((fixtures / "model_ir.json").read_text(encoding="utf-8"))
     inputs = dataset[0]["x"]
 
@@ -132,12 +140,24 @@ def main() -> int:
 
     base_cpu = _run_profile("pytorch_cpu", model_ir, inputs, replay_token=f"m23-a-{','.join(host_order_a)}")
     pert_cpu = _run_profile("pytorch_cpu", model_ir, inputs, replay_token=f"m23-b-{','.join(host_order_b)}")
-    cpu_equal = base_cpu.get("outputs") == pert_cpu.get("outputs") and base_cpu.get("execution_fp") == pert_cpu.get("execution_fp")
+    cpu_equal = base_cpu.get("outputs") == pert_cpu.get("outputs") and base_cpu.get("execution_fp") == pert_cpu.get(
+        "execution_fp"
+    )
 
     gpu_row: dict[str, Any]
     if gpu_hosts:
-        base_gpu = _run_profile("pytorch_gpu", model_ir, inputs, replay_token=f"m23-gpu-a-{','.join(host_order_a)}")
-        pert_gpu = _run_profile("pytorch_gpu", model_ir, inputs, replay_token=f"m23-gpu-b-{','.join(host_order_b)}")
+        base_gpu = _run_profile(
+            "pytorch_gpu",
+            model_ir,
+            inputs,
+            replay_token=f"m23-gpu-a-{','.join(host_order_a)}",
+        )
+        pert_gpu = _run_profile(
+            "pytorch_gpu",
+            model_ir,
+            inputs,
+            replay_token=f"m23-gpu-b-{','.join(host_order_b)}",
+        )
         if "error" in base_gpu or "error" in pert_gpu:
             gpu_row = {
                 "check": "gpu_perturbation_replay",
@@ -148,12 +168,16 @@ def main() -> int:
                 "perturbed": pert_gpu,
             }
         else:
-            gpu_ok = base_gpu.get("outputs") == pert_gpu.get("outputs") and base_gpu.get("execution_fp") == pert_gpu.get("execution_fp")
+            gpu_ok = base_gpu.get("outputs") == pert_gpu.get("outputs") and base_gpu.get(
+                "execution_fp"
+            ) == pert_gpu.get("execution_fp")
             gpu_row = {
                 "check": "gpu_perturbation_replay",
                 "status": "PASS" if gpu_ok else "FAIL",
                 "classification": "E0" if gpu_ok else "E2",
-                "reason": "GPU perturbation replay is deterministic." if gpu_ok else "GPU perturbation replay diverged.",
+                "reason": "GPU perturbation replay is deterministic."
+                if gpu_ok
+                else "GPU perturbation replay diverged.",
                 "base": base_gpu,
                 "perturbed": pert_gpu,
             }
@@ -170,8 +194,14 @@ def main() -> int:
             "check": "cluster_heterogeneity_coverage",
             "status": "PASS" if hetero_ok else "BLOCKED",
             "classification": "E0" if hetero_ok else "E2",
-            "reason": "Host set is heterogeneous." if hetero_ok else "Need >=2 hosts with heterogeneous OS/arch coverage.",
-            "details": {"host_count": len(hosts), "unique_os": unique_os, "unique_arch": unique_arch},
+            "reason": "Host set is heterogeneous."
+            if hetero_ok
+            else "Need >=2 hosts with heterogeneous OS/arch coverage.",
+            "details": {
+                "host_count": len(hosts),
+                "unique_os": unique_os,
+                "unique_arch": unique_arch,
+            },
         },
         {
             "check": "cpu_perturbation_replay",
@@ -188,11 +218,23 @@ def main() -> int:
 
     statuses = [c["status"] for c in checks]
     if any(s == "FAIL" for s in statuses):
-        overall_status, overall_class, overall_reason = "FAIL", "E2", "At least one distributed reproducibility check failed."
+        overall_status, overall_class, overall_reason = (
+            "FAIL",
+            "E2",
+            "At least one distributed reproducibility check failed.",
+        )
     elif any(s == "BLOCKED" for s in statuses):
-        overall_status, overall_class, overall_reason = "BLOCKED", "E2", "At least one distributed reproducibility check is blocked."
+        overall_status, overall_class, overall_reason = (
+            "BLOCKED",
+            "E2",
+            "At least one distributed reproducibility check is blocked.",
+        )
     else:
-        overall_status, overall_class, overall_reason = "PASS", "E0", "Distributed heterogeneous reproducibility checks pass."
+        overall_status, overall_class, overall_reason = (
+            "PASS",
+            "E0",
+            "Distributed heterogeneous reproducibility checks pass.",
+        )
 
     report = {
         "milestone": 23,
@@ -205,17 +247,42 @@ def main() -> int:
         "meta": {"seed": args.seed, **_runtime_meta()},
     }
     (out_dir / "report.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "repro-classification.json").write_text(json.dumps({"milestone": 23, "profile": "distributed_heterogeneous", "classification": overall_class, "status": overall_status, "reason": overall_reason}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "pair-matrix.json").write_text(
+    (out_dir / "repro-classification.json").write_text(
         json.dumps(
-            {"pairs": [{"pair": "distributed_cluster_replay", "status": overall_status, "classification": overall_class, "reason": overall_reason}]},
+            {
+                "milestone": 23,
+                "profile": "distributed_heterogeneous",
+                "classification": overall_class,
+                "status": overall_status,
+                "reason": overall_reason,
+            },
             indent=2,
             sort_keys=True,
         )
         + "\n",
         encoding="utf-8",
     )
-    (out_dir / "env-matrix.json").write_text(json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "pair-matrix.json").write_text(
+        json.dumps(
+            {
+                "pairs": [
+                    {
+                        "pair": "distributed_cluster_replay",
+                        "status": overall_status,
+                        "classification": overall_class,
+                        "reason": overall_reason,
+                    }
+                ]
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "env-matrix.json").write_text(
+        json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
     (out_dir / "coverage-summary.json").write_text(
         json.dumps(
             {
@@ -232,10 +299,32 @@ def main() -> int:
         + "\n",
         encoding="utf-8",
     )
-    (out_dir / "device-matrix.json").write_text(json.dumps({"gpu_hosts": gpu_hosts, "host_count": len(hosts)}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "os-matrix.json").write_text(json.dumps({"unique_os": unique_os, "host_count": len(hosts)}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "language-matrix.json").write_text(json.dumps({"note": "Milestone 23 validates distributed replay behavior on existing language adapters."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "library-matrix.json").write_text(json.dumps({"note": "Milestone 23 focuses on cluster replay, not library expansion."}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "device-matrix.json").write_text(
+        json.dumps({"gpu_hosts": gpu_hosts, "host_count": len(hosts)}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "os-matrix.json").write_text(
+        json.dumps({"unique_os": unique_os, "host_count": len(hosts)}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "language-matrix.json").write_text(
+        json.dumps(
+            {"note": "Milestone 23 validates distributed replay behavior on existing language adapters."},
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "library-matrix.json").write_text(
+        json.dumps(
+            {"note": "Milestone 23 focuses on cluster replay, not library expansion."},
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     gaps = ["# Portability Gaps (Milestone 23)", ""]
     for c in checks:
         if c["status"] != "PASS":
@@ -247,15 +336,27 @@ def main() -> int:
     for adr in WAIVER_ADRS:
         if (ROOT / adr).exists():
             waivers.append({"adr": adr, "status": "ACTIVE"})
-    (out_dir / "waivers.json").write_text(json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "waivers.json").write_text(
+        json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     conformance_hashes = {"status": overall_status}
     rp = ROOT / "evidence" / "conformance" / "reports" / "latest.json"
     rs = ROOT / "evidence" / "conformance" / "results" / "latest.json"
     if rp.exists():
-        conformance_hashes["conformance_report"] = {"path": "evidence/conformance/reports/latest.json", "sha256": _sha256_file(rp)}
+        conformance_hashes["conformance_report"] = {
+            "path": "evidence/conformance/reports/latest.json",
+            "sha256": _sha256_file(rp),
+        }
     if rs.exists():
-        conformance_hashes["conformance_results"] = {"path": "evidence/conformance/results/latest.json", "sha256": _sha256_file(rs)}
-    (out_dir / "conformance-hashes.json").write_text(json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        conformance_hashes["conformance_results"] = {
+            "path": "evidence/conformance/results/latest.json",
+            "sha256": _sha256_file(rs),
+        }
+    (out_dir / "conformance-hashes.json").write_text(
+        json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     (out_dir / "summary.md").write_text(
         "\n".join(
             [
@@ -295,7 +396,17 @@ def main() -> int:
         + "\n",
         encoding="utf-8",
     )
-    print(json.dumps({"status": overall_status, "classification": overall_class, "reason": overall_reason}, indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "status": overall_status,
+                "classification": overall_class,
+                "reason": overall_reason,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
     return 0 if overall_status == "PASS" else 1
 
 

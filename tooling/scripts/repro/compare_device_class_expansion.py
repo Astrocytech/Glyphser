@@ -108,7 +108,11 @@ def _frameworks_meta() -> dict[str, Any]:
         import tensorflow as tf  # type: ignore
 
         gpus = tf.config.list_physical_devices("GPU")
-        out["tensorflow"] = {"present": True, "version": tf.__version__, "gpu_visible": bool(gpus)}
+        out["tensorflow"] = {
+            "present": True,
+            "version": tf.__version__,
+            "gpu_visible": bool(gpus),
+        }
     except Exception as exc:
         out["tensorflow"] = {"present": False, "error": str(exc)}
     return out
@@ -154,7 +158,12 @@ def _runtime_meta() -> dict[str, Any]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Milestone 18 device-class expansion matrix.")
-    parser.add_argument("--host-manifest", action="append", default=[], help="Additional host manifest json files.")
+    parser.add_argument(
+        "--host-manifest",
+        action="append",
+        default=[],
+        help="Additional host manifest json files.",
+    )
     parser.add_argument(
         "--output-dir",
         default=str(ROOT / "evidence" / "repro" / "milestone-18-device-class-expansion"),
@@ -178,7 +187,9 @@ def main() -> int:
     matrix_rows: list[dict[str, Any]] = []
     missing: list[str] = []
     for cls in REQUIRED_DEVICE_CLASSES:
-        present_hosts = [h.get("host_id", "unknown") for h in hosts if bool(h.get("device_classes", {}).get(cls, False))]
+        present_hosts = [
+            h.get("host_id", "unknown") for h in hosts if bool(h.get("device_classes", {}).get(cls, False))
+        ]
         present = bool(present_hosts)
         if not present:
             missing.append(cls)
@@ -227,7 +238,10 @@ def main() -> int:
         + "\n",
         encoding="utf-8",
     )
-    (out_dir / "device-matrix.json").write_text(json.dumps({"device_matrix": matrix_rows}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "device-matrix.json").write_text(
+        json.dumps({"device_matrix": matrix_rows}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
     (out_dir / "pair-matrix.json").write_text(
         json.dumps(
             {
@@ -246,7 +260,9 @@ def main() -> int:
         + "\n",
         encoding="utf-8",
     )
-    (out_dir / "env-matrix.json").write_text(json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "env-matrix.json").write_text(
+        json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
     (out_dir / "coverage-summary.json").write_text(
         json.dumps(
             {
@@ -266,7 +282,14 @@ def main() -> int:
         json.dumps(
             {
                 "os_families": sorted({str(h.get("os_family", "")) for h in hosts}),
-                "hosts": [{"host_id": h.get("host_id", ""), "os_family": h.get("os_family", ""), "arch": h.get("arch", "")} for h in hosts],
+                "hosts": [
+                    {
+                        "host_id": h.get("host_id", ""),
+                        "os_family": h.get("os_family", ""),
+                        "arch": h.get("arch", ""),
+                    }
+                    for h in hosts
+                ],
             },
             indent=2,
             sort_keys=True,
@@ -278,7 +301,9 @@ def main() -> int:
         json.dumps(
             {
                 "languages_observed": ["python"],
-                "note": "Milestone 18 focuses on device classes; expanded language coverage is validated in milestone 20.",
+                "note": (
+                    "Milestone 18 focuses on device classes; expanded language coverage is validated in milestone 20."
+                ),
             },
             indent=2,
             sort_keys=True,
@@ -324,16 +349,28 @@ def main() -> int:
                 "status": "ACTIVE",
             }
         )
-    (out_dir / "waivers.json").write_text(json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "waivers.json").write_text(
+        json.dumps({"waivers": waivers}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     conformance_hashes: dict[str, Any] = {"status": overall_status}
     results_path = ROOT / "evidence" / "conformance" / "results" / "latest.json"
     report_path = ROOT / "evidence" / "conformance" / "reports" / "latest.json"
     if results_path.exists():
-        conformance_hashes["conformance_results"] = {"path": "evidence/conformance/results/latest.json", "sha256": _sha256_file(results_path)}
+        conformance_hashes["conformance_results"] = {
+            "path": "evidence/conformance/results/latest.json",
+            "sha256": _sha256_file(results_path),
+        }
     if report_path.exists():
-        conformance_hashes["conformance_report"] = {"path": "evidence/conformance/reports/latest.json", "sha256": _sha256_file(report_path)}
-    (out_dir / "conformance-hashes.json").write_text(json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        conformance_hashes["conformance_report"] = {
+            "path": "evidence/conformance/reports/latest.json",
+            "sha256": _sha256_file(report_path),
+        }
+    (out_dir / "conformance-hashes.json").write_text(
+        json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     (out_dir / "summary.md").write_text(
         "\n".join(
@@ -352,7 +389,8 @@ def main() -> int:
     )
     (out_dir / "known-limitations.md").write_text(
         "# Known Limitations (Milestone 18)\n\n"
-        "- Device-class detection is capability-driven and may need host-specific tooling (nvidia-smi/rocminfo/sycl-ls).\n"
+        "- Device-class detection is capability-driven and may need host-specific tooling "
+        "(nvidia-smi/rocminfo/sycl-ls).\n"
         "- Full OS and language universality is covered by milestones 19 and 20.\n",
         encoding="utf-8",
     )
@@ -377,7 +415,17 @@ def main() -> int:
         encoding="utf-8",
     )
 
-    print(json.dumps({"status": overall_status, "classification": overall_class, "reason": overall_reason}, indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "status": overall_status,
+                "classification": overall_class,
+                "reason": overall_reason,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
     return 0 if overall_status == "PASS" else 1
 
 

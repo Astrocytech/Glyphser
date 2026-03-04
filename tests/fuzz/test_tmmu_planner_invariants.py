@@ -7,7 +7,13 @@ def _demo_ir():
     return {
         "ir_schema_hash": "sha256:uml_model_ir_demo",
         "nodes": [
-            {"node_id": "input", "instr": "Input", "inputs": [], "shape_out": [4], "dtype": "float32"},
+            {
+                "node_id": "input",
+                "instr": "Input",
+                "inputs": [],
+                "shape_out": [4],
+                "dtype": "float32",
+            },
             {
                 "node_id": "dense",
                 "instr": "Dense",

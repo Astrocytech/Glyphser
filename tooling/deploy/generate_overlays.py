@@ -3,14 +3,14 @@ from __future__ import annotations
 
 import hashlib
 import json
-from pathlib import Path
 import sys
+from pathlib import Path
+
+from tooling.lib.path_config import generated_root
 
 ROOT = Path(__file__).resolve().parents[2]
 IN_DIR = ROOT / "tooling" / "deploy" / "overlay_templates"
 sys.path.insert(0, str(ROOT))
-from tooling.lib.path_config import generated_root
-
 OUT_DIR = generated_root() / "deploy" / "overlays"
 
 

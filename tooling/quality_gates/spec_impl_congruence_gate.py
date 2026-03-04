@@ -7,12 +7,12 @@ import json
 import sys
 from pathlib import Path
 
+from runtime.glyphser.registry.interface_hash import compute_interface_hash
+from tooling.quality_gates.telemetry import emit_gate_trace
+
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
-
-from runtime.glyphser.registry.interface_hash import compute_interface_hash
-from tooling.quality_gates.telemetry import emit_gate_trace
 
 OUT = ROOT / "evidence" / "gates" / "structure" / "spec_impl_congruence.json"
 OPENAPI = ROOT / "specs" / "contracts" / "openapi_public_api_v1.yaml"

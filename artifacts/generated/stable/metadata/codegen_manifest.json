@@ -11,15 +11,15 @@
   "outputs_with_hashes": [
     {
       "path": "runtime/glyphser/_generated/models.py",
-      "sha256": "d74e48d76e1a6d76057b2e748cf5cdc01cea19a9f27dd75f70f4cb75b33fd9eb"
+      "sha256": "e9bc55c8202f7c1cdfef066901f847785afdf1cc39800cdb6e2e7fa4ab84c933"
     },
     {
       "path": "runtime/glyphser/_generated/operators.py",
-      "sha256": "2214121f16f0b4e0f73b90de40f3eeed97de0ada6febf485718582dad05288fc"
+      "sha256": "dc0c0f40371f0100e3c331757cff342e1cd7cc4039c0358e451398b142abf10f"
     },
     {
       "path": "runtime/glyphser/_generated/validators.py",
-      "sha256": "ef4f13581c15d49847af1bef40edd84593794f8110e46c104c2bd2a78b31c879"
+      "sha256": "1ee62473cac47ffe14b7aaadd5e1d424e8cb073512159e5c640686b91f701d18"
     },
     {
       "path": "runtime/glyphser/_generated/error.py",
@@ -31,6 +31,10 @@
     }
   ],
   "schemas": [
+    {
+      "path": "specs/schemas/evidence_metadata.schema.json",
+      "sha256": "8c5994ab8f4ea11ed602ddbd256698d3ee8769c49d1cda8a7cc0274a07197c40"
+    },
     {
       "path": "specs/schemas/layers/L1/l1_api_interfaces.schema.json",
       "sha256": "cb2f07cf16b6ca113fbb4d3f68de86fe0e9d8d6342a591fc75511703aa950191"

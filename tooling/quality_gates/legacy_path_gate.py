@@ -36,8 +36,8 @@ LEGACY_PATTERNS = [
     re.compile(r"'dist/"),
     re.compile(r'"reports/'),
     re.compile(r"'reports/"),
-    re.compile(r'conformance/reports/'),
-    re.compile(r'conformance/results/'),
+    re.compile(r"conformance/reports/"),
+    re.compile(r"conformance/results/"),
 ]
 
 ALLOW_SUBSTRINGS = [

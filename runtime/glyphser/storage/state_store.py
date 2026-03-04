@@ -1,11 +1,12 @@
 """Durable run-state persistence with deterministic restart recovery."""
+
 from __future__ import annotations
 
 import hashlib
 import json
 import shutil
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict
 
 SCHEMA_VERSION = 1
 
@@ -88,7 +89,10 @@ class DurableStateStore:
     def recover(self) -> Dict[str, str]:
         """Load state from state file or deterministically replay WAL."""
         self._state = self._load_state()
-        return {"state_hash": self.state_hash(), "last_event_hash": self._state.get("last_event_hash", "")}
+        return {
+            "state_hash": self.state_hash(),
+            "last_event_hash": self._state.get("last_event_hash", ""),
+        }
 
     def _load_state(self) -> Dict[str, Any]:
         if self.state_file.exists():
@@ -142,4 +146,3 @@ class DurableStateStore:
         tmp = path.with_suffix(path.suffix + ".tmp")
         tmp.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         tmp.replace(path)
-

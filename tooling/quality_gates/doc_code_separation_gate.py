@@ -8,7 +8,20 @@ ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "evidence" / "gates" / "structure"
 
 DOC_EXTS = {".md", ".txt", ".rst"}
-CODE_EXTS = {".py", ".sh", ".bash", ".zsh", ".js", ".ts", ".go", ".rs", ".java", ".c", ".cc", ".cpp"}
+CODE_EXTS = {
+    ".py",
+    ".sh",
+    ".bash",
+    ".zsh",
+    ".js",
+    ".ts",
+    ".go",
+    ".rs",
+    ".java",
+    ".c",
+    ".cc",
+    ".cpp",
+}
 CODE_DIRS = (
     "runtime",
     "tooling/codegen",

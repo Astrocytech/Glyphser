@@ -8,6 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 
+
 def main() -> int:
     meta = {
         "os": platform.platform(),
@@ -19,6 +20,7 @@ def main() -> int:
         meta["dependency_lock"] = "requirements.lock"
     print(json.dumps(meta, indent=2, sort_keys=True))
     return 0
+
 
 if __name__ == "__main__":
     raise SystemExit(main())

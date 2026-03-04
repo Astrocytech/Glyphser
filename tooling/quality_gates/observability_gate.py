@@ -8,11 +8,16 @@ import time
 from pathlib import Path
 from typing import Any, Dict
 
+from tooling.lib.path_config import (
+    conformance_reports_root,
+    evidence_root,
+    first_existing,
+    rel,
+)
+
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "evidence" / "observability"
 sys.path.insert(0, str(ROOT))
-
-from tooling.lib.path_config import conformance_reports_root, evidence_root, first_existing, rel
 
 
 def _sha256(path: Path) -> str:
@@ -55,7 +60,9 @@ def _slo_eval() -> Dict[str, Any]:
         "availability": {"status": "PASS" if availability_ok else "FAIL"},
         "recovery": {"status": "PASS" if recovery_ok else "FAIL"},
     }
-    slo["overall_status"] = "PASS" if all(v["status"] == "PASS" for k, v in slo.items() if k != "overall_status") else "FAIL"
+    slo["overall_status"] = (
+        "PASS" if all(v["status"] == "PASS" for k, v in slo.items() if k != "overall_status") else "FAIL"
+    )
     return slo
 
 
@@ -116,7 +123,12 @@ def _lineage_index() -> Dict[str, Any]:
     entries = []
     for p in sources:
         if p.exists():
-            entries.append({"path": str(p.relative_to(ROOT)).replace("\\", "/"), "sha256": _sha256(p)})
+            entries.append(
+                {
+                    "path": str(p.relative_to(ROOT)).replace("\\", "/"),
+                    "sha256": _sha256(p),
+                }
+            )
     return {"status": "PASS" if entries else "FAIL", "entries": entries}
 
 
@@ -124,7 +136,12 @@ def evaluate() -> Dict[str, Any]:
     OUT.mkdir(parents=True, exist_ok=True)
     required_docs = [
         first_existing([rel("product", "ops", "SLOs.md"), rel("docs", "ops", "SLOs.md")]),
-        first_existing([rel("product", "ops", "INCIDENT_RESPONSE.md"), rel("docs", "ops", "INCIDENT_RESPONSE.md")]),
+        first_existing(
+            [
+                rel("product", "ops", "INCIDENT_RESPONSE.md"),
+                rel("docs", "ops", "INCIDENT_RESPONSE.md"),
+            ]
+        ),
     ]
     missing_docs = [str(p.relative_to(ROOT)).replace("\\", "/") for p in required_docs if not p.exists()]
 

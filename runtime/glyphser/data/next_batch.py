@@ -1,4 +1,5 @@
 """Deterministic next-batch helper (minimal)."""
+
 from __future__ import annotations
 
 from typing import Any, Sequence, Tuple

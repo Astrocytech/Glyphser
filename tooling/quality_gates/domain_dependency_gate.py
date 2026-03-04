@@ -19,8 +19,23 @@ def _scan_python(base: Path) -> List[Path]:
 
 
 def _violations_for_runtime() -> List[Dict[str, object]]:
-    forbidden_import_roots = {"tooling", "artifacts", "evidence", "governance", "product", "specs", "tests"}
-    forbidden_path_tokens = ("/tooling/", "/artifacts/", "/evidence/", "/governance/", "/product/", "/specs/")
+    forbidden_import_roots = {
+        "tooling",
+        "artifacts",
+        "evidence",
+        "governance",
+        "product",
+        "specs",
+        "tests",
+    }
+    forbidden_path_tokens = (
+        "/tooling/",
+        "/artifacts/",
+        "/evidence/",
+        "/governance/",
+        "/product/",
+        "/specs/",
+    )
     violations: List[Dict[str, object]] = []
     for path in _scan_python(ROOT / "runtime"):
         rel = str(path.relative_to(ROOT)).replace("\\", "/")
@@ -29,10 +44,24 @@ def _violations_for_runtime() -> List[Dict[str, object]]:
             if m:
                 root = m.group(1).split(".", 1)[0]
                 if root in forbidden_import_roots:
-                    violations.append({"file": rel, "line": i, "kind": "import", "text": line.strip()[:200]})
+                    violations.append(
+                        {
+                            "file": rel,
+                            "line": i,
+                            "kind": "import",
+                            "text": line.strip()[:200],
+                        }
+                    )
             normalized = line.replace("\\", "/")
             if any(token in normalized for token in forbidden_path_tokens):
-                violations.append({"file": rel, "line": i, "kind": "path_ref", "text": line.strip()[:200]})
+                violations.append(
+                    {
+                        "file": rel,
+                        "line": i,
+                        "kind": "path_ref",
+                        "text": line.strip()[:200],
+                    }
+                )
     return violations
 
 
@@ -47,7 +76,14 @@ def _violations_for_tooling() -> List[Dict[str, object]]:
                 continue
             root = m.group(1).split(".", 1)[0]
             if root in forbidden_import_roots:
-                violations.append({"file": rel, "line": i, "kind": "import", "text": line.strip()[:200]})
+                violations.append(
+                    {
+                        "file": rel,
+                        "line": i,
+                        "kind": "import",
+                        "text": line.strip()[:200],
+                    }
+                )
     return violations
 
 

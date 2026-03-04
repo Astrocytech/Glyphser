@@ -1,4 +1,5 @@
 """Deterministic execution certificate writer (minimal)."""
+
 from __future__ import annotations
 
 import hashlib

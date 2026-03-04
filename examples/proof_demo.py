@@ -18,10 +18,7 @@ try:
     import numpy as np
     import torch
 except Exception as exc:  # pragma: no cover - optional dependency
-    raise SystemExit(
-        "This demo requires torch and numpy. "
-        "Install with: python -m pip install torch numpy"
-    ) from exc
+    raise SystemExit("This demo requires torch and numpy. Install with: python -m pip install torch numpy") from exc
 
 from glyphser.internal.hashing import canonical_sha256
 

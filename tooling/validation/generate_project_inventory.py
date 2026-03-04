@@ -8,7 +8,14 @@ from typing import List
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "evidence" / "gates" / "structure" / "PROJECT_FILE_INVENTORY.md"
 
-EXCLUDE_DIRS = {".git", ".venv", ".pytest_cache", "__pycache__", ".mypy_cache", ".ruff_cache"}
+EXCLUDE_DIRS = {
+    ".git",
+    ".venv",
+    ".pytest_cache",
+    "__pycache__",
+    ".mypy_cache",
+    ".ruff_cache",
+}
 
 
 def _walk_tree(base: Path) -> List[Path]:
@@ -84,7 +91,8 @@ def main() -> int:
     lines.append(f"Generated: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')}")
     lines.append("")
     lines.append(
-        "Scope: Full repository tree excluding transient local cache directories (`.git`, `.venv`, `.pytest_cache`, `__pycache__`, lint/type caches)."
+        "Scope: Full repository tree excluding transient local cache directories "
+        "(`.git`, `.venv`, `.pytest_cache`, `__pycache__`, lint/type caches)."
     )
     lines.append("")
     lines.append("## Full Tree Structure")

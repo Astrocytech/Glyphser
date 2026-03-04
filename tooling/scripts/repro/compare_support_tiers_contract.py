@@ -77,7 +77,10 @@ def _run_claim_gate(report_path: Path, check_paths: list[Path]) -> tuple[int, di
     try:
         payload = json.loads(out) if out else {"status": "FAIL", "reason": err or "claim gate emitted no json"}
     except Exception:
-        payload = {"status": "FAIL", "reason": err or out or "claim gate emitted invalid json"}
+        payload = {
+            "status": "FAIL",
+            "reason": err or out or "claim gate emitted invalid json",
+        }
     return code, payload
 
 
@@ -114,7 +117,13 @@ def main() -> int:
             "meta": _runtime_meta(),
         }
         _write_json(out_dir / "report.json", report)
-        print(json.dumps({"status": "BLOCKED", "classification": "E2", "reason": reason}, indent=2, sort_keys=True))
+        print(
+            json.dumps(
+                {"status": "BLOCKED", "classification": "E2", "reason": reason},
+                indent=2,
+                sort_keys=True,
+            )
+        )
         return 1
 
     prereq_rows = list(cert_bundle.get("prerequisites", []))
@@ -170,7 +179,8 @@ def main() -> int:
     known_limitations.write_text(
         "# Known Limitations (Milestone 30)\n\n"
         f"- Active certification scope: `{scope_label}`.\n"
-        "- Universality claims must include explicit scope label (`available_local`, `available_local_partial`, or `strict_universal`).\n"
+        "- Universality claims must include explicit scope label (`available_local`, "
+        "`available_local_partial`, or `strict_universal`).\n"
         "- Tier 2 indicates contract-based compatibility acceptance, not full strict-universal certification.\n",
         encoding="utf-8",
     )
@@ -183,19 +193,25 @@ def main() -> int:
         "- Every compatibility and certification statement must include a scope label.\n\n"
         "## Support Tier Mapping\n"
         "- Tier 1 (`tier_1_certified`): milestone status PASS with gate status PASS.\n"
-        "- Tier 2 (`tier_2_compatible_by_contract`): milestone status BLOCKED/partial but gate status PASS by explicit policy.\n"
+        "- Tier 2 (`tier_2_compatible_by_contract`): milestone status BLOCKED/partial but "
+        "gate status PASS by explicit policy.\n"
         "- Tier 3 (`tier_3_unvalidated`): gate status not PASS or missing evidence.\n\n"
         "## Active Scope\n"
         f"- `{scope_label}`\n",
         encoding="utf-8",
     )
 
-    claim_gate_code, claim_gate_payload = _run_claim_gate(out_dir / "claim-gate-report.json", [known_limitations, release_policy_delta])
+    claim_gate_code, claim_gate_payload = _run_claim_gate(
+        out_dir / "claim-gate-report.json", [known_limitations, release_policy_delta]
+    )
 
     unscoped_fixture = out_dir / ".tmp-unscoped-claim.txt"
     scoped_fixture = out_dir / ".tmp-scoped-claim.txt"
     unscoped_fixture.write_text("Glyphser is universal across everything.\n", encoding="utf-8")
-    scoped_fixture.write_text("Glyphser certification scope: available_local_partial universality profile.\n", encoding="utf-8")
+    scoped_fixture.write_text(
+        "Glyphser certification scope: available_local_partial universality profile.\n",
+        encoding="utf-8",
+    )
 
     unscoped_code, unscoped_payload = _run_claim_gate(out_dir / ".tmp-unscoped-report.json", [unscoped_fixture])
     scoped_code, scoped_payload = _run_claim_gate(out_dir / ".tmp-scoped-report.json", [scoped_fixture])
@@ -285,9 +301,15 @@ def main() -> int:
     rp = ROOT / "evidence" / "conformance" / "reports" / "latest.json"
     rs = ROOT / "evidence" / "conformance" / "results" / "latest.json"
     if rp.exists():
-        conformance_hashes["conformance_report"] = {"path": "evidence/conformance/reports/latest.json", "sha256": _sha256_file(rp)}
+        conformance_hashes["conformance_report"] = {
+            "path": "evidence/conformance/reports/latest.json",
+            "sha256": _sha256_file(rp),
+        }
     if rs.exists():
-        conformance_hashes["conformance_results"] = {"path": "evidence/conformance/results/latest.json", "sha256": _sha256_file(rs)}
+        conformance_hashes["conformance_results"] = {
+            "path": "evidence/conformance/results/latest.json",
+            "sha256": _sha256_file(rs),
+        }
     _write_json(out_dir / "conformance-hashes.json", conformance_hashes)
 
     _write_json(
@@ -338,7 +360,13 @@ def main() -> int:
         encoding="utf-8",
     )
 
-    print(json.dumps({"status": status, "classification": classification, "reason": reason}, indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            {"status": status, "classification": classification, "reason": reason},
+            indent=2,
+            sort_keys=True,
+        )
+    )
     return 0 if status == "PASS" else 1
 
 

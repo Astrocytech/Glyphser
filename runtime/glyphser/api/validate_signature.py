@@ -1,4 +1,5 @@
 """Minimal API signature validation helpers."""
+
 from __future__ import annotations
 
 import re
@@ -6,7 +7,6 @@ from pathlib import Path
 from typing import Any, Dict, Iterable
 
 from runtime.glyphser.registry.registry_builder import parse_api_interfaces
-
 
 _DIGEST_RE = re.compile(r"^sha256:[a-z0-9._-]+$")
 
@@ -23,10 +23,7 @@ def validate_api_signature(record: Dict[str, Any], allowed_ops: Iterable[str] | 
         api_path = Path(__file__).resolve().parents[3] / "specs" / "layers" / "L1-foundation" / "API-Interfaces.md"
         allowed_ops = [row.get("operator_id", "") for row in parse_api_interfaces(api_path)]
     else:
-        allowed_ops = [
-            row.get("operator_id", "") if isinstance(row, dict) else str(row)
-            for row in allowed_ops
-        ]
+        allowed_ops = [row.get("operator_id", "") if isinstance(row, dict) else str(row) for row in allowed_ops]
 
     if record["operator_id"] not in set(allowed_ops):
         raise ValueError("operator_id not declared in API-Interfaces")

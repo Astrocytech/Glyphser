@@ -1,6 +1,6 @@
+import hashlib
 import json
 import pathlib
-import hashlib
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 SCHEMA_DIR = ROOT / "specs" / "schemas"

@@ -1,4 +1,5 @@
 """Contract validation for IR and driver compatibility."""
+
 from __future__ import annotations
 
 from typing import Any, Dict

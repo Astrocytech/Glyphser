@@ -5,7 +5,6 @@ from pathlib import Path
 
 from runtime.glyphser.api.runtime_api import RuntimeApiConfig, RuntimeApiService
 
-
 ROOT = Path(__file__).resolve().parents[2]
 
 
@@ -25,7 +24,9 @@ def test_evidence_and_replay(tmp_path: Path):
     (root / "evidence" / "conformance" / "reports").mkdir(parents=True)
     (root / "artifacts" / "bundles").mkdir(parents=True)
     (root / "evidence" / "repro").mkdir(parents=True)
-    (root / "evidence" / "conformance" / "reports" / "latest.json").write_text(json.dumps({"status": "PASS"}) + "\n", encoding="utf-8")
+    (root / "evidence" / "conformance" / "reports" / "latest.json").write_text(
+        json.dumps({"status": "PASS"}) + "\n", encoding="utf-8"
+    )
     line = "abc123  hello-core-bundle.tar.gz\n"
     (root / "artifacts" / "bundles" / "hello-core-bundle.sha256").write_text(line, encoding="utf-8")
     (root / "evidence" / "repro" / "hashes.txt").write_text(line, encoding="utf-8")

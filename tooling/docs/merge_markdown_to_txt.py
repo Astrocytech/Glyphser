@@ -5,15 +5,18 @@ Includes all subdirectories.
 """
 
 from __future__ import annotations
+
 import argparse
 from pathlib import Path
 
 # Hardcoded target path as requested
 DEFAULT_ROOT = "/home/coka/Desktop/INTERVJUI/IZBR/ML2ML/docs/"
 
+
 def collect_markdown_files(root: Path) -> list[Path]:
     # rglob handles all subdirectories automatically
     return sorted(p for p in root.rglob("*.md") if p.is_file())
+
 
 def write_merged(markdown_files: list[Path], root: Path, output: Path) -> None:
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -26,7 +29,7 @@ def write_merged(markdown_files: list[Path], root: Path, output: Path) -> None:
             except ValueError:
                 # Fallback if file is somehow outside the root
                 rel_path = md_file.as_posix()
-                
+
             content = md_file.read_text(encoding="utf-8", errors="replace")
 
             out.write(f"FILE: {rel_path}\n")
@@ -36,10 +39,9 @@ def write_merged(markdown_files: list[Path], root: Path, output: Path) -> None:
                 out.write("\n")
             out.write("\n")
 
+
 def main() -> None:
-    parser = argparse.ArgumentParser(
-        description="Merge .md files from ML2ML docs into one .txt file."
-    )
+    parser = argparse.ArgumentParser(description="Merge .md files from ML2ML docs into one .txt file.")
     parser.add_argument(
         "root",
         nargs="?",
@@ -67,6 +69,7 @@ def main() -> None:
     write_merged(markdown_files, root, output)
     print(f"Success! Merged {len(markdown_files)} files from {root}")
     print(f"Output saved to: {output}")
+
 
 if __name__ == "__main__":
     main()

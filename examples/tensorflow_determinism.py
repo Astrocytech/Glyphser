@@ -10,9 +10,7 @@ try:
     import numpy as np
     import tensorflow as tf
 except Exception as exc:  # pragma: no cover - optional dependency
-    raise SystemExit(
-        "Install requirements: python -m pip install numpy tensorflow"
-    ) from exc
+    raise SystemExit("Install requirements: python -m pip install numpy tensorflow") from exc
 
 
 def digest(payload: dict) -> str:

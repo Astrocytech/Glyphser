@@ -37,7 +37,6 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
 
-
 SCRIPT_NAME = "reduce_to_vanilla.py"
 GUIDE_NAME = "REDUCE_TO_VANILLA.md"
 
@@ -141,9 +140,7 @@ def _scan(root: Path, keep_files: set[str], keep_dirs: set[str]) -> ChangeSet:
             files_to_delete.append(path)
 
     # Collect directories bottom-up so children are removed first.
-    all_dirs = [
-        p for p in root.rglob("*") if p.is_dir() and not _is_kept(p, root, keep_files, keep_dirs)
-    ]
+    all_dirs = [p for p in root.rglob("*") if p.is_dir() and not _is_kept(p, root, keep_files, keep_dirs)]
     all_dirs.sort(key=lambda p: len(p.parts), reverse=True)
     dirs_to_delete.extend(all_dirs)
 
@@ -165,13 +162,13 @@ def _print_plan(root: Path, changes: ChangeSet, limit: int = 120) -> None:
     for p in changes.files_to_delete:
         if shown >= limit:
             break
-        print(f"  FILE { _rel(p, root) }")
+        print(f"  FILE {_rel(p, root)}")
         shown += 1
 
     for p in changes.dirs_to_delete:
         if shown >= limit:
             break
-        print(f"  DIR  { _rel(p, root) }")
+        print(f"  DIR  {_rel(p, root)}")
         shown += 1
 
     remaining = total_files + total_dirs - shown
@@ -215,9 +212,7 @@ def _confirm_interactive() -> bool:
 
 
 def _build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(
-        description="Reduce this repository to minimal vanilla runtime state."
-    )
+    parser = argparse.ArgumentParser(description="Reduce this repository to minimal vanilla runtime state.")
     parser.add_argument(
         "--dry-run",
         action="store_true",
@@ -289,9 +284,7 @@ def main() -> int:
     deleted_dirs = _delete_dirs(changes.dirs_to_delete)
 
     # Final empty-dir cleanup pass (excluding root and kept dirs).
-    extra_dirs = [
-        p for p in root.rglob("*") if p.is_dir() and not _is_kept(p, root, keep_files, keep_dirs)
-    ]
+    extra_dirs = [p for p in root.rglob("*") if p.is_dir() and not _is_kept(p, root, keep_files, keep_dirs)]
     extra_dirs.sort(key=lambda p: len(p.parts), reverse=True)
     for d in extra_dirs:
         try:

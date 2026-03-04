@@ -32,4 +32,28 @@ from runtime.glyphser.cert.evidence_validate import evidence_validate
 from runtime.glyphser.config.migrate_manifest import manifest_migrate
 from runtime.glyphser.legacy_import.legacy_framework import legacy_framework_import
 
+
+def _contract_violation(operator_id: str) -> Dict[str, Any]:
+    return {
+        "error": emit_error(
+            "CONTRACT_VIOLATION",
+            "invalid request",
+            operator_id=operator_id,
+        )
+    }
+
+
+def _primitive_unsupported(operator_id: str) -> Dict[str, Any]:
+    return {
+        "error": emit_error(
+            "PRIMITIVE_UNSUPPORTED",
+            "Generated stub not implemented",
+            operator_id=operator_id,
+            t="placeholder",
+            node_id="placeholder",
+            instr="placeholder",
+            backend_binary_hash="placeholder",
+        )
+    }
+
 {stub_blocks}

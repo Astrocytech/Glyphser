@@ -17,7 +17,13 @@ sys.path.insert(0, str(ROOT))
 
 from runtime.glyphser.model.model_ir_executor import execute  # noqa: E402
 
-PROFILES: list[str] = ["pytorch_cpu", "pytorch_gpu", "keras_cpu", "keras_gpu", "java_cpu"]
+PROFILES: list[str] = [
+    "pytorch_cpu",
+    "pytorch_gpu",
+    "keras_cpu",
+    "keras_gpu",
+    "java_cpu",
+]
 NON_JAVA_PROFILES = ["pytorch_cpu", "pytorch_gpu", "keras_cpu", "keras_gpu"]
 JAVA_SRC = ROOT / "tooling" / "scripts" / "repro" / "java_bridge" / "OperatorExpansionJavaRunner.java"
 JAVA_DIR = JAVA_SRC.parent
@@ -50,11 +56,19 @@ def _flatten_2d(values: list[list[float]]) -> list[float]:
 
 
 def _case_ir(op: str, params: dict[str, Any], shape_out: list[int], inputs: list[dict[str, Any]]) -> dict[str, Any]:
-    nodes = [{"node_id": "x", "instr": "Input", "inputs": [], "shape_out": inputs[0]["shape_out"], "dtype": "float64"}]
+    nodes = [
+        {
+            "node_id": "x",
+            "instr": "Input",
+            "inputs": [],
+            "shape_out": inputs[0]["shape_out"],
+            "dtype": "float64",
+        }
+    ]
     for idx in range(1, len(inputs)):
         nodes.append(
             {
-                "node_id": f"x{idx+1}",
+                "node_id": f"x{idx + 1}",
                 "instr": "Input",
                 "inputs": [],
                 "shape_out": inputs[idx]["shape_out"],
@@ -64,7 +78,7 @@ def _case_ir(op: str, params: dict[str, Any], shape_out: list[int], inputs: list
 
     op_inputs: list[dict[str, Any]] = [{"node_id": "x", "output_idx": 0}]
     for idx in range(1, len(inputs)):
-        op_inputs.append({"node_id": f"x{idx+1}", "output_idx": 0})
+        op_inputs.append({"node_id": f"x{idx + 1}", "output_idx": 0})
 
     nodes.append(
         {
@@ -127,7 +141,13 @@ CASES: list[dict[str, Any]] = [
         "op": "Transpose",
         "shape_out": [3, 2],
         "params": {"perm": [1, 0]},
-        "inputs": [{"key": "x", "shape_out": [2, 3], "value": [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]]}],
+        "inputs": [
+            {
+                "key": "x",
+                "shape_out": [2, 3],
+                "value": [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]],
+            }
+        ],
     },
     {
         "case_id": "softmax_vec3",
@@ -191,12 +211,25 @@ def _run_java_case(case: dict[str, Any]) -> dict[str, Any]:
     if op == "MatMul":
         a = case["inputs"][0]["value"]
         b = case["inputs"][1]["value"]
-        args = ["matmul", str(len(a)), str(len(a[0])), _csv(_flatten_2d(a)), str(len(b)), str(len(b[0])), _csv(_flatten_2d(b))]
+        args = [
+            "matmul",
+            str(len(a)),
+            str(len(a[0])),
+            _csv(_flatten_2d(a)),
+            str(len(b)),
+            str(len(b[0])),
+            _csv(_flatten_2d(b)),
+        ]
     elif op == "ReduceSum":
         args = ["reducesum", _csv(case["inputs"][0]["value"])]
     elif op == "Reshape":
         shape = case["params"]["shape"]
-        args = ["reshape", str(shape[0]), str(shape[1]), _csv(case["inputs"][0]["value"])]
+        args = [
+            "reshape",
+            str(shape[0]),
+            str(shape[1]),
+            _csv(case["inputs"][0]["value"]),
+        ]
     elif op == "Transpose":
         m = case["inputs"][0]["value"]
         args = ["transpose", str(len(m)), str(len(m[0])), _csv(_flatten_2d(m))]
@@ -211,7 +244,11 @@ def _run_java_case(case: dict[str, Any]) -> dict[str, Any]:
             str(case["params"]["eps"]),
         ]
     elif op == "MSELoss":
-        args = ["mseloss", _csv(case["inputs"][0]["value"]), _csv(case["inputs"][1]["value"])]
+        args = [
+            "mseloss",
+            _csv(case["inputs"][0]["value"]),
+            _csv(case["inputs"][1]["value"]),
+        ]
     else:
         return {"error": {"code_id": "JAVA_UNSUPPORTED_OP", "message": op}}
 
@@ -223,7 +260,12 @@ def _run_java_case(case: dict[str, Any]) -> dict[str, Any]:
         cwd=str(ROOT),
     )
     if proc.returncode != 0:
-        return {"error": {"code_id": "JAVA_RUNTIME_ERROR", "message": proc.stderr.strip() or "java failed"}}
+        return {
+            "error": {
+                "code_id": "JAVA_RUNTIME_ERROR",
+                "message": proc.stderr.strip() or "java failed",
+            }
+        }
 
     try:
         payload = json.loads(proc.stdout.strip())
@@ -408,8 +450,13 @@ def main() -> int:
         "rel_tol": args.rel_tol,
         "excluded_operators": [],
     }
-    (out_dir / "repro-classification.json").write_text(json.dumps(repro, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "pair-matrix.json").write_text(json.dumps({"pairs": pair_matrix}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "repro-classification.json").write_text(
+        json.dumps(repro, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    (out_dir / "pair-matrix.json").write_text(
+        json.dumps({"pairs": pair_matrix}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     family_counts: dict[str, int] = {}
     for case in CASES:
@@ -423,8 +470,12 @@ def main() -> int:
         "mandatory_profiles": PROFILES,
         "status": overall_status,
     }
-    (out_dir / "coverage-summary.json").write_text(json.dumps(coverage, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "waivers.json").write_text(json.dumps({"waivers": []}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "coverage-summary.json").write_text(
+        json.dumps(coverage, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    (out_dir / "waivers.json").write_text(
+        json.dumps({"waivers": []}, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
 
     env_matrix = report["meta"]
     (out_dir / "env-matrix.json").write_text(json.dumps(env_matrix, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -443,7 +494,8 @@ def main() -> int:
             "sha256": _sha256_file(report_path),
         }
     (out_dir / "conformance-hashes.json").write_text(
-        json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
     )
 
     summary = [
@@ -487,9 +539,22 @@ def main() -> int:
         "classification": overall_class,
         "evidence_dir": "evidence/repro/milestone-9-operator-expansion-v2/",
     }
-    (out_dir / "milestone.json").write_text(json.dumps(milestone_manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "milestone.json").write_text(
+        json.dumps(milestone_manifest, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
-    print(json.dumps({"status": overall_status, "classification": overall_class, "reason": overall_reason}, indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "status": overall_status,
+                "classification": overall_class,
+                "reason": overall_reason,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
     return 0 if overall_status == "PASS" else 1
 
 

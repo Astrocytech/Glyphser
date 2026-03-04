@@ -1,8 +1,8 @@
 """Deterministic RBAC authorization checks."""
+
 from __future__ import annotations
 
 from typing import Iterable
-
 
 ROLE_PERMISSIONS = {
     "admin": {
@@ -35,4 +35,3 @@ def authorize(action: str, roles: Iterable[str]) -> bool:
     for role in roles:
         allowed.update(ROLE_PERMISSIONS.get(role, set()))
     return action in allowed
-

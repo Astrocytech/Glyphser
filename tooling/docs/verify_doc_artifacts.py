@@ -3,12 +3,11 @@ from __future__ import annotations
 
 import hashlib
 import json
-from pathlib import Path
 import sys
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from tooling.lib.path_config import fixtures_root, goldens_root, vectors_root
 
 
 def sha256_hex(path: Path) -> str:
@@ -48,6 +47,8 @@ def verify_file_list_manifest(manifest_path: Path) -> list[str]:
 
 
 def main() -> int:
+    from tooling.lib.path_config import fixtures_root, goldens_root, vectors_root
+
     checks = [
         (ROOT / "specs" / "contracts" / "catalog-manifest.json", verify_manifest),
     ]
@@ -74,9 +75,7 @@ def main() -> int:
         else:
             h = sha256_hex(vf)
             if h != vm.get("vectors_file_sha256"):
-                all_errors.append(
-                    f"vectors hash mismatch: expected={vm.get('vectors_file_sha256')} got={h}"
-                )
+                all_errors.append(f"vectors hash mismatch: expected={vm.get('vectors_file_sha256')} got={h}")
 
     if all_errors:
         print("VERIFY_DOC_ARTIFACTS: FAIL")

@@ -6,7 +6,6 @@ import random
 
 from runtime.glyphser.serialization.canonical_cbor import encode_canonical_hex
 
-
 SEED = 1337
 
 

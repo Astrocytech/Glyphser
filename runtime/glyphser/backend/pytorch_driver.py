@@ -1,4 +1,5 @@
 """Deterministic PyTorch CPU backend driver."""
+
 from __future__ import annotations
 
 import hashlib
@@ -186,7 +187,9 @@ class PyTorchGPUDriver:
         _torch.use_deterministic_algorithms(True)
         _torch.backends.cudnn.deterministic = True
         _torch.backends.cudnn.benchmark = False
-        self.backend_binary_hash = _hash_payload({"runtime": "pytorch", "device": "cuda", "version": _torch.__version__})
+        self.backend_binary_hash = _hash_payload(
+            {"runtime": "pytorch", "device": "cuda", "version": _torch.__version__}
+        )
         self.runtime_fingerprint_hash = _hash_payload(
             {
                 "runtime": "pytorch",

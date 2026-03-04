@@ -1,4 +1,5 @@
 """Tamper-evident audit log with deterministic hash chaining."""
+
 from __future__ import annotations
 
 import hashlib
@@ -50,4 +51,3 @@ def verify_chain(path: Path) -> Dict[str, Any]:
             return {"status": "FAIL", "index": idx, "reason": "hash_mismatch"}
         prev_hash = rec.get("hash", "")
     return {"status": "PASS", "events": len(events), "tip_hash": prev_hash}
-

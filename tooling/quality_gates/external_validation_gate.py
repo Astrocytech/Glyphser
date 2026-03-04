@@ -2,19 +2,20 @@
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 from statistics import mean
-from typing import Any, Dict, List
+from typing import Any, Dict
 
 ROOT = Path(__file__).resolve().parents[2]
-import sys
-
 sys.path.insert(0, str(ROOT))
-from tooling.lib.path_config import evidence_root
 
-BASE = evidence_root() / "validation"
-RUNS = BASE / "runs"
-SCORECARDS = BASE / "scorecards"
+
+def _validation_paths() -> tuple[Path, Path, Path]:
+    from tooling.lib.path_config import evidence_root
+
+    base = evidence_root() / "validation"
+    return base, base / "runs", base / "scorecards"
 
 
 def _load_json(path: Path) -> Dict[str, Any]:
@@ -27,6 +28,7 @@ def _write_json(path: Path, payload: Dict[str, Any]) -> None:
 
 
 def main() -> int:
+    BASE, RUNS, SCORECARDS = _validation_paths()
     BASE.mkdir(parents=True, exist_ok=True)
     RUNS.mkdir(parents=True, exist_ok=True)
     SCORECARDS.mkdir(parents=True, exist_ok=True)

@@ -4,10 +4,7 @@ import pytest
 
 
 def _simulate_rank_events(world_size: int) -> list[dict]:
-    return [
-        {"rank": rank, "event": "heartbeat", "step": 1}
-        for rank in range(world_size)
-    ]
+    return [{"rank": rank, "event": "heartbeat", "step": 1} for rank in range(world_size)]
 
 
 def _detect_missing_ranks(events: list[dict], world_size: int) -> list[int]:

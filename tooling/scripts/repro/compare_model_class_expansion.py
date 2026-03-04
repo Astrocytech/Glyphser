@@ -48,7 +48,13 @@ def _model_ir_mlp() -> dict[str, Any]:
     return {
         "ir_schema_hash": "sha256:milestone10-model-class-expansion",
         "nodes": [
-            {"node_id": "x", "instr": "Input", "inputs": [], "shape_out": [4], "dtype": "float64"},
+            {
+                "node_id": "x",
+                "instr": "Input",
+                "inputs": [],
+                "shape_out": [4],
+                "dtype": "float64",
+            },
             {
                 "node_id": "d1",
                 "instr": "Dense",
@@ -65,7 +71,13 @@ def _model_ir_mlp() -> dict[str, Any]:
                     "bias": [0.1, -0.2, 0.05, 0.0],
                 },
             },
-            {"node_id": "r1", "instr": "Relu", "inputs": [{"node_id": "d1", "output_idx": 0}], "shape_out": [4], "dtype": "float64"},
+            {
+                "node_id": "r1",
+                "instr": "Relu",
+                "inputs": [{"node_id": "d1", "output_idx": 0}],
+                "shape_out": [4],
+                "dtype": "float64",
+            },
             {
                 "node_id": "d2",
                 "instr": "Dense",
@@ -81,8 +93,20 @@ def _model_ir_mlp() -> dict[str, Any]:
                     "bias": [0.01, -0.03, 0.02],
                 },
             },
-            {"node_id": "s2", "instr": "Sigmoid", "inputs": [{"node_id": "d2", "output_idx": 0}], "shape_out": [3], "dtype": "float64"},
-            {"node_id": "out", "instr": "Output", "inputs": [{"node_id": "s2", "output_idx": 0}], "shape_out": [3], "dtype": "float64"},
+            {
+                "node_id": "s2",
+                "instr": "Sigmoid",
+                "inputs": [{"node_id": "d2", "output_idx": 0}],
+                "shape_out": [3],
+                "dtype": "float64",
+            },
+            {
+                "node_id": "out",
+                "instr": "Output",
+                "inputs": [{"node_id": "s2", "output_idx": 0}],
+                "shape_out": [3],
+                "dtype": "float64",
+            },
         ],
         "outputs": [{"node_id": "out", "output_idx": 0}],
     }
@@ -92,7 +116,13 @@ def _model_ir_cnn() -> dict[str, Any]:
     return {
         "ir_schema_hash": "sha256:milestone10-model-class-expansion",
         "nodes": [
-            {"node_id": "x", "instr": "Input", "inputs": [], "shape_out": [6], "dtype": "float64"},
+            {
+                "node_id": "x",
+                "instr": "Input",
+                "inputs": [],
+                "shape_out": [6],
+                "dtype": "float64",
+            },
             {
                 "node_id": "conv",
                 "instr": "Conv1D",
@@ -101,7 +131,13 @@ def _model_ir_cnn() -> dict[str, Any]:
                 "dtype": "float64",
                 "params": {"kernel": [0.25, -0.5, 0.75], "bias": 0.1},
             },
-            {"node_id": "relu", "instr": "Relu", "inputs": [{"node_id": "conv", "output_idx": 0}], "shape_out": [4], "dtype": "float64"},
+            {
+                "node_id": "relu",
+                "instr": "Relu",
+                "inputs": [{"node_id": "conv", "output_idx": 0}],
+                "shape_out": [4],
+                "dtype": "float64",
+            },
             {
                 "node_id": "dense",
                 "instr": "Dense",
@@ -113,7 +149,13 @@ def _model_ir_cnn() -> dict[str, Any]:
                     "bias": [0.05, -0.08],
                 },
             },
-            {"node_id": "out", "instr": "Output", "inputs": [{"node_id": "dense", "output_idx": 0}], "shape_out": [2], "dtype": "float64"},
+            {
+                "node_id": "out",
+                "instr": "Output",
+                "inputs": [{"node_id": "dense", "output_idx": 0}],
+                "shape_out": [2],
+                "dtype": "float64",
+            },
         ],
         "outputs": [{"node_id": "out", "output_idx": 0}],
     }
@@ -123,7 +165,13 @@ def _model_ir_attention_lite() -> dict[str, Any]:
     return {
         "ir_schema_hash": "sha256:milestone10-model-class-expansion",
         "nodes": [
-            {"node_id": "x", "instr": "Input", "inputs": [], "shape_out": [4], "dtype": "float64"},
+            {
+                "node_id": "x",
+                "instr": "Input",
+                "inputs": [],
+                "shape_out": [4],
+                "dtype": "float64",
+            },
             {
                 "node_id": "r",
                 "instr": "Reshape",
@@ -143,7 +191,10 @@ def _model_ir_attention_lite() -> dict[str, Any]:
             {
                 "node_id": "scores",
                 "instr": "MatMul",
-                "inputs": [{"node_id": "r", "output_idx": 0}, {"node_id": "rt", "output_idx": 0}],
+                "inputs": [
+                    {"node_id": "r", "output_idx": 0},
+                    {"node_id": "rt", "output_idx": 0},
+                ],
                 "shape_out": [2, 2],
                 "dtype": "float64",
                 "params": {},
@@ -159,13 +210,28 @@ def _model_ir_attention_lite() -> dict[str, Any]:
             {
                 "node_id": "ctx",
                 "instr": "MatMul",
-                "inputs": [{"node_id": "attn", "output_idx": 0}, {"node_id": "r", "output_idx": 0}],
+                "inputs": [
+                    {"node_id": "attn", "output_idx": 0},
+                    {"node_id": "r", "output_idx": 0},
+                ],
                 "shape_out": [2, 2],
                 "dtype": "float64",
                 "params": {},
             },
-            {"node_id": "sum", "instr": "ReduceSum", "inputs": [{"node_id": "ctx", "output_idx": 0}], "shape_out": [1], "dtype": "float64"},
-            {"node_id": "out", "instr": "Output", "inputs": [{"node_id": "sum", "output_idx": 0}], "shape_out": [1], "dtype": "float64"},
+            {
+                "node_id": "sum",
+                "instr": "ReduceSum",
+                "inputs": [{"node_id": "ctx", "output_idx": 0}],
+                "shape_out": [1],
+                "dtype": "float64",
+            },
+            {
+                "node_id": "out",
+                "instr": "Output",
+                "inputs": [{"node_id": "sum", "output_idx": 0}],
+                "shape_out": [1],
+                "dtype": "float64",
+            },
         ],
         "outputs": [{"node_id": "out", "output_idx": 0}],
     }
@@ -209,7 +275,12 @@ def _run_java_model(model_id: str, model_input: list[float]) -> dict[str, Any]:
         cwd=str(ROOT),
     )
     if proc.returncode != 0:
-        return {"error": {"code_id": "JAVA_RUNTIME_ERROR", "message": proc.stderr.strip() or "java runner failed"}}
+        return {
+            "error": {
+                "code_id": "JAVA_RUNTIME_ERROR",
+                "message": proc.stderr.strip() or "java runner failed",
+            }
+        }
     try:
         payload = json.loads(proc.stdout.strip())
     except Exception as exc:
@@ -327,7 +398,12 @@ def main() -> int:
         classes: list[str] = []
 
         for mr in model_reports:
-            cls, reason = _compare(mr["profile_results"][a], mr["profile_results"][b], args.abs_tol, args.rel_tol)
+            cls, reason = _compare(
+                mr["profile_results"][a],
+                mr["profile_results"][b],
+                args.abs_tol,
+                args.rel_tol,
+            )
             status = "PASS"
             if cls == "BLOCKED":
                 status = "BLOCKED"
@@ -347,9 +423,17 @@ def main() -> int:
             )
 
         if has_fail:
-            p_status, p_class, p_reason = "FAIL", "E2", "At least one model failed tolerance."
+            p_status, p_class, p_reason = (
+                "FAIL",
+                "E2",
+                "At least one model failed tolerance.",
+            )
         elif has_blocked:
-            p_status, p_class, p_reason = "BLOCKED", "E2", "At least one model is blocked by runtime error."
+            p_status, p_class, p_reason = (
+                "BLOCKED",
+                "E2",
+                "At least one model is blocked by runtime error.",
+            )
         else:
             p_status = "PASS"
             p_class = "E0" if all(c == "E0" for c in classes) else "E1"
@@ -371,7 +455,12 @@ def main() -> int:
         blocked = False
         failed = False
         for a, b in itertools.combinations(PROFILES, 2):
-            cls, _ = _compare(mr["profile_results"][a], mr["profile_results"][b], args.abs_tol, args.rel_tol)
+            cls, _ = _compare(
+                mr["profile_results"][a],
+                mr["profile_results"][b],
+                args.abs_tol,
+                args.rel_tol,
+            )
             if cls == "BLOCKED":
                 blocked = True
                 classes.append("E2")
@@ -390,9 +479,17 @@ def main() -> int:
             per_model_classification[mr["model_id"]] = "E1"
 
     if any(s == "FAIL" for s in pair_statuses):
-        overall_status, overall_class, overall_reason = "FAIL", "E2", "At least one required pair failed."
+        overall_status, overall_class, overall_reason = (
+            "FAIL",
+            "E2",
+            "At least one required pair failed.",
+        )
     elif any(s == "BLOCKED" for s in pair_statuses):
-        overall_status, overall_class, overall_reason = "BLOCKED", "E2", "At least one required pair blocked."
+        overall_status, overall_class, overall_reason = (
+            "BLOCKED",
+            "E2",
+            "At least one required pair blocked.",
+        )
     else:
         overall_status = "PASS"
         overall_class = "E0" if all(p["classification"] == "E0" for p in pair_matrix) else "E1"
@@ -421,8 +518,13 @@ def main() -> int:
         "rel_tol": args.rel_tol,
         "excluded_operators": [],
     }
-    (out_dir / "repro-classification.json").write_text(json.dumps(repro, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "pair-matrix.json").write_text(json.dumps({"pairs": pair_matrix}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "repro-classification.json").write_text(
+        json.dumps(repro, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    (out_dir / "pair-matrix.json").write_text(
+        json.dumps({"pairs": pair_matrix}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     coverage = {
         "milestone": 10,
@@ -433,9 +535,15 @@ def main() -> int:
         "mandatory_profiles": PROFILES,
         "status": overall_status,
     }
-    (out_dir / "coverage-summary.json").write_text(json.dumps(coverage, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "waivers.json").write_text(json.dumps({"waivers": []}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "env-matrix.json").write_text(json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "coverage-summary.json").write_text(
+        json.dumps(coverage, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    (out_dir / "waivers.json").write_text(
+        json.dumps({"waivers": []}, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    (out_dir / "env-matrix.json").write_text(
+        json.dumps(report["meta"], indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
 
     conformance_hashes: dict[str, Any] = {"status": overall_status}
     results_path = ROOT / "evidence" / "conformance" / "results" / "latest.json"
@@ -450,7 +558,10 @@ def main() -> int:
             "path": "evidence/conformance/reports/latest.json",
             "sha256": _sha256_file(report_path),
         }
-    (out_dir / "conformance-hashes.json").write_text(json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "conformance-hashes.json").write_text(
+        json.dumps(conformance_hashes, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     summary_lines = [
         "# Milestone 10: Model Class Expansion",
@@ -483,9 +594,22 @@ def main() -> int:
         "classification": overall_class,
         "evidence_dir": "evidence/repro/milestone-10-model-class-expansion/",
     }
-    (out_dir / "milestone.json").write_text(json.dumps(milestone_manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / "milestone.json").write_text(
+        json.dumps(milestone_manifest, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
-    print(json.dumps({"status": overall_status, "classification": overall_class, "reason": overall_reason}, indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "status": overall_status,
+                "classification": overall_class,
+                "reason": overall_reason,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
     return 0 if overall_status == "PASS" else 1
 
 

@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-from pathlib import Path
 import sys
+from pathlib import Path
+
+from tooling.lib.path_config import (
+    bundles_root,
+    conformance_reports_root,
+    conformance_results_root,
+)
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from tooling.lib.path_config import bundles_root, conformance_reports_root, conformance_results_root
 
 
 def main() -> int:

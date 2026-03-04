@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+
 from tooling.quality_gates import doc_code_separation_gate
 
 ROOT = Path(__file__).resolve().parents[2]

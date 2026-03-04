@@ -7,11 +7,11 @@ import subprocess
 import sys
 from pathlib import Path
 
+from tooling.quality_gates.telemetry import emit_gate_trace
+
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
-
-from tooling.quality_gates.telemetry import emit_gate_trace
 
 POLICY = ROOT / "governance" / "structure" / "evidence_storage_policy.json"
 OUT = ROOT / "evidence" / "gates" / "quality" / "evidence_storage_policy.json"
@@ -53,7 +53,9 @@ def evaluate(root: Path = ROOT, tracked_paths: list[str] | None = None) -> dict:
             if fnmatch.fnmatch(p, pat):
                 findings.append(f"forbidden_tracked_path:{p}")
 
-    gitignore = (root / ".gitignore").read_text(encoding="utf-8", errors="ignore") if (root / ".gitignore").exists() else ""
+    gitignore = (
+        (root / ".gitignore").read_text(encoding="utf-8", errors="ignore") if (root / ".gitignore").exists() else ""
+    )
     for pat in forbidden_globs:
         if pat not in gitignore:
             findings.append(f"missing_gitignore_pattern:{pat}")

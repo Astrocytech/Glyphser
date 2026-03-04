@@ -2,14 +2,12 @@
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 from typing import List
 
 ROOT = Path(__file__).resolve().parents[2]
-import sys
-
 sys.path.insert(0, str(ROOT))
-from tooling.lib.path_config import fixtures_root, goldens_root, vectors_root
 
 
 def _check_manifests(root: Path, manifest_name: str) -> List[str]:
@@ -43,6 +41,8 @@ def _check_vectors_manifests(root: Path) -> List[str]:
 
 
 def main() -> int:
+    from tooling.lib.path_config import fixtures_root, goldens_root, vectors_root
+
     errors: List[str] = []
     errors.extend(_check_manifests(fixtures_root(), "fixture-manifest.json"))
     errors.extend(_check_manifests(goldens_root(), "golden-manifest.json"))

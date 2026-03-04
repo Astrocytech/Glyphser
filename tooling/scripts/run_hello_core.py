@@ -15,8 +15,8 @@ from runtime.glyphser.certificate.build import write_execution_certificate  # no
 from runtime.glyphser.checkpoint.write import save_checkpoint  # noqa: E402
 from runtime.glyphser.data.next_batch import next_batch  # noqa: E402
 from runtime.glyphser.model.model_ir_executor import execute  # noqa: E402
-from runtime.glyphser.trace.compute_trace_hash import compute_trace_hash  # noqa: E402
 from runtime.glyphser.serialization.canonical_cbor import encode_canonical  # noqa: E402
+from runtime.glyphser.trace.compute_trace_hash import compute_trace_hash  # noqa: E402
 from runtime.glyphser.trace.trace_sidecar import write_trace  # noqa: E402
 from tooling.lib.path_config import fixtures_root  # noqa: E402
 
@@ -60,7 +60,13 @@ def _normalize_hello_ir(ir: dict) -> dict:
 
         if op == "INPUT":
             shape = raw.get("shape", [1])
-            node = {"node_id": node_id, "instr": "Input", "inputs": [], "shape_out": shape, "dtype": "float32"}
+            node = {
+                "node_id": node_id,
+                "instr": "Input",
+                "inputs": [],
+                "shape_out": shape,
+                "dtype": "float32",
+            }
             last_shape = shape
         elif op == "DENSE":
             params = {"weights": raw.get("weights", []), "bias": raw.get("bias", 0.0)}
@@ -129,9 +135,7 @@ def main() -> int:
             "driver_id": driver_id,
             "mode": "forward",
             "replay_token": "hello-core-replay-token",
-            "tmmu_context": {
-                "arena_config": {"default": {"capacity_bytes": 1_000_000, "alignment_bytes": 64}}
-            },
+            "tmmu_context": {"arena_config": {"default": {"capacity_bytes": 1_000_000, "alignment_bytes": 64}}},
         }
     )
     if "error" in response:
@@ -181,9 +185,9 @@ def main() -> int:
     _ = write_execution_certificate(execution_certificate, certificate_path)
     certificate_hash = _sha256_hex(_canonical_json_bytes(execution_certificate))
 
-    interface_hash = json.loads(
-        (ROOT / "specs" / "contracts" / "interface_hash.json").read_text(encoding="utf-8")
-    )["interface_hash"]
+    interface_hash = json.loads((ROOT / "specs" / "contracts" / "interface_hash.json").read_text(encoding="utf-8"))[
+        "interface_hash"
+    ]
 
     golden = json.loads(GOLDEN.read_text(encoding="utf-8"))
     expected = golden["expected_identities"]

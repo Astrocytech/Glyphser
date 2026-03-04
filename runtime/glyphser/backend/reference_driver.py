@@ -1,4 +1,5 @@
 """Deterministic reference backend driver."""
+
 from __future__ import annotations
 
 from typing import Any, Dict, List, Tuple
@@ -49,6 +50,7 @@ class ReferenceDriver:
             return [x if x > 0 else 0 for x in a], rng_state
         if instr == "Sigmoid":
             import math
+
             a = inputs[0]
             return [1 / (1 + math.exp(-x)) for x in a], rng_state
         if instr == "Dense":

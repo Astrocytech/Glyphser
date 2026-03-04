@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List
 
 ROOT = Path(__file__).resolve().parents[2]
 VECTORS_ROOT = ROOT / "artifacts" / "inputs" / "conformance" / "primitive_vectors" / "operators"

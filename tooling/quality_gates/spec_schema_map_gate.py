@@ -84,7 +84,13 @@ def evaluate() -> dict:
             if not target.exists():
                 missing_specs.append({"schema": schema_rel, "expected_spec": _rel(target)})
                 continue
-            resolved.append({"schema": schema_rel, "spec": _rel(target), "source": "manual_override"})
+            resolved.append(
+                {
+                    "schema": schema_rel,
+                    "spec": _rel(target),
+                    "source": "manual_override",
+                }
+            )
             continue
 
         layer = schema.parent.name

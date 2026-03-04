@@ -2,1585 +2,1725 @@
 # Source: registry+schemas
 from __future__ import annotations
 
-from typing import Any, Dict, List
+from typing import Any, List
 
-def validate_API_Interfaces(obj: Any) -> List[str]:
+
+def validate_GlyphserEvidenceMetadataCatalog(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'spec_version' not in obj:
+    if "schema_version" not in obj:
+        errors.append("missing schema_version")
+    if "generated_at_utc" not in obj:
+        errors.append("missing generated_at_utc")
+    if "generator" not in obj:
+        errors.append("missing generator")
+    if "entries" not in obj:
+        errors.append("missing entries")
+    if "entries" in obj:
+        if not isinstance(obj["entries"], list):
+            errors.append("entries must be array")
+    if "generated_at_utc" in obj:
+        if not isinstance(obj["generated_at_utc"], str):
+            errors.append("generated_at_utc must be string")
+    if "generator" in obj:
+        if not isinstance(obj["generator"], str):
+            errors.append("generator must be string")
+    if "schema_version" in obj:
+        if not isinstance(obj["schema_version"], str):
+            errors.append("schema_version must be string")
+    return errors
+
+
+def validate_APIInterfaces(obj: Any) -> List[str]:
+    errors: List[str] = []
+    if not isinstance(obj, dict):
+        return ["expected object"]
+    if "spec_version" not in obj:
         errors.append("missing spec_version")
-    if 'interfaces' not in obj:
+    if "interfaces" not in obj:
         errors.append("missing interfaces")
-    if 'interface_hash' not in obj:
+    if "interface_hash" not in obj:
         errors.append("missing interface_hash")
-    if 'interface_hash' in obj:
-        if not isinstance(obj['interface_hash'], str):
+    if "interface_hash" in obj:
+        if not isinstance(obj["interface_hash"], str):
             errors.append("interface_hash must be string")
-    if 'interfaces' in obj:
-        if not isinstance(obj['interfaces'], list):
+    if "interfaces" in obj:
+        if not isinstance(obj["interfaces"], list):
             errors.append("interfaces must be array")
-    if 'spec_version' in obj:
-        if not isinstance(obj['spec_version'], str):
+    if "spec_version" in obj:
+        if not isinstance(obj["spec_version"], str):
             errors.append("spec_version must be string")
     return errors
 
-def validate_Canonical_CBOR_Profile(obj: Any) -> List[str]:
+
+def validate_CanonicalCBORProfile(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'float_format' not in obj:
+    if "float_format" not in obj:
         errors.append("missing float_format")
-    if 'map_key_ordering' not in obj:
+    if "map_key_ordering" not in obj:
         errors.append("missing map_key_ordering")
-    if 'float_format' in obj:
-        if not isinstance(obj['float_format'], str):
+    if "float_format" in obj:
+        if not isinstance(obj["float_format"], str):
             errors.append("float_format must be string")
-    if 'map_key_ordering' in obj:
-        if not isinstance(obj['map_key_ordering'], str):
+    if "map_key_ordering" in obj:
+        if not isinstance(obj["map_key_ordering"], str):
             errors.append("map_key_ordering must be string")
-    if 'simple_values' in obj:
-        if not isinstance(obj['simple_values'], list):
+    if "simple_values" in obj:
+        if not isinstance(obj["simple_values"], list):
             errors.append("simple_values must be array")
-    if 'string_normalization' in obj:
-        if not isinstance(obj['string_normalization'], str):
+    if "string_normalization" in obj:
+        if not isinstance(obj["string_normalization"], str):
             errors.append("string_normalization must be string")
-    if 'tag_policy' in obj:
-        if not isinstance(obj['tag_policy'], str):
+    if "tag_policy" in obj:
+        if not isinstance(obj["tag_policy"], str):
             errors.append("tag_policy must be string")
     return errors
 
-def validate_Data_Structures(obj: Any) -> List[str]:
+
+def validate_DataStructures(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'TraceIterRecord' not in obj:
+    if "TraceIterRecord" not in obj:
         errors.append("missing TraceIterRecord")
-    if 'TraceRunHeader' not in obj:
+    if "TraceRunHeader" not in obj:
         errors.append("missing TraceRunHeader")
-    if 'TraceErrorRecord' not in obj:
+    if "TraceErrorRecord" not in obj:
         errors.append("missing TraceErrorRecord")
-    if 'CheckpointHeader' not in obj:
+    if "CheckpointHeader" not in obj:
         errors.append("missing CheckpointHeader")
-    if 'StructDecl' not in obj:
+    if "StructDecl" not in obj:
         errors.append("missing StructDecl")
-    if 'FieldDecl' not in obj:
+    if "FieldDecl" not in obj:
         errors.append("missing FieldDecl")
-    if 'CheckpointHeader' in obj:
-        if not isinstance(obj['CheckpointHeader'], dict):
+    if "CheckpointHeader" in obj:
+        if not isinstance(obj["CheckpointHeader"], dict):
             errors.append("CheckpointHeader must be object")
-    if 'FieldDecl' in obj:
-        if not isinstance(obj['FieldDecl'], dict):
+    if "FieldDecl" in obj:
+        if not isinstance(obj["FieldDecl"], dict):
             errors.append("FieldDecl must be object")
-    if 'StructDecl' in obj:
-        if not isinstance(obj['StructDecl'], dict):
+    if "StructDecl" in obj:
+        if not isinstance(obj["StructDecl"], dict):
             errors.append("StructDecl must be object")
-    if 'TraceErrorRecord' in obj:
-        if not isinstance(obj['TraceErrorRecord'], dict):
+    if "TraceErrorRecord" in obj:
+        if not isinstance(obj["TraceErrorRecord"], dict):
             errors.append("TraceErrorRecord must be object")
-    if 'TraceIterRecord' in obj:
-        if not isinstance(obj['TraceIterRecord'], dict):
+    if "TraceIterRecord" in obj:
+        if not isinstance(obj["TraceIterRecord"], dict):
             errors.append("TraceIterRecord must be object")
-    if 'TraceRunHeader' in obj:
-        if not isinstance(obj['TraceRunHeader'], dict):
+    if "TraceRunHeader" in obj:
+        if not isinstance(obj["TraceRunHeader"], dict):
             errors.append("TraceRunHeader must be object")
     return errors
 
-def validate_Dependency_Lock_Policy(obj: Any) -> List[str]:
+
+def validate_DependencyLockPolicy(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'lockfile_hash' not in obj:
+    if "lockfile_hash" not in obj:
         errors.append("missing lockfile_hash")
-    if 'dependencies_lock_hash' not in obj:
+    if "dependencies_lock_hash" not in obj:
         errors.append("missing dependencies_lock_hash")
-    if 'artifact_index_hash' in obj:
-        if not isinstance(obj['artifact_index_hash'], str):
+    if "artifact_index_hash" in obj:
+        if not isinstance(obj["artifact_index_hash"], str):
             errors.append("artifact_index_hash must be string")
-    if 'dependencies_lock_hash' in obj:
-        if not isinstance(obj['dependencies_lock_hash'], str):
+    if "dependencies_lock_hash" in obj:
+        if not isinstance(obj["dependencies_lock_hash"], str):
             errors.append("dependencies_lock_hash must be string")
-    if 'lockfile_hash' in obj:
-        if not isinstance(obj['lockfile_hash'], str):
+    if "lockfile_hash" in obj:
+        if not isinstance(obj["lockfile_hash"], str):
             errors.append("lockfile_hash must be string")
-    if 'policy_bundle_hash' in obj:
-        if not isinstance(obj['policy_bundle_hash'], str):
+    if "policy_bundle_hash" in obj:
+        if not isinstance(obj["policy_bundle_hash"], str):
             errors.append("policy_bundle_hash must be string")
-    if 'runtime_env_hash' in obj:
-        if not isinstance(obj['runtime_env_hash'], str):
+    if "runtime_env_hash" in obj:
+        if not isinstance(obj["runtime_env_hash"], str):
             errors.append("runtime_env_hash must be string")
-    if 'sbom_hash' in obj:
-        if not isinstance(obj['sbom_hash'], str):
+    if "sbom_hash" in obj:
+        if not isinstance(obj["sbom_hash"], str):
             errors.append("sbom_hash must be string")
-    if 'toolchain_hash' in obj:
-        if not isinstance(obj['toolchain_hash'], str):
+    if "toolchain_hash" in obj:
+        if not isinstance(obj["toolchain_hash"], str):
             errors.append("toolchain_hash must be string")
     return errors
 
-def validate_Determinism_Profiles(obj: Any) -> List[str]:
+
+def validate_DeterminismProfiles(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'determinism_profile_id' not in obj:
+    if "determinism_profile_id" not in obj:
         errors.append("missing determinism_profile_id")
-    if 'determinism_profile_hash' not in obj:
+    if "determinism_profile_hash" not in obj:
         errors.append("missing determinism_profile_hash")
-    if 'default_compare_policy' in obj:
-        if not isinstance(obj['default_compare_policy'], str):
+    if "default_compare_policy" in obj:
+        if not isinstance(obj["default_compare_policy"], str):
             errors.append("default_compare_policy must be string")
-    if 'determinism_profile_hash' in obj:
-        if not isinstance(obj['determinism_profile_hash'], str):
+    if "determinism_profile_hash" in obj:
+        if not isinstance(obj["determinism_profile_hash"], str):
             errors.append("determinism_profile_hash must be string")
-    if 'determinism_profile_id' in obj:
-        if not isinstance(obj['determinism_profile_id'], str):
+    if "determinism_profile_id" in obj:
+        if not isinstance(obj["determinism_profile_id"], str):
             errors.append("determinism_profile_id must be string")
-    if 'nan_policy' in obj:
-        if not isinstance(obj['nan_policy'], str):
+    if "nan_policy" in obj:
+        if not isinstance(obj["nan_policy"], str):
             errors.append("nan_policy must be string")
-    if 'profile_rules' in obj:
-        if not isinstance(obj['profile_rules'], dict):
+    if "profile_rules" in obj:
+        if not isinstance(obj["profile_rules"], dict):
             errors.append("profile_rules must be object")
-    if 'tolerance_map' in obj:
-        if not isinstance(obj['tolerance_map'], dict):
+    if "tolerance_map" in obj:
+        if not isinstance(obj["tolerance_map"], dict):
             errors.append("tolerance_map must be object")
     return errors
 
-def validate_Digest_Catalog(obj: Any) -> List[str]:
+
+def validate_DigestCatalog(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'catalog_version' not in obj:
+    if "catalog_version" not in obj:
         errors.append("missing catalog_version")
-    if 'entries' not in obj:
+    if "entries" not in obj:
         errors.append("missing entries")
-    if 'catalog_version' in obj:
-        if not isinstance(obj['catalog_version'], int):
+    if "catalog_version" in obj:
+        if not isinstance(obj["catalog_version"], int):
             errors.append("catalog_version must be integer")
-    if 'entries' in obj:
-        if not isinstance(obj['entries'], list):
+    if "entries" in obj:
+        if not isinstance(obj["entries"], list):
             errors.append("entries must be array")
     return errors
 
-def validate_Environment_Manifest(obj: Any) -> List[str]:
+
+def validate_EnvironmentManifest(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'runtime_env_hash' not in obj:
+    if "runtime_env_hash" not in obj:
         errors.append("missing runtime_env_hash")
-    if 'driver_runtime_fingerprint_hash' not in obj:
+    if "driver_runtime_fingerprint_hash" not in obj:
         errors.append("missing driver_runtime_fingerprint_hash")
-    if 'backend_binary_hash' not in obj:
+    if "backend_binary_hash" not in obj:
         errors.append("missing backend_binary_hash")
-    if 'arch' in obj:
-        if not isinstance(obj['arch'], str):
+    if "arch" in obj:
+        if not isinstance(obj["arch"], str):
             errors.append("arch must be string")
-    if 'backend_binary_hash' in obj:
-        if not isinstance(obj['backend_binary_hash'], str):
+    if "backend_binary_hash" in obj:
+        if not isinstance(obj["backend_binary_hash"], str):
             errors.append("backend_binary_hash must be string")
-    if 'dependencies_lock_hash' in obj:
-        if not isinstance(obj['dependencies_lock_hash'], str):
+    if "dependencies_lock_hash" in obj:
+        if not isinstance(obj["dependencies_lock_hash"], str):
             errors.append("dependencies_lock_hash must be string")
-    if 'driver_runtime_fingerprint_hash' in obj:
-        if not isinstance(obj['driver_runtime_fingerprint_hash'], str):
+    if "driver_runtime_fingerprint_hash" in obj:
+        if not isinstance(obj["driver_runtime_fingerprint_hash"], str):
             errors.append("driver_runtime_fingerprint_hash must be string")
-    if 'gpu' in obj:
-        if not isinstance(obj['gpu'], str):
+    if "gpu" in obj:
+        if not isinstance(obj["gpu"], str):
             errors.append("gpu must be string")
-    if 'os' in obj:
-        if not isinstance(obj['os'], str):
+    if "os" in obj:
+        if not isinstance(obj["os"], str):
             errors.append("os must be string")
-    if 'runtime_env_hash' in obj:
-        if not isinstance(obj['runtime_env_hash'], str):
+    if "runtime_env_hash" in obj:
+        if not isinstance(obj["runtime_env_hash"], str):
             errors.append("runtime_env_hash must be string")
-    if 'toolchain_hash' in obj:
-        if not isinstance(obj['toolchain_hash'], str):
+    if "toolchain_hash" in obj:
+        if not isinstance(obj["toolchain_hash"], str):
             errors.append("toolchain_hash must be string")
     return errors
 
-def validate_Glyphser_Error_Codes(obj: Any) -> List[str]:
+
+def validate_GlyphserErrorCodes(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'error_codes' not in obj:
+    if "error_codes" not in obj:
         errors.append("missing error_codes")
-    if 'error_codes' in obj:
-        if not isinstance(obj['error_codes'], list):
+    if "error_codes" in obj:
+        if not isinstance(obj["error_codes"], list):
             errors.append("error_codes must be array")
     return errors
 
-def validate_Normativity_Legend(obj: Any) -> List[str]:
+
+def validate_NormativityLegend(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'tags' not in obj:
+    if "tags" not in obj:
         errors.append("missing tags")
-    if 'default_rules' in obj:
-        if not isinstance(obj['default_rules'], str):
+    if "default_rules" in obj:
+        if not isinstance(obj["default_rules"], str):
             errors.append("default_rules must be string")
-    if 'tags' in obj:
-        if not isinstance(obj['tags'], list):
+    if "tags" in obj:
+        if not isinstance(obj["tags"], list):
             errors.append("tags must be array")
     return errors
 
-def validate_Operator_Registry_Schema(obj: Any) -> List[str]:
+
+def validate_OperatorRegistrySchema(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'operator_id' not in obj:
+    if "operator_id" not in obj:
         errors.append("missing operator_id")
-    if 'surface' not in obj:
+    if "surface" not in obj:
         errors.append("missing surface")
-    if 'version' not in obj:
+    if "version" not in obj:
         errors.append("missing version")
-    if 'method' not in obj:
+    if "method" not in obj:
         errors.append("missing method")
-    if 'purity_class' not in obj:
+    if "purity_class" not in obj:
         errors.append("missing purity_class")
-    if 'rng_usage' not in obj:
+    if "rng_usage" not in obj:
         errors.append("missing rng_usage")
-    if 'determinism_class' not in obj:
+    if "determinism_class" not in obj:
         errors.append("missing determinism_class")
-    if 'side_effects' not in obj:
+    if "side_effects" not in obj:
         errors.append("missing side_effects")
-    if 'allowed_error_codes' not in obj:
+    if "allowed_error_codes" not in obj:
         errors.append("missing allowed_error_codes")
-    if 'required_capabilities' not in obj:
+    if "required_capabilities" not in obj:
         errors.append("missing required_capabilities")
-    if 'request_schema_digest' not in obj:
+    if "request_schema_digest" not in obj:
         errors.append("missing request_schema_digest")
-    if 'response_schema_digest' not in obj:
+    if "response_schema_digest" not in obj:
         errors.append("missing response_schema_digest")
-    if 'allowed_error_codes' in obj:
-        if not isinstance(obj['allowed_error_codes'], list):
+    if "allowed_error_codes" in obj:
+        if not isinstance(obj["allowed_error_codes"], list):
             errors.append("allowed_error_codes must be array")
-    if 'determinism_class' in obj:
-        if not isinstance(obj['determinism_class'], str):
+    if "determinism_class" in obj:
+        if not isinstance(obj["determinism_class"], str):
             errors.append("determinism_class must be string")
-    if 'method' in obj:
-        if not isinstance(obj['method'], str):
+    if "method" in obj:
+        if not isinstance(obj["method"], str):
             errors.append("method must be string")
-    if 'operator_id' in obj:
-        if not isinstance(obj['operator_id'], str):
+    if "operator_id" in obj:
+        if not isinstance(obj["operator_id"], str):
             errors.append("operator_id must be string")
-    if 'purity_class' in obj:
-        if not isinstance(obj['purity_class'], str):
+    if "purity_class" in obj:
+        if not isinstance(obj["purity_class"], str):
             errors.append("purity_class must be string")
-    if 'request_schema_digest' in obj:
-        if not isinstance(obj['request_schema_digest'], str):
+    if "request_schema_digest" in obj:
+        if not isinstance(obj["request_schema_digest"], str):
             errors.append("request_schema_digest must be string")
-    if 'required_capabilities' in obj:
-        if not isinstance(obj['required_capabilities'], list):
+    if "required_capabilities" in obj:
+        if not isinstance(obj["required_capabilities"], list):
             errors.append("required_capabilities must be array")
-    if 'response_schema_digest' in obj:
-        if not isinstance(obj['response_schema_digest'], str):
+    if "response_schema_digest" in obj:
+        if not isinstance(obj["response_schema_digest"], str):
             errors.append("response_schema_digest must be string")
-    if 'rng_usage' in obj:
-        if not isinstance(obj['rng_usage'], str):
+    if "rng_usage" in obj:
+        if not isinstance(obj["rng_usage"], str):
             errors.append("rng_usage must be string")
-    if 'side_effects' in obj:
-        if not isinstance(obj['side_effects'], list):
+    if "side_effects" in obj:
+        if not isinstance(obj["side_effects"], list):
             errors.append("side_effects must be array")
-    if 'surface' in obj:
-        if not isinstance(obj['surface'], str):
+    if "surface" in obj:
+        if not isinstance(obj["surface"], str):
             errors.append("surface must be string")
-    if 'version' in obj:
-        if not isinstance(obj['version'], str):
+    if "version" in obj:
+        if not isinstance(obj["version"], str):
             errors.append("version must be string")
     return errors
 
-def validate_Redaction_Policy(obj: Any) -> List[str]:
+
+def validate_RedactionPolicy(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'classification' not in obj:
+    if "classification" not in obj:
         errors.append("missing classification")
-    if 'redaction_mode' not in obj:
+    if "redaction_mode" not in obj:
         errors.append("missing redaction_mode")
-    if 'transform' not in obj:
+    if "transform" not in obj:
         errors.append("missing transform")
-    if 'classification' in obj:
-        if not isinstance(obj['classification'], str):
+    if "classification" in obj:
+        if not isinstance(obj["classification"], str):
             errors.append("classification must be string")
-    if 'redaction_key_id' in obj:
-        if not isinstance(obj['redaction_key_id'], str):
+    if "redaction_key_id" in obj:
+        if not isinstance(obj["redaction_key_id"], str):
             errors.append("redaction_key_id must be string")
-    if 'redaction_mode' in obj:
-        if not isinstance(obj['redaction_mode'], str):
+    if "redaction_mode" in obj:
+        if not isinstance(obj["redaction_mode"], str):
             errors.append("redaction_mode must be string")
-    if 'redaction_policy_hash' in obj:
-        if not isinstance(obj['redaction_policy_hash'], str):
+    if "redaction_policy_hash" in obj:
+        if not isinstance(obj["redaction_policy_hash"], str):
             errors.append("redaction_policy_hash must be string")
-    if 'transform' in obj:
-        if not isinstance(obj['transform'], str):
+    if "transform" in obj:
+        if not isinstance(obj["transform"], str):
             errors.append("transform must be string")
     return errors
 
-def validate_AuthZCapabilityMatrix_L2(obj: Any) -> List[str]:
+
+def validate_AuthZCapabilityMatrixL2(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'roles' not in obj:
+    if "roles" not in obj:
         errors.append("missing roles")
-    if 'capabilities' not in obj:
+    if "capabilities" not in obj:
         errors.append("missing capabilities")
-    if 'capabilities' in obj:
-        if not isinstance(obj['capabilities'], list):
+    if "capabilities" in obj:
+        if not isinstance(obj["capabilities"], list):
             errors.append("capabilities must be array")
-    if 'roles' in obj:
-        if not isinstance(obj['roles'], list):
+    if "roles" in obj:
+        if not isinstance(obj["roles"], list):
             errors.append("roles must be array")
     return errors
 
-def validate_CheckpointSchema_L2(obj: Any) -> List[str]:
+
+def validate_CheckpointSchemaL2(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'checkpoint_hash' not in obj:
+    if "checkpoint_hash" not in obj:
         errors.append("missing checkpoint_hash")
-    if 'checkpoint_header_hash' not in obj:
+    if "checkpoint_header_hash" not in obj:
         errors.append("missing checkpoint_header_hash")
-    if 'checkpoint_manifest_hash' not in obj:
+    if "checkpoint_manifest_hash" not in obj:
         errors.append("missing checkpoint_manifest_hash")
-    if 'artifact_index_hash' in obj:
-        if not isinstance(obj['artifact_index_hash'], str):
+    if "artifact_index_hash" in obj:
+        if not isinstance(obj["artifact_index_hash"], str):
             errors.append("artifact_index_hash must be string")
-    if 'backend_binary_hash' in obj:
-        if not isinstance(obj['backend_binary_hash'], str):
+    if "backend_binary_hash" in obj:
+        if not isinstance(obj["backend_binary_hash"], str):
             errors.append("backend_binary_hash must be string")
-    if 'checkpoint_hash' in obj:
-        if not isinstance(obj['checkpoint_hash'], str):
+    if "checkpoint_hash" in obj:
+        if not isinstance(obj["checkpoint_hash"], str):
             errors.append("checkpoint_hash must be string")
-    if 'checkpoint_hash_prev' in obj:
-        if not isinstance(obj['checkpoint_hash_prev'], str):
+    if "checkpoint_hash_prev" in obj:
+        if not isinstance(obj["checkpoint_hash_prev"], str):
             errors.append("checkpoint_hash_prev must be string")
-    if 'checkpoint_header_hash' in obj:
-        if not isinstance(obj['checkpoint_header_hash'], str):
+    if "checkpoint_header_hash" in obj:
+        if not isinstance(obj["checkpoint_header_hash"], str):
             errors.append("checkpoint_header_hash must be string")
-    if 'checkpoint_manifest_hash' in obj:
-        if not isinstance(obj['checkpoint_manifest_hash'], str):
+    if "checkpoint_manifest_hash" in obj:
+        if not isinstance(obj["checkpoint_manifest_hash"], str):
             errors.append("checkpoint_manifest_hash must be string")
-    if 'checkpoint_merkle_root' in obj:
-        if not isinstance(obj['checkpoint_merkle_root'], str):
+    if "checkpoint_merkle_root" in obj:
+        if not isinstance(obj["checkpoint_merkle_root"], str):
             errors.append("checkpoint_merkle_root must be string")
-    if 'data_cursors_hash' in obj:
-        if not isinstance(obj['data_cursors_hash'], str):
+    if "data_cursors_hash" in obj:
+        if not isinstance(obj["data_cursors_hash"], str):
             errors.append("data_cursors_hash must be string")
-    if 'dataset_snapshot_id' in obj:
-        if not isinstance(obj['dataset_snapshot_id'], str):
+    if "dataset_snapshot_id" in obj:
+        if not isinstance(obj["dataset_snapshot_id"], str):
             errors.append("dataset_snapshot_id must be string")
-    if 'determinism_profile_hash' in obj:
-        if not isinstance(obj['determinism_profile_hash'], str):
+    if "determinism_profile_hash" in obj:
+        if not isinstance(obj["determinism_profile_hash"], str):
             errors.append("determinism_profile_hash must be string")
-    if 'dp_accountant_manifest_hash' in obj:
-        if not isinstance(obj['dp_accountant_manifest_hash'], str):
+    if "dp_accountant_manifest_hash" in obj:
+        if not isinstance(obj["dp_accountant_manifest_hash"], str):
             errors.append("dp_accountant_manifest_hash must be string")
-    if 'dp_accountant_state_hash' in obj:
-        if not isinstance(obj['dp_accountant_state_hash'], str):
+    if "dp_accountant_state_hash" in obj:
+        if not isinstance(obj["dp_accountant_state_hash"], str):
             errors.append("dp_accountant_state_hash must be string")
-    if 'ir_hash' in obj:
-        if not isinstance(obj['ir_hash'], str):
+    if "ir_hash" in obj:
+        if not isinstance(obj["ir_hash"], str):
             errors.append("ir_hash must be string")
-    if 'lineage_root_hash' in obj:
-        if not isinstance(obj['lineage_root_hash'], str):
+    if "lineage_root_hash" in obj:
+        if not isinstance(obj["lineage_root_hash"], str):
             errors.append("lineage_root_hash must be string")
-    if 'manifest_hash' in obj:
-        if not isinstance(obj['manifest_hash'], str):
+    if "manifest_hash" in obj:
+        if not isinstance(obj["manifest_hash"], str):
             errors.append("manifest_hash must be string")
-    if 'optimizer_manifest_hash' in obj:
-        if not isinstance(obj['optimizer_manifest_hash'], str):
+    if "optimizer_manifest_hash" in obj:
+        if not isinstance(obj["optimizer_manifest_hash"], str):
             errors.append("optimizer_manifest_hash must be string")
-    if 'optimizer_state_root_hash' in obj:
-        if not isinstance(obj['optimizer_state_root_hash'], str):
+    if "optimizer_state_root_hash" in obj:
+        if not isinstance(obj["optimizer_state_root_hash"], str):
             errors.append("optimizer_state_root_hash must be string")
-    if 'policy_bundle_hash' in obj:
-        if not isinstance(obj['policy_bundle_hash'], str):
+    if "policy_bundle_hash" in obj:
+        if not isinstance(obj["policy_bundle_hash"], str):
             errors.append("policy_bundle_hash must be string")
-    if 'rng_state_hash' in obj:
-        if not isinstance(obj['rng_state_hash'], str):
+    if "rng_state_hash" in obj:
+        if not isinstance(obj["rng_state_hash"], str):
             errors.append("rng_state_hash must be string")
-    if 'sampler_config_hash' in obj:
-        if not isinstance(obj['sampler_config_hash'], str):
+    if "sampler_config_hash" in obj:
+        if not isinstance(obj["sampler_config_hash"], str):
             errors.append("sampler_config_hash must be string")
-    if 'tensors_root_hash' in obj:
-        if not isinstance(obj['tensors_root_hash'], str):
+    if "tensors_root_hash" in obj:
+        if not isinstance(obj["tensors_root_hash"], str):
             errors.append("tensors_root_hash must be string")
-    if 'tmmu_plan_hash' in obj:
-        if not isinstance(obj['tmmu_plan_hash'], str):
+    if "tmmu_plan_hash" in obj:
+        if not isinstance(obj["tmmu_plan_hash"], str):
             errors.append("tmmu_plan_hash must be string")
-    if 'trace_final_hash' in obj:
-        if not isinstance(obj['trace_final_hash'], str):
+    if "trace_final_hash" in obj:
+        if not isinstance(obj["trace_final_hash"], str):
             errors.append("trace_final_hash must be string")
-    if 'weights_manifest_hash' in obj:
-        if not isinstance(obj['weights_manifest_hash'], str):
+    if "weights_manifest_hash" in obj:
+        if not isinstance(obj["weights_manifest_hash"], str):
             errors.append("weights_manifest_hash must be string")
     return errors
 
-def validate_ConfigSchema_L2(obj: Any) -> List[str]:
+
+def validate_ConfigSchemaL2(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'spec_version' not in obj:
+    if "spec_version" not in obj:
         errors.append("missing spec_version")
-    if 'tenant_id' not in obj:
+    if "tenant_id" not in obj:
         errors.append("missing tenant_id")
-    if 'seed' not in obj:
+    if "seed" not in obj:
         errors.append("missing seed")
-    if 'global_batch_size' not in obj:
+    if "global_batch_size" not in obj:
         errors.append("missing global_batch_size")
-    if 'datasets' not in obj:
+    if "datasets" not in obj:
         errors.append("missing datasets")
-    if 'environment' not in obj:
+    if "environment" not in obj:
         errors.append("missing environment")
-    if 'pipeline_stages' not in obj:
+    if "pipeline_stages" not in obj:
         errors.append("missing pipeline_stages")
-    if 'model' not in obj:
+    if "model" not in obj:
         errors.append("missing model")
-    if 'security' not in obj:
+    if "security" not in obj:
         errors.append("missing security")
-    if 'optimizer' not in obj:
+    if "optimizer" not in obj:
         errors.append("missing optimizer")
-    if 'policy_bundle' not in obj:
+    if "policy_bundle" not in obj:
         errors.append("missing policy_bundle")
-    if 'checkpoint_frequency' in obj:
-        if not isinstance(obj['checkpoint_frequency'], int):
+    if "checkpoint_frequency" in obj:
+        if not isinstance(obj["checkpoint_frequency"], int):
             errors.append("checkpoint_frequency must be integer")
-    if 'custom_operators' in obj:
-        if not isinstance(obj['custom_operators'], list):
+    if "custom_operators" in obj:
+        if not isinstance(obj["custom_operators"], list):
             errors.append("custom_operators must be array")
-    if 'data' in obj:
-        if not isinstance(obj['data'], dict):
+    if "data" in obj:
+        if not isinstance(obj["data"], dict):
             errors.append("data must be object")
-    if 'datasets' in obj:
-        if not isinstance(obj['datasets'], dict):
+    if "datasets" in obj:
+        if not isinstance(obj["datasets"], dict):
             errors.append("datasets must be object")
-    if 'environment' in obj:
-        if not isinstance(obj['environment'], dict):
+    if "environment" in obj:
+        if not isinstance(obj["environment"], dict):
             errors.append("environment must be object")
-    if 'execution_mode' in obj:
-        if not isinstance(obj['execution_mode'], str):
+    if "execution_mode" in obj:
+        if not isinstance(obj["execution_mode"], str):
             errors.append("execution_mode must be string")
-    if 'fingerprint_frequency' in obj:
-        if not isinstance(obj['fingerprint_frequency'], int):
+    if "fingerprint_frequency" in obj:
+        if not isinstance(obj["fingerprint_frequency"], int):
             errors.append("fingerprint_frequency must be integer")
-    if 'global_batch_size' in obj:
-        if not isinstance(obj['global_batch_size'], int):
+    if "global_batch_size" in obj:
+        if not isinstance(obj["global_batch_size"], int):
             errors.append("global_batch_size must be integer")
-    if 'job_priority' in obj:
-        if not isinstance(obj['job_priority'], int):
+    if "job_priority" in obj:
+        if not isinstance(obj["job_priority"], int):
             errors.append("job_priority must be integer")
-    if 'model' in obj:
-        if not isinstance(obj['model'], dict):
+    if "model" in obj:
+        if not isinstance(obj["model"], dict):
             errors.append("model must be object")
-    if 'optimizer' in obj:
-        if not isinstance(obj['optimizer'], dict):
+    if "optimizer" in obj:
+        if not isinstance(obj["optimizer"], dict):
             errors.append("optimizer must be object")
-    if 'parallelism' in obj:
-        if not isinstance(obj['parallelism'], dict):
+    if "parallelism" in obj:
+        if not isinstance(obj["parallelism"], dict):
             errors.append("parallelism must be object")
-    if 'pipeline_stages' in obj:
-        if not isinstance(obj['pipeline_stages'], list):
+    if "pipeline_stages" in obj:
+        if not isinstance(obj["pipeline_stages"], list):
             errors.append("pipeline_stages must be array")
-    if 'policy' in obj:
-        if not isinstance(obj['policy'], dict):
+    if "policy" in obj:
+        if not isinstance(obj["policy"], dict):
             errors.append("policy must be object")
-    if 'policy_bundle' in obj:
-        if not isinstance(obj['policy_bundle'], dict):
+    if "policy_bundle" in obj:
+        if not isinstance(obj["policy_bundle"], dict):
             errors.append("policy_bundle must be object")
-    if 'schema_mode' in obj:
-        if not isinstance(obj['schema_mode'], str):
+    if "schema_mode" in obj:
+        if not isinstance(obj["schema_mode"], str):
             errors.append("schema_mode must be string")
-    if 'security' in obj:
-        if not isinstance(obj['security'], dict):
+    if "security" in obj:
+        if not isinstance(obj["security"], dict):
             errors.append("security must be object")
-    if 'seed' in obj:
-        if not isinstance(obj['seed'], int):
+    if "seed" in obj:
+        if not isinstance(obj["seed"], int):
             errors.append("seed must be integer")
-    if 'spec_version' in obj:
-        if not isinstance(obj['spec_version'], str):
+    if "spec_version" in obj:
+        if not isinstance(obj["spec_version"], str):
             errors.append("spec_version must be string")
-    if 'task_type' in obj:
-        if not isinstance(obj['task_type'], str):
+    if "task_type" in obj:
+        if not isinstance(obj["task_type"], str):
             errors.append("task_type must be string")
-    if 'tenant_id' in obj:
-        if not isinstance(obj['tenant_id'], str):
+    if "tenant_id" in obj:
+        if not isinstance(obj["tenant_id"], str):
             errors.append("tenant_id must be string")
     return errors
 
-def validate_DataLineage_L2(obj: Any) -> List[str]:
+
+def validate_DataLineageL2(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'dataset_snapshot_id' not in obj:
+    if "dataset_snapshot_id" not in obj:
         errors.append("missing dataset_snapshot_id")
-    if 'data_access_plan_hash' not in obj:
+    if "data_access_plan_hash" not in obj:
         errors.append("missing data_access_plan_hash")
-    if 'lineage_root_hash' not in obj:
+    if "lineage_root_hash" not in obj:
         errors.append("missing lineage_root_hash")
-    if 'data_access_plan_hash' in obj:
-        if not isinstance(obj['data_access_plan_hash'], str):
+    if "data_access_plan_hash" in obj:
+        if not isinstance(obj["data_access_plan_hash"], str):
             errors.append("data_access_plan_hash must be string")
-    if 'dataset_snapshot_id' in obj:
-        if not isinstance(obj['dataset_snapshot_id'], str):
+    if "dataset_snapshot_id" in obj:
+        if not isinstance(obj["dataset_snapshot_id"], str):
             errors.append("dataset_snapshot_id must be string")
-    if 'lineage_root_hash' in obj:
-        if not isinstance(obj['lineage_root_hash'], str):
+    if "lineage_root_hash" in obj:
+        if not isinstance(obj["lineage_root_hash"], str):
             errors.append("lineage_root_hash must be string")
-    if 'split_hashes' in obj:
-        if not isinstance(obj['split_hashes'], list):
+    if "split_hashes" in obj:
+        if not isinstance(obj["split_hashes"], list):
             errors.append("split_hashes must be array")
-    if 'transform_chain_hash' in obj:
-        if not isinstance(obj['transform_chain_hash'], str):
+    if "transform_chain_hash" in obj:
+        if not isinstance(obj["transform_chain_hash"], str):
             errors.append("transform_chain_hash must be string")
     return errors
 
-def validate_DataNextBatch_L2(obj: Any) -> List[str]:
+
+def validate_DataNextBatchL2(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'dataset_key' not in obj:
+    if "dataset_key" not in obj:
         errors.append("missing dataset_key")
-    if 'global_batch_size' not in obj:
+    if "global_batch_size" not in obj:
         errors.append("missing global_batch_size")
-    if 'world_size' not in obj:
+    if "world_size" not in obj:
         errors.append("missing world_size")
-    if 'seed' not in obj:
+    if "seed" not in obj:
         errors.append("missing seed")
-    if 'dataset_key' in obj:
-        if not isinstance(obj['dataset_key'], str):
+    if "dataset_key" in obj:
+        if not isinstance(obj["dataset_key"], str):
             errors.append("dataset_key must be string")
-    if 'global_batch_size' in obj:
-        if not isinstance(obj['global_batch_size'], int):
+    if "global_batch_size" in obj:
+        if not isinstance(obj["global_batch_size"], int):
             errors.append("global_batch_size must be integer")
-    if 'seed' in obj:
-        if not isinstance(obj['seed'], int):
+    if "seed" in obj:
+        if not isinstance(obj["seed"], int):
             errors.append("seed must be integer")
-    if 'world_size' in obj:
-        if not isinstance(obj['world_size'], int):
+    if "world_size" in obj:
+        if not isinstance(obj["world_size"], int):
             errors.append("world_size must be integer")
     return errors
 
-def validate_DeploymentRunbook_L2(obj: Any) -> List[str]:
+
+def validate_DeploymentRunbookL2(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'runbook_version' not in obj:
+    if "runbook_version" not in obj:
         errors.append("missing runbook_version")
-    if 'environment' not in obj:
+    if "environment" not in obj:
         errors.append("missing environment")
-    if 'commands' not in obj:
+    if "commands" not in obj:
         errors.append("missing commands")
-    if 'commands' in obj:
-        if not isinstance(obj['commands'], list):
+    if "commands" in obj:
+        if not isinstance(obj["commands"], list):
             errors.append("commands must be array")
-    if 'environment' in obj:
-        if not isinstance(obj['environment'], str):
+    if "environment" in obj:
+        if not isinstance(obj["environment"], str):
             errors.append("environment must be string")
-    if 'runbook_version' in obj:
-        if not isinstance(obj['runbook_version'], str):
+    if "runbook_version" in obj:
+        if not isinstance(obj["runbook_version"], str):
             errors.append("runbook_version must be string")
     return errors
 
-def validate_DifferentialPrivacyApply_L2(obj: Any) -> List[str]:
+
+def validate_DifferentialPrivacyApplyL2(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'epsilon' not in obj:
+    if "epsilon" not in obj:
         errors.append("missing epsilon")
-    if 'delta' not in obj:
+    if "delta" not in obj:
         errors.append("missing delta")
-    if 'clipping_strategy' not in obj:
+    if "clipping_strategy" not in obj:
         errors.append("missing clipping_strategy")
-    if 'accountant' not in obj:
+    if "accountant" not in obj:
         errors.append("missing accountant")
-    if 'accountant' in obj:
-        if not isinstance(obj['accountant'], str):
+    if "accountant" in obj:
+        if not isinstance(obj["accountant"], str):
             errors.append("accountant must be string")
-    if 'clipping_strategy' in obj:
-        if not isinstance(obj['clipping_strategy'], str):
+    if "clipping_strategy" in obj:
+        if not isinstance(obj["clipping_strategy"], str):
             errors.append("clipping_strategy must be string")
-    if 'delta' in obj:
-        if not isinstance(obj['delta'], (int, float)):
+    if "delta" in obj:
+        if not isinstance(obj["delta"], (int, float)):
             errors.append("delta must be number")
-    if 'epsilon' in obj:
-        if not isinstance(obj['epsilon'], (int, float)):
+    if "epsilon" in obj:
+        if not isinstance(obj["epsilon"], (int, float)):
             errors.append("epsilon must be number")
     return errors
 
-def validate_EvaluationHarness_L2(obj: Any) -> List[str]:
+
+def validate_EvaluationHarnessL2(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'metrics' not in obj:
+    if "metrics" not in obj:
         errors.append("missing metrics")
-    if 'metrics' in obj:
-        if not isinstance(obj['metrics'], list):
+    if "metrics" in obj:
+        if not isinstance(obj["metrics"], list):
             errors.append("metrics must be array")
-    if 'thresholds' in obj:
-        if not isinstance(obj['thresholds'], dict):
+    if "thresholds" in obj:
+        if not isinstance(obj["thresholds"], dict):
             errors.append("thresholds must be object")
     return errors
 
-def validate_ExecutionCertificate_L2(obj: Any) -> List[str]:
+
+def validate_ExecutionCertificateL2(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'signed_payload' not in obj:
+    if "signed_payload" not in obj:
         errors.append("missing signed_payload")
-    if 'certificate_hash' not in obj:
+    if "certificate_hash" not in obj:
         errors.append("missing certificate_hash")
-    if 'certificate_hash' in obj:
-        if not isinstance(obj['certificate_hash'], str):
+    if "certificate_hash" in obj:
+        if not isinstance(obj["certificate_hash"], str):
             errors.append("certificate_hash must be string")
-    if 'signed_payload' in obj:
-        if not isinstance(obj['signed_payload'], dict):
+    if "signed_payload" in obj:
+        if not isinstance(obj["signed_payload"], dict):
             errors.append("signed_payload must be object")
-    if 'unsigned_metadata' in obj:
-        if not isinstance(obj['unsigned_metadata'], dict):
+    if "unsigned_metadata" in obj:
+        if not isinstance(obj["unsigned_metadata"], dict):
             errors.append("unsigned_metadata must be object")
     return errors
 
-def validate_ExperimentTracking_L2(obj: Any) -> List[str]:
+
+def validate_ExperimentTrackingL2(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'tenant_id' not in obj:
+    if "tenant_id" not in obj:
         errors.append("missing tenant_id")
-    if 'run_id' not in obj:
+    if "run_id" not in obj:
         errors.append("missing run_id")
-    if 'replay_token' not in obj:
+    if "replay_token" not in obj:
         errors.append("missing replay_token")
-    if 'manifest_hash' not in obj:
+    if "manifest_hash" not in obj:
         errors.append("missing manifest_hash")
-    if 'trace_final_hash' not in obj:
+    if "trace_final_hash" not in obj:
         errors.append("missing trace_final_hash")
-    if 'checkpoint_hash' not in obj:
+    if "checkpoint_hash" not in obj:
         errors.append("missing checkpoint_hash")
-    if 'execution_certificate_hash' not in obj:
+    if "execution_certificate_hash" not in obj:
         errors.append("missing execution_certificate_hash")
-    if 'status' not in obj:
+    if "status" not in obj:
         errors.append("missing status")
-    if 'created_at' not in obj:
+    if "created_at" not in obj:
         errors.append("missing created_at")
-    if 'checkpoint_hash' in obj:
-        if not isinstance(obj['checkpoint_hash'], str):
+    if "checkpoint_hash" in obj:
+        if not isinstance(obj["checkpoint_hash"], str):
             errors.append("checkpoint_hash must be string")
-    if 'created_at' in obj:
-        if not isinstance(obj['created_at'], str):
+    if "created_at" in obj:
+        if not isinstance(obj["created_at"], str):
             errors.append("created_at must be string")
-    if 'ended_at' in obj:
-        if not isinstance(obj['ended_at'], str):
+    if "ended_at" in obj:
+        if not isinstance(obj["ended_at"], str):
             errors.append("ended_at must be string")
-    if 'execution_certificate_hash' in obj:
-        if not isinstance(obj['execution_certificate_hash'], str):
+    if "execution_certificate_hash" in obj:
+        if not isinstance(obj["execution_certificate_hash"], str):
             errors.append("execution_certificate_hash must be string")
-    if 'manifest_hash' in obj:
-        if not isinstance(obj['manifest_hash'], str):
+    if "manifest_hash" in obj:
+        if not isinstance(obj["manifest_hash"], str):
             errors.append("manifest_hash must be string")
-    if 'replay_token' in obj:
-        if not isinstance(obj['replay_token'], str):
+    if "replay_token" in obj:
+        if not isinstance(obj["replay_token"], str):
             errors.append("replay_token must be string")
-    if 'run_id' in obj:
-        if not isinstance(obj['run_id'], str):
+    if "run_id" in obj:
+        if not isinstance(obj["run_id"], str):
             errors.append("run_id must be string")
-    if 'status' in obj:
-        if not isinstance(obj['status'], str):
+    if "status" in obj:
+        if not isinstance(obj["status"], str):
             errors.append("status must be string")
-    if 'tenant_id' in obj:
-        if not isinstance(obj['tenant_id'], str):
+    if "tenant_id" in obj:
+        if not isinstance(obj["tenant_id"], str):
             errors.append("tenant_id must be string")
-    if 'trace_final_hash' in obj:
-        if not isinstance(obj['trace_final_hash'], str):
+    if "trace_final_hash" in obj:
+        if not isinstance(obj["trace_final_hash"], str):
             errors.append("trace_final_hash must be string")
     return errors
 
-def validate_GlyphserKernelV322OS_L2(obj: Any) -> List[str]:
+
+def validate_GlyphserKernelV322OSL2(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'execution_mode' in obj:
-        if not isinstance(obj['execution_mode'], str):
+    if "execution_mode" in obj:
+        if not isinstance(obj["execution_mode"], str):
             errors.append("execution_mode must be string")
-    if 'manifest_hash' in obj:
-        if not isinstance(obj['manifest_hash'], str):
+    if "manifest_hash" in obj:
+        if not isinstance(obj["manifest_hash"], str):
             errors.append("manifest_hash must be string")
-    if 'replay_token' in obj:
-        if not isinstance(obj['replay_token'], str):
+    if "replay_token" in obj:
+        if not isinstance(obj["replay_token"], str):
             errors.append("replay_token must be string")
-    if 'run_id' in obj:
-        if not isinstance(obj['run_id'], str):
+    if "run_id" in obj:
+        if not isinstance(obj["run_id"], str):
             errors.append("run_id must be string")
     return errors
 
-def validate_ModelRegistry_L2(obj: Any) -> List[str]:
+
+def validate_ModelRegistryL2(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'model_id' not in obj:
+    if "model_id" not in obj:
         errors.append("missing model_id")
-    if 'model_hash' not in obj:
+    if "model_hash" not in obj:
         errors.append("missing model_hash")
-    if 'model_hash' in obj:
-        if not isinstance(obj['model_hash'], str):
+    if "model_hash" in obj:
+        if not isinstance(obj["model_hash"], str):
             errors.append("model_hash must be string")
-    if 'model_id' in obj:
-        if not isinstance(obj['model_id'], str):
+    if "model_id" in obj:
+        if not isinstance(obj["model_id"], str):
             errors.append("model_id must be string")
     return errors
 
-def validate_ModelIRExecutor_L2(obj: Any) -> List[str]:
+
+def validate_ModelIRExecutorL2(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'ir_hash' not in obj:
+    if "ir_hash" not in obj:
         errors.append("missing ir_hash")
-    if 'replay_token' not in obj:
+    if "replay_token" not in obj:
         errors.append("missing replay_token")
-    if 'ir_hash' in obj:
-        if not isinstance(obj['ir_hash'], str):
+    if "ir_hash" in obj:
+        if not isinstance(obj["ir_hash"], str):
             errors.append("ir_hash must be string")
-    if 'outputs' in obj:
-        if not isinstance(obj['outputs'], list):
+    if "outputs" in obj:
+        if not isinstance(obj["outputs"], list):
             errors.append("outputs must be array")
-    if 'replay_token' in obj:
-        if not isinstance(obj['replay_token'], str):
+    if "replay_token" in obj:
+        if not isinstance(obj["replay_token"], str):
             errors.append("replay_token must be string")
     return errors
 
-def validate_MonitoringPolicy_L2(obj: Any) -> List[str]:
+
+def validate_MonitoringPolicyL2(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'monitor_policy_hash' not in obj:
+    if "monitor_policy_hash" not in obj:
         errors.append("missing monitor_policy_hash")
-    if 'policy_gate_hash' not in obj:
+    if "policy_gate_hash" not in obj:
         errors.append("missing policy_gate_hash")
-    if 'baselines' in obj:
-        if not isinstance(obj['baselines'], list):
+    if "baselines" in obj:
+        if not isinstance(obj["baselines"], list):
             errors.append("baselines must be array")
-    if 'metrics' in obj:
-        if not isinstance(obj['metrics'], list):
+    if "metrics" in obj:
+        if not isinstance(obj["metrics"], list):
             errors.append("metrics must be array")
-    if 'monitor_policy_hash' in obj:
-        if not isinstance(obj['monitor_policy_hash'], str):
+    if "monitor_policy_hash" in obj:
+        if not isinstance(obj["monitor_policy_hash"], str):
             errors.append("monitor_policy_hash must be string")
-    if 'monitor_summary_hash' in obj:
-        if not isinstance(obj['monitor_summary_hash'], str):
+    if "monitor_summary_hash" in obj:
+        if not isinstance(obj["monitor_summary_hash"], str):
             errors.append("monitor_summary_hash must be string")
-    if 'policy_gate_hash' in obj:
-        if not isinstance(obj['policy_gate_hash'], str):
+    if "policy_gate_hash" in obj:
+        if not isinstance(obj["policy_gate_hash"], str):
             errors.append("policy_gate_hash must be string")
-    if 'thresholds' in obj:
-        if not isinstance(obj['thresholds'], dict):
+    if "thresholds" in obj:
+        if not isinstance(obj["thresholds"], dict):
             errors.append("thresholds must be object")
     return errors
 
-def validate_PipelineOrchestrator_L2(obj: Any) -> List[str]:
+
+def validate_PipelineOrchestratorL2(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'pipeline_stages' not in obj:
+    if "pipeline_stages" not in obj:
         errors.append("missing pipeline_stages")
-    if 'task_type' not in obj:
+    if "task_type" not in obj:
         errors.append("missing task_type")
-    if 'world_size' not in obj:
+    if "world_size" not in obj:
         errors.append("missing world_size")
-    if 'pipeline_stages' in obj:
-        if not isinstance(obj['pipeline_stages'], list):
+    if "pipeline_stages" in obj:
+        if not isinstance(obj["pipeline_stages"], list):
             errors.append("pipeline_stages must be array")
-    if 'task_type' in obj:
-        if not isinstance(obj['task_type'], str):
+    if "task_type" in obj:
+        if not isinstance(obj["task_type"], str):
             errors.append("task_type must be string")
-    if 'world_size' in obj:
-        if not isinstance(obj['world_size'], int):
+    if "world_size" in obj:
+        if not isinstance(obj["world_size"], int):
             errors.append("world_size must be integer")
     return errors
 
-def validate_ReplayDeterminism_L2(obj: Any) -> List[str]:
+
+def validate_ReplayDeterminismL2(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'kernel_replay_token' not in obj:
+    if "kernel_replay_token" not in obj:
         errors.append("missing kernel_replay_token")
-    if 'replay_token' not in obj:
+    if "replay_token" not in obj:
         errors.append("missing replay_token")
-    if 'determinism_profile_hash' not in obj:
+    if "determinism_profile_hash" not in obj:
         errors.append("missing determinism_profile_hash")
-    if 'determinism_profile_hash' in obj:
-        if not isinstance(obj['determinism_profile_hash'], str):
+    if "determinism_profile_hash" in obj:
+        if not isinstance(obj["determinism_profile_hash"], str):
             errors.append("determinism_profile_hash must be string")
-    if 'driver_runtime_fingerprint_hash' in obj:
-        if not isinstance(obj['driver_runtime_fingerprint_hash'], str):
+    if "driver_runtime_fingerprint_hash" in obj:
+        if not isinstance(obj["driver_runtime_fingerprint_hash"], str):
             errors.append("driver_runtime_fingerprint_hash must be string")
-    if 'env_manifest_hash' in obj:
-        if not isinstance(obj['env_manifest_hash'], str):
+    if "env_manifest_hash" in obj:
+        if not isinstance(obj["env_manifest_hash"], str):
             errors.append("env_manifest_hash must be string")
-    if 'kernel_replay_token' in obj:
-        if not isinstance(obj['kernel_replay_token'], str):
+    if "kernel_replay_token" in obj:
+        if not isinstance(obj["kernel_replay_token"], str):
             errors.append("kernel_replay_token must be string")
-    if 'operator_contracts_root_hash' in obj:
-        if not isinstance(obj['operator_contracts_root_hash'], str):
+    if "operator_contracts_root_hash" in obj:
+        if not isinstance(obj["operator_contracts_root_hash"], str):
             errors.append("operator_contracts_root_hash must be string")
-    if 'policy_bundle_hash' in obj:
-        if not isinstance(obj['policy_bundle_hash'], str):
+    if "policy_bundle_hash" in obj:
+        if not isinstance(obj["policy_bundle_hash"], str):
             errors.append("policy_bundle_hash must be string")
-    if 'replay_token' in obj:
-        if not isinstance(obj['replay_token'], str):
+    if "replay_token" in obj:
+        if not isinstance(obj["replay_token"], str):
             errors.append("replay_token must be string")
-    if 'seed' in obj:
-        if not isinstance(obj['seed'], int):
+    if "seed" in obj:
+        if not isinstance(obj["seed"], int):
             errors.append("seed must be integer")
     return errors
 
-def validate_RunCommitWAL_L2(obj: Any) -> List[str]:
+
+def validate_RunCommitWALL2(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'run_id' not in obj:
+    if "run_id" not in obj:
         errors.append("missing run_id")
-    if 'wal_seq' not in obj:
+    if "wal_seq" not in obj:
         errors.append("missing wal_seq")
-    if 'record_hash' not in obj:
+    if "record_hash" not in obj:
         errors.append("missing record_hash")
-    if 'record_hash' in obj:
-        if not isinstance(obj['record_hash'], str):
+    if "record_hash" in obj:
+        if not isinstance(obj["record_hash"], str):
             errors.append("record_hash must be string")
-    if 'run_id' in obj:
-        if not isinstance(obj['run_id'], str):
+    if "run_id" in obj:
+        if not isinstance(obj["run_id"], str):
             errors.append("run_id must be string")
-    if 'wal_seq' in obj:
-        if not isinstance(obj['wal_seq'], int):
+    if "wal_seq" in obj:
+        if not isinstance(obj["wal_seq"], int):
             errors.append("wal_seq must be integer")
     return errors
 
-def validate_SecurityComplianceProfile_L2(obj: Any) -> List[str]:
+
+def validate_SecurityComplianceProfileL2(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'execution_mode' not in obj:
+    if "execution_mode" not in obj:
         errors.append("missing execution_mode")
-    if 'attestation_bundle_hash' in obj:
-        if not isinstance(obj['attestation_bundle_hash'], str):
+    if "attestation_bundle_hash" in obj:
+        if not isinstance(obj["attestation_bundle_hash"], str):
             errors.append("attestation_bundle_hash must be string")
-    if 'attestation_quote_hash' in obj:
-        if not isinstance(obj['attestation_quote_hash'], str):
+    if "attestation_quote_hash" in obj:
+        if not isinstance(obj["attestation_quote_hash"], str):
             errors.append("attestation_quote_hash must be string")
-    if 'execution_mode' in obj:
-        if not isinstance(obj['execution_mode'], str):
+    if "execution_mode" in obj:
+        if not isinstance(obj["execution_mode"], str):
             errors.append("execution_mode must be string")
-    if 'measurements_hash' in obj:
-        if not isinstance(obj['measurements_hash'], str):
+    if "measurements_hash" in obj:
+        if not isinstance(obj["measurements_hash"], str):
             errors.append("measurements_hash must be string")
-    if 'redaction_mode' in obj:
-        if not isinstance(obj['redaction_mode'], str):
+    if "redaction_mode" in obj:
+        if not isinstance(obj["redaction_mode"], str):
             errors.append("redaction_mode must be string")
-    if 'tcb_version' in obj:
-        if not isinstance(obj['tcb_version'], str):
+    if "tcb_version" in obj:
+        if not isinstance(obj["tcb_version"], str):
             errors.append("tcb_version must be string")
-    if 'tee_type' in obj:
-        if not isinstance(obj['tee_type'], str):
+    if "tee_type" in obj:
+        if not isinstance(obj["tee_type"], str):
             errors.append("tee_type must be string")
-    if 'verification_report_hash' in obj:
-        if not isinstance(obj['verification_report_hash'], str):
+    if "verification_report_hash" in obj:
+        if not isinstance(obj["verification_report_hash"], str):
             errors.append("verification_report_hash must be string")
     return errors
 
-def validate_TMMUAllocation_L2(obj: Any) -> List[str]:
+
+def validate_TMMUAllocationL2(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'arena_config' not in obj:
+    if "arena_config" not in obj:
         errors.append("missing arena_config")
-    if 'ir_hash' not in obj:
+    if "ir_hash" not in obj:
         errors.append("missing ir_hash")
-    if 'replay_token' not in obj:
+    if "replay_token" not in obj:
         errors.append("missing replay_token")
-    if 'allocation_header' not in obj:
+    if "allocation_header" not in obj:
         errors.append("missing allocation_header")
-    if 'allocation_header' in obj:
-        if not isinstance(obj['allocation_header'], dict):
+    if "allocation_header" in obj:
+        if not isinstance(obj["allocation_header"], dict):
             errors.append("allocation_header must be object")
-    if 'arena_config' in obj:
-        if not isinstance(obj['arena_config'], dict):
+    if "arena_config" in obj:
+        if not isinstance(obj["arena_config"], dict):
             errors.append("arena_config must be object")
-    if 'ir_hash' in obj:
-        if not isinstance(obj['ir_hash'], str):
+    if "ir_hash" in obj:
+        if not isinstance(obj["ir_hash"], str):
             errors.append("ir_hash must be string")
-    if 'metrics' in obj:
-        if not isinstance(obj['metrics'], dict):
+    if "metrics" in obj:
+        if not isinstance(obj["metrics"], dict):
             errors.append("metrics must be object")
-    if 'replay_token' in obj:
-        if not isinstance(obj['replay_token'], str):
+    if "replay_token" in obj:
+        if not isinstance(obj["replay_token"], str):
             errors.append("replay_token must be string")
-    if 'tensor_map' in obj:
-        if not isinstance(obj['tensor_map'], dict):
+    if "tensor_map" in obj:
+        if not isinstance(obj["tensor_map"], dict):
             errors.append("tensor_map must be object")
     return errors
 
-def validate_TraceSidecar_L2(obj: Any) -> List[str]:
+
+def validate_TraceSidecarL2(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'run_header' not in obj:
+    if "run_header" not in obj:
         errors.append("missing run_header")
-    if 'iter_records' not in obj:
+    if "iter_records" not in obj:
         errors.append("missing iter_records")
-    if 'error_records' not in obj:
+    if "error_records" not in obj:
         errors.append("missing error_records")
-    if 'trace_final_hash' not in obj:
+    if "trace_final_hash" not in obj:
         errors.append("missing trace_final_hash")
-    if 'error_records' in obj:
-        if not isinstance(obj['error_records'], list):
+    if "error_records" in obj:
+        if not isinstance(obj["error_records"], list):
             errors.append("error_records must be array")
-    if 'iter_records' in obj:
-        if not isinstance(obj['iter_records'], list):
+    if "iter_records" in obj:
+        if not isinstance(obj["iter_records"], list):
             errors.append("iter_records must be array")
-    if 'run_header' in obj:
-        if not isinstance(obj['run_header'], dict):
+    if "run_header" in obj:
+        if not isinstance(obj["run_header"], dict):
             errors.append("run_header must be object")
-    if 'trace_final_hash' in obj:
-        if not isinstance(obj['trace_final_hash'], str):
+    if "trace_final_hash" in obj:
+        if not isinstance(obj["trace_final_hash"], str):
             errors.append("trace_final_hash must be string")
     return errors
 
-def validate_CompatibilityTestMatrix_L3(obj: Any) -> List[str]:
+
+def validate_CompatibilityTestMatrixL3(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'matrix' not in obj:
+    if "matrix" not in obj:
         errors.append("missing matrix")
-    if 'cases' not in obj:
+    if "cases" not in obj:
         errors.append("missing cases")
-    if 'cases' in obj:
-        if not isinstance(obj['cases'], list):
+    if "cases" in obj:
+        if not isinstance(obj["cases"], list):
             errors.append("cases must be array")
-    if 'matrix' in obj:
-        if not isinstance(obj['matrix'], list):
+    if "matrix" in obj:
+        if not isinstance(obj["matrix"], list):
             errors.append("matrix must be array")
-    if 'status' in obj:
-        if not isinstance(obj['status'], str):
+    if "status" in obj:
+        if not isinstance(obj["status"], str):
             errors.append("status must be string")
     return errors
 
-def validate_ConformanceCIPipeline_L3(obj: Any) -> List[str]:
+
+def validate_ConformanceCIPipelineL3(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'steps' not in obj:
+    if "steps" not in obj:
         errors.append("missing steps")
-    if 'gates' not in obj:
+    if "gates" not in obj:
         errors.append("missing gates")
-    if 'artifacts' in obj:
-        if not isinstance(obj['artifacts'], list):
+    if "artifacts" in obj:
+        if not isinstance(obj["artifacts"], list):
             errors.append("artifacts must be array")
-    if 'gates' in obj:
-        if not isinstance(obj['gates'], list):
+    if "gates" in obj:
+        if not isinstance(obj["gates"], list):
             errors.append("gates must be array")
-    if 'steps' in obj:
-        if not isinstance(obj['steps'], list):
+    if "steps" in obj:
+        if not isinstance(obj["steps"], list):
             errors.append("steps must be array")
     return errors
 
-def validate_ConformanceHarnessGuide_L3(obj: Any) -> List[str]:
+
+def validate_ConformanceHarnessGuideL3(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'commands' not in obj:
+    if "commands" not in obj:
         errors.append("missing commands")
-    if 'inputs' not in obj:
+    if "inputs" not in obj:
         errors.append("missing inputs")
-    if 'commands' in obj:
-        if not isinstance(obj['commands'], list):
+    if "commands" in obj:
+        if not isinstance(obj["commands"], list):
             errors.append("commands must be array")
-    if 'inputs' in obj:
-        if not isinstance(obj['inputs'], list):
+    if "inputs" in obj:
+        if not isinstance(obj["inputs"], list):
             errors.append("inputs must be array")
     return errors
 
-def validate_CoverageTargets_L3(obj: Any) -> List[str]:
+
+def validate_CoverageTargetsL3(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'targets' not in obj:
+    if "targets" not in obj:
         errors.append("missing targets")
-    if 'targets' in obj:
-        if not isinstance(obj['targets'], list):
+    if "targets" in obj:
+        if not isinstance(obj["targets"], list):
             errors.append("targets must be array")
-    if 'thresholds' in obj:
-        if not isinstance(obj['thresholds'], dict):
+    if "thresholds" in obj:
+        if not isinstance(obj["thresholds"], dict):
             errors.append("thresholds must be object")
     return errors
 
-def validate_DataContractFuzzingGuide_L3(obj: Any) -> List[str]:
+
+def validate_DataContractFuzzingGuideL3(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'fuzz_cases' not in obj:
+    if "fuzz_cases" not in obj:
         errors.append("missing fuzz_cases")
-    if 'fuzz_cases' in obj:
-        if not isinstance(obj['fuzz_cases'], list):
+    if "fuzz_cases" in obj:
+        if not isinstance(obj["fuzz_cases"], list):
             errors.append("fuzz_cases must be array")
     return errors
 
-def validate_FailureInjectionIndex_L3(obj: Any) -> List[str]:
+
+def validate_FailureInjectionIndexL3(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'scenarios' not in obj:
+    if "scenarios" not in obj:
         errors.append("missing scenarios")
-    if 'scenarios' in obj:
-        if not isinstance(obj['scenarios'], list):
+    if "scenarios" in obj:
+        if not isinstance(obj["scenarios"], list):
             errors.append("scenarios must be array")
     return errors
 
-def validate_FailureInjectionScenarios_L3(obj: Any) -> List[str]:
+
+def validate_FailureInjectionScenariosL3(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'scenarios' not in obj:
+    if "scenarios" not in obj:
         errors.append("missing scenarios")
-    if 'scenarios' in obj:
-        if not isinstance(obj['scenarios'], list):
+    if "scenarios" in obj:
+        if not isinstance(obj["scenarios"], list):
             errors.append("scenarios must be array")
     return errors
 
-def validate_GameDayScenarios_L3(obj: Any) -> List[str]:
+
+def validate_GameDayScenariosL3(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'scenarios' not in obj:
+    if "scenarios" not in obj:
         errors.append("missing scenarios")
-    if 'scenarios' in obj:
-        if not isinstance(obj['scenarios'], list):
+    if "scenarios" in obj:
+        if not isinstance(obj["scenarios"], list):
             errors.append("scenarios must be array")
     return errors
 
-def validate_IntegrationTestMatrix_L3(obj: Any) -> List[str]:
+
+def validate_IntegrationTestMatrixL3(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'matrix' not in obj:
+    if "matrix" not in obj:
         errors.append("missing matrix")
-    if 'cases' not in obj:
+    if "cases" not in obj:
         errors.append("missing cases")
-    if 'cases' in obj:
-        if not isinstance(obj['cases'], list):
+    if "cases" in obj:
+        if not isinstance(obj["cases"], list):
             errors.append("cases must be array")
-    if 'matrix' in obj:
-        if not isinstance(obj['matrix'], list):
+    if "matrix" in obj:
+        if not isinstance(obj["matrix"], list):
             errors.append("matrix must be array")
-    if 'status' in obj:
-        if not isinstance(obj['status'], str):
+    if "status" in obj:
+        if not isinstance(obj["status"], str):
             errors.append("status must be string")
     return errors
 
-def validate_Glyphser_Operator_Error_Vectors(obj: Any) -> List[str]:
+
+def validate_GlyphserOperatorErrorVectors(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'operator_id' not in obj:
+    if "operator_id" not in obj:
         errors.append("missing operator_id")
-    if 'vectors' not in obj:
+    if "vectors" not in obj:
         errors.append("missing vectors")
-    if 'operator_id' in obj:
-        if not isinstance(obj['operator_id'], str):
+    if "operator_id" in obj:
+        if not isinstance(obj["operator_id"], str):
             errors.append("operator_id must be string")
-    if 'vectors' in obj:
-        if not isinstance(obj['vectors'], list):
+    if "vectors" in obj:
+        if not isinstance(obj["vectors"], list):
             errors.append("vectors must be array")
     return errors
 
-def validate_Glyphser_Operator_Vectors(obj: Any) -> List[str]:
+
+def validate_GlyphserOperatorVectors(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'operator_id' not in obj:
+    if "operator_id" not in obj:
         errors.append("missing operator_id")
-    if 'vectors' not in obj:
+    if "vectors" not in obj:
         errors.append("missing vectors")
-    if 'operator_id' in obj:
-        if not isinstance(obj['operator_id'], str):
+    if "operator_id" in obj:
+        if not isinstance(obj["operator_id"], str):
             errors.append("operator_id must be string")
-    if 'vectors' in obj:
-        if not isinstance(obj['vectors'], list):
+    if "vectors" in obj:
+        if not isinstance(obj["vectors"], list):
             errors.append("vectors must be array")
     return errors
 
-def validate_PerformancePlan_L3(obj: Any) -> List[str]:
+
+def validate_PerformancePlanL3(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'metrics' not in obj:
+    if "metrics" not in obj:
         errors.append("missing metrics")
-    if 'metrics' in obj:
-        if not isinstance(obj['metrics'], list):
+    if "metrics" in obj:
+        if not isinstance(obj["metrics"], list):
             errors.append("metrics must be array")
-    if 'thresholds' in obj:
-        if not isinstance(obj['thresholds'], dict):
+    if "thresholds" in obj:
+        if not isinstance(obj["thresholds"], dict):
             errors.append("thresholds must be object")
     return errors
 
-def validate_ReleaseGates_L3(obj: Any) -> List[str]:
+
+def validate_ReleaseGatesL3(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'gates' not in obj:
+    if "gates" not in obj:
         errors.append("missing gates")
-    if 'gates' in obj:
-        if not isinstance(obj['gates'], list):
+    if "gates" in obj:
+        if not isinstance(obj["gates"], list):
             errors.append("gates must be array")
-    if 'pass_criteria' in obj:
-        if not isinstance(obj['pass_criteria'], str):
+    if "pass_criteria" in obj:
+        if not isinstance(obj["pass_criteria"], str):
             errors.append("pass_criteria must be string")
     return errors
 
-def validate_StorageRecoveryTestMatrix_L3(obj: Any) -> List[str]:
+
+def validate_StorageRecoveryTestMatrixL3(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'cases' not in obj:
+    if "cases" not in obj:
         errors.append("missing cases")
-    if 'cases' in obj:
-        if not isinstance(obj['cases'], list):
+    if "cases" in obj:
+        if not isinstance(obj["cases"], list):
             errors.append("cases must be array")
     return errors
 
-def validate_TestPlan_L3(obj: Any) -> List[str]:
+
+def validate_TestPlanL3(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'tests' not in obj:
+    if "tests" not in obj:
         errors.append("missing tests")
-    if 'pass_criteria' not in obj:
+    if "pass_criteria" not in obj:
         errors.append("missing pass_criteria")
-    if 'coverage' in obj:
-        if not isinstance(obj['coverage'], str):
+    if "coverage" in obj:
+        if not isinstance(obj["coverage"], str):
             errors.append("coverage must be string")
-    if 'pass_criteria' in obj:
-        if not isinstance(obj['pass_criteria'], str):
+    if "pass_criteria" in obj:
+        if not isinstance(obj["pass_criteria"], str):
             errors.append("pass_criteria must be string")
-    if 'tests' in obj:
-        if not isinstance(obj['tests'], list):
+    if "tests" in obj:
+        if not isinstance(obj["tests"], list):
             errors.append("tests must be array")
     return errors
 
-def validate_TestVectorsCatalog_L3(obj: Any) -> List[str]:
+
+def validate_TestVectorsCatalogL3(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
-    if 'catalog_version' not in obj:
+    if "catalog_version" not in obj:
         errors.append("missing catalog_version")
-    if 'vectors' not in obj:
+    if "vectors" not in obj:
         errors.append("missing vectors")
-    if 'catalog_version' in obj:
-        if not isinstance(obj['catalog_version'], str):
+    if "catalog_version" in obj:
+        if not isinstance(obj["catalog_version"], str):
             errors.append("catalog_version must be string")
-    if 'coverage' in obj:
-        if not isinstance(obj['coverage'], str):
+    if "coverage" in obj:
+        if not isinstance(obj["coverage"], str):
             errors.append("coverage must be string")
-    if 'vectors' in obj:
-        if not isinstance(obj['vectors'], list):
+    if "vectors" in obj:
+        if not isinstance(obj["vectors"], list):
             errors.append("vectors must be array")
     return errors
 
-def validate_APILifecycleAndDeprecationPolicy_L4(obj: Any) -> List[str]:
+
+def validate_APILifecycleAndDeprecationPolicyL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_ArchitectureDecisionsLog_L4(obj: Any) -> List[str]:
+def validate_ArchitectureDecisionsLogL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_ArtifactStoreAdapterGuide_L4(obj: Any) -> List[str]:
+
+def validate_ArtifactStoreAdapterGuideL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_BackendAdapterGuide_L4(obj: Any) -> List[str]:
+def validate_BackendAdapterGuideL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_BackendFeatureMatrix_L4(obj: Any) -> List[str]:
+
+def validate_BackendFeatureMatrixL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_BenchmarkEvidenceSpec_L4(obj: Any) -> List[str]:
+def validate_BenchmarkEvidenceSpecL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_BrownfieldDeploymentGuide_L4(obj: Any) -> List[str]:
+
+def validate_BrownfieldDeploymentGuideL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_BuildAndCIMatrix_L4(obj: Any) -> List[str]:
+def validate_BuildAndCIMatrixL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_CanonicalHashingReference_L4(obj: Any) -> List[str]:
+
+def validate_CanonicalHashingReferenceL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_ChangeControlPlaybook_L4(obj: Any) -> List[str]:
+def validate_ChangeControlPlaybookL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_CLICommandProfiles_L4(obj: Any) -> List[str]:
+
+def validate_CLICommandProfilesL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_CodeGenerationMapping_L4(obj: Any) -> List[str]:
+def validate_CodeGenerationMappingL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_CodingStandards_L4(obj: Any) -> List[str]:
+
+def validate_CodingStandardsL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_CommandReference_L4(obj: Any) -> List[str]:
+def validate_CommandReferenceL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_CommonPitfallsGuide_L4(obj: Any) -> List[str]:
+
+def validate_CommonPitfallsGuideL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_CommunityGovernanceModel_L4(obj: Any) -> List[str]:
+
+def validate_CommunityGovernanceModelL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_ContractsArtifactLifecycle_L4(obj: Any) -> List[str]:
+def validate_ContractsArtifactLifecycleL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_ContributingWorkflow_L4(obj: Any) -> List[str]:
+
+def validate_ContributingWorkflowL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_DebuggingPlaybook_L4(obj: Any) -> List[str]:
+def validate_DebuggingPlaybookL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_DeterminismAuditPlaybook_L4(obj: Any) -> List[str]:
+
+def validate_DeterminismAuditPlaybookL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_DeterminismDebugChecklist_L4(obj: Any) -> List[str]:
+def validate_DeterminismDebugChecklistL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_DeterministicRNGImplementationGuide_L4(obj: Any) -> List[str]:
+
+def validate_DeterministicRNGImplementationGuideL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_DeveloperSetup_L4(obj: Any) -> List[str]:
+def validate_DeveloperSetupL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_DeveloperTroubleshootingFAQ_L4(obj: Any) -> List[str]:
+
+def validate_DeveloperTroubleshootingFAQL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_DisasterRecoveryOperationsRunbook_L4(obj: Any) -> List[str]:
+def validate_DisasterRecoveryOperationsRunbookL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_DistributedFailureRecoveryGuide_L4(obj: Any) -> List[str]:
+
+def validate_DistributedFailureRecoveryGuideL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_EcosystemExpansionRoadmap_L4(obj: Any) -> List[str]:
+def validate_EcosystemExpansionRoadmapL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_EQCCIPolicy_L4(obj: Any) -> List[str]:
+
+def validate_EQCCIPolicyL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_EvidenceCatalog_L4(obj: Any) -> List[str]:
+def validate_EvidenceCatalogL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_ExpansionCatalog041250_L4(obj: Any) -> List[str]:
+
+def validate_ExpansionCatalog041250L4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_ExternalInterfaceStandard_L4(obj: Any) -> List[str]:
+def validate_ExternalInterfaceStandardL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_FixturesAndGoldenData_L4(obj: Any) -> List[str]:
+
+def validate_FixturesAndGoldenDataL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_FormalVerificationRoadmap_L4(obj: Any) -> List[str]:
+
+def validate_FormalVerificationRoadmapL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_GentleIntroduction_L4(obj: Any) -> List[str]:
+def validate_GentleIntroductionL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_HelloWorldEndToEndExample_L4(obj: Any) -> List[str]:
+
+def validate_HelloWorldEndToEndExampleL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_ImplementationBacklog_L4(obj: Any) -> List[str]:
+def validate_ImplementationBacklogL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_ImplementationRoadmap_L4(obj: Any) -> List[str]:
+
+def validate_ImplementationRoadmapL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_IncidentPostmortemTemplate_L4(obj: Any) -> List[str]:
+def validate_IncidentPostmortemTemplateL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_IndustryProductizationUpgradePlan_L4(obj: Any) -> List[str]:
+
+def validate_IndustryProductizationUpgradePlanL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_InteroperabilityStandardsBridge_L4(obj: Any) -> List[str]:
+def validate_InteroperabilityStandardsBridgeL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_LocalReplayRunbook_L4(obj: Any) -> List[str]:
+
+def validate_LocalReplayRunbookL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_MigrationExecutionGuide_L4(obj: Any) -> List[str]:
+def validate_MigrationExecutionGuideL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_ModuleScaffoldingGuide_L4(obj: Any) -> List[str]:
+
+def validate_ModuleScaffoldingGuideL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_OperatorConformanceMatrix_L4(obj: Any) -> List[str]:
+def validate_OperatorConformanceMatrixL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_OperatorRegistryCBORContract_L4(obj: Any) -> List[str]:
+
+def validate_OperatorRegistryCBORContractL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_OperatorSDKScaffoldTemplate_L4(obj: Any) -> List[str]:
+def validate_OperatorSDKScaffoldTemplateL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_PRReviewChecklist_L4(obj: Any) -> List[str]:
+
+def validate_PRReviewChecklistL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_ProfilingAndOptimizationGuide_L4(obj: Any) -> List[str]:
+def validate_ProfilingAndOptimizationGuideL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_ReferenceImplementations_L4(obj: Any) -> List[str]:
+
+def validate_ReferenceImplementationsL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_ReferenceStackMinimal_L4(obj: Any) -> List[str]:
+
+def validate_ReferenceStackMinimalL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_ReleaseEvidenceAssembler_L4(obj: Any) -> List[str]:
+def validate_ReleaseEvidenceAssemblerL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_RepoLayoutAndInterfaces_L4(obj: Any) -> List[str]:
+
+def validate_RepoLayoutAndInterfacesL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_ResearchExtensionsRoadmap_L4(obj: Any) -> List[str]:
+def validate_ResearchExtensionsRoadmapL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_RuntimeStateMachineReference_L4(obj: Any) -> List[str]:
+
+def validate_RuntimeStateMachineReferenceL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_SchemaEvolutionPlaybook_L4(obj: Any) -> List[str]:
+def validate_SchemaEvolutionPlaybookL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_ScopeAndNonGoals_L4(obj: Any) -> List[str]:
+
+def validate_ScopeAndNonGoalsL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_SDKUsageGuide_L4(obj: Any) -> List[str]:
+def validate_SDKUsageGuideL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_SecurityCaseTemplate_L4(obj: Any) -> List[str]:
+
+def validate_SecurityCaseTemplateL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_SecurityCodingChecklist_L4(obj: Any) -> List[str]:
+def validate_SecurityCodingChecklistL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_SpecLintImplementation_L4(obj: Any) -> List[str]:
+
+def validate_SpecLintImplementationL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_SpecLintRules_L4(obj: Any) -> List[str]:
+def validate_SpecLintRulesL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_SREIncidentTriagePlaybook_L4(obj: Any) -> List[str]:
+
+def validate_SREIncidentTriagePlaybookL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_TestHarnessImplementation_L4(obj: Any) -> List[str]:
+def validate_TestHarnessImplementationL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_ThirdPartyOperatorCertificationProgram_L4(obj: Any) -> List[str]:
+
+def validate_ThirdPartyOperatorCertificationProgramL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
+
 
-def validate_ThreatModelAndControlCrosswalk_L4(obj: Any) -> List[str]:
+def validate_ThreatModelAndControlCrosswalkL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_ToolingAndAutomationSuite_L4(obj: Any) -> List[str]:
+
+def validate_ToolingAndAutomationSuiteL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
 
-def validate_ToolingSuite_L4(obj: Any) -> List[str]:
+
+def validate_ToolingSuiteL4(obj: Any) -> List[str]:
     errors: List[str] = []
     if not isinstance(obj, dict):
         return ["expected object"]
     return errors
-

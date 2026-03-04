@@ -37,18 +37,10 @@ def _verify_hello_core() -> dict[str, Any]:
     golden_path = ROOT / "specs" / "examples" / "hello-core" / "hello-core-golden.json"
     interface_hash_path = ROOT / "specs" / "contracts" / "interface_hash.json"
 
-    trace_records = json.loads(
-        (fixture_root / "trace.json").read_text(encoding="utf-8")
-    )
-    certificate = json.loads(
-        (fixture_root / "execution_certificate.json").read_text(encoding="utf-8")
-    )
-    expected = json.loads(golden_path.read_text(encoding="utf-8"))[
-        "expected_identities"
-    ]
-    interface_hash = json.loads(interface_hash_path.read_text(encoding="utf-8"))[
-        "interface_hash"
-    ]
+    trace_records = json.loads((fixture_root / "trace.json").read_text(encoding="utf-8"))
+    certificate = json.loads((fixture_root / "execution_certificate.json").read_text(encoding="utf-8"))
+    expected = json.loads(golden_path.read_text(encoding="utf-8"))["expected_identities"]
+    interface_hash = json.loads(interface_hash_path.read_text(encoding="utf-8"))["interface_hash"]
 
     actual = {
         "trace_final_hash": compute_trace_hash(trace_records),
@@ -156,9 +148,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Glyphser public CLI.")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
-    verify_cmd = sub.add_parser(
-        "verify", help="Run deterministic verification for a model JSON."
-    )
+    verify_cmd = sub.add_parser("verify", help="Run deterministic verification for a model JSON.")
     verify_cmd.add_argument(
         "target",
         nargs="?",
@@ -186,9 +176,7 @@ def main(argv: list[str] | None = None) -> int:
         help="Print evidence file tree.",
     )
 
-    snapshot_cmd = sub.add_parser(
-        "snapshot", help="Write a verification snapshot manifest."
-    )
+    snapshot_cmd = sub.add_parser("snapshot", help="Write a verification snapshot manifest.")
     snapshot_cmd.add_argument(
         "--model",
         required=True,

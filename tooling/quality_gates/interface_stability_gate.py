@@ -7,11 +7,11 @@ import sys
 import warnings
 from pathlib import Path
 
+from tooling.quality_gates.telemetry import emit_gate_trace
+
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
-
-from tooling.quality_gates.telemetry import emit_gate_trace
 
 SLA = ROOT / "specs" / "contracts" / "interface_stability_sla.json"
 OUT = ROOT / "evidence" / "gates" / "quality" / "interface_stability.json"
@@ -29,7 +29,12 @@ def evaluate() -> dict:
 
     data = json.loads(SLA.read_text(encoding="utf-8"))
     surf = data.get("public_surface", {})
-    required_top = {"module", "stable_exports", "deprecation_window_minor_releases", "breaking_changes_require_major"}
+    required_top = {
+        "module",
+        "stable_exports",
+        "deprecation_window_minor_releases",
+        "breaking_changes_require_major",
+    }
     missing_top = sorted(required_top - set(surf.keys()))
     if missing_top:
         findings.append("missing_public_surface_keys:" + ",".join(missing_top))
