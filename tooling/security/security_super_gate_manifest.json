@@ -55,6 +55,7 @@
     "tooling/security/provenance_signature_gate.py",
     "tooling/security/integrity_envelope_gate.py",
     "tooling/security/key_provenance_continuity_gate.py",
+    "tooling/security/key_rotation_cadence_gate.py",
     "tooling/security/signature_algorithm_policy_gate.py",
     "tooling/security/security_verification_summary.py",
     "tooling/security/slsa_attestation_gate.py",
