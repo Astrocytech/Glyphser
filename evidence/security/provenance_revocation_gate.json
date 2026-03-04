@@ -1,0 +1,12 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "provenance_revocation_gate"
+  },
+  "status": "PASS",
+  "summary": {
+    "checked_files": 29,
+    "revoked_digests": 0,
+    "revoked_signatures": 0
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "findings": [
+    "missing_external_attestation:distribution/container/image-digests.txt",
+    "missing_external_attestation:distribution/container/image-digests.txt.sigstore"
+  ],
+  "metadata": {
+    "gate": "cosign_attestation_gate"
+  },
+  "status": "FAIL",
+  "summary": {
+    "required_files": [
+      "distribution/container/image-digests.txt",
+      "distribution/container/image-digests.txt.sigstore"
+    ]
+  }
+}

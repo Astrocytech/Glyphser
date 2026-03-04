@@ -1,0 +1,7 @@
+{
+  "findings": [],
+  "status": "PASS",
+  "summary": {
+    "index": "evidence/security/evidence_chain_of_custody.json"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "findings": [
+    "security_slo_pass_rate_below_target:25.00%"
+  ],
+  "metadata": {
+    "gate": "security_slo_report"
+  },
+  "status": "FAIL",
+  "summary": {
+    "gates": {
+      "attestation": "MISSING",
+      "policy_signature": "PASS",
+      "provenance_signature": "MISSING",
+      "super_gate": "MISSING"
+    },
+    "pass_rate": 0.25,
+    "target": 0.99
+  }
+}

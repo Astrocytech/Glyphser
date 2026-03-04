@@ -1,0 +1,22 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "security_dashboard_export"
+  },
+  "status": "PASS",
+  "summary": {
+    "attestation": "MISSING",
+    "policy_signature": "PASS",
+    "provenance_signature": "MISSING",
+    "slo": {
+      "gates": {
+        "attestation": "MISSING",
+        "policy_signature": "PASS",
+        "provenance_signature": "MISSING",
+        "super_gate": "MISSING"
+      },
+      "pass_rate": 0.25,
+      "target": 0.99
+    }
+  }
+}

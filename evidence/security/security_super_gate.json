@@ -1,0 +1,298 @@
+{
+  "findings": [
+    "gate_failed:/usr/bin/python tooling/security/security_toolchain_gate.py",
+    "gate_failed:/usr/bin/python tooling/security/key_management_gate.py",
+    "gate_failed:/usr/bin/python tooling/security/review_policy_gate.py",
+    "gate_failed:/usr/bin/python tooling/security/pip_audit_gate.py",
+    "gate_failed:/usr/bin/python tooling/security/abuse_telemetry_gate.py",
+    "gate_failed:/usr/bin/python tooling/security/temporary_waiver_gate.py",
+    "gate_failed:/usr/bin/python tooling/security/cosign_attestation_gate.py",
+    "gate_failed:/usr/bin/python tooling/security/release_rollback_provenance_gate.py",
+    "gate_failed:/usr/bin/python tooling/security/conformance_security_coupling_gate.py",
+    "gate_failed:/usr/bin/python tooling/security/security_slo_report.py",
+    "gate_failed:/usr/bin/python tooling/security/security_schema_normalization_gate.py"
+  ],
+  "metadata": {
+    "runner": "security_super_gate",
+    "strict_key": false
+  },
+  "results": [
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/security_toolchain_gate.py"
+      ],
+      "returncode": 1,
+      "status": "FAIL",
+      "stderr": "",
+      "stdout": "SECURITY_TOOLCHAIN_GATE: FAIL\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/security_toolchain.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/key_management_gate.py"
+      ],
+      "returncode": 1,
+      "status": "FAIL",
+      "stderr": "",
+      "stdout": "KEY_MANAGEMENT_GATE: FAIL\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/key_management.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/governance_markdown_gate.py"
+      ],
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "GOVERNANCE_MARKDOWN_GATE: PASS\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/governance_markdown_gate.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/review_policy_gate.py"
+      ],
+      "returncode": 1,
+      "status": "FAIL",
+      "stderr": "",
+      "stdout": "REVIEW_POLICY_GATE: FAIL\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/review_policy_gate.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/file_permissions_gate.py"
+      ],
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "FILE_PERMISSIONS_GATE: PASS\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/file_permissions_gate.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/policy_signature_gate.py"
+      ],
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "POLICY_SIGNATURE_GATE: PASS\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/policy_signature.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/pip_audit_gate.py"
+      ],
+      "returncode": 1,
+      "status": "FAIL",
+      "stderr": "",
+      "stdout": "PIP_AUDIT_GATE: FAIL\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/pip_audit.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/secret_scan_gate.py"
+      ],
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "SECRET_SCAN_GATE: PASS\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/secret_scan.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/workflow_pinning_gate.py"
+      ],
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "WORKFLOW_PINNING_GATE: PASS\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/workflow_pinning.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/incident_response_gate.py"
+      ],
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "INCIDENT_RESPONSE_GATE: PASS\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/incident_response.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/org_secret_backend_gate.py"
+      ],
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "ORG_SECRET_BACKEND_GATE: PASS\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/org_secret_backend.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/secret_management_gate.py"
+      ],
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "SECRET_MANAGEMENT_GATE: PASS\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/secret_management.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/production_controls_gate.py"
+      ],
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "PRODUCTION_CONTROLS_GATE: PASS\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/production_controls.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/abuse_telemetry_gate.py"
+      ],
+      "returncode": 1,
+      "status": "FAIL",
+      "stderr": "",
+      "stdout": "ABUSE_TELEMETRY_GATE: FAIL\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/abuse_telemetry.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/temporary_waiver_gate.py"
+      ],
+      "returncode": 1,
+      "status": "FAIL",
+      "stderr": "",
+      "stdout": "TEMPORARY_WAIVER_GATE: FAIL\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/temporary_waiver_gate.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/provenance_revocation_gate.py"
+      ],
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "PROVENANCE_REVOCATION_GATE: PASS\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/provenance_revocation_gate.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/report_secret_leak_gate.py"
+      ],
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "REPORT_SECRET_LEAK_GATE: PASS\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/report_secret_leak.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/cosign_attestation_gate.py"
+      ],
+      "returncode": 1,
+      "status": "FAIL",
+      "stderr": "",
+      "stdout": "COSIGN_ATTESTATION_GATE: FAIL\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/cosign_attestation_gate.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/release_rollback_provenance_gate.py"
+      ],
+      "returncode": 1,
+      "status": "FAIL",
+      "stderr": "",
+      "stdout": "RELEASE_ROLLBACK_PROVENANCE_GATE: FAIL\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/release_rollback_provenance_gate.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/emergency_lockdown_gate.py"
+      ],
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "EMERGENCY_LOCKDOWN_GATE: PASS\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/emergency_lockdown_gate.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/evidence_chain_of_custody.py"
+      ],
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "EVIDENCE_CHAIN_OF_CUSTODY: PASS\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/evidence_chain_of_custody_build.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/evidence_chain_of_custody.py",
+        "--verify"
+      ],
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "EVIDENCE_CHAIN_OF_CUSTODY: PASS\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/evidence_chain_of_custody_gate.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/conformance_security_coupling_gate.py"
+      ],
+      "returncode": 1,
+      "status": "FAIL",
+      "stderr": "",
+      "stdout": "CONFORMANCE_SECURITY_COUPLING_GATE: FAIL\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/conformance_security_coupling.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/security_slo_report.py"
+      ],
+      "returncode": 1,
+      "status": "FAIL",
+      "stderr": "",
+      "stdout": "SECURITY_SLO_REPORT: FAIL\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/security_slo_report.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/security_trend_gate.py"
+      ],
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "SECURITY_TREND_GATE: PASS\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/security_trend_gate.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/security_dashboard_export.py"
+      ],
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "SECURITY_DASHBOARD_EXPORT: PASS\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/security_dashboard.json"
+    },
+    {
+      "cmd": [
+        "/usr/bin/python",
+        "tooling/security/security_schema_normalization_gate.py"
+      ],
+      "returncode": 1,
+      "status": "FAIL",
+      "stderr": "",
+      "stdout": "SECURITY_SCHEMA_NORMALIZATION_GATE: FAIL\nReport: /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/security_schema_normalization_gate.json"
+    }
+  ],
+  "status": "FAIL",
+  "summary": {
+    "failed": 11,
+    "passed": 16,
+    "total": 27
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "findings": [
+    "missing_security_attestation_status",
+    "conformance_pass_but_security_attestation_failed"
+  ],
+  "metadata": {
+    "gate": "conformance_security_coupling"
+  },
+  "status": "FAIL",
+  "summary": {
+    "conformance_status": "PASS",
+    "policy_signature_status": "PASS",
+    "security_attestation_status": ""
+  }
+}

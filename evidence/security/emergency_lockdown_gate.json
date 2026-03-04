@@ -1,0 +1,11 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "emergency_lockdown_gate"
+  },
+  "status": "PASS",
+  "summary": {
+    "expires_at_utc": "",
+    "lockdown_enabled": false
+  }
+}

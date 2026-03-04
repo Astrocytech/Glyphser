@@ -1,0 +1,19 @@
+{
+  "findings": [
+    "signing_key_below_min_length",
+    "signing_key_entropy_below_minimum",
+    "missing_key_rotation_timestamp"
+  ],
+  "metadata": {
+    "gate": "key_management"
+  },
+  "status": "FAIL",
+  "summary": {
+    "key_env": "GLYPHSER_PROVENANCE_HMAC_KEY",
+    "maximum_rotation_age_days": 90,
+    "measured_entropy_bits": 0.0,
+    "minimum_entropy_bits": 80.0,
+    "minimum_key_length": 32,
+    "rotation_timestamp_env": "GLYPHSER_PROVENANCE_KEY_ROTATED_AT"
+  }
+}

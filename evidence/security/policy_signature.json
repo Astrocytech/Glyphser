@@ -1,0 +1,58 @@
+{
+  "checks": {
+    "governance/security/abuse_telemetry_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/container_provenance_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/emergency_lockdown_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/incident_response_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/key_management_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/live_rollout_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/org_secret_backend_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/production_controls_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/provenance_revocation_list.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/review_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/secret_management_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/temporary_waiver_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/third_party_pentest_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    }
+  },
+  "findings": [],
+  "status": "PASS"
+}

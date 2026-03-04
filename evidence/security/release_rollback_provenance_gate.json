@@ -1,0 +1,15 @@
+{
+  "findings": [
+    "provenance_signature_not_pass"
+  ],
+  "metadata": {
+    "gate": "release_rollback_provenance_gate"
+  },
+  "status": "FAIL",
+  "summary": {
+    "deploy": "PASS",
+    "policy_signature": "PASS",
+    "provenance_signature": "MISSING",
+    "rollback": "PASS"
+  }
+}

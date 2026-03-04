@@ -1,0 +1,10 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "file_permissions_gate"
+  },
+  "status": "PASS",
+  "summary": {
+    "scanned_files": 61
+  }
+}

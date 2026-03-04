@@ -1,15 +1,15 @@
 {
   "command": [
-    "/home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/.venv/bin/python",
+    "/usr/bin/python",
     "-m",
     "pip_audit",
     "--format",
     "json",
     "--desc",
-    "--strict"
+    "--skip-editable"
   ],
   "returncode": 1,
   "status": "FAIL",
-  "stderr": "/home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/.venv/bin/python: No module named pip_audit\n",
+  "stderr": "/usr/bin/python: No module named pip_audit\n",
   "stdout": ""
 }

@@ -1,0 +1,10 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "governance_markdown_gate"
+  },
+  "status": "PASS",
+  "summary": {
+    "documents": 2
+  }
+}

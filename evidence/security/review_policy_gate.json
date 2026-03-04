@@ -1,0 +1,16 @@
+{
+  "findings": [
+    "missing_codeowner_rule:tooling/security/**",
+    "missing_codeowner_rule:governance/security/**",
+    "missing_codeowner_rule:.github/workflows/**"
+  ],
+  "metadata": {
+    "gate": "review_policy_gate",
+    "min_approvals": 2
+  },
+  "status": "FAIL",
+  "summary": {
+    "changed_files": 65,
+    "security_changed_files": 38
+  }
+}

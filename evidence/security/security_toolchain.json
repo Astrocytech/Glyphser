@@ -1,0 +1,29 @@
+{
+  "checks": {
+    "bandit": {
+      "ok": false,
+      "reason": "not_installed"
+    },
+    "pip-audit": {
+      "ok": false,
+      "reason": "not_installed"
+    },
+    "semgrep": {
+      "ok": false,
+      "reason": "not_installed"
+    }
+  },
+  "findings": [
+    "bandit not installed",
+    "pip-audit not installed",
+    "semgrep not installed"
+  ],
+  "metadata": {
+    "gate": "security_toolchain_gate"
+  },
+  "status": "FAIL",
+  "summary": {
+    "has_transitive_lock": true,
+    "locked_packages": 3
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "security_trend_gate"
+  },
+  "status": "PASS",
+  "summary": {
+    "current": 0.25,
+    "previous": 0.25
+  }
+}
