@@ -11,6 +11,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 
 def _status(path: Path) -> str:
@@ -53,7 +54,7 @@ def main(argv: list[str] | None = None) -> int:
         "metadata": {"gate": "release_rollback_provenance_gate"},
     }
     out = sec / "release_rollback_provenance_gate.json"
-    out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, report)
     print(f"RELEASE_ROLLBACK_PROVENANCE_GATE: {report['status']}")
     print(f"Report: {out}")
     return 0 if report["status"] == "PASS" else 1
