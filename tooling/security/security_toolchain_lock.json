@@ -1,0 +1,14 @@
+{
+  "bandit": {
+    "version": "1.9.4",
+    "version_hash": "sha256:5d53588b9f2857dca20085cd43c6641d044303a49eed51aa66959c572491459e"
+  },
+  "pip-audit": {
+    "version": "2.9.0",
+    "version_hash": "sha256:a1c97f0e6ecd18d3e1c9d0b2f49e2163442ef9f56843c4519d805727aa341102"
+  },
+  "semgrep": {
+    "version": "1.95.0",
+    "version_hash": "sha256:8db20a98162fcba6180a92681f421850edb83b3145d0f8522a9a7ad227fb4842"
+  }
+}

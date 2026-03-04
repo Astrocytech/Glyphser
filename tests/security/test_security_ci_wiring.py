@@ -9,6 +9,10 @@ def test_ci_security_steps_are_wired() -> None:
     ci = (ROOT / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
     assert "security-matrix:" in ci
     assert 'python-version: ["3.11", "3.12"]' in ci
+    assert "bandit==1.9.4" in ci
+    assert "pip-audit==2.9.0" in ci
+    assert "semgrep==1.95.0" in ci
+    assert "python tooling/security/security_toolchain_gate.py" in ci
     assert "bandit -q -c tooling/security/bandit.yaml -r glyphser runtime tooling -l -ii" in ci
     assert "python tooling/security/pip_audit_gate.py" in ci
     assert "python tooling/security/secret_scan_gate.py" in ci
@@ -17,10 +21,14 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/org_secret_backend_gate.py" in ci
     assert "python tooling/security/secret_management_gate.py" in ci
     assert "python tooling/security/production_controls_gate.py" in ci
-    assert "python tooling/security/third_party_pentest_gate.py" in ci
+    assert "python tooling/security/third_party_pentest_gate.py --strict-key" in ci
     assert "python tooling/security/live_integrations_verify.py --dry-run" in ci
     assert "python tooling/security/live_rollout_gate.py --allow-dry-run --allow-missing" in ci
     assert "python tooling/security/container_provenance_gate.py" in ci
+    assert "python tooling/security/abuse_telemetry_snapshot.py" in ci
+    assert "python tooling/security/abuse_telemetry_gate.py" in ci
+    assert "python tooling/security/evidence_attestation_index.py --strict-key" in ci
+    assert "python tooling/security/evidence_attestation_gate.py --strict-key" in ci
     assert "python tooling/security/provenance_signature_gate.py" in ci
     assert "python tooling/security/slsa_attestation_gate.py" in ci
     assert "python tooling/security/security_artifacts.py" in ci

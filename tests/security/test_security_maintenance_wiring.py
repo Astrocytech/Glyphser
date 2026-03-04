@@ -9,6 +9,10 @@ def test_security_maintenance_workflow_wired() -> None:
     wf = (ROOT / ".github" / "workflows" / "security-maintenance.yml").read_text(encoding="utf-8")
     assert "schedule:" in wf
     assert "python tooling/security/dependency_refresh_report.py" in wf
+    assert "bandit==1.9.4" in wf
+    assert "pip-audit==2.9.0" in wf
+    assert "semgrep==1.95.0" in wf
+    assert "python tooling/security/security_toolchain_gate.py" in wf
     assert "python tooling/security/pip_audit_gate.py" in wf
     assert "python tooling/security/secret_scan_gate.py" in wf
     assert "python tooling/security/workflow_pinning_gate.py" in wf
@@ -16,11 +20,15 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/org_secret_backend_gate.py" in wf
     assert "python tooling/security/secret_management_gate.py" in wf
     assert "python tooling/security/production_controls_gate.py" in wf
-    assert "python tooling/security/third_party_pentest_gate.py" in wf
+    assert "python tooling/security/third_party_pentest_gate.py --strict-key" in wf
     assert "python tooling/security/live_integrations_verify.py" in wf
     assert "GLYPHSER_WAF_HEALTH_URL" in wf
     assert "python tooling/security/live_rollout_gate.py --target live_integrations" in wf
     assert "python tooling/security/container_provenance_gate.py" in wf
+    assert "python tooling/security/abuse_telemetry_snapshot.py" in wf
+    assert "python tooling/security/abuse_telemetry_gate.py" in wf
+    assert "python tooling/security/evidence_attestation_index.py --strict-key" in wf
+    assert "python tooling/security/evidence_attestation_gate.py --strict-key" in wf
     assert "python tooling/security/provenance_signature_gate.py" in wf
     assert "python tooling/security/slsa_attestation_gate.py" in wf
     assert "security-maintenance-artifacts" in wf

@@ -224,7 +224,7 @@ class RuntimeApiService:
             },
         )
         _validate_scope(scope, expected="jobs:write")
-        self._require_auth(token=token, action="jobs:write")
+        self._require_auth_with_tracking(token=token, action="jobs:write", scope=scope, job_id="")
         _validate_payload(payload)
         _validate_submit_payload_schema(payload)
         if idempotency_key and len(idempotency_key) > _MAX_IDEMPOTENCY_KEY_LENGTH:
@@ -276,7 +276,7 @@ class RuntimeApiService:
         _validate_against_schema("status_request", {"job_id": job_id, "token": token, "scope": scope})
         _validate_scope(scope, expected="jobs:read")
         _validate_job_id(job_id)
-        self._require_auth(token=token, action="jobs:read")
+        self._require_auth_with_tracking(token=token, action="jobs:read", scope=scope, job_id=job_id)
         with self._lock:
             state = self._load_state()
             self._bump_token_quota(
@@ -297,7 +297,7 @@ class RuntimeApiService:
         _validate_against_schema("evidence_request", {"job_id": job_id, "token": token, "scope": scope})
         _validate_scope(scope, expected="evidence:read")
         _validate_job_id(job_id)
-        self._require_auth(token=token, action="evidence:read")
+        self._require_auth_with_tracking(token=token, action="evidence:read", scope=scope, job_id=job_id)
         with self._lock:
             state = self._load_state()
             self._bump_token_quota(
@@ -341,7 +341,7 @@ class RuntimeApiService:
         _validate_against_schema("replay_request", {"job_id": job_id, "token": token, "scope": scope})
         _validate_scope(scope, expected="replay:run")
         _validate_job_id(job_id)
-        self._require_auth(token=token, action="replay:run")
+        self._require_auth_with_tracking(token=token, action="replay:run", scope=scope, job_id=job_id)
         with self._lock:
             state = self._load_state()
             self._bump_token_quota(
@@ -406,6 +406,17 @@ class RuntimeApiService:
         if not authorize(action, roles):
             raise ValueError(f"unauthorized action: {action}")
 
+    def _require_auth_with_tracking(self, *, token: str, action: str, scope: str, job_id: str) -> None:
+        try:
+            self._require_auth(token=token, action=action)
+        except ValueError:
+            with self._lock:
+                state = self._load_state()
+                self._record_auth_failure(state, token=token)
+                self._save_state(state)
+            self._audit("auth_failure", token=token, job_id=job_id, scope=scope)
+            raise
+
     def _audit(
         self,
         operation: str,
@@ -434,12 +445,13 @@ class RuntimeApiService:
                 "quotas": {
                     "token_requests": {},
                     "token_submits": {},
-                "job_reads": {},
-                "job_replays": {},
-                "job_last_replay_ts": {},
-                "token_request_window": {},
-            },
-        }
+                    "job_reads": {},
+                    "job_replays": {},
+                    "job_last_replay_ts": {},
+                    "token_request_window": {},
+                    "auth_failures_by_token": {},
+                },
+            }
         data = json.loads(self._config.state_path.read_text(encoding="utf-8"))
         if not isinstance(data, dict):
             raise ValueError("invalid state")
@@ -454,6 +466,7 @@ class RuntimeApiService:
         quotas.setdefault("job_replays", {})
         quotas.setdefault("job_last_replay_ts", {})
         quotas.setdefault("token_request_window", {})
+        quotas.setdefault("auth_failures_by_token", {})
         return data
 
     def _save_state(self, state: Dict[str, Any]) -> None:
@@ -569,6 +582,14 @@ class RuntimeApiService:
             limit,
             error="job replay quota exceeded",
         )
+
+    def _record_auth_failure(self, state: Dict[str, Any], *, token: str) -> None:
+        quotas = state["quotas"]
+        counter = quotas["auth_failures_by_token"]
+        current = counter.get(token, 0)
+        if not isinstance(current, int) or current < 0:
+            current = 0
+        counter[token] = current + 1
 
     @staticmethod
     def _enforce_replay_cooldown(state: Dict[str, Any], *, job_id: str, cooldown_seconds: int) -> None:

@@ -45,6 +45,9 @@ def test_submit_rejects_unauthorized_role(tmp_path: Path):
         assert False, "expected ValueError"
     except ValueError as exc:
         assert "unauthorized action" in str(exc)
+    state = json.loads((tmp_path / "state.json").read_text(encoding="utf-8"))
+    failures = state.get("quotas", {}).get("auth_failures_by_token", {})
+    assert failures.get("role:viewer", 0) >= 1
 
 
 def test_submit_rejects_payload_too_large(tmp_path: Path):

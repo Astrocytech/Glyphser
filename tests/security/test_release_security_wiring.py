@@ -13,9 +13,13 @@ def test_release_workflow_enforces_signature_verification() -> None:
     assert "python tooling/security/org_secret_backend_gate.py" in release
     assert "python tooling/security/secret_management_gate.py" in release
     assert "python tooling/security/production_controls_gate.py" in release
-    assert "python tooling/security/third_party_pentest_gate.py" in release
+    assert "python tooling/security/third_party_pentest_gate.py --strict-key" in release
     assert "python tooling/security/live_rollout_gate.py" in release
     assert "python tooling/security/container_provenance_gate.py" in release
+    assert "python tooling/security/abuse_telemetry_snapshot.py" in release
+    assert "python tooling/security/abuse_telemetry_gate.py" in release
+    assert "python tooling/security/evidence_attestation_index.py --strict-key" in release
+    assert "python tooling/security/evidence_attestation_gate.py --strict-key" in release
     assert "GLYPHSER_CONTAINER_PUBLISHING_ENABLED: \"true\"" in release
     assert "GLYPHSER_STRICT_SIGNING: \"true\"" in release
     assert "GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}" in release

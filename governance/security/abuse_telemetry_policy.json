@@ -1,0 +1,5 @@
+{
+  "runtime_api_state_path": "artifacts/generated/tmp/security/runtime_api_state.json",
+  "max_distinct_tokens": 200,
+  "max_auth_failures_per_token": 20
+}

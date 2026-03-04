@@ -48,13 +48,25 @@ jobs:
       - name: Production controls gate
         run: python tooling/security/production_controls_gate.py
       - name: Third-party pentest gate
-        run: python tooling/security/third_party_pentest_gate.py
+        env:
+          GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
+        run: python tooling/security/third_party_pentest_gate.py --strict-key
       - name: Live rollout gate (strict)
         run: python tooling/security/live_rollout_gate.py
       - name: Container provenance gate
         env:
           GLYPHSER_CONTAINER_PUBLISHING_ENABLED: "true"
         run: python tooling/security/container_provenance_gate.py
+      - name: Abuse telemetry snapshot + gate
+        run: |
+          python tooling/security/abuse_telemetry_snapshot.py
+          python tooling/security/abuse_telemetry_gate.py
+      - name: Evidence attestation index + gate
+        env:
+          GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
+        run: |
+          python tooling/security/evidence_attestation_index.py --strict-key
+          python tooling/security/evidence_attestation_gate.py --strict-key
       - name: Upload artifacts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -74,7 +86,11 @@ jobs:
             evidence/security/production_controls.json
             evidence/security/third_party_pentest.json
             evidence/security/live_rollout_gate.json
+            evidence/security/abuse_telemetry.json
             evidence/security/container_provenance.json
+            evidence/security/evidence_attestation_index.json
+            evidence/security/evidence_attestation_index.json.sig
+            evidence/security/evidence_attestation_gate.json
 
   verify-signatures:
     needs: build
@@ -97,10 +113,14 @@ jobs:
           python tooling/security/org_secret_backend_gate.py
           python tooling/security/secret_management_gate.py
           python tooling/security/production_controls_gate.py
-          python tooling/security/third_party_pentest_gate.py
+          python tooling/security/third_party_pentest_gate.py --strict-key
           python tooling/security/live_rollout_gate.py
           GLYPHSER_CONTAINER_PUBLISHING_ENABLED=true \
           python tooling/security/container_provenance_gate.py
+          python tooling/security/abuse_telemetry_snapshot.py
+          python tooling/security/abuse_telemetry_gate.py
+          python tooling/security/evidence_attestation_index.py --strict-key
+          python tooling/security/evidence_attestation_gate.py --strict-key
 
   publish-pypi:
     needs: [build, verify-signatures]

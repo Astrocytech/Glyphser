@@ -17,6 +17,14 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -e .[dev]
+      - name: Install pinned security tools
+        run: |
+          python -m pip install --upgrade \
+            bandit==1.9.4 \
+            pip-audit==2.9.0 \
+            semgrep==1.95.0
+      - name: Security toolchain gate
+        run: python tooling/security/security_toolchain_gate.py
       - name: Dependency refresh report
         run: python tooling/security/dependency_refresh_report.py
       - name: pip-audit gate
@@ -34,7 +42,9 @@ jobs:
       - name: Production controls gate
         run: python tooling/security/production_controls_gate.py
       - name: Third-party pentest gate
-        run: python tooling/security/third_party_pentest_gate.py
+        env:
+          GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
+        run: python tooling/security/third_party_pentest_gate.py --strict-key
       - name: Live integration verify
         env:
           GLYPHSER_WAF_HEALTH_URL: ${{ secrets.GLYPHSER_WAF_HEALTH_URL }}
@@ -49,8 +59,14 @@ jobs:
       - name: Container provenance gate
         run: python tooling/security/container_provenance_gate.py
       - name: Security artifacts + attestation checks
+        env:
+          GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY }}
         run: |
           python tooling/security/security_artifacts.py
+          python tooling/security/abuse_telemetry_snapshot.py
+          python tooling/security/abuse_telemetry_gate.py
+          python tooling/security/evidence_attestation_index.py --strict-key
+          python tooling/security/evidence_attestation_gate.py --strict-key
           python tooling/security/provenance_signature_gate.py
           python tooling/security/slsa_attestation_gate.py
       - name: Upload maintenance artifacts
@@ -62,6 +78,7 @@ jobs:
             evidence/security/pip_audit.json
             evidence/security/secret_scan.json
             evidence/security/workflow_pinning.json
+            evidence/security/security_toolchain.json
             evidence/security/incident_response.json
             evidence/security/org_secret_backend.json
             evidence/security/secret_management.json
@@ -69,6 +86,10 @@ jobs:
             evidence/security/third_party_pentest.json
             evidence/security/live_integrations.json
             evidence/security/live_rollout_gate.json
+            evidence/security/abuse_telemetry.json
             evidence/security/container_provenance.json
+            evidence/security/evidence_attestation_index.json
+            evidence/security/evidence_attestation_index.json.sig
+            evidence/security/evidence_attestation_gate.json
             evidence/security/provenance_signature.json
             evidence/security/slsa_attestation.json
