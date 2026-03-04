@@ -113,6 +113,9 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_pinning.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_signature.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_toolchain.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_workflow_contract_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_sarif_permissions_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_dead_gate_wiring_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/incident_response.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/org_secret_backend.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/secret_management.json
@@ -128,6 +131,8 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/abuse_telemetry.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/temporary_waiver_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_revocation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_gate_test_coverage.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/hardening_todo_consistency_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/container_provenance.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json.sig

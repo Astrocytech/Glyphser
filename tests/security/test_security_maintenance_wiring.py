@@ -38,6 +38,11 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/workflow_evidence_scope_gate.py" in wf
     assert "python tooling/security/conformance_security_coupling_gate.py" in wf
     assert "python tooling/security/security_super_gate.py --strict-key" in wf
+    assert "security_workflow_contract_gate.json" in wf
+    assert "security_sarif_permissions_gate.json" in wf
+    assert "security_dead_gate_wiring_gate.json" in wf
+    assert "security_gate_test_coverage.json" in wf
+    assert "hardening_todo_consistency_gate.json" in wf
     assert "semgrep --version" in wf
     assert 'python -c "import pkg_resources"' in wf
     assert "security-maintenance-artifacts" in wf
