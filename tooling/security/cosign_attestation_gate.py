@@ -13,6 +13,7 @@ if str(ROOT) not in sys.path:
 
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
 
+
 def main(argv: list[str] | None = None) -> int:
     _ = argv
     required = [

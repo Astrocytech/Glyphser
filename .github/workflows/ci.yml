@@ -194,7 +194,7 @@ jobs:
             bandit==1.9.4 \
             pip-audit==2.9.0 \
             semgrep==1.95.0 \
-            setuptools
+            setuptools==75.8.0
       - name: Initialize immutable evidence run directory
         run: python tooling/security/evidence_run_dir_guard.py --run-id "${{ github.run_id }}-${{ matrix.python-version }}-security"
       - name: Security toolchain gate
@@ -272,7 +272,7 @@ jobs:
       - name: External attestation gate
         run: python tooling/security/cosign_attestation_gate.py
       - name: Semgrep (SARIF)
-        run: semgrep --config tooling/security/semgrep-rules.yml --error --sarif --output semgrep.sarif runtime glyphser tooling
+        run: python -m semgrep --config tooling/security/semgrep-rules.yml --error --sarif --output semgrep.sarif runtime glyphser tooling
       - name: Semgrep rule regression tests
         run: pytest -q tests/security/test_semgrep_rules.py
       - name: Upload Bandit SARIF to Code Scanning
