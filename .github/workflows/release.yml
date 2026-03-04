@@ -49,7 +49,11 @@ jobs:
         run: python tooling/security/production_controls_gate.py
       - name: Third-party pentest gate
         run: python tooling/security/third_party_pentest_gate.py
+      - name: Live rollout gate (strict)
+        run: python tooling/security/live_rollout_gate.py
       - name: Container provenance gate
+        env:
+          GLYPHSER_CONTAINER_PUBLISHING_ENABLED: "true"
         run: python tooling/security/container_provenance_gate.py
       - name: Upload artifacts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -69,6 +73,7 @@ jobs:
             evidence/security/secret_management.json
             evidence/security/production_controls.json
             evidence/security/third_party_pentest.json
+            evidence/security/live_rollout_gate.json
             evidence/security/container_provenance.json
 
   verify-signatures:
@@ -93,6 +98,8 @@ jobs:
           python tooling/security/secret_management_gate.py
           python tooling/security/production_controls_gate.py
           python tooling/security/third_party_pentest_gate.py
+          python tooling/security/live_rollout_gate.py
+          GLYPHSER_CONTAINER_PUBLISHING_ENABLED=true \
           python tooling/security/container_provenance_gate.py
 
   publish-pypi:

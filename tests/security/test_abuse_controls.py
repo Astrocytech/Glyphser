@@ -56,3 +56,47 @@ def test_audit_chain_survives_concurrent_appends(tmp_path: Path) -> None:
         list(ex.map(_emit, range(100)))
     result = verify_chain(path)
     assert result["status"] == "PASS"
+
+
+def test_token_spray_hits_per_token_quota(tmp_path: Path) -> None:
+    root = tmp_path / "repo"
+    _prep_root(root)
+    svc = RuntimeApiService(
+        RuntimeApiConfig(
+            root=root,
+            state_path=tmp_path / "state.json",
+            max_requests_per_token=3,
+            max_submits_per_token=3,
+        )
+    )
+    payload = {"payload": {"job": "spray"}}
+    tokens = [f"token-{ix}" for ix in range(5)]
+    for token in tokens:
+        svc.submit_job(payload=payload, token=token, scope="jobs:write")
+        svc.submit_job(payload=payload, token=token, scope="jobs:write")
+        svc.submit_job(payload=payload, token=token, scope="jobs:write")
+        try:
+            svc.submit_job(payload=payload, token=token, scope="jobs:write")
+            assert False, "expected token quota error"
+        except ValueError as exc:
+            assert "token request quota exceeded" in str(exc)
+
+
+def test_concurrent_idempotency_stays_single_job(tmp_path: Path) -> None:
+    root = tmp_path / "repo"
+    _prep_root(root)
+    svc = RuntimeApiService(RuntimeApiConfig(root=root, state_path=tmp_path / "state.json"))
+    idem = "idem-abuse-key"
+
+    def _submit(ix: int) -> str:
+        record = svc.submit_job(
+            payload={"payload": {"ix": ix % 2}},
+            token="token-abuse",
+            scope="jobs:write",
+            idempotency_key=idem,
+        )
+        return str(record["job_id"])
+
+    with ThreadPoolExecutor(max_workers=12) as ex:
+        ids = list(ex.map(_submit, range(60)))
+    assert len(set(ids)) == 1

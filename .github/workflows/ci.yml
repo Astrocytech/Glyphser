@@ -199,6 +199,8 @@ jobs:
         run: python tooling/security/third_party_pentest_gate.py
       - name: Live integration verify (dry-run)
         run: python tooling/security/live_integrations_verify.py --dry-run
+      - name: Live rollout gate (discovery mode)
+        run: python tooling/security/live_rollout_gate.py --allow-dry-run --allow-missing
       - name: Container provenance gate
         run: python tooling/security/container_provenance_gate.py
       - name: Security artifacts
@@ -233,6 +235,7 @@ jobs:
             evidence/security/production_controls.json
             evidence/security/third_party_pentest.json
             evidence/security/live_integrations.json
+            evidence/security/live_rollout_gate.json
             evidence/security/container_provenance.json
             evidence/security/sbom.json
             evidence/security/sbom.json.sig

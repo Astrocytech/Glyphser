@@ -89,6 +89,33 @@ def test_submit_rejects_long_idempotency_key(tmp_path: Path):
         assert "idempotency_key too long" in str(exc)
 
 
+def test_submit_rejects_invalid_idempotency_key_chars(tmp_path: Path):
+    svc = RuntimeApiService(RuntimeApiConfig(root=ROOT, state_path=tmp_path / "state.json"))
+    try:
+        svc.submit_job(
+            payload={"payload": {"x": 1}},
+            token="token-a",
+            scope="jobs:write",
+            idempotency_key="bad key with spaces",
+        )
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "idempotency_key has invalid characters" in str(exc)
+
+
+def test_submit_rejects_unknown_top_level_fields(tmp_path: Path):
+    svc = RuntimeApiService(RuntimeApiConfig(root=ROOT, state_path=tmp_path / "state.json"))
+    try:
+        svc.submit_job(
+            payload={"payload": {"x": 1}, "extra": {"y": 2}},
+            token="token-a",
+            scope="jobs:write",
+        )
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "unknown keys" in str(exc)
+
+
 def test_scope_allowlist_enforced(tmp_path: Path):
     svc = RuntimeApiService(RuntimeApiConfig(root=ROOT, state_path=tmp_path / "state.json"))
     try:

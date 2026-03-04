@@ -42,8 +42,12 @@ jobs:
           python tooling/security/verify_branch_protection_live.py \
             --repo "${{ github.event.inputs.repo }}" \
             --branch "${{ github.event.inputs.branch }}"
+      - name: Verify live rollout evidence (branch protection)
+        run: python tooling/security/live_rollout_gate.py --target branch_protection
       - name: Upload branch protection evidence
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: branch-protection-live
-          path: evidence/security/branch_protection_live.json
+          path: |
+            evidence/security/branch_protection_live.json
+            evidence/security/live_rollout_gate.json

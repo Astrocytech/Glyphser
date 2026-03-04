@@ -23,6 +23,7 @@ _MAX_TOKEN_LENGTH = 256
 
 _JOB_ID_RE = re.compile(r"^[0-9a-f]{24}$")
 _PAYLOAD_KEY_RE = re.compile(r"^[A-Za-z0-9_.:-]{1,64}$")
+_IDEMPOTENCY_KEY_RE = re.compile(r"^[A-Za-z0-9_.:-]{1,128}$")
 
 
 def _first_existing(candidates: list[Path]) -> Path:
@@ -76,6 +77,40 @@ def _validate_payload(payload: Dict[str, Any]) -> None:
             raise ValueError(f"unsupported payload type: {type(current).__name__}")
 
 
+def _validate_submit_payload_schema(payload: Dict[str, Any]) -> None:
+    allowed_keys = {"payload", "metadata", "tags"}
+    unknown = sorted(k for k in payload if k not in allowed_keys)
+    if unknown:
+        raise ValueError(f"submit payload contains unknown keys: {', '.join(unknown)}")
+
+    body = payload.get("payload")
+    if not isinstance(body, dict):
+        raise ValueError("submit payload requires object field 'payload'")
+
+    metadata = payload.get("metadata")
+    if metadata is not None:
+        if not isinstance(metadata, dict):
+            raise ValueError("submit metadata must be an object")
+        if len(metadata) > 64:
+            raise ValueError("submit metadata has too many keys")
+        for key, value in metadata.items():
+            if not isinstance(key, str) or not _PAYLOAD_KEY_RE.match(key):
+                raise ValueError("submit metadata keys must be safe strings")
+            if value is None or isinstance(value, (bool, int, float, str)):
+                continue
+            raise ValueError("submit metadata values must be scalar")
+
+    tags = payload.get("tags")
+    if tags is not None:
+        if not isinstance(tags, list):
+            raise ValueError("submit tags must be a list")
+        if len(tags) > 32:
+            raise ValueError("submit tags has too many entries")
+        for tag in tags:
+            if not isinstance(tag, str) or not tag or len(tag) > 32 or not _PAYLOAD_KEY_RE.match(tag):
+                raise ValueError("submit tags must be safe short strings")
+
+
 def _validate_scope(scope: str, *, expected: str) -> None:
     if not isinstance(scope, str) or not scope:
         raise ValueError("missing scope")
@@ -121,8 +156,11 @@ class RuntimeApiService:
         _validate_scope(scope, expected="jobs:write")
         self._require_auth(token=token, action="jobs:write")
         _validate_payload(payload)
+        _validate_submit_payload_schema(payload)
         if idempotency_key and len(idempotency_key) > _MAX_IDEMPOTENCY_KEY_LENGTH:
             raise ValueError("idempotency_key too long")
+        if idempotency_key and not _IDEMPOTENCY_KEY_RE.match(idempotency_key):
+            raise ValueError("idempotency_key has invalid characters")
         with self._lock:
             state = self._load_state()
             self._bump_token_quota(

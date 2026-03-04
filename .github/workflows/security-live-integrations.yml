@@ -26,8 +26,12 @@ jobs:
           GLYPHSER_PAGING_HEALTH_URL: ${{ secrets.GLYPHSER_PAGING_HEALTH_URL }}
           GLYPHSER_PAGING_TOKEN: ${{ secrets.GLYPHSER_PAGING_TOKEN }}
         run: python tooling/security/live_integrations_verify.py
+      - name: Verify live rollout evidence (integrations)
+        run: python tooling/security/live_rollout_gate.py --target live_integrations
       - name: Upload live integration evidence
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: live-integrations
-          path: evidence/security/live_integrations.json
+          path: |
+            evidence/security/live_integrations.json
+            evidence/security/live_rollout_gate.json

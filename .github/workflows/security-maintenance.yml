@@ -35,8 +35,17 @@ jobs:
         run: python tooling/security/production_controls_gate.py
       - name: Third-party pentest gate
         run: python tooling/security/third_party_pentest_gate.py
-      - name: Live integration verify (dry-run)
-        run: python tooling/security/live_integrations_verify.py --dry-run
+      - name: Live integration verify
+        env:
+          GLYPHSER_WAF_HEALTH_URL: ${{ secrets.GLYPHSER_WAF_HEALTH_URL }}
+          GLYPHSER_WAF_TOKEN: ${{ secrets.GLYPHSER_WAF_TOKEN }}
+          GLYPHSER_SIEM_HEALTH_URL: ${{ secrets.GLYPHSER_SIEM_HEALTH_URL }}
+          GLYPHSER_SIEM_TOKEN: ${{ secrets.GLYPHSER_SIEM_TOKEN }}
+          GLYPHSER_PAGING_HEALTH_URL: ${{ secrets.GLYPHSER_PAGING_HEALTH_URL }}
+          GLYPHSER_PAGING_TOKEN: ${{ secrets.GLYPHSER_PAGING_TOKEN }}
+        run: python tooling/security/live_integrations_verify.py
+      - name: Live rollout gate (strict)
+        run: python tooling/security/live_rollout_gate.py --target live_integrations
       - name: Container provenance gate
         run: python tooling/security/container_provenance_gate.py
       - name: Security artifacts + attestation checks
@@ -59,6 +68,7 @@ jobs:
             evidence/security/production_controls.json
             evidence/security/third_party_pentest.json
             evidence/security/live_integrations.json
+            evidence/security/live_rollout_gate.json
             evidence/security/container_provenance.json
             evidence/security/provenance_signature.json
             evidence/security/slsa_attestation.json

@@ -19,6 +19,7 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/production_controls_gate.py" in ci
     assert "python tooling/security/third_party_pentest_gate.py" in ci
     assert "python tooling/security/live_integrations_verify.py --dry-run" in ci
+    assert "python tooling/security/live_rollout_gate.py --allow-dry-run --allow-missing" in ci
     assert "python tooling/security/container_provenance_gate.py" in ci
     assert "python tooling/security/provenance_signature_gate.py" in ci
     assert "python tooling/security/slsa_attestation_gate.py" in ci

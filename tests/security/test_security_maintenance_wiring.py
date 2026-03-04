@@ -17,7 +17,9 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/secret_management_gate.py" in wf
     assert "python tooling/security/production_controls_gate.py" in wf
     assert "python tooling/security/third_party_pentest_gate.py" in wf
-    assert "python tooling/security/live_integrations_verify.py --dry-run" in wf
+    assert "python tooling/security/live_integrations_verify.py" in wf
+    assert "GLYPHSER_WAF_HEALTH_URL" in wf
+    assert "python tooling/security/live_rollout_gate.py --target live_integrations" in wf
     assert "python tooling/security/container_provenance_gate.py" in wf
     assert "python tooling/security/provenance_signature_gate.py" in wf
     assert "python tooling/security/slsa_attestation_gate.py" in wf
