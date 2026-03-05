@@ -20,6 +20,11 @@ from runtime.glyphser.api.error_taxonomy import classify_runtime_api_error
 from runtime.glyphser.security.audit import append_event
 from runtime.glyphser.security.authz import authorize
 
+try:
+    import jsonschema
+except Exception:  # pragma: no cover - fallback path for minimal environments
+    jsonschema = None
+
 _MAX_PAYLOAD_BYTES = 128 * 1024
 _MAX_IDEMPOTENCY_KEY_LENGTH = 128
 _MAX_SCOPE_LENGTH = 64
@@ -148,30 +153,43 @@ def _validate_against_schema(name: str, payload: dict[str, Any]) -> None:
     schema = schemas.get(name)
     if not isinstance(schema, dict):
         raise ValueError(f"missing schema: {name}")
-    if schema.get("type") != "object":
-        raise ValueError(f"schema {name} must be object")
+    if not isinstance(payload, dict):
+        raise ValueError(f"{name}: payload must be object")
+    if jsonschema is None:
+        # Fallback validator keeps deterministic behavior when jsonschema is unavailable.
+        if schema.get("type") != "object":
+            raise ValueError(f"schema {name} must be object")
+        required = schema.get("required", [])
+        properties = schema.get("properties", {})
+        additional = bool(schema.get("additionalProperties", True))
+        if not isinstance(required, list) or not isinstance(properties, dict):
+            raise ValueError(f"invalid schema layout: {name}")
+        for key in required:
+            if key not in payload:
+                raise ValueError(f"{name}: missing required field {key}")
+        for key, value in payload.items():
+            prop = properties.get(key)
+            if prop is None:
+                if not additional:
+                    raise ValueError(f"{name}: unknown field {key}")
+                continue
+            if not isinstance(prop, dict):
+                raise ValueError(f"{name}: invalid field schema {key}")
+            field_type = str(prop.get("type", "")).strip()
+            if field_type and not _matches_schema_type(value, field_type):
+                raise ValueError(f"{name}: invalid type for field {key}")
+        return
 
-    required = schema.get("required", [])
-    properties = schema.get("properties", {})
-    additional = bool(schema.get("additionalProperties", True))
-    if not isinstance(required, list) or not isinstance(properties, dict):
-        raise ValueError(f"invalid schema layout: {name}")
-
-    for key in required:
-        if key not in payload:
-            raise ValueError(f"{name}: missing required field {key}")
-
-    for key, value in payload.items():
-        prop = properties.get(key)
-        if prop is None:
-            if not additional:
-                raise ValueError(f"{name}: unknown field {key}")
-            continue
-        if not isinstance(prop, dict):
-            raise ValueError(f"{name}: invalid field schema {key}")
-        field_type = str(prop.get("type", "")).strip()
-        if field_type and not _matches_schema_type(value, field_type):
-            raise ValueError(f"{name}: invalid type for field {key}")
+    validator = jsonschema.Draft7Validator(schema)
+    errors = sorted(
+        validator.iter_errors(payload),
+        key=lambda err: (list(err.path), list(err.schema_path), err.message),
+    )
+    if errors:
+        first = errors[0]
+        location = ".".join(str(x) for x in first.path)
+        where = f" at {location}" if location else ""
+        raise ValueError(f"{name}{where}: {first.message}")
 
 
 def _validate_scope(scope: str, *, expected: str) -> None:
