@@ -16,6 +16,7 @@ if str(ROOT) not in sys.path:
 
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
 run_checked = importlib.import_module("tooling.security.subprocess_policy").run_checked
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 SUPER_GATE_SUBPROCESS_TIMEOUT_SEC = 300.0
 SUPER_GATE_SUBPROCESS_MAX_OUTPUT_BYTES = 2_000_000
 
@@ -288,8 +289,7 @@ def main(argv: list[str] | None = None) -> int:
     }
 
     out = evidence_root() / "security" / "security_super_gate.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, report)
     print(f"SECURITY_SUPER_GATE: {report['status']}")
     print(f"Report: {out}")
     return 0 if report["status"] == "PASS" else 1

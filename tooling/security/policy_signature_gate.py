@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import importlib
 import json
 import sys
 from pathlib import Path
@@ -10,8 +11,13 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from runtime.glyphser.security.artifact_signing import bootstrap_key, current_key, key_metadata, verify_file
-from tooling.lib.path_config import evidence_root
+artifact_signing = importlib.import_module("runtime.glyphser.security.artifact_signing")
+bootstrap_key = artifact_signing.bootstrap_key
+current_key = artifact_signing.current_key
+key_metadata = artifact_signing.key_metadata
+verify_file = artifact_signing.verify_file
+evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 
 def _verify_with_allowed_keys(policy_path: Path, sig: str, *, strict_key: bool) -> tuple[bool, str]:
@@ -86,8 +92,7 @@ def main(argv: list[str] | None = None) -> int:
         "metadata": {"key_provenance": key_metadata(strict=args.strict_key), "gate": "policy_signature_gate"},
     }
     out = evidence_root() / "security" / "policy_signature.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, payload)
     print(f"POLICY_SIGNATURE_GATE: {payload['status']}")
     print(f"Report: {out}")
     return 0 if payload["status"] == "PASS" else 1

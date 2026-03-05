@@ -3,15 +3,19 @@ from __future__ import annotations
 
 import glob
 import hashlib
+import importlib
 import json
 import sys
 from pathlib import Path
 from typing import Any
 
-from tooling.lib.path_config import evidence_root
-from tooling.security.stage_s_policy import load_stage_s_policy
-
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
+load_stage_s_policy = importlib.import_module("tooling.security.stage_s_policy").load_stage_s_policy
 
 
 def _walk(obj: Any) -> list[str]:
@@ -70,8 +74,7 @@ def main(argv: list[str] | None = None) -> int:
         "metadata": {"gate": "deterministic_redaction_gate"},
     }
     out = evidence_root() / "security" / "deterministic_redaction_gate.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, report)
     print(f"DETERMINISTIC_REDACTION_GATE: {report['status']}")
     print(f"Report: {out}")
     return 0 if report["status"] == "PASS" else 1

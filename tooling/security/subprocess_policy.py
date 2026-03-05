@@ -13,6 +13,7 @@ DEFAULT_MAX_OUTPUT_BYTES = 1_000_000
 _ALLOWED_PREFIXES: list[tuple[str, ...]] = [
     ("git", "rev-parse"),
     ("git", "diff"),
+    ("git", "log"),
     ("git", "ls-files"),
     ("java", "-version"),
     ("javac", "-version"),
@@ -28,7 +29,7 @@ def _allowed_python_args(cmd: list[str]) -> bool:
     if len(cmd) < 2:
         return False
     # Allow explicit pip module operations used by security tooling setup/verification.
-    if len(cmd) >= 4 and cmd[1] == "-m" and cmd[2] == "pip" and cmd[3] in {"install", "freeze"}:
+    if len(cmd) >= 4 and cmd[1] == "-m" and cmd[2] == "pip" and cmd[3] in {"install", "freeze", "list"}:
         return True
     # Allow controlled one-liners used in tests and diagnostics.
     if len(cmd) == 3 and cmd[1] == "-c" and _PYTHON_INLINE_RE.fullmatch(cmd[2] or ""):
@@ -52,6 +53,8 @@ def _allowed_git_args(cmd: list[str]) -> bool:
         return len(cmd) >= 2
     if subcmd == "diff":
         return "--" in cmd
+    if subcmd == "log":
+        return "--" in cmd and "--pretty=%B" in cmd
     return False
 
 

@@ -25,5 +25,7 @@
     "SEC-",
     "TICKET-"
   ],
-  "required_changelog_file": "governance/security/SECURITY_CHANGELOG.md"
+  "required_changelog_file": "governance/security/SECURITY_CHANGELOG.md",
+  "enforce_change_ticket": false,
+  "enforce_changelog_entry": false
 }

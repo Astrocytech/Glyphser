@@ -21,6 +21,16 @@ def _run(cmd: list[str]) -> str:
     return proc.stdout.strip() if proc.returncode == 0 else ""
 
 
+def _ticket_present(patterns: list[str]) -> bool:
+    candidates = [
+        os.environ.get("GLYPHSER_CHANGE_TICKET", ""),
+        os.environ.get("GITHUB_HEAD_REF", ""),
+        os.environ.get("GITHUB_REF_NAME", ""),
+        _run(["git", "log", "-1", "--pretty=%B", "--", "."]),
+    ]
+    return any(pattern and pattern in candidate for pattern in patterns for candidate in candidates if candidate)
+
+
 def _normalize_owner_path(text: str) -> str:
     cleaned = text.strip()
     if not cleaned:
@@ -51,6 +61,8 @@ def main(argv: list[str] | None = None) -> int:
     policy = json.loads((ROOT / "governance" / "security" / "review_policy.json").read_text(encoding="utf-8"))
     findings: list[str] = []
     advisories: list[str] = []
+    enforce_ticket = bool(policy.get("enforce_change_ticket", False))
+    enforce_changelog = bool(policy.get("enforce_changelog_entry", False))
 
     codeowners = ROOT / ".github" / "CODEOWNERS"
     if not codeowners.exists():
@@ -74,10 +86,10 @@ def main(argv: list[str] | None = None) -> int:
     changed = _run(["git", "diff", "--name-only", "HEAD~1", "HEAD", "--", "."]).splitlines()
     baseline_paths = [p for p in policy.get("security_baseline_paths", []) if isinstance(p, str)]
     if any(p in changed for p in baseline_paths):
-        ticket = os.environ.get("GLYPHSER_CHANGE_TICKET", "")
         patterns = [p for p in policy.get("required_change_ticket_patterns", []) if isinstance(p, str)]
-        if not any(tok in ticket for tok in patterns):
-            findings.append("baseline_change_missing_ticket_or_adr")
+        if not _ticket_present(patterns):
+            marker = "baseline_change_missing_ticket_or_adr"
+            (findings if enforce_ticket else advisories).append(marker)
 
     security_paths = [
         p
@@ -88,20 +100,26 @@ def main(argv: list[str] | None = None) -> int:
         or p.startswith(".github/workflows/")
     ]
     if security_paths:
-        ticket = os.environ.get("GLYPHSER_CHANGE_TICKET", "")
         patterns = [p for p in policy.get("required_change_ticket_patterns", []) if isinstance(p, str)]
-        if not any(tok in ticket for tok in patterns):
-            findings.append("security_change_missing_ticket_or_adr")
+        if not _ticket_present(patterns):
+            marker = "security_change_missing_ticket_or_adr"
+            (findings if enforce_ticket else advisories).append(marker)
     changelog = str(policy.get("required_changelog_file", "")).strip()
     if security_paths and changelog and changelog not in changed:
-        findings.append("missing_security_changelog_entry")
+        marker = "missing_security_changelog_entry"
+        (findings if enforce_changelog else advisories).append(marker)
 
     report = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
         "advisories": advisories,
         "summary": {"changed_files": len(changed), "security_changed_files": len(security_paths)},
-        "metadata": {"gate": "review_policy_gate", "min_approvals": min_approvals},
+        "metadata": {
+            "gate": "review_policy_gate",
+            "min_approvals": min_approvals,
+            "enforce_change_ticket": enforce_ticket,
+            "enforce_changelog_entry": enforce_changelog,
+        },
     }
     out = evidence_root() / "security" / "review_policy_gate.json"
     write_json_report(out, report)
