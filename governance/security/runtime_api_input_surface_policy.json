@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "request_schemas": [
+    "submit_request",
+    "status_request",
+    "evidence_request",
+    "replay_request"
+  ],
+  "forbidden_property_fragments": [
+    "path",
+    "url",
+    "uri"
+  ],
+  "allowlisted_properties": []
+}

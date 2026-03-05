@@ -122,6 +122,7 @@ jobs:
           python tooling/security/security_unsigned_json_gate.py
           python tooling/security/abuse_telemetry_snapshot.py
           python tooling/security/runtime_api_state_schema_gate.py
+          python tooling/security/runtime_api_input_surface_gate.py
           python tooling/security/runtime_api_scope_matrix_gate.py
           python tooling/security/abuse_telemetry_gate.py
           python tooling/security/evidence_attestation_index.py --strict-key
@@ -194,6 +195,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/live_integrations.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/live_rollout_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/runtime_api_state_schema_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/runtime_api_input_surface_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/runtime_api_scope_matrix_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/abuse_telemetry.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/temporary_waiver_gate.json
