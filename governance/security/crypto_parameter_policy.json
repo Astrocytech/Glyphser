@@ -1,0 +1,13 @@
+{
+  "min_hmac_key_bytes": 32,
+  "allowed_hash_algorithms": [
+    "sha256"
+  ],
+  "forbidden_hash_algorithms": [
+    "md5",
+    "sha1"
+  ],
+  "review_max_age_days": 120,
+  "last_reviewed_utc": "2026-03-01T00:00:00+00:00",
+  "review_owner": "security-owner"
+}

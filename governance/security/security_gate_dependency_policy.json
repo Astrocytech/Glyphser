@@ -1,0 +1,53 @@
+{
+  "dependencies": {
+    "tooling/security/attestation_digest_match_gate.py": [
+      "tooling/security/provenance_signature_gate.py"
+    ],
+    "tooling/security/evidence_attestation_gate.py": [
+      "tooling/security/evidence_attestation_index.py"
+    ],
+    "tooling/security/integrity_envelope_gate.py": [
+      "tooling/security/evidence_attestation_index.py",
+      "tooling/security/policy_signature_gate.py",
+      "tooling/security/provenance_signature_gate.py"
+    ],
+    "tooling/security/promotion_policy_gate.py": [
+      "tooling/security/attestation_digest_match_gate.py",
+      "tooling/security/provenance_revocation_gate.py"
+    ],
+    "tooling/security/security_verification_summary.py": [
+      "tooling/security/evidence_attestation_gate.py",
+      "tooling/security/key_provenance_continuity_gate.py",
+      "tooling/security/policy_signature_gate.py",
+      "tooling/security/provenance_signature_gate.py",
+      "tooling/security/security_unsigned_json_gate.py",
+      "tooling/security/signature_algorithm_policy_gate.py"
+    ]
+  },
+  "critical_controls": [
+    {
+      "control_id": "policy_signature_verification",
+      "verifiers": [
+        "tooling/security/policy_signature_gate.py",
+        "tooling/security/security_verification_summary.py"
+      ],
+      "required_redundant_verifiers": 2
+    },
+    {
+      "control_id": "provenance_signature_verification",
+      "verifiers": [
+        "tooling/security/provenance_signature_gate.py",
+        "tooling/security/security_verification_summary.py"
+      ],
+      "required_redundant_verifiers": 2
+    },
+    {
+      "control_id": "unsigned_artifact_enforcement",
+      "verifiers": [
+        "tooling/security/security_artifact_signature_coverage_gate.py",
+        "tooling/security/security_unsigned_json_gate.py"
+      ],
+      "required_redundant_verifiers": 2
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "incidents": [],
+  "metadata": {
+    "description": "Catalog linking incidents to failing controls and permanent regression tests.",
+    "owner": "security-governance"
+  }
+}

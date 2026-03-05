@@ -1,19 +1,41 @@
 {
   "findings": [],
   "metadata": {
-    "gate": "security_dashboard_export"
+    "api_contract_version": "v1",
+    "control_family_tags": [
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [],
+    "failure_classification": "control_failure",
+    "failure_classification_set": [],
+    "failure_domains": {
+      "security_control_failures": [],
+      "transient_infra_failures": []
+    },
+    "gate": "security_dashboard_export",
+    "generated_at_utc": "2026-03-05T16:10:23.166002+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
   },
+  "schema_version": 1,
   "status": "PASS",
   "summary": {
-    "attestation": "MISSING",
+    "attestation": "PASS",
+    "kpis": {
+      "control_coverage_ratio": 1.0,
+      "implemented_controls": 4,
+      "required_controls": 4
+    },
     "policy_signature": "PASS",
-    "provenance_signature": "MISSING",
+    "provenance_signature": "PASS",
     "slo": {
       "gates": {
         "attestation": "MISSING",
         "policy_signature": "PASS",
         "provenance_signature": "MISSING",
-        "super_gate": "MISSING"
+        "super_gate": "FAIL"
       },
       "pass_rate": 0.25,
       "target": 0.99

@@ -1,0 +1,28 @@
+{
+  "findings": [],
+  "metadata": {
+    "control_family_tags": [
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [],
+    "failure_classification": "control_failure",
+    "failure_classification_set": [],
+    "failure_domains": {
+      "security_control_failures": [],
+      "transient_infra_failures": []
+    },
+    "generated_at_utc": "2026-03-05T18:10:19.141859+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "process": "hardening_completed_item_proof_audit",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "audited_done_items": 0,
+    "min_regression_green_runs": 3,
+    "reopened_items": 0
+  }
+}

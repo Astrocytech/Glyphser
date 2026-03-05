@@ -1,0 +1,74 @@
+{
+  "findings": [
+    "control_unavailable_no_backup:policy_signature_verification:policy_signature_gate.json",
+    "control_unavailable_no_backup:provenance_signature_verification:provenance_signature_gate.json"
+  ],
+  "metadata": {
+    "control_family_tags": [
+      "provenance",
+      "governance"
+    ],
+    "controls": [
+      {
+        "control_id": "policy_signature_verification",
+        "outcome": "FAIL",
+        "primary_report": "policy_signature_gate.json",
+        "primary_status": "MISSING",
+        "selected_backup": ""
+      },
+      {
+        "control_id": "provenance_signature_verification",
+        "outcome": "FAIL",
+        "primary_report": "provenance_signature_gate.json",
+        "primary_status": "MISSING",
+        "selected_backup": ""
+      }
+    ],
+    "error_code_version": "v1",
+    "error_codes": [
+      "sec_control_unavailable_no_backup_policy_signature_verification_policy_signature_gate_json",
+      "sec_control_unavailable_no_backup_provenance_signature_verification_provenance_signature_gate_json"
+    ],
+    "escalation_matrix": {
+      "severity_levels": {
+        "critical": {
+          "fallback": "security-leadership@glyphser.local",
+          "max_ack_minutes": 15,
+          "primary": "security-oncall@glyphser.local"
+        },
+        "high": {
+          "fallback": "platform-oncall@glyphser.local",
+          "max_ack_minutes": 30,
+          "primary": "security-oncall@glyphser.local"
+        },
+        "medium": {
+          "fallback": "platform-oncall@glyphser.local",
+          "max_ack_minutes": 60,
+          "primary": "security-engineering@glyphser.local"
+        }
+      }
+    },
+    "failure_classification": "policy_failure",
+    "failure_classification_set": [
+      "policy_failure"
+    ],
+    "failure_domains": {
+      "security_control_failures": [],
+      "transient_infra_failures": [
+        "sec_control_unavailable_no_backup_policy_signature_verification_policy_signature_gate_json",
+        "sec_control_unavailable_no_backup_provenance_signature_verification_provenance_signature_gate_json"
+      ]
+    },
+    "gate": "critical_control_backup_verifier_gate",
+    "generated_at_utc": "2026-03-05T16:34:58.672640+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "FAIL",
+  "summary": {
+    "controls_evaluated": 2,
+    "controls_failed": 2
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "status": "APPROVED",
+  "attestation_id": "THREAT-MODEL-CHANGE-2026-03-05-001",
+  "changed_controls": [
+    "CTRL-PROVENANCE-SIGNATURE",
+    "CTRL-EVIDENCE-INTEGRITY"
+  ],
+  "approvers": [
+    "security-team"
+  ],
+  "rationale": "Critical threat-control changes require explicit signed attestation before acceptance."
+}

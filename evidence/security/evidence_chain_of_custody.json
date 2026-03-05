@@ -1,6 +1,6 @@
 {
-  "count": 474,
-  "generated_at_utc": "2026-03-04T04:33:55.179331+00:00",
+  "count": 488,
+  "generated_at_utc": "2026-03-04T05:49:31.817043+00:00",
   "items": [
     {
       "chain_hash": "67ecd9e6247345eaea4e466718b6b0f734f26db4c10bfc554b8ced178d98d121",
@@ -2999,328 +2999,426 @@
       "sha256": "a302176ca91fe59ace69063841e487dd71b11fa87018bb4b8d40b2520befbe74"
     },
     {
-      "chain_hash": "77ec0d77312f32d6527c9d9dd6cf542dbb9104d28e9ad10f40fe99c22431f115",
-      "path": "evidence/security/abuse_telemetry.json",
+      "chain_hash": "45c85cdaa4d654239cdd89adb5c1bbae120d7ab26e590716638239dfff07c983",
+      "path": "evidence/runs/22656857277/security-matrix-3.11/security/temporary_waiver_gate.json",
       "prev_chain_hash": "41693eca383e34ae3e8613c179901e11bce8a29ca1531834052e1fdc13c9f361",
       "seq": 429,
-      "sha256": "af83cbd96b6b9f2140fac841b183dcfcc14721461db2634bc6da9f7db18ff5db"
+      "sha256": "b60b7f52c488d86334a0cc2e85ac71f60009c3cba794e5d7fae9c88bbcb511dc"
     },
     {
-      "chain_hash": "0e4f31838f722aad5b9cd6c7d2806367694a386e51ca67845ef9a23958fbbbbb",
-      "path": "evidence/security/audit.log.jsonl",
-      "prev_chain_hash": "77ec0d77312f32d6527c9d9dd6cf542dbb9104d28e9ad10f40fe99c22431f115",
+      "chain_hash": "837e1137217052b05551ec303505d8a8f4b5a291c97c8093690ada24ec32995e",
+      "path": "evidence/security/abuse_telemetry.json",
+      "prev_chain_hash": "45c85cdaa4d654239cdd89adb5c1bbae120d7ab26e590716638239dfff07c983",
       "seq": 430,
+      "sha256": "a7a770afd4e734cf9373985b4697f39f3408763a8fabb78eaf3dcee6d63b204a"
+    },
+    {
+      "chain_hash": "6b340f995dbba7cd3578cd9a6046d97d2972ab15896fca042148696b2dbe3136",
+      "path": "evidence/security/audit.log.jsonl",
+      "prev_chain_hash": "837e1137217052b05551ec303505d8a8f4b5a291c97c8093690ada24ec32995e",
+      "seq": 431,
       "sha256": "c337141de38889142ef070ea3932cedc208b08f99cada43a5f4fb2af19b52bb4"
     },
     {
-      "chain_hash": "b21d28e05c32b81b387b712ef303e5171b6a9a29f4270bd90a644375c745d742",
+      "chain_hash": "01d7ac6b5eb89c49807e56445765a087df8fb8ff5406e10f69d82197b8f96b9a",
       "path": "evidence/security/build_provenance.json",
-      "prev_chain_hash": "0e4f31838f722aad5b9cd6c7d2806367694a386e51ca67845ef9a23958fbbbbb",
-      "seq": 431,
+      "prev_chain_hash": "6b340f995dbba7cd3578cd9a6046d97d2972ab15896fca042148696b2dbe3136",
+      "seq": 432,
       "sha256": "3342e91bf35b207a3d83e776e33e3725dc4d45e6cda0c20a9c2a04f26d2c3477"
     },
     {
-      "chain_hash": "507fb16692bd1d13fb97ec15d4b237e155786da68e66b7290bce2b9e2efa6eea",
+      "chain_hash": "24b35d2b7f07c0bbe36d8edbee55083e1c1d1504298c01f7188e74b47e99317d",
+      "path": "evidence/security/conformance_security_coupling.json",
+      "prev_chain_hash": "01d7ac6b5eb89c49807e56445765a087df8fb8ff5406e10f69d82197b8f96b9a",
+      "seq": 433,
+      "sha256": "16e7581317d84341348dc6f272d61d1ca247ff11ee830ab50f5c241c94a45096"
+    },
+    {
+      "chain_hash": "9e22f0ce60b63fdfdb4ce8045e8ebc193e5d01c489aacec8d8e0f955f62fb062",
       "path": "evidence/security/cosign_attestation_gate.json",
-      "prev_chain_hash": "b21d28e05c32b81b387b712ef303e5171b6a9a29f4270bd90a644375c745d742",
-      "seq": 432,
+      "prev_chain_hash": "24b35d2b7f07c0bbe36d8edbee55083e1c1d1504298c01f7188e74b47e99317d",
+      "seq": 434,
       "sha256": "045a0966acf751b8234309f815cd3fcfbede6421f70b7480940ad270cae7faf9"
     },
     {
-      "chain_hash": "50b128a3944c491a8c071ae5be925149c986e6c8929957832d2b13a7ef7f42e1",
+      "chain_hash": "2a3e480edcbe3e511c1b6a197b78a04c069d73f29d52ac6a55e9247b62709f86",
+      "path": "evidence/security/disaster_recovery_drill.json",
+      "prev_chain_hash": "9e22f0ce60b63fdfdb4ce8045e8ebc193e5d01c489aacec8d8e0f955f62fb062",
+      "seq": 435,
+      "sha256": "080b728c5f7c98d4df8f31bc666203dea296dc7701f573de6af07484f4daed20"
+    },
+    {
+      "chain_hash": "4412c40bd6fbc7398fa2c5c3c1ce83b44fceaff8070780d387cead5eab549fca",
       "path": "evidence/security/emergency_lockdown_gate.json",
-      "prev_chain_hash": "507fb16692bd1d13fb97ec15d4b237e155786da68e66b7290bce2b9e2efa6eea",
-      "seq": 433,
+      "prev_chain_hash": "2a3e480edcbe3e511c1b6a197b78a04c069d73f29d52ac6a55e9247b62709f86",
+      "seq": 436,
       "sha256": "f460db2d1311f9b1e0136e7e239f54901818680cdd9e4bb88c660ef0cc9af4dc"
     },
     {
-      "chain_hash": "b74396ac95cea2fbcb5b0ab8957c0abf5a0cfd3acfc00c0d69b2cd0c2870c997",
-      "path": "evidence/security/file_permissions_gate.json",
-      "prev_chain_hash": "50b128a3944c491a8c071ae5be925149c986e6c8929957832d2b13a7ef7f42e1",
-      "seq": 434,
-      "sha256": "2d66b52a31dd0b7bdfff9496aed427f5c78238608d8778d6955aaa1a58a8ff90"
+      "chain_hash": "82b8107d198eeeca1c98f1ddbda1b391d410747c655d1e5a2793b23045911afd",
+      "path": "evidence/security/evidence_chain_of_custody_build.json",
+      "prev_chain_hash": "4412c40bd6fbc7398fa2c5c3c1ce83b44fceaff8070780d387cead5eab549fca",
+      "seq": 437,
+      "sha256": "e7ca4ed56f5a3623c2755441f6c221f1c52efaf4ccece5f7460efff66a931edb"
     },
     {
-      "chain_hash": "8a9cf01510c14f8b1981e665cb46233ed1af8a051b5a7724a30016623229d15d",
+      "chain_hash": "d783cea039a6ae59decc275dcd5b3f1e0dfed9940df1a7fe52916b8e29541df7",
+      "path": "evidence/security/evidence_chain_of_custody_gate.json",
+      "prev_chain_hash": "82b8107d198eeeca1c98f1ddbda1b391d410747c655d1e5a2793b23045911afd",
+      "seq": 438,
+      "sha256": "5c39ca21d6916c0163b54ff91cf7ac4a6c3cd1d2ac8fbaa67b40526162adcbc1"
+    },
+    {
+      "chain_hash": "349bd9148f1679bfd9fc9e365d51ee936abd0dacc2095b45dd477d27f1411418",
+      "path": "evidence/security/file_permissions_gate.json",
+      "prev_chain_hash": "d783cea039a6ae59decc275dcd5b3f1e0dfed9940df1a7fe52916b8e29541df7",
+      "seq": 439,
+      "sha256": "9b109b6fc84f37ba3647e208273a0f0177305186318ceeb05b3bd7044c20633c"
+    },
+    {
+      "chain_hash": "62ae3759f315ecfb00cc796824138f97398eb842440b2d63b660dc9ffcffe908",
       "path": "evidence/security/governance_markdown_gate.json",
-      "prev_chain_hash": "b74396ac95cea2fbcb5b0ab8957c0abf5a0cfd3acfc00c0d69b2cd0c2870c997",
-      "seq": 435,
+      "prev_chain_hash": "349bd9148f1679bfd9fc9e365d51ee936abd0dacc2095b45dd477d27f1411418",
+      "seq": 440,
       "sha256": "9b5a31936da7880a65fd3dd389a172b93154a6ca3bab73d8e6acbdf34f59d8f2"
     },
     {
-      "chain_hash": "75e3121f45bb6c2e7dc8f199bf8fbbe2807ef5f67708189ce6f8f707962098f6",
+      "chain_hash": "71fad89b2f981613d2eb9cd2ccee4459f878618ec8bff0988882519ca3874d61",
       "path": "evidence/security/incident_response.json",
-      "prev_chain_hash": "8a9cf01510c14f8b1981e665cb46233ed1af8a051b5a7724a30016623229d15d",
-      "seq": 436,
+      "prev_chain_hash": "62ae3759f315ecfb00cc796824138f97398eb842440b2d63b660dc9ffcffe908",
+      "seq": 441,
       "sha256": "4d20a2d2037983b6d16640cbd200f218c8f6f5fc421e04f00ff73cb238d1469f"
     },
     {
-      "chain_hash": "a846e9616fc002398402891b1dfdfa1d1d0421d9058321ef2d75d9fe457b9ce4",
+      "chain_hash": "092f7d8de4c09f59f3a1b81280aa78fd970983029c949837c291f2a8915f9d66",
+      "path": "evidence/security/key_compromise_drill.json",
+      "prev_chain_hash": "71fad89b2f981613d2eb9cd2ccee4459f878618ec8bff0988882519ca3874d61",
+      "seq": 442,
+      "sha256": "5eff8e733a705c1da3d111a08d10e171e0be4cdb41a686cf8899066eddfb0d42"
+    },
+    {
+      "chain_hash": "0c2e2c15c7a13741affdfea9914d9f0a62308b3233a8a93aa02c54727a60b844",
       "path": "evidence/security/key_management.json",
-      "prev_chain_hash": "75e3121f45bb6c2e7dc8f199bf8fbbe2807ef5f67708189ce6f8f707962098f6",
-      "seq": 437,
+      "prev_chain_hash": "092f7d8de4c09f59f3a1b81280aa78fd970983029c949837c291f2a8915f9d66",
+      "seq": 443,
       "sha256": "a81d058fa638f2ef1ba7a72f3342fcb021ce22a9a0359403e57d4883c8a1b722"
     },
     {
-      "chain_hash": "3256e6172c5da4ab182c900463497edd73be4cefcc39619771becb6179f58846",
+      "chain_hash": "19e8068d5dd0821eccb97ed6b4044cae843b97567819b9c822c95a5dbe74344c",
       "path": "evidence/security/key_rotation_drill.json",
-      "prev_chain_hash": "a846e9616fc002398402891b1dfdfa1d1d0421d9058321ef2d75d9fe457b9ce4",
-      "seq": 438,
+      "prev_chain_hash": "0c2e2c15c7a13741affdfea9914d9f0a62308b3233a8a93aa02c54727a60b844",
+      "seq": 444,
       "sha256": "a342bd0b1c25b7ff07d51fd0a58d78786b04bdcc6ca5565a6e06e1442edb45ff"
     },
     {
-      "chain_hash": "7d442d43da151da66ca5ea2c1a113e69fc096d5f420dd7d3644dff4ac64881fc",
+      "chain_hash": "4806bba414739bb780ac99468879f250d72d69ab00d835f271e81fb9be58e2ae",
       "path": "evidence/security/latest.json",
-      "prev_chain_hash": "3256e6172c5da4ab182c900463497edd73be4cefcc39619771becb6179f58846",
-      "seq": 439,
+      "prev_chain_hash": "19e8068d5dd0821eccb97ed6b4044cae843b97567819b9c822c95a5dbe74344c",
+      "seq": 445,
       "sha256": "3fb731e409bced67533ffddd875b8a9ad4730716f95e794147168a5ede99513b"
     },
     {
-      "chain_hash": "532970101a4a5e9ba1345deef582dd562d1ade14a7538d57fc41359909451b9c",
+      "chain_hash": "58d2c313e8bda71f703302e13b9e84975689fba1be7d0d636dba8560ddf5e3f0",
+      "path": "evidence/security/lockdown_rollback_attestation.json",
+      "prev_chain_hash": "4806bba414739bb780ac99468879f250d72d69ab00d835f271e81fb9be58e2ae",
+      "seq": 446,
+      "sha256": "f4cc4ec5ef2b35769e5ad0eea38b6232bb5e72207107adc57484f7d9c8ad7eac"
+    },
+    {
+      "chain_hash": "13f2377edd4058b1b09a6aca7fa82802758909f2b851171d7376a613f0a0a2c7",
       "path": "evidence/security/org_secret_backend.json",
-      "prev_chain_hash": "7d442d43da151da66ca5ea2c1a113e69fc096d5f420dd7d3644dff4ac64881fc",
-      "seq": 440,
+      "prev_chain_hash": "58d2c313e8bda71f703302e13b9e84975689fba1be7d0d636dba8560ddf5e3f0",
+      "seq": 447,
       "sha256": "ff9c9fad82662fc12754bd8f6714c7d329754d5a483e2aaa948566861f333170"
     },
     {
-      "chain_hash": "fccda66c473f0d4cc46b44993aba3eff348c4f55d82ec1361ba0a35556123463",
+      "chain_hash": "a92f343e78dcd3816d8460c074c405dd1a10e34db86e5a561852bc694e763e53",
       "path": "evidence/security/org_secret_backend_snapshot.json",
-      "prev_chain_hash": "532970101a4a5e9ba1345deef582dd562d1ade14a7538d57fc41359909451b9c",
-      "seq": 441,
+      "prev_chain_hash": "13f2377edd4058b1b09a6aca7fa82802758909f2b851171d7376a613f0a0a2c7",
+      "seq": 448,
       "sha256": "2a501c6b880942e585d98bab5dae3b785879a4f1f9320cc18900c5f033f83614"
     },
     {
-      "chain_hash": "15381b886be879e48d06816bedd0b67d5732ba83e3486719302b9407e5c1ba7b",
+      "chain_hash": "0b963377e95ea99c4ed7520321bf80b47e900fff3dc93e21bc097d05b1f1e561",
       "path": "evidence/security/pip_audit.json",
-      "prev_chain_hash": "fccda66c473f0d4cc46b44993aba3eff348c4f55d82ec1361ba0a35556123463",
-      "seq": 442,
-      "sha256": "5dc182599914ae471de46f0bd1222c740c8eeaeaa126ea233250b6c5891e8c77"
-    },
-    {
-      "chain_hash": "ee534aece1b52cab367632441b195de68ced27ce66c14f7d8f8f472bcec0a01f",
-      "path": "evidence/security/policy_signature.json",
-      "prev_chain_hash": "15381b886be879e48d06816bedd0b67d5732ba83e3486719302b9407e5c1ba7b",
-      "seq": 443,
-      "sha256": "765aa223879e2478b51164d85347d31a88435fe4c6214e541265f66e638d890b"
-    },
-    {
-      "chain_hash": "9584ccf3acbc3ba9fc91ef7a02d54263a2b0e64621f1dc393f5ed5b5b515684d",
-      "path": "evidence/security/production_controls.json",
-      "prev_chain_hash": "ee534aece1b52cab367632441b195de68ced27ce66c14f7d8f8f472bcec0a01f",
-      "seq": 444,
-      "sha256": "ff9c9fad82662fc12754bd8f6714c7d329754d5a483e2aaa948566861f333170"
-    },
-    {
-      "chain_hash": "b875c42a37d9d2899acc9c46608d49e9a139d545ab8d9091d0b1d735395106d6",
-      "path": "evidence/security/production_controls_snapshot.json",
-      "prev_chain_hash": "9584ccf3acbc3ba9fc91ef7a02d54263a2b0e64621f1dc393f5ed5b5b515684d",
-      "seq": 445,
-      "sha256": "9f15bfd174ed1b9f28f640d42810d49d1809a3ed7f3024a1b4a2502d0d0a5cb7"
-    },
-    {
-      "chain_hash": "61d1b89f4e339048855c25d0778fa33df883934fabda5858a2ff38cb1c457b2e",
-      "path": "evidence/security/provenance_revocation_gate.json",
-      "prev_chain_hash": "b875c42a37d9d2899acc9c46608d49e9a139d545ab8d9091d0b1d735395106d6",
-      "seq": 446,
-      "sha256": "fe94759e38a0da11d3e5642ad617b08323fd5388d9cd625e65fab6ea58e3345c"
-    },
-    {
-      "chain_hash": "7ef26331e8538f5126260b50c59ce1f295e93d3c2d8f0a2fc05ce8f891e22273",
-      "path": "evidence/security/release_rollback_provenance_gate.json",
-      "prev_chain_hash": "61d1b89f4e339048855c25d0778fa33df883934fabda5858a2ff38cb1c457b2e",
-      "seq": 447,
-      "sha256": "4eab2b896ce562471c000e94cf4b5d0ab104ef596e976e7f0eceadba7c977f2b"
-    },
-    {
-      "chain_hash": "dc5ba6d54e3e950fa12e8cb95625107dea178e9a771ba8184bd3d254bc446e64",
-      "path": "evidence/security/report_secret_leak.json",
-      "prev_chain_hash": "7ef26331e8538f5126260b50c59ce1f295e93d3c2d8f0a2fc05ce8f891e22273",
-      "seq": 448,
-      "sha256": "6696fbb61530641a5be57ede09298aefabfe314dbf8bd303ccf99b833eb69d4d"
-    },
-    {
-      "chain_hash": "b0995be2975622fbcdf8a832490798015cab30b5b1294bfbd8059e00f3b97f9f",
-      "path": "evidence/security/review_policy_gate.json",
-      "prev_chain_hash": "dc5ba6d54e3e950fa12e8cb95625107dea178e9a771ba8184bd3d254bc446e64",
+      "prev_chain_hash": "a92f343e78dcd3816d8460c074c405dd1a10e34db86e5a561852bc694e763e53",
       "seq": 449,
-      "sha256": "fc7d970335082de5ff32f6d59e0cddc019475fc291d1a27741299a52b8826108"
+      "sha256": "6674c41a24161f557e9c66c5bea46e28ea31573114a6901ea3aee9956849265e"
     },
     {
-      "chain_hash": "5aaffb0c1adbd2720a3e51f716016d053d64894fc15fdff0cbe1321ccc93df99",
-      "path": "evidence/security/sbom.json",
-      "prev_chain_hash": "b0995be2975622fbcdf8a832490798015cab30b5b1294bfbd8059e00f3b97f9f",
+      "chain_hash": "689692641dc8144eae1bafd404d9dc659bdff4d8e1662b7fdda7938da2fdde4c",
+      "path": "evidence/security/policy_signature.json",
+      "prev_chain_hash": "0b963377e95ea99c4ed7520321bf80b47e900fff3dc93e21bc097d05b1f1e561",
       "seq": 450,
-      "sha256": "0540bb731285ff0193cca65565cce0b59eaa62bcac6df2488656ff009dc30389"
+      "sha256": "ce08782e97851e85bec137034e5901bd3e126ab5d23406ac3b2979d7b600819f"
     },
     {
-      "chain_hash": "d9bdd9549398fca46d0ad4e307b4945c1f04ec97f410d6c38a860af62014e9c9",
-      "path": "evidence/security/secret_management.json",
-      "prev_chain_hash": "5aaffb0c1adbd2720a3e51f716016d053d64894fc15fdff0cbe1321ccc93df99",
+      "chain_hash": "06618ea3278985abf681a797594b2969a73a966f659468425a7488e1b46a3030",
+      "path": "evidence/security/production_controls.json",
+      "prev_chain_hash": "689692641dc8144eae1bafd404d9dc659bdff4d8e1662b7fdda7938da2fdde4c",
       "seq": 451,
       "sha256": "ff9c9fad82662fc12754bd8f6714c7d329754d5a483e2aaa948566861f333170"
     },
     {
-      "chain_hash": "02c17dee073f7b0a88538ea170987850c962cf1829ec2040cd44394ac5c01809",
-      "path": "evidence/security/secret_rotation_audit.json",
-      "prev_chain_hash": "d9bdd9549398fca46d0ad4e307b4945c1f04ec97f410d6c38a860af62014e9c9",
+      "chain_hash": "5d96cb41aac07f0c666e9dffc4e6c99e32368a0c707f0215d8363dd55d7b19b1",
+      "path": "evidence/security/production_controls_snapshot.json",
+      "prev_chain_hash": "06618ea3278985abf681a797594b2969a73a966f659468425a7488e1b46a3030",
       "seq": 452,
+      "sha256": "9f15bfd174ed1b9f28f640d42810d49d1809a3ed7f3024a1b4a2502d0d0a5cb7"
+    },
+    {
+      "chain_hash": "470b42ac5ccbaf550890e0da84d9246618db60037a3538b8a111044a7a31d20f",
+      "path": "evidence/security/provenance_revocation_gate.json",
+      "prev_chain_hash": "5d96cb41aac07f0c666e9dffc4e6c99e32368a0c707f0215d8363dd55d7b19b1",
+      "seq": 453,
+      "sha256": "17999b43875a1e84be1bd514fa3f355aa1f2c8dd6983df8ff78567514045ed7b"
+    },
+    {
+      "chain_hash": "61572d8c8e1781240f6bd58579cbe9a1eabf4f2083a3c15920bbd72b9b0441a3",
+      "path": "evidence/security/provenance_witnesses.json",
+      "prev_chain_hash": "470b42ac5ccbaf550890e0da84d9246618db60037a3538b8a111044a7a31d20f",
+      "seq": 454,
+      "sha256": "69b2f1e8353d3c723bcfb4dd89284559e492cd982605a028ee59843d80ea0a1b"
+    },
+    {
+      "chain_hash": "c809f484c7a537a2735473227bb1b1c5e33000123e7097635be2104d3d4e3b5c",
+      "path": "evidence/security/release_rollback_provenance_gate.json",
+      "prev_chain_hash": "61572d8c8e1781240f6bd58579cbe9a1eabf4f2083a3c15920bbd72b9b0441a3",
+      "seq": 455,
+      "sha256": "4eab2b896ce562471c000e94cf4b5d0ab104ef596e976e7f0eceadba7c977f2b"
+    },
+    {
+      "chain_hash": "19ebc78057832cd834b86aceb9497c7bd5f7cf18f8e79211b1a278cec414c448",
+      "path": "evidence/security/report_secret_leak.json",
+      "prev_chain_hash": "c809f484c7a537a2735473227bb1b1c5e33000123e7097635be2104d3d4e3b5c",
+      "seq": 456,
+      "sha256": "f0300d3fccf4d8ba84322d6e8ee9fb59c7539e1c316657de25a14ed7fea7aa81"
+    },
+    {
+      "chain_hash": "bb7b2d9b1b00a281b26646c8440fcea98e5c74ad1e85deb624d10455618f7161",
+      "path": "evidence/security/review_policy_gate.json",
+      "prev_chain_hash": "19ebc78057832cd834b86aceb9497c7bd5f7cf18f8e79211b1a278cec414c448",
+      "seq": 457,
+      "sha256": "4ef6778fac3cc417e2527414016d528f9c265d0119abcaa4c287e42642f5a5b3"
+    },
+    {
+      "chain_hash": "877fecbe5559d4e8aedba6effe5441615b7ae3b5c5401fc21db93ad417b743b5",
+      "path": "evidence/security/sbom.json",
+      "prev_chain_hash": "bb7b2d9b1b00a281b26646c8440fcea98e5c74ad1e85deb624d10455618f7161",
+      "seq": 458,
+      "sha256": "0540bb731285ff0193cca65565cce0b59eaa62bcac6df2488656ff009dc30389"
+    },
+    {
+      "chain_hash": "687bf0b832e137210bef3fdc1bfd6c926c16dde87235d266dd8af827a40d7d86",
+      "path": "evidence/security/secret_management.json",
+      "prev_chain_hash": "877fecbe5559d4e8aedba6effe5441615b7ae3b5c5401fc21db93ad417b743b5",
+      "seq": 459,
+      "sha256": "ff9c9fad82662fc12754bd8f6714c7d329754d5a483e2aaa948566861f333170"
+    },
+    {
+      "chain_hash": "a3ed6106087d654e2e49889727074ad8e06eb8bfffa00b0dcd280a4f0082c123",
+      "path": "evidence/security/secret_rotation_audit.json",
+      "prev_chain_hash": "687bf0b832e137210bef3fdc1bfd6c926c16dde87235d266dd8af827a40d7d86",
+      "seq": 460,
       "sha256": "f28f55dd9783fed3400348d3bdeb21e64917c53d31e5ba67c12b038d37482b13"
     },
     {
-      "chain_hash": "47d08bc9c130404589e21e3b5208a6639b5bbde5cc08a73c7c96312a64dfcb82",
+      "chain_hash": "f5698c49bf2a06869476c58cb7db648d2beebf33ca0f06e7dfcfa43c31877de9",
       "path": "evidence/security/secret_scan.json",
-      "prev_chain_hash": "02c17dee073f7b0a88538ea170987850c962cf1829ec2040cd44394ac5c01809",
-      "seq": 453,
+      "prev_chain_hash": "a3ed6106087d654e2e49889727074ad8e06eb8bfffa00b0dcd280a4f0082c123",
+      "seq": 461,
       "sha256": "92d4924717ab180e20d52a17c0bc3a8d752c6665c6d7b79b7899ff2fd5ebe489"
     },
     {
-      "chain_hash": "98fc3d0f82ee2c905556a004a07dc093f110cf648d1e9f1abfc09c54d5c47c08",
+      "chain_hash": "63392f8d74d8bd0eb8df0141100ea64d73c9cbe803ba3c89a129f55f2effe1a7",
+      "path": "evidence/security/security_dashboard.json",
+      "prev_chain_hash": "f5698c49bf2a06869476c58cb7db648d2beebf33ca0f06e7dfcfa43c31877de9",
+      "seq": 462,
+      "sha256": "482145547334f7a62d2ea98f1e27d380c64216b7294a433df373d686626ed02f"
+    },
+    {
+      "chain_hash": "c2c9c745692943089355fd48c4c67acd361bb8bc6f5f89991466af25322dac96",
+      "path": "evidence/security/security_schema_normalization_gate.json",
+      "prev_chain_hash": "63392f8d74d8bd0eb8df0141100ea64d73c9cbe803ba3c89a129f55f2effe1a7",
+      "seq": 463,
+      "sha256": "cc579d0d8883e53143e048097cea4191819d0aa9fd145d81bfbcaf9d5f71c4ee"
+    },
+    {
+      "chain_hash": "9407f18555b61a084b9336d18df0e3bcdc81ce9ed3c19bf0108edbfea82422b0",
+      "path": "evidence/security/security_slo_history.json",
+      "prev_chain_hash": "c2c9c745692943089355fd48c4c67acd361bb8bc6f5f89991466af25322dac96",
+      "seq": 464,
+      "sha256": "e48fab26513fdb6df0517bc5e0345c2b4c8d88b8e6e9e5a9d4113f48a2f6a55b"
+    },
+    {
+      "chain_hash": "e085c38dadeac755d0c3cf684c63402be78f1926baaaf239cc87832e681244b4",
+      "path": "evidence/security/security_slo_report.json",
+      "prev_chain_hash": "9407f18555b61a084b9336d18df0e3bcdc81ce9ed3c19bf0108edbfea82422b0",
+      "seq": 465,
+      "sha256": "0dcf4ed83c89ad9e43cdece024fbb2808cf08de33b74883f4f08a4524bb55802"
+    },
+    {
+      "chain_hash": "6b3343d8335a43f6df7749305e57882945dc4dd3f450a6ea4fe2b7696a0cd8b8",
+      "path": "evidence/security/security_super_gate.json",
+      "prev_chain_hash": "e085c38dadeac755d0c3cf684c63402be78f1926baaaf239cc87832e681244b4",
+      "seq": 466,
+      "sha256": "21c6eb2fc39b9b642ba7d9f7671714e7cc892bad06bd984a2455f7a5e1837696"
+    },
+    {
+      "chain_hash": "6ca54e77d89ad075c6848eb2cad41321b167dc072837a1bb6e862a7667d4dc65",
       "path": "evidence/security/security_toolchain.json",
-      "prev_chain_hash": "47d08bc9c130404589e21e3b5208a6639b5bbde5cc08a73c7c96312a64dfcb82",
-      "seq": 454,
+      "prev_chain_hash": "6b3343d8335a43f6df7749305e57882945dc4dd3f450a6ea4fe2b7696a0cd8b8",
+      "seq": 467,
       "sha256": "a9cbf640ef441af45c0b50d66563fe5566c0bec6a4e01357e615268c4b57029f"
     },
     {
-      "chain_hash": "425fb5e097629bc4e9b138321bc2e0caaea3406c6b2f6dc44145dfe1974e2039",
+      "chain_hash": "2a1b591011b7f7db1ba60204094c6c781983f1c647e7ae180652988af2d2e22c",
+      "path": "evidence/security/security_trend_gate.json",
+      "prev_chain_hash": "6ca54e77d89ad075c6848eb2cad41321b167dc072837a1bb6e862a7667d4dc65",
+      "seq": 468,
+      "sha256": "390b58a853aae5286a9802cf829dd02f2f83062eaf2a3923ec445b05f8ce6f93"
+    },
+    {
+      "chain_hash": "72a3563a0ed69b2a942c9ae183686e684c3fd1b3ed8bbc9bdf41537afe2964a1",
       "path": "evidence/security/slsa_provenance_v1.json",
-      "prev_chain_hash": "98fc3d0f82ee2c905556a004a07dc093f110cf648d1e9f1abfc09c54d5c47c08",
-      "seq": 455,
+      "prev_chain_hash": "2a1b591011b7f7db1ba60204094c6c781983f1c647e7ae180652988af2d2e22c",
+      "seq": 469,
       "sha256": "3bbf11a38a7cdcacc93bf533fb85d9658d917d8692a7485ec6d4b7be71bef34a"
     },
     {
-      "chain_hash": "e9a4166a9d7e016cd82c15443a45177661786796e00c594e7972d3f37ce1399d",
+      "chain_hash": "313102cb552f1a4b190231f1a86009eceb72624925c68e913f77f04a3947c519",
       "path": "evidence/security/temporary_waiver_gate.json",
-      "prev_chain_hash": "425fb5e097629bc4e9b138321bc2e0caaea3406c6b2f6dc44145dfe1974e2039",
-      "seq": 456,
+      "prev_chain_hash": "72a3563a0ed69b2a942c9ae183686e684c3fd1b3ed8bbc9bdf41537afe2964a1",
+      "seq": 470,
       "sha256": "031193857b6b92aab16192bfb5d342deada24954f369416e8247c1423a6a15f1"
     },
     {
-      "chain_hash": "243893abe40e6eb490e0dd9606cf9a451edc76e8eb35cc51d3a58815037ac19e",
+      "chain_hash": "90a89fa6460f5974f10702d88aab9f5f62c3d0c8d1aad75c5fe5507eebcfb02f",
       "path": "evidence/security/third_party_pentest_backlog.json",
-      "prev_chain_hash": "e9a4166a9d7e016cd82c15443a45177661786796e00c594e7972d3f37ce1399d",
-      "seq": 457,
+      "prev_chain_hash": "313102cb552f1a4b190231f1a86009eceb72624925c68e913f77f04a3947c519",
+      "seq": 471,
       "sha256": "17acbe64ddd7d102a00fcbd1a81cb9ae888f60a4a6de70a55288fef7877b254d"
     },
     {
-      "chain_hash": "80c15fea84bfcce009562b6271190f317db088496d9938ff0e1383141577bc9a",
+      "chain_hash": "45cff13e76ceba3025e25f8dc4601f9e849380502247fddf416e368972b995d6",
       "path": "evidence/security/third_party_pentest_report.json",
-      "prev_chain_hash": "243893abe40e6eb490e0dd9606cf9a451edc76e8eb35cc51d3a58815037ac19e",
-      "seq": 458,
+      "prev_chain_hash": "90a89fa6460f5974f10702d88aab9f5f62c3d0c8d1aad75c5fe5507eebcfb02f",
+      "seq": 472,
       "sha256": "d10e19a41cc324e114916ca04246708c18c59ab2712c4b149568018cba6fe1e7"
     },
     {
-      "chain_hash": "8c301695c68b56fe396bfa9d538b4a37853ec58aded11a4ffcd789bb4d9d60d7",
+      "chain_hash": "4789b230f0cc16cc91d87120e08f851d06db83c0526ca142783cb1dde1b2a9ec",
       "path": "evidence/security/third_party_pentest_report_artifact.txt",
-      "prev_chain_hash": "80c15fea84bfcce009562b6271190f317db088496d9938ff0e1383141577bc9a",
-      "seq": 459,
+      "prev_chain_hash": "45cff13e76ceba3025e25f8dc4601f9e849380502247fddf416e368972b995d6",
+      "seq": 473,
       "sha256": "9b794104066cc72f578d40cd2749757f2bb0de2e2496e74ba5c4aaec4065765b"
     },
     {
-      "chain_hash": "501b87bf620a9749c373a83af5825ef006bd7a362b4d5929e28781abcfa73244",
+      "chain_hash": "19e324ec3ff66051ed4db5c2460fc38f6d33f09cc41b341e427f8f43197bf8e7",
       "path": "evidence/security/workflow_pinning.json",
-      "prev_chain_hash": "8c301695c68b56fe396bfa9d538b4a37853ec58aded11a4ffcd789bb4d9d60d7",
-      "seq": 460,
-      "sha256": "b8b7bef0a4f8942ad09fac17bd5e54d5cf4126839c1837dc387c0a59bb8df741"
+      "prev_chain_hash": "4789b230f0cc16cc91d87120e08f851d06db83c0526ca142783cb1dde1b2a9ec",
+      "seq": 474,
+      "sha256": "d3e78eacfff073196a9b825fe99e5e5fdaa98dca95cfefe72b7fdbb36c5235b8"
     },
     {
-      "chain_hash": "db175114489ebcdac7468783eb9e4c529e53bb7e98d72475f2ca6d576eb2ca47",
+      "chain_hash": "546ec06b90e38bf1df0d8f02cda90be291f9fac92fcb1df916b93aba8176d491",
       "path": "evidence/traceability/index.json",
-      "prev_chain_hash": "501b87bf620a9749c373a83af5825ef006bd7a362b4d5929e28781abcfa73244",
-      "seq": 461,
+      "prev_chain_hash": "19e324ec3ff66051ed4db5c2460fc38f6d33f09cc41b341e427f8f43197bf8e7",
+      "seq": 475,
       "sha256": "4f24d5b8d97d29876f0ecc1e618b816ecaf40489c3990c5950ee1ad9c3f1d7bb"
     },
     {
-      "chain_hash": "f4585b4add313cdd442bd1243a8e8261a2d8e077ec4140b8c820011b30f39caa",
+      "chain_hash": "1049a4c558f8879a7da96be0d8fde4863aadd5a8255a8f166ef04d1368a84c3e",
       "path": "evidence/validation/external_security_review.md",
-      "prev_chain_hash": "db175114489ebcdac7468783eb9e4c529e53bb7e98d72475f2ca6d576eb2ca47",
-      "seq": 462,
+      "prev_chain_hash": "546ec06b90e38bf1df0d8f02cda90be291f9fac92fcb1df916b93aba8176d491",
+      "seq": 476,
       "sha256": "470c4484fe811a6f7d36961bad0ecb3252cb484e7f07f74491f571eba6d6b1f8"
     },
     {
-      "chain_hash": "2c62ea349221aabd452784d0a3142b3d302027a1cf96fbe698b76c94856404dc",
+      "chain_hash": "906cd280653af2bb18190fc77ff9057f8809b05884e33a93b6a7908393f26312",
       "path": "evidence/validation/independent_verification_summary.json",
-      "prev_chain_hash": "f4585b4add313cdd442bd1243a8e8261a2d8e077ec4140b8c820011b30f39caa",
-      "seq": 463,
+      "prev_chain_hash": "1049a4c558f8879a7da96be0d8fde4863aadd5a8255a8f166ef04d1368a84c3e",
+      "seq": 477,
       "sha256": "47f0adcd1a37edc2d991d16916d7cdf886ff5c0ed795d6d1687dac65182fd66a"
     },
     {
-      "chain_hash": "5c7604bbee2e5d3cedcf1c5dfcee2719c5ed3f3f2c70f13abea5bdb78578d25f",
+      "chain_hash": "497f65ff9c67f61c2afd3aa863031007bf86428d8a7e51ab171dc0e352dd01e0",
       "path": "evidence/validation/issues.json",
-      "prev_chain_hash": "2c62ea349221aabd452784d0a3142b3d302027a1cf96fbe698b76c94856404dc",
-      "seq": 464,
+      "prev_chain_hash": "906cd280653af2bb18190fc77ff9057f8809b05884e33a93b6a7908393f26312",
+      "seq": 478,
       "sha256": "abe3adc689a33929b1615d274add381cabe7c9c8579ae7ff78d7e0782b3977f2"
     },
     {
-      "chain_hash": "68cd5efc3a40e841ca8d31842ca79371b560b7da12d2df547797433a708a9ef8",
+      "chain_hash": "a7e8f7ac9f13814cc0356ceec7f2db917939d49e6185dc8bba924dcbf818614e",
       "path": "evidence/validation/latest.json",
-      "prev_chain_hash": "5c7604bbee2e5d3cedcf1c5dfcee2719c5ed3f3f2c70f13abea5bdb78578d25f",
-      "seq": 465,
+      "prev_chain_hash": "497f65ff9c67f61c2afd3aa863031007bf86428d8a7e51ab171dc0e352dd01e0",
+      "seq": 479,
       "sha256": "8d0792c140496961bb20a57143339ac0dbf2788e4c949fdecd4f4888bcde673f"
     },
     {
-      "chain_hash": "000a9515febef3765bb4a33e9c52d37f2d20ea2ebcdba5db62b42ffddb7d65e3",
+      "chain_hash": "c0ef2f2a99ebe4b31c5409a10e4d84ae9a9af6adc2cebb2680947b0f5ebe018f",
       "path": "evidence/validation/runs/run-01-linux-mint.json",
-      "prev_chain_hash": "68cd5efc3a40e841ca8d31842ca79371b560b7da12d2df547797433a708a9ef8",
-      "seq": 466,
+      "prev_chain_hash": "a7e8f7ac9f13814cc0356ceec7f2db917939d49e6185dc8bba924dcbf818614e",
+      "seq": 480,
       "sha256": "7dd27ab0cbb85a3aa47cd6a93ce62352349ca846e7da3b3b2491449582248e30"
     },
     {
-      "chain_hash": "62b8b091748b2ad498fa6a818860a485edfb2e0d9fffac7ff7675a47c3b9d1ac",
+      "chain_hash": "3eb7da322d17de7a07a7ac780cf2bcb40edbb50a663b8afdebb2b61a1fcb3c83",
       "path": "evidence/validation/runs/run-02-ubuntu-wsl.json",
-      "prev_chain_hash": "000a9515febef3765bb4a33e9c52d37f2d20ea2ebcdba5db62b42ffddb7d65e3",
-      "seq": 467,
+      "prev_chain_hash": "c0ef2f2a99ebe4b31c5409a10e4d84ae9a9af6adc2cebb2680947b0f5ebe018f",
+      "seq": 481,
       "sha256": "5112752b24c5155742b3807750e52a89e98595be41bed9f6729f24f144be9dea"
     },
     {
-      "chain_hash": "5e0f7572a408619abfcf97ca3b7e3189899b0ba0072e628f65b25b2720d2b717",
+      "chain_hash": "c59175a797a8921d1f9804a7918e36ed401a06ea0a823f596be9f19c83aa3788",
       "path": "evidence/validation/runs/run-03-docs-only-cleanroom.json",
-      "prev_chain_hash": "62b8b091748b2ad498fa6a818860a485edfb2e0d9fffac7ff7675a47c3b9d1ac",
-      "seq": 468,
+      "prev_chain_hash": "3eb7da322d17de7a07a7ac780cf2bcb40edbb50a663b8afdebb2b61a1fcb3c83",
+      "seq": 482,
       "sha256": "9a9679d1049e831a4002f5b7df02a04a5d3161c4233ad6acf9778ba1b2eea2b5"
     },
     {
-      "chain_hash": "6a9021c41a539b2989c5fd54abc9d2799b85238326abe72fd8ce897b2de2ca1f",
+      "chain_hash": "a37e35997725e7fc709c7ce6a2633ac4c4f75c211bde73ec8a492d0644d8eb4a",
       "path": "evidence/validation/scorecards/run-01-linux-mint.json",
-      "prev_chain_hash": "5e0f7572a408619abfcf97ca3b7e3189899b0ba0072e628f65b25b2720d2b717",
-      "seq": 469,
+      "prev_chain_hash": "c59175a797a8921d1f9804a7918e36ed401a06ea0a823f596be9f19c83aa3788",
+      "seq": 483,
       "sha256": "4839a8f8fde9aa7db93e4875e4fe6a847401d138bc77a800d1acc6ad2fb733d5"
     },
     {
-      "chain_hash": "acbdae900b973ee8d7bf5beac7f7d86d8177f0f29dd07ccee6157ab99f6d8485",
+      "chain_hash": "932a9a7f983fdd87cb58689c2b7cfd74ed8d0dd206917298481c9e8583c02ede",
       "path": "evidence/validation/scorecards/run-02-ubuntu-wsl.json",
-      "prev_chain_hash": "6a9021c41a539b2989c5fd54abc9d2799b85238326abe72fd8ce897b2de2ca1f",
-      "seq": 470,
+      "prev_chain_hash": "a37e35997725e7fc709c7ce6a2633ac4c4f75c211bde73ec8a492d0644d8eb4a",
+      "seq": 484,
       "sha256": "cf05c2565479ba8b4061b4c44be554384edafa4bfee4e65e747dd0b5d765ad34"
     },
     {
-      "chain_hash": "5269a93d8e55d6c0b17ffde56250af8ad787b9f088b17c966ba43955e3136e7c",
+      "chain_hash": "1edf0d37f707785ee47b6d87f080500c599f3eb7e3b11a1bb52957a77628580c",
       "path": "evidence/validation/scorecards/run-03-docs-only-cleanroom.json",
-      "prev_chain_hash": "acbdae900b973ee8d7bf5beac7f7d86d8177f0f29dd07ccee6157ab99f6d8485",
-      "seq": 471,
+      "prev_chain_hash": "932a9a7f983fdd87cb58689c2b7cfd74ed8d0dd206917298481c9e8583c02ede",
+      "seq": 485,
       "sha256": "3cc7d2a43881de76fba5a34492f1af6edbccb2a77b7f1e7cea8e9b275ca30fd3"
     },
     {
-      "chain_hash": "4f0c987208892e31fa89860b9401024f50107371a3ed5dffc24df338d52b0400",
+      "chain_hash": "8a80bed5ae773159901dab4c2ecd6b2acd1a63eb28958940f4fe33d0c936048b",
       "path": "evidence/validation/transcripts/run-01-linux-mint.md",
-      "prev_chain_hash": "5269a93d8e55d6c0b17ffde56250af8ad787b9f088b17c966ba43955e3136e7c",
-      "seq": 472,
+      "prev_chain_hash": "1edf0d37f707785ee47b6d87f080500c599f3eb7e3b11a1bb52957a77628580c",
+      "seq": 486,
       "sha256": "a8427d0b116d29e9524b671164e3f57247d3f49f94faf029b6534b091e0fc52a"
     },
     {
-      "chain_hash": "20ae5069ebb8cb1e6b99754c49f5881e613a2c2a05fc323e68da650990fb774d",
+      "chain_hash": "6c22757479504cae45ea19cef7d9c4fb4c6820722fb6a78c0c02e0bdedd4c740",
       "path": "evidence/validation/transcripts/run-02-ubuntu-wsl.md",
-      "prev_chain_hash": "4f0c987208892e31fa89860b9401024f50107371a3ed5dffc24df338d52b0400",
-      "seq": 473,
+      "prev_chain_hash": "8a80bed5ae773159901dab4c2ecd6b2acd1a63eb28958940f4fe33d0c936048b",
+      "seq": 487,
       "sha256": "084f5fd8d33e09da83c5bb37d024e0b520614887f276aa126d7387858c3cd62a"
     },
     {
-      "chain_hash": "d18b83390e4ae1b6cd946b46191c2af19a3382fe0cb73d7e4ae11238536c7d72",
+      "chain_hash": "21f0dd4e199a227e3b62405074843c66e4fef32cae27fd48193c920cf3f1ea79",
       "path": "evidence/validation/transcripts/run-03-docs-only-cleanroom.md",
-      "prev_chain_hash": "20ae5069ebb8cb1e6b99754c49f5881e613a2c2a05fc323e68da650990fb774d",
-      "seq": 474,
+      "prev_chain_hash": "6c22757479504cae45ea19cef7d9c4fb4c6820722fb6a78c0c02e0bdedd4c740",
+      "seq": 488,
       "sha256": "ad0ecafc615190d07b6835e58fdc36f031a2363bdad3d1bc53564afac7767666"
     }
   ],
   "status": "PASS",
-  "tip_chain_hash": "d18b83390e4ae1b6cd946b46191c2af19a3382fe0cb73d7e4ae11238536c7d72"
+  "tip_chain_hash": "21f0dd4e199a227e3b62405074843c66e4fef32cae27fd48193c920cf3f1ea79"
 }

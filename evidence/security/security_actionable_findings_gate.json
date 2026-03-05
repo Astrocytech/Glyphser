@@ -1,0 +1,26 @@
+{
+  "findings": [
+    "non_actionable_finding:bandit_baseline_gate.json:0",
+    "non_actionable_finding:key_management.json:0",
+    "non_actionable_finding:key_management.json:1",
+    "non_actionable_finding:key_management.json:2",
+    "non_actionable_finding:release_rollback_provenance_gate.json:0",
+    "non_actionable_finding:security_toolchain.json:0",
+    "non_actionable_finding:security_toolchain.json:1",
+    "non_actionable_finding:security_toolchain.json:2",
+    "non_actionable_finding:security_toolchain.json:3",
+    "non_actionable_finding:third_party_pentest.json:1"
+  ],
+  "metadata": {
+    "gate": "security_actionable_findings_gate",
+    "generated_at_utc": "2026-03-05T00:57:20.123097+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "FAIL",
+  "summary": {
+    "checked_failed_reports": 19
+  }
+}

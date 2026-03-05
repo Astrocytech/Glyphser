@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "flake_budget_events": 8,
+  "max_open_gate_failures": 5
+}

@@ -1,0 +1,28 @@
+{
+  "tickets": [
+    {
+      "ticket_id": "SEC-2026-1001",
+      "owner": "security-program",
+      "state": "OPEN",
+      "due_at_utc": "2026-12-31T23:59:59+00:00",
+      "trigger_type": "audit",
+      "trigger_reference": "AUDIT-2026-Q1-SEC-BASELINE",
+      "verification_plan": "Run hardening_stale_ticket_gate and capture evidence/security/hardening_stale_ticket_gate.json.",
+      "duplicate_check_reference": "todo-scan:A..AC:2026-03-05",
+      "duplicate_check_result": "no_duplicate_category",
+      "title": "Stale-ticket gate baseline registry initialization"
+    },
+    {
+      "ticket_id": "SEC-2026-1002",
+      "owner": "security-program",
+      "state": "OPEN",
+      "due_at_utc": "2026-12-31T23:59:59+00:00",
+      "trigger_type": "incident",
+      "trigger_reference": "INC-2026-001-recurring-failures",
+      "verification_plan": "Run top_risk_unresolved_items_ranker and validate evidence/security/top_risk_unresolved_items_ranker.json.",
+      "duplicate_check_reference": "todo-scan:A..AC:2026-03-05",
+      "duplicate_check_result": "no_duplicate_category",
+      "title": "Top-risk unresolved ranker implementation"
+    }
+  ]
+}

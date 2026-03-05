@@ -1,0 +1,141 @@
+{
+  "findings": [
+    "missing_status_exitcode_mapping:abuse_telemetry_gate.py",
+    "missing_status_exitcode_mapping:branch_protection_policy_gate.py",
+    "missing_status_exitcode_mapping:break_glass_secret_usage_gate.py",
+    "missing_status_exitcode_mapping:container_provenance_gate.py",
+    "missing_status_exitcode_mapping:container_registry_provenance_gate.py",
+    "missing_status_exitcode_mapping:cross_run_suspicious_pattern_linkage_gate.py",
+    "missing_status_exitcode_mapping:dependency_freshness_gate.py",
+    "missing_status_exitcode_mapping:dependency_registry_policy_gate.py",
+    "missing_status_exitcode_mapping:incident_response_gate.py",
+    "missing_status_exitcode_mapping:live_rollout_gate.py",
+    "missing_status_exitcode_mapping:merkle_checkpoint_continuity_gate.py",
+    "missing_status_exitcode_mapping:org_secret_backend_gate.py",
+    "missing_status_exitcode_mapping:pip_audit_gate.py",
+    "missing_status_exitcode_mapping:policy_signature_gate.py",
+    "missing_status_exitcode_mapping:production_controls_gate.py",
+    "missing_status_exitcode_mapping:provenance_signature_gate.py",
+    "missing_status_exitcode_mapping:python_version_policy_gate.py",
+    "missing_status_exitcode_mapping:replay_abuse_regression_gate.py",
+    "missing_status_exitcode_mapping:reproducible_build_gate.py",
+    "missing_status_exitcode_mapping:secret_management_gate.py",
+    "missing_status_exitcode_mapping:secret_scan_gate.py",
+    "missing_status_exitcode_mapping:security_baseline_gate.py",
+    "missing_status_exitcode_mapping:security_toolchain_gate.py",
+    "missing_status_exitcode_mapping:security_workflow_evidence_bundle_gate.py",
+    "missing_status_exitcode_mapping:signed_json_hash_equivalence_gate.py",
+    "missing_status_exitcode_mapping:slsa_attestation_gate.py",
+    "missing_status_exitcode_mapping:third_party_pentest_gate.py",
+    "missing_status_exitcode_mapping:workflow_pinning_gate.py"
+  ],
+  "metadata": {
+    "control_family_tags": [
+      "supply_chain",
+      "provenance",
+      "evidence",
+      "runtime_api",
+      "telemetry",
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [
+      "sec_missing_status_exitcode_mapping_abuse_telemetry_gate_py",
+      "sec_missing_status_exitcode_mapping_branch_protection_policy_gate_py",
+      "sec_missing_status_exitcode_mapping_break_glass_secret_usage_gate_py",
+      "sec_missing_status_exitcode_mapping_container_provenance_gate_py",
+      "sec_missing_status_exitcode_mapping_container_registry_provenance_gate_py",
+      "sec_missing_status_exitcode_mapping_cross_run_suspicious_pattern_linkage_gate_py",
+      "sec_missing_status_exitcode_mapping_dependency_freshness_gate_py",
+      "sec_missing_status_exitcode_mapping_dependency_registry_policy_gate_py",
+      "sec_missing_status_exitcode_mapping_incident_response_gate_py",
+      "sec_missing_status_exitcode_mapping_live_rollout_gate_py",
+      "sec_missing_status_exitcode_mapping_merkle_checkpoint_continuity_gate_py",
+      "sec_missing_status_exitcode_mapping_org_secret_backend_gate_py",
+      "sec_missing_status_exitcode_mapping_pip_audit_gate_py",
+      "sec_missing_status_exitcode_mapping_policy_signature_gate_py",
+      "sec_missing_status_exitcode_mapping_production_controls_gate_py",
+      "sec_missing_status_exitcode_mapping_provenance_signature_gate_py",
+      "sec_missing_status_exitcode_mapping_python_version_policy_gate_py",
+      "sec_missing_status_exitcode_mapping_replay_abuse_regression_gate_py",
+      "sec_missing_status_exitcode_mapping_reproducible_build_gate_py",
+      "sec_missing_status_exitcode_mapping_secret_management_gate_py",
+      "sec_missing_status_exitcode_mapping_secret_scan_gate_py",
+      "sec_missing_status_exitcode_mapping_security_baseline_gate_py",
+      "sec_missing_status_exitcode_mapping_security_toolchain_gate_py",
+      "sec_missing_status_exitcode_mapping_security_workflow_evidence_bundle_gate_py",
+      "sec_missing_status_exitcode_mapping_signed_json_hash_equivalence_gate_py",
+      "sec_missing_status_exitcode_mapping_slsa_attestation_gate_py",
+      "sec_missing_status_exitcode_mapping_third_party_pentest_gate_py",
+      "sec_missing_status_exitcode_mapping_workflow_pinning_gate_py"
+    ],
+    "escalation_matrix": {
+      "severity_levels": {
+        "critical": {
+          "fallback": "security-leadership@glyphser.local",
+          "max_ack_minutes": 15,
+          "primary": "security-oncall@glyphser.local"
+        },
+        "high": {
+          "fallback": "platform-oncall@glyphser.local",
+          "max_ack_minutes": 30,
+          "primary": "security-oncall@glyphser.local"
+        },
+        "medium": {
+          "fallback": "platform-oncall@glyphser.local",
+          "max_ack_minutes": 60,
+          "primary": "security-engineering@glyphser.local"
+        }
+      }
+    },
+    "failure_classification": "policy_failure",
+    "failure_classification_set": [
+      "control_failure",
+      "policy_failure"
+    ],
+    "failure_domains": {
+      "security_control_failures": [
+        "sec_missing_status_exitcode_mapping_abuse_telemetry_gate_py",
+        "sec_missing_status_exitcode_mapping_branch_protection_policy_gate_py",
+        "sec_missing_status_exitcode_mapping_break_glass_secret_usage_gate_py",
+        "sec_missing_status_exitcode_mapping_container_provenance_gate_py",
+        "sec_missing_status_exitcode_mapping_container_registry_provenance_gate_py",
+        "sec_missing_status_exitcode_mapping_cross_run_suspicious_pattern_linkage_gate_py",
+        "sec_missing_status_exitcode_mapping_dependency_freshness_gate_py",
+        "sec_missing_status_exitcode_mapping_dependency_registry_policy_gate_py",
+        "sec_missing_status_exitcode_mapping_incident_response_gate_py",
+        "sec_missing_status_exitcode_mapping_live_rollout_gate_py",
+        "sec_missing_status_exitcode_mapping_merkle_checkpoint_continuity_gate_py",
+        "sec_missing_status_exitcode_mapping_org_secret_backend_gate_py",
+        "sec_missing_status_exitcode_mapping_pip_audit_gate_py",
+        "sec_missing_status_exitcode_mapping_policy_signature_gate_py",
+        "sec_missing_status_exitcode_mapping_production_controls_gate_py",
+        "sec_missing_status_exitcode_mapping_provenance_signature_gate_py",
+        "sec_missing_status_exitcode_mapping_python_version_policy_gate_py",
+        "sec_missing_status_exitcode_mapping_replay_abuse_regression_gate_py",
+        "sec_missing_status_exitcode_mapping_reproducible_build_gate_py",
+        "sec_missing_status_exitcode_mapping_secret_management_gate_py",
+        "sec_missing_status_exitcode_mapping_secret_scan_gate_py",
+        "sec_missing_status_exitcode_mapping_security_baseline_gate_py",
+        "sec_missing_status_exitcode_mapping_security_toolchain_gate_py",
+        "sec_missing_status_exitcode_mapping_security_workflow_evidence_bundle_gate_py",
+        "sec_missing_status_exitcode_mapping_signed_json_hash_equivalence_gate_py",
+        "sec_missing_status_exitcode_mapping_slsa_attestation_gate_py",
+        "sec_missing_status_exitcode_mapping_third_party_pentest_gate_py",
+        "sec_missing_status_exitcode_mapping_workflow_pinning_gate_py"
+      ],
+      "transient_infra_failures": []
+    },
+    "gate": "security_status_exitcode_consistency_gate",
+    "generated_at_utc": "2026-03-05T18:17:14.638820+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "FAIL",
+  "summary": {
+    "gates_checked": 218,
+    "gates_failed": 28
+  }
+}

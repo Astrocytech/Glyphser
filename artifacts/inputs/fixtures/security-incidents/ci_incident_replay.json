@@ -1,0 +1,25 @@
+{
+  "incidents": [
+    {
+      "id": "INC-2026-02-28-pip-audit-missing",
+      "log_excerpt": "/usr/bin/python: No module named pip_audit",
+      "expected_reason": "pip_audit_execution_failed"
+    },
+    {
+      "id": "INC-2026-02-27-sarif-permission",
+      "log_excerpt": "Resource not accessible by integration (security-events: write)",
+      "expected_reason": "security_events_permission_missing"
+    },
+    {
+      "id": "INC-2026-02-25-signing-key-missing",
+      "log_excerpt": "missing required signing key env: GLYPHSER_PROVENANCE_HMAC_KEY",
+      "expected_reason": "missing_required_signing_key"
+    },
+    {
+      "id": "INC-2026-02-20-lockdown-policy",
+      "log_excerpt": "operation disabled by emergency lockdown policy",
+      "expected_reason": "lockdown_policy_enforced"
+    }
+  ],
+  "schema_version": 1
+}

@@ -1,0 +1,22 @@
+{
+  "scenarios": [
+    {
+      "id": "benign-trusted-report",
+      "expected_detection": false,
+      "report": {
+        "source": "trusted",
+        "signature_valid": true,
+        "schema_valid": true
+      }
+    },
+    {
+      "id": "malicious-mixed-injection",
+      "expected_detection": true,
+      "report": {
+        "source": "fork-pr",
+        "signature_valid": false,
+        "schema_valid": true
+      }
+    }
+  ]
+}

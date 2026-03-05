@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "policy_id": "gate-decommissioning-v1",
+  "owner": "security-governance",
+  "decommission_records": [
+    {
+      "obsolete_gate": "tooling/security/security_super_extended_compare_gate.py",
+      "replacement_gate": "tooling/security/security_super_gate_membership_guard_gate.py",
+      "replacement_proof_artifact": "evidence/security/security_super_gate_membership_guard_gate.json",
+      "approved_ticket": "SEC-2026-001"
+    }
+  ]
+}

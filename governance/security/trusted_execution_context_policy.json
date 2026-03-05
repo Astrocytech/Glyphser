@@ -1,0 +1,25 @@
+{
+  "workflow_types": {
+    "release": {
+      "workflows": [
+        "release.yml",
+        "promotion-dry-run.yml"
+      ],
+      "allowed_runs_on": [
+        "ubuntu-latest"
+      ],
+      "required_env": {}
+    },
+    "security": {
+      "workflows": [
+        "security-maintenance.yml",
+        "security-super-extended.yml",
+        "security-live-integrations.yml"
+      ],
+      "allowed_runs_on": [
+        "ubuntu-latest"
+      ],
+      "required_env": {}
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "telemetry_schema_path": "governance/security/security_event_schema.json",
+  "privacy_checklist_path": "governance/security/privacy_impact_checklist_telemetry.json"
+}

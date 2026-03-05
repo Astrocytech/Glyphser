@@ -1,0 +1,20 @@
+{
+  "findings": [
+    "broad_exception_suppression:exception_waiver_reconciliation_gate.py:39",
+    "broad_exception_suppression:security_actionable_findings_gate.py:28",
+    "broad_exception_suppression:security_event_export.py:65"
+  ],
+  "metadata": {
+    "gate": "security_exception_suppression_gate",
+    "generated_at_utc": "2026-03-05T00:57:15.977248+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "FAIL",
+  "summary": {
+    "checked_files": 154,
+    "findings": 3
+  }
+}

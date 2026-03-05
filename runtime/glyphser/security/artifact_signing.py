@@ -9,6 +9,8 @@ import os
 from pathlib import Path
 from typing import Any
 
+from runtime.glyphser.security.zeroization import zeroize_bytearray
+
 _KEY_ENV = "GLYPHSER_PROVENANCE_HMAC_KEY"
 _FALLBACK_KEY = "glyphser-provenance-hmac-fallback-v1"
 _STRICT_ENV = "GLYPHSER_REQUIRE_SIGNING_KEY"
@@ -53,7 +55,11 @@ def key_metadata(*, strict: bool = False) -> dict[str, Any]:
 def sign_bytes(payload: bytes, *, key: bytes) -> str:
     adapter = os.environ.get(_ADAPTER_ENV, "").strip().lower() or "hmac"
     if adapter == "hmac":
-        return hmac.new(key, payload, hashlib.sha256).hexdigest()
+        key_buf = bytearray(key)
+        try:
+            return hmac.new(bytes(key_buf), payload, hashlib.sha256).hexdigest()
+        finally:
+            zeroize_bytearray(key_buf)
     if adapter == "kms":
         module = importlib.import_module("runtime.glyphser.security.kms_adapter")
         signer = getattr(module, "sign_payload")

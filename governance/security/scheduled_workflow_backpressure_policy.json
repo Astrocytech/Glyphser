@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "scheduled_hardening_workflows": [
+    ".github/workflows/security-maintenance.yml",
+    ".github/workflows/security-super-extended.yml",
+    ".github/workflows/security-pin-drift-monthly.yml"
+  ],
+  "required_concurrency": {
+    "group_must_contain": "${{ github.workflow }}",
+    "cancel_in_progress": false
+  }
+}

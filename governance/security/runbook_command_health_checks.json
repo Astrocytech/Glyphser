@@ -1,0 +1,46 @@
+{
+  "timeout_sec": 20,
+  "max_output_bytes": 100000,
+  "commands": [
+    {
+      "name": "security_super_gate_help",
+      "cmd": [
+        "python",
+        "tooling/security/security_super_gate.py",
+        "--help"
+      ]
+    },
+    {
+      "name": "security_preflight_help",
+      "cmd": [
+        "python",
+        "tooling/security/security_preflight.py",
+        "--help"
+      ]
+    },
+    {
+      "name": "policy_signature_gate_help",
+      "cmd": [
+        "python",
+        "tooling/security/policy_signature_gate.py",
+        "--help"
+      ]
+    },
+    {
+      "name": "evidence_chain_of_custody_help",
+      "cmd": [
+        "python",
+        "tooling/security/evidence_chain_of_custody.py",
+        "--help"
+      ]
+    },
+    {
+      "name": "runbook_index_health_gate_help",
+      "cmd": [
+        "python",
+        "tooling/security/runbook_index_health_gate.py",
+        "--help"
+      ]
+    }
+  ]
+}

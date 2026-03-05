@@ -1,0 +1,23 @@
+{
+  "findings": [
+    "missing_bandit_json"
+  ],
+  "metadata": {
+    "gate": "bandit_baseline_gate",
+    "generated_at_utc": "2026-03-05T00:57:16.766496+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "FAIL",
+  "summary": {
+    "allowed_findings": 0,
+    "enforce_approved_findings_only": true,
+    "severity_counts": {
+      "HIGH": 0,
+      "LOW": 0,
+      "MEDIUM": 0
+    }
+  }
+}

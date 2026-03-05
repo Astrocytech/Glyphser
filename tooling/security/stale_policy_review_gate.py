@@ -15,6 +15,7 @@ if str(ROOT) not in sys.path:
 
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
 write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
+clock_consistency_violation = importlib.import_module("tooling.security.report_io").clock_consistency_violation
 
 METADATA_DIR = ROOT / "governance" / "security" / "metadata"
 DEFAULT_MAX_REVIEW_AGE_DAYS = 180
@@ -51,6 +52,9 @@ def main(argv: list[str] | None = None) -> int:
     findings: list[str] = []
     checked = 0
     now = _now_utc()
+    clock_issue = clock_consistency_violation(now)
+    if clock_issue:
+        findings.append(clock_issue)
 
     for path in sorted(METADATA_DIR.glob("*.meta.json")):
         checked += 1

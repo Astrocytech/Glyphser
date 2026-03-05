@@ -1,0 +1,43 @@
+{
+  "findings": [],
+  "metadata": {
+    "control_family_tags": [
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [],
+    "failure_classification": "control_failure",
+    "failure_classification_set": [],
+    "failure_domains": {
+      "security_control_failures": [],
+      "transient_infra_failures": []
+    },
+    "generated_at_utc": "2026-03-05T18:08:11.844076+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "report": "hardening_wave_completion_report",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "waves_passed": 6,
+    "waves_total": 6
+  },
+  "wave_unmet_checks": {
+    "wave_a_ci_workflow_reliability": [],
+    "wave_b_super_gate_governance": [],
+    "wave_c_schema_migration": [],
+    "wave_d_provenance_attestation_revocation": [],
+    "wave_e_runtime_api_hardening": [],
+    "wave_f_resilience_compliance_governance": []
+  },
+  "waves": {
+    "wave_a_ci_workflow_reliability": "PASS",
+    "wave_b_super_gate_governance": "PASS",
+    "wave_c_schema_migration": "PASS",
+    "wave_d_provenance_attestation_revocation": "PASS",
+    "wave_e_runtime_api_hardening": "PASS",
+    "wave_f_resilience_compliance_governance": "PASS"
+  }
+}

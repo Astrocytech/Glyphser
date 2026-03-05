@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "profile_name": "glyphser-security-patterns-v1",
+  "owner": "security-architecture",
+  "consumer_repos": [
+    "glyphser-sdk-python",
+    "glyphser-sdk-go",
+    "glyphser-platform-ops"
+  ],
+  "required_controls": [
+    "strict-key signature verification",
+    "security super gate execution",
+    "workflow pinning and permission minimums",
+    "evidence retention and immutable uploads"
+  ],
+  "reference_templates": [
+    ".github/workflows/security-maintenance.yml",
+    "governance/security/workflow_policy_coverage.json"
+  ],
+  "reviewed_at_utc": "2026-03-05T00:00:00+00:00"
+}

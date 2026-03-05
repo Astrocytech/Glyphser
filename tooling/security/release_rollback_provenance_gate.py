@@ -36,8 +36,18 @@ def main(argv: list[str] | None = None) -> int:
         "provenance_signature": _status(sec / "provenance_signature.json"),
         "policy_signature": _status(sec / "policy_signature.json"),
         "emergency_lockdown": _status(sec / "emergency_lockdown_gate.json"),
+        "security_schema_compatibility_policy": _status(sec / "security_schema_compatibility_policy_gate.json"),
+        "conformance_security_coupling": _status(sec / "conformance_security_coupling.json"),
     }
     findings = [f"{k}_not_pass" for k, v in statuses.items() if v != "PASS"]
+    required_artifacts = [
+        sec / "sbom.json",
+        sec / "build_provenance.json",
+        sec / "slsa_provenance_v1.json",
+        sec / "security_verification_summary.json",
+    ]
+    missing_artifacts = [str(path.relative_to(ROOT)).replace("\\", "/") for path in required_artifacts if not path.exists()]
+    findings.extend(f"missing_rollback_artifact:{rel}" for rel in missing_artifacts)
     if not checklist.exists():
         findings.append("missing_emergency_lockdown_rollback_checklist")
     else:
@@ -49,6 +59,7 @@ def main(argv: list[str] | None = None) -> int:
         "findings": findings,
         "summary": {
             **statuses,
+            "missing_artifacts": missing_artifacts,
             "checklist_path": str(checklist.relative_to(ROOT)).replace("\\", "/"),
         },
         "metadata": {"gate": "release_rollback_provenance_gate"},

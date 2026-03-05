@@ -1,0 +1,20 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "workflow_deprecated_invocation_gate",
+    "generated_at_utc": "2026-03-05T00:57:14.768669+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "deprecated_patterns": [
+      "python -m semgrep",
+      "python3 -m semgrep",
+      "pysemgrep"
+    ],
+    "scanned_workflows": 22
+  }
+}

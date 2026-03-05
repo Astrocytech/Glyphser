@@ -8,8 +8,25 @@
     "--desc",
     "--skip-editable"
   ],
+  "findings": [
+    "vulnerabilities_reported"
+  ],
+  "metadata": {
+    "gate": "pip_audit_gate",
+    "generated_at_utc": "2026-03-05T00:57:16.719150+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
   "returncode": 1,
-  "status": "FAIL",
+  "schema_version": 1,
+  "status": "WARN",
   "stderr": "/usr/bin/python: No module named pip_audit\n",
-  "stdout": ""
+  "stdout": "",
+  "strict": false,
+  "summary": {
+    "had_stdout": false,
+    "returncode": 1,
+    "strict_mode": false
+  }
 }

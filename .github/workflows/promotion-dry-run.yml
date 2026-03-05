@@ -38,7 +38,10 @@ jobs:
           python tooling/security/evidence_attestation_index.py --strict-key
           python tooling/security/evidence_attestation_gate.py --strict-key
           python tooling/security/provenance_revocation_gate.py
+          python tooling/security/canary_promotion_guard.py
           python tooling/security/promotion_policy_gate.py
+          GLYPHSER_MERKLE_STAGE="promotion-dry-run" \
+          python tooling/security/rolling_merkle_checkpoints.py
       - name: Upload promotion dry-run artifacts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -51,4 +54,8 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json.sig
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_revocation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/canary_promotion_guard.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/promotion_policy_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/rolling_merkle_checkpoints.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/rolling_merkle_checkpoints.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/rolling_merkle_checkpoints_gate.json

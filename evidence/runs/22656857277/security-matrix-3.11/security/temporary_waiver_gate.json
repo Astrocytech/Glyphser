@@ -1,0 +1,11 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "temporary_waiver_gate"
+  },
+  "status": "PASS",
+  "summary": {
+    "active_waivers": 0,
+    "max_active_waivers": 5
+  }
+}

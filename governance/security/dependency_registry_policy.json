@@ -1,0 +1,6 @@
+{
+  "registry_snapshot_path": "governance/security/metadata/dependency_registry_snapshot.json",
+  "forbidden_maintainers": ["malicious-maintainer", "account-takeover-test"],
+  "fail_on_missing_snapshot": true,
+  "fail_on_missing_package_metadata": false
+}

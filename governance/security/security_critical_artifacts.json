@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "critical_artifacts": [
+    "security_super_gate_manifest_gate.json",
+    "hardening_pending_item_registry_gate.json",
+    "hardening_status_transition_gate.json",
+    "security_primary_report_path_gate.json",
+    "security_report_filename_stability_gate.json",
+    "security_status_exitcode_consistency_gate.json",
+    "security_stdout_report_path_consistency_gate.json",
+    "security_workflow_artifact_coverage_validator.json"
+  ]
+}

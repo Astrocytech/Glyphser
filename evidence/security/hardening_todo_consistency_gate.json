@@ -1,0 +1,21 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "hardening_todo_consistency_gate",
+    "generated_at_utc": "2026-03-05T00:57:16.132717+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "skipped": true,
+  "status": "PASS",
+  "summary": {
+    "done_marker_present": false,
+    "pending_items": 0,
+    "pending_without_trigger_reference": 0,
+    "require_trigger_reference": false,
+    "section_counts": {},
+    "todo_path": ""
+  }
+}

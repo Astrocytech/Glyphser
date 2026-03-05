@@ -15,6 +15,13 @@
   },
   "time_attestation": {
     "max_skew_seconds": 300,
+    "environment_var": "GLYPHSER_ENV",
+    "max_skew_seconds_by_environment": {
+      "local": 300,
+      "ci": 180,
+      "staging": 120,
+      "production": 60
+    },
     "trusted_unix_time_env": "GLYPHSER_TRUSTED_UNIX_TIME"
   },
   "build_environment": {

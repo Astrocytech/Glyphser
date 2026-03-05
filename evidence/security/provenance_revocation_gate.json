@@ -1,11 +1,16 @@
 {
   "findings": [],
   "metadata": {
-    "gate": "provenance_revocation_gate"
+    "gate": "provenance_revocation_gate",
+    "generated_at_utc": "2026-03-05T00:57:18.882153+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
   },
+  "schema_version": 1,
   "status": "PASS",
   "summary": {
-    "checked_files": 29,
+    "checked_files": 108,
     "revoked_digests": 0,
     "revoked_signatures": 0
   }

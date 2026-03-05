@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "profiles": {
+    "soc2_like": {
+      "artifacts": [
+        "evidence/security/security_super_gate.json",
+        "evidence/security/policy_signature_gate.json",
+        "evidence/security/security_event_schema_gate.json"
+      ]
+    },
+    "iso_like": {
+      "artifacts": [
+        "evidence/security/security_super_gate.json",
+        "evidence/security/evidence_chain_of_custody.json",
+        "evidence/security/security_retention_policy_gate.json"
+      ]
+    }
+  }
+}

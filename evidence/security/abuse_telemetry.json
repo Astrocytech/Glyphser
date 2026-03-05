@@ -1,13 +1,29 @@
 {
-  "findings": [
-    "runtime api state file missing"
-  ],
-  "status": "FAIL",
+  "findings": [],
+  "metadata": {
+    "gate": "abuse_telemetry_gate",
+    "generated_at_utc": "2026-03-05T00:57:18.617167+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "strict_key": false,
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
   "summary": {
+    "auth_failures_by_token": {
+      "role:viewer": 6
+    },
+    "correlation_id_count": 1,
+    "correlation_ids": [
+      "70cd61a77da657f853fb48de17424ebb"
+    ],
+    "distinct_tokens": 1,
     "max_auth_failures_per_token": 20,
     "max_distinct_tokens": 200,
     "max_failure_spike": 100,
     "profile": "ci",
-    "state_path": "artifacts/generated/tmp/security/runtime_api_state.json"
+    "state_path": "artifacts/generated/tmp/security/runtime_api_state.json",
+    "total_auth_failures": 6
   }
 }

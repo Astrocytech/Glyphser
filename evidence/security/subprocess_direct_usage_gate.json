@@ -1,0 +1,19 @@
+{
+  "findings": [
+    "direct_subprocess_import:tooling/security/security_artifacts.py:14",
+    "direct_subprocess_call:tooling/security/security_artifacts.py:25"
+  ],
+  "metadata": {
+    "gate": "subprocess_direct_usage_gate",
+    "generated_at_utc": "2026-03-05T00:57:14.390502+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "FAIL",
+  "summary": {
+    "files_scanned": 154,
+    "violations": 2
+  }
+}

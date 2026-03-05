@@ -1,0 +1,47 @@
+{
+  "findings": [],
+  "metadata": {
+    "control_family_tags": [
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [],
+    "failure_classification": "control_failure",
+    "failure_classification_set": [],
+    "failure_domains": {
+      "security_control_failures": [],
+      "transient_infra_failures": []
+    },
+    "gate": "fork_pr_sarif_skip_simulation_gate",
+    "generated_at_utc": "2026-03-05T16:09:37.681702+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "simulation_cases": [
+    {
+      "event_name": "pull_request",
+      "expected_artifact_upload": true,
+      "expected_sarif_upload": false,
+      "is_fork": true
+    },
+    {
+      "event_name": "pull_request",
+      "expected_artifact_upload": true,
+      "expected_sarif_upload": true,
+      "is_fork": false
+    },
+    {
+      "event_name": "push",
+      "expected_artifact_upload": true,
+      "expected_sarif_upload": true,
+      "is_fork": false
+    }
+  ],
+  "status": "PASS",
+  "summary": {
+    "simulated_cases": 3,
+    "workflow_checked": ".github/workflows/ci.yml"
+  }
+}

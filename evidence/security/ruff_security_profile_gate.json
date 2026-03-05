@@ -1,0 +1,22 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "ruff_security_profile_gate",
+    "generated_at_utc": "2026-03-05T00:57:14.162879+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "max_complexity_limit": 12,
+    "profile": "tooling/security/ruff_security_profile.toml",
+    "required_rules": [
+      "C90",
+      "E",
+      "F",
+      "I"
+    ]
+  }
+}

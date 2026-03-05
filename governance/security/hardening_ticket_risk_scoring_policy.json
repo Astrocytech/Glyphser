@@ -1,0 +1,10 @@
+{
+  "top_n": 10,
+  "weights": {
+    "severity": 3.0,
+    "exploitability": 2.0,
+    "blast_radius": 2.0,
+    "overdue_days": 1.5,
+    "age_days": 0.5
+  }
+}

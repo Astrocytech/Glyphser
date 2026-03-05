@@ -1,0 +1,14 @@
+{
+  "workflow_file_globs": [
+    "*.yml"
+  ],
+  "allowed_env_var_patterns": [
+    "^GLYPHSER_[A-Z0-9_]+$",
+    "^GITHUB_TOKEN$",
+    "^TZ$",
+    "^LC_ALL$",
+    "^LANG$",
+    "^TWINE_USERNAME$",
+    "^TWINE_PASSWORD$"
+  ]
+}

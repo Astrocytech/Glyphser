@@ -1,0 +1,20 @@
+{
+  "controls": [
+    {
+      "control_id": "policy_signature_verification",
+      "primary_report": "policy_signature_gate.json",
+      "backup_reports": [
+        "security_verification_summary.json"
+      ],
+      "fail_closed": true
+    },
+    {
+      "control_id": "provenance_signature_verification",
+      "primary_report": "provenance_signature_gate.json",
+      "backup_reports": [
+        "security_verification_summary.json"
+      ],
+      "fail_closed": true
+    }
+  ]
+}

@@ -5,5 +5,11 @@
     "evidence_attestation_gate.json",
     "provenance_revocation_gate.json"
   ],
+  "canary_required_reports": [
+    "policy_signature.json",
+    "provenance_signature.json",
+    "evidence_attestation_gate.json",
+    "provenance_revocation_gate.json"
+  ],
   "allow_signed_override": true
 }

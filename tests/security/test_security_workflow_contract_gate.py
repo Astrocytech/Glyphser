@@ -33,6 +33,13 @@ jobs:
       - run: python tooling/security/workflow_policy_coverage_gate.py
       - run: python tooling/security/workflow_risky_patterns_gate.py
       - run: python tooling/security/workflow_deprecated_invocation_gate.py
+      - run: python tooling/security/file_mode_change_gate.py
+      - run: python tooling/security/network_endpoint_documentation_gate.py
+      - run: python tooling/security/security_rule_baseline_gate.py
+      - run: python tooling/security/security_fixture_integrity_gate.py
+      - run: python tooling/security/oncall_triage_sla_drill_gate.py
+      - run: python tooling/security/runbook_command_health_gate.py
+      - run: python tooling/security/fork_pr_sarif_skip_simulation_gate.py
       - run: python tooling/security/policy_schema_validation_gate.py
       - run: python tooling/security/security_schema_migration_tracker.py
       - run: python tooling/security/security_schema_strict_readiness_gate.py

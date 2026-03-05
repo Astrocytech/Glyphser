@@ -12,8 +12,8 @@
         "id": "glyphser-ci"
       },
       "metadata": {
-        "invocationId": "0f0651baa83b1c6da8d3da3964c7e9d35e2013c8",
-        "startedOn": "0f0651baa83b1c6da8d3da3964c7e9d35e2013c8"
+        "invocationId": "774708b781c158973f23d827961557524837b386",
+        "startedOn": "774708b781c158973f23d827961557524837b386"
       }
     }
   },
@@ -21,13 +21,13 @@
   "subject": [
     {
       "digest": {
-        "sha256": "0540bb731285ff0193cca65565cce0b59eaa62bcac6df2488656ff009dc30389"
+        "sha256": "8d21fb0d4105be4676c078e2d7e9081f61ca344bcf7740958d476574e0eaec86"
       },
       "name": "evidence/security/sbom.json"
     },
     {
       "digest": {
-        "sha256": "3342e91bf35b207a3d83e776e33e3725dc4d45e6cda0c20a9c2a04f26d2c3477"
+        "sha256": "b1451a08c1659fa6d3b7c6ec1076119be6df5bf35d7e5b1b45aff45f1f5cdc78"
       },
       "name": "evidence/security/build_provenance.json"
     }

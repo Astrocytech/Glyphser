@@ -19,6 +19,7 @@ from typing import Any, Dict
 from runtime.glyphser.api.error_taxonomy import classify_runtime_api_error
 from runtime.glyphser.security.audit import append_event
 from runtime.glyphser.security.authz import authorize
+from runtime.glyphser.security.zeroization import secret_bytes_buffer, zeroize_bytearray
 
 try:
     import jsonschema
@@ -288,8 +289,35 @@ class RuntimeApiService:
 
     def __init__(self, config: RuntimeApiConfig) -> None:
         self._config = config
+        self._enforce_safe_runtime_defaults()
         self._lock = threading.RLock()
         self._config.state_path.parent.mkdir(parents=True, exist_ok=True)
+
+    def _enforce_safe_runtime_defaults(self) -> None:
+        env_hint = os.environ.get("GLYPHSER_ENV", "").strip().lower()
+        if env_hint not in {"staging", "prod", "production", "release"}:
+            return
+        allow_risky = os.environ.get("GLYPHSER_ALLOW_RISKY_RUNTIME_DEFAULTS", "").strip().lower() in {
+            "1",
+            "true",
+            "yes",
+            "on",
+        }
+        if allow_risky:
+            return
+        risky: list[str] = []
+        if not self._config.enforce_signed_tokens:
+            risky.append("enforce_signed_tokens=False")
+        if not self._config.enforce_token_jti_replay_protection:
+            risky.append("enforce_token_jti_replay_protection=False")
+        if not self._config.enforce_replay_token_binding:
+            risky.append("enforce_replay_token_binding=False")
+        if risky:
+            joined = ", ".join(risky)
+            raise ValueError(
+                "unsafe runtime api defaults in production path; set explicit secure values "
+                f"or GLYPHSER_ALLOW_RISKY_RUNTIME_DEFAULTS=1 (temporary): {joined}"
+            )
 
     def submit_job(
         self,
@@ -572,14 +600,19 @@ class RuntimeApiService:
         key = self._token_hmac_key()
         if not key:
             raise ValueError("missing signed token verification key")
-        expected = hmac.new(key.encode("utf-8"), payload_b64.encode("ascii"), hashlib.sha256).hexdigest()
+        with secret_bytes_buffer(key) as key_buf, secret_bytes_buffer(payload_b64, encoding="ascii") as payload_buf:
+            expected = hmac.new(bytes(key_buf), bytes(payload_buf), hashlib.sha256).hexdigest()
         if not hmac.compare_digest(expected, sig_hex):
             raise ValueError("token signature invalid")
+        claims_bytes = bytearray()
         try:
-            claims_raw = _b64url_decode(payload_b64).decode("utf-8")
+            claims_bytes = bytearray(_b64url_decode(payload_b64))
+            claims_raw = claims_bytes.decode("utf-8")
             claims = json.loads(claims_raw)
         except Exception as exc:
             raise ValueError("token payload invalid") from exc
+        finally:
+            zeroize_bytearray(claims_bytes)
         if not isinstance(claims, dict):
             raise ValueError("token claims invalid")
         return claims

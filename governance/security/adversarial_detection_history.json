@@ -1,0 +1,19 @@
+{
+  "events": [
+    {
+      "scenario_id": "workflow-permission-widening",
+      "detection_latency_minutes": 6,
+      "containment_quality_score": 4.2
+    },
+    {
+      "scenario_id": "artifact-omission-pass-lookalike",
+      "detection_latency_minutes": 8,
+      "containment_quality_score": 4.0
+    },
+    {
+      "scenario_id": "malicious-report-injection",
+      "detection_latency_minutes": 5,
+      "containment_quality_score": 4.5
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "findings": [],
+  "metadata": {
+    "control_family_tags": [
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [],
+    "failure_classification": "control_failure",
+    "failure_classification_set": [],
+    "failure_domains": {
+      "security_control_failures": [],
+      "transient_infra_failures": []
+    },
+    "gate": "hardening_freeze_criteria_gate",
+    "generated_at_utc": "2026-03-05T18:13:31.018636+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "allowed_trigger_types": [
+      "ARCHITECTURE_CHANGE",
+      "AUDIT",
+      "CI_FAILURE",
+      "INCIDENT",
+      "THREAT_MODEL_CHANGE"
+    ],
+    "checked_tickets": 2,
+    "enforced_states": [
+      "IN_PROGRESS",
+      "OPEN",
+      "PENDING"
+    ],
+    "ticket_registry": "governance/security/hardening_ticket_registry.json"
+  }
+}

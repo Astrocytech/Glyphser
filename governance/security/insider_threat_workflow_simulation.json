@@ -1,0 +1,22 @@
+{
+  "scenarios": [
+    {
+      "id": "perm-widening-001",
+      "kind": "permission_widening",
+      "expected_detection": true,
+      "mutated_workflow": "permissions:\n  contents: write\njobs:\n  test:\n    runs-on: ubuntu-latest\n"
+    },
+    {
+      "id": "pin-removal-001",
+      "kind": "pin_removal",
+      "expected_detection": true,
+      "mutated_workflow": "steps:\n  - uses: actions/checkout\n"
+    },
+    {
+      "id": "gate-bypass-001",
+      "kind": "gate_bypass",
+      "expected_detection": true,
+      "mutated_workflow": "steps:\n  - name: Skip critical gate\n    if: always()\n    run: echo bypass\n"
+    }
+  ]
+}

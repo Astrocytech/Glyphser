@@ -1,0 +1,19 @@
+{
+  "severity_levels": {
+    "critical": {
+      "primary": "security-oncall@glyphser.local",
+      "fallback": "security-leadership@glyphser.local",
+      "max_ack_minutes": 15
+    },
+    "high": {
+      "primary": "security-oncall@glyphser.local",
+      "fallback": "platform-oncall@glyphser.local",
+      "max_ack_minutes": 30
+    },
+    "medium": {
+      "primary": "security-engineering@glyphser.local",
+      "fallback": "platform-oncall@glyphser.local",
+      "max_ack_minutes": 60
+    }
+  }
+}

@@ -13,9 +13,14 @@ def test_new_security_workflows_exist_and_are_wired() -> None:
         ROOT / ".github" / "workflows" / "security-tamper-canary.yml",
         ROOT / ".github" / "workflows" / "security-compromised-runner-drill.yml",
         ROOT / ".github" / "workflows" / "security-replay-abuse-regression.yml",
+        ROOT / ".github" / "workflows" / "security-control-recertification.yml",
     ]:
         text = wf.read_text(encoding="utf-8")
         assert "evidence_run_dir_guard.py" in text
+    audit = (ROOT / ".github" / "workflows" / "security-audit-archive.yml").read_text(encoding="utf-8")
+    assert "audit-log-archive.tar.gz.sha256" in audit
+    assert "python tooling/security/long_term_retention_manifest.py" in audit
+    assert "long_term_retention_manifest.json" in audit
 
 
 def test_replay_abuse_regression_workflow_runs_multi_python_matrix() -> None:

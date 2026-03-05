@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "policy_id": "workflow-retrofit-v1",
+  "mandatory_workflows": [
+    ".github/workflows/ci.yml",
+    ".github/workflows/security-maintenance.yml",
+    ".github/workflows/release.yml"
+  ],
+  "required_controls": [
+    "python tooling/security/policy_signature_gate.py --strict-key",
+    "python tooling/security/provenance_signature_gate.py --strict-key",
+    "python tooling/security/evidence_attestation_gate.py --strict-key",
+    "python tooling/security/security_super_gate.py --strict-key"
+  ]
+}

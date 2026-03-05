@@ -1,0 +1,33 @@
+{
+  "findings": [],
+  "metadata": {
+    "control_family_tags": [
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [],
+    "failure_classification": "control_failure",
+    "failure_classification_set": [],
+    "failure_domains": {
+      "security_control_failures": [],
+      "transient_infra_failures": []
+    },
+    "gate": "hardening_done_marker_gate",
+    "generated_at_utc": "2026-03-05T18:11:38.604159+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "completed_in_scope": 526,
+    "done_marker_present": false,
+    "pending_in_scope": 0,
+    "required_validator_reports": {},
+    "verification_ci_green": false,
+    "verification_evidence_exists": false,
+    "verification_evidence_path": "/home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/hardening_done_marker_verification.json",
+    "verified_completed_items": 0
+  }
+}

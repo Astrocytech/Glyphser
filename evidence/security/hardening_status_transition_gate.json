@@ -1,0 +1,40 @@
+{
+  "findings": [],
+  "metadata": {
+    "control_family_tags": [
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [],
+    "failure_classification": "control_failure",
+    "failure_classification_set": [],
+    "failure_domains": {
+      "security_control_failures": [],
+      "transient_infra_failures": []
+    },
+    "gate": "hardening_status_transition_gate",
+    "generated_at_utc": "2026-03-05T18:01:08.430971+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "allowed_statuses": [
+      "done",
+      "in_progress",
+      "pending"
+    ],
+    "entries_checked": 2629,
+    "required_post_implementation_fields": [
+      "tests_passed_ref",
+      "gate_passed_ref",
+      "ci_lane_ref"
+    ],
+    "requires_done_verification_proof": true,
+    "requires_evidence_link": true,
+    "requires_post_implementation_proof": true,
+    "requires_pre_failure_evidence": true
+  }
+}

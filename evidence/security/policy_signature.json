@@ -12,6 +12,10 @@
       "ok": true,
       "reason": "ok"
     },
+    "governance/security/bandit_baseline_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
     "governance/security/build_env_baseline.json": {
       "ok": true,
       "reason": "ok"
@@ -24,7 +28,19 @@
       "ok": true,
       "reason": "ok"
     },
+    "governance/security/deploy_artifact_drift_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
     "governance/security/emergency_lockdown_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/environment_profile_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/fallback_secret_usage_policy.json": {
       "ok": true,
       "reason": "ok"
     },
@@ -32,11 +48,23 @@
       "ok": true,
       "reason": "ok"
     },
+    "governance/security/independent_verifier_profile.json": {
+      "ok": true,
+      "reason": "ok"
+    },
     "governance/security/key_management_policy.json": {
       "ok": true,
       "reason": "ok"
     },
+    "governance/security/key_rotation_record.json": {
+      "ok": true,
+      "reason": "ok"
+    },
     "governance/security/live_rollout_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/network_egress_policy.json": {
       "ok": true,
       "reason": "ok"
     },
@@ -48,6 +76,10 @@
       "ok": true,
       "reason": "ok"
     },
+    "governance/security/promotion_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
     "governance/security/provenance_revocation_list.json": {
       "ok": true,
       "reason": "ok"
@@ -56,11 +88,51 @@
       "ok": true,
       "reason": "ok"
     },
+    "governance/security/runtime_api_input_surface_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/runtime_api_scope_matrix_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
     "governance/security/sbom_diff_approval.json": {
       "ok": true,
       "reason": "ok"
     },
     "governance/security/secret_management_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/secret_origin_inventory.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/security_artifact_signature_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/security_event_schema.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/security_observability_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/security_report_schema_contract.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/security_retention_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/security_schema_compatibility_policy.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/security_super_gate_membership_baseline.json": {
       "ok": true,
       "reason": "ok"
     },
@@ -79,8 +151,43 @@
     "governance/security/third_party_pentest_policy.json": {
       "ok": true,
       "reason": "ok"
+    },
+    "governance/security/threat_control_matrix.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/workflow_pin_change_approval.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/workflow_pinning_exceptions.json": {
+      "ok": true,
+      "reason": "ok"
+    },
+    "governance/security/workflow_policy_coverage.json": {
+      "ok": true,
+      "reason": "ok"
     }
   },
   "findings": [],
-  "status": "PASS"
+  "metadata": {
+    "gate": "policy_signature_gate",
+    "generated_at_utc": "2026-03-05T02:53:44.461358+00:00",
+    "key_provenance": {
+      "adapter": "hmac",
+      "fallback_used": true,
+      "key_id": "",
+      "source": "fallback"
+    },
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "failed_policies": 0,
+    "strict_key": false,
+    "total_policies": 42
+  }
 }

@@ -12,6 +12,20 @@ from tooling.security.report_io import write_json_report
 ROOT = Path(__file__).resolve().parents[2]
 
 
+def _test_reference_exists(reference: str) -> bool:
+    ref = reference.strip()
+    if not ref:
+        return False
+    rel = ref.split("::", 1)[0].strip()
+    if not rel:
+        return False
+    path = ROOT / rel
+    if not path.exists() or not path.is_file():
+        return False
+    # Keep references anchored to test files.
+    return str(path.relative_to(ROOT)).replace("\\", "/").startswith("tests/")
+
+
 def main(argv: list[str] | None = None) -> int:
     _ = argv
     findings: list[str] = []
@@ -46,6 +60,8 @@ def main(argv: list[str] | None = None) -> int:
                     findings.append(f"missing_action_item_id:{ix}")
                 if not str(item.get("verification_test", "")).strip():
                     findings.append(f"missing_action_item_test:{ix}")
+                elif not _test_reference_exists(str(item.get("verification_test", ""))):
+                    findings.append(f"action_item_test_not_found:{ix}")
                 if item.get("verified") is not True:
                     findings.append(f"action_item_not_verified:{ix}")
 

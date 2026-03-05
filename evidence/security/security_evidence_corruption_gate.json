@@ -1,0 +1,17 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "security_evidence_corruption_gate",
+    "generated_at_utc": "2026-03-05T00:57:15.432618+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "newline_terminated": 93,
+    "newline_termination_pct": 100.0,
+    "scanned_files": 93
+  }
+}

@@ -15,5 +15,16 @@
       "policy_signature.json",
       "provenance_signature.json"
     ]
+  },
+  "telemetry_completeness": {
+    "required_fields": [
+      "event_type",
+      "severity",
+      "control_id",
+      "run_id",
+      "artifact_ref",
+      "status"
+    ],
+    "required_fields_present_rate_threshold": 0.995
   }
 }

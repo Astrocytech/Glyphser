@@ -14,12 +14,30 @@ if str(ROOT) not in sys.path:
 from tooling.lib.path_config import evidence_root
 
 
+def _is_within(path: Path, root: Path) -> bool:
+    try:
+        path.relative_to(root)
+        return True
+    except ValueError:
+        return False
+
+
+def _enforce_allowed_write_root(path: Path) -> None:
+    resolved = path.resolve()
+    allowed = [((ROOT / "evidence").resolve()), Path("/tmp").resolve()]
+    if any(_is_within(resolved, root) for root in allowed):
+        return
+    allowed_text = ", ".join(str(item) for item in allowed)
+    raise ValueError(f"evidence run directory must be within allowed roots: {allowed_text}")
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Ensure immutable run-scoped evidence directory.")
     parser.add_argument("--run-id", required=True)
     args = parser.parse_args([] if argv is None else argv)
 
     root = evidence_root()
+    _enforce_allowed_write_root(root)
     marker = root / ".run-marker.json"
     if marker.exists():
         raise ValueError(f"evidence run directory already initialized: {root}")

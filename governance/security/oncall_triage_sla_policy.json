@@ -1,0 +1,5 @@
+{
+  "required_sample_size": 10,
+  "max_triage_minutes": 30,
+  "enforcement_note": "On-call drill must demonstrate triage completion for top recurring failure classes within SLA."
+}

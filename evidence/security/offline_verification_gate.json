@@ -1,0 +1,36 @@
+{
+  "findings": [
+    "chain_of_custody:chain_of_custody_signature_mismatch",
+    "chain_of_custody:digest_mismatch:evidence/security/build_provenance.json",
+    "chain_of_custody:digest_mismatch:evidence/security/conformance_security_coupling.json",
+    "chain_of_custody:digest_mismatch:evidence/security/file_permissions_gate.json",
+    "chain_of_custody:digest_mismatch:evidence/security/pip_audit.json",
+    "chain_of_custody:digest_mismatch:evidence/security/policy_signature.json",
+    "chain_of_custody:digest_mismatch:evidence/security/provenance_revocation_gate.json",
+    "chain_of_custody:digest_mismatch:evidence/security/report_secret_leak.json",
+    "chain_of_custody:digest_mismatch:evidence/security/review_policy_gate.json",
+    "chain_of_custody:digest_mismatch:evidence/security/sbom.json",
+    "chain_of_custody:digest_mismatch:evidence/security/security_dashboard.json",
+    "chain_of_custody:digest_mismatch:evidence/security/security_schema_normalization_gate.json",
+    "chain_of_custody:digest_mismatch:evidence/security/security_slo_history.json",
+    "chain_of_custody:digest_mismatch:evidence/security/security_slo_report.json",
+    "chain_of_custody:digest_mismatch:evidence/security/security_super_gate.json",
+    "chain_of_custody:digest_mismatch:evidence/security/security_trend_gate.json",
+    "chain_of_custody:digest_mismatch:evidence/security/slsa_provenance_v1.json",
+    "chain_of_custody:digest_mismatch:evidence/security/workflow_pinning.json"
+  ],
+  "metadata": {
+    "gate": "offline_verification_gate",
+    "generated_at_utc": "2026-03-04T20:34:18.920807+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "network_access": "not_required",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "FAIL",
+  "summary": {
+    "chain_of_custody_status": "FAIL",
+    "manifest_path": "governance/security/policy_signature_manifest.json"
+  }
+}

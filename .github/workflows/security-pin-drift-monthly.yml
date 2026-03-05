@@ -5,6 +5,10 @@ on:
     - cron: "7 2 1 * *"
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   security-pin-drift-monthly:
     runs-on: ubuntu-latest
@@ -30,6 +34,10 @@ jobs:
         run: python tooling/security/evidence_run_dir_guard.py --run-id "${{ github.run_id }}-security-pin-drift-monthly"
       - name: Workflow pin drift report
         run: python tooling/security/workflow_pin_drift_report.py
+      - name: Security dashboard export
+        run: python tooling/security/security_dashboard_export.py
+      - name: Monthly security program health report
+        run: python tooling/security/monthly_security_program_health_report.py
       - name: Upload monthly pin drift artifacts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -38,3 +46,5 @@ jobs:
           path: |
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_pin_drift_report.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_pin_drift_report.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/monthly_security_program_health_report.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/monthly_security_program_health_report.json.sig

@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "path": "governance/security/incident_regression_catalog.json",
+      "sha256": "d35807c0999de7c1aabaeba6f22612ce6e371ab98ea6c1aa9a3cb375a9d1c2f4"
+    },
+    {
+      "path": "governance/security/ci_failure_closure_requests.json",
+      "sha256": "79a1a67f213d58872740a805646123f34cad4e4e2611996c66fd8e2e2563a312"
+    },
+    {
+      "path": "governance/security/metadata/THREAT_MODEL.meta.json",
+      "sha256": "b539b1c249b42bccda9f633b2d03f3b99c67bb915f37ee09046ea66a642ee6d6"
+    },
+    {
+      "path": "evidence/validation/external_security_review.md",
+      "sha256": "470c4484fe811a6f7d36961bad0ecb3252cb484e7f07f74491f571eba6d6b1f8"
+    }
+  ]
+}

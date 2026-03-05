@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "waves": {
+    "wave_a_ci_workflow_reliability": {
+      "checks": [
+        {
+          "type": "file_exists",
+          "path": "tooling/security/semgrep_rules_self_check_gate.py"
+        },
+        {
+          "type": "file_exists",
+          "path": "tooling/security/fork_pr_sarif_skip_simulation_gate.py"
+        },
+        {
+          "type": "file_exists",
+          "path": "tooling/security/security_sarif_permissions_gate.py"
+        }
+      ]
+    },
+    "wave_b_super_gate_governance": {
+      "checks": [
+        {
+          "type": "file_exists",
+          "path": "tooling/security/security_super_gate_manifest.json"
+        },
+        {
+          "type": "file_exists",
+          "path": "tooling/security/security_super_gate_manifest_gate.py"
+        },
+        {
+          "type": "file_contains",
+          "path": ".github/workflows/security-super-extended.yml",
+          "snippet": "--include-extended"
+        }
+      ]
+    },
+    "wave_c_schema_migration": {
+      "checks": [
+        {
+          "type": "file_exists",
+          "path": "governance/security/security_report_schema_contract.json"
+        },
+        {
+          "type": "file_exists",
+          "path": "tooling/security/security_schema_normalization_gate.py"
+        },
+        {
+          "type": "file_contains",
+          "path": "governance/security/security_report_schema_contract.json",
+          "snippet": "\"schema_version\""
+        }
+      ]
+    },
+    "wave_d_provenance_attestation_revocation": {
+      "checks": [
+        {
+          "type": "file_exists",
+          "path": "tooling/security/provenance_witness_quorum_gate.py"
+        },
+        {
+          "type": "file_exists",
+          "path": "tooling/security/release_rollback_provenance_gate.py"
+        },
+        {
+          "type": "file_exists",
+          "path": "tooling/security/provenance_revocation_gate.py"
+        }
+      ]
+    },
+    "wave_e_runtime_api_hardening": {
+      "checks": [
+        {
+          "type": "file_exists",
+          "path": "tooling/security/runtime_api_state_schema_gate.py"
+        },
+        {
+          "type": "file_exists",
+          "path": "tooling/security/runtime_api_input_surface_gate.py"
+        },
+        {
+          "type": "file_exists",
+          "path": "tooling/security/runtime_api_scope_matrix_gate.py"
+        },
+        {
+          "type": "file_exists",
+          "path": "tooling/security/replay_abuse_regression_gate.py"
+        }
+      ]
+    },
+    "wave_f_resilience_compliance_governance": {
+      "checks": [
+        {
+          "type": "file_exists",
+          "path": "tooling/security/insider_threat_workflow_simulation.py"
+        },
+        {
+          "type": "file_exists",
+          "path": "tooling/security/artifact_omission_attack_simulation.py"
+        },
+        {
+          "type": "file_exists",
+          "path": "tooling/security/control_posture_rag_export.py"
+        },
+        {
+          "type": "file_exists",
+          "path": "governance/security/hardening_backlog_sla_policy.json"
+        }
+      ]
+    }
+  }
+}

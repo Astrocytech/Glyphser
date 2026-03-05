@@ -11,7 +11,7 @@
       "attestation": "MISSING",
       "policy_signature": "PASS",
       "provenance_signature": "MISSING",
-      "super_gate": "MISSING"
+      "super_gate": "FAIL"
     },
     "pass_rate": 0.25,
     "target": 0.99

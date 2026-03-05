@@ -1,0 +1,16 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "workflow_risky_patterns_gate",
+    "generated_at_utc": "2026-03-05T00:57:14.720718+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "finding_count": 0,
+    "scanned_workflows": 22
+  }
+}

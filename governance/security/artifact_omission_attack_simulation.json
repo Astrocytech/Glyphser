@@ -1,0 +1,29 @@
+{
+  "scenarios": [
+    {
+      "id": "missing-sbom",
+      "expected_detection": true,
+      "expected_artifacts": [
+        "sbom.json",
+        "build_provenance.json",
+        "security_verification_summary.json"
+      ],
+      "produced_artifacts": [
+        "build_provenance.json",
+        "security_verification_summary.json"
+      ]
+    },
+    {
+      "id": "complete-bundle",
+      "expected_detection": false,
+      "expected_artifacts": [
+        "sbom.json",
+        "build_provenance.json"
+      ],
+      "produced_artifacts": [
+        "sbom.json",
+        "build_provenance.json"
+      ]
+    }
+  ]
+}

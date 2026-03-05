@@ -1,0 +1,48 @@
+{
+  "checks": {
+    "evidence_attestation_gate": {
+      "path": "evidence/security/evidence_attestation_gate.json",
+      "status": "PASS"
+    },
+    "key_provenance_continuity_gate": {
+      "path": "evidence/security/key_provenance_continuity_gate.json",
+      "status": "FAIL"
+    },
+    "policy_signature": {
+      "path": "evidence/security/policy_signature.json",
+      "status": "FAIL"
+    },
+    "provenance_signature": {
+      "path": "evidence/security/provenance_signature.json",
+      "status": "PASS"
+    },
+    "security_unsigned_json_gate": {
+      "path": "evidence/security/security_unsigned_json_gate.json",
+      "status": "PASS"
+    },
+    "signature_algorithm_policy_gate": {
+      "path": "evidence/security/signature_algorithm_policy_gate.json",
+      "status": "PASS"
+    }
+  },
+  "findings": [
+    "non_pass_required_verification:policy_signature:FAIL",
+    "non_pass_required_verification:key_provenance_continuity_gate:FAIL"
+  ],
+  "metadata": {
+    "gate": "security_verification_summary",
+    "generated_at_utc": "2026-03-05T00:57:20.023633+00:00",
+    "key_provenance": {
+      "adapter": "hmac",
+      "fallback_used": true,
+      "key_id": "",
+      "source": "fallback"
+    },
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "FAIL",
+  "summary": {}
+}

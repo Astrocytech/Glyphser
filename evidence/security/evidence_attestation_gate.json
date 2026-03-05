@@ -1,0 +1,16 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "evidence_attestation_gate",
+    "generated_at_utc": "2026-03-05T00:57:19.692653+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "attested_items": 104,
+    "strict_key": false
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "default_owner": "security-platform",
+  "default_eta_days": 30,
+  "issue_overrides": {},
+  "report_owner_overrides": {
+    "security_super_gate.json": {
+      "owner": "security-platform",
+      "action": "Stabilize failing security super-gate dependencies and sequencing.",
+      "eta_days": 14
+    },
+    "workflow_risky_patterns_gate.json": {
+      "owner": "security-governance",
+      "action": "Resolve risky workflow pattern findings and update policy coverage.",
+      "eta_days": 21
+    }
+  }
+}

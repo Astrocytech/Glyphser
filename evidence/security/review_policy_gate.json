@@ -1,16 +1,23 @@
 {
-  "findings": [
-    "missing_codeowner_rule:tooling/security/**",
-    "missing_codeowner_rule:governance/security/**",
-    "missing_codeowner_rule:.github/workflows/**"
+  "advisories": [
+    "security_change_missing_ticket_or_adr",
+    "missing_security_changelog_entry"
   ],
+  "findings": [],
   "metadata": {
+    "enforce_change_ticket": false,
+    "enforce_changelog_entry": false,
     "gate": "review_policy_gate",
-    "min_approvals": 2
+    "generated_at_utc": "2026-03-05T00:57:16.525617+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "min_approvals": 2,
+    "tz": ""
   },
-  "status": "FAIL",
+  "schema_version": 1,
+  "status": "PASS",
   "summary": {
-    "changed_files": 65,
-    "security_changed_files": 38
+    "changed_files": 4,
+    "security_changed_files": 4
   }
 }

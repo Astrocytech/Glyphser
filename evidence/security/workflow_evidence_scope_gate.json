@@ -1,0 +1,150 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "workflow_evidence_scope_gate",
+    "generated_at_utc": "2026-03-05T00:57:20.328717+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "failing_workflows": 0,
+    "rows": [
+      {
+        "findings": [],
+        "needs_scope": true,
+        "status": "PASS",
+        "workflow": ".github/workflows/branch-protection-ops.yml"
+      },
+      {
+        "findings": [],
+        "needs_scope": true,
+        "status": "PASS",
+        "workflow": ".github/workflows/ci.yml"
+      },
+      {
+        "findings": [],
+        "needs_scope": true,
+        "status": "PASS",
+        "workflow": ".github/workflows/conformance-gate.yml"
+      },
+      {
+        "findings": [],
+        "needs_scope": true,
+        "status": "PASS",
+        "workflow": ".github/workflows/emergency-lockdown.yml"
+      },
+      {
+        "findings": [],
+        "needs_scope": true,
+        "status": "PASS",
+        "workflow": ".github/workflows/fuzz-nightly.yml"
+      },
+      {
+        "findings": [],
+        "needs_scope": true,
+        "status": "PASS",
+        "workflow": ".github/workflows/promotion-dry-run.yml"
+      },
+      {
+        "findings": [],
+        "needs_scope": true,
+        "status": "PASS",
+        "workflow": ".github/workflows/push-button.yml"
+      },
+      {
+        "findings": [],
+        "needs_scope": false,
+        "status": "PASS",
+        "workflow": ".github/workflows/registry-gate.yml"
+      },
+      {
+        "findings": [],
+        "needs_scope": true,
+        "status": "PASS",
+        "workflow": ".github/workflows/release.yml"
+      },
+      {
+        "findings": [],
+        "needs_scope": true,
+        "status": "PASS",
+        "workflow": ".github/workflows/reproducible-build.yml"
+      },
+      {
+        "findings": [],
+        "needs_scope": false,
+        "status": "PASS",
+        "workflow": ".github/workflows/schema-gate.yml"
+      },
+      {
+        "findings": [],
+        "needs_scope": true,
+        "status": "PASS",
+        "workflow": ".github/workflows/security-audit-archive.yml"
+      },
+      {
+        "findings": [],
+        "needs_scope": true,
+        "status": "PASS",
+        "workflow": ".github/workflows/security-baseline-update.yml"
+      },
+      {
+        "findings": [],
+        "needs_scope": true,
+        "status": "PASS",
+        "workflow": ".github/workflows/security-compromised-runner-drill.yml"
+      },
+      {
+        "findings": [],
+        "needs_scope": true,
+        "status": "PASS",
+        "workflow": ".github/workflows/security-live-integrations.yml"
+      },
+      {
+        "findings": [],
+        "needs_scope": true,
+        "status": "PASS",
+        "workflow": ".github/workflows/security-maintenance.yml"
+      },
+      {
+        "findings": [],
+        "needs_scope": true,
+        "status": "PASS",
+        "workflow": ".github/workflows/security-penetration.yml"
+      },
+      {
+        "findings": [],
+        "needs_scope": true,
+        "status": "PASS",
+        "workflow": ".github/workflows/security-pin-drift-monthly.yml"
+      },
+      {
+        "findings": [],
+        "needs_scope": true,
+        "status": "PASS",
+        "workflow": ".github/workflows/security-replay-abuse-regression.yml"
+      },
+      {
+        "findings": [],
+        "needs_scope": true,
+        "status": "PASS",
+        "workflow": ".github/workflows/security-super-extended.yml"
+      },
+      {
+        "findings": [],
+        "needs_scope": true,
+        "status": "PASS",
+        "workflow": ".github/workflows/security-tamper-canary.yml"
+      },
+      {
+        "findings": [],
+        "needs_scope": true,
+        "status": "PASS",
+        "workflow": ".github/workflows/security-tamper-e2e.yml"
+      }
+    ],
+    "total_workflows": 22
+  }
+}

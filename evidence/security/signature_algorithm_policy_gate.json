@@ -1,0 +1,29 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "signature_algorithm_policy_gate",
+    "generated_at_utc": "2026-03-05T00:57:19.970002+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "adapters": {
+      "evidence_attestation_index": "hmac",
+      "policy_signature": "hmac",
+      "provenance_signature": "hmac"
+    },
+    "allowed_signature_adapters": [
+      "hmac",
+      "kms"
+    ],
+    "checked_sources": 3,
+    "forbidden_signature_adapters": [
+      "md5",
+      "none",
+      "sha1"
+    ]
+  }
+}

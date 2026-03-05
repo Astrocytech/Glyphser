@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "policy_id": "hardening-backlog-sla-v1",
+  "todo_path": "glyphser_security_hardening_master_todo.txt",
+  "sla_days": 45,
+  "require_updated_tag": false,
+  "owner": "security-program-management"
+}

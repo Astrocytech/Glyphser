@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import base64
+from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import hmac
 import json
@@ -459,6 +460,72 @@ def test_auth_failure_denylist_cooldown_enforced(tmp_path: Path):
         assert False, "expected ValueError"
     except ValueError as exc:
         assert "temporarily denied" in str(exc)
+
+
+def test_quota_counters_stress_under_multithreaded_submissions(tmp_path: Path):
+    token = "token-stress-123456"
+    max_requests = 12
+    attempts = 40
+    svc = RuntimeApiService(
+        RuntimeApiConfig(
+            root=ROOT,
+            state_path=tmp_path / "state.json",
+            max_requests_per_token=max_requests,
+            max_submits_per_token=10_000,
+            max_requests_per_window=0,
+            request_window_seconds=0,
+        )
+    )
+
+    def _submit(ix: int) -> str:
+        try:
+            svc.submit_job(payload={"payload": {"ix": ix}}, token=token, scope="jobs:write")
+            return "ok"
+        except ValueError as exc:
+            return str(exc)
+
+    with ThreadPoolExecutor(max_workers=10) as pool:
+        outcomes = list(pool.map(_submit, range(attempts)))
+
+    success = sum(1 for item in outcomes if item == "ok")
+    failures = [item for item in outcomes if item != "ok"]
+    assert success == max_requests
+    assert len(failures) == attempts - max_requests
+    assert all("token request quota exceeded" in item for item in failures)
+
+    state = json.loads((tmp_path / "state.json").read_text(encoding="utf-8"))
+    assert state["quotas"]["token_requests"][token] == max_requests
+
+
+def test_abuse_counters_stress_under_multithreaded_auth_failures(tmp_path: Path):
+    token = "role:viewer"
+    threshold = 5
+    attempts = 30
+    svc = RuntimeApiService(
+        RuntimeApiConfig(
+            root=ROOT,
+            state_path=tmp_path / "state.json",
+            auth_failure_denylist_threshold=threshold,
+            auth_failure_denylist_cooldown_seconds=3600,
+        )
+    )
+
+    def _submit_fail(_ix: int) -> str:
+        try:
+            svc.submit_job(payload={"payload": {"x": 1}}, token=token, scope="jobs:write")
+            return "unexpected_success"
+        except ValueError as exc:
+            return str(exc)
+
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        outcomes = list(pool.map(_submit_fail, range(attempts)))
+
+    assert all(item != "unexpected_success" for item in outcomes)
+    state = json.loads((tmp_path / "state.json").read_text(encoding="utf-8"))
+    failures = int(state["quotas"]["auth_failures_by_token"].get(token, 0))
+    assert failures >= attempts
+    until = int(state["quotas"]["auth_failure_cooldown_until"].get(token, 0))
+    assert until > 0
 
 
 def test_token_policy_entropy_validation_enforced_in_non_test_env(monkeypatch, tmp_path: Path):

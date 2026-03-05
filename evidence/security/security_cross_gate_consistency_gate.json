@@ -1,0 +1,37 @@
+{
+  "findings": [
+    "missing_component_report:security_toolchain_gate.json",
+    "status_mismatch:security_exception_suppression_gate.json:PASS:FAIL",
+    "status_mismatch:file_permissions_gate.json:PASS:FAIL",
+    "missing_component_report:policy_signature_gate.json",
+    "missing_component_report:pip_audit_gate.json",
+    "missing_component_report:secret_scan_gate.json",
+    "missing_component_report:workflow_pinning_gate.json",
+    "missing_component_report:incident_response_gate.json",
+    "missing_component_report:org_secret_backend_gate.json",
+    "missing_component_report:secret_management_gate.json",
+    "missing_component_report:production_controls_gate.json",
+    "missing_component_report:abuse_telemetry_gate.json",
+    "status_mismatch:temporary_waiver_gate.json:FAIL:PASS",
+    "missing_component_report:report_secret_leak_gate.json",
+    "missing_component_report:security_gate_test_coverage_gate.json",
+    "missing_component_report:third_party_pentest_gate.json",
+    "missing_component_report:live_integrations_verify.json",
+    "missing_component_report:container_provenance_gate.json",
+    "missing_component_report:provenance_signature_gate.json",
+    "missing_component_report:slsa_attestation_gate.json",
+    "missing_component_report:conformance_security_coupling_gate.json"
+  ],
+  "metadata": {
+    "gate": "security_cross_gate_consistency_gate",
+    "generated_at_utc": "2026-03-05T00:57:20.071614+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "FAIL",
+  "summary": {
+    "checked_components": 35
+  }
+}

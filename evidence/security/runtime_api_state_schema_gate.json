@@ -1,0 +1,37 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "runtime_api_state_schema_gate",
+    "generated_at_utc": "2026-03-05T00:57:18.562292+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "missing_required_counters_count": 0,
+    "quota_keys_present": [
+      "auth_failure_cooldown_until",
+      "auth_failures_by_token",
+      "job_last_replay_ts",
+      "job_reads",
+      "job_replays",
+      "replay_window_by_job",
+      "replay_window_by_token",
+      "replay_window_job_tokens",
+      "token_request_window",
+      "token_requests",
+      "token_submits"
+    ],
+    "required_quota_dicts": 11,
+    "required_runtime_counters": [
+      "auth_failures_by_token",
+      "token_requests",
+      "job_replays",
+      "token_submits",
+      "job_reads"
+    ],
+    "state_path": "artifacts/generated/tmp/security/runtime_api_state.json"
+  }
+}

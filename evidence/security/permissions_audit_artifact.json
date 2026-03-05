@@ -1,0 +1,275 @@
+{
+  "findings": [],
+  "metadata": {
+    "control_family_tags": [
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [],
+    "failure_classification": "control_failure",
+    "failure_classification_set": [],
+    "failure_domains": {
+      "security_control_failures": [],
+      "transient_infra_failures": []
+    },
+    "gate": "permissions_audit_artifact",
+    "generated_at_utc": "2026-03-05T16:49:41.064403+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "periodic": true,
+    "tz": ""
+  },
+  "repo_permission_scopes": [],
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "generated_at_utc": "2026-03-05T16:49:41.064188+00:00",
+    "repo_permission_scopes_count": 0,
+    "workflows_audited": 26
+  },
+  "workflow_permissions": [
+    {
+      "permissions": {
+        "blocks": [],
+        "inline": []
+      },
+      "workflow": "branch-protection-ops.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [
+          {
+            "contents": "read"
+          },
+          {
+            "contents": "read",
+            "security-events": "write"
+          }
+        ],
+        "inline": []
+      },
+      "workflow": "ci.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [],
+        "inline": []
+      },
+      "workflow": "conformance-gate.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [],
+        "inline": []
+      },
+      "workflow": "emergency-lockdown.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [],
+        "inline": []
+      },
+      "workflow": "fuzz-nightly.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [
+          {
+            "contents": "read"
+          }
+        ],
+        "inline": []
+      },
+      "workflow": "promotion-dry-run.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [],
+        "inline": []
+      },
+      "workflow": "push-button.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [],
+        "inline": []
+      },
+      "workflow": "registry-gate.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [
+          {
+            "contents": "read"
+          },
+          {
+            "contents": "read"
+          },
+          {
+            "contents": "read"
+          }
+        ],
+        "inline": []
+      },
+      "workflow": "release.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [],
+        "inline": []
+      },
+      "workflow": "reproducible-build.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [],
+        "inline": []
+      },
+      "workflow": "schema-gate.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [
+          {
+            "contents": "read"
+          }
+        ],
+        "inline": []
+      },
+      "workflow": "security-annual-independent-review.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [],
+        "inline": []
+      },
+      "workflow": "security-audit-archive.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [],
+        "inline": []
+      },
+      "workflow": "security-baseline-update.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [
+          {
+            "contents": "read"
+          }
+        ],
+        "inline": []
+      },
+      "workflow": "security-compromised-runner-drill.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [
+          {
+            "contents": "read"
+          }
+        ],
+        "inline": []
+      },
+      "workflow": "security-control-recertification.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [
+          {
+            "contents": "read"
+          }
+        ],
+        "inline": []
+      },
+      "workflow": "security-external-audit-simulation.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [],
+        "inline": []
+      },
+      "workflow": "security-live-integrations.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [
+          {
+            "contents": "read"
+          },
+          {
+            "contents": "read"
+          }
+        ],
+        "inline": []
+      },
+      "workflow": "security-maintenance.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [],
+        "inline": []
+      },
+      "workflow": "security-penetration.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [
+          {
+            "contents": "read"
+          }
+        ],
+        "inline": []
+      },
+      "workflow": "security-pin-drift-monthly.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [
+          {
+            "contents": "read"
+          }
+        ],
+        "inline": []
+      },
+      "workflow": "security-replay-abuse-regression.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [
+          {
+            "contents": "read"
+          }
+        ],
+        "inline": []
+      },
+      "workflow": "security-super-extended.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [],
+        "inline": []
+      },
+      "workflow": "security-tamper-canary.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [],
+        "inline": []
+      },
+      "workflow": "security-tamper-e2e.yml"
+    },
+    {
+      "permissions": {
+        "blocks": [
+          {
+            "contents": "read"
+          }
+        ],
+        "inline": []
+      },
+      "workflow": "security-token-scope-review.yml"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "rules": [
+    {
+      "id": "WF-YAML-001",
+      "severity": "HIGH",
+      "description": "Disallow floating branch refs for actions.",
+      "pattern": "uses:\\s+[^\\s@]+@(main|master|latest)\\s*$"
+    },
+    {
+      "id": "WF-YAML-002",
+      "severity": "HIGH",
+      "description": "Disallow write-all permissions.",
+      "pattern": "write-all\\s*$"
+    },
+    {
+      "id": "WF-YAML-003",
+      "severity": "MEDIUM",
+      "description": "Disallow pull_request_target unless explicitly reviewed and approved elsewhere.",
+      "pattern": "^\\s*pull_request_target\\s*:"
+    }
+  ]
+}

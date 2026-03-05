@@ -1,0 +1,20 @@
+{
+  "findings": [
+    "missing_policy_version:OPERATIONS.meta.json",
+    "missing_policy_version:THREAT_MODEL.meta.json"
+  ],
+  "metadata": {
+    "gate": "stale_policy_review_gate",
+    "generated_at_utc": "2026-03-05T00:57:16.243176+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "FAIL",
+  "summary": {
+    "checked_metadata_files": 2,
+    "default_max_review_age_days": 180,
+    "now_utc": "2026-03-05T00:57:16.242799+00:00"
+  }
+}

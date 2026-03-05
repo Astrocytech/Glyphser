@@ -1,0 +1,56 @@
+{
+  "cases": [
+    {
+      "failure_code": "sec_missing_env_glpyhser_provenance_hmac_key",
+      "triage_started_at_utc": "2026-03-05T00:00:00+00:00",
+      "triaged_at_utc": "2026-03-05T00:08:00+00:00"
+    },
+    {
+      "failure_code": "sec_missing_tool_semgrep",
+      "triage_started_at_utc": "2026-03-05T00:10:00+00:00",
+      "triaged_at_utc": "2026-03-05T00:20:00+00:00"
+    },
+    {
+      "failure_code": "sec_workflow_contract_snippet_missing",
+      "triage_started_at_utc": "2026-03-05T00:30:00+00:00",
+      "triaged_at_utc": "2026-03-05T00:44:00+00:00"
+    },
+    {
+      "failure_code": "sec_policy_signature_mismatch",
+      "triage_started_at_utc": "2026-03-05T01:00:00+00:00",
+      "triaged_at_utc": "2026-03-05T01:18:00+00:00"
+    },
+    {
+      "failure_code": "sec_unsigned_json_artifact",
+      "triage_started_at_utc": "2026-03-05T01:30:00+00:00",
+      "triaged_at_utc": "2026-03-05T01:47:00+00:00"
+    },
+    {
+      "failure_code": "sec_lockfile_approval_missing",
+      "triage_started_at_utc": "2026-03-05T02:00:00+00:00",
+      "triaged_at_utc": "2026-03-05T02:11:00+00:00"
+    },
+    {
+      "failure_code": "sec_runtime_api_scope_matrix_violation",
+      "triage_started_at_utc": "2026-03-05T02:20:00+00:00",
+      "triaged_at_utc": "2026-03-05T02:39:00+00:00"
+    },
+    {
+      "failure_code": "sec_dependency_registry_policy_failure",
+      "triage_started_at_utc": "2026-03-05T03:00:00+00:00",
+      "triaged_at_utc": "2026-03-05T03:15:00+00:00"
+    },
+    {
+      "failure_code": "sec_artifact_signature_coverage_gap",
+      "triage_started_at_utc": "2026-03-05T03:30:00+00:00",
+      "triaged_at_utc": "2026-03-05T03:42:00+00:00"
+    },
+    {
+      "failure_code": "sec_incident_regression_catalog_missing_link",
+      "triage_started_at_utc": "2026-03-05T04:00:00+00:00",
+      "triaged_at_utc": "2026-03-05T04:16:00+00:00"
+    }
+  ],
+  "drill_executed_at_utc": "2026-03-05T05:00:00+00:00",
+  "operator": "security-oncall-drill"
+}

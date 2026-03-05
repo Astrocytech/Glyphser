@@ -1,0 +1,533 @@
+{
+  "count": 104,
+  "generated_at_utc": "2026-03-05T00:57:19.635958+00:00",
+  "items": [
+    {
+      "path": "evidence/security/abuse_telemetry.json",
+      "seq": 1,
+      "sha256": "7397c3ea2cc6420f637d91140c7349af8641a5d875efb0fe45b207a941de6173"
+    },
+    {
+      "path": "evidence/security/audit-log-archive.tar.gz",
+      "seq": 2,
+      "sha256": "ef4eaf4df6ea7a3524ae007a116776cfd1920c5042dd6dd428595050885f4736"
+    },
+    {
+      "path": "evidence/security/audit.log.jsonl",
+      "seq": 3,
+      "sha256": "c337141de38889142ef070ea3932cedc208b08f99cada43a5f4fb2af19b52bb4"
+    },
+    {
+      "path": "evidence/security/audit_archive_verify.json",
+      "seq": 4,
+      "sha256": "06d6165728e28ceae62e59d40b66cd3b00454c14110a33be1c85a02c5c955f98"
+    },
+    {
+      "path": "evidence/security/bandit_baseline_gate.json",
+      "seq": 5,
+      "sha256": "91d5d9820aeb8882447209297fc94a1e6db72a81794544c2b4e98b9fbc56bb97"
+    },
+    {
+      "path": "evidence/security/build_provenance.json",
+      "seq": 6,
+      "sha256": "60a97eb4e483b83d58663cc41c69b5b57459e4b524723d4431ef6963a7a0048c"
+    },
+    {
+      "path": "evidence/security/conformance_security_coupling.json",
+      "seq": 7,
+      "sha256": "6e8d33427ee42f18feb4eff45e0be32fb80f32fe2bf0e24fd8ba28b8e896f105"
+    },
+    {
+      "path": "evidence/security/container_provenance.json",
+      "seq": 8,
+      "sha256": "8d242afd8c15138d39bbf92e2388873fc11cfd59822687b97a5b6a5582b3b492"
+    },
+    {
+      "path": "evidence/security/cosign_attestation_gate.json",
+      "seq": 9,
+      "sha256": "045a0966acf751b8234309f815cd3fcfbede6421f70b7480940ad270cae7faf9"
+    },
+    {
+      "path": "evidence/security/disaster_recovery_drill.json",
+      "seq": 10,
+      "sha256": "080b728c5f7c98d4df8f31bc666203dea296dc7701f573de6af07484f4daed20"
+    },
+    {
+      "path": "evidence/security/emergency_lockdown_gate.json",
+      "seq": 11,
+      "sha256": "f460db2d1311f9b1e0136e7e239f54901818680cdd9e4bb88c660ef0cc9af4dc"
+    },
+    {
+      "path": "evidence/security/evidence_attestation_gate.json",
+      "seq": 12,
+      "sha256": "ff9c9fad82662fc12754bd8f6714c7d329754d5a483e2aaa948566861f333170"
+    },
+    {
+      "path": "evidence/security/evidence_chain_of_custody.json",
+      "seq": 13,
+      "sha256": "1d50184fb288aa74a0144c2fad8a893fd3e48216d6becf02c82d5e98f9a78fe2"
+    },
+    {
+      "path": "evidence/security/evidence_chain_of_custody_build.json",
+      "seq": 14,
+      "sha256": "e7ca4ed56f5a3623c2755441f6c221f1c52efaf4ccece5f7460efff66a931edb"
+    },
+    {
+      "path": "evidence/security/evidence_chain_of_custody_gate.json",
+      "seq": 15,
+      "sha256": "5c39ca21d6916c0163b54ff91cf7ac4a6c3cd1d2ac8fbaa67b40526162adcbc1"
+    },
+    {
+      "path": "evidence/security/exception_waiver_reconciliation_gate.json",
+      "seq": 16,
+      "sha256": "3df37e5c4df6351245f17d46c07ae8b0d8f7dda4da9fee3fecb4638aef7fbbbf"
+    },
+    {
+      "path": "evidence/security/file_permissions_gate.json",
+      "seq": 17,
+      "sha256": "8fcd63d0027c1f124cb94633c276550f4dcf32e9d8e3b13d56705ee97c6f933e"
+    },
+    {
+      "path": "evidence/security/governance_markdown_gate.json",
+      "seq": 18,
+      "sha256": "1d0893784996d3836284dfc3a547b059f929407013fb5354685911df3d102973"
+    },
+    {
+      "path": "evidence/security/hardening_todo_consistency_gate.json",
+      "seq": 19,
+      "sha256": "2b718a20ce58215c636acf44ab4ad261c76ce00ad1563087ef73f62acf679f99"
+    },
+    {
+      "path": "evidence/security/helper_script_enforcement_gate.json",
+      "seq": 20,
+      "sha256": "9045f5fc7a3bc335501f8960479fa2b2f5f0efdf01734e3fe0fa16a9ffd07be6"
+    },
+    {
+      "path": "evidence/security/incident_response.json",
+      "seq": 21,
+      "sha256": "de5e9bf941fae69c08a0db8363e14c234a2fab9ac9bcdcba35cc6a871f81f5a5"
+    },
+    {
+      "path": "evidence/security/independent_verifier_profile_gate.json",
+      "seq": 22,
+      "sha256": "3c472aa9de9012eda6e8d75da281c847a2f72286e211cc16c0be916951c2c60d"
+    },
+    {
+      "path": "evidence/security/key_compromise_drill.json",
+      "seq": 23,
+      "sha256": "5eff8e733a705c1da3d111a08d10e171e0be4cdb41a686cf8899066eddfb0d42"
+    },
+    {
+      "path": "evidence/security/key_management.json",
+      "seq": 24,
+      "sha256": "a81d058fa638f2ef1ba7a72f3342fcb021ce22a9a0359403e57d4883c8a1b722"
+    },
+    {
+      "path": "evidence/security/key_rotation_drill.json",
+      "seq": 25,
+      "sha256": "a342bd0b1c25b7ff07d51fd0a58d78786b04bdcc6ca5565a6e06e1442edb45ff"
+    },
+    {
+      "path": "evidence/security/latest.json",
+      "seq": 26,
+      "sha256": "0e387a19a30bd95d2781cf5fc9cc7f8fc9c88d6df1dda7bf4da63e54ebdd7f11"
+    },
+    {
+      "path": "evidence/security/live_integrations.json",
+      "seq": 27,
+      "sha256": "ca4bfa3376acb7808bf112b75de9f8439fbb1647e9d4ea43eb7d2469407d0395"
+    },
+    {
+      "path": "evidence/security/live_rollout_gate.json",
+      "seq": 28,
+      "sha256": "168efb14eeb0c9071a23e8f19da47316baef0a32c091b478809e19a924d6cca9"
+    },
+    {
+      "path": "evidence/security/lockdown_rollback_attestation.json",
+      "seq": 29,
+      "sha256": "f4cc4ec5ef2b35769e5ad0eea38b6232bb5e72207107adc57484f7d9c8ad7eac"
+    },
+    {
+      "path": "evidence/security/mypy_security_profile_gate.json",
+      "seq": 30,
+      "sha256": "e864b4590d0df9809f50f49ba6283eed975713871db85455a63494e42fd1a193"
+    },
+    {
+      "path": "evidence/security/offline_verification_gate.json",
+      "seq": 31,
+      "sha256": "057f71a61613520457b33d5e95f898ee578c5ee27ea750b503ed7a4fd2e59a84"
+    },
+    {
+      "path": "evidence/security/org_secret_backend.json",
+      "seq": 32,
+      "sha256": "50c55c70e33e153c5130dcf4699103ccea68bf3735327f5db09f226cd43c76ac"
+    },
+    {
+      "path": "evidence/security/org_secret_backend_snapshot.json",
+      "seq": 33,
+      "sha256": "2a501c6b880942e585d98bab5dae3b785879a4f1f9320cc18900c5f033f83614"
+    },
+    {
+      "path": "evidence/security/pip_audit.json",
+      "seq": 34,
+      "sha256": "699cf2af5555f752bebeeae3dd353964da25496cec680cd16035c2ec1140dda3"
+    },
+    {
+      "path": "evidence/security/policy_schema_validation_gate.json",
+      "seq": 35,
+      "sha256": "80a1d862f4356897c90f4efc1bf152c298d34f64b9a50fac2a27e9c2c8c1e57b"
+    },
+    {
+      "path": "evidence/security/policy_signature.json",
+      "seq": 36,
+      "sha256": "57883cefb0ade18a6bf0c847fe2881a8f4bc46bee40127acbf85f4b2b910c1b7"
+    },
+    {
+      "path": "evidence/security/production_controls.json",
+      "seq": 37,
+      "sha256": "03c807161ad08fdcd5f82428e61c62c10e6adc2af83bdc59076377e5bc161bbd"
+    },
+    {
+      "path": "evidence/security/production_controls_snapshot.json",
+      "seq": 38,
+      "sha256": "9f15bfd174ed1b9f28f640d42810d49d1809a3ed7f3024a1b4a2502d0d0a5cb7"
+    },
+    {
+      "path": "evidence/security/promotion_policy_gate.json",
+      "seq": 39,
+      "sha256": "8a261902932483ccf200ce64c8e797e3022041e778895625c30eecc1b36bc133"
+    },
+    {
+      "path": "evidence/security/provenance_revocation_gate.json",
+      "seq": 40,
+      "sha256": "3e05a019b6346287591d2b404b400eac253e57b0a1bc0291dd0421382252aeb3"
+    },
+    {
+      "path": "evidence/security/provenance_signature.json",
+      "seq": 41,
+      "sha256": "a6e9a386648d0c571e3f7eec3d55915a6a9cd816b8ff8a1c095ea640075dd64b"
+    },
+    {
+      "path": "evidence/security/provenance_witnesses.json",
+      "seq": 42,
+      "sha256": "69b2f1e8353d3c723bcfb4dd89284559e492cd982605a028ee59843d80ea0a1b"
+    },
+    {
+      "path": "evidence/security/release_rollback_provenance_gate.json",
+      "seq": 43,
+      "sha256": "4eab2b896ce562471c000e94cf4b5d0ab104ef596e976e7f0eceadba7c977f2b"
+    },
+    {
+      "path": "evidence/security/report_secret_leak.json",
+      "seq": 44,
+      "sha256": "b7c0a6c5ab2b98d3515c3c9dee71eef77c29368d71e9f5959ae15b75251d2934"
+    },
+    {
+      "path": "evidence/security/review_policy_gate.json",
+      "seq": 45,
+      "sha256": "11597876bb73e3d90acde68d1ee2d031f341e56d0d6ee5583b95b7620ef7f374"
+    },
+    {
+      "path": "evidence/security/ruff_security_profile_gate.json",
+      "seq": 46,
+      "sha256": "ebb9957dae9ea2a1fff1231ffb9f5816fc2c668c97b2051df6969ca88e30f624"
+    },
+    {
+      "path": "evidence/security/runbook_index_health_gate.json",
+      "seq": 47,
+      "sha256": "81fbec311946b4c01ea81fee10e8875bd26b554df7228d165e927feb438da7b9"
+    },
+    {
+      "path": "evidence/security/runtime_api_state_schema_gate.json",
+      "seq": 48,
+      "sha256": "ed4942edeea7f4f10a8f71c06a73d26829440e57b7764f7bffb814f2a0082480"
+    },
+    {
+      "path": "evidence/security/sbom.json",
+      "seq": 49,
+      "sha256": "fbb9a94673ec47c51921ef3a334751888aeb2749748b2c255730896055752a50"
+    },
+    {
+      "path": "evidence/security/secret_management.json",
+      "seq": 50,
+      "sha256": "1a4c243f73e51542c517a14793a050d85e7ac1f5ed08717dd9861ad42fa2164d"
+    },
+    {
+      "path": "evidence/security/secret_rotation_audit.json",
+      "seq": 51,
+      "sha256": "f28f55dd9783fed3400348d3bdeb21e64917c53d31e5ba67c12b038d37482b13"
+    },
+    {
+      "path": "evidence/security/secret_scan.json",
+      "seq": 52,
+      "sha256": "d9ab7d70c54dfd62aa389589bf67f25d8799667e2313eea2a00fb78c6593755e"
+    },
+    {
+      "path": "evidence/security/security_artifact_signature_coverage_gate.json",
+      "seq": 53,
+      "sha256": "5a9f1a36b682e16b331bf5c9856ba2960e4be427db0da24e1cc0f6ea0fa4681f"
+    },
+    {
+      "path": "evidence/security/security_critical_test_wiring_gate.json",
+      "seq": 54,
+      "sha256": "e83912e31d6ad566e4ecd50d10fbb14265dbf0c5379fb26fe19746834ef5bebb"
+    },
+    {
+      "path": "evidence/security/security_dashboard.json",
+      "seq": 55,
+      "sha256": "b7b677caaf033c900fa2a8c945b09a774ce8a0f27e040306b6a090080128813b"
+    },
+    {
+      "path": "evidence/security/security_dead_gate_wiring_gate.json",
+      "seq": 56,
+      "sha256": "850185b426e3c09ce6565697de802f3ca37bc3123065fd8dfee77ccf5c3ca5d1"
+    },
+    {
+      "path": "evidence/security/security_docs_traceability_gate.json",
+      "seq": 57,
+      "sha256": "c52d504e4083afeb855823ce5b5b30c1ed4db79a9754af5751d70f4831eee1ad"
+    },
+    {
+      "path": "evidence/security/security_evidence_corruption_gate.json",
+      "seq": 58,
+      "sha256": "d82a4bf38706c20124c8c1e85e340f34caef933b82ee386fd78bd0d43224c690"
+    },
+    {
+      "path": "evidence/security/security_exception_suppression_gate.json",
+      "seq": 59,
+      "sha256": "c949a6896be91cc3c3b98d244db68ccc3d444fdab03b19003f080da8e874f9d4"
+    },
+    {
+      "path": "evidence/security/security_gate_onboarding_checklist_gate.json",
+      "seq": 60,
+      "sha256": "893c57350972331871c6895ceb1600140febc83c76d6d03d475cfc9ce2a9a073"
+    },
+    {
+      "path": "evidence/security/security_gate_test_coverage.json",
+      "seq": 61,
+      "sha256": "9c5b2c1e5e39d1929e9effebb4f76f557b2909f0e110315e1180f1cbc5ba420c"
+    },
+    {
+      "path": "evidence/security/security_report_schema_contract_gate.json",
+      "seq": 62,
+      "sha256": "e34bd6d2e4c5d5b79fbb2907a7d2975094a9dea5c29f6cbe7c6714b54669a144"
+    },
+    {
+      "path": "evidence/security/security_retention_policy_gate.json",
+      "seq": 63,
+      "sha256": "591c3856b3461450f2cce16e7bc09df42c7696406b2cbd05a02aadc5f391964f"
+    },
+    {
+      "path": "evidence/security/security_sarif_permissions_gate.json",
+      "seq": 64,
+      "sha256": "54b0918a3e6383ce2fa7a4881398ce5a8a12799c3e960ed8882d70f20c7d46ce"
+    },
+    {
+      "path": "evidence/security/security_scan_ordering_gate.json",
+      "seq": 65,
+      "sha256": "44e9a7ee54f67137696dcf64d1f79f861be8a0d55a155f25bab1fb01177e8389"
+    },
+    {
+      "path": "evidence/security/security_schema_compatibility_policy_gate.json",
+      "seq": 66,
+      "sha256": "9e12d6adb48b52aef428bb5e5fbedf6b788520b53d57fbf4621fb234f5a5b69b"
+    },
+    {
+      "path": "evidence/security/security_schema_migration_tracker.json",
+      "seq": 67,
+      "sha256": "b1566637dd02f9d55564fe892c6a7c0b51e6c877f69e542f0f8d2811a42e60cc"
+    },
+    {
+      "path": "evidence/security/security_schema_normalization_gate.json",
+      "seq": 68,
+      "sha256": "1f14c14487e5d85521c273334b14ba90757f40d5fe8ba7892216ea5fa2ae6a9a"
+    },
+    {
+      "path": "evidence/security/security_schema_strict_readiness_gate.json",
+      "seq": 69,
+      "sha256": "389648607c4c85a1c8310702295b8d69c58222bbf8c10d1653bed2fb67bb2821"
+    },
+    {
+      "path": "evidence/security/security_slo_history.json",
+      "seq": 70,
+      "sha256": "fe2cfed30222a5a084ca2fadd43f01024b7b62a4b7302955745bb34500ac9770"
+    },
+    {
+      "path": "evidence/security/security_slo_report.json",
+      "seq": 71,
+      "sha256": "64c673b939a14411af86c79bcf0d0481ac7e3c2e07f8ba28db58f9369f1531c0"
+    },
+    {
+      "path": "evidence/security/security_super_gate.json",
+      "seq": 72,
+      "sha256": "dcad664de961dbf6e4df9007fda017565ee991927cb4df5b1df03e44ac4f48e7"
+    },
+    {
+      "path": "evidence/security/security_super_gate_manifest_gate.json",
+      "seq": 73,
+      "sha256": "9b79f9f524408c213101b1c5e1421fbd91782633a4b4caef2d4ce9199b27ce15"
+    },
+    {
+      "path": "evidence/security/security_super_gate_membership_guard_gate.json",
+      "seq": 74,
+      "sha256": "87df924bc9bec3c88c7ee85ed900df92510ece70aba7146454c63544827f847a"
+    },
+    {
+      "path": "evidence/security/security_toolchain.json",
+      "seq": 75,
+      "sha256": "3b388fae0c3f3489f2cc53338a4fb4bdc7839f54b9b2338bb0ae8ea08fcc29e4"
+    },
+    {
+      "path": "evidence/security/security_toolchain_lock_signature_gate.json",
+      "seq": 76,
+      "sha256": "37e019a1de365045eba31633f8238bf2f93717bd182f0f036f8a0e602170746b"
+    },
+    {
+      "path": "evidence/security/security_toolchain_reproducibility_gate.json",
+      "seq": 77,
+      "sha256": "826a48ab2fc2e3d6e6be5eeec4c61dddd66bdf7684184f15f49abdcc0ac5902a"
+    },
+    {
+      "path": "evidence/security/security_trend_alert.json",
+      "seq": 78,
+      "sha256": "d2994109d03581c2f7d41b57742f1be72f4685a2cde03d611dd4b6ada5ec68f7"
+    },
+    {
+      "path": "evidence/security/security_trend_gate.json",
+      "seq": 79,
+      "sha256": "a53a7c03185b4445376290a848fa5d4b11e7b8005e1412f303162b23aec6daaf"
+    },
+    {
+      "path": "evidence/security/security_unsigned_json_gate.json",
+      "seq": 80,
+      "sha256": "2aa09a603721efa07c152b09aef77ab2d23fb2bf507b00336a3a5b0aeb358da5"
+    },
+    {
+      "path": "evidence/security/security_workflow_contract_gate.json",
+      "seq": 81,
+      "sha256": "d4b3372a0232b551e6b08b6ccd3bc76e41586c3105bbe835d3cf1b9c03ffe84e"
+    },
+    {
+      "path": "evidence/security/security_workflow_permissions_policy_gate.json",
+      "seq": 82,
+      "sha256": "38a98726a528db67b0024ab83d46f79cc2e3ed287bacc85af5d8ce4aa41741f8"
+    },
+    {
+      "path": "evidence/security/security_workflow_trigger_gate.json",
+      "seq": 83,
+      "sha256": "9e7fc2e9f9bd7b558051b6019fd6f0b45627077f06d48a20eb97f118b0db70f0"
+    },
+    {
+      "path": "evidence/security/semgrep_rules_self_check_gate.json",
+      "seq": 84,
+      "sha256": "c117ac0811cc22b1a2a222773d925b82c7555a902485d112a9878fa537bfa60a"
+    },
+    {
+      "path": "evidence/security/signature_algorithm_policy_gate.json",
+      "seq": 85,
+      "sha256": "0b3a913734dd6376f77b7f12cdf157f92cb6baa72b19d03affdad83611de5152"
+    },
+    {
+      "path": "evidence/security/slsa_attestation.json",
+      "seq": 86,
+      "sha256": "ff9c9fad82662fc12754bd8f6714c7d329754d5a483e2aaa948566861f333170"
+    },
+    {
+      "path": "evidence/security/slsa_provenance_v1.json",
+      "seq": 87,
+      "sha256": "942fb6be754cfb0ea66ab8a6fd7dcd4466e5d2f06814c725f29992fcb202efbe"
+    },
+    {
+      "path": "evidence/security/stale_policy_review_gate.json",
+      "seq": 88,
+      "sha256": "cafa4d45a584021cd72fb096b3df53454e978375fdba681d4e1433a522979a90"
+    },
+    {
+      "path": "evidence/security/subprocess_allowlist_report.json",
+      "seq": 89,
+      "sha256": "eea28165decc3a23e8bb12609f3feaabbffd2b6be179f6aa0a850b9065de779c"
+    },
+    {
+      "path": "evidence/security/subprocess_direct_usage_gate.json",
+      "seq": 90,
+      "sha256": "75ca0c0b30e964237fbac76341634021f914b176d669d109735e376bdaf0ece5"
+    },
+    {
+      "path": "evidence/security/temporary_waiver_gate.json",
+      "seq": 91,
+      "sha256": "e1180b413eb4c3148a02f29e246d8e46e835b5d5f1698fd402e28442e5872814"
+    },
+    {
+      "path": "evidence/security/third_party_pentest.json",
+      "seq": 92,
+      "sha256": "49247782f2f89392e4a688ec22eea890492e60b7ddadd8390c21b5ab374d2ac0"
+    },
+    {
+      "path": "evidence/security/third_party_pentest_backlog.json",
+      "seq": 93,
+      "sha256": "17acbe64ddd7d102a00fcbd1a81cb9ae888f60a4a6de70a55288fef7877b254d"
+    },
+    {
+      "path": "evidence/security/third_party_pentest_report.json",
+      "seq": 94,
+      "sha256": "d10e19a41cc324e114916ca04246708c18c59ab2712c4b149568018cba6fe1e7"
+    },
+    {
+      "path": "evidence/security/third_party_pentest_report_artifact.txt",
+      "seq": 95,
+      "sha256": "9b794104066cc72f578d40cd2749757f2bb0de2e2496e74ba5c4aaec4065765b"
+    },
+    {
+      "path": "evidence/security/threat_control_mapping_gate.json",
+      "seq": 96,
+      "sha256": "bcc213d3668be283c4f7000eab1a8ef5517a6af268a322bffb19c5adf041877b"
+    },
+    {
+      "path": "evidence/security/workflow_artifact_retention_gate.json",
+      "seq": 97,
+      "sha256": "86d2b4e943667fd5aa8ea42b47596f4a20aa27f38a1cfe32e70aa6d9dcbf05d5"
+    },
+    {
+      "path": "evidence/security/workflow_deprecated_invocation_gate.json",
+      "seq": 98,
+      "sha256": "ce3b26568ac3e946b1cb40ad5945e3770c84e0a2162beda625f539556e22d5db"
+    },
+    {
+      "path": "evidence/security/workflow_evidence_scope_gate.json",
+      "seq": 99,
+      "sha256": "9e8bb6559b7cd9f1019fd7f349448155469a328d7aeb4e1e9ceb8b35d20a564d"
+    },
+    {
+      "path": "evidence/security/workflow_linter_gate.json",
+      "seq": 100,
+      "sha256": "1d258f50e85e2f6519c28f8e3907656e7605b8764c4fedc142b7c23562aa2a9b"
+    },
+    {
+      "path": "evidence/security/workflow_pin_change_approval_gate.json",
+      "seq": 101,
+      "sha256": "e63d0651d957669360639dfca5e3db84483f50cee1a29031810f746a3b0cfc72"
+    },
+    {
+      "path": "evidence/security/workflow_pinning.json",
+      "seq": 102,
+      "sha256": "e79a4344104a5ce9b1f2c953ffb271440255fff2050ddd8ad0b19bbd2d88def2"
+    },
+    {
+      "path": "evidence/security/workflow_policy_coverage_gate.json",
+      "seq": 103,
+      "sha256": "8b23f3d8cba6798568580c09e47b90c35ab6b0184c67fdc5a0946c71b0734b8f"
+    },
+    {
+      "path": "evidence/security/workflow_risky_patterns_gate.json",
+      "seq": 104,
+      "sha256": "219f6e1da6c6bd1241c45ff02ae87e653942afcf3709735632b82a18c7574b01"
+    }
+  ],
+  "key_provenance": {
+    "adapter": "hmac",
+    "fallback_used": true,
+    "key_id": "",
+    "source": "fallback"
+  },
+  "status": "PASS"
+}

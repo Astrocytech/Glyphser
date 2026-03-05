@@ -1,0 +1,32 @@
+{
+  "findings": [],
+  "metadata": {
+    "control_family_tags": [
+      "provenance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [],
+    "failure_classification": "control_failure",
+    "failure_classification_set": [],
+    "failure_domains": {
+      "security_control_failures": [],
+      "transient_infra_failures": []
+    },
+    "gate": "security_fixture_integrity_gate",
+    "generated_at_utc": "2026-03-05T16:02:32.987749+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "baseline_entries": 18,
+    "monitored_roots": [
+      "tests/security/semgrep_fixtures",
+      "tests/security/corpus",
+      "artifacts/inputs/fixtures/security-incidents"
+    ],
+    "observed_fixture_files": 18
+  }
+}

@@ -1,10 +1,24 @@
 {
-  "findings": [],
+  "findings": [
+    "sensitive_not_owner_only:/home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/abuse_telemetry.json:mode=0o664"
+  ],
   "metadata": {
-    "gate": "file_permissions_gate"
+    "gate": "file_permissions_gate",
+    "generated_at_utc": "2026-03-05T00:57:16.590699+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
   },
-  "status": "PASS",
+  "schema_version": 1,
+  "status": "FAIL",
   "summary": {
-    "scanned_files": 61
+    "owner_only_globs": [
+      "abuse_telemetry.json",
+      "runtime_api_state.json",
+      "security_events.jsonl"
+    ],
+    "scanned_files": 204,
+    "scanned_hardlinks": 0,
+    "scanned_symlinks": 0
   }
 }

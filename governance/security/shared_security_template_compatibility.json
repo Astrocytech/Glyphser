@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "templates": [
+    {
+      "path": ".github/workflows/security-maintenance.yml",
+      "required_markers": [
+        "python tooling/security/security_super_gate.py --strict-key --strict-prereqs",
+        "python tooling/security/security_gate_runtime_budget_gate.py"
+      ]
+    },
+    {
+      "path": "governance/security/workflow_policy_coverage.json",
+      "required_markers": [
+        "\"schema_version\": 1",
+        "\"workflows\":"
+      ]
+    }
+  ]
+}

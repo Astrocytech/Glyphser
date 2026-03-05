@@ -1,0 +1,18 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "security_gate_test_coverage_gate",
+    "generated_at_utc": "2026-03-05T00:57:19.107323+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tests_dir": "tests/security",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "total_gates": 121,
+    "uncovered_gates": 0
+  },
+  "uncovered": []
+}

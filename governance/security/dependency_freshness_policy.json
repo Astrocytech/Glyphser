@@ -1,0 +1,6 @@
+{
+  "max_known_vulnerable_age_days": 14,
+  "enforce_transitive_only": true,
+  "fail_on_missing_pip_audit_report": false,
+  "history_path": "evidence/security/dependency_vulnerability_freshness_history.json"
+}

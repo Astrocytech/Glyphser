@@ -1,0 +1,10 @@
+{
+  "policy_version": 1,
+  "default_gate_network_egress": "deny",
+  "network_required_gates": [
+    "tooling/security/live_integrations_verify.py",
+    "tooling/security/live_rollout_gate.py",
+    "tooling/security/pip_audit_gate.py"
+  ],
+  "enforcement_note": "All other security gates and verification scripts must run without outbound network calls unless explicitly allowlisted here."
+}

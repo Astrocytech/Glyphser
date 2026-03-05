@@ -1,0 +1,228 @@
+{
+  "findings": [],
+  "metadata": {
+    "control_family_tags": [
+      "supply_chain"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [],
+    "failure_classification": "control_failure",
+    "failure_classification_set": [],
+    "failure_domains": {
+      "security_control_failures": [],
+      "transient_infra_failures": []
+    },
+    "gate": "workflow_env_injection_gate",
+    "generated_at_utc": "2026-03-05T16:45:46.395115+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": "",
+    "workflow_env_keys": {
+      ".github/workflows/branch-protection-ops.yml": [
+        "GITHUB_TOKEN",
+        "GLYPHSER_ENV",
+        "GLYPHSER_EVIDENCE_ROOT",
+        "GLYPHSER_PROVENANCE_HMAC_KEY"
+      ],
+      ".github/workflows/ci.yml": [
+        "GLYPHSER_ENV",
+        "GLYPHSER_EVIDENCE_ROOT",
+        "GLYPHSER_PROVENANCE_HMAC_KEY",
+        "GLYPHSER_PROVENANCE_KEY_ROTATED_AT",
+        "GLYPHSER_SECURITY_OWNER",
+        "LANG",
+        "LC_ALL",
+        "TZ"
+      ],
+      ".github/workflows/conformance-gate.yml": [
+        "GLYPHSER_ENV",
+        "GLYPHSER_EVIDENCE_ROOT",
+        "GLYPHSER_PROVENANCE_HMAC_KEY",
+        "GLYPHSER_PROVENANCE_KEY_ROTATED_AT"
+      ],
+      ".github/workflows/emergency-lockdown.yml": [
+        "GLYPHSER_EVIDENCE_ROOT",
+        "GLYPHSER_PROVENANCE_HMAC_KEY"
+      ],
+      ".github/workflows/fuzz-nightly.yml": [
+        "GLYPHSER_EVIDENCE_ROOT"
+      ],
+      ".github/workflows/promotion-dry-run.yml": [
+        "GLYPHSER_ENV",
+        "GLYPHSER_EVIDENCE_ROOT",
+        "GLYPHSER_PROVENANCE_HMAC_KEY",
+        "LANG",
+        "LC_ALL",
+        "TZ"
+      ],
+      ".github/workflows/push-button.yml": [
+        "GLYPHSER_ENV",
+        "GLYPHSER_EVIDENCE_ROOT",
+        "GLYPHSER_PROVENANCE_HMAC_KEY",
+        "GLYPHSER_PROVENANCE_KEY_ROTATED_AT"
+      ],
+      ".github/workflows/release.yml": [
+        "GLYPHSER_CONTAINER_PUBLISHING_ENABLED",
+        "GLYPHSER_DEPLOY_APPROVERS",
+        "GLYPHSER_ENV",
+        "GLYPHSER_EVIDENCE_ROOT",
+        "GLYPHSER_MERKLE_STAGE",
+        "GLYPHSER_PROVENANCE_HMAC_KEY",
+        "GLYPHSER_PROVENANCE_KEY_ROTATED_AT",
+        "GLYPHSER_SECURITY_OWNER",
+        "GLYPHSER_STRICT_SIGNING",
+        "LANG",
+        "LC_ALL",
+        "TWINE_PASSWORD",
+        "TWINE_USERNAME",
+        "TZ"
+      ],
+      ".github/workflows/reproducible-build.yml": [
+        "GLYPHSER_EVIDENCE_ROOT"
+      ],
+      ".github/workflows/security-annual-independent-review.yml": [
+        "GLYPHSER_ENV",
+        "GLYPHSER_EVIDENCE_ROOT",
+        "GLYPHSER_INDEPENDENT_REVIEWER",
+        "GLYPHSER_INDEPENDENT_REVIEW_APPROVER",
+        "GLYPHSER_PROVENANCE_HMAC_KEY",
+        "LANG",
+        "LC_ALL",
+        "TZ"
+      ],
+      ".github/workflows/security-audit-archive.yml": [
+        "GLYPHSER_EVIDENCE_ROOT"
+      ],
+      ".github/workflows/security-baseline-update.yml": [
+        "GLYPHSER_EVIDENCE_ROOT",
+        "GLYPHSER_PROVENANCE_HMAC_KEY"
+      ],
+      ".github/workflows/security-compromised-runner-drill.yml": [
+        "GLYPHSER_ENV",
+        "GLYPHSER_EVIDENCE_ROOT",
+        "GLYPHSER_PROVENANCE_HMAC_KEY",
+        "LANG",
+        "LC_ALL",
+        "TZ"
+      ],
+      ".github/workflows/security-control-recertification.yml": [
+        "GLYPHSER_ENV",
+        "GLYPHSER_EVIDENCE_ROOT",
+        "GLYPHSER_PROVENANCE_HMAC_KEY",
+        "LANG",
+        "LC_ALL",
+        "TZ"
+      ],
+      ".github/workflows/security-external-audit-simulation.yml": [
+        "GLYPHSER_ENV",
+        "GLYPHSER_EVIDENCE_ROOT",
+        "GLYPHSER_PROVENANCE_HMAC_KEY",
+        "GLYPHSER_PROVENANCE_KEY_ROTATED_AT",
+        "LANG",
+        "LC_ALL",
+        "TZ"
+      ],
+      ".github/workflows/security-live-integrations.yml": [
+        "GLYPHSER_ENV",
+        "GLYPHSER_EVIDENCE_ROOT",
+        "GLYPHSER_PAGING_HEALTH_URL",
+        "GLYPHSER_PAGING_TOKEN",
+        "GLYPHSER_PROVENANCE_HMAC_KEY",
+        "GLYPHSER_SIEM_HEALTH_URL",
+        "GLYPHSER_SIEM_TOKEN",
+        "GLYPHSER_WAF_HEALTH_URL",
+        "GLYPHSER_WAF_TOKEN"
+      ],
+      ".github/workflows/security-maintenance.yml": [
+        "GLYPHSER_ENV",
+        "GLYPHSER_EVIDENCE_ROOT",
+        "GLYPHSER_PAGING_HEALTH_URL",
+        "GLYPHSER_PAGING_TOKEN",
+        "GLYPHSER_PROVENANCE_HMAC_KEY",
+        "GLYPHSER_PROVENANCE_KEY_ROTATED_AT",
+        "GLYPHSER_SECURITY_OWNER",
+        "GLYPHSER_SIEM_HEALTH_URL",
+        "GLYPHSER_SIEM_TOKEN",
+        "GLYPHSER_WAF_HEALTH_URL",
+        "GLYPHSER_WAF_TOKEN",
+        "LANG",
+        "LC_ALL",
+        "TZ"
+      ],
+      ".github/workflows/security-penetration.yml": [
+        "GLYPHSER_EVIDENCE_ROOT"
+      ],
+      ".github/workflows/security-pin-drift-monthly.yml": [
+        "GLYPHSER_ENV",
+        "GLYPHSER_EVIDENCE_ROOT",
+        "GLYPHSER_PROVENANCE_HMAC_KEY",
+        "LANG",
+        "LC_ALL",
+        "TZ"
+      ],
+      ".github/workflows/security-replay-abuse-regression.yml": [
+        "GLYPHSER_ENV",
+        "GLYPHSER_EVIDENCE_ROOT",
+        "GLYPHSER_PROVENANCE_HMAC_KEY",
+        "LANG",
+        "LC_ALL",
+        "TZ"
+      ],
+      ".github/workflows/security-super-extended.yml": [
+        "GLYPHSER_ENV",
+        "GLYPHSER_EVIDENCE_ROOT",
+        "GLYPHSER_INDEPENDENT_VERIFIER_ROLE",
+        "GLYPHSER_PROVENANCE_HMAC_KEY",
+        "GLYPHSER_PROVENANCE_KEY_ROTATED_AT",
+        "LANG",
+        "LC_ALL",
+        "TZ"
+      ],
+      ".github/workflows/security-tamper-canary.yml": [
+        "GLYPHSER_ENV",
+        "GLYPHSER_EVIDENCE_ROOT",
+        "GLYPHSER_PROVENANCE_HMAC_KEY",
+        "LANG",
+        "LC_ALL",
+        "TZ"
+      ],
+      ".github/workflows/security-tamper-e2e.yml": [
+        "GLYPHSER_ENV",
+        "GLYPHSER_EVIDENCE_ROOT",
+        "GLYPHSER_PROVENANCE_HMAC_KEY",
+        "GLYPHSER_STRICT_SIGNING"
+      ]
+    }
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "distinct_env_keys": [
+      "GITHUB_TOKEN",
+      "GLYPHSER_CONTAINER_PUBLISHING_ENABLED",
+      "GLYPHSER_DEPLOY_APPROVERS",
+      "GLYPHSER_ENV",
+      "GLYPHSER_EVIDENCE_ROOT",
+      "GLYPHSER_INDEPENDENT_REVIEWER",
+      "GLYPHSER_INDEPENDENT_REVIEW_APPROVER",
+      "GLYPHSER_INDEPENDENT_VERIFIER_ROLE",
+      "GLYPHSER_MERKLE_STAGE",
+      "GLYPHSER_PAGING_HEALTH_URL",
+      "GLYPHSER_PAGING_TOKEN",
+      "GLYPHSER_PROVENANCE_HMAC_KEY",
+      "GLYPHSER_PROVENANCE_KEY_ROTATED_AT",
+      "GLYPHSER_SECURITY_OWNER",
+      "GLYPHSER_SIEM_HEALTH_URL",
+      "GLYPHSER_SIEM_TOKEN",
+      "GLYPHSER_STRICT_SIGNING",
+      "GLYPHSER_WAF_HEALTH_URL",
+      "GLYPHSER_WAF_TOKEN",
+      "LANG",
+      "LC_ALL",
+      "TWINE_PASSWORD",
+      "TWINE_USERNAME",
+      "TZ"
+    ],
+    "workflows_scanned": 23
+  }
+}

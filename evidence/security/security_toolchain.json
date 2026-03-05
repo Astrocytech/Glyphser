@@ -11,19 +11,32 @@
     "semgrep": {
       "ok": false,
       "reason": "not_installed"
+    },
+    "setuptools": {
+      "expected": "75.8.0",
+      "expected_hash": "sha256:16d791e61f91d2c18a241da895ec211ff3bd2d0669b3496d53bd41060d99c021",
+      "installed": "68.1.2",
+      "observed_hash": "sha256:5e56317e08c3b0329d5159ba7ea3763a14d70affbba9340cc6bd6355f0616b14",
+      "ok": false
     }
   },
   "findings": [
     "bandit not installed",
     "pip-audit not installed",
-    "semgrep not installed"
+    "semgrep not installed",
+    "setuptools version/hash mismatch"
   ],
   "metadata": {
-    "gate": "security_toolchain_gate"
+    "gate": "security_toolchain_gate",
+    "generated_at_utc": "2026-03-05T00:57:12.898466+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
   },
+  "schema_version": 1,
   "status": "FAIL",
   "summary": {
     "has_transitive_lock": true,
-    "locked_packages": 3
+    "locked_packages": 4
   }
 }

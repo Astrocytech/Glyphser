@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "ephemeral_sensitive_telemetry": {
+    "scan_globs": [
+      "evidence/security/security_events.jsonl",
+      "evidence/security/security_event_export.json"
+    ],
+    "max_age_hours": 168
+  }
+}

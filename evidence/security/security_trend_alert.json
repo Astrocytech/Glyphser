@@ -1,0 +1,18 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "security_trend_alert",
+    "generated_at_utc": "2026-03-04T17:17:48.804663+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "source_report": "security_trend_gate.json",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "OK",
+  "summary": {
+    "alerts": [],
+    "runbook_owner": "security-operations",
+    "total_alerts": 0
+  }
+}

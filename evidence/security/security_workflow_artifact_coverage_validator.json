@@ -1,0 +1,107 @@
+{
+  "critical_missing_uploads": [],
+  "findings": [
+    "uploaded_artifacts_without_producer:48"
+  ],
+  "metadata": {
+    "control_family_tags": [
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [
+      "sec_uploaded_artifacts_without_producer_48"
+    ],
+    "escalation_matrix": {
+      "severity_levels": {
+        "critical": {
+          "fallback": "security-leadership@glyphser.local",
+          "max_ack_minutes": 15,
+          "primary": "security-oncall@glyphser.local"
+        },
+        "high": {
+          "fallback": "platform-oncall@glyphser.local",
+          "max_ack_minutes": 30,
+          "primary": "security-oncall@glyphser.local"
+        },
+        "medium": {
+          "fallback": "platform-oncall@glyphser.local",
+          "max_ack_minutes": 60,
+          "primary": "security-engineering@glyphser.local"
+        }
+      }
+    },
+    "failure_classification": "control_failure",
+    "failure_classification_set": [
+      "control_failure"
+    ],
+    "failure_domains": {
+      "security_control_failures": [
+        "sec_uploaded_artifacts_without_producer_48"
+      ],
+      "transient_infra_failures": []
+    },
+    "generated_at_utc": "2026-03-05T18:20:06.195396+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": "",
+    "validator": "security_workflow_artifact_coverage_validator"
+  },
+  "schema_version": 1,
+  "status": "FAIL",
+  "summary": {
+    "critical_missing_uploads": 0,
+    "produced_artifacts": 245,
+    "unmatched_uploads": 48,
+    "uploaded_artifacts": 169
+  },
+  "unmatched_uploads": [
+    "approval_policy_violation_audit.json",
+    "approval_policy_violation_audit_history.json",
+    "break_glass_secret_usage_gate.json",
+    "ci_failure_classifier.json",
+    "ci_failure_classifier_history.json",
+    "conformance_security_coupling.json",
+    "containment_verification_gate.json",
+    "degraded_mode_evidence.json",
+    "dependency_freshness_gate.json",
+    "evidence_attestation_gate.json",
+    "evidence_attestation_index.json",
+    "evidence_attestation_index.json.sig",
+    "evidence_chain_of_custody.json",
+    "evidence_chain_of_custody.json.sig",
+    "evidence_chain_of_custody_build.json",
+    "evidence_chain_of_custody_gate.json",
+    "formal_security_review_artifact.json",
+    "formal_security_review_artifact.json.sig",
+    "hardening_completion_metrics.json",
+    "hardening_completion_metrics_history.json",
+    "key_provenance_continuity_gate.json",
+    "long_term_retention_manifest.json",
+    "offline_vulnerability_snapshot_compare.json",
+    "offline_vulnerability_snapshot_latest.json",
+    "periodic_integrity_sampling.json",
+    "provenance_revocation_gate.json",
+    "provenance_signature.json",
+    "report_secret_leak.json",
+    "security_dashboard.json",
+    "security_event_export.json",
+    "security_events.json",
+    "security_evidence_corruption_gate.json",
+    "security_pipeline_reliability_dashboard.json",
+    "security_pipeline_reliability_history.json",
+    "security_posture_executive_summary.json",
+    "security_rule_baseline_gate.json",
+    "security_schema_normalization_gate.json",
+    "security_slo_report.json",
+    "security_trend_alert.json",
+    "security_trend_gate.json",
+    "security_unsigned_json_gate.json",
+    "security_verification_summary.json",
+    "security_verification_summary.json.sig",
+    "signature_algorithm_policy_gate.json",
+    "slsa_attestation.json",
+    "telemetry_integrity_sli_gate.json",
+    "telemetry_integrity_trend_alert.json",
+    "telemetry_timeliness_sli_gate.json"
+  ]
+}

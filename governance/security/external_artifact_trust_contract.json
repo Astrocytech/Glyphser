@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "contract_id": "glyphser-external-artifact-trust-v1",
+  "owner": "security-governance",
+  "accepted_repositories": [
+    "github.com/astrocytech/glyphser-sdk-python",
+    "github.com/astrocytech/glyphser-sdk-go"
+  ],
+  "required_attestations": [
+    "provenance_signature",
+    "evidence_attestation_index",
+    "security_super_gate_status"
+  ],
+  "required_signer_identity_match": true,
+  "reviewed_at_utc": "2026-03-05T00:00:00+00:00"
+}

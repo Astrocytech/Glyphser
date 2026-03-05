@@ -1,0 +1,21 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "security_retention_policy_gate",
+    "generated_at_utc": "2026-03-05T00:57:15.108035+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "policy_path": "governance/security/security_retention_policy.json",
+    "required_fields": [
+      "legal_hold_supported",
+      "manifest_required",
+      "retention_class",
+      "storage_location"
+    ]
+  }
+}

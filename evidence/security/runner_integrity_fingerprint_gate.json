@@ -1,0 +1,33 @@
+{
+  "findings": [],
+  "metadata": {
+    "control_family_tags": [
+      "provenance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [],
+    "failure_classification": "control_failure",
+    "failure_classification_set": [],
+    "failure_domains": {
+      "security_control_failures": [],
+      "transient_infra_failures": []
+    },
+    "gate": "runner_integrity_fingerprint_gate",
+    "generated_at_utc": "2026-03-05T16:44:11.484341+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "allowlisted_match_count": 1,
+    "current_fingerprint": {
+      "python_minor": "3.12",
+      "runner_os": "linux",
+      "toolchain_id": ""
+    },
+    "environment": "unspecified",
+    "policy_entries": 4
+  }
+}

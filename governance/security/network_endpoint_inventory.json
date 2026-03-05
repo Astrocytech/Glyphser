@@ -1,0 +1,21 @@
+{
+  "documented_endpoints": [
+    "api.github.com",
+    "bandit.readthedocs.io",
+    "files.pythonhosted.org",
+    "github.com",
+    "glyphser.dev",
+    "in-toto.io",
+    "json.schemastore.org",
+    "mailinator.com",
+    "objects.githubusercontent.com",
+    "pypi.org",
+    "slsa.dev",
+    "tempmail.com"
+  ],
+  "source_scope": [
+    "tooling/security/**/*.py",
+    "governance/security/*.json"
+  ],
+  "enforcement_note": "Any newly observed endpoint/domain in monitored security scripts or security policy JSON files must be added here and signed before merge."
+}

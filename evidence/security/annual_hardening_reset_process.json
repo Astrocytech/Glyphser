@@ -1,0 +1,29 @@
+{
+  "findings": [],
+  "metadata": {
+    "control_family_tags": [
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [],
+    "failure_classification": "control_failure",
+    "failure_classification_set": [],
+    "failure_domains": {
+      "security_control_failures": [],
+      "transient_infra_failures": []
+    },
+    "generated_at_utc": "2026-03-05T17:37:07.547568+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "process": "annual_hardening_reset_process",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "archive_path": "/home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/annual_hardening_archive.json",
+    "completed_sections": 91,
+    "seed_path": "/home/coka/Desktop/ASTROCYTECH/git_project/Glyphser/evidence/security/annual_hardening_seed_risks.json",
+    "seeded_net_new_risks": 3
+  }
+}

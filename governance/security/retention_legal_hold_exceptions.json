@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "exceptions": [
+    {
+      "exception_id": "lh-2026-0001",
+      "artifact_scope": "evidence/security/*",
+      "reason": "Active regulatory inquiry hold",
+      "approved_by": "security-team",
+      "approved_at_utc": "2026-03-05T00:00:00+00:00",
+      "expires_at_utc": "2026-06-30T00:00:00+00:00",
+      "approval_ticket": "SEC-LEGAL-2026-0001"
+    }
+  ]
+}

@@ -1,5 +1,19 @@
 {
   "findings": [],
+  "metadata": {
+    "gate": "incident_response_gate",
+    "generated_at_utc": "2026-03-05T00:57:18.152396+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
   "policy": "governance/security/incident_response_policy.json",
-  "status": "PASS"
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "max_alert_routing_age_days": 30,
+    "max_key_rotation_drill_age_days": 90,
+    "max_runbook_age_days": 180,
+    "runbook_count": 2
+  }
 }

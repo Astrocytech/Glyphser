@@ -13,6 +13,8 @@ if str(ROOT) not in sys.path:
 from tooling.lib.path_config import evidence_root
 from tooling.security.report_io import write_json_report
 
+EPOCHS = ROOT / "governance" / "security" / "key_rotation_epochs.json"
+
 
 def _load(path: Path) -> dict[str, Any]:
     if not path.exists():
@@ -70,6 +72,46 @@ def main(argv: list[str] | None = None) -> int:
     if fallback_users:
         findings.append(f"fallback_signing_used:{','.join(fallback_users)}")
 
+    epochs_payload = _load(EPOCHS)
+    raw_epochs = epochs_payload.get("epochs", []) if isinstance(epochs_payload, dict) else []
+    epoch_rows = [row for row in raw_epochs if isinstance(row, dict)]
+    epoch_key_ids: list[str] = []
+    latest_epoch_id = ""
+    latest_epoch_key_id = ""
+    if epoch_rows:
+        index: dict[str, dict[str, Any]] = {}
+        for row in epoch_rows:
+            epoch_id = str(row.get("epoch_id", "")).strip()
+            key_id = str(row.get("key_id", "")).strip()
+            if not epoch_id or not key_id:
+                findings.append("invalid_epoch_entry")
+                continue
+            if epoch_id in index:
+                findings.append(f"duplicate_epoch_id:{epoch_id}")
+                continue
+            index[epoch_id] = row
+            epoch_key_ids.append(key_id)
+        latest = epoch_rows[-1] if epoch_rows else {}
+        latest_epoch_id = str(latest.get("epoch_id", "")).strip()
+        latest_epoch_key_id = str(latest.get("key_id", "")).strip()
+        for row in epoch_rows:
+            epoch_id = str(row.get("epoch_id", "")).strip()
+            prev_epoch = str(row.get("previous_epoch_id", "")).strip()
+            prev_key = str(row.get("previous_key_id", "")).strip()
+            if not prev_epoch:
+                continue
+            parent = index.get(prev_epoch)
+            if parent is None:
+                findings.append(f"missing_previous_epoch:{epoch_id}:{prev_epoch}")
+                continue
+            parent_key = str(parent.get("key_id", "")).strip()
+            if prev_key and prev_key != parent_key:
+                findings.append(f"epoch_previous_key_mismatch:{epoch_id}:{prev_key}!={parent_key}")
+        if key_ids and latest_epoch_key_id and key_ids != {latest_epoch_key_id}:
+            findings.append(f"key_id_not_latest_epoch:{','.join(sorted(key_ids))}:{latest_epoch_key_id}")
+    else:
+        findings.append("missing_rotation_epochs")
+
     report = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
@@ -79,6 +121,10 @@ def main(argv: list[str] | None = None) -> int:
             "distinct_key_ids": sorted(key_ids),
             "distinct_adapters": sorted(adapters),
             "fallback_sources": fallback_users,
+            "rotation_epoch_count": len(epoch_rows),
+            "rotation_epoch_key_ids": sorted(set(epoch_key_ids)),
+            "latest_rotation_epoch_id": latest_epoch_id,
+            "latest_rotation_key_id": latest_epoch_key_id,
         },
         "metadata": {"gate": "key_provenance_continuity_gate"},
     }

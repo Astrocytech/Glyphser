@@ -1,0 +1,42 @@
+{
+  "findings": [
+    "simulated_forbidden_signature_adapter:policy_signature:hmac",
+    "simulated_forbidden_signature_adapter:provenance_signature:hmac"
+  ],
+  "metadata": {
+    "control_family_tags": [
+      "provenance",
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [
+      "sec_simulated_forbidden_signature_adapter_policy_signature_hmac",
+      "sec_simulated_forbidden_signature_adapter_provenance_signature_hmac"
+    ],
+    "failure_classification": "policy_failure",
+    "failure_classification_set": [
+      "policy_failure"
+    ],
+    "failure_domains": {
+      "security_control_failures": [
+        "sec_simulated_forbidden_signature_adapter_policy_signature_hmac",
+        "sec_simulated_forbidden_signature_adapter_provenance_signature_hmac"
+      ],
+      "transient_infra_failures": []
+    },
+    "gate": "algorithm_deprecation_rehearsal_lane",
+    "generated_at_utc": "2026-03-05T16:40:03.528481+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "simulated_failures": 2,
+    "simulated_forbidden_adapters": [
+      "hmac"
+    ],
+    "sources_checked": 2
+  }
+}

@@ -80,14 +80,20 @@ def main(argv: list[str] | None = None) -> int:
 
     sec = evidence_root() / "security"
     statuses = {name: _status(sec / name) for name in required_reports}
-    findings = [f"required_report_not_pass:{name}:{status}" for name, status in statuses.items() if status != "PASS"]
+    hard_fail = [
+        f"mandatory_evidence_missing:{name}:{status}"
+        for name, status in statuses.items()
+        if status in {"MISSING", "INVALID"}
+    ]
+    soft_fail = [f"required_report_not_pass:{name}:{status}" for name, status in statuses.items() if status not in {"PASS", "MISSING", "INVALID"}]
+    findings = list(hard_fail) + list(soft_fail)
 
     now = datetime.now(UTC)
     override_ok, override_payload, override_reason = _valid_override(now)
     allow_override = bool(policy.get("allow_signed_override", True))
-    override_applied = bool(findings) and allow_override and override_ok
+    override_applied = bool(soft_fail) and not hard_fail and allow_override and override_ok
     if override_applied:
-        findings = []
+        findings = list(hard_fail)
 
     report = {
         "status": "PASS" if not findings else "FAIL",
@@ -95,6 +101,8 @@ def main(argv: list[str] | None = None) -> int:
         "summary": {
             "required_reports": required_reports,
             "statuses": statuses,
+            "hard_failures": hard_fail,
+            "soft_failures": soft_fail,
             "allow_signed_override": allow_override,
             "override_applied": override_applied,
             "override_reason": override_reason,

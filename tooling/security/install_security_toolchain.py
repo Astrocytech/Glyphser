@@ -7,6 +7,7 @@ import sys
 from pathlib import Path
 
 run_checked = importlib.import_module("tooling.security.subprocess_policy").run_checked
+evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
 
 ROOT = Path(__file__).resolve().parents[2]
 LOCK_PATH = ROOT / "tooling" / "security" / "security_toolchain_lock.json"
@@ -59,9 +60,22 @@ def main(argv: list[str] | None = None) -> int:
         }
         raise ValueError(f"security toolchain constraints mismatch lock: {detail}")
 
+    install_report = evidence_root() / "security" / "security_toolchain_install_report.json"
+    install_report.parent.mkdir(parents=True, exist_ok=True)
+
     cmds = [
         [sys.executable, "-m", "pip", "install", "--upgrade", "pip"],
-        [sys.executable, "-m", "pip", "install", "--upgrade", "-r", str(CONSTRAINTS_PATH)],
+        [
+            sys.executable,
+            "-m",
+            "pip",
+            "install",
+            "--upgrade",
+            "-r",
+            str(CONSTRAINTS_PATH),
+            "--report",
+            str(install_report),
+        ],
     ]
     for cmd in cmds:
         proc = run_checked(cmd)

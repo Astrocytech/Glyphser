@@ -15,6 +15,8 @@ write_json_report = importlib.import_module("tooling.security.report_io").write_
 
 POLICY = ROOT / "governance" / "security" / "security_retention_policy.json"
 REQUIRED_KEYS = {"storage_location", "retention_class", "legal_hold_supported", "manifest_required"}
+ALLOWED_RETENTION_CLASSES = {"long_term", "regulatory"}
+IMMUTABLE_STORAGE_PREFIX = "immutable://"
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -33,14 +35,26 @@ def main(argv: list[str] | None = None) -> int:
     missing = sorted(key for key in REQUIRED_KEYS if key not in payload)
     findings.extend(f"missing_policy_field:{key}" for key in missing)
     if payload:
-        if str(payload.get("storage_location", "")).strip() == "":
+        storage_location = str(payload.get("storage_location", "")).strip()
+        retention_class = str(payload.get("retention_class", "")).strip()
+        legal_hold_supported = payload.get("legal_hold_supported")
+        manifest_required = payload.get("manifest_required")
+        if storage_location == "":
             findings.append("invalid_storage_location")
-        if str(payload.get("retention_class", "")).strip() == "":
+        elif not storage_location.startswith(IMMUTABLE_STORAGE_PREFIX):
+            findings.append("non_immutable_storage_location")
+        if retention_class == "":
             findings.append("invalid_retention_class")
-        if not isinstance(payload.get("legal_hold_supported"), bool):
+        elif retention_class not in ALLOWED_RETENTION_CLASSES:
+            findings.append(f"unsupported_retention_class:{retention_class}")
+        if not isinstance(legal_hold_supported, bool):
             findings.append("invalid_legal_hold_supported")
-        if not isinstance(payload.get("manifest_required"), bool):
+        elif not legal_hold_supported:
+            findings.append("legal_hold_must_be_supported")
+        if not isinstance(manifest_required, bool):
             findings.append("invalid_manifest_required")
+        elif not manifest_required:
+            findings.append("manifest_must_be_required")
 
     report = {
         "status": "PASS" if not findings else "FAIL",
@@ -48,6 +62,8 @@ def main(argv: list[str] | None = None) -> int:
         "summary": {
             "policy_path": str(POLICY.relative_to(ROOT)).replace("\\", "/"),
             "required_fields": sorted(REQUIRED_KEYS),
+            "allowed_retention_classes": sorted(ALLOWED_RETENTION_CLASSES),
+            "immutable_storage_prefix": IMMUTABLE_STORAGE_PREFIX,
         },
         "metadata": {"gate": "security_retention_policy_gate"},
     }

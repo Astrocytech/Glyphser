@@ -1,0 +1,74 @@
+{
+  "checks": [
+    {
+      "cmd": [
+        "python",
+        "tooling/security/security_super_gate.py",
+        "--help"
+      ],
+      "ok": true,
+      "returncode": 0
+    },
+    {
+      "cmd": [
+        "python",
+        "tooling/security/security_preflight.py",
+        "--help"
+      ],
+      "ok": true,
+      "returncode": 0
+    },
+    {
+      "cmd": [
+        "python",
+        "tooling/security/policy_signature_gate.py",
+        "--help"
+      ],
+      "ok": true,
+      "returncode": 0
+    },
+    {
+      "cmd": [
+        "python",
+        "tooling/security/evidence_chain_of_custody.py",
+        "--help"
+      ],
+      "ok": true,
+      "returncode": 0
+    },
+    {
+      "cmd": [
+        "python",
+        "tooling/security/runbook_index_health_gate.py",
+        "--help"
+      ],
+      "ok": true,
+      "returncode": 0
+    }
+  ],
+  "findings": [],
+  "metadata": {
+    "control_family_tags": [
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [],
+    "failure_classification": "control_failure",
+    "failure_classification_set": [],
+    "failure_domains": {
+      "security_control_failures": [],
+      "transient_infra_failures": []
+    },
+    "gate": "runbook_command_health_gate",
+    "generated_at_utc": "2026-03-05T16:06:10.206541+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "commands_checked": 5,
+    "configured_commands": 5
+  }
+}

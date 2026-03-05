@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "max_test_age_days": 180,
+  "tracked_scripts": [
+    {
+      "script": "tooling/security/security_super_gate.py",
+      "test": "tests/security/test_security_super_gate.py"
+    },
+    {
+      "script": "tooling/security/security_exception_suppression_gate.py",
+      "test": "tests/security/test_security_exception_suppression_gate.py"
+    },
+    {
+      "script": "tooling/security/unconditional_return_zero_gate.py",
+      "test": "tests/security/test_unconditional_return_zero_gate.py"
+    }
+  ]
+}

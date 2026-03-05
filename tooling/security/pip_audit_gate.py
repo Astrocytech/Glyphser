@@ -4,14 +4,27 @@ from __future__ import annotations
 import argparse
 import importlib
 import json
+import os
 import sys
 from pathlib import Path
 
-_sp = importlib.import_module("".join(["sub", "process"]))
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
+run_checked = importlib.import_module("tooling.security.subprocess_policy").run_checked
 write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
+DEFAULT_TIMEOUT_SEC = 180.0
+DEFAULT_MAX_OUTPUT_BYTES = 1_000_000
+
+
+def _resource_budgets() -> tuple[float, int]:
+    timeout = float(os.environ.get("GLYPHSER_PIP_AUDIT_TIMEOUT_SEC", str(DEFAULT_TIMEOUT_SEC)))
+    max_output = int(os.environ.get("GLYPHSER_PIP_AUDIT_MAX_OUTPUT_BYTES", str(DEFAULT_MAX_OUTPUT_BYTES)))
+    if timeout <= 0:
+        raise ValueError("GLYPHSER_PIP_AUDIT_TIMEOUT_SEC must be > 0")
+    if max_output <= 0:
+        raise ValueError("GLYPHSER_PIP_AUDIT_MAX_OUTPUT_BYTES must be > 0")
+    return timeout, max_output
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -34,7 +47,13 @@ def main(argv: list[str] | None = None) -> int:
         "--desc",
         "--skip-editable",
     ]
-    proc = _sp.run(cmd, cwd=str(ROOT), capture_output=True, text=True)
+    timeout_sec, max_output_bytes = _resource_budgets()
+    proc = run_checked(
+        cmd,
+        cwd=ROOT,
+        timeout_sec=timeout_sec,
+        max_output_bytes=max_output_bytes,
+    )
 
     status = "PASS"
     findings: list[str] = []
@@ -57,6 +76,7 @@ def main(argv: list[str] | None = None) -> int:
             "returncode": proc.returncode,
             "strict_mode": args.strict,
             "had_stdout": bool(proc.stdout.strip()),
+            "resource_budget": {"timeout_sec": timeout_sec, "max_output_bytes": max_output_bytes},
         },
         "metadata": {"gate": "pip_audit_gate"},
     }

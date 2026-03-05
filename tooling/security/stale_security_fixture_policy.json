@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "max_fixture_lag_days": 14,
+  "tracked_gate_fixtures": [
+    {
+      "gate": "tooling/security/semgrep_rules_self_check_gate.py",
+      "fixtures": [
+        "tests/security/semgrep_fixtures/bad.py",
+        "tests/security/semgrep_fixtures/bad_extended.py",
+        "tests/security/semgrep_fixtures/good.py",
+        "tests/security/semgrep_fixtures/good_extended.py",
+        "tests/security/semgrep_fixtures/expected_findings.json"
+      ]
+    },
+    {
+      "gate": "tooling/security/security_fixture_integrity_gate.py",
+      "fixtures": [
+        "tests/security/corpus/checkpoint_escape_case.json",
+        "tests/security/corpus/checkpoint_temp_case.json",
+        "tests/security/corpus/trace_migrate_traversal_case.json"
+      ]
+    }
+  ]
+}

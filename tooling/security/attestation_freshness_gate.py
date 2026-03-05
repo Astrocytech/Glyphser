@@ -14,6 +14,7 @@ if str(ROOT) not in sys.path:
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
 load_policy = importlib.import_module("tooling.security.advanced_policy").load_policy
 write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
+clock_consistency_violation = importlib.import_module("tooling.security.report_io").clock_consistency_violation
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -24,6 +25,9 @@ def main(argv: list[str] | None = None) -> int:
     now = datetime.now(UTC)
     findings: list[str] = []
     ages: dict[str, int] = {}
+    clock_issue = clock_consistency_violation(now)
+    if clock_issue:
+        findings.append(clock_issue)
 
     for rel in required:
         path = ROOT / rel

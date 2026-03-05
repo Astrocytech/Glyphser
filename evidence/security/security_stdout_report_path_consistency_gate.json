@@ -1,0 +1,58 @@
+{
+  "findings": [
+    "missing_write_json_report_call:archive_integrity_revalidation_gate.py",
+    "missing_write_json_report_call:security_baseline_gate.py"
+  ],
+  "metadata": {
+    "control_family_tags": [
+      "provenance",
+      "evidence"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [
+      "sec_missing_write_json_report_call_archive_integrity_revalidation_gate_py",
+      "sec_missing_write_json_report_call_security_baseline_gate_py"
+    ],
+    "escalation_matrix": {
+      "severity_levels": {
+        "critical": {
+          "fallback": "security-leadership@glyphser.local",
+          "max_ack_minutes": 15,
+          "primary": "security-oncall@glyphser.local"
+        },
+        "high": {
+          "fallback": "platform-oncall@glyphser.local",
+          "max_ack_minutes": 30,
+          "primary": "security-oncall@glyphser.local"
+        },
+        "medium": {
+          "fallback": "platform-oncall@glyphser.local",
+          "max_ack_minutes": 60,
+          "primary": "security-engineering@glyphser.local"
+        }
+      }
+    },
+    "failure_classification": "control_failure",
+    "failure_classification_set": [
+      "control_failure"
+    ],
+    "failure_domains": {
+      "security_control_failures": [
+        "sec_missing_write_json_report_call_archive_integrity_revalidation_gate_py",
+        "sec_missing_write_json_report_call_security_baseline_gate_py"
+      ],
+      "transient_infra_failures": []
+    },
+    "gate": "security_stdout_report_path_consistency_gate",
+    "generated_at_utc": "2026-03-05T18:18:06.250836+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "FAIL",
+  "summary": {
+    "gates_checked": 219,
+    "gates_failed": 2
+  }
+}

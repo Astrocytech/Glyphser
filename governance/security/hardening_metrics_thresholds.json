@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "thresholds": {
+    "pending_item_count": {
+      "max": 10000,
+      "severity": "info"
+    },
+    "hardening_throughput": {
+      "min": 0,
+      "severity": "info"
+    },
+    "regression_reopen_rate": {
+      "max": 1.0,
+      "severity": "warning"
+    },
+    "ci_security_green_streak": {
+      "min": 0,
+      "severity": "info"
+    }
+  }
+}

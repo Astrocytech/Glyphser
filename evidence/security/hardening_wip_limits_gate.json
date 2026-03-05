@@ -1,0 +1,39 @@
+{
+  "findings": [],
+  "metadata": {
+    "control_family_tags": [
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [],
+    "failure_classification": "control_failure",
+    "failure_classification_set": [],
+    "failure_domains": {
+      "security_control_failures": [],
+      "transient_infra_failures": []
+    },
+    "gate": "hardening_wip_limits_gate",
+    "generated_at_utc": "2026-03-05T17:57:12.159860+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "wip_counts": {
+      "wave_1": 0,
+      "wave_2": 0,
+      "wave_3": 0,
+      "wave_4": 0,
+      "wave_5": 0
+    },
+    "wip_limits": {
+      "wave_1": 5,
+      "wave_2": 5,
+      "wave_3": 5,
+      "wave_4": 5,
+      "wave_5": 5
+    }
+  }
+}

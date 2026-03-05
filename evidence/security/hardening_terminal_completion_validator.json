@@ -1,0 +1,60 @@
+{
+  "findings": [
+    "pending_items_not_zero:2610",
+    "last_n_security_runs_not_green:2/3"
+  ],
+  "metadata": {
+    "control_family_tags": [
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [
+      "sec_pending_items_not_zero_2610",
+      "sec_last_n_security_runs_not_green_2_3"
+    ],
+    "escalation_matrix": {
+      "severity_levels": {
+        "critical": {
+          "fallback": "security-leadership@glyphser.local",
+          "max_ack_minutes": 15,
+          "primary": "security-oncall@glyphser.local"
+        },
+        "high": {
+          "fallback": "platform-oncall@glyphser.local",
+          "max_ack_minutes": 30,
+          "primary": "security-oncall@glyphser.local"
+        },
+        "medium": {
+          "fallback": "platform-oncall@glyphser.local",
+          "max_ack_minutes": 60,
+          "primary": "security-engineering@glyphser.local"
+        }
+      }
+    },
+    "failure_classification": "control_failure",
+    "failure_classification_set": [
+      "control_failure"
+    ],
+    "failure_domains": {
+      "security_control_failures": [
+        "sec_pending_items_not_zero_2610",
+        "sec_last_n_security_runs_not_green_2_3"
+      ],
+      "transient_infra_failures": []
+    },
+    "generated_at_utc": "2026-03-05T18:09:53.323411+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": "",
+    "validator": "hardening_terminal_completion_validator"
+  },
+  "schema_version": 1,
+  "status": "FAIL",
+  "summary": {
+    "active_critical_exceptions": 0,
+    "done_marker_present": false,
+    "last_n_green_count": 2,
+    "pending_item_count": 2610,
+    "required_last_n_green": 3
+  }
+}

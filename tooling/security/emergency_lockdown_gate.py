@@ -43,19 +43,42 @@ def main(argv: list[str] | None = None) -> int:
             findings.append("lockdown_policy_signature_mismatch")
 
     enabled = payload.get("lockdown_enabled") is True
+    override_policy = payload.get("override_policy", {})
+    if not isinstance(override_policy, dict):
+        override_policy = {}
+    required_distinct_approvals = int(override_policy.get("required_distinct_approvals", 2))
+    max_override_duration_hours = float(override_policy.get("max_override_duration_hours", 24))
     expires = _parse(str(payload.get("expires_at_utc", "")))
+    updated_at = _parse(str(payload.get("updated_at_utc", "")))
+    raw_approvals = payload.get("approved_by", [])
+    if isinstance(raw_approvals, str):
+        approvals = [x.strip() for x in raw_approvals.split(",") if x.strip()]
+    elif isinstance(raw_approvals, list):
+        approvals = [str(x).strip() for x in raw_approvals if str(x).strip()]
+    else:
+        approvals = []
+    distinct_approvals = sorted({name.lower() for name in approvals})
     if enabled:
-        if not str(payload.get("approved_by", "")).strip():
+        if len(distinct_approvals) < required_distinct_approvals:
             findings.append("lockdown_missing_approval")
         if expires is None:
             findings.append("lockdown_missing_or_invalid_expiry")
         elif expires <= datetime.now(UTC):
             findings.append("lockdown_expired")
+        elif updated_at and (expires - updated_at).total_seconds() > max_override_duration_hours * 3600:
+            findings.append("lockdown_expiry_exceeds_max_duration")
 
     report = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
-        "summary": {"lockdown_enabled": enabled, "expires_at_utc": payload.get("expires_at_utc", "")},
+        "summary": {
+            "lockdown_enabled": enabled,
+            "expires_at_utc": payload.get("expires_at_utc", ""),
+            "updated_at_utc": payload.get("updated_at_utc", ""),
+            "required_distinct_approvals": required_distinct_approvals,
+            "distinct_approvals": distinct_approvals,
+            "max_override_duration_hours": max_override_duration_hours,
+        },
         "metadata": {"gate": "emergency_lockdown_gate"},
     }
     out = evidence_root() / "security" / "emergency_lockdown_gate.json"

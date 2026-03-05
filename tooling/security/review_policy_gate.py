@@ -5,6 +5,8 @@ import importlib
 import json
 import os
 import sys
+from datetime import UTC, datetime
+from fnmatch import fnmatch
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -56,6 +58,26 @@ def _covers_required_path(required: str, declared_paths: list[str]) -> bool:
     return False
 
 
+def _matches_path_pattern(path: str, pattern: str) -> bool:
+    clean_pattern = pattern.strip().lstrip("/")
+    if not clean_pattern:
+        return False
+    return fnmatch(path, clean_pattern)
+
+
+def _parse_utc(value: str) -> datetime | None:
+    raw = value.strip()
+    if not raw:
+        return None
+    if raw.endswith("Z"):
+        raw = f"{raw[:-1]}+00:00"
+    try:
+        parsed = datetime.fromisoformat(raw)
+    except ValueError:
+        return None
+    return parsed.astimezone(UTC) if parsed.tzinfo else parsed.replace(tzinfo=UTC)
+
+
 def main(argv: list[str] | None = None) -> int:
     _ = argv
     policy = json.loads((ROOT / "governance" / "security" / "review_policy.json").read_text(encoding="utf-8"))
@@ -99,6 +121,111 @@ def main(argv: list[str] | None = None) -> int:
         or p.startswith("runtime/glyphser/security/")
         or p.startswith(".github/workflows/")
     ]
+    split_role_cfg = policy.get("split_role_enforcement", {})
+    if not isinstance(split_role_cfg, dict):
+        split_role_cfg = {}
+    critical_patterns_raw = split_role_cfg.get(
+        "security_critical_paths",
+        ["tooling/security/**", "governance/security/**", ".github/workflows/**", "runtime/glyphser/security/**"],
+    )
+    critical_patterns = [
+        str(x).strip() for x in critical_patterns_raw if isinstance(x, str) and str(x).strip()
+    ]
+    split_role_paths = [
+        p for p in changed if any(_matches_path_pattern(p, pattern) for pattern in critical_patterns)
+    ]
+    split_role_required = bool(split_role_cfg.get("enabled", True)) and bool(split_role_paths)
+    author = (
+        os.environ.get("GLYPHSER_PR_AUTHOR", "").strip()
+        or os.environ.get("GITHUB_ACTOR", "").strip()
+    )
+    approvers = [
+        x.strip()
+        for x in os.environ.get("GLYPHSER_PR_APPROVERS", "").split(",")
+        if x.strip()
+    ]
+    normalized_author = author.lower()
+    normalized_approvers = {x.lower() for x in approvers}
+    fail_if_metadata_missing = bool(split_role_cfg.get("fail_if_metadata_missing", False))
+    if split_role_required:
+        if not author or not approvers:
+            marker = "split_role_metadata_unavailable"
+            (findings if fail_if_metadata_missing else advisories).append(marker)
+        elif normalized_approvers == {normalized_author}:
+            findings.append("split_role_author_is_sole_approver")
+            findings.append("reviewer_independence_author_is_sole_reviewer")
+
+    freshness_cfg = policy.get("approval_freshness_enforcement", {})
+    if not isinstance(freshness_cfg, dict):
+        freshness_cfg = {}
+    freshness_required = bool(freshness_cfg.get("enabled", True)) and bool(split_role_paths)
+    freshness_fail_on_missing = bool(freshness_cfg.get("fail_if_metadata_missing", False))
+    approval_time = _parse_utc(os.environ.get("GLYPHSER_APPROVAL_GRANTED_AT_UTC", ""))
+    security_change_time = _parse_utc(os.environ.get("GLYPHSER_LAST_SECURITY_CHANGE_AT_UTC", ""))
+    if freshness_required:
+        if approval_time is None or security_change_time is None:
+            marker = "approval_freshness_metadata_unavailable"
+            (findings if freshness_fail_on_missing else advisories).append(marker)
+        elif security_change_time > approval_time:
+            findings.append("approval_stale_post_approval_changes_detected")
+
+    competency_cfg = policy.get("reviewer_competency_mapping", {})
+    if not isinstance(competency_cfg, dict):
+        competency_cfg = {}
+    domains_raw = competency_cfg.get(
+        "domains",
+        {
+            "policy_changes": {
+                "path_patterns": ["governance/security/**"],
+                "required_group": "security-governance",
+            },
+            "workflow_changes": {
+                "path_patterns": [".github/workflows/**"],
+                "required_group": "release-engineering",
+            },
+            "runtime_security_changes": {
+                "path_patterns": ["runtime/glyphser/security/**"],
+                "required_group": "security-operations",
+            },
+            "security_tooling_changes": {
+                "path_patterns": ["tooling/security/**"],
+                "required_group": "security-architecture",
+            },
+        },
+    )
+    domains = domains_raw if isinstance(domains_raw, dict) else {}
+    approver_groups = {
+        x.strip().lower()
+        for x in os.environ.get("GLYPHSER_PR_APPROVER_GROUPS", "").split(",")
+        if x.strip()
+    }
+    competency_fail_on_missing = bool(competency_cfg.get("fail_if_metadata_missing", False))
+    missing_competency_domains: list[str] = []
+    matched_competency_domains: list[str] = []
+    for domain_name, domain_payload in domains.items():
+        if not isinstance(domain_payload, dict):
+            continue
+        patterns_raw = domain_payload.get("path_patterns", [])
+        if not isinstance(patterns_raw, list):
+            continue
+        patterns = [str(x).strip() for x in patterns_raw if isinstance(x, str) and str(x).strip()]
+        if not patterns:
+            continue
+        if not any(any(_matches_path_pattern(path, pattern) for pattern in patterns) for path in changed):
+            continue
+        matched_competency_domains.append(str(domain_name))
+    if matched_competency_domains and not approver_groups:
+        marker = "reviewer_competency_metadata_unavailable"
+        (findings if competency_fail_on_missing else advisories).append(marker)
+    elif matched_competency_domains:
+        for domain_name, domain_payload in domains.items():
+            if str(domain_name) not in matched_competency_domains or not isinstance(domain_payload, dict):
+                continue
+            required_group = str(domain_payload.get("required_group", "")).strip().lower()
+            if required_group and required_group not in approver_groups:
+                missing_competency_domains.append(str(domain_name))
+                findings.append(f"missing_required_reviewer_group:{domain_name}:{required_group}")
+
     if security_paths:
         patterns = [p for p in policy.get("required_change_ticket_patterns", []) if isinstance(p, str)]
         if not _ticket_present(patterns):
@@ -119,6 +246,13 @@ def main(argv: list[str] | None = None) -> int:
             "min_approvals": min_approvals,
             "enforce_change_ticket": enforce_ticket,
             "enforce_changelog_entry": enforce_changelog,
+            "split_role_required": split_role_required,
+            "split_role_paths": split_role_paths,
+            "approval_freshness_required": freshness_required,
+            "approval_granted_at_utc": approval_time.isoformat() if approval_time else "",
+            "last_security_change_at_utc": security_change_time.isoformat() if security_change_time else "",
+            "matched_competency_domains": matched_competency_domains,
+            "missing_competency_domains": missing_competency_domains,
         },
     }
     out = evidence_root() / "security" / "review_policy_gate.json"

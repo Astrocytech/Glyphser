@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "artifact": "telemetry_privacy_impact_checklist",
+  "approved_by": "security-team",
+  "reviewed_at_utc": "2026-03-05T00:00:00+00:00",
+  "reviewed_fields": [
+    "event_type",
+    "severity",
+    "control_id",
+    "run_id",
+    "artifact_ref"
+  ],
+  "considerations": [
+    "No direct personal identifiers are required for security gate status telemetry.",
+    "Operator identifiers must be pseudonymized when included in exported security telemetry.",
+    "Retention and minimization policy applies to all emitted telemetry records."
+  ]
+}

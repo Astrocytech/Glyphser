@@ -17,6 +17,11 @@ write_json_report = importlib.import_module("tooling.security.report_io").write_
 DEFAULT_TODO = ""
 SECTION_RE = re.compile(r"^([A-Z0-9]{1,4})\.\s+")
 TRIGGER_RE = re.compile(r"\b(trigger|incident|audit|run[-_ ]id)\b", re.IGNORECASE)
+OWNER_RE = re.compile(r"\bowner:\s*([A-Za-z0-9_.@/\-]+)", re.IGNORECASE)
+MILESTONE_RE = re.compile(r"\bmilestone:\s*([A-Za-z0-9_.\-]+)", re.IGNORECASE)
+RISK_RE = re.compile(r"\b(?:risk(?:_acceptance)?|risk-ticket|waiver|exception):\s*([A-Za-z0-9_.:/#\-]+)", re.IGNORECASE)
+DEFERRED_RE = re.compile(r"\b(defer(?:red)?|postpone(?:d)?|risk accepted|accepted risk)\b", re.IGNORECASE)
+EVIDENCE_RE = re.compile(r"\b(?:code|test|tests|workflow|evidence|gate|pr|commit):\s*\S+", re.IGNORECASE)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -28,9 +33,31 @@ def main(argv: list[str] | None = None) -> int:
     skipped = False
     pending_count = 0
     pending_without_trigger = 0
+    in_progress_missing_owner = 0
+    in_progress_missing_milestone = 0
+    deferred_missing_risk_acceptance = 0
+    done_missing_evidence_link = 0
     done_marker_present = False
     section_counts: dict[str, dict[str, int]] = {}
     require_trigger_ref = os.environ.get("GLYPHSER_HARDENING_TODO_REQUIRE_TRIGGER_REF", "").strip().lower() in {
+        "1",
+        "true",
+        "yes",
+        "on",
+    }
+    require_owner_milestone = os.environ.get("GLYPHSER_HARDENING_TODO_REQUIRE_OWNER_MILESTONE", "").strip().lower() in {
+        "1",
+        "true",
+        "yes",
+        "on",
+    }
+    require_risk_acceptance = os.environ.get("GLYPHSER_HARDENING_TODO_REQUIRE_RISK_ACCEPTANCE", "").strip().lower() in {
+        "1",
+        "true",
+        "yes",
+        "on",
+    }
+    require_done_evidence_link = os.environ.get("GLYPHSER_HARDENING_TODO_REQUIRE_DONE_EVIDENCE_LINK", "").strip().lower() in {
         "1",
         "true",
         "yes",
@@ -56,16 +83,37 @@ def main(argv: list[str] | None = None) -> int:
                 section_counts[current_section]["pending"] += 1
                 if require_trigger_ref and not TRIGGER_RE.search(stripped):
                     pending_without_trigger += 1
+                if require_risk_acceptance and DEFERRED_RE.search(stripped) and not RISK_RE.search(stripped):
+                    deferred_missing_risk_acceptance += 1
             elif stripped.startswith("[~]"):
                 section_counts[current_section]["in_progress"] += 1
+                if require_owner_milestone:
+                    if not OWNER_RE.search(stripped):
+                        in_progress_missing_owner += 1
+                    if not MILESTONE_RE.search(stripped):
+                        in_progress_missing_milestone += 1
             elif stripped.startswith("[x]"):
                 section_counts[current_section]["done"] += 1
+                if require_done_evidence_link and not EVIDENCE_RE.search(stripped):
+                    done_missing_evidence_link += 1
         if done_marker_present and pending_count > 0:
             status = "FAIL"
             findings.append("done_marker_present_with_pending_items")
         if pending_without_trigger > 0:
             status = "FAIL"
             findings.append("pending_item_missing_trigger_reference")
+        if in_progress_missing_owner > 0:
+            status = "FAIL"
+            findings.append("in_progress_item_missing_owner")
+        if in_progress_missing_milestone > 0:
+            status = "FAIL"
+            findings.append("in_progress_item_missing_milestone")
+        if deferred_missing_risk_acceptance > 0:
+            status = "FAIL"
+            findings.append("deferred_item_missing_risk_acceptance")
+        if done_missing_evidence_link > 0:
+            status = "FAIL"
+            findings.append("done_item_missing_evidence_link")
 
     report = {
         "status": status,
@@ -75,9 +123,16 @@ def main(argv: list[str] | None = None) -> int:
             "todo_path": str(todo_path) if configured else "",
             "pending_items": pending_count,
             "pending_without_trigger_reference": pending_without_trigger,
+            "in_progress_missing_owner": in_progress_missing_owner,
+            "in_progress_missing_milestone": in_progress_missing_milestone,
+            "deferred_missing_risk_acceptance": deferred_missing_risk_acceptance,
+            "done_missing_evidence_link": done_missing_evidence_link,
             "done_marker_present": done_marker_present,
             "section_counts": section_counts,
             "require_trigger_reference": require_trigger_ref,
+            "require_owner_milestone": require_owner_milestone,
+            "require_risk_acceptance": require_risk_acceptance,
+            "require_done_evidence_link": require_done_evidence_link,
         },
         "metadata": {"gate": "hardening_todo_consistency_gate"},
     }

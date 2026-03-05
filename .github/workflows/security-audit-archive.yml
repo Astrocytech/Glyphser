@@ -21,10 +21,14 @@ jobs:
         run: python tooling/security/evidence_run_dir_guard.py --run-id "${{ github.run_id }}-security-audit-archive"
       - name: Archive and restore-verify audit log
         run: python tooling/security/audit_archive_verify.py
+      - name: Long-term retention manifest
+        run: python tooling/security/long_term_retention_manifest.py
       - name: Upload audit archive evidence
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: security-audit-archive
           path: |
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/audit-log-archive.tar.gz
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/audit-log-archive.tar.gz.sha256
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/audit_archive_verify.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/long_term_retention_manifest.json

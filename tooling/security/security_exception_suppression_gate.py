@@ -34,6 +34,8 @@ def _is_suppressive_body(body: list[ast.stmt]) -> bool:
         return True
     if len(body) == 1 and isinstance(body[0], ast.Continue):
         return True
+    if len(body) == 1 and isinstance(body[0], (ast.Return, ast.Break)):
+        return True
     return False
 
 

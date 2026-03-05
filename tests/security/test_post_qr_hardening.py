@@ -33,6 +33,31 @@ def test_super_gate_references_new_post_qr_gates() -> None:
         "deterministic_env_gate.py",
         "archive_integrity_revalidation_gate.py",
         "compromised_runner_drill.py",
+        "governance_compliance_delta_report.py",
+        "governance_compliance_quarterly_snapshot.py",
+        "gate_status_transition_anomaly_detector.py",
+        "cross_run_suspicious_pattern_linkage_gate.py",
+        "containment_auto_trigger_recommendations.py",
+        "incident_severity_scoring_report.py",
+        "evidence_notarization_checkpoint.py",
+        "manifest_pointer_meta_chain.py",
+        "archival_encryption_verification_gate.py",
+        "quarterly_restore_simulation.py",
+        "developer_mode_profile_gate.py",
+        "promotion_go_no_go_report.py",
+        "signed_promotion_decision_artifact.py",
+        "release_notes_security_status_gate.py",
+        "release_metadata_evidence_checksum.py",
+        "lockfile_transitive_provenance_gate.py",
+        "toolchain_binary_source_consistency_gate.py",
+        "package_metadata_anomaly_gate.py",
+        "mirrored_source_integrity_report.py",
+        "chaos_security_scenario_report.py",
+        "gate_retry_strategy_policy_gate.py",
+        "branch_protection_policy_gate.py",
+        "codeowners_security_coverage_gate.py",
+        "permissions_audit_artifact.py",
+        "emergency_access_review_gate.py",
     ]
     for item in expected:
         assert item in text
@@ -53,6 +78,13 @@ def test_tamper_canary_workflow_exists() -> None:
     assert "tamper_canary_gate.py" in wf
     assert "workflow_dispatch" in wf
     assert "schedule:" in wf
+
+
+def test_local_ci_security_repro_docs_exist() -> None:
+    doc = (ROOT / "governance" / "security" / "LOCAL_CI_SECURITY_REPRO.md").read_text(encoding="utf-8")
+    assert "security_super_gate.py --strict-prereqs --strict-key" in doc
+    assert "GLYPHSER_MOCK_ATTESTATIONS" in doc
+    assert "TZ=UTC" in doc
 
 
 def test_semgrep_rules_tests_are_not_skip_marked() -> None:

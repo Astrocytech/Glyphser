@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "default_policy_owner": "security-governance",
+  "default_policy_fallback_owner": "security-governance-backup",
+  "default_gate_owner": "security-engineering",
+  "default_gate_fallback_owner": "security-engineering-backup",
+  "default_workflow_owner": "platform-security",
+  "default_workflow_fallback_owner": "platform-security-backup",
+  "policy_owners": {},
+  "policy_fallback_owners": {},
+  "gate_owners": {},
+  "gate_fallback_owners": {},
+  "workflow_owners": {
+    ".github/workflows/release.yml": "release-security"
+  },
+  "workflow_fallback_owners": {
+    ".github/workflows/release.yml": "release-security-backup"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "allowed_statuses": [
+    "pending",
+    "in_progress",
+    "done"
+  ],
+  "allowed_transitions": {
+    "pending": [
+      "pending",
+      "in_progress"
+    ],
+    "in_progress": [
+      "in_progress",
+      "done"
+    ],
+    "done": [
+      "done"
+    ]
+  },
+  "done_requires_verification_proof": true,
+  "implementation_requires_pre_failure_evidence": true,
+  "done_requires_post_implementation_proof": true,
+  "done_required_post_implementation_fields": [
+    "tests_passed_ref",
+    "gate_passed_ref",
+    "ci_lane_ref"
+  ],
+  "done_requires_evidence_link": true
+}

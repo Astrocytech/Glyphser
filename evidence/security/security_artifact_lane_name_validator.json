@@ -1,0 +1,57 @@
+{
+  "findings": [
+    "artifact_name_missing_lane_identifier:security-live-integrations.yml:live-integrations",
+    "artifact_name_missing_lane_identifier:security-maintenance.yml:airgap-simulation-artifacts"
+  ],
+  "metadata": {
+    "control_family_tags": [
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [
+      "sec_artifact_name_missing_lane_identifier_security_live_integrations_yml_live_integrations",
+      "sec_artifact_name_missing_lane_identifier_security_maintenance_yml_airgap_simulation_artifacts"
+    ],
+    "escalation_matrix": {
+      "severity_levels": {
+        "critical": {
+          "fallback": "security-leadership@glyphser.local",
+          "max_ack_minutes": 15,
+          "primary": "security-oncall@glyphser.local"
+        },
+        "high": {
+          "fallback": "platform-oncall@glyphser.local",
+          "max_ack_minutes": 30,
+          "primary": "security-oncall@glyphser.local"
+        },
+        "medium": {
+          "fallback": "platform-oncall@glyphser.local",
+          "max_ack_minutes": 60,
+          "primary": "security-engineering@glyphser.local"
+        }
+      }
+    },
+    "failure_classification": "control_failure",
+    "failure_classification_set": [
+      "control_failure"
+    ],
+    "failure_domains": {
+      "security_control_failures": [
+        "sec_artifact_name_missing_lane_identifier_security_live_integrations_yml_live_integrations",
+        "sec_artifact_name_missing_lane_identifier_security_maintenance_yml_airgap_simulation_artifacts"
+      ],
+      "transient_infra_failures": []
+    },
+    "generated_at_utc": "2026-03-05T18:21:48.248252+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": "",
+    "validator": "security_artifact_lane_name_validator"
+  },
+  "schema_version": 1,
+  "status": "FAIL",
+  "summary": {
+    "upload_steps_checked": 15,
+    "violations": 2
+  }
+}

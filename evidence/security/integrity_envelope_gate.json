@@ -1,0 +1,21 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "integrity_envelope_gate",
+    "generated_at_utc": "2026-03-05T00:57:19.802416+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "strict_key": false,
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "envelope_path": "evidence/security/security_integrity_envelope.json",
+    "linked_reports": [
+      "policy_signature.json",
+      "provenance_signature.json",
+      "evidence_attestation_index.json"
+    ]
+  }
+}

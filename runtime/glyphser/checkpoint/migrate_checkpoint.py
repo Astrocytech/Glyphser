@@ -5,24 +5,16 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Dict
 
-from runtime.glyphser.security.path_guard import resolve_inside_root
+from runtime.glyphser.security.path_guard import resolve_inside_root, validate_path_text
 
 
 def _validate_path_field(name: str, value: Any, *, allowed_root: str | None, require_exists: bool) -> None:
     if value is None:
         return
-    if not isinstance(value, str):
-        raise ValueError(f"{name} must be string")
-    if "\x00" in value:
-        raise ValueError(f"{name} contains NUL")
-    normalized = value.replace("\\", "/")
-    if ".." in normalized.split("/"):
-        raise ValueError(f"{name} contains traversal")
-    if "/" in value and "\\" in value:
-        raise ValueError(f"{name} contains mixed separators")
-    if not value.endswith(".json"):
+    normalized = validate_path_text(value, field_name=name)
+    if not normalized.endswith(".json"):
         raise ValueError(f"{name} must end with .json")
-    candidate = Path(value)
+    candidate = Path(normalized)
     if candidate.suffix == ".tmp":
         raise ValueError(f"{name} temporary file path is not allowed")
     if candidate.exists() and candidate.is_symlink():

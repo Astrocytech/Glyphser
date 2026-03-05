@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "encryption_algorithm": "AES-256-GCM",
+  "key_management_system": "kms://glyphser/security-archive",
+  "custody_owner": "security-governance",
+  "custody_backup_owner": "platform-security",
+  "key_rotation_days": 90,
+  "max_unencrypted_age_hours": 1,
+  "verification_evidence_path": "evidence/security/archival_encryption_verification.json"
+}

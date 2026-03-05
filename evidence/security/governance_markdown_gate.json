@@ -1,8 +1,13 @@
 {
   "findings": [],
   "metadata": {
-    "gate": "governance_markdown_gate"
+    "gate": "governance_markdown_gate",
+    "generated_at_utc": "2026-03-05T00:57:16.189751+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
   },
+  "schema_version": 1,
   "status": "PASS",
   "summary": {
     "documents": 2

@@ -13,7 +13,7 @@ if str(ROOT) not in sys.path:
 
 import subprocess
 
-from runtime.glyphser.security.artifact_signing import current_key, sign_file
+from runtime.glyphser.security.artifact_signing import current_key, sign_file, verify_file
 from tooling.lib.path_config import evidence_root
 
 
@@ -45,6 +45,13 @@ def _load_lock_packages(path: Path) -> list[dict]:
     return sorted(out, key=lambda x: (x["name"], x["version"]))
 
 
+def _sign_and_verify(path: Path, *, key: bytes, name: str) -> None:
+    signature = sign_file(path, key=key)
+    path.with_suffix(path.suffix + ".sig").write_text(signature + "\n", encoding="utf-8")
+    if not verify_file(path, signature, key=key):
+        raise ValueError(f"{name} signature verification failed immediately after generation")
+
+
 def main() -> int:
     OUT = evidence_root() / "security"
     OUT.mkdir(parents=True, exist_ok=True)
@@ -61,7 +68,7 @@ def main() -> int:
     sbom_path.write_text(json.dumps(sbom, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     strict_signing = str(os.environ.get("GLYPHSER_STRICT_SIGNING", "")).lower() in {"1", "true", "yes"}
     key = current_key(strict=strict_signing)
-    (OUT / "sbom.json.sig").write_text(sign_file(sbom_path, key=key) + "\n", encoding="utf-8")
+    _sign_and_verify(sbom_path, key=key, name="sbom")
 
     prov = {
         "format": "glyphser-provenance-v1",
@@ -73,7 +80,7 @@ def main() -> int:
     }
     prov_path = OUT / "build_provenance.json"
     prov_path.write_text(json.dumps(prov, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (OUT / "build_provenance.json.sig").write_text(sign_file(prov_path, key=key) + "\n", encoding="utf-8")
+    _sign_and_verify(prov_path, key=key, name="build_provenance")
 
     slsa = {
         "_type": "https://in-toto.io/Statement/v1",
@@ -95,7 +102,7 @@ def main() -> int:
     }
     slsa_path = OUT / "slsa_provenance_v1.json"
     slsa_path.write_text(json.dumps(slsa, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    (OUT / "slsa_provenance_v1.json.sig").write_text(sign_file(slsa_path, key=key) + "\n", encoding="utf-8")
+    _sign_and_verify(slsa_path, key=key, name="slsa_provenance_v1")
     print("SECURITY_ARTIFACTS: PASS")
     return 0
 

@@ -1,0 +1,28 @@
+{
+  "findings": [],
+  "metadata": {
+    "control_family_tags": [
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [],
+    "failure_classification": "control_failure",
+    "failure_classification_set": [],
+    "failure_domains": {
+      "security_control_failures": [],
+      "transient_infra_failures": []
+    },
+    "generated_at_utc": "2026-03-05T18:01:08.369701+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "process": "hardening_auto_reopen_on_regression",
+    "tz": ""
+  },
+  "reopened": [],
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "entries_checked": 2629,
+    "reopened_items": 0
+  }
+}

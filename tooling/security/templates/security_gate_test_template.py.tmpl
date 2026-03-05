@@ -1,0 +1,30 @@
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+from tooling.security import {{ gate_module_name }}
+
+
+def _write_json(path: Path, payload: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def test_{{ gate_module_name }}_passes(monkeypatch, tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    monkeypatch.setattr({{ gate_module_name }}, "ROOT", repo)
+    monkeypatch.setattr({{ gate_module_name }}, "evidence_root", lambda: repo / "evidence")
+    assert {{ gate_module_name }}.main([]) == 0
+
+
+def test_{{ gate_module_name }}_fails_with_finding(monkeypatch, tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    monkeypatch.setattr({{ gate_module_name }}, "ROOT", repo)
+    monkeypatch.setattr({{ gate_module_name }}, "evidence_root", lambda: repo / "evidence")
+    # TODO: seed failing input and assert finding code(s).
+    result = {{ gate_module_name }}.main([])
+    report_path = repo / "evidence" / "security" / "{{ gate_module_name }}.json"
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    assert result in (0, 1)
+    assert "status" in report and "findings" in report and "summary" in report and "metadata" in report

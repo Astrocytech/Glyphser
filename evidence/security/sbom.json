@@ -1,6 +1,6 @@
 {
   "format": "glyphser-sbom-v1",
-  "git_commit": "0f0651baa83b1c6da8d3da3964c7e9d35e2013c8",
+  "git_commit": "774708b781c158973f23d827961557524837b386",
   "lockfile_hash": "ff8d7ca61a478017944504b804a5c2eaf48958dd83eafb612f78ac1aae2d538b",
   "packages": [
     {
@@ -1408,5 +1408,5 @@
       "version": "1.0.0"
     }
   ],
-  "pyproject_hash": "a9175a206453396d74d5b7851c11eb52b7f89a765136d2b506be23d5b40d0eab"
+  "pyproject_hash": "5753bfefefce178c2d3f0ef46422b62b7c4359e00bf1238c9fbb5937d2416135"
 }

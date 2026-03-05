@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "wip_limits": {
+    "wave_1": 5,
+    "wave_2": 5,
+    "wave_3": 5,
+    "wave_4": 5,
+    "wave_5": 5
+  },
+  "wave_section_prefixes": {
+    "wave_1": [
+      "AB1"
+    ],
+    "wave_2": [
+      "AB2"
+    ],
+    "wave_3": [
+      "AB3"
+    ],
+    "wave_4": [
+      "AB4"
+    ],
+    "wave_5": [
+      "AB5"
+    ]
+  }
+}

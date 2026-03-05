@@ -1,0 +1,64 @@
+{
+  "findings": [
+    "hardcoded_evidence_security_path:.github/workflows/ci.yml",
+    "hardcoded_evidence_security_path:.github/workflows/fuzz-nightly.yml",
+    "hardcoded_evidence_security_path:.github/workflows/reproducible-build.yml",
+    "hardcoded_evidence_security_path:.github/workflows/security-maintenance.yml"
+  ],
+  "metadata": {
+    "control_family_tags": [
+      "supply_chain",
+      "evidence"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [
+      "sec_hardcoded_evidence_security_path_github_workflows_ci_yml",
+      "sec_hardcoded_evidence_security_path_github_workflows_fuzz_nightly_yml",
+      "sec_hardcoded_evidence_security_path_github_workflows_reproducible_build_yml",
+      "sec_hardcoded_evidence_security_path_github_workflows_security_maintenance_yml"
+    ],
+    "escalation_matrix": {
+      "severity_levels": {
+        "critical": {
+          "fallback": "security-leadership@glyphser.local",
+          "max_ack_minutes": 15,
+          "primary": "security-oncall@glyphser.local"
+        },
+        "high": {
+          "fallback": "platform-oncall@glyphser.local",
+          "max_ack_minutes": 30,
+          "primary": "security-oncall@glyphser.local"
+        },
+        "medium": {
+          "fallback": "platform-oncall@glyphser.local",
+          "max_ack_minutes": 60,
+          "primary": "security-engineering@glyphser.local"
+        }
+      }
+    },
+    "failure_classification": "control_failure",
+    "failure_classification_set": [
+      "control_failure"
+    ],
+    "failure_domains": {
+      "security_control_failures": [
+        "sec_hardcoded_evidence_security_path_github_workflows_ci_yml",
+        "sec_hardcoded_evidence_security_path_github_workflows_fuzz_nightly_yml",
+        "sec_hardcoded_evidence_security_path_github_workflows_reproducible_build_yml",
+        "sec_hardcoded_evidence_security_path_github_workflows_security_maintenance_yml"
+      ],
+      "transient_infra_failures": []
+    },
+    "generated_at_utc": "2026-03-05T18:20:56.334957+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": "",
+    "validator": "security_evidence_root_usage_validator"
+  },
+  "schema_version": 1,
+  "status": "FAIL",
+  "summary": {
+    "security_workflows_checked": 24,
+    "violations": 4
+  }
+}

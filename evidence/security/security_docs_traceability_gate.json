@@ -1,0 +1,20 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "security_docs_traceability_gate"
+  },
+  "status": "PASS",
+  "summary": {
+    "docs_checked": [
+      "governance/security/SECURITY_ARCHITECTURE.md",
+      "governance/security/EVIDENCE_FLOW_ARCHITECTURE.md",
+      "governance/security/INCIDENT_RUNBOOKS.md",
+      "governance/security/GATE_RUNBOOK_INDEX.md",
+      "governance/security/KNOWN_CI_FAILURE_MODES.md",
+      "governance/security/EMERGENCY_BYPASS_PROCESS.md",
+      "governance/security/EMERGENCY_LOCKDOWN_ROLLBACK_CHECKLIST.md",
+      "governance/security/OPERATOR_SIGNED_ARTIFACTS_QUICKSTART.md"
+    ],
+    "relative_links_checked": 0
+  }
+}

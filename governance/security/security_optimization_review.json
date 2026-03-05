@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-03-05T00:00:00+00:00",
+  "affirmed_no_security_semantics_change": true,
+  "review_notes": [
+    "Reviewed security gate runtime hotspots and maintained fail-closed behavior.",
+    "No optimization altered rule decisions, policy inputs, or exit-code semantics."
+  ],
+  "owner": "security-engineering"
+}

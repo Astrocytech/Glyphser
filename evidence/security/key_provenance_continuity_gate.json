@@ -1,0 +1,31 @@
+{
+  "findings": [
+    "fallback_signing_used:evidence_attestation_index,policy_signature,provenance_signature"
+  ],
+  "metadata": {
+    "gate": "key_provenance_continuity_gate",
+    "generated_at_utc": "2026-03-05T00:57:19.851783+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "FAIL",
+  "summary": {
+    "distinct_adapters": [
+      "hmac"
+    ],
+    "distinct_key_ids": [],
+    "fallback_sources": [
+      "evidence_attestation_index",
+      "policy_signature",
+      "provenance_signature"
+    ],
+    "missing_sources": [],
+    "sources": [
+      "evidence_attestation_index",
+      "policy_signature",
+      "provenance_signature"
+    ]
+  }
+}

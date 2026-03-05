@@ -1,0 +1,76 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import hashlib
+import importlib
+import json
+import sys
+from pathlib import Path
+from typing import Any
+
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
+
+REQUIRED_EVIDENCE = [
+    "security/security_super_gate.json",
+    "security/security_verification_summary.json",
+    "security/security_posture_executive_summary.json",
+    "security/control_posture_rag_export.json",
+    "security/top_risk_unresolved_items_ranker.json",
+]
+
+
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _load_json(path: Path) -> dict[str, Any]:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else {}
+
+
+def main(argv: list[str] | None = None) -> int:
+    _ = argv
+    ev = evidence_root()
+    findings: list[str] = []
+    entries: list[dict[str, str]] = []
+
+    for rel in REQUIRED_EVIDENCE:
+        path = ev / rel
+        relpath = str(path.relative_to(ROOT)).replace("\\", "/")
+        if not path.exists():
+            findings.append(f"missing_assurance_evidence:{relpath}")
+            continue
+        status = str(_load_json(path).get("status", "UNKNOWN")).upper()
+        entries.append(
+            {
+                "path": relpath,
+                "sha256": f"sha256:{_sha256(path)}",
+                "status": status,
+            }
+        )
+
+    report = {
+        "status": "PASS" if not findings else "FAIL",
+        "findings": findings,
+        "summary": {
+            "required_evidence": len(REQUIRED_EVIDENCE),
+            "collected_evidence": len(entries),
+            "auditor_package_ready": not findings,
+        },
+        "metadata": {"gate": "annual_assurance_package_generator", "target_audience": "external_auditors"},
+        "evidence_index": entries,
+    }
+    out = ev / "security" / "annual_assurance_package.json"
+    write_json_report(out, report)
+    print(f"ANNUAL_ASSURANCE_PACKAGE_GENERATOR: {report['status']}")
+    print(f"Report: {out}")
+    return 0 if report["status"] == "PASS" else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main(sys.argv[1:]))

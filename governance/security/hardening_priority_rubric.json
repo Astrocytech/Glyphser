@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "allowed_priorities": [
+    "P0 blocker",
+    "P1 critical",
+    "P2 important",
+    "P3 opportunistic"
+  ]
+}

@@ -57,7 +57,7 @@ jobs:
       - name: Run tests with coverage (primary lane)
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
         run: |
-          pytest -q --cov=glyphser --cov=runtime --cov=tooling/release --cov=tooling/quality_gates --cov-report=xml --cov-report=html --cov-report=term
+          pytest -q --cov=glyphser --cov=runtime --cov=tooling/release --cov=tooling/quality_gates --cov=tooling/security --cov-report=xml --cov-report=html --cov-report=term
 
       - name: Run lint and format checks
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
@@ -76,6 +76,10 @@ jobs:
       - name: Enforce per-module coverage minimums
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
         run: python tooling/quality_gates/module_coverage_gate.py --coverage-file coverage.xml
+
+      - name: Security coverage threshold gate
+        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
+        run: python tooling/security/security_coverage_threshold_gate.py --coverage-file coverage.xml --min-pct 85
 
       - name: Run spec-implementation congruence gate
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
@@ -179,6 +183,7 @@ jobs:
       TZ: "UTC"
       LC_ALL: "C.UTF-8"
       LANG: "C.UTF-8"
+      GLYPHSER_SECURITY_OWNER: ${{ vars.GLYPHSER_SECURITY_OWNER || 'security-owner@glyphser.local' }}
     strategy:
       fail-fast: false
       matrix:
@@ -194,6 +199,8 @@ jobs:
           pip install -e .[dev]
       - name: Install pinned security tools
         run: python tooling/security/install_security_toolchain.py
+      - name: Security cache integrity gate
+        run: python tooling/security/security_cache_integrity_gate.py
       - name: Ensure setuptools for Semgrep runtime
         run: python -m pip install --upgrade setuptools==75.8.0
       - name: Semgrep runtime preflight
@@ -204,6 +211,12 @@ jobs:
         run: python tooling/security/evidence_run_dir_guard.py --run-id "${{ github.run_id }}-${{ matrix.python-version }}-security"
       - name: Security toolchain gate
         run: python tooling/security/security_toolchain_gate.py
+      - name: Toolchain dependency provenance gate
+        run: python tooling/security/toolchain_dependency_provenance_gate.py
+      - name: Toolchain source failover gate
+        run: python tooling/security/toolchain_source_failover_gate.py
+      - name: Python version policy gate
+        run: python tooling/security/python_version_policy_gate.py
       - name: Subprocess allowlist report
         run: python tooling/security/subprocess_allowlist_report.py
       - name: Subprocess direct usage gate
@@ -218,8 +231,14 @@ jobs:
         run: python tooling/security/semgrep_rules_self_check_gate.py
       - name: Workflow policy coverage gate
         run: python tooling/security/workflow_policy_coverage_gate.py
+      - name: Scheduled workflow backpressure gate
+        run: python tooling/security/scheduled_workflow_backpressure_gate.py
       - name: Workflow risky patterns gate
         run: python tooling/security/workflow_risky_patterns_gate.py
+      - name: Required control condition bypass gate
+        run: python tooling/security/required_control_condition_bypass_gate.py
+      - name: Workflow change-management gate
+        run: python tooling/security/workflow_change_management_gate.py
       - name: Workflow deprecated invocation gate
         run: python tooling/security/workflow_deprecated_invocation_gate.py
       - name: Workflow pin change approval gate
@@ -236,6 +255,8 @@ jobs:
         run: python tooling/security/audit_archive_verify.py
       - name: Security artifact signature coverage gate
         run: python tooling/security/security_artifact_signature_coverage_gate.py
+      - name: Artifact path case-conflict gate
+        run: python tooling/security/artifact_path_case_conflict_gate.py
       - name: Security workflow trigger gate
         run: python tooling/security/security_workflow_trigger_gate.py
       - name: Security critical test wiring gate
@@ -250,6 +271,8 @@ jobs:
         run: python tooling/security/security_dead_gate_wiring_gate.py
       - name: Hardening TODO consistency gate
         run: python tooling/security/hardening_todo_consistency_gate.py
+      - name: Hardening pending-count validator
+        run: python tooling/security/hardening_pending_count_validator.py
       - name: Policy signature generate
         run: python tooling/security/policy_signature_generate.py --strict-key
       - name: Policy signature gate
@@ -262,10 +285,22 @@ jobs:
         run: python tooling/security/bandit_json_to_sarif.py --input bandit.json --output bandit.sarif
       - name: pip-audit gate
         run: python tooling/security/pip_audit_gate.py
+      - name: Dependency freshness gate
+        run: python tooling/security/dependency_freshness_gate.py
+      - name: Dependency registry policy gate
+        run: python tooling/security/dependency_registry_policy_gate.py
+      - name: Lockfile change provenance gate
+        run: python tooling/security/lockfile_change_provenance_gate.py
+      - name: Temp directory policy gate
+        run: python tooling/security/temp_directory_policy_gate.py
       - name: Secret scan gate
         run: python tooling/security/secret_scan_gate.py
       - name: Workflow action pinning gate
         run: python tooling/security/workflow_pinning_gate.py
+      - name: External action owner allowlist gate
+        run: python tooling/security/external_action_owner_allowlist_gate.py
+      - name: Third-party action SHA mapping gate
+        run: python tooling/security/third_party_action_sha_mapping_gate.py
       - name: Incident response gate
         run: python tooling/security/incident_response_gate.py
       - name: Post-incident closure gate
@@ -296,6 +331,10 @@ jobs:
         run: python tooling/security/governance_markdown_gate.py
       - name: Stale policy review gate
         run: python tooling/security/stale_policy_review_gate.py
+      - name: Policy deprecation workflow gate
+        run: python tooling/security/policy_deprecation_gate.py
+      - name: Ownership continuity gate
+        run: python tooling/security/ownership_continuity_gate.py
       - name: Threat-control mapping gate
         run: python tooling/security/threat_control_mapping_gate.py
       - name: Review policy gate
@@ -322,6 +361,8 @@ jobs:
         run: python tooling/security/provenance_revocation_gate.py
       - name: Promotion policy gate
         run: python tooling/security/promotion_policy_gate.py
+      - name: Security state-transition invariants gate
+        run: python tooling/security/security_state_transition_invariants_gate.py
       - name: Security gate test coverage gate
         run: python tooling/security/security_gate_test_coverage_gate.py
       - name: Evidence attestation index
@@ -348,12 +389,20 @@ jobs:
         run: python tooling/security/conformance_security_coupling_gate.py
       - name: Security super gate
         run: python tooling/security/security_super_gate.py --strict-key --strict-prereqs
+      - name: Security gate runtime budget gate
+        run: python tooling/security/security_gate_runtime_budget_gate.py
       - name: Security SLO report
         run: python tooling/security/security_slo_report.py
       - name: Security trend gate
         run: python tooling/security/security_trend_gate.py
+      - name: Security pipeline reliability dashboard
+        run: python tooling/security/security_pipeline_reliability_dashboard.py
       - name: Security dashboard export
         run: python tooling/security/security_dashboard_export.py
+      - name: Security posture executive summary export
+        run: python tooling/security/security_posture_executive_summary.py
+      - name: Formal security review artifact
+        run: python tooling/security/formal_security_review_artifact.py --strict-key
       - name: Security schema normalization gate
         run: python tooling/security/security_schema_normalization_gate.py
       - name: External attestation gate
@@ -366,6 +415,10 @@ jobs:
         run: pytest -q tests/security/test_semgrep_rules.py
       - name: Security targeted regression suite
         run: pytest -q tests/security
+      - name: CI incident replay harness
+        run: python tooling/security/ci_incident_replay_harness.py
+      - name: Security gate parity snapshot
+        run: python tooling/security/security_gate_parity_snapshot.py
       - name: Upload Bandit SARIF to Code Scanning
         if: github.event_name == 'push'
         uses: github/codeql-action/upload-sarif@b56ba49b26e50535fa1e7f7db0f4f7b4bf65d80d
@@ -386,10 +439,22 @@ jobs:
             semgrep.sarif
             semgrep.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/pip_audit.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/dependency_freshness_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/dependency_registry_policy_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/lockfile_change_provenance_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/temp_directory_policy_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/secret_scan.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_pinning.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/external_action_owner_allowlist_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/third_party_action_sha_mapping_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_signature.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_toolchain.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_toolchain_install_report.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_cache_integrity_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/toolchain_dependency_provenance_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/toolchain_source_failover_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/toolchain_source_failover_history.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/python_version_policy_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/subprocess_allowlist_report.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/subprocess_direct_usage_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_workflow_contract_gate.json
@@ -397,7 +462,10 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_artifact_retention_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/semgrep_rules_self_check_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_policy_coverage_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/scheduled_workflow_backpressure_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_risky_patterns_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/required_control_condition_bypass_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_change_management_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_deprecated_invocation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_pin_change_approval_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_schema_validation_gate.json
@@ -406,6 +474,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_evidence_corruption_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/audit_archive_verify.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_artifact_signature_coverage_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/artifact_path_case_conflict_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_unsigned_json_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_workflow_trigger_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_critical_test_wiring_gate.json
@@ -414,6 +483,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_exception_suppression_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_dead_gate_wiring_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/hardening_todo_consistency_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/hardening_pending_count_validator.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/incident_response.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/post_incident_closure_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/org_secret_backend.json
@@ -421,6 +491,8 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/production_controls.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/governance_markdown_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/stale_policy_review_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_deprecation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/ownership_continuity_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/threat_control_mapping_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/review_policy_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/file_permissions_gate.json
@@ -439,6 +511,8 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/exception_waiver_reconciliation_gate.json.sig
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_revocation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/promotion_policy_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_state_transition_invariants_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/degraded_mode_evidence.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_gate_test_coverage.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/container_provenance.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/container_registry_provenance_gate.json
@@ -464,13 +538,178 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_evidence_scope_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/conformance_security_coupling.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_super_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_gate_runtime_budget_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_gate_runtime_history.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_slo_report.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_trend_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_trend_alert.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_pipeline_reliability_dashboard.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_pipeline_reliability_history.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_dashboard.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_posture_executive_summary.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/formal_security_review_artifact.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/formal_security_review_artifact.json.sig
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_schema_normalization_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/cosign_attestation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_chain_of_custody.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_chain_of_custody.json.sig
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_chain_of_custody_build.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_chain_of_custody_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/ci_incident_replay_harness.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_gate_parity_snapshot.json
+
+  security-gate-parity:
+    needs: security-matrix
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download 3.11 security artifacts
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16
+        with:
+          name: security-artifacts-3.11
+          path: parity/3.11
+      - name: Download 3.12 security artifacts
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16
+        with:
+          name: security-artifacts-3.12
+          path: parity/3.12
+      - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38
+        with:
+          python-version: "3.12"
+      - name: Compare security gate parity snapshots
+        run: >
+          python tooling/security/security_gate_parity_compare.py
+          --left parity/3.11/security_gate_parity_snapshot.json
+          --right parity/3.12/security_gate_parity_snapshot.json
+
+  security-fs-permissions-parity:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    env:
+      GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/security-fs-parity-${{ matrix.os }}
+      TZ: "UTC"
+      LC_ALL: "C.UTF-8"
+      LANG: "C.UTF-8"
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38
+        with:
+          python-version: "3.12"
+      - name: Install package
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev]
+      - name: Initialize immutable evidence run directory
+        run: python tooling/security/evidence_run_dir_guard.py --run-id "${{ github.run_id }}-security-fs-parity-${{ matrix.os }}"
+      - name: Filesystem permission parity gates
+        run: |
+          python tooling/security/file_permissions_gate.py
+          python tooling/security/file_permission_matrix_gate.py
+      - name: Upload filesystem parity artifacts
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: security-fs-permissions-parity-${{ matrix.os }}
+          retention-days: 14
+          path: |
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/file_permissions_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/file_permission_matrix_gate.json
+
+  security-tooling-smoke-matrix:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    env:
+      GLYPHSER_ENV: "ci"
+      GLYPHSER_PROVENANCE_HMAC_KEY: "glyphser-provenance-hmac-fallback-v1"
+      GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/security-tooling-smoke-${{ matrix.os }}
+      TZ: "UTC"
+      LC_ALL: "C.UTF-8"
+      LANG: "C.UTF-8"
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38
+        with:
+          python-version: "3.12"
+      - name: Install package
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev]
+      - name: Install pinned security tools
+        run: python tooling/security/install_security_toolchain.py
+      - name: Security cache integrity gate
+        run: python tooling/security/security_cache_integrity_gate.py
+      - name: Ensure setuptools for Semgrep runtime
+        run: python -m pip install --upgrade setuptools==75.8.0
+      - name: Semgrep runtime preflight
+        run: |
+          semgrep --version
+          python -c "import pkg_resources"
+      - name: Initialize immutable evidence run directory
+        run: python tooling/security/evidence_run_dir_guard.py --run-id "${{ github.run_id }}-security-tooling-smoke-${{ matrix.os }}"
+      - name: Security tooling smoke gates
+        run: |
+          python tooling/security/security_toolchain_gate.py
+          python tooling/security/toolchain_dependency_provenance_gate.py
+          python tooling/security/toolchain_source_failover_gate.py
+          python tooling/security/python_version_policy_gate.py
+          python tooling/security/semgrep_rules_self_check_gate.py
+          python tooling/security/runtime_api_scope_matrix_gate.py
+          python tooling/security/security_event_schema_gate.py
+          python tooling/security/security_super_gate.py --strict-prereqs
+          python tooling/security/security_gate_runtime_budget_gate.py
+          python tooling/security/signed_json_hash_equivalence_gate.py
+          python tooling/security/locale_variance_suite.py
+          python tooling/security/security_gate_parity_snapshot.py
+      - name: Upload security tooling smoke artifacts
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: security-tooling-smoke-${{ matrix.os }}
+          retention-days: 14
+          path: |
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_toolchain.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_toolchain_install_report.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_cache_integrity_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/toolchain_dependency_provenance_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/toolchain_source_failover_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/toolchain_source_failover_history.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/python_version_policy_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/runtime_api_scope_matrix_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_event_schema_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_super_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_gate_runtime_budget_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_gate_runtime_history.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/signed_json_hash_equivalence_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/locale_variance_suite.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_gate_parity_snapshot.json
+
+  security-signed-json-hash-equivalence:
+    needs: security-tooling-smoke-matrix
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38
+        with:
+          python-version: "3.12"
+      - name: Download linux tooling smoke artifacts
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16
+        with:
+          name: security-tooling-smoke-ubuntu-latest
+          path: parity/linux
+      - name: Download macOS tooling smoke artifacts
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16
+        with:
+          name: security-tooling-smoke-macos-latest
+          path: parity/macos
+      - name: Compare signed JSON hash equivalence across OS
+        run: |
+          left="$(find parity/linux -name signed_json_hash_equivalence_gate.json | head -n 1)"
+          right="$(find parity/macos -name signed_json_hash_equivalence_gate.json | head -n 1)"
+          if [ -z \"$left\" ] || [ -z \"$right\" ]; then
+            echo \"missing signed_json_hash_equivalence_gate.json snapshot artifact\"
+            exit 1
+          fi
+          python tooling/security/signed_json_hash_equivalence_gate.py --left \"$left\" --right \"$right\"

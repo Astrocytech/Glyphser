@@ -1,0 +1,52 @@
+{
+  "checked_at_utc": "2026-03-05T00:57:19.232231+00:00",
+  "checks": [
+    {
+      "mode": "dry_run",
+      "name": "waf_ingress",
+      "ok": true
+    },
+    {
+      "mode": "dry_run",
+      "name": "siem_pipeline",
+      "ok": true
+    },
+    {
+      "mode": "dry_run",
+      "name": "oncall_paging",
+      "ok": true
+    }
+  ],
+  "findings": [],
+  "metadata": {
+    "gate": "live_integrations_verify",
+    "generated_at_utc": "2026-03-05T00:57:19.232293+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "mode": "dry_run",
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "checked_at_utc": "2026-03-05T00:57:19.232220+00:00",
+    "checks": [
+      {
+        "mode": "dry_run",
+        "name": "waf_ingress",
+        "ok": true
+      },
+      {
+        "mode": "dry_run",
+        "name": "siem_pipeline",
+        "ok": true
+      },
+      {
+        "mode": "dry_run",
+        "name": "oncall_paging",
+        "ok": true
+      }
+    ],
+    "mode": "dry_run"
+  }
+}

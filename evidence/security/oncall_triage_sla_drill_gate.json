@@ -1,0 +1,29 @@
+{
+  "findings": [],
+  "metadata": {
+    "control_family_tags": [
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [],
+    "failure_classification": "control_failure",
+    "failure_classification_set": [],
+    "failure_domains": {
+      "security_control_failures": [],
+      "transient_infra_failures": []
+    },
+    "gate": "oncall_triage_sla_drill_gate",
+    "generated_at_utc": "2026-03-05T16:04:47.950821+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "max_observed_triage_minutes": 19.0,
+    "max_triage_minutes": 30,
+    "observed_cases": 10,
+    "required_sample_size": 10
+  }
+}

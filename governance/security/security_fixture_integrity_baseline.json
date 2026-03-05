@@ -1,0 +1,85 @@
+{
+  "allowed_extensions": [
+    ".json",
+    ".py"
+  ],
+  "fixtures": [
+    {
+      "path": "tests/security/semgrep_fixtures/bad.py",
+      "sha256": "375ae8ac2aaf4a788995137a8d9b04d09cf65318f3e79539c175693627b84bc9"
+    },
+    {
+      "path": "tests/security/semgrep_fixtures/bad_extended.py",
+      "sha256": "be0dd3d0c8a89937e949a2f50a0b4e5aaef7c86e63dca8a5c8dfc38f5dca07e7"
+    },
+    {
+      "path": "tests/security/semgrep_fixtures/expected_findings.json",
+      "sha256": "daba91a7b34417b455c65b902ae9625c071ace0f6eaf9555452a911aa33c133d"
+    },
+    {
+      "path": "tests/security/semgrep_fixtures/good.py",
+      "sha256": "57ba65283cbfb04100b8e4d033f55056b70f36544aa713c52afebf39c3516047"
+    },
+    {
+      "path": "tests/security/semgrep_fixtures/good_extended.py",
+      "sha256": "79e2d8a727080f297d186230195a1511a7fcab7425d59775f9158c9c7f41eff3"
+    },
+    {
+      "path": "tests/security/corpus/checkpoint_escape_case.json",
+      "sha256": "bce8d50277d59146357ab51ec7c7c820abf9ed15727da4c660e34e11a489f008"
+    },
+    {
+      "path": "tests/security/corpus/checkpoint_large_case.json",
+      "sha256": "d3d0f508216f60816a6dab531ec5d220b3fee8ed189ea769c67adac495edaefc"
+    },
+    {
+      "path": "tests/security/corpus/checkpoint_migrate_traversal_case.json",
+      "sha256": "2ba1485edd6193214666d10c03ad42c591aad1de0213cd643fe1f634b7ace569"
+    },
+    {
+      "path": "tests/security/corpus/checkpoint_migrate_type_case.json",
+      "sha256": "aa488f1439fdc72cdd3028bbbf9974d7e1f81d49e4f213944fe14b04781fc850"
+    },
+    {
+      "path": "tests/security/corpus/checkpoint_suffix_case.json",
+      "sha256": "52024baae6256a3178e3f847931d8734a5c30e82ff8e8facc2406a3293ea6624"
+    },
+    {
+      "path": "tests/security/corpus/checkpoint_symlink_case.json",
+      "sha256": "30e88c55e04c86277e16b6801e7719e8229a648e865ecabe3ccf89c2886bd477"
+    },
+    {
+      "path": "tests/security/corpus/checkpoint_temp_case.json",
+      "sha256": "1393cb7ac55a1723f58d175216c46dc105925959dfd41c4dee561947fe3409ca"
+    },
+    {
+      "path": "tests/security/corpus/manifest_migrate_type_case.json",
+      "sha256": "d6e31bbd37ba3008f2f1f4f2c9a3381d6d35c35774fdce4c8336c42a54ca608b"
+    },
+    {
+      "path": "tests/security/corpus/storage_restore_symlink_case.json",
+      "sha256": "d37fff89052aed61c419caa76eaca69ea6eff870397a006f110488157e1a8c50"
+    },
+    {
+      "path": "tests/security/corpus/storage_restore_temp_case.json",
+      "sha256": "e9711541d8478414ae598c0d29e5f80e02ddf82650e5bb93e74c43acf506f7d3"
+    },
+    {
+      "path": "tests/security/corpus/trace_migrate_traversal_case.json",
+      "sha256": "0b7d3ec8611bb6f7ad7419fb7e1a5a3d36663f15c4fd925207402efc61649d53"
+    },
+    {
+      "path": "tests/security/corpus/trace_migrate_type_case.json",
+      "sha256": "8f687cbfe1e9bdf09e14f5ccbefecadf424d9c6b1e4e10f7011e9c78b952ab04"
+    },
+    {
+      "path": "artifacts/inputs/fixtures/security-incidents/ci_incident_replay.json",
+      "sha256": "1336750730d777d3008e3811f79347d13db44c8e8a611e61a26e66f9bd7f897a"
+    }
+  ],
+  "monitored_roots": [
+    "tests/security/semgrep_fixtures",
+    "tests/security/corpus",
+    "artifacts/inputs/fixtures/security-incidents"
+  ]
+}

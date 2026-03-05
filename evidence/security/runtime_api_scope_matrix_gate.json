@@ -1,0 +1,28 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "runtime_api_scope_matrix_gate",
+    "generated_at_utc": "2026-03-05T01:07:36.393733+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "forbid_additional_scope_validators": false,
+    "observed_endpoints": [
+      "evidence",
+      "replay",
+      "status",
+      "submit_job"
+    ],
+    "required_endpoints": [
+      "evidence",
+      "replay",
+      "status",
+      "submit_job"
+    ],
+    "scope_validator_calls": 4
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "security_super_gate_membership_guard_gate",
+    "generated_at_utc": "2026-03-05T00:57:14.530978+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "manifest_core": 88,
+    "manifest_extended": 44,
+    "required_core": 3,
+    "required_extended": 2
+  }
+}

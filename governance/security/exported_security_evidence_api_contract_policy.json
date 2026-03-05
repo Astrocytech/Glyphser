@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "current_api_contract_version": "v1",
+  "allowed_versions": [
+    "v1"
+  ],
+  "required_exports": [
+    {
+      "artifact": "evidence/security/security_dashboard.json",
+      "kind": "json",
+      "version_path": "metadata.api_contract_version"
+    },
+    {
+      "artifact": "evidence/security/security_events.jsonl",
+      "kind": "jsonl",
+      "version_field": "api_contract_version"
+    },
+    {
+      "artifact": "evidence/security/offline_verify_bundle_export.json",
+      "kind": "json",
+      "version_path": "metadata.api_contract_version"
+    },
+    {
+      "artifact": "evidence/security/offline_verify_bundle/export_manifest.json",
+      "kind": "json",
+      "version_path": "api_contract_version"
+    }
+  ]
+}

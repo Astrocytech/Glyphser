@@ -1,0 +1,5 @@
+{
+  "deploy_manifest_path": "evidence/deploy/latest.json",
+  "build_provenance_path": "evidence/security/build_provenance.json",
+  "max_allowed_drift": 0
+}

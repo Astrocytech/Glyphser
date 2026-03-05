@@ -1,0 +1,14 @@
+{
+  "epochs": [
+    {
+      "epoch_id": "2026-02",
+      "key_id": "provenance-2026-02"
+    },
+    {
+      "epoch_id": "2026-03",
+      "key_id": "provenance-default",
+      "previous_epoch_id": "2026-02",
+      "previous_key_id": "provenance-2026-02"
+    }
+  ]
+}

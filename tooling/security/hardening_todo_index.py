@@ -5,13 +5,11 @@ import argparse
 import re
 from pathlib import Path
 
+ROOT = Path(__file__).resolve().parents[2]
 SECTION_RE = re.compile(r"^([A-Z0-9]{1,4})\.\s+")
 INDEX_BEGIN = "<HARDENING_INDEX_BEGIN>"
 INDEX_END = "<HARDENING_INDEX_END>"
-DEFAULT_TODO = (
-    "/home/coka/Desktop/ASTROCYTECH/ASTROCYTECH_DIARY/TODOs/"
-    "glyphser_security_hardening_master_todo.txt"
-)
+DEFAULT_TODO = str(ROOT / "glyphser_security_hardening_master_todo.txt")
 
 
 def _collect_counts(lines: list[str]) -> dict[str, dict[str, int]]:

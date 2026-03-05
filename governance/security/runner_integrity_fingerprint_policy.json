@@ -1,0 +1,26 @@
+{
+  "allowed_fingerprints": [
+    {
+      "runner_os": "linux",
+      "python_minor": "3.11"
+    },
+    {
+      "runner_os": "linux",
+      "python_minor": "3.12"
+    },
+    {
+      "runner_os": "macos",
+      "python_minor": "3.11"
+    },
+    {
+      "runner_os": "macos",
+      "python_minor": "3.12"
+    }
+  ],
+  "require_match_in_envs": [
+    "ci",
+    "release",
+    "prod",
+    "production"
+  ]
+}

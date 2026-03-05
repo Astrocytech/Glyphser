@@ -1,0 +1,26 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "security_toolchain_lock_signature_gate",
+    "generated_at_utc": "2026-03-05T00:57:12.956779+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "strict_key": false,
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "checked_locks": 2,
+    "checks": {
+      "tooling/security/security_toolchain_lock.json": {
+        "ok": true,
+        "reason": "ok"
+      },
+      "tooling/security/security_toolchain_transitive_lock.json": {
+        "ok": true,
+        "reason": "ok"
+      }
+    }
+  }
+}

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import importlib
 import json
 import tarfile
@@ -24,6 +25,10 @@ DEFAULT_INCLUDE = [
 ]
 
 
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Collect signed incident response bundle from security evidence.")
     parser.add_argument("--incident-id", required=True)
@@ -33,6 +38,7 @@ def main(argv: list[str] | None = None) -> int:
     out_dir = evidence_root() / "incident"
     out_dir.mkdir(parents=True, exist_ok=True)
     bundle = out_dir / f"incident-bundle-{args.incident_id}.tar.gz"
+    bundle_sha = out_dir / f"incident-bundle-{args.incident_id}.tar.gz.sha256"
     manifest = out_dir / f"incident-bundle-{args.incident_id}.manifest.json"
 
     included: list[str] = []
@@ -50,10 +56,15 @@ def main(argv: list[str] | None = None) -> int:
                 tf.add(sig, arcname=f"security/{sig.name}")
                 included.append(sig.name)
 
+    digest = _sha256(bundle)
+    bundle_sha.write_text(f"{digest}  {bundle.name}\n", encoding="utf-8")
+
     manifest_payload = {
         "status": "PASS" if not missing else "WARN",
         "incident_id": args.incident_id,
         "bundle": str(bundle.relative_to(ROOT)).replace("\\", "/"),
+        "bundle_sha256": digest,
+        "bundle_sha256_path": str(bundle_sha.relative_to(ROOT)).replace("\\", "/"),
         "included": included,
         "missing": missing,
     }

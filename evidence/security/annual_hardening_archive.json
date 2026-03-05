@@ -1,0 +1,2361 @@
+{
+  "findings": [],
+  "metadata": {
+    "control_family_tags": [
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [],
+    "failure_classification": "control_failure",
+    "failure_classification_set": [],
+    "failure_domains": {
+      "security_control_failures": [],
+      "transient_infra_failures": []
+    },
+    "generated_at_utc": "2026-03-05T17:37:07.526601+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "sections": [
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Replace fallback HMAC signing key in CI/release with repository/environment secret-backed key."
+        },
+        {
+          "state": "x",
+          "text": "Add optional KMS/HSM-backed signing adapter and use it for release artifacts."
+        },
+        {
+          "state": "x",
+          "text": "Rotate signing keys and add key rotation runbook validation test."
+        },
+        {
+          "state": "x",
+          "text": "Add key provenance metadata into attestation outputs."
+        }
+      ],
+      "section": "A",
+      "title": "Key Management and Signing Hardening"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Enforce write-once evidence directories for all workflows (not only security workflows)."
+        },
+        {
+          "state": "x",
+          "text": "Add gate to ensure no workflow writes into non-run-scoped evidence paths."
+        },
+        {
+          "state": "x",
+          "text": "Add immutable retention policy check (no overwrite of previous run evidence)."
+        },
+        {
+          "state": "x",
+          "text": "Add chain-of-custody index across all evidence domains (security, conformance, repro, release)."
+        }
+      ],
+      "section": "B",
+      "title": "Evidence Immutability and Integrity"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Make policy signature gate mandatory in all relevant jobs (CI, maintenance, release, push-button)."
+        },
+        {
+          "state": "x",
+          "text": "Add policy signature generation command for maintainers (with strict key mode)."
+        },
+        {
+          "state": "x",
+          "text": "Add test that unsigned new policy files fail the gate."
+        },
+        {
+          "state": "x",
+          "text": "Add schema + signature checks for governance markdown metadata where applicable."
+        }
+      ],
+      "section": "C",
+      "title": "Governance Policy Signing"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add configurable per-token denylist cooldown after repeated auth failures."
+        },
+        {
+          "state": "x",
+          "text": "Add token entropy/format validation policy (reject weak token patterns in non-test mode)."
+        },
+        {
+          "state": "x",
+          "text": "Add per-role/per-action quota profiles (e.g., stricter replay for low-trust roles)."
+        },
+        {
+          "state": "x",
+          "text": "Add anomaly scoring for token spray and auth failure spikes."
+        },
+        {
+          "state": "x",
+          "text": "Add gate threshold policy file for abuse telemetry tuning by environment."
+        }
+      ],
+      "section": "D",
+      "title": "Runtime API Abuse and Quota Hardening"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add dedicated idempotency-key replay TTL and cleanup policy."
+        },
+        {
+          "state": "x",
+          "text": "Add gate for idempotency collision anomaly detection."
+        },
+        {
+          "state": "x",
+          "text": "Add cross-token replay abuse checks (same job hammered by many tokens)."
+        },
+        {
+          "state": "x",
+          "text": "Add replay evidence consistency gate (bundle/repro/conformance linkage)."
+        }
+      ],
+      "section": "E",
+      "title": "Replay/Idempotency Hardening"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add explicit release-blocking gate for stale branch protection evidence and stale live integration evidence in one combined check."
+        },
+        {
+          "state": "x",
+          "text": "Add required minimal cadence checks (e.g., branch protection verification at least every N days)."
+        },
+        {
+          "state": "x",
+          "text": "Add workflow test fixtures for stale + missing + malformed live evidence in all rollout workflows."
+        },
+        {
+          "state": "x",
+          "text": "Add alert metadata output for on-call systems."
+        }
+      ],
+      "section": "F",
+      "title": "Live Rollout and Operational Freshness"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Enforce exact hashes for security tool packages at install time (not only version+derived hash checks)."
+        },
+        {
+          "state": "x",
+          "text": "Pin transitive dependencies for security tools in a dedicated lock file."
+        },
+        {
+          "state": "x",
+          "text": "Add gate to detect unreviewed changes in `.github/workflows` security steps."
+        },
+        {
+          "state": "x",
+          "text": "Add scheduled drift report for action pins and security tool versions."
+        }
+      ],
+      "section": "G",
+      "title": "Supply Chain and Tooling Hardening"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add external attestations/signatures (e.g., Sigstore/cosign) for release artifacts."
+        },
+        {
+          "state": "x",
+          "text": "Verify container digest provenance against pushed registry artifacts."
+        },
+        {
+          "state": "x",
+          "text": "Add release gate that verifies provenance index and policy signatures together."
+        },
+        {
+          "state": "x",
+          "text": "Add release rollback drill that validates provenance integrity on rollback candidates."
+        }
+      ],
+      "section": "H",
+      "title": "Artifact and Release Provenance"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Extend malicious corpus with archive extraction path traversal cases."
+        },
+        {
+          "state": "x",
+          "text": "Add temp-file race/symlink race scenario tests for checkpoint and trace paths."
+        },
+        {
+          "state": "x",
+          "text": "Add file mode/permission gate for sensitive outputs under evidence and governance."
+        },
+        {
+          "state": "x",
+          "text": "Add cross-platform path normalization fuzz cases (Windows separators, unicode edge cases)."
+        }
+      ],
+      "section": "I",
+      "title": "Filesystem and Path Safety"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add conformance gate dependency on security attestation gate status."
+        },
+        {
+          "state": "x",
+          "text": "Add combined quality gate that fails when conformance passes but security integrity fails."
+        },
+        {
+          "state": "x",
+          "text": "Ensure security evidence is included in conformance artifact bundle."
+        }
+      ],
+      "section": "J",
+      "title": "Conformance and Security Coupling"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Create machine-readable security SLO report from gate outputs."
+        },
+        {
+          "state": "x",
+          "text": "Add trend-based alerts (degrading but not yet failing) for security metrics."
+        },
+        {
+          "state": "x",
+          "text": "Add dashboard export artifacts per run."
+        },
+        {
+          "state": "x",
+          "text": "Add gate for missing telemetry fields in security reports."
+        }
+      ],
+      "section": "K",
+      "title": "Observability and SLOs"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Enforce CODEOWNERS for `tooling/security/**`, `governance/security/**`, `.github/workflows/**`."
+        },
+        {
+          "state": "x",
+          "text": "Require 2 approvals for changes touching security gates/policies/workflows."
+        },
+        {
+          "state": "x",
+          "text": "Add PR gate that blocks direct changes to security baselines without linked ADR/ticket."
+        },
+        {
+          "state": "x",
+          "text": "Add changelog entry gate for security-impacting changes."
+        }
+      ],
+      "section": "L",
+      "title": "Review and Change Control"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add scheduled tamper-e2e variants (policy tamper, provenance tamper, evidence index tamper)."
+        },
+        {
+          "state": "x",
+          "text": "Add periodic synthetic attack replay suite (token spray, replay burst, path traversal corpus)."
+        },
+        {
+          "state": "x",
+          "text": "Add chaos tests for partial writes and interrupted gate runs in CI-like environment."
+        }
+      ],
+      "section": "M",
+      "title": "Red-Team and Chaos Validation"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add consolidated security architecture document mapping gates -> controls -> evidence."
+        },
+        {
+          "state": "x",
+          "text": "Add incident response runbook for each gate family failure."
+        },
+        {
+          "state": "x",
+          "text": "Add emergency bypass process doc with explicit approvals and expiry."
+        },
+        {
+          "state": "x",
+          "text": "Add operator quickstart for regenerating and validating signed policy/evidence artifacts."
+        }
+      ],
+      "section": "N",
+      "title": "Documentation and Runbooks"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Normalize all security gate output schemas (status/findings/summary/metadata)."
+        },
+        {
+          "state": "x",
+          "text": "Add a single `security-super-gate` orchestrator script for local and CI use."
+        },
+        {
+          "state": "x",
+          "text": "Remove duplicate checks across workflows and centralize shared steps."
+        },
+        {
+          "state": "x",
+          "text": "Add compatibility matrix doc (which gates run in CI vs maintenance vs release)."
+        }
+      ],
+      "section": "O",
+      "title": "Cleanup and Consolidation"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add secure secret-scanning baseline updates workflow with mandatory human approval and signed baseline diffs."
+        },
+        {
+          "state": "x",
+          "text": "Add deterministic SBOM reproducibility check (same inputs => byte-identical SBOM/provenance output)."
+        },
+        {
+          "state": "x",
+          "text": "Add provenance revocation list support for compromised signing keys/artifacts."
+        },
+        {
+          "state": "x",
+          "text": "Add gate to verify no plaintext secrets appear in gate findings/reports before artifact upload."
+        },
+        {
+          "state": "x",
+          "text": "Add minimum entropy and rotation-age enforcement for configured tokens/keys (policy-driven)."
+        },
+        {
+          "state": "x",
+          "text": "Add sandboxed subprocess policy wrapper for tooling scripts (allowlist commands + args pattern)."
+        },
+        {
+          "state": "x",
+          "text": "Add immutable audit-log archival and periodic restore verification drill."
+        },
+        {
+          "state": "x",
+          "text": "Add tamper-evident monotonic sequence numbers to security evidence index entries."
+        },
+        {
+          "state": "x",
+          "text": "Add policy for maximum allowed temporary waivers and automatic expiry gate."
+        },
+        {
+          "state": "x",
+          "text": "Add emergency lock-down workflow that can disable risky operations (publish/replay) via signed policy toggle."
+        }
+      ],
+      "section": "P",
+      "title": "Additional Advanced Hardening (New)"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Eliminate security test skips by ensuring `semgrep` is available in all local/CI security test lanes (or replace skip with enforced precheck failure in strict mode)."
+        },
+        {
+          "state": "x",
+          "text": "Add a strict-mode variant of `security_super_gate` that hard-fails on missing external prerequisites (tools/secrets/evidence inputs) with actionable diagnostics."
+        },
+        {
+          "state": "x",
+          "text": "Add a gate that asserts every security workflow uploads a complete, schema-valid security evidence bundle (including super-gate report and chain-of-custody index)."
+        },
+        {
+          "state": "x",
+          "text": "Add deterministic replay-abuse regression corpus that replays known abuse traces and verifies stable anomaly scoring outcomes across Python versions."
+        },
+        {
+          "state": "x",
+          "text": "Add signed exception registry for temporary operational bypasses (distinct from waivers), including mandatory incident ticket, owner, expiry, and auto-close verification."
+        },
+        {
+          "state": "x",
+          "text": "Add policy-backed maximum blast-radius controls for emergency lockdown toggles (which operations, which environments, max duration) plus rollback attestations."
+        },
+        {
+          "state": "x",
+          "text": "Add continuous verification that all security-relevant JSON artifacts are canonicalized before signing and that canonical form is preserved after round-trip read/write."
+        },
+        {
+          "state": "x",
+          "text": "Add golden tests for cross-platform file-permission semantics to catch drift between Linux/macOS runner behavior for sensitive outputs."
+        },
+        {
+          "state": "x",
+          "text": "Add canary workflow that intentionally introduces controlled tamper cases each week and verifies that detection gates fail for the expected reason codes."
+        },
+        {
+          "state": "x",
+          "text": "Add release-time check that all security docs referenced by runbooks/architecture remain link-valid and map to existing gates/policies/workflows."
+        }
+      ],
+      "section": "Q",
+      "title": "Remaining Hardening Opportunities (Post-A..P)"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add mandatory signed SBOM diff review gate between consecutive releases, with fail-on-unexplained package addition/removal."
+        },
+        {
+          "state": "x",
+          "text": "Add runtime egress policy gate (allowlisted domains/registries only) for release and maintenance workflows."
+        },
+        {
+          "state": "x",
+          "text": "Add attestation freshness gate to fail if provenance/signature evidence is older than policy threshold at promotion time."
+        },
+        {
+          "state": "x",
+          "text": "Add cryptographic algorithm policy gate (minimum key sizes, approved hash/signature suites, deprecation windows)."
+        },
+        {
+          "state": "x",
+          "text": "Add split-duty approval gate requiring distinct approvers for policy changes vs workflow execution unlocks."
+        },
+        {
+          "state": "x",
+          "text": "Add offline verification bundle export (all signatures, manifests, revocation lists, verification script) for air-gapped audits."
+        },
+        {
+          "state": "x",
+          "text": "Add dependency confusion guardrails: enforce internal package namespace policy and fail if unresolved internal names resolve externally."
+        },
+        {
+          "state": "x",
+          "text": "Add gate to verify security-critical scripts run with locale/timezone-pinned deterministic settings in CI."
+        },
+        {
+          "state": "x",
+          "text": "Add integrity checks for archived artifacts at rest (periodic hash revalidation against stored manifests)."
+        },
+        {
+          "state": "x",
+          "text": "Add simulation drill for compromised CI runner scenario with expected containment/detection evidence outputs."
+        }
+      ],
+      "section": "R",
+      "title": "Additional Hardening Opportunities (Post-Q)"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add cryptographic agility test matrix that validates signature verification behavior across planned algorithm migrations and key rollovers."
+        },
+        {
+          "state": "x",
+          "text": "Add mandatory provenance witness quorum policy (independent verifiers) for release promotion."
+        },
+        {
+          "state": "x",
+          "text": "Add immutable evidence transparency log export (append-only Merkle root snapshots) with periodic consistency verification gate."
+        },
+        {
+          "state": "x",
+          "text": "Add secure time-source attestation gate to detect clock skew/tampering impact on expiry/freshness controls."
+        },
+        {
+          "state": "x",
+          "text": "Add build-environment drift gate that fails when critical runner/toolchain fingerprints change without approved ticket."
+        },
+        {
+          "state": "x",
+          "text": "Add policy-enforced sensitive artifact classification labels and retention-class validation for all uploaded artifacts."
+        },
+        {
+          "state": "x",
+          "text": "Add deterministic redaction gate to ensure any secret-bearing findings are redacted with stable hashes before storage."
+        },
+        {
+          "state": "x",
+          "text": "Add signed disaster-recovery drill evidence package (restore from cold backup + integrity/provenance verification)."
+        },
+        {
+          "state": "x",
+          "text": "Add mandatory dual-control key-destruction/compromise response drill with attested evidence and closure criteria."
+        },
+        {
+          "state": "x",
+          "text": "Add cross-repo dependency trust gate for referenced actions/scripts to enforce ownership/maintainer allowlists."
+        }
+      ],
+      "section": "S",
+      "title": "Next-Stage Hardening Opportunities (Post-R)"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Adopt strict JSON schema validation library for each endpoint and version schemas."
+        },
+        {
+          "state": "x",
+          "text": "Reject unknown fields by default; require explicit allowlist for extension fields."
+        },
+        {
+          "state": "x",
+          "text": "Add max payload size limits and nested depth limits per endpoint."
+        },
+        {
+          "state": "x",
+          "text": "Add canonical input normalization prior to signing/hash checks."
+        },
+        {
+          "state": "x",
+          "text": "Add fuzz tests for malformed JSON, boundary values, and schema-bypass attempts."
+        },
+        {
+          "state": "x",
+          "text": "Add endpoint-level error code taxonomy and assert deterministic mapping in tests."
+        },
+        {
+          "state": "x",
+          "text": "Add SSRF/path abuse checks for any endpoint accepting file paths/URLs."
+        }
+      ],
+      "section": "U",
+      "title": "Runtime API Contract and Input Safety"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Centralize all subprocess invocations behind `subprocess_policy.run_checked` (no direct subprocess use in security tooling)."
+        },
+        {
+          "state": "x",
+          "text": "Add argument-level allowlist patterns for risky commands (git/java/javac/python)."
+        },
+        {
+          "state": "x",
+          "text": "Add timeout, max-output-size, and exit-reason capture in subprocess policy."
+        },
+        {
+          "state": "x",
+          "text": "Add audit report listing all allowed subprocess prefixes and callsites."
+        },
+        {
+          "state": "x",
+          "text": "Add test to fail on new direct subprocess imports/calls in `tooling/security/**`."
+        }
+      ],
+      "section": "U",
+      "title": "Subprocess and OS Boundary Hardening"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Define promotion policy requiring quorum of: policy signature, provenance signature, evidence attestation, revocation clean."
+        },
+        {
+          "state": "x",
+          "text": "Add policy-driven exception process for promotion override with signed expiry and owner."
+        },
+        {
+          "state": "x",
+          "text": "Add release gate verifying attestations correspond exactly to built artifact digests."
+        },
+        {
+          "state": "x",
+          "text": "Add \u201cpromotion dry-run\u201d workflow producing full attestation set without publish."
+        },
+        {
+          "state": "x",
+          "text": "Add rollback provenance gate to verify rollback artifacts are also attested."
+        }
+      ],
+      "section": "U",
+      "title": "Attestation and Release Promotion Controls"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add workflow linter gate enforcing: pinned actions, permissions-minimum, no unguarded secrets usage."
+        },
+        {
+          "state": "x",
+          "text": "Add denylist for risky workflow patterns (untrusted input in `run`, unpinned actions, broad tokens)."
+        },
+        {
+          "state": "x",
+          "text": "Add branch rule gate asserting required checks list includes all critical security gates."
+        },
+        {
+          "state": "x",
+          "text": "Add periodic check for orphaned workflows not covered by security policy docs."
+        },
+        {
+          "state": "x",
+          "text": "Add artifact retention policy assertion per workflow class (ci, release, maintenance)."
+        }
+      ],
+      "section": "U",
+      "title": "CI/CD Security and Workflow Governance"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add semgrep self-check step to validate rules file parses and expected rules are active."
+        },
+        {
+          "state": "x",
+          "text": "Add semgrep fixture suite expansion: true-positive and true-negative corpus with reason labels."
+        },
+        {
+          "state": "x",
+          "text": "Add bandit baseline policy for acceptable residual findings with signed approval records."
+        },
+        {
+          "state": "x",
+          "text": "Add mypy strictness ratchet for `tooling/security/**` and `runtime/glyphser/security/**`."
+        },
+        {
+          "state": "x",
+          "text": "Add ruff rule profile for security code (imports/order/complexity caps)."
+        }
+      ],
+      "section": "U",
+      "title": "Static/Dynamic Analysis Hardening"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add SBOM signing and verification at generation time in CI and release."
+        },
+        {
+          "state": "x",
+          "text": "Add dependency freshness policy with max age for known-vulnerable transitive packages."
+        },
+        {
+          "state": "x",
+          "text": "Add policy gate for forbidden package maintainers or yanked releases."
+        },
+        {
+          "state": "x",
+          "text": "Add provenance on lockfile changes requiring signed approval metadata."
+        },
+        {
+          "state": "x",
+          "text": "Add periodic offline vulnerability snapshot comparison for reproducibility."
+        }
+      ],
+      "section": "U",
+      "title": "Dependency and Artifact Supply Chain"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add structured security event schema (`event_type`, `severity`, `control_id`, `run_id`, `artifact_ref`)."
+        },
+        {
+          "state": "x",
+          "text": "Add alert routing metadata in gate outputs (pager channel, urgency, playbook link)."
+        },
+        {
+          "state": "x",
+          "text": "Add SLO burn-rate calculation with fail/alert thresholds."
+        },
+        {
+          "state": "x",
+          "text": "Add noise-control policy (dedup windows, suppression expiry, owner)."
+        },
+        {
+          "state": "x",
+          "text": "Add dashboard trend checks for silent failure patterns (no output, stale outputs, partial outputs)."
+        }
+      ],
+      "section": "U",
+      "title": "Observability, Telemetry, and Alerting"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add incident bundle generator to collect all relevant signed evidence for a run."
+        },
+        {
+          "state": "x",
+          "text": "Add \u201ctabletop replay\u201d command that re-evaluates a past run\u2019s evidence locally."
+        },
+        {
+          "state": "x",
+          "text": "Add explicit containment verification gate after emergency lockdown events."
+        },
+        {
+          "state": "x",
+          "text": "Add post-incident closure gate requiring action items and verification artifacts."
+        },
+        {
+          "state": "x",
+          "text": "Add recovery-time objective (RTO/RPO) measurement outputs in DR drill artifacts."
+        }
+      ],
+      "section": "U",
+      "title": "Incident Response and Recovery"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add control catalog mapping: control -> gate -> workflow -> evidence artifact -> owner."
+        },
+        {
+          "state": "x",
+          "text": "Add policy/gate lifecycle docs (propose, approve, deploy, rollback, deprecate)."
+        },
+        {
+          "state": "x",
+          "text": "Add architecture decision records for major hardening changes since current baseline."
+        },
+        {
+          "state": "x",
+          "text": "Add runbook index health gate (all referenced files/commands must exist)."
+        }
+      ],
+      "section": "U",
+      "title": "Documentation and Control Mapping"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add explicit `python -c \"import pkg_resources\"` check after security tool install in CI/security-maintenance."
+        },
+        {
+          "state": "x",
+          "text": "Add explicit `semgrep --version` check after install and fail with actionable message if unavailable."
+        },
+        {
+          "state": "x",
+          "text": "Add upload-artifact step for `semgrep.sarif` even when Code Scanning upload is skipped (fork PRs)."
+        },
+        {
+          "state": "x",
+          "text": "Add workflow assertion test: SARIF upload guarded for forks, not globally disabled."
+        },
+        {
+          "state": "x",
+          "text": "Add workflow assertion test: `security-events: write` present on any job uploading SARIF."
+        }
+      ],
+      "section": "V",
+      "title": "Immediate CI Blocker Elimination"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add workflow-trigger integrity gate for required CI and extended security workflow triggers/jobs."
+        },
+        {
+          "state": "x",
+          "text": "Add gate to parse all workflow `permissions` blocks and enforce minimum-per-job scopes."
+        },
+        {
+          "state": "x",
+          "text": "Add denylist gate for `permissions: write-all` and broad defaults."
+        },
+        {
+          "state": "x",
+          "text": "Add gate ensuring all `uses:` entries are pinned to immutable SHAs."
+        },
+        {
+          "state": "x",
+          "text": "Add policy exception mechanism for temporary action pin exemptions with expiry."
+        },
+        {
+          "state": "x",
+          "text": "Add monthly workflow pin drift report with signed output."
+        }
+      ],
+      "section": "V",
+      "title": "Workflow Action and Permission Hardening"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Introduce `schema_version` in all newly written security reports."
+        },
+        {
+          "state": "x",
+          "text": "Create migration tracker for legacy gates missing `findings/summary/metadata`."
+        },
+        {
+          "state": "x",
+          "text": "Add compatibility layer test suite covering old/new schema coexistence."
+        },
+        {
+          "state": "x",
+          "text": "Define \u201cstrict schema mode\u201d toggle for future enforcement date."
+        },
+        {
+          "state": "x",
+          "text": "Add release criterion that blocks strict mode enablement until migration threshold met."
+        }
+      ],
+      "section": "V",
+      "title": "Security Report Schema Migration Program"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add signature verification for every uploaded security artifact listed in workflow artifact paths."
+        },
+        {
+          "state": "x",
+          "text": "Add gate to detect unsigned JSON files under run-scoped `evidence/security` when policy requires signature."
+        },
+        {
+          "state": "x",
+          "text": "Add key provenance continuity checks between `policy_signature`, `provenance_signature`, and attestation index."
+        },
+        {
+          "state": "x",
+          "text": "Add gate enforcing signature algorithm policy from governance (no deprecated algorithms)."
+        },
+        {
+          "state": "x",
+          "text": "Add signed \u201cverification summary\u201d artifact for auditors."
+        }
+      ],
+      "section": "V",
+      "title": "Artifact Signing and Verification Depth"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add CI check that revoked signatures/digests are not present in current run artifacts."
+        },
+        {
+          "state": "x",
+          "text": "Add key rotation cadence gate (max age threshold, signed rotation record required)."
+        },
+        {
+          "state": "x",
+          "text": "Add staged key-rollover test scenario (old key accepted only during defined transition window)."
+        },
+        {
+          "state": "x",
+          "text": "Add dual-control approval evidence for key compromise toggles."
+        },
+        {
+          "state": "x",
+          "text": "Add emergency key disable path test with restoration proof."
+        }
+      ],
+      "section": "V",
+      "title": "Revocation and Key Lifecycle Controls"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add endpoint-specific request body size ceilings and reject overly large payloads."
+        },
+        {
+          "state": "x",
+          "text": "Add quota burst protection using sliding window and token/job dimensions."
+        },
+        {
+          "state": "x",
+          "text": "Add policy-backed response shaping to avoid sensitive internal diagnostics leakage."
+        },
+        {
+          "state": "x",
+          "text": "Add stronger path guard checks for checkpoint/restore and migration paths (absolute/relative traversal)."
+        },
+        {
+          "state": "x",
+          "text": "Add replay token lifecycle enforcement (mint, use, expiry, revocation) with test matrix."
+        }
+      ],
+      "section": "V",
+      "title": "Runtime API Defensive Controls"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add telemetry schema validation gate for `runtime_api_state.json` snapshot."
+        },
+        {
+          "state": "x",
+          "text": "Add mandatory counters for auth failures, quota rejections, and denied scopes."
+        },
+        {
+          "state": "x",
+          "text": "Add anomaly false-positive/false-negative benchmark scenarios."
+        },
+        {
+          "state": "x",
+          "text": "Add per-profile threshold checks (`ci`, `staging`, `release`) with policy signature verification."
+        },
+        {
+          "state": "x",
+          "text": "Add trend anomaly alert artifact with suggested remediation fields."
+        }
+      ],
+      "section": "V",
+      "title": "Abuse Telemetry Quality and Enforcement"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add file permission hardening checks for all generated evidence files (owner-only where required)."
+        },
+        {
+          "state": "x",
+          "text": "Add symlink and hardlink attack detection for artifact write paths."
+        },
+        {
+          "state": "x",
+          "text": "Add temp directory policy gate (`mktemp` alternatives, secure cleanup verification)."
+        },
+        {
+          "state": "x",
+          "text": "Add path normalization checks for unicode-confusable and mixed-separator edge cases."
+        },
+        {
+          "state": "x",
+          "text": "Add restore-from-archive verification that rejects unsafe members before extraction."
+        }
+      ],
+      "section": "V",
+      "title": "Storage and Filesystem Hardening"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add separate workflow `security-super-extended.yml` scheduled weekly."
+        },
+        {
+          "state": "x",
+          "text": "Persist extended run artifacts under dedicated run-scoped evidence root."
+        },
+        {
+          "state": "x",
+          "text": "Add comparison report: core vs extended failures with classification (sequencing vs true defect)."
+        },
+        {
+          "state": "x",
+          "text": "Add requirement that any extended failure older than N days becomes core blocker unless exception signed."
+        },
+        {
+          "state": "x",
+          "text": "Add tests validating membership lists do not silently shrink."
+        }
+      ],
+      "section": "V",
+      "title": "Extended Super-Gate Governance"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add mutation tests for critical policy gates (policy_signature, provenance_signature, evidence_attestation)."
+        },
+        {
+          "state": "x",
+          "text": "Add property-based tests for path and schema validators."
+        },
+        {
+          "state": "x",
+          "text": "Add runner-matrix tests for Linux/macOS parity on filesystem and permissions gates."
+        },
+        {
+          "state": "x",
+          "text": "Add \u201cexception swallowing\u201d detector test on all security scripts (`except: pass` banned)."
+        },
+        {
+          "state": "x",
+          "text": "Add CI meta-gate verifying coverage threshold specifically for `tooling/security/**`."
+        }
+      ],
+      "section": "V",
+      "title": "Testing and Quality Ratchets"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add runbook section per gate: purpose, inputs, outputs, fail reasons, triage steps."
+        },
+        {
+          "state": "x",
+          "text": "Add \u201cknown CI failure modes\u201d troubleshooting guide (SARIF permissions, Semgrep runtime deps, signing key missing)."
+        },
+        {
+          "state": "x",
+          "text": "Add architecture diagram for evidence flow from gate -> report -> signature -> upload."
+        },
+        {
+          "state": "x",
+          "text": "Add operator checklist for emergency lockdown and rollback with required signed artifacts."
+        },
+        {
+          "state": "x",
+          "text": "Add quarterly review cadence with signed review records for security governance docs."
+        }
+      ],
+      "section": "V",
+      "title": "Documentation and Operability"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add offline verification script that validates all signatures and hash chains without network access."
+        },
+        {
+          "state": "x",
+          "text": "Add independent verifier profile (read-only role) and evidence proving verification can be run by non-maintainers."
+        },
+        {
+          "state": "x",
+          "text": "Add export package digest for every uploaded artifact bundle."
+        },
+        {
+          "state": "x",
+          "text": "Add long-term retention manifest with immutable digest and storage location."
+        },
+        {
+          "state": "x",
+          "text": "Add periodic external audit simulation workflow and closure artifact."
+        }
+      ],
+      "section": "V",
+      "title": "Auditability and External Verification"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add threat-to-control matrix with stable control IDs and evidence pointers."
+        },
+        {
+          "state": "x",
+          "text": "Add gate that fails if a threat model control has no implementing gate/workflow."
+        },
+        {
+          "state": "x",
+          "text": "Add gate that fails if a critical gate has no mapped threat/control owner."
+        },
+        {
+          "state": "x",
+          "text": "Add periodic drift check between threat model metadata and workflow wiring."
+        },
+        {
+          "state": "x",
+          "text": "Add signed threat model change attestations for critical control changes."
+        }
+      ],
+      "section": "W",
+      "title": "Threat Model and Security Requirements Traceability"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add schema validation for all governance/security policy JSON before signature checks."
+        },
+        {
+          "state": "x",
+          "text": "Add policy semantic validation (cross-field rules, numeric ranges, allowed enums)."
+        },
+        {
+          "state": "x",
+          "text": "Add \u201cexception debt\u201d gate: fail when active exceptions exceed policy debt budget."
+        },
+        {
+          "state": "x",
+          "text": "Add mandatory justification quality checks (minimum content fields) for waivers/exceptions."
+        },
+        {
+          "state": "x",
+          "text": "Add owner/expiry SLA gate (no ownerless or unbounded exception lifetime)."
+        }
+      ],
+      "section": "W",
+      "title": "Policy-as-Code and Exception Hygiene"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Remove silent fallback defaults in production paths; require explicit config for risky behaviors."
+        },
+        {
+          "state": "x",
+          "text": "Add gate that blocks fallback secret usage outside local/dev contexts."
+        },
+        {
+          "state": "x",
+          "text": "Add environment profile policy (`dev/ci/staging/prod`) with strict default inheritance rules."
+        },
+        {
+          "state": "x",
+          "text": "Add fail-closed checks for missing mandatory evidence in release/promotion lanes."
+        },
+        {
+          "state": "x",
+          "text": "Add explicit \u201cdegraded mode\u201d evidence artifact whenever non-blocking fallback is used."
+        }
+      ],
+      "section": "W",
+      "title": "Secure Defaults and Safe Fallback Strategy"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add deployment freeze gate tied to unresolved critical security findings."
+        },
+        {
+          "state": "x",
+          "text": "Add canary promotion guard that requires successful security checks on canary slice first."
+        },
+        {
+          "state": "x",
+          "text": "Add rollback readiness gate verifying artifact availability + provenance + compatibility."
+        },
+        {
+          "state": "x",
+          "text": "Add policy for max allowed drift between build attestations and deploy-time artifacts."
+        },
+        {
+          "state": "x",
+          "text": "Add signed deploy decision record linking run ID, approvers, and evidence bundle digest."
+        }
+      ],
+      "section": "W",
+      "title": "Promotion and Deployment Safety Nets"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add rolling Merkle root checkpoints across run-scoped security artifacts."
+        },
+        {
+          "state": "x",
+          "text": "Add gate to verify continuity of Merkle checkpoints across workflow stages."
+        },
+        {
+          "state": "x",
+          "text": "Add tamper cost model report (time-to-detect, blast radius, required trust assumptions)."
+        },
+        {
+          "state": "x",
+          "text": "Add periodic integrity sampling of historical runs with random audit selection."
+        },
+        {
+          "state": "x",
+          "text": "Add immutable index of uploaded artifact names/sizes/digests to detect omission attacks."
+        }
+      ],
+      "section": "W",
+      "title": "Data Integrity and Anti-Tamper Economics"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add secret origin inventory (who/where/how provisioned) with periodic recertification."
+        },
+        {
+          "state": "x",
+          "text": "Add gate to ensure all required secrets have rotation metadata and last-rotated timestamps."
+        },
+        {
+          "state": "x",
+          "text": "Add stale-secret usage detection in workflow env wiring."
+        },
+        {
+          "state": "x",
+          "text": "Add break-glass secret usage gate requiring incident ticket and signed after-action report."
+        },
+        {
+          "state": "x",
+          "text": "Add test that strict-key workflows fail clearly when secrets are missing (no ambiguous errors)."
+        }
+      ],
+      "section": "W",
+      "title": "Secrets and Credential Lifecycle"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add policy for disallowing network egress in gates that do not require it."
+        },
+        {
+          "state": "x",
+          "text": "Add gate to detect accidental network calls in nominally offline verification scripts."
+        },
+        {
+          "state": "x",
+          "text": "Add sandbox boundary tests for file write locations (deny outside allowed roots)."
+        },
+        {
+          "state": "x",
+          "text": "Add process isolation assertions for risky parsing/verification routines."
+        },
+        {
+          "state": "x",
+          "text": "Add memory/resource budget guardrails for heavy security scans to prevent resource DoS."
+        }
+      ],
+      "section": "W",
+      "title": "Runtime Isolation and Boundary Defense"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add telemetry completeness SLI (required fields present rate) and enforce threshold."
+        },
+        {
+          "state": "x",
+          "text": "Add telemetry timeliness SLI (artifact available within target minutes)."
+        },
+        {
+          "state": "x",
+          "text": "Add telemetry integrity SLI (signed reports ratio) and trend alerts."
+        },
+        {
+          "state": "x",
+          "text": "Add discrepancy detector between gate stdout status and persisted report status."
+        },
+        {
+          "state": "x",
+          "text": "Add cross-gate consistency checks (e.g., super-gate status aligns with component statuses)."
+        }
+      ],
+      "section": "W",
+      "title": "Security Telemetry Reliability"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add split-role enforcement: code author cannot be sole approver for security-critical changes."
+        },
+        {
+          "state": "x",
+          "text": "Add gate for approval freshness (approvals invalidated by post-approval security file changes)."
+        },
+        {
+          "state": "x",
+          "text": "Add emergency override policy with dual-approval and auto-expiration enforcement."
+        },
+        {
+          "state": "x",
+          "text": "Add reviewer competency mapping (required reviewer group per control domain)."
+        },
+        {
+          "state": "x",
+          "text": "Add periodic audit report of approval policy violations and remediation state."
+        }
+      ],
+      "section": "W",
+      "title": "Human Process and Approval Hardening"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add security incident regression catalog linking incident -> failing control -> added test."
+        },
+        {
+          "state": "x",
+          "text": "Add gate that checks each high-severity incident has at least one permanent regression test."
+        },
+        {
+          "state": "x",
+          "text": "Add historical CI failure classifier for recurring security workflow issues."
+        },
+        {
+          "state": "x",
+          "text": "Add monthly \u201ctop recurring failures\u201d report with owner/action ETA."
+        },
+        {
+          "state": "x",
+          "text": "Add closure verification gate: resolved recurring issue must stay green for N runs."
+        }
+      ],
+      "section": "W",
+      "title": "Regression Intelligence and Learning Loop"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add security gate smoke matrix on Linux/macOS for tooling parity."
+        },
+        {
+          "state": "x",
+          "text": "Add policy for approved Python minor versions and drift warning before EOL."
+        },
+        {
+          "state": "x",
+          "text": "Add deterministic hash equivalence checks across OS for signed JSON artifacts."
+        },
+        {
+          "state": "x",
+          "text": "Add locale variance test suite (C.UTF-8 vs en_US.UTF-8) for parsing-sensitive gates."
+        },
+        {
+          "state": "x",
+          "text": "Add filesystem case-sensitivity conflict checks for artifact paths."
+        }
+      ],
+      "section": "W",
+      "title": "Cross-Platform and Toolchain Variance Controls"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add allowlist for external action owners with signed policy and drift gate."
+        },
+        {
+          "state": "x",
+          "text": "Add verification that third-party action SHAs still map to expected upstream commits."
+        },
+        {
+          "state": "x",
+          "text": "Add dependency provenance checks for downloaded security tools/wheels."
+        },
+        {
+          "state": "x",
+          "text": "Add mirror/source failover policy with integrity equivalence checks."
+        },
+        {
+          "state": "x",
+          "text": "Add \u201cair-gap simulation\u201d lane to validate offline verification viability end-to-end."
+        }
+      ],
+      "section": "W",
+      "title": "External Interface and Supply Boundary"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add per-gate runtime budget and trend regression gate (detect sudden scan-time spikes)."
+        },
+        {
+          "state": "x",
+          "text": "Add caching strategy with integrity verification (cache poisoning resistant)."
+        },
+        {
+          "state": "x",
+          "text": "Add partial rerun capability for non-dependent gates with deterministic aggregation."
+        },
+        {
+          "state": "x",
+          "text": "Add queue/backpressure policy for scheduled hardening workflows."
+        },
+        {
+          "state": "x",
+          "text": "Add reliability dashboard for security pipeline MTTR/flake rate."
+        }
+      ],
+      "section": "W",
+      "title": "Performance, Cost, and Reliability Engineering for Security Gates"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add yearly security control recertification workflow with signed output."
+        },
+        {
+          "state": "x",
+          "text": "Add policy deprecation workflow (sunset date, replacement controls, migration evidence)."
+        },
+        {
+          "state": "x",
+          "text": "Add ownership continuity checks (no unowned policy/gate/workflow)."
+        },
+        {
+          "state": "x",
+          "text": "Add archive retention and legal hold policy tests for security artifacts."
+        },
+        {
+          "state": "x",
+          "text": "Add executive summary export of security posture with machine-verifiable references."
+        }
+      ],
+      "section": "W",
+      "title": "Governance Closeout and Sustainment"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add formal invariants for critical security state transitions (waiver expiry, exception closure, promotion eligibility)."
+        },
+        {
+          "state": "x",
+          "text": "Add model-based tests for gate orchestration dependencies and failure propagation."
+        },
+        {
+          "state": "x",
+          "text": "Add proof-oriented checks for deterministic signature verification behavior under key-rotation states."
+        },
+        {
+          "state": "x",
+          "text": "Add machine-checked assertions that required controls cannot be bypassed by workflow condition edits."
+        },
+        {
+          "state": "x",
+          "text": "Add periodic formal review artifact signed by security owner."
+        }
+      ],
+      "section": "X",
+      "title": "Control Assurance and Formal Verification"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add gate that enforces every TODO section item has an owner and target milestone when moved to in-progress."
+        },
+        {
+          "state": "x",
+          "text": "Add policy gate requiring explicit risk acceptance record for any intentionally deferred hardening item."
+        },
+        {
+          "state": "x",
+          "text": "Add change-management gate that blocks merging security workflow changes without linked policy diff or rationale."
+        },
+        {
+          "state": "x",
+          "text": "Add auto-generated compliance delta report between current repo state and required control baseline."
+        },
+        {
+          "state": "x",
+          "text": "Add signed quarterly governance compliance snapshot."
+        }
+      ],
+      "section": "X",
+      "title": "Governance Enforcement Automation"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add anomaly detector for unusual gate-status transitions (e.g., chronic WARN to sudden PASS) as tamper signal."
+        },
+        {
+          "state": "x",
+          "text": "Add cross-run linkage checks for repeated suspicious patterns in telemetry and evidence artifacts."
+        },
+        {
+          "state": "x",
+          "text": "Add containment auto-trigger recommendations in gate outputs for severe findings."
+        },
+        {
+          "state": "x",
+          "text": "Add incident severity scoring rubric integrated into security reports."
+        },
+        {
+          "state": "x",
+          "text": "Add post-incident quality gate verifying corrective actions are test-backed."
+        }
+      ],
+      "section": "X",
+      "title": "Advanced Detection and Response"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add evidence notarization checkpoint for long-term archival trust."
+        },
+        {
+          "state": "x",
+          "text": "Add retention integrity audits (spot-check restored evidence against signed manifests)."
+        },
+        {
+          "state": "x",
+          "text": "Add immutable manifest of manifest pointers for run bundles (meta-manifest chain)."
+        },
+        {
+          "state": "x",
+          "text": "Add policy for archival encryption at rest verification with key custody metadata."
+        },
+        {
+          "state": "x",
+          "text": "Add restore simulation for randomly selected historic runs every quarter."
+        }
+      ],
+      "section": "X",
+      "title": "Evidence Lifecycle and Long-Term Trust"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add local preflight script that validates required env/tool prerequisites before running security gates."
+        },
+        {
+          "state": "x",
+          "text": "Add fail-fast diagnostics for common local failures (missing keys, missing tools, stale policies)."
+        },
+        {
+          "state": "x",
+          "text": "Add secure developer-mode profile that keeps strict checks but uses explicit mock attestations."
+        },
+        {
+          "state": "x",
+          "text": "Add docs for deterministic local reproduction of CI security lane."
+        },
+        {
+          "state": "x",
+          "text": "Add gate to ensure helper scripts do not silently downgrade enforcement."
+        }
+      ],
+      "section": "X",
+      "title": "Developer Experience Without Weakening Security"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add aggregate \u201cgo/no-go\u201d promotion report with weighted control outcomes and mandatory blockers."
+        },
+        {
+          "state": "x",
+          "text": "Add policy-backed thresholds for acceptable WARN categories by environment."
+        },
+        {
+          "state": "x",
+          "text": "Add signed decision artifact capturing exact blockers bypassed (if any) and approval chain."
+        },
+        {
+          "state": "x",
+          "text": "Add gate ensuring release notes include security control status summary."
+        },
+        {
+          "state": "x",
+          "text": "Add reproducible evidence package checksum embedded in release metadata."
+        }
+      ],
+      "section": "X",
+      "title": "Release and Promotion Decision Intelligence"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add action provenance verification for GitHub Actions dependencies where feasible."
+        },
+        {
+          "state": "x",
+          "text": "Add lockfile provenance checks for transitive security tool dependencies."
+        },
+        {
+          "state": "x",
+          "text": "Add binary/source consistency checks for critical security tooling installs."
+        },
+        {
+          "state": "x",
+          "text": "Add policy gate for disallowed package metadata anomalies (suspicious maintainer/email/domain drift)."
+        },
+        {
+          "state": "x",
+          "text": "Add mirrored-source integrity comparison report for package fetches."
+        }
+      ],
+      "section": "X",
+      "title": "Advanced Supply Chain Assurance"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add chaos scenarios for intermittent network outages during security tool install and verify fail-safe behavior."
+        },
+        {
+          "state": "x",
+          "text": "Add chaos scenarios for partial artifact upload and ensure detection/reporting."
+        },
+        {
+          "state": "x",
+          "text": "Add chaos scenarios for corrupted signatures and malformed attestations in promotion workflows."
+        },
+        {
+          "state": "x",
+          "text": "Add gate retry strategy policy (which gates may retry, max attempts, deterministic constraints)."
+        },
+        {
+          "state": "x",
+          "text": "Add reliability budget tracking for security workflows (flake budget and burn-down)."
+        }
+      ],
+      "section": "X",
+      "title": "Reliability and Chaos for Security Tooling"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add gate verifying branch protection settings match policy-required checks and review rules."
+        },
+        {
+          "state": "x",
+          "text": "Add gate verifying CODEOWNERS coverage remains complete for all security-critical paths."
+        },
+        {
+          "state": "x",
+          "text": "Add reviewer independence checks (author not sole reviewer for critical security changes)."
+        },
+        {
+          "state": "x",
+          "text": "Add periodic permissions audit artifact for repository and workflow token scopes."
+        },
+        {
+          "state": "x",
+          "text": "Add emergency access review gate with expiry and attested closure."
+        }
+      ],
+      "section": "X",
+      "title": "Organizational and Access Control Hardening"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add integration tests for downstream consumers of security artifacts (dashboards, SIEM, audit exports)."
+        },
+        {
+          "state": "x",
+          "text": "Add schema compatibility contract tests for external ingestion endpoints."
+        },
+        {
+          "state": "x",
+          "text": "Add signed export manifests for every externally shared security artifact package."
+        },
+        {
+          "state": "x",
+          "text": "Add data minimization gate for external exports (no unnecessary sensitive fields)."
+        },
+        {
+          "state": "x",
+          "text": "Add API contract versioning policy for exported security evidence."
+        }
+      ],
+      "section": "X",
+      "title": "Cross-Ecosystem Integration Hardening"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add monthly hardening debt report derived from unchecked TODO items."
+        },
+        {
+          "state": "x",
+          "text": "Add automatic stale-item detector for TODO entries with no movement beyond SLA."
+        },
+        {
+          "state": "x",
+          "text": "Add milestone-based hardening burndown dashboard."
+        },
+        {
+          "state": "x",
+          "text": "Add requirement that each completed hardening item links to code/tests/workflow evidence."
+        },
+        {
+          "state": "x",
+          "text": "Add annual independent review checklist and attestation workflow."
+        }
+      ],
+      "section": "X",
+      "title": "Sustainability and Continuous Improvement"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add unicode confusable detection gate for policy/report file names and critical identifiers."
+        },
+        {
+          "state": "x",
+          "text": "Add oversized JSON/object key-count stress tests for all security parsers."
+        },
+        {
+          "state": "x",
+          "text": "Add malformed compression/archive corpus (zip/tar bombs, nested archive recursion caps) with enforced limits."
+        },
+        {
+          "state": "x",
+          "text": "Add numeric edge-case tests (NaN/Inf/very large ints) for schema and policy evaluators."
+        },
+        {
+          "state": "x",
+          "text": "Add control-char and newline injection defenses for all log/report rendering paths."
+        }
+      ],
+      "section": "Y",
+      "title": "Edge-Case Input and Parser Hardening"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add leap-second and DST boundary tests for expiry/freshness logic."
+        },
+        {
+          "state": "x",
+          "text": "Add monotonic-vs-wall-clock consistency checks in time-sensitive gates."
+        },
+        {
+          "state": "x",
+          "text": "Add stale-clock detection artifact with explicit remediation guidance."
+        },
+        {
+          "state": "x",
+          "text": "Add policy for maximum tolerated clock skew by environment."
+        },
+        {
+          "state": "x",
+          "text": "Add signed timestamp authority integration readiness checklist (if adopted later)."
+        }
+      ],
+      "section": "Y",
+      "title": "Time, Clock, and Expiry Robustness"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add concurrent writer tests for evidence files and ensure lock/atomic behavior correctness."
+        },
+        {
+          "state": "x",
+          "text": "Add concurrent gate execution simulation with deterministic aggregated output."
+        },
+        {
+          "state": "x",
+          "text": "Add idempotent rerun checks for all security gates under repeated invocation."
+        },
+        {
+          "state": "x",
+          "text": "Add race-condition probes for temporary file creation and cleanup."
+        },
+        {
+          "state": "x",
+          "text": "Add stress tests for quota/abuse counters under multi-threaded submissions."
+        }
+      ],
+      "section": "Y",
+      "title": "Concurrency and Race-Condition Hardening"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Standardize machine-readable error codes across security gates."
+        },
+        {
+          "state": "x",
+          "text": "Add gate ensuring every FAIL includes at least one actionable finding code."
+        },
+        {
+          "state": "x",
+          "text": "Add distinction between transient infra failures and security control failures in reports."
+        },
+        {
+          "state": "x",
+          "text": "Add top-level failure classification (`control_failure`, `prereq_failure`, `infra_failure`, `policy_failure`)."
+        },
+        {
+          "state": "x",
+          "text": "Add documentation mapping each error code to runbook section."
+        }
+      ],
+      "section": "Y",
+      "title": "Failure Semantics and Error Taxonomy"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add control-family tagging in every security report (`identity`, `supply_chain`, `provenance`, etc.)."
+        },
+        {
+          "state": "x",
+          "text": "Add compliance export profiles (SOC2-like, ISO-like) with signed filtered bundles."
+        },
+        {
+          "state": "x",
+          "text": "Add gate validating mandatory artifacts for each compliance profile."
+        },
+        {
+          "state": "x",
+          "text": "Add quarterly evidence completeness drill for compliance profiles."
+        },
+        {
+          "state": "x",
+          "text": "Add retention/legal-hold exception reporting with signed approvals."
+        }
+      ],
+      "section": "Y",
+      "title": "Compliance Readiness and Evidence Packaging"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add policy gate for PII minimization in security telemetry and evidence."
+        },
+        {
+          "state": "x",
+          "text": "Add deterministic pseudonymization for operator identifiers where required."
+        },
+        {
+          "state": "x",
+          "text": "Add data classification labels and enforcement on exported artifacts."
+        },
+        {
+          "state": "x",
+          "text": "Add deletion/retention enforcement checks for ephemeral sensitive telemetry."
+        },
+        {
+          "state": "x",
+          "text": "Add privacy impact checklist artifact for new telemetry fields."
+        }
+      ],
+      "section": "Y",
+      "title": "Security Data Governance and Privacy"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add gate to detect newly added executable files in security-critical paths without review annotation."
+        },
+        {
+          "state": "x",
+          "text": "Add gate for suspicious file mode changes in workflows/security scripts."
+        },
+        {
+          "state": "x",
+          "text": "Add gate for undocumented new network endpoints in security scripts/policies."
+        },
+        {
+          "state": "x",
+          "text": "Add protected baseline for security rule files with signed diff approvals."
+        },
+        {
+          "state": "x",
+          "text": "Add anti-tamper check for test fixtures used by security gates."
+        }
+      ],
+      "section": "Y",
+      "title": "Repository and Change Surface Hardening"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add drill artifacts proving on-call can triage top 10 recurring security failures within SLA."
+        },
+        {
+          "state": "x",
+          "text": "Add runbook health check for command validity (commands still execute in current environment)."
+        },
+        {
+          "state": "x",
+          "text": "Add escalation matrix artifact in each critical FAIL report."
+        },
+        {
+          "state": "x",
+          "text": "Add ownership fallback policy when primary owner unavailable."
+        },
+        {
+          "state": "x",
+          "text": "Add runbook simulation evidence for fork-PR SARIF skip scenarios."
+        }
+      ],
+      "section": "Y",
+      "title": "Operational Playbooks and On-Call Readiness"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add KPI for control coverage ratio (implemented controls / required controls)."
+        },
+        {
+          "state": "x",
+          "text": "Add KPI for mean hardening lead time (issue identified -> enforced in CI)."
+        },
+        {
+          "state": "x",
+          "text": "Add KPI for false-positive rate per security gate."
+        },
+        {
+          "state": "x",
+          "text": "Add KPI for bypass/exception volume and aging."
+        },
+        {
+          "state": "x",
+          "text": "Add monthly signed security program health report."
+        }
+      ],
+      "section": "Y",
+      "title": "Metrics, KPIs, and Program Governance"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add automation to convert TODO items into tracked tickets with IDs and owners."
+        },
+        {
+          "state": "x",
+          "text": "Add synchronization script that updates TODO statuses from ticket states."
+        },
+        {
+          "state": "x",
+          "text": "Add stale-ticket gate for hardening items past due."
+        },
+        {
+          "state": "x",
+          "text": "Add periodic \u201ctop risk unresolved items\u201d ranker with weighted scoring."
+        },
+        {
+          "state": "x",
+          "text": "Add closure gate requiring evidence links before marking any item done."
+        }
+      ],
+      "section": "Y",
+      "title": "Backlog Execution Mechanics"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add quarterly adversarial campaign plan with scenario coverage matrix and signed outcomes."
+        },
+        {
+          "state": "x",
+          "text": "Add simulation for insider threat workflow edits (permission widening, pin removal, gate bypass attempts)."
+        },
+        {
+          "state": "x",
+          "text": "Add simulation for artifact omission attacks (missing expected files with plausible pass-looking outputs)."
+        },
+        {
+          "state": "x",
+          "text": "Add simulation for mixed benign/malicious report injection into evidence directories."
+        },
+        {
+          "state": "x",
+          "text": "Add scorecard for adversarial scenario detection latency and containment quality."
+        }
+      ],
+      "section": "Z",
+      "title": "Adversarial Simulation Maturity"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add dependency graph for all security gates and identify single points of failure."
+        },
+        {
+          "state": "x",
+          "text": "Add fallback/backup verifier for critical controls (policy signature/provenance verification)."
+        },
+        {
+          "state": "x",
+          "text": "Add \u201ccontrol unavailable\u201d policy behavior tests (fail-closed where required, fail-open forbidden)."
+        },
+        {
+          "state": "x",
+          "text": "Add gate to detect cyclic dependencies between security gates."
+        },
+        {
+          "state": "x",
+          "text": "Add resilience report for critical control redundancy."
+        }
+      ],
+      "section": "Z",
+      "title": "Security Control Dependency Risk"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add deterministic signature test vectors for all signing/verification paths."
+        },
+        {
+          "state": "x",
+          "text": "Add key provenance attestation continuity checks across rotation epochs."
+        },
+        {
+          "state": "x",
+          "text": "Add algorithm deprecation rehearsal lane (simulate disallowed algo and expected failures)."
+        },
+        {
+          "state": "x",
+          "text": "Add envelope signature support design checklist for multi-signer artifacts."
+        },
+        {
+          "state": "x",
+          "text": "Add periodic cryptographic parameter review gate (min key length/hash policy freshness)."
+        }
+      ],
+      "section": "Z",
+      "title": "Cryptographic and Key Assurance Depth"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add runner integrity fingerprint policy gate (OS image/toolchain identity baselining)."
+        },
+        {
+          "state": "x",
+          "text": "Add gate to detect unexpected environment variable injection in security jobs."
+        },
+        {
+          "state": "x",
+          "text": "Add policy for trusted execution contexts per workflow type."
+        },
+        {
+          "state": "x",
+          "text": "Add verification artifact proving untrusted PR code paths cannot access protected secrets."
+        },
+        {
+          "state": "x",
+          "text": "Add periodic review of GitHub token scope use per workflow."
+        }
+      ],
+      "section": "Z",
+      "title": "Trust Boundary and Environment Integrity"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add lineage map linking each report field back to source input/artifact."
+        },
+        {
+          "state": "x",
+          "text": "Add explainability mode for critical gate decisions (why PASS/FAIL with rule IDs)."
+        },
+        {
+          "state": "x",
+          "text": "Add deterministic rule evaluation trace output for debugging and audit."
+        },
+        {
+          "state": "x",
+          "text": "Add signed lineage digest per security run."
+        },
+        {
+          "state": "x",
+          "text": "Add consistency gate that lineage references all consumed artifacts."
+        }
+      ],
+      "section": "Z",
+      "title": "Data Lineage and Provenance Explainability"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add static check that disallows unconditional `return 0` patterns in security entrypoints."
+        },
+        {
+          "state": "x",
+          "text": "Add static check banning broad exception suppression in security scripts."
+        },
+        {
+          "state": "x",
+          "text": "Add mutation-based anti-bypass tests for orchestrator scripts and workflow guards."
+        },
+        {
+          "state": "x",
+          "text": "Add gate ensuring all critical gate failures propagate non-zero exits in strict lanes."
+        },
+        {
+          "state": "x",
+          "text": "Add \u201cbypass attempt\u201d canary tests with expected hard-fail behavior."
+        }
+      ],
+      "section": "Z",
+      "title": "Programmatic Bypass Resistance"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add scalability tests for very large evidence directories and artifact counts."
+        },
+        {
+          "state": "x",
+          "text": "Add memory ceiling tests for JSON parsing and report aggregation."
+        },
+        {
+          "state": "x",
+          "text": "Add streaming parse path where needed for large artifacts."
+        },
+        {
+          "state": "x",
+          "text": "Add per-gate performance budgets with regression alarms."
+        },
+        {
+          "state": "x",
+          "text": "Add periodic optimization review without changing security semantics."
+        }
+      ],
+      "section": "Z",
+      "title": "Scale and Performance Hardening"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add standards profile for sibling repos consuming Glyphser security patterns."
+        },
+        {
+          "state": "x",
+          "text": "Add compatibility checks for shared workflows and security policy templates."
+        },
+        {
+          "state": "x",
+          "text": "Add trust contract for external repos contributing security artifacts."
+        },
+        {
+          "state": "x",
+          "text": "Add signed federation manifest for accepted upstream/downstream integrations."
+        },
+        {
+          "state": "x",
+          "text": "Add ecosystem-wide pinning and permission conformance report."
+        }
+      ],
+      "section": "Z",
+      "title": "Multi-Repo / Ecosystem Governance"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add board-level security posture summary artifact with machine-verified references."
+        },
+        {
+          "state": "x",
+          "text": "Add red/amber/green control posture export per release candidate."
+        },
+        {
+          "state": "x",
+          "text": "Add \u201ctop unresolved risks\u201d artifact with owner/ETA/confidence fields."
+        },
+        {
+          "state": "x",
+          "text": "Add narrative incident timeline reconstruction from signed evidence."
+        },
+        {
+          "state": "x",
+          "text": "Add annual assurance package generator for external auditors."
+        }
+      ],
+      "section": "Z",
+      "title": "Assurance Communication and Executive Readiness"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add gate to detect stale security scripts with no test coverage updates over threshold."
+        },
+        {
+          "state": "x",
+          "text": "Add periodic dead-gate detection (defined but never run in workflows)."
+        },
+        {
+          "state": "x",
+          "text": "Add policy for decommissioning obsolete gates with replacement proof."
+        },
+        {
+          "state": "x",
+          "text": "Add mandatory retrofit process for new workflows to adopt core security controls."
+        },
+        {
+          "state": "x",
+          "text": "Add sustainment SLA policy for hardening backlog items."
+        }
+      ],
+      "section": "Z",
+      "title": "Long-Term Maintenance and Technical Debt Controls"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add gate that validates every security gate is itself covered by at least one test file."
+        },
+        {
+          "state": "x",
+          "text": "Add gate that validates every security workflow step maps to a documented control ID."
+        },
+        {
+          "state": "x",
+          "text": "Add gate that validates every signed policy has an active owner and review date."
+        },
+        {
+          "state": "x",
+          "text": "Add gate that validates no security report artifact is produced without run-scoped pathing in CI contexts."
+        }
+      ],
+      "section": "AA",
+      "title": "Meta-Control Validation"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add drift detector for TODO-vs-repo reality (implemented controls not yet checked off, and vice versa)."
+        },
+        {
+          "state": "x",
+          "text": "Add policy review freshness gate for all governance/security JSON and markdown artifacts."
+        },
+        {
+          "state": "x",
+          "text": "Add gate to flag stale test fixtures not updated after gate logic changes."
+        }
+      ],
+      "section": "AA",
+      "title": "Assurance Freshness and Drift"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add release handshake artifact requiring explicit acknowledgment from security + release owners."
+        },
+        {
+          "state": "x",
+          "text": "Add post-release verification checklist artifact proving all mandatory security uploads are retrievable."
+        },
+        {
+          "state": "x",
+          "text": "Add rollback handshake artifact requiring provenance + policy-signature revalidation."
+        }
+      ],
+      "section": "AA",
+      "title": "Operational Handshake Controls"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Add command wrappers for common security workflows that pre-validate environment and secrets before execution."
+        },
+        {
+          "state": "x",
+          "text": "Add \u201csafe default templates\u201d for new gates/workflows with required fields/tests prewired."
+        },
+        {
+          "state": "x",
+          "text": "Add lint rule pack for workflow YAML security anti-patterns maintained in-repo."
+        }
+      ],
+      "section": "AA",
+      "title": "Last-Mile Human Error Reduction"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Current backlog considered saturated for this planning cycle; additional items should now be incident-driven, audit-driven, or architecture-change-driven."
+        }
+      ],
+      "section": "AA",
+      "title": "Saturation Decision"
+    },
+    {
+      "items": [
+        {
+          "state": "x",
+          "text": "Exhaustive hardening ideation passes completed (A..AC)."
+        },
+        {
+          "state": "x",
+          "text": "No additional generic hardening categories remain to be added without new external trigger."
+        }
+      ],
+      "section": "AD",
+      "title": "Backlog Authoring Status"
+    }
+  ],
+  "status": "PASS",
+  "summary": {
+    "archived_sections": 91
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "allowed_prefixes": [
+    [
+      "git",
+      "diff"
+    ],
+    [
+      "git",
+      "log"
+    ],
+    [
+      "git",
+      "ls-files"
+    ],
+    [
+      "git",
+      "rev-parse"
+    ],
+    [
+      "java",
+      "-cp"
+    ],
+    [
+      "java",
+      "-version"
+    ],
+    [
+      "javac"
+    ],
+    [
+      "javac",
+      "-version"
+    ],
+    [
+      "python"
+    ],
+    [
+      "python3"
+    ]
+  ],
+  "callsites": [
+    "tooling/security/dependency_refresh_report.py:20",
+    "tooling/security/install_security_toolchain.py:67",
+    "tooling/security/review_policy_gate.py:20",
+    "tooling/security/security_baseline_diff.py:28",
+    "tooling/security/security_super_gate.py:34",
+    "tooling/security/security_toolchain_reproducibility_gate.py:37",
+    "tooling/security/subprocess_allowlist_report.py:23",
+    "tooling/security/subprocess_policy.py:132",
+    "tooling/security/workflow_pin_change_approval_gate.py:23",
+    "tooling/security/workflow_pin_change_approval_gate.py:30"
+  ],
+  "findings": [],
+  "metadata": {
+    "gate": "subprocess_allowlist_report",
+    "generated_at_utc": "2026-03-05T00:57:14.312575+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "allowed_prefixes": 10,
+    "callsites": 10
+  }
+}

@@ -15,6 +15,7 @@ write_json_report = importlib.import_module("tooling.security.report_io").write_
 
 POLICY = ROOT / "governance" / "security" / "security_schema_compatibility_policy.json"
 MIN_MAJOR_EVIDENCE = {"adr_reference", "migration_plan", "approval_record"}
+MAX_SCHEMA_VERSION = 1000
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -25,7 +26,7 @@ def main(argv: list[str] | None = None) -> int:
         raise ValueError("invalid schema compatibility policy")
 
     current = payload.get("current_schema_version")
-    if not isinstance(current, int) or current < 1:
+    if not isinstance(current, int) or current < 1 or current > MAX_SCHEMA_VERSION:
         findings.append("invalid_current_schema_version")
     if payload.get("minor_change_policy") != "additive_only":
         findings.append("invalid_minor_change_policy")
@@ -54,6 +55,7 @@ def main(argv: list[str] | None = None) -> int:
         "summary": {
             "policy": str(POLICY.relative_to(ROOT)).replace("\\", "/"),
             "required_major_change_evidence": sorted(MIN_MAJOR_EVIDENCE),
+            "max_schema_version": MAX_SCHEMA_VERSION,
         },
         "metadata": {"gate": "security_schema_compatibility_policy_gate"},
     }

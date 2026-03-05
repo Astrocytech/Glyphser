@@ -1,0 +1,30 @@
+{
+  "findings": [],
+  "metadata": {
+    "control_family_tags": [
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [],
+    "failure_classification": "control_failure",
+    "failure_classification_set": [],
+    "failure_domains": {
+      "security_control_failures": [],
+      "transient_infra_failures": []
+    },
+    "generated_at_utc": "2026-03-05T17:35:35.171293+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "report": "hardening_overlap_redundancy_report",
+    "scope": "A..AA",
+    "tz": ""
+  },
+  "overlaps": [],
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "items_scanned": 512,
+    "overlap_groups": 0,
+    "overlapping_items": 0
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "checks": {
+    "bandit": {
+      "expected": "1.9.4",
+      "observed": "missing",
+      "ok": false
+    },
+    "pip-audit": {
+      "expected": "2.9.0",
+      "observed": "missing",
+      "ok": false
+    },
+    "semgrep": {
+      "expected": "1.95.0",
+      "observed": "missing",
+      "ok": false
+    },
+    "setuptools": {
+      "expected": "75.8.0",
+      "observed": "68.1.2",
+      "ok": false
+    }
+  },
+  "findings": [
+    "toolchain_version_mismatch:bandit:missing:1.9.4",
+    "toolchain_version_mismatch:pip-audit:missing:2.9.0",
+    "toolchain_version_mismatch:semgrep:missing:1.95.0",
+    "toolchain_version_mismatch:setuptools:68.1.2:75.8.0"
+  ],
+  "metadata": {
+    "gate": "security_toolchain_reproducibility_gate",
+    "generated_at_utc": "2026-03-05T00:57:13.883908+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "FAIL",
+  "summary": {
+    "fingerprint_sha256": "7d8dcd67a018d60081eadc975fb20874c859bee7daed99288910f89c1556cbf6",
+    "locked_packages": 4
+  }
+}

@@ -1,0 +1,45 @@
+You are an autonomous coding agent working inside the Glyphser repository.
+
+Repository root:
+ /home/coka/Desktop/ASTROCYTECH/git_project/Glyphser
+
+The file
+
+ glyphser_security_hardening_master_todo.txt
+
+contains security hardening tasks.
+
+Your objective is to implement the required security changes in the codebase.
+
+IMPORTANT RULES
+
+1. The TODO file is ONLY a tracking document.
+2. You are NOT allowed to modify checklist markers unless the task is actually implemented.
+3. Bulk edits such as replacing "[ ]" with "[x]" are strictly forbidden.
+4. A task may be marked completed ONLY after the required change is implemented in the source code.
+5. Each completed task must correspond to an actual modification in the repository.
+
+Execution procedure
+
+1. Open the TODO file.
+2. Find the first unfinished task "[ ]".
+3. Determine what security change is required.
+4. Implement the change in the relevant project files.
+5. Verify the change is correct.
+6. Show the modified files or diff.
+7. Only then update that single TODO item from "[ ]" to "[x]".
+8. Save the file.
+9. Re-open the TODO file and repeat.
+
+Additional constraints
+
+- Never modify more than one TODO item at once.
+- Never perform global replacements in the TODO file.
+- Never mark tasks complete without implementing the required change.
+- If a task requires clarification, explain the issue instead of marking it complete.
+
+Termination condition
+
+Only when the TODO file contains no remaining "[ ]" items may you output:
+
+DONE

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "controls": [
+    {
+      "id": "CTRL-BASELINE-MANIFEST",
+      "description": "Security super-gate manifest must exist.",
+      "type": "file_exists",
+      "path": "tooling/security/security_super_gate_manifest.json"
+    },
+    {
+      "id": "CTRL-BASELINE-RUNBOOK",
+      "description": "Gate runbook index must exist.",
+      "type": "file_exists",
+      "path": "governance/security/GATE_RUNBOOK_INDEX.md"
+    },
+    {
+      "id": "CTRL-BASELINE-TODO",
+      "description": "Master hardening TODO must remain present for governance tracking.",
+      "type": "file_exists",
+      "path": "glyphser_security_hardening_master_todo.txt"
+    }
+  ]
+}

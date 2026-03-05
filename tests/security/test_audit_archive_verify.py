@@ -11,6 +11,8 @@ def test_audit_archive_verify_passes_for_default_archive(monkeypatch, tmp_path: 
     monkeypatch.setattr(audit_archive_verify, "ROOT", repo)
     monkeypatch.setattr(audit_archive_verify, "evidence_root", lambda: repo / "evidence")
     assert audit_archive_verify.main([]) == 0
+    digest_file = repo / "evidence" / "security" / "audit-log-archive.tar.gz.sha256"
+    assert digest_file.exists()
 
 
 def test_extract_archive_safely_blocks_path_traversal(tmp_path: Path) -> None:

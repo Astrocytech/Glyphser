@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "max_attempts": 2,
+  "allowed_retry_gates": [
+    "upload_manifest_completeness_gate",
+    "security_toolchain_gate"
+  ],
+  "require_deterministic_seed": true,
+  "retry_events_path": "evidence/security/gate_retry_events.json"
+}

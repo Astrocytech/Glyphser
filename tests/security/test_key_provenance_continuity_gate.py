@@ -14,6 +14,7 @@ def _write(path: Path, payload: dict[str, object]) -> None:
 def test_key_provenance_continuity_gate_passes(monkeypatch, tmp_path: Path) -> None:
     repo = tmp_path / "repo"
     sec = repo / "evidence" / "security"
+    gov = repo / "governance" / "security"
     _write(
         sec / "policy_signature.json",
         {"status": "PASS", "metadata": {"key_provenance": {"key_id": "k1", "adapter": "hmac", "fallback_used": False}}},
@@ -26,7 +27,12 @@ def test_key_provenance_continuity_gate_passes(monkeypatch, tmp_path: Path) -> N
         sec / "evidence_attestation_index.json",
         {"status": "PASS", "key_provenance": {"key_id": "k1", "adapter": "hmac", "fallback_used": False}},
     )
+    _write(
+        gov / "key_rotation_epochs.json",
+        {"epochs": [{"epoch_id": "epoch-1", "key_id": "k0"}, {"epoch_id": "epoch-2", "key_id": "k1", "previous_epoch_id": "epoch-1", "previous_key_id": "k0"}]},
+    )
     monkeypatch.setattr(key_provenance_continuity_gate, "ROOT", repo)
+    monkeypatch.setattr(key_provenance_continuity_gate, "EPOCHS", gov / "key_rotation_epochs.json")
     monkeypatch.setattr(key_provenance_continuity_gate, "evidence_root", lambda: repo / "evidence")
     assert key_provenance_continuity_gate.main([]) == 0
 
@@ -34,6 +40,7 @@ def test_key_provenance_continuity_gate_passes(monkeypatch, tmp_path: Path) -> N
 def test_key_provenance_continuity_gate_fails_on_mismatch(monkeypatch, tmp_path: Path) -> None:
     repo = tmp_path / "repo"
     sec = repo / "evidence" / "security"
+    gov = repo / "governance" / "security"
     _write(
         sec / "policy_signature.json",
         {"status": "PASS", "metadata": {"key_provenance": {"key_id": "k1", "adapter": "hmac", "fallback_used": False}}},
@@ -46,7 +53,12 @@ def test_key_provenance_continuity_gate_fails_on_mismatch(monkeypatch, tmp_path:
         sec / "evidence_attestation_index.json",
         {"status": "PASS", "key_provenance": {"key_id": "k2", "adapter": "kms", "fallback_used": True}},
     )
+    _write(
+        gov / "key_rotation_epochs.json",
+        {"epochs": [{"epoch_id": "epoch-1", "key_id": "k1"}]},
+    )
     monkeypatch.setattr(key_provenance_continuity_gate, "ROOT", repo)
+    monkeypatch.setattr(key_provenance_continuity_gate, "EPOCHS", gov / "key_rotation_epochs.json")
     monkeypatch.setattr(key_provenance_continuity_gate, "evidence_root", lambda: repo / "evidence")
     assert key_provenance_continuity_gate.main([]) == 1
     report = json.loads((sec / "key_provenance_continuity_gate.json").read_text(encoding="utf-8"))

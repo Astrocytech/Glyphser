@@ -1,0 +1,17 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "exception_waiver_reconciliation_gate",
+    "generated_at_utc": "2026-03-05T00:57:18.715308+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "closed_waivers_recorded": 0,
+    "expired_waivers_detected": 0,
+    "missing_closures": 0
+  }
+}

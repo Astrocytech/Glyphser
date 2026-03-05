@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "approved_python_minors": [
+    "3.11",
+    "3.12"
+  ],
+  "warn_before_eol_days": 365,
+  "minor_eol_dates_utc": {
+    "3.11": "2027-10-24",
+    "3.12": "2028-10-31"
+  }
+}

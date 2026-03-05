@@ -1,0 +1,23 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "security_event_schema_gate",
+    "generated_at_utc": "2026-03-05T00:57:20.228060+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "checked_events": 21,
+    "required_fields": [
+      "event_type",
+      "severity",
+      "control_id",
+      "run_id",
+      "artifact_ref"
+    ],
+    "schema": "governance/security/security_event_schema.json"
+  }
+}

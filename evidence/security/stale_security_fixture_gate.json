@@ -1,0 +1,29 @@
+{
+  "findings": [],
+  "metadata": {
+    "control_family_tags": [
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [],
+    "failure_classification": "control_failure",
+    "failure_classification_set": [],
+    "failure_domains": {
+      "security_control_failures": [],
+      "transient_infra_failures": []
+    },
+    "gate": "stale_security_fixture_gate",
+    "generated_at_utc": "2026-03-05T17:23:57.275887+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "checked_fixtures": 8,
+    "max_fixture_lag_days": 14.0,
+    "stale_fixture_count": 0,
+    "tracked_gate_entries": 2
+  }
+}

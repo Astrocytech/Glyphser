@@ -45,3 +45,33 @@ def test_trace_migrate_rejects_mixed_separators(tmp_path: Path) -> None:
                 "output_path": "trace/out.json",
             }
         )
+
+
+def test_trace_migrate_rejects_unicode_confusable_separator(tmp_path: Path) -> None:
+    allowed = tmp_path / "allowed"
+    allowed.mkdir(parents=True)
+    src = allowed / "trace.json"
+    src.write_text("{}\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="unicode confusable separator"):
+        migrate_trace(
+            {
+                "allowed_root": str(allowed),
+                "trace_path": str(src),
+                "output_path": "trace\uFF0Fout.json",
+            }
+        )
+
+
+def test_checkpoint_migrate_rejects_unicode_confusable_dot(tmp_path: Path) -> None:
+    allowed = tmp_path / "allowed"
+    allowed.mkdir(parents=True)
+    src = allowed / "in.json"
+    src.write_text("{}\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="unicode confusable dot"):
+        checkpoint_migrate(
+            {
+                "allowed_root": str(allowed),
+                "source_path": str(src),
+                "target_path": "safe/\uFF0E\uFF0E/out.json",
+            }
+        )

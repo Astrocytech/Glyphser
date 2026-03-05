@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "minimum_weighted_score": 80,
+  "warn_thresholds_by_env": {
+    "ci": {
+      "advisory": 10,
+      "non_blocking_drift": 5
+    },
+    "staging": {
+      "advisory": 5,
+      "non_blocking_drift": 2
+    },
+    "prod": {
+      "advisory": 2,
+      "non_blocking_drift": 0
+    }
+  },
+  "controls": [
+    {
+      "name": "security_super_gate",
+      "report_path": "evidence/security/security_super_gate.json",
+      "weight": 40,
+      "mandatory": true
+    },
+    {
+      "name": "security_verification_summary",
+      "report_path": "evidence/security/security_verification_summary.json",
+      "weight": 30,
+      "mandatory": true
+    },
+    {
+      "name": "security_posture_executive_summary",
+      "report_path": "evidence/security/security_posture_executive_summary.json",
+      "weight": 30,
+      "mandatory": false
+    }
+  ]
+}

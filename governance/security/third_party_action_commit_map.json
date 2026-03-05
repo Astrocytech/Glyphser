@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "owner": "security-governance",
+  "last_reviewed_utc": "2026-03-05T00:00:00+00:00",
+  "expected_action_refs": {
+    "actions/checkout": "11bd71901bbe5b1630ceea73d27597364c9af683",
+    "actions/download-artifact": "fa0a91b85d4f404e444e00e005971372dc801d16",
+    "actions/setup-python": "42375524e23c412d93fb67b49958b491fce71c38",
+    "actions/upload-artifact": "ea165f8d65b6e75b540449e92b4886f43607fa02",
+    "github/codeql-action/upload-sarif": "b56ba49b26e50535fa1e7f7db0f4f7b4bf65d80d"
+  },
+  "expected_action_provenance_urls": {
+    "actions/checkout": "https://github.com/actions/checkout",
+    "actions/download-artifact": "https://github.com/actions/download-artifact",
+    "actions/setup-python": "https://github.com/actions/setup-python",
+    "actions/upload-artifact": "https://github.com/actions/upload-artifact",
+    "github/codeql-action/upload-sarif": "https://github.com/github/codeql-action"
+  }
+}

@@ -1,15 +1,19 @@
 {
   "findings": [
-    "missing_security_attestation_status",
-    "conformance_pass_but_security_attestation_failed"
+    "conformance_pass_but_policy_signature_failed"
   ],
   "metadata": {
-    "gate": "conformance_security_coupling"
+    "gate": "conformance_security_coupling",
+    "generated_at_utc": "2026-03-05T00:57:20.377919+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
   },
+  "schema_version": 1,
   "status": "FAIL",
   "summary": {
     "conformance_status": "PASS",
-    "policy_signature_status": "PASS",
-    "security_attestation_status": ""
+    "policy_signature_status": "FAIL",
+    "security_attestation_status": "PASS"
   }
 }

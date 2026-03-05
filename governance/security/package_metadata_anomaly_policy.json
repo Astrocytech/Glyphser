@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "registry_snapshot_path": "governance/security/metadata/dependency_registry_snapshot.json",
+  "disallowed_maintainers": [
+    "malicious-maintainer",
+    "account-takeover-test"
+  ],
+  "disallowed_email_domains": [
+    "mailinator.com",
+    "tempmail.com"
+  ],
+  "expected_package_metadata": {
+    "semgrep": {
+      "maintainers": [
+        "returntocorp"
+      ]
+    },
+    "pip-audit": {
+      "maintainers": [
+        "pypa"
+      ]
+    }
+  }
+}

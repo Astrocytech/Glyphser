@@ -1,0 +1,19 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "key_rotation_cadence_gate",
+    "generated_at_utc": "2026-03-05T00:57:19.901871+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "key_id": "provenance-default",
+    "maximum_rollover_window_days": 14,
+    "maximum_rotation_age_days": 90,
+    "rotation_age_days": 1,
+    "rotation_record_path": "governance/security/key_rotation_record.json"
+  }
+}

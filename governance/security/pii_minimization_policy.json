@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "scan_globs": [
+    "evidence/security/*.json",
+    "evidence/security/*.jsonl"
+  ],
+  "forbidden_patterns": {
+    "email": "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}",
+    "ipv4": "\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b",
+    "phone_like": "\\b\\+?[0-9][0-9\\-() ]{8,}[0-9]\\b"
+  },
+  "allowed_tokens": [
+    "REDACTED",
+    "HASHED",
+    "pseudonym"
+  ]
+}

@@ -15,6 +15,14 @@
   "dast": {
     "status": "PASS"
   },
+  "findings": [],
+  "metadata": {
+    "gate": "security_baseline_gate",
+    "generated_at_utc": "2026-03-05T01:48:30.749070+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
   "missing_required": [],
   "rbac_checks": {
     "failures": [],
@@ -26,9 +34,16 @@
   "sca": {
     "status": "PASS"
   },
+  "schema_version": 1,
   "secret_scan": {
     "findings": [],
     "status": "PASS"
   },
-  "status": "PASS"
+  "status": "PASS",
+  "summary": {
+    "audit_status": "PASS",
+    "missing_required_count": 0,
+    "rbac_status": "PASS",
+    "secret_scan_status": "PASS"
+  }
 }

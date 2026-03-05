@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Keep hardening TODO index counters fresh.
+python tooling/security/hardening_todo_index.py --todo glyphser_security_hardening_master_todo.txt
+
+# Keep pending item IDs/metadata registry in sync.
+python tooling/security/hardening_pending_item_registry_sync.py
+
+# Block terminal DONE while unchecked items still exist.
+python tooling/security/hardening_pending_count_validator.py
+
+# Stage generated tracking artifacts when they changed.
+git add glyphser_security_hardening_master_todo.txt governance/security/hardening_pending_item_registry.json

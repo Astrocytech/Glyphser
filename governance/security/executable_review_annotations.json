@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "security_critical_paths": [
+    "tooling/security",
+    ".github/workflows"
+  ],
+  "approved_executables": {
+    "tooling/security/security_super_gate.py": {
+      "review_annotation": "SEC-REVIEW-BASELINE-0001"
+    }
+  }
+}

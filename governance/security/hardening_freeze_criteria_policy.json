@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "allowed_trigger_types": [
+    "ci_failure",
+    "incident",
+    "audit",
+    "threat_model_change",
+    "architecture_change"
+  ],
+  "enforced_ticket_registry_path": "governance/security/hardening_ticket_registry.json",
+  "enforced_states": [
+    "OPEN",
+    "IN_PROGRESS",
+    "PENDING"
+  ]
+}

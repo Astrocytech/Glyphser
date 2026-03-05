@@ -1,0 +1,6349 @@
+{
+  "findings": [],
+  "mappings": [
+    {
+      "field_path": "findings",
+      "report": "security/abuse_telemetry.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/abuse_telemetry.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/abuse_telemetry.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/abuse_telemetry.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/abuse_telemetry.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/abuse_telemetry.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/abuse_telemetry.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/abuse_telemetry.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/abuse_telemetry.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/abuse_telemetry.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/algorithm_deprecation_rehearsal_lane.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/algorithm_deprecation_rehearsal_lane.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/algorithm_deprecation_rehearsal_lane.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/algorithm_deprecation_rehearsal_lane.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/algorithm_deprecation_rehearsal_lane.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/algorithm_deprecation_rehearsal_lane.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/algorithm_deprecation_rehearsal_lane.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/algorithm_deprecation_rehearsal_lane.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/algorithm_deprecation_rehearsal_lane.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/algorithm_deprecation_rehearsal_lane.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/audit_archive_verify.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/audit_archive_verify.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/audit_archive_verify.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/audit_archive_verify.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/audit_archive_verify.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/audit_archive_verify.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/audit_archive_verify.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/audit_archive_verify.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/audit_archive_verify.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/audit_archive_verify.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/bandit_baseline_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/bandit_baseline_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/bandit_baseline_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/bandit_baseline_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/bandit_baseline_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/bandit_baseline_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/bandit_baseline_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/bandit_baseline_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/bandit_baseline_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/bandit_baseline_gate.json"
+      ]
+    },
+    {
+      "field_path": "format",
+      "report": "security/build_provenance.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/build_provenance.json"
+      ]
+    },
+    {
+      "field_path": "git_commit",
+      "report": "security/build_provenance.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/build_provenance.json"
+      ]
+    },
+    {
+      "field_path": "lockfile_hash",
+      "report": "security/build_provenance.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/build_provenance.json"
+      ]
+    },
+    {
+      "field_path": "python_version",
+      "report": "security/build_provenance.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/build_provenance.json"
+      ]
+    },
+    {
+      "field_path": "sbom_hash",
+      "report": "security/build_provenance.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/build_provenance.json"
+      ]
+    },
+    {
+      "field_path": "tool",
+      "report": "security/build_provenance.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/build_provenance.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/conformance_security_coupling.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/conformance_security_coupling.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/conformance_security_coupling.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/conformance_security_coupling.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/conformance_security_coupling.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/conformance_security_coupling.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/conformance_security_coupling.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/conformance_security_coupling.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/conformance_security_coupling.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/conformance_security_coupling.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/container_provenance.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/container_provenance.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/container_provenance.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/container_provenance.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/container_provenance.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/container_provenance.json"
+      ]
+    },
+    {
+      "field_path": "skipped",
+      "report": "security/container_provenance.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/container_provenance.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/container_provenance.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/container_provenance.json"
+      ]
+    },
+    {
+      "field_path": "strict_mode",
+      "report": "security/container_provenance.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/container_provenance.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/container_provenance.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/container_provenance.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/cosign_attestation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/cosign_attestation_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/cosign_attestation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/cosign_attestation_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/cosign_attestation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/cosign_attestation_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/cosign_attestation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/cosign_attestation_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/critical_control_backup_verifier_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/critical_control_backup_verifier_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/critical_control_backup_verifier_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/critical_control_backup_verifier_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/critical_control_backup_verifier_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/critical_control_backup_verifier_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/critical_control_backup_verifier_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/critical_control_backup_verifier_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/critical_control_backup_verifier_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/critical_control_backup_verifier_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/critical_control_redundancy_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/critical_control_redundancy_report.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/critical_control_redundancy_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/critical_control_redundancy_report.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/critical_control_redundancy_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/critical_control_redundancy_report.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/critical_control_redundancy_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/critical_control_redundancy_report.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/critical_control_redundancy_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/critical_control_redundancy_report.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/crypto_parameter_review_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/crypto_parameter_review_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/crypto_parameter_review_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/crypto_parameter_review_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/crypto_parameter_review_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/crypto_parameter_review_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/crypto_parameter_review_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/crypto_parameter_review_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/crypto_parameter_review_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/crypto_parameter_review_gate.json"
+      ]
+    },
+    {
+      "field_path": "attested_at_utc",
+      "report": "security/disaster_recovery_drill.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/disaster_recovery_drill.json"
+      ]
+    },
+    {
+      "field_path": "attested_by",
+      "report": "security/disaster_recovery_drill.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/disaster_recovery_drill.json"
+      ]
+    },
+    {
+      "field_path": "drill_id",
+      "report": "security/disaster_recovery_drill.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/disaster_recovery_drill.json"
+      ]
+    },
+    {
+      "field_path": "integrity_verified",
+      "report": "security/disaster_recovery_drill.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/disaster_recovery_drill.json"
+      ]
+    },
+    {
+      "field_path": "provenance_verified",
+      "report": "security/disaster_recovery_drill.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/disaster_recovery_drill.json"
+      ]
+    },
+    {
+      "field_path": "restored_from_cold_backup",
+      "report": "security/disaster_recovery_drill.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/disaster_recovery_drill.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/disaster_recovery_drill.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/disaster_recovery_drill.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/emergency_lockdown_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/emergency_lockdown_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/emergency_lockdown_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/emergency_lockdown_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/emergency_lockdown_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/emergency_lockdown_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/emergency_lockdown_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/emergency_lockdown_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/envelope_signature_design_checklist_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/envelope_signature_design_checklist_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/envelope_signature_design_checklist_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/envelope_signature_design_checklist_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/envelope_signature_design_checklist_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/envelope_signature_design_checklist_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/envelope_signature_design_checklist_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/envelope_signature_design_checklist_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/envelope_signature_design_checklist_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/envelope_signature_design_checklist_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/evidence_attestation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/evidence_attestation_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/evidence_attestation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/evidence_attestation_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/evidence_attestation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/evidence_attestation_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/evidence_attestation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/evidence_attestation_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/evidence_attestation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/evidence_attestation_gate.json"
+      ]
+    },
+    {
+      "field_path": "count",
+      "report": "security/evidence_attestation_index.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/evidence_attestation_index.json"
+      ]
+    },
+    {
+      "field_path": "generated_at_utc",
+      "report": "security/evidence_attestation_index.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/evidence_attestation_index.json"
+      ]
+    },
+    {
+      "field_path": "items",
+      "report": "security/evidence_attestation_index.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/evidence_attestation_index.json"
+      ]
+    },
+    {
+      "field_path": "key_provenance",
+      "report": "security/evidence_attestation_index.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/evidence_attestation_index.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/evidence_attestation_index.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/evidence_attestation_index.json"
+      ]
+    },
+    {
+      "field_path": "count",
+      "report": "security/evidence_chain_of_custody.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/evidence_chain_of_custody.json"
+      ]
+    },
+    {
+      "field_path": "generated_at_utc",
+      "report": "security/evidence_chain_of_custody.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/evidence_chain_of_custody.json"
+      ]
+    },
+    {
+      "field_path": "items",
+      "report": "security/evidence_chain_of_custody.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/evidence_chain_of_custody.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/evidence_chain_of_custody.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/evidence_chain_of_custody.json"
+      ]
+    },
+    {
+      "field_path": "tip_chain_hash",
+      "report": "security/evidence_chain_of_custody.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/evidence_chain_of_custody.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/evidence_chain_of_custody_build.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/evidence_chain_of_custody_build.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/evidence_chain_of_custody_build.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/evidence_chain_of_custody_build.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/evidence_chain_of_custody_build.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/evidence_chain_of_custody_build.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/evidence_chain_of_custody_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/evidence_chain_of_custody_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/evidence_chain_of_custody_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/evidence_chain_of_custody_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/evidence_chain_of_custody_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/evidence_chain_of_custody_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/exception_waiver_reconciliation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/exception_waiver_reconciliation_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/exception_waiver_reconciliation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/exception_waiver_reconciliation_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/exception_waiver_reconciliation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/exception_waiver_reconciliation_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/exception_waiver_reconciliation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/exception_waiver_reconciliation_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/exception_waiver_reconciliation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/exception_waiver_reconciliation_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/fallback_secret_usage_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/fallback_secret_usage_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/fallback_secret_usage_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/fallback_secret_usage_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/fallback_secret_usage_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/fallback_secret_usage_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/fallback_secret_usage_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/fallback_secret_usage_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/fallback_secret_usage_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/fallback_secret_usage_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/file_mode_change_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/file_mode_change_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/file_mode_change_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/file_mode_change_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/file_mode_change_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/file_mode_change_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/file_mode_change_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/file_mode_change_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/file_mode_change_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/file_mode_change_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/file_permissions_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/file_permissions_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/file_permissions_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/file_permissions_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/file_permissions_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/file_permissions_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/file_permissions_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/file_permissions_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/file_permissions_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/file_permissions_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/fork_pr_sarif_skip_simulation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/fork_pr_sarif_skip_simulation_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/fork_pr_sarif_skip_simulation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/fork_pr_sarif_skip_simulation_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/fork_pr_sarif_skip_simulation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/fork_pr_sarif_skip_simulation_gate.json"
+      ]
+    },
+    {
+      "field_path": "simulation_cases",
+      "report": "security/fork_pr_sarif_skip_simulation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/fork_pr_sarif_skip_simulation_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/fork_pr_sarif_skip_simulation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/fork_pr_sarif_skip_simulation_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/fork_pr_sarif_skip_simulation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/fork_pr_sarif_skip_simulation_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/governance_markdown_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/governance_markdown_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/governance_markdown_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/governance_markdown_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/governance_markdown_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/governance_markdown_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/governance_markdown_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/governance_markdown_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/governance_markdown_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/governance_markdown_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/hardening_todo_consistency_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/hardening_todo_consistency_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/hardening_todo_consistency_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/hardening_todo_consistency_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/hardening_todo_consistency_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/hardening_todo_consistency_gate.json"
+      ]
+    },
+    {
+      "field_path": "skipped",
+      "report": "security/hardening_todo_consistency_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/hardening_todo_consistency_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/hardening_todo_consistency_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/hardening_todo_consistency_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/hardening_todo_consistency_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/hardening_todo_consistency_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/helper_script_enforcement_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/helper_script_enforcement_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/helper_script_enforcement_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/helper_script_enforcement_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/helper_script_enforcement_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/helper_script_enforcement_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/helper_script_enforcement_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/helper_script_enforcement_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/helper_script_enforcement_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/helper_script_enforcement_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/incident_response.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/incident_response.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/incident_response.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/incident_response.json"
+      ]
+    },
+    {
+      "field_path": "policy",
+      "report": "security/incident_response.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/incident_response.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/incident_response.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/incident_response.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/incident_response.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/incident_response.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/incident_response.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/incident_response.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/independent_verifier_profile_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/independent_verifier_profile_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/independent_verifier_profile_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/independent_verifier_profile_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/independent_verifier_profile_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/independent_verifier_profile_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/independent_verifier_profile_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/independent_verifier_profile_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/independent_verifier_profile_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/independent_verifier_profile_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/integrity_envelope_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/integrity_envelope_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/integrity_envelope_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/integrity_envelope_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/integrity_envelope_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/integrity_envelope_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/integrity_envelope_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/integrity_envelope_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/integrity_envelope_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/integrity_envelope_gate.json"
+      ]
+    },
+    {
+      "field_path": "attested_at_utc",
+      "report": "security/key_compromise_drill.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_compromise_drill.json"
+      ]
+    },
+    {
+      "field_path": "drill_id",
+      "report": "security/key_compromise_drill.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_compromise_drill.json"
+      ]
+    },
+    {
+      "field_path": "primary_approver",
+      "report": "security/key_compromise_drill.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_compromise_drill.json"
+      ]
+    },
+    {
+      "field_path": "revocation_list_updated",
+      "report": "security/key_compromise_drill.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_compromise_drill.json"
+      ]
+    },
+    {
+      "field_path": "rotation_completed",
+      "report": "security/key_compromise_drill.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_compromise_drill.json"
+      ]
+    },
+    {
+      "field_path": "secondary_approver",
+      "report": "security/key_compromise_drill.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_compromise_drill.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/key_compromise_drill.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_compromise_drill.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/key_management.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_management.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/key_management.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_management.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/key_management.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_management.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/key_management.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_management.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/key_provenance_continuity_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_provenance_continuity_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/key_provenance_continuity_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_provenance_continuity_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/key_provenance_continuity_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_provenance_continuity_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/key_provenance_continuity_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_provenance_continuity_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/key_provenance_continuity_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_provenance_continuity_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/key_rotation_cadence_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_rotation_cadence_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/key_rotation_cadence_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_rotation_cadence_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/key_rotation_cadence_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_rotation_cadence_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/key_rotation_cadence_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_rotation_cadence_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/key_rotation_cadence_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_rotation_cadence_gate.json"
+      ]
+    },
+    {
+      "field_path": "drill_timestamp_utc",
+      "report": "security/key_rotation_drill.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_rotation_drill.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/key_rotation_drill.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_rotation_drill.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/key_rotation_drill.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/key_rotation_drill.json"
+      ]
+    },
+    {
+      "field_path": "audit_checks",
+      "report": "security/latest.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/latest.json"
+      ]
+    },
+    {
+      "field_path": "dast",
+      "report": "security/latest.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/latest.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/latest.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/latest.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/latest.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/latest.json"
+      ]
+    },
+    {
+      "field_path": "missing_required",
+      "report": "security/latest.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/latest.json"
+      ]
+    },
+    {
+      "field_path": "rbac_checks",
+      "report": "security/latest.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/latest.json"
+      ]
+    },
+    {
+      "field_path": "sast",
+      "report": "security/latest.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/latest.json"
+      ]
+    },
+    {
+      "field_path": "sca",
+      "report": "security/latest.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/latest.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/latest.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/latest.json"
+      ]
+    },
+    {
+      "field_path": "secret_scan",
+      "report": "security/latest.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/latest.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/latest.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/latest.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/latest.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/latest.json"
+      ]
+    },
+    {
+      "field_path": "checked_at_utc",
+      "report": "security/live_integrations.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/live_integrations.json"
+      ]
+    },
+    {
+      "field_path": "checks",
+      "report": "security/live_integrations.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/live_integrations.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/live_integrations.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/live_integrations.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/live_integrations.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/live_integrations.json"
+      ]
+    },
+    {
+      "field_path": "mode",
+      "report": "security/live_integrations.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/live_integrations.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/live_integrations.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/live_integrations.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/live_integrations.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/live_integrations.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/live_integrations.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/live_integrations.json"
+      ]
+    },
+    {
+      "field_path": "allow_dry_run",
+      "report": "security/live_rollout_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/live_rollout_gate.json"
+      ]
+    },
+    {
+      "field_path": "allow_missing",
+      "report": "security/live_rollout_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/live_rollout_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/live_rollout_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/live_rollout_gate.json"
+      ]
+    },
+    {
+      "field_path": "max_evidence_age_hours",
+      "report": "security/live_rollout_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/live_rollout_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/live_rollout_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/live_rollout_gate.json"
+      ]
+    },
+    {
+      "field_path": "profile",
+      "report": "security/live_rollout_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/live_rollout_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/live_rollout_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/live_rollout_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/live_rollout_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/live_rollout_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/live_rollout_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/live_rollout_gate.json"
+      ]
+    },
+    {
+      "field_path": "targets",
+      "report": "security/live_rollout_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/live_rollout_gate.json"
+      ]
+    },
+    {
+      "field_path": "attested",
+      "report": "security/lockdown_rollback_attestation.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/lockdown_rollback_attestation.json"
+      ]
+    },
+    {
+      "field_path": "attested_at_utc",
+      "report": "security/lockdown_rollback_attestation.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/lockdown_rollback_attestation.json"
+      ]
+    },
+    {
+      "field_path": "attested_by",
+      "report": "security/lockdown_rollback_attestation.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/lockdown_rollback_attestation.json"
+      ]
+    },
+    {
+      "field_path": "notes",
+      "report": "security/lockdown_rollback_attestation.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/lockdown_rollback_attestation.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/mypy_security_profile_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/mypy_security_profile_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/mypy_security_profile_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/mypy_security_profile_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/mypy_security_profile_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/mypy_security_profile_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/mypy_security_profile_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/mypy_security_profile_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/mypy_security_profile_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/mypy_security_profile_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/network_endpoint_documentation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/network_endpoint_documentation_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/network_endpoint_documentation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/network_endpoint_documentation_gate.json"
+      ]
+    },
+    {
+      "field_path": "observed_by_source",
+      "report": "security/network_endpoint_documentation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/network_endpoint_documentation_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/network_endpoint_documentation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/network_endpoint_documentation_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/network_endpoint_documentation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/network_endpoint_documentation_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/network_endpoint_documentation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/network_endpoint_documentation_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/offline_verification_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/offline_verification_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/offline_verification_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/offline_verification_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/offline_verification_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/offline_verification_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/offline_verification_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/offline_verification_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/offline_verification_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/offline_verification_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/oncall_triage_sla_drill_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/oncall_triage_sla_drill_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/oncall_triage_sla_drill_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/oncall_triage_sla_drill_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/oncall_triage_sla_drill_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/oncall_triage_sla_drill_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/oncall_triage_sla_drill_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/oncall_triage_sla_drill_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/oncall_triage_sla_drill_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/oncall_triage_sla_drill_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/org_secret_backend.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/org_secret_backend.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/org_secret_backend.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/org_secret_backend.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/org_secret_backend.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/org_secret_backend.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/org_secret_backend.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/org_secret_backend.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/org_secret_backend.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/org_secret_backend.json"
+      ]
+    },
+    {
+      "field_path": "backend_type",
+      "report": "security/org_secret_backend_snapshot.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/org_secret_backend_snapshot.json"
+      ]
+    },
+    {
+      "field_path": "credential_mode",
+      "report": "security/org_secret_backend_snapshot.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/org_secret_backend_snapshot.json"
+      ]
+    },
+    {
+      "field_path": "credential_ttl_hours",
+      "report": "security/org_secret_backend_snapshot.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/org_secret_backend_snapshot.json"
+      ]
+    },
+    {
+      "field_path": "managed_secrets",
+      "report": "security/org_secret_backend_snapshot.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/org_secret_backend_snapshot.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/org_secret_backend_snapshot.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/org_secret_backend_snapshot.json"
+      ]
+    },
+    {
+      "field_path": "updated_utc",
+      "report": "security/org_secret_backend_snapshot.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/org_secret_backend_snapshot.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/ownership_continuity_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/ownership_continuity_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/ownership_continuity_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/ownership_continuity_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/ownership_continuity_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/ownership_continuity_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/ownership_continuity_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/ownership_continuity_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/ownership_continuity_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/ownership_continuity_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/permissions_audit_artifact.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/permissions_audit_artifact.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/permissions_audit_artifact.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/permissions_audit_artifact.json"
+      ]
+    },
+    {
+      "field_path": "repo_permission_scopes",
+      "report": "security/permissions_audit_artifact.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/permissions_audit_artifact.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/permissions_audit_artifact.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/permissions_audit_artifact.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/permissions_audit_artifact.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/permissions_audit_artifact.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/permissions_audit_artifact.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/permissions_audit_artifact.json"
+      ]
+    },
+    {
+      "field_path": "workflow_permissions",
+      "report": "security/permissions_audit_artifact.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/permissions_audit_artifact.json"
+      ]
+    },
+    {
+      "field_path": "command",
+      "report": "security/pip_audit.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/pip_audit.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/pip_audit.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/pip_audit.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/pip_audit.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/pip_audit.json"
+      ]
+    },
+    {
+      "field_path": "returncode",
+      "report": "security/pip_audit.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/pip_audit.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/pip_audit.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/pip_audit.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/pip_audit.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/pip_audit.json"
+      ]
+    },
+    {
+      "field_path": "stderr",
+      "report": "security/pip_audit.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/pip_audit.json"
+      ]
+    },
+    {
+      "field_path": "stdout",
+      "report": "security/pip_audit.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/pip_audit.json"
+      ]
+    },
+    {
+      "field_path": "strict",
+      "report": "security/pip_audit.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/pip_audit.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/pip_audit.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/pip_audit.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/policy_schema_validation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/policy_schema_validation_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/policy_schema_validation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/policy_schema_validation_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/policy_schema_validation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/policy_schema_validation_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/policy_schema_validation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/policy_schema_validation_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/policy_schema_validation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/policy_schema_validation_gate.json"
+      ]
+    },
+    {
+      "field_path": "checks",
+      "report": "security/policy_signature.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/policy_signature.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/policy_signature.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/policy_signature.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/policy_signature.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/policy_signature.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/policy_signature.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/policy_signature.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/policy_signature.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/policy_signature.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/policy_signature.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/policy_signature.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/production_controls.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/production_controls.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/production_controls.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/production_controls.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/production_controls.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/production_controls.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/production_controls.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/production_controls.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/production_controls.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/production_controls.json"
+      ]
+    },
+    {
+      "field_path": "controls",
+      "report": "security/production_controls_snapshot.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/production_controls_snapshot.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/production_controls_snapshot.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/production_controls_snapshot.json"
+      ]
+    },
+    {
+      "field_path": "updated_utc",
+      "report": "security/production_controls_snapshot.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/production_controls_snapshot.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/promotion_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/promotion_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/promotion_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/promotion_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/promotion_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/promotion_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/promotion_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/promotion_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/promotion_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/promotion_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/provenance_revocation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/provenance_revocation_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/provenance_revocation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/provenance_revocation_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/provenance_revocation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/provenance_revocation_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/provenance_revocation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/provenance_revocation_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/provenance_revocation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/provenance_revocation_gate.json"
+      ]
+    },
+    {
+      "field_path": "checks",
+      "report": "security/provenance_signature.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/provenance_signature.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/provenance_signature.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/provenance_signature.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/provenance_signature.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/provenance_signature.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/provenance_signature.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/provenance_signature.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/provenance_signature.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/provenance_signature.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/provenance_signature.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/provenance_signature.json"
+      ]
+    },
+    {
+      "field_path": "witnesses",
+      "report": "security/provenance_witnesses.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/provenance_witnesses.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/release_rollback_provenance_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/release_rollback_provenance_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/release_rollback_provenance_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/release_rollback_provenance_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/release_rollback_provenance_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/release_rollback_provenance_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/release_rollback_provenance_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/release_rollback_provenance_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/report_secret_leak.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/report_secret_leak.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/report_secret_leak.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/report_secret_leak.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/report_secret_leak.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/report_secret_leak.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/report_secret_leak.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/report_secret_leak.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/report_secret_leak.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/report_secret_leak.json"
+      ]
+    },
+    {
+      "field_path": "advisories",
+      "report": "security/review_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/review_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/review_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/review_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/review_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/review_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/review_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/review_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/review_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/review_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/review_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/review_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/ruff_security_profile_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/ruff_security_profile_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/ruff_security_profile_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/ruff_security_profile_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/ruff_security_profile_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/ruff_security_profile_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/ruff_security_profile_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/ruff_security_profile_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/ruff_security_profile_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/ruff_security_profile_gate.json"
+      ]
+    },
+    {
+      "field_path": "checks",
+      "report": "security/runbook_command_health_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runbook_command_health_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/runbook_command_health_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runbook_command_health_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/runbook_command_health_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runbook_command_health_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/runbook_command_health_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runbook_command_health_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/runbook_command_health_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runbook_command_health_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/runbook_command_health_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runbook_command_health_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/runbook_index_health_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runbook_index_health_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/runbook_index_health_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runbook_index_health_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/runbook_index_health_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runbook_index_health_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/runbook_index_health_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runbook_index_health_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/runbook_index_health_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runbook_index_health_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/runner_integrity_fingerprint_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runner_integrity_fingerprint_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/runner_integrity_fingerprint_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runner_integrity_fingerprint_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/runner_integrity_fingerprint_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runner_integrity_fingerprint_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/runner_integrity_fingerprint_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runner_integrity_fingerprint_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/runner_integrity_fingerprint_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runner_integrity_fingerprint_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/runtime_api_input_surface_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runtime_api_input_surface_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/runtime_api_input_surface_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runtime_api_input_surface_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/runtime_api_input_surface_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runtime_api_input_surface_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/runtime_api_input_surface_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runtime_api_input_surface_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/runtime_api_input_surface_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runtime_api_input_surface_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/runtime_api_scope_matrix_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runtime_api_scope_matrix_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/runtime_api_scope_matrix_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runtime_api_scope_matrix_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/runtime_api_scope_matrix_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runtime_api_scope_matrix_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/runtime_api_scope_matrix_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runtime_api_scope_matrix_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/runtime_api_scope_matrix_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runtime_api_scope_matrix_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/runtime_api_state_schema_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runtime_api_state_schema_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/runtime_api_state_schema_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runtime_api_state_schema_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/runtime_api_state_schema_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runtime_api_state_schema_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/runtime_api_state_schema_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runtime_api_state_schema_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/runtime_api_state_schema_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/runtime_api_state_schema_gate.json"
+      ]
+    },
+    {
+      "field_path": "format",
+      "report": "security/sbom.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/sbom.json"
+      ]
+    },
+    {
+      "field_path": "git_commit",
+      "report": "security/sbom.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/sbom.json"
+      ]
+    },
+    {
+      "field_path": "lockfile_hash",
+      "report": "security/sbom.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/sbom.json"
+      ]
+    },
+    {
+      "field_path": "packages",
+      "report": "security/sbom.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/sbom.json"
+      ]
+    },
+    {
+      "field_path": "pyproject_hash",
+      "report": "security/sbom.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/sbom.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/secret_management.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/secret_management.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/secret_management.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/secret_management.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/secret_management.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/secret_management.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/secret_management.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/secret_management.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/secret_management.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/secret_management.json"
+      ]
+    },
+    {
+      "field_path": "backend",
+      "report": "security/secret_rotation_audit.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/secret_rotation_audit.json"
+      ]
+    },
+    {
+      "field_path": "change_ticket",
+      "report": "security/secret_rotation_audit.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/secret_rotation_audit.json"
+      ]
+    },
+    {
+      "field_path": "last_rotation_utc",
+      "report": "security/secret_rotation_audit.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/secret_rotation_audit.json"
+      ]
+    },
+    {
+      "field_path": "secret_rotation_metadata",
+      "report": "security/secret_rotation_audit.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/secret_rotation_audit.json"
+      ]
+    },
+    {
+      "field_path": "secrets_rotated",
+      "report": "security/secret_rotation_audit.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/secret_rotation_audit.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/secret_rotation_audit.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/secret_rotation_audit.json"
+      ]
+    },
+    {
+      "field_path": "finding_count",
+      "report": "security/secret_scan.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/secret_scan.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/secret_scan.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/secret_scan.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/secret_scan.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/secret_scan.json"
+      ]
+    },
+    {
+      "field_path": "scanned_roots",
+      "report": "security/secret_scan.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/secret_scan.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/secret_scan.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/secret_scan.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/secret_scan.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/secret_scan.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/secret_scan.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/secret_scan.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_actionable_findings_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_actionable_findings_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_actionable_findings_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_actionable_findings_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_actionable_findings_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_actionable_findings_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_actionable_findings_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_actionable_findings_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_actionable_findings_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_actionable_findings_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_artifact_signature_coverage_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_artifact_signature_coverage_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_artifact_signature_coverage_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_artifact_signature_coverage_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_artifact_signature_coverage_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_artifact_signature_coverage_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_artifact_signature_coverage_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_artifact_signature_coverage_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_artifact_signature_coverage_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_artifact_signature_coverage_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_critical_test_wiring_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_critical_test_wiring_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_critical_test_wiring_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_critical_test_wiring_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_critical_test_wiring_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_critical_test_wiring_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_critical_test_wiring_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_critical_test_wiring_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_critical_test_wiring_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_critical_test_wiring_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_cross_gate_consistency_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_cross_gate_consistency_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_cross_gate_consistency_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_cross_gate_consistency_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_cross_gate_consistency_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_cross_gate_consistency_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_cross_gate_consistency_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_cross_gate_consistency_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_cross_gate_consistency_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_cross_gate_consistency_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_dashboard.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_dashboard.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_dashboard.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_dashboard.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_dashboard.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_dashboard.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_dashboard.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_dashboard.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_dashboard.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_dashboard.json"
+      ]
+    },
+    {
+      "field_path": "dead_gates",
+      "report": "security/security_dead_gate_wiring_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_dead_gate_wiring_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_dead_gate_wiring_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_dead_gate_wiring_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_dead_gate_wiring_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_dead_gate_wiring_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_dead_gate_wiring_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_dead_gate_wiring_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_dead_gate_wiring_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_dead_gate_wiring_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_dead_gate_wiring_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_dead_gate_wiring_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_docs_traceability_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_docs_traceability_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_docs_traceability_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_docs_traceability_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_docs_traceability_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_docs_traceability_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_docs_traceability_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_docs_traceability_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_event_export.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_event_export.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_event_export.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_event_export.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_event_export.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_event_export.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_event_export.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_event_export.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_event_export.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_event_export.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_event_schema_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_event_schema_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_event_schema_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_event_schema_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_event_schema_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_event_schema_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_event_schema_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_event_schema_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_event_schema_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_event_schema_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_evidence_corruption_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_evidence_corruption_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_evidence_corruption_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_evidence_corruption_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_evidence_corruption_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_evidence_corruption_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_evidence_corruption_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_evidence_corruption_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_evidence_corruption_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_evidence_corruption_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_exception_suppression_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_exception_suppression_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_exception_suppression_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_exception_suppression_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_exception_suppression_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_exception_suppression_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_exception_suppression_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_exception_suppression_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_exception_suppression_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_exception_suppression_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_fixture_integrity_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_fixture_integrity_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_fixture_integrity_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_fixture_integrity_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_fixture_integrity_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_fixture_integrity_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_fixture_integrity_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_fixture_integrity_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_fixture_integrity_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_fixture_integrity_gate.json"
+      ]
+    },
+    {
+      "field_path": "dependencies",
+      "report": "security/security_gate_dependency_graph.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_gate_dependency_graph.json"
+      ]
+    },
+    {
+      "field_path": "dependents",
+      "report": "security/security_gate_dependency_graph.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_gate_dependency_graph.json"
+      ]
+    },
+    {
+      "field_path": "nodes",
+      "report": "security/security_gate_dependency_graph.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_gate_dependency_graph.json"
+      ]
+    },
+    {
+      "field_path": "single_points_of_failure",
+      "report": "security/security_gate_dependency_graph.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_gate_dependency_graph.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_gate_dependency_graph_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_gate_dependency_graph_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_gate_dependency_graph_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_gate_dependency_graph_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_gate_dependency_graph_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_gate_dependency_graph_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_gate_dependency_graph_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_gate_dependency_graph_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_gate_dependency_graph_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_gate_dependency_graph_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_gate_onboarding_checklist_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_gate_onboarding_checklist_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_gate_onboarding_checklist_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_gate_onboarding_checklist_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_gate_onboarding_checklist_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_gate_onboarding_checklist_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_gate_onboarding_checklist_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_gate_onboarding_checklist_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_gate_onboarding_checklist_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_gate_onboarding_checklist_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_gate_test_coverage.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_gate_test_coverage.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_gate_test_coverage.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_gate_test_coverage.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_gate_test_coverage.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_gate_test_coverage.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_gate_test_coverage.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_gate_test_coverage.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_gate_test_coverage.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_gate_test_coverage.json"
+      ]
+    },
+    {
+      "field_path": "uncovered",
+      "report": "security/security_gate_test_coverage.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_gate_test_coverage.json"
+      ]
+    },
+    {
+      "field_path": "links",
+      "report": "security/security_integrity_envelope.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_integrity_envelope.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_integrity_envelope.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_integrity_envelope.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_report_schema_contract_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_report_schema_contract_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_report_schema_contract_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_report_schema_contract_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_report_schema_contract_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_report_schema_contract_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_report_schema_contract_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_report_schema_contract_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_report_schema_contract_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_report_schema_contract_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_retention_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_retention_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_retention_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_retention_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_retention_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_retention_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_retention_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_retention_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_retention_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_retention_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_rule_baseline_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_rule_baseline_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_rule_baseline_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_rule_baseline_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_rule_baseline_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_rule_baseline_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_rule_baseline_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_rule_baseline_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_rule_baseline_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_rule_baseline_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_sarif_permissions_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_sarif_permissions_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_sarif_permissions_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_sarif_permissions_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_sarif_permissions_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_sarif_permissions_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_sarif_permissions_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_sarif_permissions_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_sarif_permissions_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_sarif_permissions_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_scan_ordering_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_scan_ordering_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_scan_ordering_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_scan_ordering_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_scan_ordering_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_scan_ordering_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_scan_ordering_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_scan_ordering_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_scan_ordering_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_scan_ordering_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_schema_compatibility_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_schema_compatibility_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_schema_compatibility_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_schema_compatibility_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_schema_compatibility_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_schema_compatibility_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_schema_compatibility_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_schema_compatibility_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_schema_compatibility_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_schema_compatibility_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_schema_migration_tracker.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_schema_migration_tracker.json"
+      ]
+    },
+    {
+      "field_path": "legacy",
+      "report": "security/security_schema_migration_tracker.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_schema_migration_tracker.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_schema_migration_tracker.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_schema_migration_tracker.json"
+      ]
+    },
+    {
+      "field_path": "migrated",
+      "report": "security/security_schema_migration_tracker.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_schema_migration_tracker.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_schema_migration_tracker.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_schema_migration_tracker.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_schema_migration_tracker.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_schema_migration_tracker.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_schema_migration_tracker.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_schema_migration_tracker.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_schema_normalization_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_schema_normalization_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_schema_normalization_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_schema_normalization_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_schema_normalization_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_schema_normalization_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_schema_normalization_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_schema_normalization_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_schema_normalization_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_schema_normalization_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_schema_strict_readiness_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_schema_strict_readiness_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_schema_strict_readiness_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_schema_strict_readiness_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_schema_strict_readiness_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_schema_strict_readiness_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_schema_strict_readiness_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_schema_strict_readiness_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_schema_strict_readiness_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_schema_strict_readiness_gate.json"
+      ]
+    },
+    {
+      "field_path": "values",
+      "report": "security/security_slo_history.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_slo_history.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_slo_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_slo_report.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_slo_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_slo_report.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_slo_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_slo_report.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_slo_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_slo_report.json"
+      ]
+    },
+    {
+      "field_path": "entries",
+      "report": "security/security_super_extended_failure_history.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_super_extended_failure_history.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_super_extended_failure_history.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_super_extended_failure_history.json"
+      ]
+    },
+    {
+      "field_path": "updated_at_utc",
+      "report": "security/security_super_extended_failure_history.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_super_extended_failure_history.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_super_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_super_gate.json"
+      ]
+    },
+    {
+      "field_path": "results",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_super_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[0].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_toolchain_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[10].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_super_gate_manifest_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[11].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_super_gate_membership_guard_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[12].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/workflow_artifact_retention_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[13].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/semgrep_rules_self_check_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[14].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/workflow_policy_coverage_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[15].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/workflow_risky_patterns_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[16].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/workflow_deprecated_invocation_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[17].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/workflow_pin_change_approval_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[18].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/policy_schema_validation_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[19].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_report_schema_contract_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[1].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_toolchain_lock_signature_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[20].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/policy_semantic_validation_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[21].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_retention_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[22].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/environment_profile_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[23].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_schema_compatibility_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[24].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_schema_migration_tracker.json"
+      ]
+    },
+    {
+      "field_path": "results[25].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_schema_strict_readiness_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[26].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_evidence_corruption_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[27].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/audit_archive_verify.json"
+      ]
+    },
+    {
+      "field_path": "results[28].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_artifact_signature_coverage_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[29].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_unsigned_json_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[2].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_toolchain_reproducibility_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[30].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_workflow_trigger_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[31].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_critical_test_wiring_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[32].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_sarif_permissions_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[33].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_workflow_permissions_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[34].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_exception_suppression_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[35].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/helper_script_enforcement_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[36].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_dead_gate_wiring_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[37].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/hardening_todo_consistency_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[38].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/governance_markdown_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[39].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/stale_policy_review_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[3].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_scan_ordering_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[40].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/runbook_index_health_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[41].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/gate_runbook_coverage_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[42].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/threat_control_mapping_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[43].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/review_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[44].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/file_permissions_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[45].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/policy_signature_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[46].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/pip_audit_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[47].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/bandit_baseline_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[48].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/secret_scan_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[49].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/workflow_pinning_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[4].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/mypy_security_profile_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[50].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/workflow_linter_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[51].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/incident_response_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[52].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/containment_verification_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[53].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/post_incident_closure_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[54].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/org_secret_backend_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[55].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/secret_management_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[56].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/production_controls_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[57].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/runtime_api_state_schema_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[58].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/abuse_telemetry_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[59].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/temporary_waiver_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[5].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/ruff_security_profile_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[60].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/exception_waiver_reconciliation_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[61].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/exception_debt_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[62].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/provenance_revocation_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[63].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/promotion_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[64].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/report_secret_leak_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[65].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_gate_test_coverage_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[66].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/third_party_pentest_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[67].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/live_integrations_verify.json"
+      ]
+    },
+    {
+      "field_path": "results[68].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/live_rollout_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[69].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/container_provenance_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[6].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_gate_onboarding_checklist_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[70].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/container_registry_provenance_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[71].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/attestation_digest_match_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[72].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/evidence_attestation_index.json"
+      ]
+    },
+    {
+      "field_path": "results[73].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/evidence_attestation_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[74].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/provenance_signature_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[75].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/integrity_envelope_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[76].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/key_provenance_continuity_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[77].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/key_rotation_cadence_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[78].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/signature_algorithm_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[79].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_verification_summary.json"
+      ]
+    },
+    {
+      "field_path": "results[7].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/subprocess_allowlist_report.json"
+      ]
+    },
+    {
+      "field_path": "results[80].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_cross_gate_consistency_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[81].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_actionable_findings_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[82].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_event_export.json"
+      ]
+    },
+    {
+      "field_path": "results[83].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_event_schema_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[84].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/slsa_attestation_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[85].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/workflow_evidence_scope_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[86].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/conformance_security_coupling_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[87].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/deployment_freeze_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[8].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/subprocess_direct_usage_gate.json"
+      ]
+    },
+    {
+      "field_path": "results[9].status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SUPER_GATE_COMPONENT_STATUS",
+      "source_artifacts": [
+        "evidence/security/security_workflow_contract_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_super_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_super_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_super_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_super_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_super_gate_manifest_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_super_gate_manifest_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_super_gate_manifest_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_super_gate_manifest_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_super_gate_manifest_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_super_gate_manifest_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_super_gate_manifest_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_super_gate_manifest_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_super_gate_manifest_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_super_gate_manifest_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_super_gate_membership_guard_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_super_gate_membership_guard_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_super_gate_membership_guard_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_super_gate_membership_guard_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_super_gate_membership_guard_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_super_gate_membership_guard_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_super_gate_membership_guard_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_super_gate_membership_guard_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_super_gate_membership_guard_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_super_gate_membership_guard_gate.json"
+      ]
+    },
+    {
+      "field_path": "checks",
+      "report": "security/security_toolchain.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_toolchain.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_toolchain.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_toolchain.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_toolchain.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_toolchain.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_toolchain.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_toolchain.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_toolchain.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_toolchain.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_toolchain.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_toolchain.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_toolchain_lock_signature_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_toolchain_lock_signature_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_toolchain_lock_signature_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_toolchain_lock_signature_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_toolchain_lock_signature_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_toolchain_lock_signature_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_toolchain_lock_signature_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_toolchain_lock_signature_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_toolchain_lock_signature_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_toolchain_lock_signature_gate.json"
+      ]
+    },
+    {
+      "field_path": "checks",
+      "report": "security/security_toolchain_reproducibility_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_toolchain_reproducibility_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_toolchain_reproducibility_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_toolchain_reproducibility_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_toolchain_reproducibility_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_toolchain_reproducibility_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_toolchain_reproducibility_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_toolchain_reproducibility_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_toolchain_reproducibility_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_toolchain_reproducibility_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_toolchain_reproducibility_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_toolchain_reproducibility_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_trend_alert.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_trend_alert.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_trend_alert.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_trend_alert.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_trend_alert.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_trend_alert.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_trend_alert.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_trend_alert.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_trend_alert.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_trend_alert.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_trend_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_trend_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_trend_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_trend_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_trend_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_trend_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_trend_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_trend_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_trend_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_trend_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_unsigned_json_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_unsigned_json_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_unsigned_json_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_unsigned_json_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_unsigned_json_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_unsigned_json_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_unsigned_json_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_unsigned_json_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_unsigned_json_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_unsigned_json_gate.json"
+      ]
+    },
+    {
+      "field_path": "checks",
+      "report": "security/security_verification_summary.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_verification_summary.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_verification_summary.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_verification_summary.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_verification_summary.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_verification_summary.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_verification_summary.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_verification_summary.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_verification_summary.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_verification_summary.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_verification_summary.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_verification_summary.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_workflow_contract_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_workflow_contract_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_workflow_contract_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_workflow_contract_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_workflow_contract_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_workflow_contract_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_workflow_contract_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_workflow_contract_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_workflow_contract_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_workflow_contract_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_workflow_permissions_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_workflow_permissions_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_workflow_permissions_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_workflow_permissions_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_workflow_permissions_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_workflow_permissions_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_workflow_permissions_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_workflow_permissions_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_workflow_permissions_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_workflow_permissions_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/security_workflow_trigger_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_workflow_trigger_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/security_workflow_trigger_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_workflow_trigger_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/security_workflow_trigger_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_workflow_trigger_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/security_workflow_trigger_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_workflow_trigger_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/security_workflow_trigger_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/security_workflow_trigger_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/semgrep_rules_self_check_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/semgrep_rules_self_check_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/semgrep_rules_self_check_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/semgrep_rules_self_check_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/semgrep_rules_self_check_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/semgrep_rules_self_check_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/semgrep_rules_self_check_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/semgrep_rules_self_check_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/semgrep_rules_self_check_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/semgrep_rules_self_check_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/signature_algorithm_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/signature_algorithm_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/signature_algorithm_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/signature_algorithm_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/signature_algorithm_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/signature_algorithm_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/signature_algorithm_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/signature_algorithm_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/signature_algorithm_policy_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/signature_algorithm_policy_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/slsa_attestation.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/slsa_attestation.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/slsa_attestation.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/slsa_attestation.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/slsa_attestation.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/slsa_attestation.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/slsa_attestation.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/slsa_attestation.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/slsa_attestation.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/slsa_attestation.json"
+      ]
+    },
+    {
+      "field_path": "_type",
+      "report": "security/slsa_provenance_v1.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/slsa_provenance_v1.json"
+      ]
+    },
+    {
+      "field_path": "predicate",
+      "report": "security/slsa_provenance_v1.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/slsa_provenance_v1.json"
+      ]
+    },
+    {
+      "field_path": "predicateType",
+      "report": "security/slsa_provenance_v1.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/slsa_provenance_v1.json"
+      ]
+    },
+    {
+      "field_path": "subject",
+      "report": "security/slsa_provenance_v1.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/slsa_provenance_v1.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/stale_policy_review_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/stale_policy_review_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/stale_policy_review_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/stale_policy_review_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/stale_policy_review_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/stale_policy_review_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/stale_policy_review_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/stale_policy_review_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/stale_policy_review_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/stale_policy_review_gate.json"
+      ]
+    },
+    {
+      "field_path": "allowed_prefixes",
+      "report": "security/subprocess_allowlist_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/subprocess_allowlist_report.json"
+      ]
+    },
+    {
+      "field_path": "callsites",
+      "report": "security/subprocess_allowlist_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/subprocess_allowlist_report.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/subprocess_allowlist_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/subprocess_allowlist_report.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/subprocess_allowlist_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/subprocess_allowlist_report.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/subprocess_allowlist_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/subprocess_allowlist_report.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/subprocess_allowlist_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/subprocess_allowlist_report.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/subprocess_allowlist_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/subprocess_allowlist_report.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/subprocess_direct_usage_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/subprocess_direct_usage_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/subprocess_direct_usage_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/subprocess_direct_usage_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/subprocess_direct_usage_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/subprocess_direct_usage_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/subprocess_direct_usage_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/subprocess_direct_usage_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/subprocess_direct_usage_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/subprocess_direct_usage_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/temporary_waiver_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/temporary_waiver_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/temporary_waiver_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/temporary_waiver_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/temporary_waiver_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/temporary_waiver_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/temporary_waiver_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/temporary_waiver_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/temporary_waiver_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/temporary_waiver_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/third_party_pentest.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/third_party_pentest.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/third_party_pentest.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/third_party_pentest.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/third_party_pentest.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/third_party_pentest.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/third_party_pentest.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/third_party_pentest.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/third_party_pentest.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/third_party_pentest.json"
+      ]
+    },
+    {
+      "field_path": "items",
+      "report": "security/third_party_pentest_backlog.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/third_party_pentest_backlog.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/third_party_pentest_backlog.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/third_party_pentest_backlog.json"
+      ]
+    },
+    {
+      "field_path": "completed_utc",
+      "report": "security/third_party_pentest_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/third_party_pentest_report.json"
+      ]
+    },
+    {
+      "field_path": "evidence_source",
+      "report": "security/third_party_pentest_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/third_party_pentest_report.json"
+      ]
+    },
+    {
+      "field_path": "findings_summary",
+      "report": "security/third_party_pentest_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/third_party_pentest_report.json"
+      ]
+    },
+    {
+      "field_path": "provider",
+      "report": "security/third_party_pentest_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/third_party_pentest_report.json"
+      ]
+    },
+    {
+      "field_path": "report_sha256",
+      "report": "security/third_party_pentest_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/third_party_pentest_report.json"
+      ]
+    },
+    {
+      "field_path": "report_uri",
+      "report": "security/third_party_pentest_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/third_party_pentest_report.json"
+      ]
+    },
+    {
+      "field_path": "scope",
+      "report": "security/third_party_pentest_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/third_party_pentest_report.json"
+      ]
+    },
+    {
+      "field_path": "signed_by",
+      "report": "security/third_party_pentest_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/third_party_pentest_report.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/third_party_pentest_report.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/third_party_pentest_report.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/threat_control_mapping_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/threat_control_mapping_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/threat_control_mapping_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/threat_control_mapping_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/threat_control_mapping_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/threat_control_mapping_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/threat_control_mapping_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/threat_control_mapping_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/threat_control_mapping_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/threat_control_mapping_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/trusted_execution_context_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/trusted_execution_context_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/trusted_execution_context_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/trusted_execution_context_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/trusted_execution_context_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/trusted_execution_context_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/trusted_execution_context_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/trusted_execution_context_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/trusted_execution_context_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/trusted_execution_context_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/untrusted_pr_secret_isolation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/untrusted_pr_secret_isolation_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/untrusted_pr_secret_isolation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/untrusted_pr_secret_isolation_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/untrusted_pr_secret_isolation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/untrusted_pr_secret_isolation_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/untrusted_pr_secret_isolation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/untrusted_pr_secret_isolation_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/untrusted_pr_secret_isolation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/untrusted_pr_secret_isolation_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/workflow_artifact_retention_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_artifact_retention_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/workflow_artifact_retention_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_artifact_retention_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/workflow_artifact_retention_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_artifact_retention_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/workflow_artifact_retention_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_artifact_retention_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/workflow_artifact_retention_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_artifact_retention_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/workflow_deprecated_invocation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_deprecated_invocation_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/workflow_deprecated_invocation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_deprecated_invocation_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/workflow_deprecated_invocation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_deprecated_invocation_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/workflow_deprecated_invocation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_deprecated_invocation_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/workflow_deprecated_invocation_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_deprecated_invocation_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/workflow_env_injection_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_env_injection_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/workflow_env_injection_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_env_injection_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/workflow_env_injection_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_env_injection_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/workflow_env_injection_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_env_injection_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/workflow_env_injection_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_env_injection_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/workflow_evidence_scope_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_evidence_scope_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/workflow_evidence_scope_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_evidence_scope_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/workflow_evidence_scope_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_evidence_scope_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/workflow_evidence_scope_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_evidence_scope_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/workflow_evidence_scope_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_evidence_scope_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/workflow_linter_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_linter_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/workflow_linter_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_linter_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/workflow_linter_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_linter_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/workflow_linter_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_linter_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/workflow_linter_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_linter_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/workflow_pin_change_approval_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_pin_change_approval_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/workflow_pin_change_approval_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_pin_change_approval_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/workflow_pin_change_approval_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_pin_change_approval_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/workflow_pin_change_approval_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_pin_change_approval_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/workflow_pin_change_approval_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_pin_change_approval_gate.json"
+      ]
+    },
+    {
+      "field_path": "finding_count",
+      "report": "security/workflow_pinning.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_pinning.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/workflow_pinning.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_pinning.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/workflow_pinning.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_pinning.json"
+      ]
+    },
+    {
+      "field_path": "policy_finding_count",
+      "report": "security/workflow_pinning.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_pinning.json"
+      ]
+    },
+    {
+      "field_path": "policy_findings",
+      "report": "security/workflow_pinning.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_pinning.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/workflow_pinning.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_pinning.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/workflow_pinning.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_pinning.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/workflow_pinning.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_pinning.json"
+      ]
+    },
+    {
+      "field_path": "suppressed_findings",
+      "report": "security/workflow_pinning.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_pinning.json"
+      ]
+    },
+    {
+      "field_path": "workflow_count",
+      "report": "security/workflow_pinning.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_pinning.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/workflow_policy_coverage_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_policy_coverage_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/workflow_policy_coverage_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_policy_coverage_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/workflow_policy_coverage_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_policy_coverage_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/workflow_policy_coverage_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_policy_coverage_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/workflow_policy_coverage_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_policy_coverage_gate.json"
+      ]
+    },
+    {
+      "field_path": "findings",
+      "report": "security/workflow_risky_patterns_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_risky_patterns_gate.json"
+      ]
+    },
+    {
+      "field_path": "metadata",
+      "report": "security/workflow_risky_patterns_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_risky_patterns_gate.json"
+      ]
+    },
+    {
+      "field_path": "schema_version",
+      "report": "security/workflow_risky_patterns_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_risky_patterns_gate.json"
+      ]
+    },
+    {
+      "field_path": "status",
+      "report": "security/workflow_risky_patterns_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_risky_patterns_gate.json"
+      ]
+    },
+    {
+      "field_path": "summary",
+      "report": "security/workflow_risky_patterns_gate.json",
+      "rule_id": "LINEAGE_SELF_FIELD",
+      "source_artifacts": [
+        "security/workflow_risky_patterns_gate.json"
+      ]
+    }
+  ],
+  "metadata": {
+    "control_family_tags": [
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [],
+    "failure_classification": "control_failure",
+    "failure_classification_set": [],
+    "failure_domains": {
+      "security_control_failures": [],
+      "transient_infra_failures": []
+    },
+    "gate": "security_lineage_map_artifact",
+    "generated_at_utc": "2026-03-05T16:50:50.981682+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "lineage_mappings": 790,
+    "reports_scanned": 135
+  }
+}

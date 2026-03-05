@@ -16,6 +16,7 @@ write_json_report = importlib.import_module("tooling.security.report_io").write_
 CONTRACT = ROOT / "governance" / "security" / "security_report_schema_contract.json"
 REQUIRED_FIELDS = {"status", "findings", "summary", "metadata", "schema_version"}
 ALLOWED_STATUS_VALUES = {"PASS", "FAIL", "WARN"}
+MAX_SCHEMA_VERSION = 1000
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -44,7 +45,7 @@ def main(argv: list[str] | None = None) -> int:
             findings.append("missing_required_status_values")
 
     schema_version = payload.get("schema_version")
-    if not isinstance(schema_version, int) or schema_version < 1:
+    if not isinstance(schema_version, int) or schema_version < 1 or schema_version > MAX_SCHEMA_VERSION:
         findings.append("invalid_schema_version")
 
     report = {
@@ -53,6 +54,7 @@ def main(argv: list[str] | None = None) -> int:
         "summary": {
             "contract_path": str(CONTRACT.relative_to(ROOT)).replace("\\", "/"),
             "required_fields": sorted(REQUIRED_FIELDS),
+            "max_schema_version": MAX_SCHEMA_VERSION,
         },
         "metadata": {"gate": "security_report_schema_contract_gate"},
     }

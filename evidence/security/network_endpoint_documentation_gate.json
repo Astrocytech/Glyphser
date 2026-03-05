@@ -1,0 +1,67 @@
+{
+  "findings": [],
+  "metadata": {
+    "control_family_tags": [
+      "governance"
+    ],
+    "error_code_version": "v1",
+    "error_codes": [],
+    "failure_classification": "control_failure",
+    "failure_classification_set": [],
+    "failure_domains": {
+      "security_control_failures": [],
+      "transient_infra_failures": []
+    },
+    "gate": "network_endpoint_documentation_gate",
+    "generated_at_utc": "2026-03-05T15:58:42.817965+00:00",
+    "lang": "en_CA.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "observed_by_source": {
+    "governance/security/advanced_hardening_policy.json": [
+      "api.github.com",
+      "files.pythonhosted.org",
+      "github.com",
+      "objects.githubusercontent.com",
+      "pypi.org"
+    ],
+    "governance/security/package_metadata_anomaly_policy.json": [
+      "mailinator.com",
+      "tempmail.com"
+    ],
+    "governance/security/toolchain_source_failover_policy.json": [
+      "files.pythonhosted.org",
+      "pypi.org"
+    ],
+    "tooling/security/apply_branch_protection.py": [
+      "api.github.com"
+    ],
+    "tooling/security/bandit_json_to_sarif.py": [
+      "bandit.readthedocs.io",
+      "json.schemastore.org"
+    ],
+    "tooling/security/security_artifacts.py": [
+      "glyphser.dev",
+      "in-toto.io",
+      "slsa.dev"
+    ],
+    "tooling/security/slsa_attestation_gate.py": [
+      "in-toto.io",
+      "slsa.dev"
+    ],
+    "tooling/security/third_party_action_sha_mapping_gate.py": [
+      "github.com"
+    ],
+    "tooling/security/verify_branch_protection_live.py": [
+      "api.github.com"
+    ]
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "documented_endpoint_count": 12,
+    "observed_endpoint_count": 12,
+    "sources_with_endpoints": 9
+  }
+}

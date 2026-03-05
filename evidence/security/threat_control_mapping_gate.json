@@ -1,0 +1,17 @@
+{
+  "findings": [],
+  "metadata": {
+    "gate": "threat_control_mapping_gate",
+    "generated_at_utc": "2026-03-05T00:57:16.440801+00:00",
+    "lang": "C.UTF-8",
+    "lc_all": "C.UTF-8",
+    "tz": ""
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "summary": {
+    "controls": 4,
+    "critical_gates": 4,
+    "mapped_gates": 13
+  }
+}

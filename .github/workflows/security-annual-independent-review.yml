@@ -1,0 +1,48 @@
+name: security-annual-independent-review
+
+on:
+  schedule:
+    - cron: "0 6 15 1 *"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  annual-independent-review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      GLYPHSER_ENV: "ci"
+      GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY || 'glyphser-provenance-hmac-fallback-v1' }}
+      GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/security-annual-independent-review
+      GLYPHSER_INDEPENDENT_REVIEWER: ${{ vars.GLYPHSER_INDEPENDENT_REVIEWER || 'independent-reviewer@glyphser.local' }}
+      GLYPHSER_INDEPENDENT_REVIEW_APPROVER: ${{ vars.GLYPHSER_INDEPENDENT_REVIEW_APPROVER || 'security-approver@glyphser.local' }}
+      TZ: "UTC"
+      LC_ALL: "C.UTF-8"
+      LANG: "C.UTF-8"
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38
+        with:
+          python-version: "3.12"
+      - name: Install package
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev]
+      - name: Initialize immutable evidence run directory
+        run: python tooling/security/evidence_run_dir_guard.py --run-id "${{ github.run_id }}-security-annual-independent-review"
+      - name: Generate annual independent review attestation
+        run: python tooling/security/annual_independent_review_attestation.py --strict-key
+      - name: Upload annual independent review artifacts
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: security-annual-independent-review
+          retention-days: 365
+          path: |
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/annual_independent_review_attestation.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/annual_independent_review_attestation.json.sig
+            governance/security/ANNUAL_INDEPENDENT_REVIEW_CHECKLIST.md
+

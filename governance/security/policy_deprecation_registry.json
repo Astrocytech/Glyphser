@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "deprecations": [
+    {
+      "policy": "governance/security/stage_s_hardening_policy.json",
+      "owner": "security-governance",
+      "sunset_date_utc": "2027-12-31T23:59:59+00:00",
+      "replacement_controls": [
+        "governance/security/advanced_hardening_policy.json",
+        "tooling/security/security_super_gate.py"
+      ],
+      "migration_evidence": []
+    }
+  ]
+}

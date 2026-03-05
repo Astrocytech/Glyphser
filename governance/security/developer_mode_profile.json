@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "profile_name": "secure_developer_mode",
+  "required_strict_env_vars": [
+    "GLYPHSER_STRICT_PREREQS",
+    "GLYPHSER_STRICT_KEY"
+  ],
+  "allowed_mock_attestations": [
+    "mock_policy_signature",
+    "mock_provenance_signature",
+    "mock_evidence_attestation_index"
+  ],
+  "mock_attestations_env": "GLYPHSER_MOCK_ATTESTATIONS"
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "default_max_runtime_sec": 120,
+  "per_gate_max_runtime_sec": {
+    "tooling/security/semgrep_rules_self_check_gate.py": 180,
+    "tooling/security/pip_audit_gate.py": 240,
+    "tooling/security/security_super_gate.py": 300
+  },
+  "required_budget_gates": [
+    "tooling/security/semgrep_rules_self_check_gate.py",
+    "tooling/security/pip_audit_gate.py",
+    "tooling/security/security_super_gate.py"
+  ],
+  "trend_spike_multiplier": 2.5,
+  "min_spike_seconds": 10,
+  "history_window": 30
+}

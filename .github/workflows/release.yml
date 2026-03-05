@@ -15,6 +15,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      merkle_root: ${{ steps.merkle_build_root.outputs.root }}
     permissions:
       contents: read
     env:
@@ -25,6 +27,10 @@ jobs:
       TZ: "UTC"
       LC_ALL: "C.UTF-8"
       LANG: "C.UTF-8"
+      GLYPHSER_SECURITY_OWNER: ${{ vars.GLYPHSER_SECURITY_OWNER || 'security-owner@glyphser.local' }}
+      GLYPHSER_RELEASE_OWNER: ${{ vars.GLYPHSER_RELEASE_OWNER || 'release-owner@glyphser.local' }}
+      GLYPHSER_RELEASE_HANDSHAKE_SECURITY_ACK: ${{ vars.GLYPHSER_RELEASE_HANDSHAKE_SECURITY_ACK || 'acknowledged' }}
+      GLYPHSER_RELEASE_HANDSHAKE_RELEASE_ACK: ${{ vars.GLYPHSER_RELEASE_HANDSHAKE_RELEASE_ACK || 'acknowledged' }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38
@@ -50,10 +56,22 @@ jobs:
         run: python tooling/security/policy_signature_generate.py --strict-key
       - name: Policy signature gate
         run: python tooling/security/policy_signature_gate.py --strict-key
+      - name: Python version policy gate
+        run: python tooling/security/python_version_policy_gate.py
       - name: Verify SLSA attestation
         run: python tooling/security/slsa_attestation_gate.py
       - name: Secret management gate
         run: python tooling/security/secret_management_gate.py
+      - name: Secret origin inventory gate
+        run: python tooling/security/secret_origin_inventory_gate.py
+      - name: Secret rotation metadata gate
+        run: python tooling/security/secret_rotation_metadata_gate.py
+      - name: Stale secret usage wiring gate
+        run: python tooling/security/stale_secret_usage_wiring_gate.py
+      - name: Break-glass secret usage gate
+        run: python tooling/security/break_glass_secret_usage_gate.py
+      - name: Offline network call guard gate
+        run: python tooling/security/offline_network_call_guard_gate.py
       - name: Org secret backend gate
         run: python tooling/security/org_secret_backend_gate.py
       - name: Production controls gate
@@ -74,18 +92,36 @@ jobs:
         run: python tooling/security/container_registry_provenance_gate.py
       - name: Attestation digest match gate
         run: python tooling/security/attestation_digest_match_gate.py
+      - name: Deploy artifact drift gate
+        run: python tooling/security/deploy_artifact_drift_gate.py
       - name: Governance markdown gate
         run: python tooling/security/governance_markdown_gate.py
+      - name: Required control condition bypass gate
+        run: python tooling/security/required_control_condition_bypass_gate.py
+      - name: Workflow change-management gate
+        run: python tooling/security/workflow_change_management_gate.py
       - name: Stale policy review gate
         run: python tooling/security/stale_policy_review_gate.py
+      - name: Policy deprecation workflow gate
+        run: python tooling/security/policy_deprecation_gate.py
+      - name: Ownership continuity gate
+        run: python tooling/security/ownership_continuity_gate.py
       - name: Threat-control mapping gate
         run: python tooling/security/threat_control_mapping_gate.py
       - name: Review policy gate
         run: python tooling/security/review_policy_gate.py
+      - name: Incident regression catalog gate
+        run: python tooling/security/incident_regression_catalog_gate.py
+      - name: High-severity incident regression gate
+        run: python tooling/security/high_severity_incident_regression_gate.py
+      - name: CI failure classifier
+        run: python tooling/security/ci_failure_classifier.py
       - name: File permissions gate
         run: python tooling/security/file_permissions_gate.py
       - name: Audit archive verify gate
         run: python tooling/security/audit_archive_verify.py
+      - name: Artifact path case-conflict gate
+        run: python tooling/security/artifact_path_case_conflict_gate.py
       - name: Abuse telemetry snapshot + gate
         run: |
           python tooling/security/abuse_telemetry_snapshot.py
@@ -98,34 +134,90 @@ jobs:
         run: python tooling/security/exception_waiver_reconciliation_gate.py
       - name: Provenance revocation gate
         run: python tooling/security/provenance_revocation_gate.py
+      - name: Canary promotion guard
+        run: python tooling/security/canary_promotion_guard.py
       - name: Promotion policy gate
         run: python tooling/security/promotion_policy_gate.py
+      - name: Release handshake artifact
+        run: python tooling/security/release_handshake_artifact.py
+      - name: Security state-transition invariants gate
+        run: python tooling/security/security_state_transition_invariants_gate.py
       - name: Evidence attestation index + gate
         run: |
           python tooling/security/evidence_attestation_index.py --strict-key
           python tooling/security/evidence_attestation_gate.py --strict-key
       - name: Workflow evidence scope gate
         run: python tooling/security/workflow_evidence_scope_gate.py
+      - name: External action owner allowlist gate
+        run: python tooling/security/external_action_owner_allowlist_gate.py
+      - name: Third-party action SHA mapping gate
+        run: python tooling/security/third_party_action_sha_mapping_gate.py
       - name: Conformance-security coupling gate
         run: python tooling/security/conformance_security_coupling_gate.py
       - name: Security super gate
         run: python tooling/security/security_super_gate.py --strict-key --strict-prereqs
+      - name: Security gate runtime budget gate
+        run: python tooling/security/security_gate_runtime_budget_gate.py
+      - name: Deploy decision record
+        env:
+          GLYPHSER_DEPLOY_APPROVERS: "${{ github.actor }}"
+        run: python tooling/security/deploy_decision_record.py
+      - name: Rolling Merkle checkpoints
+        env:
+          GLYPHSER_MERKLE_STAGE: "release-build"
+        run: python tooling/security/rolling_merkle_checkpoints.py
+      - name: Tamper cost model report
+        run: python tooling/security/tamper_cost_model_report.py
+      - name: Immutable upload artifact index
+        run: python tooling/security/upload_artifact_immutable_index.py
+      - name: Export build-stage Merkle root
+        id: merkle_build_root
+        run: |
+          root="$(python - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path("${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/rolling_merkle_checkpoints.json")
+          payload = json.loads(path.read_text(encoding="utf-8"))
+          print(str(((payload.get("summary") or {}) if isinstance(payload.get("summary"), dict) else {}).get("final_root", "")).strip())
+          PY
+          )"
+          if [ -z "$root" ]; then
+            echo "missing build-stage Merkle root"
+            exit 1
+          fi
+          echo "root=$root" >> "$GITHUB_OUTPUT"
       - name: Security event export
         run: python tooling/security/security_event_export.py
       - name: Security event schema gate
         run: python tooling/security/security_event_schema_gate.py
+      - name: Telemetry completeness SLI gate
+        run: python tooling/security/telemetry_completeness_sli_gate.py
+      - name: Telemetry timeliness SLI gate
+        run: python tooling/security/telemetry_timeliness_sli_gate.py
+      - name: Telemetry integrity SLI gate
+        run: python tooling/security/telemetry_integrity_sli_gate.py
       - name: Security SLO report
         run: python tooling/security/security_slo_report.py
       - name: Security trend gate
         run: python tooling/security/security_trend_gate.py
+      - name: Security pipeline reliability dashboard
+        run: python tooling/security/security_pipeline_reliability_dashboard.py
       - name: Security dashboard export
         run: python tooling/security/security_dashboard_export.py
+      - name: Security posture executive summary export
+        run: python tooling/security/security_posture_executive_summary.py
+      - name: Formal security review artifact
+        run: python tooling/security/formal_security_review_artifact.py --strict-key
       - name: Security schema normalization gate
         run: python tooling/security/security_schema_normalization_gate.py
       - name: External attestation gate
         run: python tooling/security/cosign_attestation_gate.py
       - name: Release rollback provenance gate
         run: python tooling/security/release_rollback_provenance_gate.py
+      - name: Rollback handshake artifact
+        run: python tooling/security/rollback_handshake_artifact.py
+      - name: Post-release verification checklist artifact
+        run: python tooling/security/post_release_verification_checklist_artifact.py
       - name: Upload artifacts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -142,15 +234,30 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_signature.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/slsa_attestation.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_signature.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/python_version_policy_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/org_secret_backend.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/secret_management.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/secret_origin_inventory_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/secret_rotation_metadata_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/stale_secret_usage_wiring_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/break_glass_secret_usage_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/offline_network_call_guard_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/production_controls.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/governance_markdown_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/required_control_condition_bypass_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_change_management_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/stale_policy_review_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_deprecation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/ownership_continuity_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/threat_control_mapping_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/review_policy_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/incident_regression_catalog_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/high_severity_incident_regression_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/ci_failure_classifier.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/ci_failure_classifier_history.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/file_permissions_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/audit_archive_verify.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/artifact_path_case_conflict_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/key_management.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/report_secret_leak.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/third_party_pentest.json
@@ -162,25 +269,60 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/exception_waiver_reconciliation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/exception_waiver_reconciliation_gate.json.sig
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_revocation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/canary_promotion_guard.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/promotion_policy_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/release_handshake_artifact.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/release_handshake_artifact.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/release_handshake_artifact_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_state_transition_invariants_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/degraded_mode_evidence.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/container_provenance.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/container_registry_provenance_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/attestation_digest_match_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/deploy_artifact_drift_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json.sig
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_evidence_scope_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/external_action_owner_allowlist_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/third_party_action_sha_mapping_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/conformance_security_coupling.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_super_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_gate_runtime_budget_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_gate_runtime_history.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/deploy_decision_record.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/deploy_decision_record.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/deploy_decision_record_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/rolling_merkle_checkpoints.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/rolling_merkle_checkpoints.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/rolling_merkle_checkpoints_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/tamper_cost_model_report.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/upload_artifact_immutable_index.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/upload_artifact_immutable_index.json.sig
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_events.jsonl
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_event_export.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_event_schema_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/telemetry_completeness_sli_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/telemetry_timeliness_sli_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/telemetry_integrity_sli_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/telemetry_integrity_trend_alert.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_slo_report.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_trend_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_pipeline_reliability_dashboard.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_pipeline_reliability_history.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_dashboard.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_posture_executive_summary.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/formal_security_review_artifact.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/formal_security_review_artifact.json.sig
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_schema_normalization_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/cosign_attestation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/release_rollback_provenance_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/rollback_handshake_artifact.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/rollback_handshake_artifact.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/rollback_handshake_artifact_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/post_release_verification_checklist_artifact.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/post_release_verification_checklist_artifact.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/post_release_verification_checklist_artifact_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_chain_of_custody.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_chain_of_custody.json.sig
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_chain_of_custody_build.json
@@ -199,6 +341,7 @@ jobs:
       TZ: "UTC"
       LC_ALL: "C.UTF-8"
       LANG: "C.UTF-8"
+      GLYPHSER_SECURITY_OWNER: ${{ vars.GLYPHSER_SECURITY_OWNER || 'security-owner@glyphser.local' }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38
@@ -214,40 +357,75 @@ jobs:
           python tooling/security/slsa_attestation_gate.py
           python tooling/security/policy_signature_generate.py --strict-key
           python tooling/security/policy_signature_gate.py --strict-key
+          python tooling/security/python_version_policy_gate.py
           python tooling/security/org_secret_backend_gate.py
           python tooling/security/secret_management_gate.py
+          python tooling/security/secret_origin_inventory_gate.py
+          python tooling/security/secret_rotation_metadata_gate.py
+          python tooling/security/stale_secret_usage_wiring_gate.py
+          python tooling/security/break_glass_secret_usage_gate.py
+          python tooling/security/offline_network_call_guard_gate.py
           python tooling/security/production_controls_gate.py
           python tooling/security/third_party_pentest_gate.py --strict-key
           python tooling/security/post_incident_closure_gate.py
           python tooling/security/governance_markdown_gate.py
+          python tooling/security/required_control_condition_bypass_gate.py
+          python tooling/security/workflow_change_management_gate.py
           python tooling/security/stale_policy_review_gate.py
+          python tooling/security/policy_deprecation_gate.py
+          python tooling/security/ownership_continuity_gate.py
           python tooling/security/threat_control_mapping_gate.py
           python tooling/security/review_policy_gate.py
+          python tooling/security/incident_regression_catalog_gate.py
+          python tooling/security/high_severity_incident_regression_gate.py
+          python tooling/security/ci_failure_classifier.py
           python tooling/security/file_permissions_gate.py
           python tooling/security/audit_archive_verify.py
+          python tooling/security/artifact_path_case_conflict_gate.py
           python tooling/security/live_rollout_gate.py --profile release
           GLYPHSER_CONTAINER_PUBLISHING_ENABLED=true \
           python tooling/security/container_provenance_gate.py
           GLYPHSER_CONTAINER_PUBLISHING_ENABLED=true \
           python tooling/security/container_registry_provenance_gate.py
           python tooling/security/attestation_digest_match_gate.py
+          python tooling/security/deploy_artifact_drift_gate.py
           python tooling/security/abuse_telemetry_snapshot.py
           python tooling/security/abuse_telemetry_gate.py
           python tooling/security/temporary_waiver_gate.py
           python tooling/security/emergency_lockdown_gate.py
           python tooling/security/exception_waiver_reconciliation_gate.py
           python tooling/security/provenance_revocation_gate.py
+          python tooling/security/canary_promotion_guard.py
           python tooling/security/promotion_policy_gate.py
+          python tooling/security/security_state_transition_invariants_gate.py
           python tooling/security/evidence_attestation_index.py --strict-key
           python tooling/security/evidence_attestation_gate.py --strict-key
           python tooling/security/workflow_evidence_scope_gate.py
+          python tooling/security/external_action_owner_allowlist_gate.py
+          python tooling/security/third_party_action_sha_mapping_gate.py
           python tooling/security/conformance_security_coupling_gate.py
           python tooling/security/security_super_gate.py --strict-key --strict-prereqs
+          python tooling/security/security_gate_runtime_budget_gate.py
+          GLYPHSER_DEPLOY_APPROVERS="${GITHUB_ACTOR}" \
+          python tooling/security/deploy_decision_record.py
+          GLYPHSER_MERKLE_STAGE="release-verify" \
+          GLYPHSER_MERKLE_PREVIOUS_ROOT="${{ needs.build.outputs.merkle_root }}" \
+          python tooling/security/rolling_merkle_checkpoints.py
+          GLYPHSER_EXPECTED_PREVIOUS_MERKLE_ROOT="${{ needs.build.outputs.merkle_root }}" \
+          python tooling/security/merkle_checkpoint_continuity_gate.py
+          python tooling/security/tamper_cost_model_report.py
+          python tooling/security/upload_artifact_immutable_index.py
           python tooling/security/security_event_export.py
           python tooling/security/security_event_schema_gate.py
+          python tooling/security/telemetry_completeness_sli_gate.py
+          python tooling/security/telemetry_timeliness_sli_gate.py
+          python tooling/security/telemetry_integrity_sli_gate.py
           python tooling/security/security_slo_report.py
           python tooling/security/security_trend_gate.py
+          python tooling/security/security_pipeline_reliability_dashboard.py
           python tooling/security/security_dashboard_export.py
+          python tooling/security/security_posture_executive_summary.py
+          python tooling/security/formal_security_review_artifact.py --strict-key
           python tooling/security/security_schema_normalization_gate.py
           python tooling/security/cosign_attestation_gate.py
           python tooling/security/release_rollback_provenance_gate.py

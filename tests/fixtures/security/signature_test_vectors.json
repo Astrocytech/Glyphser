@@ -1,0 +1,25 @@
+{
+  "vectors": [
+    {
+      "id": "hmac-sign-bytes-v1",
+      "adapter": "hmac",
+      "key": "unit-test-key-1",
+      "payload_utf8": "glyphser-signing-vector-1",
+      "expected_signature": "cbf7d226b0cd28263c267365722f0958546c65abc64e071b9aaf0f5a2335a5d3"
+    },
+    {
+      "id": "hmac-sign-file-v1",
+      "adapter": "hmac",
+      "key": "unit-test-key-2",
+      "payload_utf8": "{\"a\":1,\"b\":\"two\"}\n",
+      "expected_signature": "d7edbae137674def21ee245f60f015485127a64fda07bc7e35a2aeb42586db77"
+    },
+    {
+      "id": "kms-adapter-sign-v1",
+      "adapter": "kms",
+      "kms_key": "unit-kms-key",
+      "payload_utf8": "kms-path-vector",
+      "expected_signature": "e1ca42853e45b19e001f69a11fe1fa2a088376f276336889b9c707f2787871b0"
+    }
+  ]
+}
