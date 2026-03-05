@@ -138,6 +138,7 @@ def main(argv: list[str] | None = None) -> int:
         [sys.executable, "tooling/security/threat_control_mapping_gate.py"],
         [sys.executable, "tooling/security/review_policy_gate.py"],
         [sys.executable, "tooling/security/file_permissions_gate.py"],
+        [sys.executable, "tooling/security/fallback_secret_usage_gate.py"],
         (
             [sys.executable, "tooling/security/policy_signature_gate.py", "--strict-key"]
             if args.strict_key

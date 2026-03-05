@@ -9,6 +9,7 @@
     "governance/security/container_provenance_policy.json",
     "governance/security/environment_profile_policy.json",
     "governance/security/emergency_lockdown_policy.json",
+    "governance/security/fallback_secret_usage_policy.json",
     "governance/security/incident_response_policy.json",
     "governance/security/independent_verifier_profile.json",
     "governance/security/key_management_policy.json",

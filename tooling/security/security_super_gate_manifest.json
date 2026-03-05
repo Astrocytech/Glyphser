@@ -45,6 +45,7 @@
     "tooling/security/threat_control_mapping_gate.py",
     "tooling/security/review_policy_gate.py",
     "tooling/security/file_permissions_gate.py",
+    "tooling/security/fallback_secret_usage_gate.py",
     "tooling/security/policy_signature_gate.py",
     "tooling/security/pip_audit_gate.py",
     "tooling/security/bandit_baseline_gate.py",

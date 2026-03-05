@@ -112,6 +112,8 @@ jobs:
         run: python tooling/security/threat_control_mapping_gate.py
       - name: File permissions gate
         run: python tooling/security/file_permissions_gate.py
+      - name: Fallback secret usage gate
+        run: python tooling/security/fallback_secret_usage_gate.py
       - name: Temporary waiver gate
         run: python tooling/security/temporary_waiver_gate.py
       - name: Provenance revocation gate
@@ -189,6 +191,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/threat_control_mapping_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/review_policy_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/file_permissions_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/fallback_secret_usage_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/key_management.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/report_secret_leak.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/third_party_pentest.json
