@@ -690,7 +690,9 @@ class RuntimeApiService:
                 "operation": operation,
                 "job_id": job_id,
                 "scope": scope,
-                "role_token": token,
+                # Never persist raw auth tokens in audit artifacts.
+                "role_token_hash": _sha256_text(token),
+                "role_token_kind": "role" if token.startswith("role:") else "token",
                 "replay_verdict": replay_verdict,
             },
         )

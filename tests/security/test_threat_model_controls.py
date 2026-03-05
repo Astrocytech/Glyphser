@@ -53,6 +53,10 @@ def test_threat_model_api_actions_emit_audit_events(tmp_path: Path):
     assert verify_chain(audit_path)["status"] == "PASS"
     lines = audit_path.read_text(encoding="utf-8").splitlines()
     assert len(lines) >= 3
+    first = json.loads(lines[0]).get("event", {})
+    assert isinstance(first, dict)
+    assert "role_token" not in first
+    assert isinstance(first.get("role_token_hash", ""), str) and first.get("role_token_hash")
 
 
 def test_threat_model_audit_chain_fails_closed_on_partial_append(tmp_path: Path):
