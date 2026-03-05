@@ -58,6 +58,7 @@
     "tooling/security/secret_management_gate.py",
     "tooling/security/production_controls_gate.py",
     "tooling/security/runtime_api_state_schema_gate.py",
+    "tooling/security/runtime_api_scope_matrix_gate.py",
     "tooling/security/abuse_telemetry_gate.py",
     "tooling/security/temporary_waiver_gate.py",
     "tooling/security/exception_waiver_reconciliation_gate.py",

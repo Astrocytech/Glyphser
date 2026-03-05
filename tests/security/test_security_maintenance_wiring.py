@@ -45,6 +45,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/container_provenance_gate.py" in wf
     assert "python tooling/security/abuse_telemetry_snapshot.py" in wf
     assert "python tooling/security/runtime_api_state_schema_gate.py" in wf
+    assert "python tooling/security/runtime_api_scope_matrix_gate.py" in wf
     assert "python tooling/security/abuse_telemetry_gate.py" in wf
     assert "python tooling/security/evidence_attestation_index.py --strict-key" in wf
     assert "python tooling/security/evidence_attestation_gate.py --strict-key" in wf
@@ -85,6 +86,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "security_exception_suppression_gate.json" in wf
     assert "security_dead_gate_wiring_gate.json" in wf
     assert "runtime_api_state_schema_gate.json" in wf
+    assert "runtime_api_scope_matrix_gate.json" in wf
     assert "containment_verification_gate.json" in wf
     assert "post_incident_closure_gate.json" in wf
     assert "tabletop_replay.json" in wf

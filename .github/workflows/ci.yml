@@ -306,6 +306,8 @@ jobs:
         run: python tooling/security/abuse_telemetry_snapshot.py
       - name: Runtime API state schema gate
         run: python tooling/security/runtime_api_state_schema_gate.py
+      - name: Runtime API scope matrix gate
+        run: python tooling/security/runtime_api_scope_matrix_gate.py
       - name: Abuse telemetry gate
         run: python tooling/security/abuse_telemetry_gate.py
       - name: Temporary waiver gate
@@ -424,6 +426,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/live_integrations.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/live_rollout_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/runtime_api_state_schema_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/runtime_api_scope_matrix_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/abuse_telemetry.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/temporary_waiver_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/exception_waiver_reconciliation_gate.json

@@ -19,6 +19,7 @@
     "governance/security/provenance_revocation_list.json",
     "governance/security/production_controls_policy.json",
     "governance/security/review_policy.json",
+    "governance/security/runtime_api_scope_matrix_policy.json",
     "governance/security/sbom_diff_approval.json",
     "governance/security/security_artifact_signature_policy.json",
     "governance/security/security_schema_compatibility_policy.json",

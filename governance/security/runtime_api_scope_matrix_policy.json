@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "required_scope_by_endpoint": {
+    "submit_job": "jobs:write",
+    "status": "jobs:read",
+    "evidence": "evidence:read",
+    "replay": "replay:run"
+  },
+  "forbid_additional_scope_validators": false
+}

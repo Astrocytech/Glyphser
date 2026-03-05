@@ -157,6 +157,56 @@ def test_scope_allowlist_enforced(tmp_path: Path):
         assert "invalid scope" in str(exc)
 
 
+def test_status_scope_allowlist_enforced(tmp_path: Path):
+    svc = RuntimeApiService(RuntimeApiConfig(root=ROOT, state_path=tmp_path / "state.json"))
+    job = svc.submit_job(payload={"payload": {"x": 1}}, token="token-a", scope="jobs:write")
+    try:
+        svc.status(job["job_id"], token="token-a", scope="evidence:read")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "invalid scope" in str(exc)
+
+
+def test_evidence_scope_allowlist_enforced(tmp_path: Path):
+    svc = RuntimeApiService(RuntimeApiConfig(root=ROOT, state_path=tmp_path / "state.json"))
+    job = svc.submit_job(payload={"payload": {"x": 1}}, token="token-a", scope="jobs:write")
+    try:
+        svc.evidence(job["job_id"], token="token-a", scope="jobs:read")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "invalid scope" in str(exc)
+
+
+def test_replay_scope_allowlist_enforced(tmp_path: Path):
+    svc = RuntimeApiService(RuntimeApiConfig(root=ROOT, state_path=tmp_path / "state.json"))
+    job = svc.submit_job(payload={"payload": {"x": 1}}, token="token-a", scope="jobs:write")
+    try:
+        svc.replay(job["job_id"], token="token-a", scope="jobs:read")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "invalid scope" in str(exc)
+
+
+def test_evidence_rejects_viewer_role(tmp_path: Path):
+    svc = RuntimeApiService(RuntimeApiConfig(root=ROOT, state_path=tmp_path / "state.json"))
+    job = svc.submit_job(payload={"payload": {"x": 1}}, token="token-a", scope="jobs:write")
+    try:
+        svc.evidence(job["job_id"], token="role:viewer", scope="evidence:read")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "unauthorized action" in str(exc)
+
+
+def test_replay_rejects_auditor_role(tmp_path: Path):
+    svc = RuntimeApiService(RuntimeApiConfig(root=ROOT, state_path=tmp_path / "state.json"))
+    job = svc.submit_job(payload={"payload": {"x": 1}}, token="token-a", scope="jobs:write")
+    try:
+        svc.replay(job["job_id"], token="role:auditor", scope="replay:run")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "unauthorized action" in str(exc)
+
+
 def test_token_request_quota_enforced(tmp_path: Path):
     svc = RuntimeApiService(
         RuntimeApiConfig(
