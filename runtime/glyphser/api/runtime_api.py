@@ -16,6 +16,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any, Dict
 
+from runtime.glyphser.api.error_taxonomy import classify_runtime_api_error
 from runtime.glyphser.security.audit import append_event
 from runtime.glyphser.security.authz import authorize
 
@@ -672,12 +673,18 @@ class RuntimeApiService:
                 self._enforce_auth_failure_cooldown(state, token=token)
                 self._require_auth(token=token, action=action, scope=scope, state=state)
                 self._save_state(state)
-        except ValueError:
+        except ValueError as exc:
             with self._lock:
                 state = self._load_state()
                 self._record_auth_failure(state, token=token)
                 self._save_state(state)
-            self._audit("auth_failure", token=token, job_id=job_id, scope=scope)
+            self._audit(
+                "auth_failure",
+                token=token,
+                job_id=job_id,
+                scope=scope,
+                auth_error_code=classify_runtime_api_error(str(exc)),
+            )
             raise
 
     def _audit(
@@ -687,6 +694,7 @@ class RuntimeApiService:
         job_id: str,
         scope: str,
         replay_verdict: str = "",
+        auth_error_code: str = "",
     ) -> None:
         path = self._config.audit_log_path or self._config.state_path.parent / "audit.log.jsonl"
         append_event(
@@ -699,6 +707,7 @@ class RuntimeApiService:
                 "role_token_hash": _sha256_text(token),
                 "role_token_kind": "role" if token.startswith("role:") else "token",
                 "replay_verdict": replay_verdict,
+                "auth_error_code": auth_error_code,
             },
         )
 

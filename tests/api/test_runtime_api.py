@@ -68,7 +68,8 @@ def test_evidence_and_replay(tmp_path: Path):
 
 
 def test_submit_rejects_unauthorized_role(tmp_path: Path):
-    svc = RuntimeApiService(RuntimeApiConfig(root=ROOT, state_path=tmp_path / "state.json"))
+    audit_path = tmp_path / "audit.log.jsonl"
+    svc = RuntimeApiService(RuntimeApiConfig(root=ROOT, state_path=tmp_path / "state.json", audit_log_path=audit_path))
     try:
         svc.submit_job(payload={"payload": {"x": 1}}, token="role:viewer", scope="jobs:write")
         assert False, "expected ValueError"
@@ -77,6 +78,9 @@ def test_submit_rejects_unauthorized_role(tmp_path: Path):
     state = json.loads((tmp_path / "state.json").read_text(encoding="utf-8"))
     failures = state.get("quotas", {}).get("auth_failures_by_token", {})
     assert failures.get("role:viewer", 0) >= 1
+    line = audit_path.read_text(encoding="utf-8").strip().splitlines()[-1]
+    event = json.loads(line)["event"]
+    assert event.get("auth_error_code") == "AUTH_UNAUTHORIZED_ACTION"
 
 
 def test_submit_rejects_payload_too_large(tmp_path: Path):
