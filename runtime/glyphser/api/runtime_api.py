@@ -19,8 +19,6 @@ from typing import Any, Dict
 from runtime.glyphser.security.audit import append_event
 from runtime.glyphser.security.authz import authorize
 
-_MAX_PAYLOAD_DEPTH = 16
-_MAX_PAYLOAD_ITEMS = 50_000
 _MAX_PAYLOAD_BYTES = 128 * 1024
 _MAX_IDEMPOTENCY_KEY_LENGTH = 128
 _MAX_SCOPE_LENGTH = 64
@@ -51,7 +49,7 @@ def _sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def _validate_payload(payload: Dict[str, Any]) -> None:
+def _validate_payload(payload: Dict[str, Any], *, max_depth: int, max_items: int) -> None:
     if not isinstance(payload, dict):
         raise ValueError("payload must be dict")
     if len(payload) > 256:
@@ -62,9 +60,9 @@ def _validate_payload(payload: Dict[str, Any]) -> None:
     while stack:
         current, depth = stack.pop()
         seen_items += 1
-        if seen_items > _MAX_PAYLOAD_ITEMS:
+        if seen_items > max_items:
             raise ValueError("payload too complex")
-        if depth > _MAX_PAYLOAD_DEPTH:
+        if depth > max_depth:
             raise ValueError("payload too deeply nested")
 
         if isinstance(current, dict):
@@ -247,6 +245,9 @@ class RuntimeApiConfig:
     status_request_max_bytes: int = 2 * 1024
     evidence_request_max_bytes: int = 2 * 1024
     replay_request_max_bytes: int = 2 * 1024
+    submit_payload_max_bytes: int = _MAX_PAYLOAD_BYTES
+    submit_payload_max_depth: int = 16
+    submit_payload_max_items: int = 50_000
     include_replay_failure_reason: bool = False
     enforce_replay_token_binding: bool = False
     replay_token_ttl_seconds: int = 86_400
@@ -295,7 +296,11 @@ class RuntimeApiService:
         _validate_scope(scope, expected="jobs:write")
         self._enforce_lockdown("publish")
         self._require_auth_with_tracking(token=token, action="jobs:write", scope=scope, job_id="")
-        _validate_payload(payload)
+        _validate_payload(
+            payload,
+            max_depth=max(1, int(self._config.submit_payload_max_depth)),
+            max_items=max(1, int(self._config.submit_payload_max_items)),
+        )
         _validate_submit_payload_schema(payload)
         if idempotency_key and len(idempotency_key) > _MAX_IDEMPOTENCY_KEY_LENGTH:
             raise ValueError("idempotency_key too long")
@@ -323,7 +328,7 @@ class RuntimeApiService:
                     return out
 
             payload_text = _canonical_json(payload)
-            if len(payload_text.encode("utf-8")) > _MAX_PAYLOAD_BYTES:
+            if len(payload_text.encode("utf-8")) > max(1, int(self._config.submit_payload_max_bytes)):
                 raise ValueError("payload too large")
             basis = f"job:{idempotency_key or payload_text}"
             job_id = _sha256_text(basis)[:24]

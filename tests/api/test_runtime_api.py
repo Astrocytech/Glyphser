@@ -89,6 +89,18 @@ def test_submit_rejects_payload_too_large(tmp_path: Path):
         assert "payload too large" in str(exc)
 
 
+def test_submit_payload_max_bytes_is_configurable(tmp_path: Path):
+    svc = RuntimeApiService(
+        RuntimeApiConfig(root=ROOT, state_path=tmp_path / "state.json", submit_payload_max_bytes=64)
+    )
+    payload = {"payload": {"blob": "x" * 1024}}
+    try:
+        svc.submit_job(payload=payload, token="token-a", scope="jobs:write")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "payload too large" in str(exc)
+
+
 def test_submit_rejects_payload_too_deep(tmp_path: Path):
     svc = RuntimeApiService(RuntimeApiConfig(root=ROOT, state_path=tmp_path / "state.json"))
     payload: dict[str, object] = {"n0": {}}
@@ -104,6 +116,30 @@ def test_submit_rejects_payload_too_deep(tmp_path: Path):
         assert False, "expected ValueError"
     except ValueError as exc:
         assert "payload too deeply nested" in str(exc)
+
+
+def test_submit_payload_max_depth_is_configurable(tmp_path: Path):
+    svc = RuntimeApiService(
+        RuntimeApiConfig(root=ROOT, state_path=tmp_path / "state.json", submit_payload_max_depth=2)
+    )
+    payload = {"payload": {"a": {"b": {"c": 1}}}}
+    try:
+        svc.submit_job(payload=payload, token="token-a", scope="jobs:write")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "payload too deeply nested" in str(exc)
+
+
+def test_submit_payload_max_items_is_configurable(tmp_path: Path):
+    svc = RuntimeApiService(
+        RuntimeApiConfig(root=ROOT, state_path=tmp_path / "state.json", submit_payload_max_items=5)
+    )
+    payload = {"payload": {f"k{i}": i for i in range(10)}}
+    try:
+        svc.submit_job(payload=payload, token="token-a", scope="jobs:write")
+        assert False, "expected ValueError"
+    except ValueError as exc:
+        assert "payload too complex" in str(exc)
 
 
 def test_submit_rejects_long_idempotency_key(tmp_path: Path):
@@ -146,6 +182,14 @@ def test_submit_rejects_unknown_top_level_fields(tmp_path: Path):
         assert False, "expected ValueError"
     except ValueError as exc:
         assert "unknown keys" in str(exc)
+
+
+def test_submit_payload_canonicalization_is_deterministic(tmp_path: Path):
+    svc = RuntimeApiService(RuntimeApiConfig(root=ROOT, state_path=tmp_path / "state.json"))
+    a = svc.submit_job(payload={"payload": {"x": 1, "y": 2}}, token="token-a", scope="jobs:write")
+    b = svc.submit_job(payload={"payload": {"y": 2, "x": 1}}, token="token-a", scope="jobs:write")
+    assert a["job_id"] == b["job_id"]
+    assert a["payload_hash"] == b["payload_hash"]
 
 
 def test_scope_allowlist_enforced(tmp_path: Path):
