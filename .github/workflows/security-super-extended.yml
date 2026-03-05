@@ -29,6 +29,8 @@ jobs:
           pip install -e .[dev]
       - name: Install pinned security tools
         run: python tooling/security/install_security_toolchain.py
+      - name: Ensure setuptools for Semgrep runtime
+        run: python -m pip install --upgrade setuptools==75.8.0
       - name: Semgrep runtime preflight
         run: |
           semgrep --version

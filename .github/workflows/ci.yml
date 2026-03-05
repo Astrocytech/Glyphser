@@ -194,6 +194,8 @@ jobs:
           pip install -e .[dev]
       - name: Install pinned security tools
         run: python tooling/security/install_security_toolchain.py
+      - name: Ensure setuptools for Semgrep runtime
+        run: python -m pip install --upgrade setuptools==75.8.0
       - name: Semgrep runtime preflight
         run: |
           semgrep --version
@@ -359,12 +361,12 @@ jobs:
       - name: Security targeted regression suite
         run: pytest -q tests/security
       - name: Upload Bandit SARIF to Code Scanning
-        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
+        if: github.event_name == 'push'
         uses: github/codeql-action/upload-sarif@b56ba49b26e50535fa1e7f7db0f4f7b4bf65d80d
         with:
           sarif_file: bandit.sarif
       - name: Upload SARIF to Code Scanning
-        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
+        if: github.event_name == 'push'
         uses: github/codeql-action/upload-sarif@b56ba49b26e50535fa1e7f7db0f4f7b4bf65d80d
         with:
           sarif_file: semgrep.sarif
