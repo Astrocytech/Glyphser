@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import http.client
+import importlib
 import json
 import os
 import sys
@@ -15,7 +16,8 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tooling.lib.path_config import evidence_root
+evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 
 def _validate_target(repo: str, branch: str, *, dry_run: bool) -> None:
@@ -92,8 +94,7 @@ def main(argv: list[str] | None = None) -> int:
                 payload["mode"] = "live"
 
     out = evidence_root() / "security" / "branch_protection_live.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, payload)
     print(f"VERIFY_BRANCH_PROTECTION_LIVE: {payload['status']}")
     print(f"Report: {out}")
     return 0 if payload["status"] == "PASS" else 1

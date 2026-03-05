@@ -2,14 +2,18 @@
 from __future__ import annotations
 
 import argparse
+import importlib
 import json
 import tarfile
 import sys
 from pathlib import Path
 
-from tooling.lib.path_config import evidence_root
-
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 DEFAULT_INCLUDE = [
     "policy_signature.json",
     "provenance_signature.json",
@@ -53,7 +57,7 @@ def main(argv: list[str] | None = None) -> int:
         "included": included,
         "missing": missing,
     }
-    manifest.write_text(json.dumps(manifest_payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(manifest, manifest_payload)
     print("INCIDENT_BUNDLE_COLLECT: PASS")
     print(f"Bundle: {bundle}")
     print(f"Manifest: {manifest}")

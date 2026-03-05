@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import importlib
 import json
 import tarfile
 import tempfile
@@ -9,9 +10,12 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from tooling.lib.path_config import evidence_root
-
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 
 def _status(path: Path) -> str:
@@ -62,8 +66,7 @@ def main(argv: list[str] | None = None) -> int:
         "metadata": {"gate": "tabletop_replay"},
     }
     out = evidence_root() / "security" / "tabletop_replay.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, payload)
     print(f"TABLETOP_REPLAY: {payload['status']}")
     print(f"Report: {out}")
     return 0 if payload["status"] == "PASS" else 1

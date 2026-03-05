@@ -11,6 +11,8 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
+
 
 def main(argv: list[str] | None = None) -> int:
     _ = argv
@@ -66,8 +68,7 @@ def main(argv: list[str] | None = None) -> int:
         },
     }
     out = ROOT / "evidence" / "security" / "abuse_telemetry_snapshot.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(snapshot, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_json_report(out, snapshot)
 
     print(f"ABUSE_TELEMETRY_SNAPSHOT: {state_path}")
     return 0
