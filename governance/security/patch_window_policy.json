@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "max_backfill_days": 7,
+  "backfill_log_path": "governance/security/emergency_fix_backfill_log.json"
+}

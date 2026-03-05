@@ -28,6 +28,8 @@ def test_release_workflow_enforces_signature_verification() -> None:
     assert "python tooling/security/attestation_digest_match_gate.py" in release
     assert "python tooling/security/deploy_artifact_drift_gate.py" in release
     assert "python tooling/security/required_control_condition_bypass_gate.py" in release
+    assert "python tooling/security/strict_lane_fail_closed_control_gate.py" in release
+    assert "python tooling/security/warning_lane_degraded_mode_artifact_gate.py" in release
     assert "python tooling/security/workflow_change_management_gate.py" in release
     assert "python tooling/security/stale_policy_review_gate.py" in release
     assert "python tooling/security/policy_deprecation_gate.py" in release
@@ -37,6 +39,8 @@ def test_release_workflow_enforces_signature_verification() -> None:
     assert "python tooling/security/artifact_path_case_conflict_gate.py" in release
     assert "python tooling/security/abuse_telemetry_snapshot.py" in release
     assert "python tooling/security/abuse_telemetry_gate.py" in release
+    assert "python tooling/security/exception_path_metadata_gate.py" in release
+    assert "python tooling/security/degraded_mode_evidence.py" in release
     assert "python tooling/security/emergency_lockdown_gate.py" in release
     assert "python tooling/security/exception_waiver_reconciliation_gate.py" in release
     assert "python tooling/security/promotion_policy_gate.py" in release
@@ -69,6 +73,7 @@ def test_release_workflow_enforces_signature_verification() -> None:
     assert "python tooling/security/live_rollout_gate.py --profile release" in release
     assert "canary_promotion_guard.json" in release
     assert "degraded_mode_evidence.json" in release
+    assert "exception_path_metadata_gate.json" in release
     assert "python_version_policy_gate.json" in release
     assert "secret_origin_inventory_gate.json" in release
     assert "secret_rotation_metadata_gate.json" in release
@@ -77,6 +82,8 @@ def test_release_workflow_enforces_signature_verification() -> None:
     assert "offline_network_call_guard_gate.json" in release
     assert "deploy_artifact_drift_gate.json" in release
     assert "required_control_condition_bypass_gate.json" in release
+    assert "strict_lane_fail_closed_control_gate.json" in release
+    assert "warning_lane_degraded_mode_artifact_gate.json" in release
     assert "workflow_change_management_gate.json" in release
     assert "policy_deprecation_gate.json" in release
     assert "ownership_continuity_gate.json" in release

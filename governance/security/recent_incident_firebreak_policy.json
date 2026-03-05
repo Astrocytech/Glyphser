@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "active_incidents": [
+    {
+      "incident_id": "INC-SEC-2026-0001",
+      "affected_paths": [
+        "tooling/security",
+        ".github/workflows",
+        "runtime/glyphser/security"
+      ],
+      "required_reports": [
+        "incident_response.json",
+        "post_incident_closure_gate.json",
+        "security_super_gate.json"
+      ]
+    }
+  ]
+}

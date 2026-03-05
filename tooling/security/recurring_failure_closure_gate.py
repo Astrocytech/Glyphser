@@ -17,6 +17,7 @@ write_json_report = importlib.import_module("tooling.security.report_io").write_
 
 HISTORY_PATH = ROOT / "evidence" / "security" / "ci_failure_classifier_history.json"
 CLOSURE_REQUESTS = ROOT / "governance" / "security" / "ci_failure_closure_requests.json"
+CHRONIC_THRESHOLD = 5
 
 
 def _load_json(path: Path) -> dict[str, Any]:
@@ -58,6 +59,23 @@ def _consecutive_green_runs(runs: list[dict[str, Any]], issue: str) -> int:
     return clean
 
 
+def _normalized_counts(history: dict[str, Any]) -> dict[str, int]:
+    raw = history.get("counts", {}) if isinstance(history, dict) else {}
+    if not isinstance(raw, dict):
+        return {}
+    out: dict[str, int] = {}
+    for key, value in raw.items():
+        if not isinstance(key, str):
+            continue
+        try:
+            count = int(value)
+        except Exception:
+            continue
+        if count > 0:
+            out[key] = count
+    return out
+
+
 def main(argv: list[str] | None = None) -> int:
     _ = argv
     findings: list[str] = []
@@ -94,6 +112,18 @@ def main(argv: list[str] | None = None) -> int:
     requested_issues = sorted({str(item).strip() for item in requested if isinstance(item, str) and str(item).strip()})
 
     runs = _sorted_runs(history)
+    latest_issues = _issues(runs[-1]) if runs else set()
+    chronic_active_issues = sorted(
+        issue
+        for issue, count in _normalized_counts(history).items()
+        if count >= CHRONIC_THRESHOLD and issue in latest_issues
+    )
+
+    requested_issue_set = set(requested_issues)
+    for issue in chronic_active_issues:
+        if issue not in requested_issue_set:
+            findings.append(f"chronic_issue_missing_closure_request:{issue}")
+
     verified: list[str] = []
     pending: list[dict[str, Any]] = []
 
@@ -115,12 +145,14 @@ def main(argv: list[str] | None = None) -> int:
             "requested_resolutions": len(requested_issues),
             "verified_resolutions": len(verified),
             "pending_resolutions": len(pending),
+            "chronic_active_issue_count": len(chronic_active_issues),
             "history_path": str(HISTORY_PATH.relative_to(ROOT)).replace("\\", "/"),
             "closure_requests_path": str(CLOSURE_REQUESTS.relative_to(ROOT)).replace("\\", "/"),
         },
         "verification": {
             "verified": verified,
             "pending": pending,
+            "chronic_active_issues": chronic_active_issues,
         },
         "metadata": {"gate": "recurring_failure_closure_gate"},
     }

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "require_seed_hashing": true,
+  "stochastic_simulations": [
+    {
+      "script": "tooling/security/periodic_integrity_sampling.py",
+      "seed_env": "GLYPHSER_INTEGRITY_SAMPLE_SEED",
+      "seed_summary_field": "sample_seed"
+    },
+    {
+      "script": "tooling/security/quarterly_restore_simulation.py",
+      "seed_env": "GLYPHSER_QUARTERLY_RESTORE_SEED",
+      "seed_summary_field": "sample_seed"
+    }
+  ]
+}

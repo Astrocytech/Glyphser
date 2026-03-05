@@ -30,6 +30,8 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/scheduled_workflow_backpressure_gate.py" in ci
     assert "python tooling/security/workflow_risky_patterns_gate.py" in ci
     assert "python tooling/security/required_control_condition_bypass_gate.py" in ci
+    assert "python tooling/security/strict_lane_fail_closed_control_gate.py" in ci
+    assert "python tooling/security/warning_lane_degraded_mode_artifact_gate.py" in ci
     assert "python tooling/security/workflow_change_management_gate.py" in ci
     assert "python tooling/security/workflow_deprecated_invocation_gate.py" in ci
     assert "python tooling/security/workflow_pin_change_approval_gate.py" in ci
@@ -64,6 +66,9 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/third_party_action_sha_mapping_gate.py" in ci
     assert "python tooling/security/incident_response_gate.py" in ci
     assert "python tooling/security/post_incident_closure_gate.py" in ci
+    assert "python tooling/security/recent_incident_firebreak_gate.py --changed-files" in ci
+    assert "python tooling/security/hotfix_verification_template_gate.py" in ci
+    assert "python tooling/security/patch_window_policy_gate.py" in ci
     assert "python tooling/security/org_secret_backend_gate.py" in ci
     assert "python tooling/security/secret_management_gate.py" in ci
     assert "python tooling/security/production_controls_gate.py" in ci
@@ -82,6 +87,8 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/provenance_revocation_gate.py" in ci
     assert "python tooling/security/promotion_policy_gate.py" in ci
     assert "python tooling/security/security_state_transition_invariants_gate.py" in ci
+    assert "python tooling/security/exception_path_metadata_gate.py" in ci
+    assert "python tooling/security/degraded_mode_evidence.py" in ci
     assert "python tooling/security/exception_waiver_reconciliation_gate.py" in ci
     assert "runtime_api_state_schema_gate.json" in ci
     assert "runtime_api_input_surface_gate.json" in ci
@@ -92,12 +99,15 @@ def test_ci_security_steps_are_wired() -> None:
     assert "security_state_transition_invariants_gate.json" in ci
     assert "degraded_mode_evidence.json" in ci
     assert "workflow_pin_change_approval_gate.json" in ci
+    assert "exception_path_metadata_gate.json" in ci
     assert "exception_waiver_reconciliation_gate.json" in ci
     assert "audit_archive_verify.json" in ci
     assert "security_artifact_signature_coverage_gate.json" in ci
     assert "artifact_path_case_conflict_gate.json" in ci
     assert "scheduled_workflow_backpressure_gate.json" in ci
     assert "required_control_condition_bypass_gate.json" in ci
+    assert "strict_lane_fail_closed_control_gate.json" in ci
+    assert "warning_lane_degraded_mode_artifact_gate.json" in ci
     assert "workflow_change_management_gate.json" in ci
     assert "external_action_owner_allowlist_gate.json" in ci
     assert "third_party_action_sha_mapping_gate.json" in ci
@@ -111,6 +121,9 @@ def test_ci_security_steps_are_wired() -> None:
     assert "ownership_continuity_gate.json" in ci
     assert "threat_control_mapping_gate.json" in ci
     assert "post_incident_closure_gate.json" in ci
+    assert "recent_incident_firebreak_gate.json" in ci
+    assert "hotfix_verification_template_gate.json" in ci
+    assert "patch_window_policy_gate.json" in ci
     assert "container_registry_provenance_gate.json" in ci
     assert "attestation_digest_match_gate.json" in ci
     assert "python tooling/security/security_gate_test_coverage_gate.py" in ci

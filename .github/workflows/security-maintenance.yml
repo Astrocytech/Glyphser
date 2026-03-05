@@ -56,6 +56,10 @@ jobs:
         run: python tooling/security/workflow_risky_patterns_gate.py
       - name: Required control condition bypass gate
         run: python tooling/security/required_control_condition_bypass_gate.py
+      - name: Strict lane fail-closed control gate
+        run: python tooling/security/strict_lane_fail_closed_control_gate.py
+      - name: Warning lane degraded-mode artifact gate
+        run: python tooling/security/warning_lane_degraded_mode_artifact_gate.py
       - name: Workflow change-management gate
         run: python tooling/security/workflow_change_management_gate.py
       - name: File mode change gate
@@ -82,6 +86,8 @@ jobs:
         run: python tooling/security/policy_signature_generate.py --strict-key
       - name: Policy schema validation gate
         run: python tooling/security/policy_schema_validation_gate.py
+      - name: Stochastic seed policy gate
+        run: python tooling/security/stochastic_seed_policy_gate.py
       - name: Security schema migration tracker
         run: python tooling/security/security_schema_migration_tracker.py
       - name: Security schema strict readiness gate
@@ -259,6 +265,12 @@ jobs:
         run: python tooling/security/fallback_secret_usage_gate.py
       - name: Temporary waiver gate
         run: python tooling/security/temporary_waiver_gate.py
+      - name: Expired degraded-mode allowance gate
+        run: python tooling/security/expired_degraded_mode_allowance_gate.py
+      - name: Exception path metadata gate
+        run: python tooling/security/exception_path_metadata_gate.py
+      - name: Degraded-mode evidence
+        run: python tooling/security/degraded_mode_evidence.py
       - name: Provenance revocation gate
         run: python tooling/security/provenance_revocation_gate.py
       - name: Security artifacts + attestation checks
@@ -296,6 +308,9 @@ jobs:
           python tooling/security/security_schema_normalization_gate.py
           python tooling/security/incident_bundle_collect.py --incident-id "${{ github.run_id }}"
           python tooling/security/tabletop_replay.py --bundle "${{ env.GLYPHSER_EVIDENCE_ROOT }}/incident/incident-bundle-${{ github.run_id }}.tar.gz"
+          python tooling/security/deterministic_replay_harness.py --run-dir "${{ env.GLYPHSER_EVIDENCE_ROOT }}"
+          python tooling/security/replay_nondeterministic_field_drift_gate.py --run-dir "${{ env.GLYPHSER_EVIDENCE_ROOT }}"
+          python tooling/security/replay_artifact_index.py --run-dir "${{ env.GLYPHSER_EVIDENCE_ROOT }}"
           python tooling/security/long_term_retention_manifest.py
           python tooling/security/periodic_integrity_sampling.py
           python tooling/security/cosign_attestation_gate.py
@@ -322,6 +337,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/third_party_action_sha_mapping_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_signature.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_schema_validation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/stochastic_seed_policy_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_schema_migration_tracker.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_schema_strict_readiness_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_super_gate_manifest_gate.json
@@ -342,6 +358,8 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/python_version_policy_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_risky_patterns_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/required_control_condition_bypass_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/strict_lane_fail_closed_control_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/warning_lane_degraded_mode_artifact_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_change_management_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/file_mode_change_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/network_endpoint_documentation_gate.json
@@ -432,6 +450,8 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/runtime_api_scope_matrix_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/abuse_telemetry.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/temporary_waiver_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/expired_degraded_mode_allowance_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/exception_path_metadata_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_revocation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/degraded_mode_evidence.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_gate_test_coverage.json
@@ -469,6 +489,9 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/telemetry_integrity_trend_alert.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_schema_normalization_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/tabletop_replay.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/deterministic_replay_harness.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/replay_nondeterministic_field_drift_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/replay_artifact_index.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/cosign_attestation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/incident/incident-bundle-${{ github.run_id }}.tar.gz
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/incident/incident-bundle-${{ github.run_id }}.tar.gz.sha256

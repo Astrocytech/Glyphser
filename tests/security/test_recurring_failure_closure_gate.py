@@ -103,3 +103,48 @@ def test_recurring_failure_closure_gate_fails_when_not_green_long_enough(monkeyp
     report = json.loads((ev / "security" / "recurring_failure_closure_gate.json").read_text(encoding="utf-8"))
     assert report["status"] == "FAIL"
     assert any(item.startswith("closure_insufficient_green_runs:security_super_gate.json:timeout") for item in report["findings"])
+
+
+def test_recurring_failure_closure_gate_fails_when_chronic_issue_missing_closure_request(
+    monkeypatch, tmp_path: Path
+) -> None:
+    repo = tmp_path / "repo"
+    ev = repo / "evidence"
+
+    issue = "security_super_gate.json:timeout"
+    _write_json(
+        repo / "evidence" / "security" / "ci_failure_classifier_history.json",
+        {
+            "schema_version": 1,
+            "counts": {issue: 6},
+            "runs": [
+                {"run_id": "1", "timestamp_utc": "2026-03-01T00:00:00+00:00", "issues": [issue]},
+            ],
+        },
+    )
+    _write_json(
+        repo / "governance" / "security" / "ci_failure_closure_requests.json",
+        {
+            "schema_version": 1,
+            "required_green_runs": 3,
+            "requested_resolutions": [],
+        },
+    )
+
+    monkeypatch.setattr(recurring_failure_closure_gate, "ROOT", repo)
+    monkeypatch.setattr(
+        recurring_failure_closure_gate,
+        "HISTORY_PATH",
+        repo / "evidence" / "security" / "ci_failure_classifier_history.json",
+    )
+    monkeypatch.setattr(
+        recurring_failure_closure_gate,
+        "CLOSURE_REQUESTS",
+        repo / "governance" / "security" / "ci_failure_closure_requests.json",
+    )
+    monkeypatch.setattr(recurring_failure_closure_gate, "evidence_root", lambda: ev)
+
+    assert recurring_failure_closure_gate.main([]) == 1
+    report = json.loads((ev / "security" / "recurring_failure_closure_gate.json").read_text(encoding="utf-8"))
+    assert report["status"] == "FAIL"
+    assert f"chronic_issue_missing_closure_request:{issue}" in report["findings"]

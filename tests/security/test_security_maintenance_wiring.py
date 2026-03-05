@@ -17,6 +17,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/evidence_run_dir_guard.py --run-id" in wf
     assert "python tooling/security/policy_signature_gate.py --strict-key" in wf
     assert "python tooling/security/policy_schema_validation_gate.py" in wf
+    assert "python tooling/security/stochastic_seed_policy_gate.py" in wf
     assert "python tooling/security/security_schema_migration_tracker.py" in wf
     assert "python tooling/security/security_schema_strict_readiness_gate.py" in wf
     assert "python tooling/security/security_super_gate_manifest_gate.py" in wf
@@ -35,6 +36,8 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/python_version_policy_gate.py" in wf
     assert "python tooling/security/workflow_risky_patterns_gate.py" in wf
     assert "python tooling/security/required_control_condition_bypass_gate.py" in wf
+    assert "python tooling/security/strict_lane_fail_closed_control_gate.py" in wf
+    assert "python tooling/security/warning_lane_degraded_mode_artifact_gate.py" in wf
     assert "python tooling/security/workflow_change_management_gate.py" in wf
     assert "python tooling/security/workflow_deprecated_invocation_gate.py" in wf
     assert "python tooling/security/subprocess_allowlist_report.py" in wf
@@ -72,6 +75,8 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/runtime_api_scope_matrix_gate.py" in wf
     assert "python tooling/security/fallback_secret_usage_gate.py" in wf
     assert "python tooling/security/abuse_telemetry_gate.py" in wf
+    assert "python tooling/security/exception_path_metadata_gate.py" in wf
+    assert "python tooling/security/degraded_mode_evidence.py" in wf
     assert "python tooling/security/evidence_attestation_index.py --strict-key" in wf
     assert "python tooling/security/evidence_attestation_gate.py --strict-key" in wf
     assert "python tooling/security/provenance_signature_gate.py --strict-key" in wf
@@ -85,6 +90,9 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/security_gate_runtime_budget_gate.py" in wf
     assert "python tooling/security/incident_bundle_collect.py --incident-id" in wf
     assert "python tooling/security/tabletop_replay.py --bundle" in wf
+    assert "python tooling/security/deterministic_replay_harness.py --run-dir" in wf
+    assert "python tooling/security/replay_nondeterministic_field_drift_gate.py --run-dir" in wf
+    assert "python tooling/security/replay_artifact_index.py --run-dir" in wf
     assert "airgap-simulation:" in wf
     assert "GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/airgap-simulation" in wf
     assert "python tooling/security/export_offline_verify_bundle.py" in wf
@@ -122,11 +130,14 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "security_workflow_contract_gate.json" in wf
     assert "workflow_risky_patterns_gate.json" in wf
     assert "required_control_condition_bypass_gate.json" in wf
+    assert "strict_lane_fail_closed_control_gate.json" in wf
+    assert "warning_lane_degraded_mode_artifact_gate.json" in wf
     assert "workflow_change_management_gate.json" in wf
     assert "workflow_deprecated_invocation_gate.json" in wf
     assert "subprocess_allowlist_report.json" in wf
     assert "subprocess_direct_usage_gate.json" in wf
     assert "policy_schema_validation_gate.json" in wf
+    assert "stochastic_seed_policy_gate.json" in wf
     assert "security_schema_migration_tracker.json" in wf
     assert "security_schema_strict_readiness_gate.json" in wf
     assert "security_super_gate_manifest_gate.json" in wf
@@ -183,6 +194,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "runtime_api_input_surface_gate.json" in wf
     assert "runtime_api_scope_matrix_gate.json" in wf
     assert "fallback_secret_usage_gate.json" in wf
+    assert "exception_path_metadata_gate.json" in wf
     assert "degraded_mode_evidence.json" in wf
     assert "containment_verification_gate.json" in wf
     assert "post_incident_closure_gate.json" in wf
@@ -192,6 +204,9 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "break_glass_secret_usage_gate.json" in wf
     assert "offline_network_call_guard_gate.json" in wf
     assert "tabletop_replay.json" in wf
+    assert "deterministic_replay_harness.json" in wf
+    assert "replay_nondeterministic_field_drift_gate.json" in wf
+    assert "replay_artifact_index.json" in wf
     assert "incident-bundle-${{ github.run_id }}.tar.gz" in wf
     assert "incident-bundle-${{ github.run_id }}.tar.gz.sha256" in wf
     assert "long_term_retention_manifest.json" in wf

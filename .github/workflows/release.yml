@@ -98,6 +98,10 @@ jobs:
         run: python tooling/security/governance_markdown_gate.py
       - name: Required control condition bypass gate
         run: python tooling/security/required_control_condition_bypass_gate.py
+      - name: Strict lane fail-closed control gate
+        run: python tooling/security/strict_lane_fail_closed_control_gate.py
+      - name: Warning lane degraded-mode artifact gate
+        run: python tooling/security/warning_lane_degraded_mode_artifact_gate.py
       - name: Workflow change-management gate
         run: python tooling/security/workflow_change_management_gate.py
       - name: Stale policy review gate
@@ -128,6 +132,10 @@ jobs:
           python tooling/security/abuse_telemetry_gate.py
       - name: Temporary waiver gate
         run: python tooling/security/temporary_waiver_gate.py
+      - name: Exception path metadata gate
+        run: python tooling/security/exception_path_metadata_gate.py
+      - name: Degraded-mode evidence
+        run: python tooling/security/degraded_mode_evidence.py
       - name: Emergency lockdown gate
         run: python tooling/security/emergency_lockdown_gate.py
       - name: Exception waiver reconciliation gate
@@ -245,6 +253,8 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/production_controls.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/governance_markdown_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/required_control_condition_bypass_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/strict_lane_fail_closed_control_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/warning_lane_degraded_mode_artifact_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_change_management_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/stale_policy_review_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_deprecation_gate.json
@@ -265,6 +275,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/live_rollout_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/abuse_telemetry.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/temporary_waiver_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/exception_path_metadata_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/emergency_lockdown_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/exception_waiver_reconciliation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/exception_waiver_reconciliation_gate.json.sig
@@ -370,6 +381,8 @@ jobs:
           python tooling/security/post_incident_closure_gate.py
           python tooling/security/governance_markdown_gate.py
           python tooling/security/required_control_condition_bypass_gate.py
+          python tooling/security/strict_lane_fail_closed_control_gate.py
+          python tooling/security/warning_lane_degraded_mode_artifact_gate.py
           python tooling/security/workflow_change_management_gate.py
           python tooling/security/stale_policy_review_gate.py
           python tooling/security/policy_deprecation_gate.py
@@ -392,6 +405,8 @@ jobs:
           python tooling/security/abuse_telemetry_snapshot.py
           python tooling/security/abuse_telemetry_gate.py
           python tooling/security/temporary_waiver_gate.py
+          python tooling/security/exception_path_metadata_gate.py
+          python tooling/security/degraded_mode_evidence.py
           python tooling/security/emergency_lockdown_gate.py
           python tooling/security/exception_waiver_reconciliation_gate.py
           python tooling/security/provenance_revocation_gate.py

@@ -1212,21 +1212,21 @@ AF2. Workflow-to-Artifact Contract Validation
 [x] Add validator ensuring artifact names include lane identifiers to avoid collisions.
 
 AF3. Reproducibility and Replayability
-[ ] Add deterministic replay harness for a saved run directory and compare recomputed statuses.
-[ ] Add gate to detect non-deterministic field drift in otherwise static reports.
-[ ] Add controlled-seed policy for all stochastic simulations in security tooling.
-[ ] Add replay artifact index for quick forensic reconstruction.
+[x] Add deterministic replay harness for a saved run directory and compare recomputed statuses.
+[x] Add gate to detect non-deterministic field drift in otherwise static reports.
+[x] Add controlled-seed policy for all stochastic simulations in security tooling.
+[x] Add replay artifact index for quick forensic reconstruction.
 
 AF4. Security Regression Firebreaks
-[ ] Add “recent incident firebreak” gate that blocks merges touching affected paths without extra checks.
-[ ] Add hotfix verification template requiring before/after failing test proof.
-[ ] Add patch-window policy gate to ensure emergency fixes are later backfilled with full tests/docs.
-[ ] Add recurring-failure suppressor policy to prevent silent normalization of chronic failures.
+[x] Add “recent incident firebreak” gate that blocks merges touching affected paths without extra checks.
+[x] Add hotfix verification template requiring before/after failing test proof.
+[x] Add patch-window policy gate to ensure emergency fixes are later backfilled with full tests/docs.
+[x] Add recurring-failure suppressor policy to prevent silent normalization of chronic failures.
 
 AF5. Operational Guardrail Quality
-[ ] Add gate to verify every strict lane has at least one explicit fail-closed control.
-[ ] Add gate to verify every non-blocking warning lane emits explicit degraded-mode artifact.
-[ ] Add gate to ensure exception paths include owner + expiry + justification fields.
+[x] Add gate to verify every strict lane has at least one explicit fail-closed control.
+[x] Add gate to verify every non-blocking warning lane emits explicit degraded-mode artifact.
+[x] Add gate to ensure exception paths include owner + expiry + justification fields.
 [ ] Add gate to fail when expired degraded-mode allowances are still active.
 
 AF6. Secret and Key Boundary Hygiene

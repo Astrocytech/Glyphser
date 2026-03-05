@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "max_suppression_days": 14,
+  "require_owner": true,
+  "require_rationale": true,
+  "suppressions_path": "governance/security/recurring_failure_suppressions.json"
+}
