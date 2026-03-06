@@ -75,3 +75,29 @@ jobs:
     assert strict_lane_exit_propagation_gate.main([]) == 1
     report = json.loads((repo / "evidence" / "security" / "strict_lane_exit_propagation_gate.json").read_text("utf-8"))
     assert any(str(item).startswith("critical_exit_masked_continue_on_error:") for item in report["findings"])
+
+
+def test_strict_lane_exit_propagation_gate_detects_variant_invocation_masking(monkeypatch, tmp_path: Path) -> None:
+    repo = tmp_path
+    wf = repo / ".github" / "workflows"
+    _write(
+        wf / "ci.yml",
+        """
+jobs:
+  security:
+    steps:
+      - name: Policy signature variant
+        continue-on-error: true
+        run: python3 tooling/security/policy_signature_gate.py --strict-key --profile ci
+""",
+    )
+    _write(wf / "security-maintenance.yml", _workflow())
+    _write(wf / "release.yml", _workflow())
+    monkeypatch.setattr(strict_lane_exit_propagation_gate, "ROOT", repo)
+    monkeypatch.setattr(strict_lane_exit_propagation_gate, "evidence_root", lambda: repo / "evidence")
+    assert strict_lane_exit_propagation_gate.main([]) == 1
+    report = json.loads((repo / "evidence" / "security" / "strict_lane_exit_propagation_gate.json").read_text("utf-8"))
+    assert any(
+        item == "critical_exit_masked_continue_on_error:.github/workflows/ci.yml:5:tooling/security/policy_signature_gate.py"
+        for item in report["findings"]
+    )

@@ -1,0 +1,9 @@
+{
+  "required_pairs": [
+    {
+      "left": "policy_signature",
+      "right": "provenance_signature",
+      "must_match_fields": ["key_id", "adapter", "source"]
+    }
+  ]
+}

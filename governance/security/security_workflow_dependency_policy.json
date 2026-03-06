@@ -1,0 +1,41 @@
+{
+  "step_order_checks": [
+    {
+      "workflow": ".github/workflows/ci.yml",
+      "ordered_steps": [
+        "Install pinned security tools",
+        "Security toolchain gate",
+        "Policy signature gate",
+        "Security super gate"
+      ]
+    }
+  ],
+  "required_env_checks": [
+    {
+      "workflow": ".github/workflows/ci.yml",
+      "required_env_vars": [
+        "GLYPHSER_EVIDENCE_ROOT"
+      ]
+    }
+  ],
+  "artifact_upload_path_baselines": [
+    {
+      "workflow": ".github/workflows/ci.yml",
+      "baseline": "governance/security/security_ci_artifact_upload_paths_baseline.json"
+    }
+  ],
+  "matrix_minimums": [
+    {
+      "workflow": ".github/workflows/ci.yml",
+      "key": "python-version",
+      "minimum_entries": 2,
+      "required_values": [
+        "3.11",
+        "3.12"
+      ]
+    }
+  ],
+  "trusted_context_checks": [
+    ".github/workflows/ci.yml"
+  ]
+}

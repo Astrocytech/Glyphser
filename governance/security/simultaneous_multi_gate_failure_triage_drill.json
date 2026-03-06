@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "incident_id": "INC-DRILL-2026-03-01-MULTI-GATE",
+  "triage_started_at_utc": "2026-03-01T10:00:00+00:00",
+  "triage_completed_at_utc": "2026-03-01T10:18:00+00:00",
+  "failing_gates": [
+    "policy_signature_gate",
+    "provenance_revocation_gate",
+    "promotion_policy_gate"
+  ],
+  "escalation_path": [
+    "security-oncall",
+    "release-manager",
+    "security-leadership"
+  ],
+  "root_cause": "Synthetic concurrent control failures injected for triage rehearsal.",
+  "remediation_actions": [
+    "Block promotion path until all failing gates recover.",
+    "Rotate affected signing keys and re-verify signatures.",
+    "Replay verification lane with strict key mode enabled."
+  ],
+  "lessons_learned": [
+    "Gate failure correlation should be surfaced in a single incident ticket.",
+    "Promotion overrides remain disallowed while revocation checks are non-PASS."
+  ]
+}

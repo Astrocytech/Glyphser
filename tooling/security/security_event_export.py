@@ -18,6 +18,7 @@ write_json_report = importlib.import_module("tooling.security.report_io").write_
 artifact_signing = importlib.import_module("runtime.glyphser.security.artifact_signing")
 
 INCIDENT_POLICY = ROOT / "governance" / "security" / "incident_response_policy.json"
+OWNERSHIP_REGISTRY = ROOT / "governance" / "security" / "ownership_registry.json"
 API_CONTRACT_VERSION = "v1"
 
 
@@ -38,6 +39,22 @@ def _urgency_for_severity(severity: str) -> str:
     return "none"
 
 
+def _is_approaching_expiry_warn(payload: dict[str, Any]) -> bool:
+    findings = payload.get("findings", [])
+    if isinstance(findings, list):
+        for item in findings:
+            text = str(item).lower()
+            if "nearing_expiry" in text or "approaching_expiry" in text or "expires_soon" in text:
+                return True
+    summary = payload.get("summary", {})
+    if isinstance(summary, dict):
+        for key in ("bypass_exception_nearing_expiry_7d", "nearing_expiry_count"):
+            value = summary.get(key)
+            if isinstance(value, (int, float)) and value > 0:
+                return True
+    return False
+
+
 def _operator_pseudonym(operator_id: str, *, key: str) -> str:
     digest = hashlib.sha256(f"{key}:{operator_id}".encode("utf-8")).hexdigest()
     return f"op_{digest[:16]}"
@@ -55,14 +72,35 @@ def main(argv: list[str] | None = None) -> int:
     )
 
     routing = {}
+    policy: dict[str, Any] = {}
     if INCIDENT_POLICY.exists():
-        policy = json.loads(INCIDENT_POLICY.read_text(encoding="utf-8"))
+        loaded_policy = json.loads(INCIDENT_POLICY.read_text(encoding="utf-8"))
+        policy = loaded_policy if isinstance(loaded_policy, dict) else {}
         if isinstance(policy, dict):
             ar = policy.get("alert_routing_test", {})
             if isinstance(ar, dict):
                 routing = ar
     pager_channel = str(routing.get("primary_contact", "security@glyphser.local")).strip() or "security@glyphser.local"
-    playbook = "governance/security/OPERATIONS.md"
+    runbook_link = "governance/security/OPERATIONS.md"
+    runbooks = policy.get("runbooks", []) if isinstance(policy, dict) else []
+    if isinstance(runbooks, list):
+        for item in runbooks:
+            if not isinstance(item, dict):
+                continue
+            path = str(item.get("path", "")).strip()
+            if path:
+                runbook_link = path
+                break
+
+    owner = "security-engineering"
+    if OWNERSHIP_REGISTRY.exists():
+        try:
+            ownership = json.loads(OWNERSHIP_REGISTRY.read_text(encoding="utf-8"))
+        except Exception:
+            ownership = {}
+        if isinstance(ownership, dict):
+            owner = str(ownership.get("default_gate_owner", owner)).strip() or owner
+
     operator_id = (
         os.environ.get("GLYPHSER_OPERATOR_ID", "").strip()
         or os.environ.get("GITHUB_ACTOR", "").strip()
@@ -88,6 +126,12 @@ def main(argv: list[str] | None = None) -> int:
             continue
         control_id = path.stem
         severity = _severity_for_status(status)
+        urgency = _urgency_for_severity(severity)
+        escalated_warn = False
+        if status == "WARN" and _is_approaching_expiry_warn(payload):
+            severity = "high"
+            urgency = "page"
+            escalated_warn = True
         event = {
             "api_contract_version": API_CONTRACT_VERSION,
             "event_type": "security_gate_status",
@@ -97,9 +141,12 @@ def main(argv: list[str] | None = None) -> int:
             "artifact_ref": str(path.relative_to(ROOT)).replace("\\", "/"),
             "status": status,
             "pager_channel": pager_channel,
-            "urgency": _urgency_for_severity(severity),
-            "playbook": playbook,
+            "urgency": urgency,
+            "playbook": runbook_link,
+            "runbook_link": runbook_link,
+            "owner": owner,
             "operator_id_pseudonym": operator_pseudonym,
+            "escalated_warn": escalated_warn,
         }
         events.append(event)
 

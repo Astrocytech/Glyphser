@@ -4,6 +4,7 @@ from __future__ import annotations
 import importlib
 import json
 import os
+import re
 import sys
 from pathlib import Path
 from typing import Any
@@ -20,6 +21,7 @@ evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
 write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 GO_NO_GO = ROOT / "evidence" / "security" / "promotion_go_no_go_report.json"
+DIGEST_RE = re.compile(r"^sha256:[0-9a-f]{64}$")
 
 
 def _load_json(path: Path) -> dict[str, Any]:
@@ -56,12 +58,27 @@ def main(argv: list[str] | None = None) -> int:
 
     bypassed = _parse_list(os.environ.get("GLYPHSER_BYPASSED_BLOCKERS", ""))
     approval_chain = _parse_list(os.environ.get("GLYPHSER_APPROVAL_CHAIN", ""))
+    immutable_run_id = os.environ.get("GITHUB_RUN_ID", "").strip() or os.environ.get("GLYPHSER_RUN_ID", "").strip()
+    immutable_digest = os.environ.get("GLYPHSER_EVIDENCE_BUNDLE_DIGEST", "").strip().lower()
+
+    deploy_record_path = evidence_root() / "security" / "deploy_decision_record.json"
+    if not immutable_digest and deploy_record_path.exists():
+        deploy_record = _load_json(deploy_record_path)
+        immutable_digest = str(deploy_record.get("evidence_bundle_digest", "")).strip().lower()
+        if not immutable_run_id:
+            immutable_run_id = str(deploy_record.get("run_id", "")).strip()
 
     unmatched = [item for item in bypassed if item not in {str(x) for x in go_no_go_findings}]
     if unmatched:
         findings.append(f"bypassed_blockers_not_in_go_no_go_report:{'|'.join(unmatched)}")
     if bypassed and len(approval_chain) < 2:
         findings.append("insufficient_approval_chain_for_bypass")
+    if not immutable_run_id:
+        findings.append("missing_immutable_run_id")
+    if not immutable_digest:
+        findings.append("missing_immutable_evidence_digest")
+    elif not DIGEST_RE.fullmatch(immutable_digest):
+        findings.append("invalid_immutable_evidence_digest")
 
     artifact = {
         "status": "PASS" if not findings else "FAIL",
@@ -69,6 +86,8 @@ def main(argv: list[str] | None = None) -> int:
         "bypassed_blockers": bypassed,
         "approval_chain": approval_chain,
         "go_no_go_report_path": str(GO_NO_GO.relative_to(ROOT)).replace("\\", "/"),
+        "immutable_run_id": immutable_run_id,
+        "immutable_evidence_digest": immutable_digest,
     }
     artifact_path = evidence_root() / "security" / "promotion_decision_artifact.json"
     write_json_report(artifact_path, artifact)
@@ -86,6 +105,8 @@ def main(argv: list[str] | None = None) -> int:
             "decision": artifact["decision"],
             "bypassed_blockers": len(bypassed),
             "approval_chain_length": len(approval_chain),
+            "immutable_run_id": immutable_run_id,
+            "immutable_evidence_digest": immutable_digest,
         },
         "metadata": {"gate": "signed_promotion_decision_artifact"},
     }

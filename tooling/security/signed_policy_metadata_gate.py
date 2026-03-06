@@ -12,6 +12,8 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+artifact_signing = importlib.import_module("runtime.glyphser.security.artifact_signing")
+key_metadata = artifact_signing.key_metadata
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
 write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
@@ -22,6 +24,24 @@ def _parse_iso(ts: str) -> datetime | None:
     except Exception:
         return None
     return parsed if parsed.tzinfo else parsed.replace(tzinfo=UTC)
+
+
+def _valid_key_metadata(metadata: Any) -> bool:
+    if not isinstance(metadata, dict):
+        return False
+    source = str(metadata.get("source", "")).strip().lower()
+    adapter = str(metadata.get("adapter", "")).strip().lower()
+    if source not in {"env", "fallback", "missing"}:
+        return False
+    if adapter not in {"hmac", "kms"}:
+        return False
+    fallback_used = metadata.get("fallback_used")
+    if not isinstance(fallback_used, bool):
+        return False
+    key_id = metadata.get("key_id", "")
+    if not isinstance(key_id, str):
+        return False
+    return True
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -39,8 +59,16 @@ def main(argv: list[str] | None = None) -> int:
             findings.append("invalid_manifest_entry")
             continue
         path = ROOT / rel
+        sig_path = path.with_suffix(path.suffix + ".sig")
         if not path.exists():
             findings.append(f"missing_policy:{rel}")
+            continue
+        if not sig_path.exists():
+            findings.append(f"missing_policy_signature:{rel}")
+            continue
+        sig = sig_path.read_text(encoding="utf-8").strip()
+        if not sig:
+            findings.append(f"empty_policy_signature:{rel}")
             continue
         payload: Any = json.loads(path.read_text(encoding="utf-8"))
         checked += 1
@@ -56,11 +84,19 @@ def main(argv: list[str] | None = None) -> int:
         elif _parse_iso(reviewed_raw) is None:
             findings.append(f"invalid_last_reviewed_utc:{rel}")
 
+    metadata = key_metadata(strict=False)
+    if not _valid_key_metadata(metadata):
+        findings.append("invalid_key_metadata")
+
     report = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
-        "summary": {"checked_policies": checked, "manifest_entries": len(policies)},
-        "metadata": {"gate": "signed_policy_metadata_gate"},
+        "summary": {
+            "checked_policies": checked,
+            "manifest_entries": len(policies),
+            "missing_or_invalid_signatures": len([f for f in findings if "policy_signature" in f]),
+        },
+        "metadata": {"gate": "signed_policy_metadata_gate", "key_metadata": metadata},
     }
     out = evidence_root() / "security" / "signed_policy_metadata_gate.json"
     write_json_report(out, report)

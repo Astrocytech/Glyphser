@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import importlib
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -12,6 +13,7 @@ if str(ROOT) not in sys.path:
 
 evidence_root = importlib.import_module("tooling.lib.path_config").evidence_root
 write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
+DIGEST_RE = re.compile(r"^sha256:[0-9a-f]{64}$")
 
 
 def _status(path: Path) -> str:
@@ -22,6 +24,16 @@ def _status(path: Path) -> str:
     except Exception:
         return "INVALID"
     return str(payload.get("status", "UNKNOWN")).upper() if isinstance(payload, dict) else "INVALID"
+
+
+def _load(path: Path) -> dict[str, object]:
+    if not path.exists():
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    return payload if isinstance(payload, dict) else {}
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -40,6 +52,23 @@ def main(argv: list[str] | None = None) -> int:
         "conformance_security_coupling": _status(sec / "conformance_security_coupling.json"),
     }
     findings = [f"{k}_not_pass" for k, v in statuses.items() if v != "PASS"]
+    deploy_payload = _load(deploy)
+    rollback_payload = _load(rollback)
+    deploy_policy_digest = str(deploy_payload.get("policy_digest", "")).strip().lower()
+    rollback_policy_digest = str(rollback_payload.get("policy_digest", "")).strip().lower()
+    rollback_previously_attested = bool(rollback_payload.get("previously_attested", False))
+    if not deploy_policy_digest:
+        findings.append("missing_deploy_policy_digest")
+    elif not DIGEST_RE.fullmatch(deploy_policy_digest):
+        findings.append("invalid_deploy_policy_digest")
+    if not rollback_policy_digest:
+        findings.append("missing_rollback_policy_digest")
+    elif not DIGEST_RE.fullmatch(rollback_policy_digest):
+        findings.append("invalid_rollback_policy_digest")
+    if deploy_policy_digest and rollback_policy_digest and deploy_policy_digest != rollback_policy_digest:
+        findings.append("rollback_policy_digest_mismatch")
+    if not rollback_previously_attested:
+        findings.append("rollback_not_previously_attested")
     required_artifacts = [
         sec / "sbom.json",
         sec / "build_provenance.json",
@@ -59,6 +88,9 @@ def main(argv: list[str] | None = None) -> int:
         "findings": findings,
         "summary": {
             **statuses,
+            "deploy_policy_digest": deploy_policy_digest,
+            "rollback_policy_digest": rollback_policy_digest,
+            "rollback_previously_attested": rollback_previously_attested,
             "missing_artifacts": missing_artifacts,
             "checklist_path": str(checklist.relative_to(ROOT)).replace("\\", "/"),
         },

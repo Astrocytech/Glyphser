@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "scan_globs": [
+    "docs/**/*.md",
+    "docs/ci/*.yml"
+  ],
+  "enforce_action_sha_pinning": true
+}

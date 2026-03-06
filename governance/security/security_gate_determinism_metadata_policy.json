@@ -1,0 +1,22 @@
+{
+  "default_deterministic_inputs": [
+    "repository_committed_sources",
+    "governance_security_policies",
+    "environment_fixed_time_or_source_date_epoch"
+  ],
+  "default_deterministic_outputs": [
+    "evidence/security/<gate_name>.json"
+  ],
+  "gate_metadata_overrides": {
+    "tooling/security/security_super_gate.py": {
+      "deterministic_inputs": [
+        "security_super_gate_manifest",
+        "selected_gate_exit_codes",
+        "strict_lane_flags"
+      ],
+      "deterministic_outputs": [
+        "evidence/security/security_super_gate.json"
+      ]
+    }
+  }
+}

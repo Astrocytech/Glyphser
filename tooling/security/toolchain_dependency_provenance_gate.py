@@ -8,6 +8,8 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
 
+from packaging.utils import InvalidWheelFilename, canonicalize_name, parse_wheel_filename
+
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -74,6 +76,11 @@ def _download_url(item: dict[str, Any]) -> str:
     return str(dlinfo.get("url", "")).strip() if isinstance(dlinfo, dict) else ""
 
 
+def _wheel_filename(url: str) -> str:
+    parsed = urlparse(url)
+    return Path(parsed.path).name if parsed.path else ""
+
+
 def main(argv: list[str] | None = None) -> int:
     _ = argv
     findings: list[str] = []
@@ -113,6 +120,19 @@ def main(argv: list[str] | None = None) -> int:
         host = (parsed.netloc or "").lower()
         if parsed.scheme != "https" or host not in ALLOWED_HOSTS:
             findings.append(f"unapproved_download_source:{name}:{url}")
+        wheel_name = _wheel_filename(url)
+        if not wheel_name.endswith(".whl"):
+            findings.append(f"non_wheel_distribution:{name}:{wheel_name or 'missing'}")
+        else:
+            try:
+                wheel_dist, wheel_version, _, _ = parse_wheel_filename(wheel_name)
+            except InvalidWheelFilename:
+                findings.append(f"invalid_wheel_filename:{name}:{wheel_name}")
+            else:
+                if canonicalize_name(str(wheel_dist)) != canonicalize_name(name):
+                    findings.append(f"wheel_metadata_name_mismatch:{name}:wheel:{wheel_dist}")
+                if str(wheel_version) != spec["version"]:
+                    findings.append(f"wheel_metadata_version_mismatch:{name}:wheel:{wheel_version}:lock:{spec['version']}")
 
     report = {
         "status": "PASS" if not findings else "FAIL",

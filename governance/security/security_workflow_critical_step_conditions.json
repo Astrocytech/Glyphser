@@ -1,0 +1,16 @@
+{
+  "critical_step_conditions": [
+    {
+      "workflow": ".github/workflows/ci.yml",
+      "job": "security-matrix",
+      "step": "Upload Bandit SARIF to Code Scanning",
+      "if": "github.event_name == 'push'"
+    },
+    {
+      "workflow": ".github/workflows/ci.yml",
+      "job": "security-matrix",
+      "step": "Upload SARIF to Code Scanning",
+      "if": "github.event_name == 'push'"
+    }
+  ]
+}

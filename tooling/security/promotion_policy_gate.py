@@ -30,6 +30,16 @@ def _status(path: Path) -> str:
     return str(payload.get("status", "UNKNOWN")).upper() if isinstance(payload, dict) else "INVALID"
 
 
+def _load_report(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
 def _parse_ts(value: str) -> datetime | None:
     try:
         dt = datetime.fromisoformat(value.replace("Z", "+00:00"))
@@ -70,6 +80,7 @@ def _valid_override(now: datetime) -> tuple[bool, dict[str, Any], str]:
 
 def main(argv: list[str] | None = None) -> int:
     _ = argv
+    now = datetime.now(UTC)
     policy = json.loads(POLICY.read_text(encoding="utf-8"))
     if not isinstance(policy, dict):
         raise ValueError("invalid promotion policy")
@@ -86,9 +97,33 @@ def main(argv: list[str] | None = None) -> int:
         if status in {"MISSING", "INVALID"}
     ]
     soft_fail = [f"required_report_not_pass:{name}:{status}" for name, status in statuses.items() if status not in {"PASS", "MISSING", "INVALID"}]
+    revocation_report_name = "provenance_revocation_gate.json"
+    revocation_status = statuses.get(revocation_report_name, "MISSING")
+    revocation_generated_at = ""
+    revocation_before_promotion = False
+    revocation_path = sec / revocation_report_name
+    revocation_report = _load_report(revocation_path)
+
+    if revocation_status != "PASS":
+        hard_fail.append(f"revocation_check_not_pass_before_promotion:{revocation_status}")
+    else:
+        metadata = revocation_report.get("metadata", {})
+        if not isinstance(metadata, dict):
+            metadata = {}
+        revocation_generated_at = str(metadata.get("generated_at_utc", "")).strip()
+        if not revocation_generated_at:
+            hard_fail.append("revocation_check_missing_generated_at_utc")
+        else:
+            revocation_checked_at = _parse_ts(revocation_generated_at)
+            if revocation_checked_at is None:
+                hard_fail.append("revocation_check_invalid_generated_at_utc")
+            elif revocation_checked_at > now:
+                hard_fail.append("revocation_check_not_before_promotion_decision")
+            else:
+                revocation_before_promotion = True
+
     findings = list(hard_fail) + list(soft_fail)
 
-    now = datetime.now(UTC)
     override_ok, override_payload, override_reason = _valid_override(now)
     allow_override = bool(policy.get("allow_signed_override", True))
     override_applied = bool(soft_fail) and not hard_fail and allow_override and override_ok
@@ -106,6 +141,9 @@ def main(argv: list[str] | None = None) -> int:
             "allow_signed_override": allow_override,
             "override_applied": override_applied,
             "override_reason": override_reason,
+            "revocation_status": revocation_status,
+            "revocation_generated_at_utc": revocation_generated_at,
+            "revocation_check_before_promotion": revocation_before_promotion,
         },
         "metadata": {
             "gate": "promotion_policy_gate",

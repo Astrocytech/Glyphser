@@ -42,6 +42,9 @@ def test_promotion_go_no_go_report_passes_when_weighted_controls_and_blockers_cl
     monkeypatch.setattr(promotion_go_no_go_report, "evidence_root", lambda: repo / "evidence")
 
     assert promotion_go_no_go_report.main([]) == 0
+    report = json.loads((repo / "evidence" / "security" / "promotion_go_no_go_report.json").read_text(encoding="utf-8"))
+    assert report["summary"]["promotion_blocker_count"] == 0
+    assert report["summary"]["promotion_blockers"] == []
 
 
 def test_promotion_go_no_go_report_fails_when_mandatory_control_not_pass(monkeypatch, tmp_path: Path) -> None:
@@ -71,6 +74,8 @@ def test_promotion_go_no_go_report_fails_when_mandatory_control_not_pass(monkeyp
     report = json.loads((repo / "evidence" / "security" / "promotion_go_no_go_report.json").read_text(encoding="utf-8"))
     assert report["summary"]["decision"] == "NO_GO"
     assert any(str(item).startswith("mandatory_control_not_pass:super:WARN") for item in report["findings"])
+    assert report["summary"]["promotion_blocker_count"] >= 1
+    assert any(item.get("class") == "mandatory_control_not_pass" for item in report["summary"]["promotion_blockers"])
 
 
 def test_promotion_go_no_go_report_fails_when_warn_threshold_exceeded(monkeypatch, tmp_path: Path) -> None:
@@ -105,3 +110,35 @@ def test_promotion_go_no_go_report_fails_when_warn_threshold_exceeded(monkeypatc
     report = json.loads((repo / "evidence" / "security" / "promotion_go_no_go_report.json").read_text(encoding="utf-8"))
     assert report["summary"]["decision"] == "NO_GO"
     assert any(str(item).startswith("warn_threshold_exceeded:prod:advisory:1:0") for item in report["findings"])
+    assert any(item.get("class") == "warn_threshold_exceeded" for item in report["summary"]["promotion_blockers"])
+
+
+def test_promotion_go_no_go_report_fails_when_warn_is_present_in_release_lane(monkeypatch, tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    policy = repo / "governance" / "security" / "promotion_go_no_go_policy.json"
+    _write(
+        policy,
+        {
+            "minimum_weighted_score": 0,
+            "controls": [
+                {
+                    "name": "summary",
+                    "report_path": "evidence/security/security_verification_summary.json",
+                    "weight": 100,
+                    "mandatory": False,
+                }
+            ],
+        },
+    )
+    _write(repo / "evidence" / "security" / "security_verification_summary.json", {"status": "WARN"})
+
+    monkeypatch.setattr(promotion_go_no_go_report, "ROOT", repo)
+    monkeypatch.setattr(promotion_go_no_go_report, "POLICY", policy)
+    monkeypatch.setattr(promotion_go_no_go_report, "evidence_root", lambda: repo / "evidence")
+    monkeypatch.setenv("GLYPHSER_DEPLOY_ENV", "release")
+
+    assert promotion_go_no_go_report.main([]) == 1
+    report = json.loads((repo / "evidence" / "security" / "promotion_go_no_go_report.json").read_text(encoding="utf-8"))
+    assert report["summary"]["decision"] == "NO_GO"
+    assert "release_warn_not_allowed:summary" in report["findings"]
+    assert any(item.get("class") == "release_warn_not_allowed" for item in report["summary"]["promotion_blockers"])

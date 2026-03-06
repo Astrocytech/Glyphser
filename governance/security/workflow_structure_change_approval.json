@@ -1,0 +1,10 @@
+{
+  "ticket": "SEC-2026-0306-WORKFLOW-STRUCTURE-BASELINE",
+  "rationale": "Baseline signed approval record for security workflow step-structure changes; update this record and signature on any approved step insertion/removal.",
+  "approved_by": "security-operations",
+  "approved_at_utc": "2026-03-06T00:00:00+00:00",
+  "expires_at_utc": "2099-01-01T00:00:00+00:00",
+  "workflow_paths": [
+    ".github/workflows/ci.yml"
+  ]
+}

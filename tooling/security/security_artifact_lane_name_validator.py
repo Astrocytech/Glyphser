@@ -38,10 +38,58 @@ def _step_name_field(body: str) -> str:
     return ""
 
 
+def _looks_dynamic(name: str) -> bool:
+    dynamic_tokens = (
+        "${{ github.job }}",
+        "${{ github.run_id }}",
+        "${{ github.run_number }}",
+        "${{ github.run_attempt }}",
+        "${{ github.workflow }}",
+        "${{ matrix.",
+    )
+    return any(token in name for token in dynamic_tokens)
+
+
+def _has_lane_discriminator(name: str, lane_id: str) -> bool:
+    return lane_id in name or "${{ github.job }}" in name or "${{ github.workflow }}" in name or "${{ matrix." in name
+
+
+def _has_run_discriminator(name: str) -> bool:
+    return (
+        "${{ github.run_id }}" in name
+        or "${{ github.run_number }}" in name
+        or "${{ github.run_attempt }}" in name
+    )
+
+
+def _step_paths(body: str) -> list[str]:
+    lines = body.splitlines()
+    in_path = False
+    out: list[str] = []
+    for raw in lines:
+        stripped = raw.strip()
+        if stripped.startswith("path:"):
+            value = stripped.split(":", 1)[1].strip()
+            if value:
+                out.append(value)
+            in_path = True
+            continue
+        if in_path:
+            if raw.startswith(" " * 10):
+                token = stripped
+                if token:
+                    out.append(token)
+                continue
+            in_path = False
+    return out
+
+
 def main(argv: list[str] | None = None) -> int:
     _ = argv
     findings: list[str] = []
     checked_steps = 0
+    artifact_names: dict[str, set[str]] = {}
+    allowed_suffixes = {".json", ".sarif", ".xml", ".md", ".txt", ".html", ".csv", ".sig", ".jsonl"}
 
     for workflow in _security_workflows():
         lane_id = workflow.stem.replace("_", "-")
@@ -55,10 +103,39 @@ def main(argv: list[str] | None = None) -> int:
             if not artifact_name:
                 findings.append(f"missing_upload_artifact_name:{workflow.name}:{match.group('step').strip()}")
                 continue
-            if "${{ github.job }}" in artifact_name:
-                continue
-            if lane_id not in artifact_name and "security" not in artifact_name.lower():
+            artifact_names.setdefault(artifact_name, set()).add(workflow.name)
+            if not _has_lane_discriminator(artifact_name, lane_id) and "security" not in artifact_name.lower():
                 findings.append(f"artifact_name_missing_lane_identifier:{workflow.name}:{artifact_name}")
+            if not _has_run_discriminator(artifact_name):
+                findings.append(f"artifact_name_missing_run_discriminator:{workflow.name}:{artifact_name}")
+            for relpath in _step_paths(body):
+                filename = Path(relpath.rstrip("/")).name
+                if not filename or filename.startswith("${{"):
+                    continue
+                if filename.startswith("."):
+                    findings.append(f"hidden_artifact_path:{workflow.name}:{artifact_name}:{relpath}")
+                if relpath.endswith("/") or "." not in filename:
+                    continue
+                suffix = Path(filename).suffix.lower()
+                if suffix not in allowed_suffixes:
+                    findings.append(f"ambiguous_artifact_extension:{workflow.name}:{artifact_name}:{relpath}")
+            step_paths = [path for path in _step_paths(body) if path and not path.endswith("/")]
+            path_set = set(step_paths)
+            for relpath in step_paths:
+                if not relpath.endswith(".sig"):
+                    continue
+                target = relpath[:-4]
+                target_name = Path(target).name
+                if "." not in target_name:
+                    findings.append(f"signature_basename_mismatch:{workflow.name}:{artifact_name}:{relpath}")
+                    continue
+                if target not in path_set:
+                    findings.append(f"signature_without_matching_artifact:{workflow.name}:{artifact_name}:{relpath}")
+
+    for artifact_name, owners in sorted(artifact_names.items()):
+        if len(owners) <= 1 or _looks_dynamic(artifact_name):
+            continue
+        findings.append(f"duplicate_artifact_name_across_workflows:{artifact_name}:{','.join(sorted(owners))}")
 
     report = {
         "status": "PASS" if not findings else "FAIL",

@@ -1,5 +1,6 @@
 {
   "max_active_waivers": 5,
-  "required_fields": ["id", "reason", "expires_at_utc", "owner"],
+  "max_active_waivers_per_control_family": 2,
+  "required_fields": ["id", "reason", "expires_at_utc", "owner", "control_family"],
   "waiver_file_glob": "evidence/repro/waivers.json"
 }

@@ -19,17 +19,31 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/policy_schema_validation_gate.py" in wf
     assert "python tooling/security/stochastic_seed_policy_gate.py" in wf
     assert "python tooling/security/security_schema_migration_tracker.py" in wf
+    assert "python tooling/security/policy_schema_migration_note_gate.py" in wf
     assert "python tooling/security/security_schema_strict_readiness_gate.py" in wf
     assert "python tooling/security/security_super_gate_manifest_gate.py" in wf
     assert "python tooling/security/workflow_artifact_retention_gate.py" in wf
     assert "python tooling/security/semgrep_rules_self_check_gate.py" in wf
     assert "python tooling/security/workflow_policy_coverage_gate.py" in wf
     assert "python tooling/security/scheduled_workflow_backpressure_gate.py" in wf
+    assert "python tooling/security/simultaneous_multi_gate_failure_triage_drill.py" in wf
+    assert "python tooling/security/partial_evidence_corruption_incident_response_drill.py" in wf
+    assert "python tooling/security/secret_rotation_mid_run_drill.py" in wf
+    assert "python tooling/security/branch_protection_api_unavailability_drill.py" in wf
+    assert "python tooling/security/security_step_execution_fingerprint.py" in wf
+    assert "python tooling/security/security_step_traceability_marker_gate.py" in wf
+    assert "python tooling/security/security_run_correlation_id_gate.py" in wf
+    assert "python tooling/security/security_ambiguous_pass_gate.py" in wf
     assert "python tooling/security/security_evidence_corruption_gate.py" in wf
     assert "python tooling/security/security_artifact_signature_coverage_gate.py" in wf
     assert "python tooling/security/artifact_path_case_conflict_gate.py" in wf
     assert "python tooling/security/security_unsigned_json_gate.py" in wf
     assert "python tooling/security/threat_control_mapping_gate.py" in wf
+    assert "python tooling/security/docs_security_command_guard_gate.py" in wf
+    assert "python tooling/security/docs_snippet_pinning_gate.py" in wf
+    assert "python tooling/security/docs_workflow_reference_gate.py" in wf
+    assert "python tooling/security/architecture_artifact_path_gate.py" in wf
+    assert "python tooling/security/deprecated_docs_operational_guidance_gate.py" in wf
     assert "python tooling/security/security_toolchain_gate.py" in wf
     assert "python tooling/security/toolchain_dependency_provenance_gate.py" in wf
     assert "python tooling/security/toolchain_source_failover_gate.py" in wf
@@ -39,7 +53,11 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/strict_lane_fail_closed_control_gate.py" in wf
     assert "python tooling/security/warning_lane_degraded_mode_artifact_gate.py" in wf
     assert "python tooling/security/workflow_change_management_gate.py" in wf
+    assert "python tooling/security/sarif_upload_prerequisite_gate.py" in wf
+    assert "python tooling/security/sarif_fallback_upload_gate.py" in wf
+    assert "python tooling/security/workflow_upload_wildcard_gate.py" in wf
     assert "python tooling/security/workflow_deprecated_invocation_gate.py" in wf
+    assert "python tooling/security/tool_invocation_flag_policy_gate.py" in wf
     assert "python tooling/security/subprocess_allowlist_report.py" in wf
     assert "python tooling/security/subprocess_direct_usage_gate.py" in wf
     assert "python tooling/security/pip_audit_gate.py" in wf
@@ -78,9 +96,12 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/exception_path_metadata_gate.py" in wf
     assert "python tooling/security/degraded_mode_evidence.py" in wf
     assert "python tooling/security/evidence_attestation_index.py --strict-key" in wf
+    assert "python tooling/security/attestation_index_signed_artifacts_gate.py --lane security-maintenance" in wf
     assert "python tooling/security/evidence_attestation_gate.py --strict-key" in wf
     assert "python tooling/security/provenance_signature_gate.py --strict-key" in wf
     assert "python tooling/security/key_provenance_continuity_gate.py" in wf
+    assert "python tooling/security/signature_key_lineage_policy_gate.py" in wf
+    assert "python tooling/security/key_usage_ledger.py" in wf
     assert "python tooling/security/signature_algorithm_policy_gate.py" in wf
     assert "python tooling/security/security_verification_summary.py --strict-key" in wf
     assert "python tooling/security/slsa_attestation_gate.py" in wf
@@ -110,6 +131,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "python tooling/security/formal_security_review_artifact.py --strict-key" in wf
     assert "python tooling/security/policy_review_freshness_gate.py" in wf
     assert "python tooling/security/policy_deprecation_gate.py" in wf
+    assert "python tooling/security/policy_tombstone_changelog_gate.py" in wf
     assert "python tooling/security/ownership_continuity_gate.py" in wf
     assert "python tooling/security/signed_policy_metadata_gate.py" in wf
     assert "python tooling/security/approval_policy_violation_audit.py" in wf
@@ -139,6 +161,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "policy_schema_validation_gate.json" in wf
     assert "stochastic_seed_policy_gate.json" in wf
     assert "security_schema_migration_tracker.json" in wf
+    assert "policy_schema_migration_note_gate.json" in wf
     assert "security_schema_strict_readiness_gate.json" in wf
     assert "security_super_gate_manifest_gate.json" in wf
     assert "workflow_artifact_retention_gate.json" in wf
@@ -166,6 +189,7 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "temp_directory_policy_gate.json" in wf
     assert "policy_review_freshness_gate.json" in wf
     assert "policy_deprecation_gate.json" in wf
+    assert "policy_tombstone_changelog_gate.json" in wf
     assert "ownership_continuity_gate.json" in wf
     assert "signed_policy_metadata_gate.json" in wf
     assert "approval_policy_violation_audit.json" in wf
@@ -184,9 +208,17 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "adversarial_resilience_scorecard.json" in wf
     assert "recurring_failure_closure_gate.json" in wf
     assert "threat_control_mapping_gate.json" in wf
+    assert "docs_security_command_guard_gate.json" in wf
+    assert "docs_snippet_pinning_gate.json" in wf
+    assert "docs_workflow_reference_gate.json" in wf
+    assert "architecture_artifact_path_gate.json" in wf
+    assert "deprecated_docs_operational_guidance_gate.json" in wf
     assert "security_workflow_trigger_gate.json" in wf
     assert "security_critical_test_wiring_gate.json" in wf
     assert "security_sarif_permissions_gate.json" in wf
+    assert "sarif_upload_prerequisite_gate.json" in wf
+    assert "sarif_fallback_upload_gate.json" in wf
+    assert "workflow_upload_wildcard_gate.json" in wf
     assert "security_workflow_permissions_policy_gate.json" in wf
     assert "security_exception_suppression_gate.json" in wf
     assert "security_dead_gate_wiring_gate.json" in wf
@@ -225,8 +257,19 @@ def test_security_maintenance_workflow_wired() -> None:
     assert "formal_security_review_artifact.json.sig" in wf
     assert "security_gate_test_coverage.json" in wf
     assert "hardening_todo_consistency_gate.json" in wf
+    assert "attestation_index_signed_artifacts_gate.json" in wf
+    assert "simultaneous_multi_gate_failure_triage_drill.json" in wf
+    assert "partial_evidence_corruption_incident_response_drill.json" in wf
+    assert "secret_rotation_mid_run_drill.json" in wf
+    assert "branch_protection_api_unavailability_drill.json" in wf
+    assert "security_step_execution_fingerprint.json" in wf
+    assert "security_step_traceability_marker_gate.json" in wf
+    assert "security_run_correlation_id_gate.json" in wf
+    assert "security_ambiguous_pass_gate.json" in wf
     assert "security_trend_alert.json" in wf
     assert "key_provenance_continuity_gate.json" in wf
+    assert "signature_key_lineage_policy_gate.json" in wf
+    assert "key_usage_ledger.json" in wf
     assert "signature_algorithm_policy_gate.json" in wf
     assert "security_verification_summary.json" in wf
     assert "security_verification_summary.json.sig" in wf

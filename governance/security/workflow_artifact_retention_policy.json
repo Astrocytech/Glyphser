@@ -1,0 +1,13 @@
+{
+  "workflow_classes": {
+    "ci.yml": "ci",
+    "security-maintenance.yml": "security_maintenance",
+    "security-super-extended.yml": "security_maintenance",
+    "release.yml": "release"
+  },
+  "retention_days_by_class": {
+    "ci": 14,
+    "security_maintenance": 30,
+    "release": 180
+  }
+}

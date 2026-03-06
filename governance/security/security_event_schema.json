@@ -4,7 +4,9 @@
     "severity",
     "control_id",
     "run_id",
-    "artifact_ref"
+    "artifact_ref",
+    "owner",
+    "runbook_link"
   ],
   "allowed_severities": [
     "low",

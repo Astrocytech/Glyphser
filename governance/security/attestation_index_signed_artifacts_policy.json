@@ -1,0 +1,24 @@
+{
+  "default_required_signed_artifacts": [
+    "evidence/security/policy_signature.json",
+    "evidence/security/provenance_signature.json",
+    "evidence/security/evidence_attestation_index.json.sig"
+  ],
+  "lane_required_signed_artifacts": {
+    "security-matrix": [
+      "evidence/security/policy_signature.json",
+      "evidence/security/provenance_signature.json",
+      "evidence/security/evidence_attestation_index.json.sig"
+    ],
+    "security-maintenance": [
+      "evidence/security/policy_signature.json",
+      "evidence/security/provenance_signature.json",
+      "evidence/security/evidence_attestation_index.json.sig"
+    ],
+    "release-verify": [
+      "evidence/security/policy_signature.json",
+      "evidence/security/provenance_signature.json",
+      "evidence/security/evidence_attestation_index.json.sig"
+    ]
+  }
+}

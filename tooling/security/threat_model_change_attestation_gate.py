@@ -43,7 +43,8 @@ def _critical_control_ids(matrix_payload: dict[str, Any]) -> set[str]:
 
 
 def _changed_control_ids() -> set[str]:
-    proc = run_checked(["git", "diff", "--unified=0", "HEAD~1", "HEAD", "--", str(MATRIX.relative_to(ROOT))], cwd=ROOT)
+    matrix_rel = MATRIX.relative_to(ROOT).as_posix()
+    proc = run_checked(["git", "diff", "--unified=0", "HEAD~1", "HEAD", "--", matrix_rel], cwd=ROOT)
     if proc.returncode != 0:
         return set()
     changed: set[str] = set()

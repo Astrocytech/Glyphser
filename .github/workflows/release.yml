@@ -96,6 +96,10 @@ jobs:
         run: python tooling/security/deploy_artifact_drift_gate.py
       - name: Governance markdown gate
         run: python tooling/security/governance_markdown_gate.py
+      - name: Docs security command guard gate
+        run: python tooling/security/docs_security_command_guard_gate.py
+      - name: Docs snippet pinning gate
+        run: python tooling/security/docs_snippet_pinning_gate.py
       - name: Required control condition bypass gate
         run: python tooling/security/required_control_condition_bypass_gate.py
       - name: Strict lane fail-closed control gate
@@ -132,6 +136,8 @@ jobs:
           python tooling/security/abuse_telemetry_gate.py
       - name: Temporary waiver gate
         run: python tooling/security/temporary_waiver_gate.py
+      - name: Expired degraded-mode allowance gate
+        run: python tooling/security/expired_degraded_mode_allowance_gate.py
       - name: Exception path metadata gate
         run: python tooling/security/exception_path_metadata_gate.py
       - name: Degraded-mode evidence
@@ -140,6 +146,8 @@ jobs:
         run: python tooling/security/emergency_lockdown_gate.py
       - name: Exception waiver reconciliation gate
         run: python tooling/security/exception_waiver_reconciliation_gate.py
+      - name: Exception/waiver unique ID gate
+        run: python tooling/security/exception_waiver_unique_id_gate.py
       - name: Provenance revocation gate
         run: python tooling/security/provenance_revocation_gate.py
       - name: Canary promotion guard
@@ -153,7 +161,20 @@ jobs:
       - name: Evidence attestation index + gate
         run: |
           python tooling/security/evidence_attestation_index.py --strict-key
+          python tooling/security/attestation_index_signed_artifacts_gate.py --lane release-verify
           python tooling/security/evidence_attestation_gate.py --strict-key
+      - name: Key provenance continuity gate
+        run: python tooling/security/key_provenance_continuity_gate.py
+      - name: Key usage ledger
+        run: python tooling/security/key_usage_ledger.py
+      - name: Strict release fallback key indicator gate
+        run: python tooling/security/strict_release_fallback_key_indicator_gate.py
+      - name: Release strict-key mode gate
+        run: python tooling/security/release_strict_key_mode_gate.py
+      - name: Release evidence-root isolation gate
+        run: python tooling/security/release_evidence_root_isolation_gate.py
+      - name: Release publish rollback-order gate
+        run: python tooling/security/release_publish_rollback_order_gate.py
       - name: Workflow evidence scope gate
         run: python tooling/security/workflow_evidence_scope_gate.py
       - name: External action owner allowlist gate
@@ -252,6 +273,8 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/offline_network_call_guard_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/production_controls.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/governance_markdown_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/docs_security_command_guard_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/docs_snippet_pinning_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/required_control_condition_bypass_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/strict_lane_fail_closed_control_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/warning_lane_degraded_mode_artifact_gate.json
@@ -275,10 +298,12 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/live_rollout_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/abuse_telemetry.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/temporary_waiver_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/expired_degraded_mode_allowance_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/exception_path_metadata_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/emergency_lockdown_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/exception_waiver_reconciliation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/exception_waiver_reconciliation_gate.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/exception_waiver_unique_id_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_revocation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/canary_promotion_guard.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/promotion_policy_gate.json
@@ -293,7 +318,14 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/deploy_artifact_drift_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/attestation_index_signed_artifacts_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/key_provenance_continuity_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/key_usage_ledger.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/strict_release_fallback_key_indicator_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/release_strict_key_mode_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/release_evidence_root_isolation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/release_publish_rollback_order_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_evidence_scope_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/external_action_owner_allowlist_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/third_party_action_sha_mapping_gate.json
@@ -380,6 +412,8 @@ jobs:
           python tooling/security/third_party_pentest_gate.py --strict-key
           python tooling/security/post_incident_closure_gate.py
           python tooling/security/governance_markdown_gate.py
+          python tooling/security/docs_security_command_guard_gate.py
+          python tooling/security/docs_snippet_pinning_gate.py
           python tooling/security/required_control_condition_bypass_gate.py
           python tooling/security/strict_lane_fail_closed_control_gate.py
           python tooling/security/warning_lane_degraded_mode_artifact_gate.py
@@ -405,16 +439,25 @@ jobs:
           python tooling/security/abuse_telemetry_snapshot.py
           python tooling/security/abuse_telemetry_gate.py
           python tooling/security/temporary_waiver_gate.py
+          python tooling/security/expired_degraded_mode_allowance_gate.py
           python tooling/security/exception_path_metadata_gate.py
           python tooling/security/degraded_mode_evidence.py
           python tooling/security/emergency_lockdown_gate.py
           python tooling/security/exception_waiver_reconciliation_gate.py
+          python tooling/security/exception_waiver_unique_id_gate.py
           python tooling/security/provenance_revocation_gate.py
           python tooling/security/canary_promotion_guard.py
           python tooling/security/promotion_policy_gate.py
           python tooling/security/security_state_transition_invariants_gate.py
           python tooling/security/evidence_attestation_index.py --strict-key
+          python tooling/security/attestation_index_signed_artifacts_gate.py --lane release-verify
           python tooling/security/evidence_attestation_gate.py --strict-key
+          python tooling/security/key_provenance_continuity_gate.py
+          python tooling/security/key_usage_ledger.py
+          python tooling/security/strict_release_fallback_key_indicator_gate.py
+          python tooling/security/release_strict_key_mode_gate.py
+          python tooling/security/release_evidence_root_isolation_gate.py
+          python tooling/security/release_publish_rollback_order_gate.py
           python tooling/security/workflow_evidence_scope_gate.py
           python tooling/security/external_action_owner_allowlist_gate.py
           python tooling/security/third_party_action_sha_mapping_gate.py
@@ -444,6 +487,7 @@ jobs:
           python tooling/security/security_schema_normalization_gate.py
           python tooling/security/cosign_attestation_gate.py
           python tooling/security/release_rollback_provenance_gate.py
+          python tooling/release/release_evidence_gate.py
 
   publish-pypi:
     needs: [build, verify-signatures]
@@ -452,18 +496,28 @@ jobs:
     environment: release
     permissions:
       contents: read
+    env:
+      GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/release-publish
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38
         with:
           python-version: "3.12"
+      - name: Download verified release artifacts
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16
+        with:
+          name: dist
+          path: .
+      - name: Initialize publish evidence run directory
+        run: python tooling/security/evidence_run_dir_guard.py --run-id "${{ github.run_id }}-release-publish"
+      - name: Release publish artifact presence gate
+        run: python tooling/security/release_publish_artifact_presence_gate.py --artifact-root . --run-id "${{ github.run_id }}"
       - name: Publish to PyPI
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
         run: |
-          python -m pip install --upgrade pip build twine
-          python -m build
+          python -m pip install --upgrade pip twine
           python -m twine upload --non-interactive dist/*
 
   publish-pypi-skipped:

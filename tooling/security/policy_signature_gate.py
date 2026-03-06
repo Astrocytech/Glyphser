@@ -88,8 +88,13 @@ def main(argv: list[str] | None = None) -> int:
             "total_policies": len(policies),
             "failed_policies": len(findings),
             "strict_key": args.strict_key,
+            "verification_mode": "strict" if args.strict_key else "non_strict",
         },
-        "metadata": {"key_provenance": key_metadata(strict=args.strict_key), "gate": "policy_signature_gate"},
+        "metadata": {
+            "key_provenance": key_metadata(strict=args.strict_key),
+            "gate": "policy_signature_gate",
+            "verification_mode": "strict" if args.strict_key else "non_strict",
+        },
     }
     out = evidence_root() / "security" / "policy_signature.json"
     write_json_report(out, payload)

@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "incident_id": "INC-DRILL-2026-03-02-EVIDENCE-CORRUPTION",
+  "corrupted_artifacts": [
+    "evidence/security/security_events.jsonl",
+    "evidence/security/security_verification_summary.json"
+  ],
+  "detection_method": "Hash mismatch alert from evidence_chain_of_custody_gate.",
+  "containment_actions": [
+    "Quarantine compromised evidence run directory.",
+    "Suspend promotion decisions for affected run."
+  ],
+  "recovery_steps": [
+    "Reconstruct evidence bundle from immutable archive.",
+    "Re-run signature verification and chain-of-custody checks."
+  ],
+  "fallback_verification_completed": true,
+  "postmortem_ref": "governance/security/incident_postmortems/INC-DRILL-2026-03-02.md"
+}

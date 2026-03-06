@@ -25,6 +25,8 @@ def test_policy_signature_gate_passes(monkeypatch, tmp_path: Path) -> None:
     assert policy_signature_gate.main([]) == 0
     report = json.loads((repo / "evidence" / "security" / "policy_signature.json").read_text(encoding="utf-8"))
     assert "key_provenance" in report["metadata"]
+    assert report["summary"]["verification_mode"] == "non_strict"
+    assert report["metadata"]["verification_mode"] == "non_strict"
 
 
 def test_policy_signature_gate_fails_on_tamper(monkeypatch, tmp_path: Path) -> None:
@@ -62,3 +64,6 @@ def test_policy_signature_gate_strict_mode_accepts_bootstrap_signed_policies(mon
     monkeypatch.setattr(policy_signature_gate, "ROOT", repo)
     monkeypatch.setattr(policy_signature_gate, "evidence_root", lambda: repo / "evidence")
     assert policy_signature_gate.main(["--strict-key"]) == 0
+    report = json.loads((repo / "evidence" / "security" / "policy_signature.json").read_text(encoding="utf-8"))
+    assert report["summary"]["verification_mode"] == "strict"
+    assert report["metadata"]["verification_mode"] == "strict"

@@ -25,6 +25,7 @@ _REQUIRED_QUOTA_KEYS = [
     "replay_window_by_token",
     "replay_window_by_job",
     "replay_window_job_tokens",
+    "idempotency_collisions",
 ]
 
 
@@ -76,12 +77,41 @@ def main(argv: list[str] | None = None) -> int:
     if missing_required_counters:
         findings.append(f"missing_required_runtime_counters:{','.join(missing_required_counters)}")
 
+    collisions = _as_dict(quotas.get("idempotency_collisions", {}))
+    total_collisions = 0
+    for value in collisions.values():
+        if isinstance(value, int):
+            total_collisions += max(value, 0)
+    provenance = _as_dict(state.get("collision_provenance", {}))
+    if total_collisions > 0:
+        if not provenance:
+            findings.append("missing_collision_provenance")
+        else:
+            required_provenance_keys = {
+                "idempotency_key",
+                "existing_job_id",
+                "existing_payload_hash",
+                "incoming_payload_hash",
+                "token_hash",
+                "scope",
+                "timestamp",
+            }
+            for key, entry in provenance.items():
+                if not isinstance(entry, dict):
+                    findings.append(f"invalid_collision_provenance_entry:{key}")
+                    continue
+                missing = sorted(k for k in required_provenance_keys if not str(entry.get(k, "")).strip())
+                if missing:
+                    findings.append(f"collision_provenance_missing_fields:{key}:{','.join(missing)}")
+
     summary = {
         "state_path": str(state_path.relative_to(ROOT)).replace("\\", "/"),
         "required_quota_dicts": len(_REQUIRED_QUOTA_KEYS),
         "required_runtime_counters": required_counters,
         "quota_keys_present": sorted(quotas.keys()),
         "missing_required_counters_count": len(missing_required_counters),
+        "collision_count": total_collisions,
+        "collision_provenance_entries": len(provenance),
     }
     report = {
         "status": "PASS" if not findings else "FAIL",

@@ -56,6 +56,11 @@ def main(argv: list[str] | None = None) -> int:
         "metadata": {
             "gate": "security_verification_summary",
             "key_provenance": key_metadata(strict=args.strict_key),
+            "verification_mode": "strict" if args.strict_key else "non_strict",
+        },
+        "summary": {
+            "strict_key": args.strict_key,
+            "verification_mode": "strict" if args.strict_key else "non_strict",
         },
     }
     out = sec / "security_verification_summary.json"

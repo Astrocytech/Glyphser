@@ -17,10 +17,10 @@ def _sign(path: Path) -> None:
 
 
 class _Proc:
-    def __init__(self, returncode: int) -> None:
+    def __init__(self, returncode: int, *, stdout: str = "", stderr: str = "") -> None:
         self.returncode = returncode
-        self.stdout = ""
-        self.stderr = ""
+        self.stdout = stdout
+        self.stderr = stderr
 
 
 def test_runbook_command_health_gate_passes_when_commands_succeed(monkeypatch, tmp_path: Path) -> None:
@@ -49,3 +49,28 @@ def test_runbook_command_health_gate_fails_when_command_fails(monkeypatch, tmp_p
     assert runbook_command_health_gate.main([]) == 1
     report = json.loads((repo / "evidence" / "security" / "runbook_command_health_gate.json").read_text(encoding="utf-8"))
     assert any(str(item).startswith("runbook_command_failed:") for item in report["findings"])
+
+
+def test_runbook_command_health_gate_fails_on_runbook_cli_option_drift(monkeypatch, tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    policy = repo / "governance" / "security" / "runbook_command_health_checks.json"
+    _write_json(policy, {"commands": []})
+    _sign(policy)
+    (repo / "governance" / "security" / "LOCAL.md").write_text(
+        "Run `python tooling/security/demo_gate.py --unknown-flag`.\n",
+        encoding="utf-8",
+    )
+
+    def _runner(cmd: list[str], **_: object) -> _Proc:
+        if len(cmd) >= 3 and cmd[1] == "tooling/security/demo_gate.py" and cmd[2] == "--help":
+            return _Proc(0, stdout="usage: demo_gate.py [--known-flag]\n")
+        return _Proc(0)
+
+    monkeypatch.setattr(runbook_command_health_gate, "ROOT", repo)
+    monkeypatch.setattr(runbook_command_health_gate, "POLICY", policy)
+    monkeypatch.setattr(runbook_command_health_gate, "RUNBOOK_DOC_ROOTS", (repo / "governance" / "security",))
+    monkeypatch.setattr(runbook_command_health_gate, "evidence_root", lambda: repo / "evidence")
+    monkeypatch.setattr(runbook_command_health_gate, "run_checked", _runner)
+    assert runbook_command_health_gate.main([]) == 1
+    report = json.loads((repo / "evidence" / "security" / "runbook_command_health_gate.json").read_text(encoding="utf-8"))
+    assert any(str(item).startswith("runbook_option_not_supported:") for item in report["findings"])

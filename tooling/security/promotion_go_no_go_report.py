@@ -60,6 +60,7 @@ def main(argv: list[str] | None = None) -> int:
     weighted_total = 0.0
     weight_sum = 0.0
     blockers: list[str] = []
+    promotion_blockers: list[dict[str, Any]] = []
     warning_category_counts: dict[str, int] = {}
 
     for item in controls:
@@ -97,7 +98,27 @@ def main(argv: list[str] | None = None) -> int:
         weight_sum += max(weight, 0.0)
 
         if mandatory and report_status != "PASS":
-            blockers.append(f"mandatory_control_not_pass:{name}:{report_status}")
+            blocker = f"mandatory_control_not_pass:{name}:{report_status}"
+            blockers.append(blocker)
+            promotion_blockers.append(
+                {
+                    "class": "mandatory_control_not_pass",
+                    "control": name,
+                    "status": report_status,
+                    "report_path": rel,
+                }
+            )
+        if env_name in {"release", "prod"} and report_status == "WARN":
+            blocker = f"release_warn_not_allowed:{name}"
+            blockers.append(blocker)
+            promotion_blockers.append(
+                {
+                    "class": "release_warn_not_allowed",
+                    "control": name,
+                    "status": report_status,
+                    "report_path": rel,
+                }
+            )
 
         details.append(
             {
@@ -114,10 +135,26 @@ def main(argv: list[str] | None = None) -> int:
     findings.extend(blockers)
     if weighted_score < min_score:
         findings.append(f"weighted_score_below_threshold:{weighted_score}:{min_score}")
+        promotion_blockers.append(
+            {
+                "class": "weighted_score_below_threshold",
+                "weighted_score": weighted_score,
+                "minimum_weighted_score": min_score,
+            }
+        )
     for category, count in sorted(warning_category_counts.items()):
         allowed = int(warn_thresholds.get(category, 0))
         if count > allowed:
             findings.append(f"warn_threshold_exceeded:{env_name}:{category}:{count}:{allowed}")
+            promotion_blockers.append(
+                {
+                    "class": "warn_threshold_exceeded",
+                    "environment": env_name,
+                    "category": category,
+                    "count": count,
+                    "allowed": allowed,
+                }
+            )
 
     decision = "GO" if not blockers and weighted_score >= min_score and not findings else "NO_GO"
     status = "PASS" if decision == "GO" else "FAIL"
@@ -134,6 +171,8 @@ def main(argv: list[str] | None = None) -> int:
             "environment": env_name,
             "warn_thresholds": warn_thresholds,
             "warning_category_counts": warning_category_counts,
+            "promotion_blockers": promotion_blockers,
+            "promotion_blocker_count": len(promotion_blockers),
         },
         "metadata": {"gate": "promotion_go_no_go_report"},
         "controls": details,

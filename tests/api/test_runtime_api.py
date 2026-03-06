@@ -49,6 +49,24 @@ def test_submit_idempotency_and_status(tmp_path: Path):
     assert status["api_version"] == "1.0.0"
 
 
+def test_idempotency_collision_records_provenance(tmp_path: Path) -> None:
+    svc = RuntimeApiService(RuntimeApiConfig(root=ROOT, state_path=tmp_path / "state.json"))
+    first = svc.submit_job(payload={"payload": {"job": "a"}}, token="token-a", scope="jobs:write", idempotency_key="abc")
+    second = svc.submit_job(payload={"payload": {"job": "b"}}, token="token-b", scope="jobs:write", idempotency_key="abc")
+    assert first["job_id"] == second["job_id"]
+    state = json.loads((tmp_path / "state.json").read_text(encoding="utf-8"))
+    collisions = ((state.get("quotas") or {}) if isinstance(state, dict) else {}).get("idempotency_collisions", {})
+    assert isinstance(collisions, dict)
+    assert int(collisions.get("abc", 0)) >= 1
+    provenance = state.get("collision_provenance", {})
+    assert isinstance(provenance, dict)
+    assert provenance
+    first_entry = next(iter(provenance.values()))
+    assert isinstance(first_entry, dict)
+    assert first_entry.get("idempotency_key") == "abc"
+    assert str(first_entry.get("existing_payload_hash", "")) != str(first_entry.get("incoming_payload_hash", ""))
+
+
 def test_evidence_and_replay(tmp_path: Path):
     root = tmp_path / "repo"
     (root / "evidence" / "conformance" / "reports").mkdir(parents=True)

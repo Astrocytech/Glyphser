@@ -24,8 +24,10 @@ def main(argv: list[str] | None = None) -> int:
     event_type = str(schema.get("event_type", "security_gate_status"))
 
     events_path = evidence_root() / "security" / "security_events.jsonl"
+    security_dir = evidence_root() / "security"
     findings: list[str] = []
     checked = 0
+    fail_event_artifact_refs: set[str] = set()
     if events_path.exists():
         for idx, raw in enumerate(events_path.read_text(encoding="utf-8").splitlines(), start=1):
             if not raw.strip():
@@ -47,12 +49,37 @@ def main(argv: list[str] | None = None) -> int:
             sev = str(event.get("severity", ""))
             if sev and sev not in allowed_severities:
                 findings.append(f"invalid_severity:{idx}:{sev}")
+            if str(event.get("status", "")).upper() == "FAIL":
+                artifact_ref = str(event.get("artifact_ref", "")).strip()
+                if artifact_ref:
+                    fail_event_artifact_refs.add(artifact_ref)
+
+    fail_reports_checked = 0
+    fail_reports_without_event = 0
+    for report_path in sorted(security_dir.glob("*.json")):
+        if report_path.name in {"security_event_export.json", "security_event_schema_gate.json"}:
+            continue
+        try:
+            report_payload = json.loads(report_path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if not isinstance(report_payload, dict):
+            continue
+        if str(report_payload.get("status", "")).upper() != "FAIL":
+            continue
+        fail_reports_checked += 1
+        artifact_ref = str(report_path.relative_to(ROOT)).replace("\\", "/")
+        if artifact_ref not in fail_event_artifact_refs:
+            fail_reports_without_event += 1
+            findings.append(f"missing_fail_event_payload:{artifact_ref}")
 
     report = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
         "summary": {
             "checked_events": checked,
+            "fail_reports_checked": fail_reports_checked,
+            "fail_reports_without_event": fail_reports_without_event,
             "required_fields": required,
             "schema": str(SCHEMA.relative_to(ROOT)).replace("\\", "/"),
         },

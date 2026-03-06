@@ -1,0 +1,14 @@
+{
+  "deprecated_docs": [
+    "docs/deprecated/LEGACY_SECURITY_PRECHECK.md"
+  ],
+  "required_markers": [
+    "DEPRECATED",
+    "DO NOT USE"
+  ],
+  "operational_guidance_docs": [
+    "docs/START-HERE.md",
+    "docs/DOCS_INDEX.md",
+    "governance/security/LOCAL_CI_SECURITY_REPRO.md"
+  ]
+}

@@ -19,12 +19,12 @@ STRICT_LANE_WORKFLOWS = (
     ".github/workflows/release.yml",
 )
 CRITICAL_STRICT_COMMANDS = (
-    "python tooling/security/policy_signature_gate.py --strict-key",
-    "python tooling/security/provenance_signature_gate.py --strict-key",
-    "python tooling/security/evidence_attestation_gate.py --strict-key",
-    "python tooling/security/security_super_gate.py --strict-key",
+    "tooling/security/policy_signature_gate.py",
+    "tooling/security/provenance_signature_gate.py",
+    "tooling/security/evidence_attestation_gate.py",
+    "tooling/security/security_super_gate.py",
 )
-MASKED_EXIT_RE = re.compile(r"\|\|\s*(?:true|:)|;\s*true\b")
+MASKED_EXIT_RE = re.compile(r"\|\|\s*(?:true|:|exit\s+0)\b|;\s*true\b|\bset\s+\+e\b")
 
 
 def _step_blocks(text: str) -> list[tuple[int, list[str]]]:
@@ -62,14 +62,14 @@ def main(argv: list[str] | None = None) -> int:
             has_continue_on_error = any(
                 line.strip().startswith("continue-on-error:") and "true" in line.lower() for line in block
             )
-            for command in CRITICAL_STRICT_COMMANDS:
-                if command not in block_text:
+            for script in CRITICAL_STRICT_COMMANDS:
+                if script not in block_text:
                     continue
                 if has_continue_on_error:
-                    findings.append(f"critical_exit_masked_continue_on_error:{rel}:{start_line}:{command}")
+                    findings.append(f"critical_exit_masked_continue_on_error:{rel}:{start_line}:{script}")
                 for idx, line in enumerate(block, start=start_line):
-                    if command in line and MASKED_EXIT_RE.search(line):
-                        findings.append(f"critical_exit_masked_shell:{rel}:{idx}:{command}")
+                    if script in line and MASKED_EXIT_RE.search(line):
+                        findings.append(f"critical_exit_masked_shell:{rel}:{idx}:{script}")
 
     report = {
         "status": "PASS" if not findings else "FAIL",

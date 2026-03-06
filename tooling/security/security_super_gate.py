@@ -257,6 +257,9 @@ def main(argv: list[str] | None = None) -> int:
         [sys.executable, "tooling/security/oncall_triage_sla_drill_gate.py"],
         [sys.executable, "tooling/security/runbook_command_health_gate.py"],
         [sys.executable, "tooling/security/fork_pr_sarif_skip_simulation_gate.py"],
+        [sys.executable, "tooling/security/sarif_upload_prerequisite_gate.py"],
+        [sys.executable, "tooling/security/sarif_fallback_upload_gate.py"],
+        [sys.executable, "tooling/security/workflow_upload_wildcard_gate.py"],
         [sys.executable, "tooling/security/policy_schema_validation_gate.py"],
         [sys.executable, "tooling/security/security_report_schema_contract_gate.py"],
         [sys.executable, "tooling/security/policy_semantic_validation_gate.py"],
@@ -275,6 +278,7 @@ def main(argv: list[str] | None = None) -> int:
         [sys.executable, "tooling/security/security_sarif_permissions_gate.py"],
         [sys.executable, "tooling/security/security_workflow_permissions_policy_gate.py"],
         [sys.executable, "tooling/security/strict_lane_exit_propagation_gate.py"],
+        [sys.executable, "tooling/security/policy_manifest_ordering_gate.py"],
         [sys.executable, "tooling/security/security_exception_suppression_gate.py"],
         [sys.executable, "tooling/security/unconditional_return_zero_gate.py"],
         [sys.executable, "tooling/security/helper_script_enforcement_gate.py"],
@@ -352,6 +356,7 @@ def main(argv: list[str] | None = None) -> int:
             if args.strict_key
             else [sys.executable, "tooling/security/evidence_attestation_index.py"]
         ),
+        [sys.executable, "tooling/security/attestation_index_signed_artifacts_gate.py"],
         (
             [sys.executable, "tooling/security/evidence_attestation_gate.py", "--strict-key"]
             if args.strict_key
@@ -368,6 +373,7 @@ def main(argv: list[str] | None = None) -> int:
             else [sys.executable, "tooling/security/integrity_envelope_gate.py"]
         ),
         [sys.executable, "tooling/security/key_provenance_continuity_gate.py"],
+        [sys.executable, "tooling/security/signature_key_lineage_policy_gate.py"],
         [sys.executable, "tooling/security/key_rotation_cadence_gate.py"],
         [sys.executable, "tooling/security/envelope_signature_design_checklist_gate.py"],
         [sys.executable, "tooling/security/signature_algorithm_policy_gate.py"],

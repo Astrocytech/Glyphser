@@ -1,0 +1,21 @@
+{
+  "workflows": {
+    ".github/workflows/ci.yml": {
+      "jobs": {
+        "security-fs-permissions-parity": [
+          "Install package",
+          "Initialize immutable evidence run directory",
+          "Filesystem permission parity gates",
+          "Upload filesystem parity artifacts"
+        ],
+        "security-fs-permissions-parity-report": [
+          "Install package",
+          "Download ubuntu filesystem parity artifacts",
+          "Download macOS filesystem parity artifacts",
+          "Generate filesystem permission parity report",
+          "Upload filesystem permission parity report"
+        ]
+      }
+    }
+  }
+}

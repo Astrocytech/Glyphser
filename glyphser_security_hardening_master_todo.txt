@@ -1227,19 +1227,19 @@ AF5. Operational Guardrail Quality
 [x] Add gate to verify every strict lane has at least one explicit fail-closed control.
 [x] Add gate to verify every non-blocking warning lane emits explicit degraded-mode artifact.
 [x] Add gate to ensure exception paths include owner + expiry + justification fields.
-[ ] Add gate to fail when expired degraded-mode allowances are still active.
+[x] Add gate to fail when expired degraded-mode allowances are still active.
 
 AF6. Secret and Key Boundary Hygiene
-[ ] Add check that security reports never echo secret env var names/values in `findings`.
-[ ] Add check that fallback key indicators are not present in strict release lanes.
-[ ] Add key-usage ledger artifact per run (which key mode/path used by each signature gate).
-[ ] Add policy check for key-mode mismatch between sibling gates in same lane.
+[x] Add check that security reports never echo secret env var names/values in `findings`.
+[x] Add check that fallback key indicators are not present in strict release lanes.
+[x] Add key-usage ledger artifact per run (which key mode/path used by each signature gate).
+[x] Add policy check for key-mode mismatch between sibling gates in same lane.
 
 AF7. Ecosystem Safety Nets
-[ ] Add gate to scan docs for commands that would weaken security controls and flag outdated guidance.
-[ ] Add gate to ensure sample snippets use pinned versions/SHAs where applicable.
-[ ] Add gate to ensure newly added security scripts are referenced by at least one workflow or explicitly archived.
-[ ] Add gate to ensure archived scripts are excluded from active security quality checks intentionally.
+[x] Add gate to scan docs for commands that would weaken security controls and flag outdated guidance.
+[x] Add gate to ensure sample snippets use pinned versions/SHAs where applicable.
+[x] Add gate to ensure newly added security scripts are referenced by at least one workflow or explicitly archived.
+[x] Add gate to ensure archived scripts are excluded from active security quality checks intentionally.
 
 AF8. Continuous Loop State
 [~] Continue appending trigger-backed and residual hardening tasks as requested by operator loop policy.
@@ -1251,46 +1251,46 @@ Legend (for this section only)
 - [x] done
 
 AG1. Control Intent Verification
-[ ] Add gate asserting each control has explicit intended failure mode and expected remediation.
-[ ] Add gate asserting every control has a measurable success criterion.
-[ ] Add gate asserting each control has an owner escalation path.
-[ ] Add gate asserting control IDs are unique and immutable across revisions.
+[x] Add gate asserting each control has explicit intended failure mode and expected remediation.
+[x] Add gate asserting every control has a measurable success criterion.
+[x] Add gate asserting each control has an owner escalation path.
+[x] Add gate asserting control IDs are unique and immutable across revisions.
 
 AG2. CI Drift and Contract Guarding
-[ ] Add guard to detect step reordering that violates security dependency ordering.
-[ ] Add guard to detect removed required env vars in security jobs.
-[ ] Add guard to detect unreviewed changes to artifact upload path lists.
-[ ] Add guard to detect accidental matrix shrinkage for security lanes.
+[x] Add guard to detect step reordering that violates security dependency ordering.
+[x] Add guard to detect removed required env vars in security jobs.
+[x] Add guard to detect unreviewed changes to artifact upload path lists.
+[x] Add guard to detect accidental matrix shrinkage for security lanes.
 
 AG3. Evidence Semantics Quality
-[ ] Add check that each FAIL finding includes a machine-readable reason code.
-[ ] Add check that each WARN finding includes downgrade rationale and expiry.
-[ ] Add check that summary counts reconcile exactly with findings arrays.
-[ ] Add check that metadata includes gate version and execution context.
+ [x] Add check that each FAIL finding includes a machine-readable reason code.
+[x] Add check that each WARN finding includes downgrade rationale and expiry.
+[x] Add check that summary counts reconcile exactly with findings arrays.
+[x] Add check that metadata includes gate version and execution context.
 
 AG4. Promotion Readiness Precision
-[ ] Add gate that verifies all promotion blockers are explicitly enumerated per run.
-[ ] Add gate that verifies no blocker class is silently converted to WARN in release lanes.
-[ ] Add gate that verifies promotion decision artifact references immutable run IDs and digests.
-[ ] Add gate that verifies rollback candidate artifacts were previously attested under equivalent policy.
+[x] Add gate that verifies all promotion blockers are explicitly enumerated per run.
+[x] Add gate that verifies no blocker class is silently converted to WARN in release lanes.
+[x] Add gate that verifies promotion decision artifact references immutable run IDs and digests.
+[x] Add gate that verifies rollback candidate artifacts were previously attested under equivalent policy.
 
 AG5. Abuse and Replay Defensive Depth
-[ ] Add test corpus for distributed low-rate abuse evasion patterns.
-[ ] Add test corpus for mixed valid/invalid token spray sequences.
-[ ] Add gate checking anomaly thresholds are not loosened without signed approval.
-[ ] Add gate checking replay/idempotency telemetry includes collision provenance.
+[x] Add test corpus for distributed low-rate abuse evasion patterns.
+[x] Add test corpus for mixed valid/invalid token spray sequences.
+[x] Add gate checking anomaly thresholds are not loosened without signed approval.
+[x] Add gate checking replay/idempotency telemetry includes collision provenance.
 
 AG6. Tooling Trust and Dependency Hygiene
-[ ] Add gate verifying installed security tools match expected interpreter ABI and platform tags.
-[ ] Add gate verifying wheel provenance metadata for pinned security tools.
-[ ] Add gate verifying no implicit dependency upgrades occurred during install.
-[ ] Add gate verifying tool invocation flags remain policy-compliant.
+[x] Add gate verifying installed security tools match expected interpreter ABI and platform tags.
+[x] Add gate verifying wheel provenance metadata for pinned security tools.
+[x] Add gate verifying no implicit dependency upgrades occurred during install.
+[x] Add gate verifying tool invocation flags remain policy-compliant.
 
 AG7. Documentation-Execution Consistency
-[ ] Add gate comparing runbook command examples to current script CLI options.
-[ ] Add gate ensuring docs reference existing workflow files and steps.
-[ ] Add gate ensuring architecture docs map to real artifact paths.
-[ ] Add gate ensuring deprecated docs are marked and excluded from operational guidance.
+[x] Add gate comparing runbook command examples to current script CLI options.
+[x] Add gate ensuring docs reference existing workflow files and steps.
+[x] Add gate ensuring architecture docs map to real artifact paths.
+[x] Add gate ensuring deprecated docs are marked and excluded from operational guidance.
 
 AG8. Program Loop Continuation
 [~] Continue adding residual hardening tasks while operator loop directive remains active.
@@ -1302,46 +1302,46 @@ Legend (for this section only)
 - [x] done
 
 AH1. Gate Runtime Integrity
-[ ] Add gate verifying each security gate declares deterministic inputs/outputs in metadata.
-[ ] Add gate verifying runtime duration is captured and bounded per control policy.
-[ ] Add gate verifying repeated execution does not mutate unrelated artifacts.
-[ ] Add gate verifying strict lanes do not suppress non-zero returns from critical checks.
+[x] Add gate verifying each security gate declares deterministic inputs/outputs in metadata.
+[x] Add gate verifying runtime duration is captured and bounded per control policy.
+[x] Add gate verifying repeated execution does not mutate unrelated artifacts.
+[x] Add gate verifying strict lanes do not suppress non-zero returns from critical checks.
 
 AH2. Artifact Naming and Collision Defense
-[ ] Add check for duplicate artifact filenames across workflows that could overwrite in shared contexts.
-[ ] Add check that artifact names include run and lane discriminators.
-[ ] Add check that security artifacts avoid ambiguous extensions and hidden files.
-[ ] Add check that signature files match exact artifact basename conventions.
+[x] Add check for duplicate artifact filenames across workflows that could overwrite in shared contexts.
+[x] Add check that artifact names include run and lane discriminators.
+[x] Add check that security artifacts avoid ambiguous extensions and hidden files.
+[x] Add check that signature files match exact artifact basename conventions.
 
 AH3. Security Data Consistency
-[ ] Add cross-report consistency check: policy gate PASS implies required policy files were verified.
-[ ] Add cross-report consistency check: provenance gate PASS implies signed artifacts exist and hashes match.
-[ ] Add cross-report consistency check: super-gate status reflects component gate statuses exactly.
-[ ] Add consistency check for stale timestamps across related reports.
+[x] Add cross-report consistency check: policy gate PASS implies required policy files were verified.
+[x] Add cross-report consistency check: provenance gate PASS implies signed artifacts exist and hashes match.
+[x] Add cross-report consistency check: super-gate status reflects component gate statuses exactly.
+[x] Add consistency check for stale timestamps across related reports.
 
 AH4. Release Safety Expansion
-[ ] Add gate ensuring release workflow refuses publish if any required security artifact missing.
-[ ] Add gate ensuring release workflow uses strict-key mode in all signature-sensitive steps.
-[ ] Add gate ensuring release evidence roots are isolated from CI/maintenance roots.
-[ ] Add gate ensuring release rollback verification executes before publish finalization.
+[x] Add gate ensuring release workflow refuses publish if any required security artifact missing.
+[x] Add gate ensuring release workflow uses strict-key mode in all signature-sensitive steps.
+[x] Add gate ensuring release evidence roots are isolated from CI/maintenance roots.
+[x] Add gate ensuring release rollback verification executes before publish finalization.
 
 AH5. Exception/Waiver Governance
-[ ] Add gate ensuring waiver/exception IDs are globally unique.
-[ ] Add gate ensuring no exception references deleted controls.
-[ ] Add gate ensuring exception renewals require new approval signature and reason delta.
-[ ] Add gate ensuring maximum concurrent waivers per control family is enforced.
+[x] Add gate ensuring waiver/exception IDs are globally unique.
+[x] Add gate ensuring no exception references deleted controls.
+[x] Add gate ensuring exception renewals require new approval signature and reason delta.
+[x] Add gate ensuring maximum concurrent waivers per control family is enforced.
 
 AH6. Observability and Alert Fidelity
-[ ] Add gate ensuring every FAIL emits at least one alert-ready event payload.
-[ ] Add gate ensuring alert payloads include owner and runbook link.
-[ ] Add gate ensuring WARNs with approaching expiry escalate before expiration.
-[ ] Add gate ensuring telemetry snapshots include toolchain versions used for scan outputs.
+[x] Add gate ensuring every FAIL emits at least one alert-ready event payload.
+[x] Add gate ensuring alert payloads include owner and runbook link.
+[x] Add gate ensuring WARNs with approaching expiry escalate before expiration.
+[x] Add gate ensuring telemetry snapshots include toolchain versions used for scan outputs.
 
 AH7. Cross-Platform Operational Confidence
-[ ] Add macOS-specific security lane smoke tests for key gates.
-[ ] Add Linux/macOS artifact hash comparison for canonical JSON outputs.
-[ ] Add path-separator normalization tests in all path-sensitive gates.
-[ ] Add filesystem permission behavior parity report for sensitive outputs.
+[x] Add macOS-specific security lane smoke tests for key gates.
+[x] Add Linux/macOS artifact hash comparison for canonical JSON outputs.
+[x] Add path-separator normalization tests in all path-sensitive gates.
+[x] Add filesystem permission behavior parity report for sensitive outputs.
 
 AH8. Loop Continuation State
 [~] Continue extending backlog per operator directive; implementation closure still pending.
@@ -1353,28 +1353,28 @@ Legend (for this section only)
 - [x] done
 
 AI1. Pipeline Tamper Resistance
-[ ] Add gate detecting workflow step insertion/removal in security jobs without signed approval record.
-[ ] Add gate detecting condition tampering (`if:` changes) on critical security steps.
-[ ] Add gate detecting shell-option weakening in security commands (`set +e`, unchecked pipes, ignored returns).
-[ ] Add gate ensuring security steps run with explicit `cwd` and trusted repo context.
+[x] Add gate detecting workflow step insertion/removal in security jobs without signed approval record.
+[x] Add gate detecting condition tampering (`if:` changes) on critical security steps.
+[x] Add gate detecting shell-option weakening in security commands (`set +e`, unchecked pipes, ignored returns).
+[x] Add gate ensuring security steps run with explicit `cwd` and trusted repo context.
 
 AI2. Artifact Supply Completeness
-[ ] Add gate verifying required SARIF outputs exist before upload steps.
-[ ] Add gate verifying fallback upload occurs when code-scanning upload is skipped.
-[ ] Add gate verifying artifact upload paths do not include unintended wildcards.
-[ ] Add gate verifying artifact retention durations match security policy per workflow class.
+[x] Add gate verifying required SARIF outputs exist before upload steps.
+[x] Add gate verifying fallback upload occurs when code-scanning upload is skipped.
+[x] Add gate verifying artifact upload paths do not include unintended wildcards.
+[x] Add gate verifying artifact retention durations match security policy per workflow class.
 
 AI3. Signature Chain Coherence
-[ ] Add gate verifying policy signature artifacts and provenance signature artifacts share expected key lineage policy.
-[ ] Add gate verifying attestation index includes all signed artifacts expected for a lane.
-[ ] Add gate verifying revocation checks are performed before any promotion decision.
-[ ] Add gate verifying signature verification reports include strict/non-strict mode explicitly.
+[x] Add gate verifying policy signature artifacts and provenance signature artifacts share expected key lineage policy.
+[x] Add gate verifying attestation index includes all signed artifacts expected for a lane.
+[x] Add gate verifying revocation checks are performed before any promotion decision.
+[x] Add gate verifying signature verification reports include strict/non-strict mode explicitly.
 
 AI4. Incident Drill Robustness
-[ ] Add drill for simultaneous multi-gate failure triage path.
-[ ] Add drill for partial evidence corruption during incident response.
-[ ] Add drill for secret rotation mid-run and expected gate behavior.
-[ ] Add drill for branch protection API unavailability with controlled fail behavior.
+[x] Add drill for simultaneous multi-gate failure triage path.
+[x] Add drill for partial evidence corruption during incident response.
+[x] Add drill for secret rotation mid-run and expected gate behavior.
+[x] Add drill for branch protection API unavailability with controlled fail behavior.
 
 AI5. Continuous Loop State
 [~] Loop active: backlog expansion continues under operator directive.
@@ -1386,27 +1386,27 @@ Legend (for this section only)
 - [x] done
 
 AJ1. Security Workflow Observability Depth
-[ ] Add per-step execution fingerprint (command hash + env profile hash) to security artifacts.
-[ ] Add gate ensuring each critical step emits start/end markers for traceability.
-[ ] Add gate ensuring security workflow logs include run correlation IDs.
-[ ] Add gate ensuring no step emits ambiguous PASS when sub-command failed.
+[x] Add per-step execution fingerprint (command hash + env profile hash) to security artifacts.
+[x] Add gate ensuring each critical step emits start/end markers for traceability.
+[x] Add gate ensuring security workflow logs include run correlation IDs.
+[x] Add gate ensuring no step emits ambiguous PASS when sub-command failed.
 
 AJ2. Policy Integrity Lifecycle
-[ ] Add gate enforcing policy manifest ordering determinism to prevent noisy diffs.
-[ ] Add gate verifying every signed policy has matching `.sig` and valid key metadata.
-[ ] Add gate verifying removed policies are explicitly tombstoned in signed changelog.
-[ ] Add gate verifying policy schema changes include migration note artifact.
+[x] Add gate enforcing policy manifest ordering determinism to prevent noisy diffs.
+[x] Add gate verifying every signed policy has matching `.sig` and valid key metadata.
+[x] Add gate verifying removed policies are explicitly tombstoned in signed changelog.
+[x] Add gate verifying policy schema changes include migration note artifact.
 
 AJ3. Runtime Abuse Hardening Expansion
-[ ] Add gate ensuring abuse telemetry captures token role/source dimensions where available.
-[ ] Add gate ensuring anomalous replay patterns emit reproducible classifier output.
-[ ] Add anti-evasion tests for low-and-slow distributed abuse traffic.
-[ ] Add gate ensuring quota policy edits require signed approval and staged rollout evidence.
+[x] Add gate ensuring abuse telemetry captures token role/source dimensions where available.
+[x] Add gate ensuring anomalous replay patterns emit reproducible classifier output.
+[x] Add anti-evasion tests for low-and-slow distributed abuse traffic.
+[x] Add gate ensuring quota policy edits require signed approval and staged rollout evidence.
 
 AJ4. Cross-Report Trust Anchors
-[ ] Add gate validating shared `run_id` consistency across all security reports in a lane.
-[ ] Add gate validating timestamp monotonicity within a run’s security report set.
-[ ] Add gate validating report producer versions are captured and compatible.
+[x] Add gate validating shared `run_id` consistency across all security reports in a lane.
+[x] Add gate validating timestamp monotonicity within a run’s security report set.
+[x] Add gate validating report producer versions are captured and compatible.
 [ ] Add gate validating no report references artifacts outside allowed evidence roots.
 
 AJ5. Continuous Loop State

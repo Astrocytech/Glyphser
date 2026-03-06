@@ -4,6 +4,10 @@
       "id": "CTRL-IDENTITY-SCOPE",
       "threat": "Unauthorized runtime API calls with over-scoped credentials.",
       "owner": "security-team",
+      "failure_mode": "Scope validation weakens and unauthorized calls are accepted.",
+      "expected_remediation": "Fail release lane, restore strict scope policy, and rerun API abuse regression checks.",
+      "success_criterion": "100% of runtime API requests with invalid or over-scoped tokens are rejected in CI abuse tests.",
+      "owner_escalation_path": "security-team -> platform-oncall -> engineering-director",
       "gates": [
         "tooling/security/review_policy_gate.py",
         "tooling/security/abuse_telemetry_gate.py",
@@ -23,6 +27,10 @@
       "id": "CTRL-PROVENANCE-SIGNATURE",
       "threat": "Unsigned or tampered policy/provenance artifacts entering release and promotion paths.",
       "owner": "security-team",
+      "failure_mode": "Signature or attestation verification is bypassed for release artifacts.",
+      "expected_remediation": "Block promotion, reissue signatures/attestations, and investigate key or policy tamper.",
+      "success_criterion": "All required signature and attestation gates pass with zero bypass findings in release lanes.",
+      "owner_escalation_path": "security-team -> release-manager -> engineering-director",
       "gates": [
         "tooling/security/policy_signature_gate.py",
         "tooling/security/provenance_signature_gate.py",
@@ -45,6 +53,10 @@
       "id": "CTRL-SUPPLY-CHAIN-TOOLING",
       "threat": "Security scanning or dependency controls bypassed due to workflow/toolchain drift.",
       "owner": "security-team",
+      "failure_mode": "Unpinned or drifted security tools execute, reducing scan reliability.",
+      "expected_remediation": "Restore pinned toolchain state, verify dependency provenance, and rerun security scans.",
+      "success_criterion": "Toolchain integrity and dependency provenance gates pass with no drift findings per run.",
+      "owner_escalation_path": "security-team -> dev-infra-oncall -> engineering-director",
       "gates": [
         "tooling/security/security_toolchain_gate.py",
         "tooling/security/workflow_pinning_gate.py",
@@ -64,6 +76,10 @@
       "id": "CTRL-EVIDENCE-INTEGRITY",
       "threat": "Evidence omission/tamper in archived security outputs.",
       "owner": "security-team",
+      "failure_mode": "Evidence artifacts are missing, altered, or unsigned while checks still report success.",
+      "expected_remediation": "Halt publish path, rebuild evidence from verified run inputs, and re-sign integrity artifacts.",
+      "success_criterion": "Evidence integrity gates pass and every required artifact is present, signed, and hash-verifiable.",
+      "owner_escalation_path": "security-team -> compliance-oncall -> engineering-director",
       "gates": [
         "tooling/security/audit_archive_verify.py",
         "tooling/security/security_artifact_signature_coverage_gate.py",

@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import importlib
 import json
+import re
+import shlex
 import sys
 from pathlib import Path
 
@@ -16,6 +18,40 @@ run_checked = importlib.import_module("tooling.security.subprocess_policy").run_
 write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
 
 POLICY = ROOT / "governance" / "security" / "runbook_command_health_checks.json"
+RUNBOOK_DOC_ROOTS: tuple[Path, ...] | None = None
+RUNBOOK_CMD_RE = re.compile(r"(python|python3)\s+(tooling/security/[A-Za-z0-9_.\-/]+\.py)(?:\s+([^`\n]+))?")
+HELP_FLAG_RE = re.compile(r"--[A-Za-z0-9][A-Za-z0-9-]*")
+
+
+def _extract_runbook_commands() -> list[dict[str, object]]:
+    rows: list[dict[str, object]] = []
+    roots = RUNBOOK_DOC_ROOTS if RUNBOOK_DOC_ROOTS is not None else (ROOT / "governance" / "security", ROOT / "docs")
+    for root in roots:
+        if not root.exists():
+            continue
+        for doc in sorted(root.rglob("*.md")):
+            rel = str(doc.relative_to(ROOT)).replace("\\", "/")
+            for line_no, line in enumerate(doc.read_text(encoding="utf-8").splitlines(), start=1):
+                for match in RUNBOOK_CMD_RE.finditer(line):
+                    runner = match.group(1)
+                    script = match.group(2)
+                    tail = match.group(3) or ""
+                    cmd_text = f"{runner} {script}".strip()
+                    if tail.strip():
+                        cmd_text = f"{cmd_text} {tail.strip()}"
+                    try:
+                        tokens = shlex.split(cmd_text)
+                    except ValueError:
+                        continue
+                    if len(tokens) >= 2:
+                        rows.append({"doc": rel, "line": line_no, "script": script, "cmd": tokens})
+    return rows
+
+
+def _help_flags(script_path: str, *, timeout_sec: int, max_output_bytes: int) -> tuple[set[str], bool]:
+    proc = run_checked([sys.executable, script_path, "--help"], cwd=ROOT, timeout_sec=timeout_sec, max_output_bytes=max_output_bytes)
+    out = (proc.stdout or "") + "\n" + (proc.stderr or "")
+    return set(HELP_FLAG_RE.findall(out)), proc.returncode == 0
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -65,10 +101,37 @@ def main(argv: list[str] | None = None) -> int:
         if not ok:
             findings.append(f"runbook_command_failed:{idx}:{' '.join(cmd)}")
 
+    runbook_examples = _extract_runbook_commands()
+    help_cache: dict[str, tuple[set[str], bool]] = {}
+    for row in runbook_examples:
+        script = str(row.get("script", "")).strip()
+        if not script:
+            continue
+        if script not in help_cache:
+            help_cache[script] = _help_flags(script, timeout_sec=timeout_sec, max_output_bytes=max_output_bytes)
+        allowed_flags, ok = help_cache[script]
+        if not ok:
+            findings.append(f"runbook_cli_help_unavailable:{script}")
+            continue
+        cmd = row.get("cmd", [])
+        if not isinstance(cmd, list):
+            continue
+        options = [str(token).split("=", 1)[0] for token in cmd[2:] if isinstance(token, str) and token.startswith("--")]
+        for opt in options:
+            if opt not in allowed_flags:
+                findings.append(
+                    f"runbook_option_not_supported:{row['doc']}:{row['line']}:{script}:{opt}"
+                )
+
     report = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
-        "summary": {"commands_checked": len(checks), "configured_commands": len(commands)},
+        "summary": {
+            "commands_checked": len(checks),
+            "configured_commands": len(commands),
+            "runbook_examples_checked": len(runbook_examples),
+            "scripts_with_help_checked": len(help_cache),
+        },
         "metadata": {"gate": "runbook_command_health_gate"},
         "checks": checks,
     }

@@ -44,7 +44,7 @@ def main(argv: list[str] | None = None) -> int:
     report = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
-        "summary": {"config": str(config_path.relative_to(ROOT)), "target_sections": TARGET_SECTIONS},
+        "summary": {"config": config_path.relative_to(ROOT).as_posix(), "target_sections": TARGET_SECTIONS},
         "metadata": {"gate": "mypy_security_profile_gate"},
     }
     out = evidence_root() / "security" / "mypy_security_profile_gate.json"

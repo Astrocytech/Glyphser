@@ -1,0 +1,9 @@
+{
+  "max_timestamp_skew_seconds": 21600,
+  "related_reports": [
+    "security_super_gate.json",
+    "policy_signature.json",
+    "provenance_signature.json",
+    "evidence_attestation_gate.json"
+  ]
+}

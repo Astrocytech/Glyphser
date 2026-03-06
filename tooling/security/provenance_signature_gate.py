@@ -66,8 +66,14 @@ def main(argv: list[str] | None = None) -> int:
         "summary": {
             "checked_artifacts": len(checks),
             "failed_artifacts": sum(1 for meta in checks.values() if not bool(meta["ok"])),
+            "strict_key": args.strict_key,
+            "verification_mode": "strict" if args.strict_key else "non_strict",
         },
-        "metadata": {"key_provenance": key_metadata(strict=args.strict_key), "gate": "provenance_signature_gate"},
+        "metadata": {
+            "key_provenance": key_metadata(strict=args.strict_key),
+            "gate": "provenance_signature_gate",
+            "verification_mode": "strict" if args.strict_key else "non_strict",
+        },
     }
     out = sec / "provenance_signature.json"
     write_json_report(out, payload)

@@ -31,6 +31,8 @@ def test_provenance_signature_gate_passes(monkeypatch, tmp_path: Path) -> None:
     report = json.loads((sec / "provenance_signature.json").read_text(encoding="utf-8"))
     assert report["status"] == "PASS"
     assert "key_provenance" in report["metadata"]
+    assert report["summary"]["verification_mode"] == "non_strict"
+    assert report["metadata"]["verification_mode"] == "non_strict"
 
 
 def test_provenance_signature_gate_fails_on_tamper(monkeypatch, tmp_path: Path) -> None:
@@ -79,3 +81,6 @@ def test_provenance_signature_gate_strict_key_missing(monkeypatch, tmp_path: Pat
     )
     rc = provenance_signature_gate.main(["--strict-key"])
     assert rc == 1
+    report = json.loads((sec / "provenance_signature.json").read_text(encoding="utf-8"))
+    assert report["summary"]["verification_mode"] == "strict"
+    assert report["metadata"]["verification_mode"] == "strict"

@@ -19,6 +19,7 @@ jobs:
       GLYPHSER_PROVENANCE_HMAC_KEY: ${{ secrets.GLYPHSER_PROVENANCE_HMAC_KEY || 'glyphser-provenance-hmac-fallback-v1' }}
       GLYPHSER_PROVENANCE_KEY_ROTATED_AT: "2026-03-01T00:00:00+00:00"
       GLYPHSER_EVIDENCE_ROOT: evidence/runs/${{ github.run_id }}/security-maintenance
+      GLYPHSER_RUN_CORRELATION_ID: ${{ github.run_id }}
       TZ: "UTC"
       LC_ALL: "C.UTF-8"
       LANG: "C.UTF-8"
@@ -72,12 +73,36 @@ jobs:
         run: python tooling/security/security_fixture_integrity_gate.py
       - name: On-call triage SLA drill gate
         run: python tooling/security/oncall_triage_sla_drill_gate.py
+      - name: Simultaneous multi-gate failure triage drill
+        run: python tooling/security/simultaneous_multi_gate_failure_triage_drill.py
+      - name: Partial evidence corruption incident-response drill
+        run: python tooling/security/partial_evidence_corruption_incident_response_drill.py
+      - name: Secret rotation mid-run drill
+        run: python tooling/security/secret_rotation_mid_run_drill.py
+      - name: Branch protection API unavailability drill
+        run: python tooling/security/branch_protection_api_unavailability_drill.py
+      - name: Security step execution fingerprint
+        run: python tooling/security/security_step_execution_fingerprint.py
+      - name: Security step traceability marker gate
+        run: python tooling/security/security_step_traceability_marker_gate.py
+      - name: Security run correlation ID gate
+        run: python tooling/security/security_run_correlation_id_gate.py
+      - name: Security ambiguous PASS gate
+        run: python tooling/security/security_ambiguous_pass_gate.py
       - name: Runbook command health gate
         run: python tooling/security/runbook_command_health_gate.py
       - name: Fork-PR SARIF skip simulation gate
         run: python tooling/security/fork_pr_sarif_skip_simulation_gate.py
+      - name: SARIF upload prerequisite gate
+        run: python tooling/security/sarif_upload_prerequisite_gate.py
+      - name: SARIF fallback upload gate
+        run: python tooling/security/sarif_fallback_upload_gate.py
+      - name: Workflow upload wildcard gate
+        run: python tooling/security/workflow_upload_wildcard_gate.py
       - name: Workflow deprecated invocation gate
         run: python tooling/security/workflow_deprecated_invocation_gate.py
+      - name: Tool invocation flag policy gate
+        run: python tooling/security/tool_invocation_flag_policy_gate.py
       - name: Subprocess allowlist report
         run: python tooling/security/subprocess_allowlist_report.py
       - name: Subprocess direct usage gate
@@ -90,6 +115,8 @@ jobs:
         run: python tooling/security/stochastic_seed_policy_gate.py
       - name: Security schema migration tracker
         run: python tooling/security/security_schema_migration_tracker.py
+      - name: Policy schema migration note gate
+        run: python tooling/security/policy_schema_migration_note_gate.py
       - name: Security schema strict readiness gate
         run: python tooling/security/security_schema_strict_readiness_gate.py
       - name: Security super gate manifest drift gate
@@ -173,10 +200,22 @@ jobs:
         run: python tooling/security/container_provenance_gate.py
       - name: Governance markdown gate
         run: python tooling/security/governance_markdown_gate.py
+      - name: Docs security command guard gate
+        run: python tooling/security/docs_security_command_guard_gate.py
+      - name: Docs snippet pinning gate
+        run: python tooling/security/docs_snippet_pinning_gate.py
+      - name: Docs workflow reference gate
+        run: python tooling/security/docs_workflow_reference_gate.py
+      - name: Architecture artifact path gate
+        run: python tooling/security/architecture_artifact_path_gate.py
+      - name: Deprecated docs operational guidance gate
+        run: python tooling/security/deprecated_docs_operational_guidance_gate.py
       - name: Policy review freshness gate
         run: python tooling/security/policy_review_freshness_gate.py
       - name: Policy deprecation workflow gate
         run: python tooling/security/policy_deprecation_gate.py
+      - name: Policy tombstone changelog gate
+        run: python tooling/security/policy_tombstone_changelog_gate.py
       - name: Ownership continuity gate
         run: python tooling/security/ownership_continuity_gate.py
       - name: Signed policy metadata gate
@@ -239,6 +278,10 @@ jobs:
         run: python tooling/security/security_status_exitcode_consistency_gate.py
       - name: Security stdout/report-path consistency gate
         run: python tooling/security/security_stdout_report_path_consistency_gate.py
+      - name: Security deterministic IO metadata gate
+        run: python tooling/security/security_gate_deterministic_io_metadata_gate.py
+      - name: Security unrelated artifact mutation gate
+        run: python tooling/security/security_unrelated_artifact_mutation_gate.py
       - name: Security workflow artifact coverage validator
         run: python tooling/security/security_workflow_artifact_coverage_validator.py
       - name: Security evidence-root usage validator
@@ -283,9 +326,12 @@ jobs:
           python tooling/security/runtime_api_scope_matrix_gate.py
           python tooling/security/abuse_telemetry_gate.py
           python tooling/security/evidence_attestation_index.py --strict-key
+          python tooling/security/attestation_index_signed_artifacts_gate.py --lane security-maintenance
           python tooling/security/evidence_attestation_gate.py --strict-key
           python tooling/security/provenance_signature_gate.py --strict-key
           python tooling/security/key_provenance_continuity_gate.py
+          python tooling/security/signature_key_lineage_policy_gate.py
+          python tooling/security/key_usage_ledger.py
           python tooling/security/signature_algorithm_policy_gate.py
           python tooling/security/algorithm_deprecation_rehearsal_lane.py
           python tooling/security/security_verification_summary.py --strict-key
@@ -319,7 +365,7 @@ jobs:
       - name: Upload maintenance artifacts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: security-maintenance-artifacts
+          name: ${{ github.job }}-${{ github.run_id }}-security-maintenance-artifacts
           retention-days: 30
           path: |
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/dependency_outdated.json
@@ -339,6 +385,7 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_schema_validation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/stochastic_seed_policy_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_schema_migration_tracker.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_schema_migration_note_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_schema_strict_readiness_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_super_gate_manifest_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_artifact_retention_gate.json
@@ -366,6 +413,14 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_rule_baseline_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_fixture_integrity_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/oncall_triage_sla_drill_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/simultaneous_multi_gate_failure_triage_drill.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/partial_evidence_corruption_incident_response_drill.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/secret_rotation_mid_run_drill.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/branch_protection_api_unavailability_drill.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_step_execution_fingerprint.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_step_traceability_marker_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_run_correlation_id_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_ambiguous_pass_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/runbook_command_health_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/fork_pr_sarif_skip_simulation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_deprecated_invocation_gate.json
@@ -375,6 +430,9 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_workflow_trigger_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_critical_test_wiring_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_sarif_permissions_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/sarif_upload_prerequisite_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/sarif_fallback_upload_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/workflow_upload_wildcard_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_workflow_permissions_policy_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_exception_suppression_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_dead_gate_wiring_gate.json
@@ -390,8 +448,14 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/offline_network_call_guard_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/production_controls.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/governance_markdown_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/docs_security_command_guard_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/docs_snippet_pinning_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/docs_workflow_reference_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/architecture_artifact_path_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/deprecated_docs_operational_guidance_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_review_freshness_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_deprecation_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/policy_tombstone_changelog_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/ownership_continuity_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/signed_policy_metadata_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/threat_control_mapping_gate.json
@@ -429,6 +493,8 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_report_filename_stability_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_status_exitcode_consistency_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_stdout_report_path_consistency_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_gate_deterministic_io_metadata_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_unrelated_artifact_mutation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_workflow_artifact_coverage_validator.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_evidence_root_usage_validator.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_artifact_lane_name_validator.json
@@ -459,9 +525,12 @@ jobs:
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/container_provenance.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_index.json.sig
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/attestation_index_signed_artifacts_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/evidence_attestation_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/provenance_signature.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/key_provenance_continuity_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/signature_key_lineage_policy_gate.json
+            ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/key_usage_ledger.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/signature_algorithm_policy_gate.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_verification_summary.json
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/security_verification_summary.json.sig
@@ -539,7 +608,7 @@ jobs:
       - name: Upload air-gap simulation artifacts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: airgap-simulation-artifacts
+          name: ${{ github.job }}-${{ github.run_id }}-airgap-simulation-artifacts
           retention-days: 30
           path: |
             ${{ env.GLYPHSER_EVIDENCE_ROOT }}/security/offline_verify_bundle_export.json

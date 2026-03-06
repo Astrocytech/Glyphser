@@ -40,6 +40,9 @@ jobs:
       - run: python tooling/security/oncall_triage_sla_drill_gate.py
       - run: python tooling/security/runbook_command_health_gate.py
       - run: python tooling/security/fork_pr_sarif_skip_simulation_gate.py
+      - run: python tooling/security/sarif_upload_prerequisite_gate.py
+      - run: python tooling/security/sarif_fallback_upload_gate.py
+      - run: python tooling/security/workflow_upload_wildcard_gate.py
       - run: python tooling/security/policy_schema_validation_gate.py
       - run: python tooling/security/security_schema_migration_tracker.py
       - run: python tooling/security/security_schema_strict_readiness_gate.py
@@ -50,6 +53,7 @@ jobs:
       - run: python tooling/security/security_workflow_trigger_gate.py
       - run: python tooling/security/security_critical_test_wiring_gate.py
       - run: python tooling/security/key_provenance_continuity_gate.py
+      - run: python tooling/security/signature_key_lineage_policy_gate.py
       - run: python tooling/security/signature_algorithm_policy_gate.py
       - run: python tooling/security/security_verification_summary.py --strict-key
       - run: echo semgrep.json
@@ -71,6 +75,9 @@ jobs:
       - run: python tooling/security/workflow_policy_coverage_gate.py
       - run: python tooling/security/workflow_risky_patterns_gate.py
       - run: python tooling/security/workflow_deprecated_invocation_gate.py
+      - run: python tooling/security/sarif_upload_prerequisite_gate.py
+      - run: python tooling/security/sarif_fallback_upload_gate.py
+      - run: python tooling/security/workflow_upload_wildcard_gate.py
       - run: python tooling/security/policy_schema_validation_gate.py
       - run: python tooling/security/security_schema_migration_tracker.py
       - run: python tooling/security/security_schema_strict_readiness_gate.py
@@ -81,6 +88,7 @@ jobs:
       - run: python tooling/security/security_workflow_trigger_gate.py
       - run: python tooling/security/security_critical_test_wiring_gate.py
       - run: python tooling/security/key_provenance_continuity_gate.py
+      - run: python tooling/security/signature_key_lineage_policy_gate.py
       - run: python tooling/security/signature_algorithm_policy_gate.py
       - run: python tooling/security/security_verification_summary.py --strict-key
 """

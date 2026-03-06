@@ -1,0 +1,8 @@
+{
+  "control_ids": [
+    "CTRL-EVIDENCE-INTEGRITY",
+    "CTRL-IDENTITY-SCOPE",
+    "CTRL-PROVENANCE-SIGNATURE",
+    "CTRL-SUPPLY-CHAIN-TOOLING"
+  ]
+}

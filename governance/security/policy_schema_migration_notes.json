@@ -1,0 +1,23 @@
+{
+  "entries": [
+    {
+      "note": "Baseline schema hash recorded; update this entry with migration details whenever schema content changes.",
+      "path": "governance/security/security_report_schema_contract.json",
+      "sha256": "52b9aff6854ee60513afeec253c0217d7041ac2f1b01b5a1e7e628d717eba30b",
+      "updated_utc": "2026-03-06T00:00:00+00:00"
+    },
+    {
+      "note": "Baseline schema hash recorded; update this entry with migration details whenever schema content changes.",
+      "path": "governance/security/security_event_schema.json",
+      "sha256": "ad8f1ef1f016449957cafc497a168d695e8100da48d131ca10f0ae7e37b7cd0f",
+      "updated_utc": "2026-03-06T00:00:00+00:00"
+    },
+    {
+      "note": "Baseline schema hash recorded; update this entry with migration details whenever schema content changes.",
+      "path": "governance/security/security_schema_compatibility_policy.json",
+      "sha256": "1583d58c2dbc842e7ffcf0117ab7bf7af452f6b71b82a61fac406fbe8f09ac04",
+      "updated_utc": "2026-03-06T00:00:00+00:00"
+    }
+  ],
+  "schema_version": "glyphser-policy-schema-migration-notes.v1"
+}

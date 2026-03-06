@@ -39,10 +39,10 @@ def main() -> int:
         skipped = True
     else:
         if not digest_manifest.exists():
-            findings.append(f"missing digest manifest: {digest_manifest.relative_to(ROOT)}")
+            findings.append(f"missing digest manifest: {digest_manifest.relative_to(ROOT).as_posix()}")
         for path in required_files:
             if not path.exists():
-                findings.append(f"missing provenance file: {path.relative_to(ROOT)}")
+                findings.append(f"missing provenance file: {path.relative_to(ROOT).as_posix()}")
 
     status = "PASS" if not findings else "FAIL"
     payload: dict[str, Any] = {

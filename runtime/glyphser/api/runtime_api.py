@@ -356,6 +356,8 @@ class RuntimeApiService:
         with self._lock:
             state = self._load_state()
             self._prune_idempotency(state)
+            payload_text = _canonical_json(payload)
+            payload_hash = _sha256_text(payload_text)
             self._bump_token_quota(
                 state,
                 token=token,
@@ -369,12 +371,38 @@ class RuntimeApiService:
             if idempotency_key:
                 existing = self._idempotency_job(state, idempotency_key)
                 if existing:
+                    existing_record = state["jobs"].get(existing, {})
+                    if isinstance(existing_record, dict):
+                        existing_hash = str(existing_record.get("payload_hash", "")).strip()
+                        if existing_hash and existing_hash != payload_hash:
+                            collisions = state["quotas"].setdefault("idempotency_collisions", {})
+                            if not isinstance(collisions, dict):
+                                collisions = {}
+                                state["quotas"]["idempotency_collisions"] = collisions
+                            current = collisions.get(idempotency_key, 0)
+                            if not isinstance(current, int) or current < 0:
+                                current = 0
+                            collisions[idempotency_key] = current + 1
+                            provenance = state.setdefault("collision_provenance", {})
+                            if not isinstance(provenance, dict):
+                                provenance = {}
+                                state["collision_provenance"] = provenance
+                            provenance_key = f"{idempotency_key}:{int(time.time())}:{current + 1}"
+                            provenance[provenance_key] = {
+                                "idempotency_key": idempotency_key,
+                                "existing_job_id": existing,
+                                "existing_payload_hash": existing_hash,
+                                "incoming_payload_hash": payload_hash,
+                                "token_hash": _sha256_text(token),
+                                "scope": scope,
+                                "timestamp": int(time.time()),
+                            }
+                            self._save_state(state)
                     out = dict(state["jobs"][existing])
                     _validate_against_schema("submit_response", out)
                     self._audit("status", token=token, job_id=existing, scope=scope)
                     return out
 
-            payload_text = _canonical_json(payload)
             if len(payload_text.encode("utf-8")) > max(1, int(self._config.submit_payload_max_bytes)):
                 raise ValueError("payload too large")
             basis = f"job:{idempotency_key or payload_text}"
@@ -385,7 +413,7 @@ class RuntimeApiService:
                 "trace_id": trace_id,
                 "status": "accepted",
                 "api_version": self._config.api_version,
-                "payload_hash": _sha256_text(payload_text),
+                "payload_hash": payload_hash,
                 "idempotency_key": idempotency_key or "",
             }
             state["jobs"][job_id] = record
@@ -768,6 +796,7 @@ class RuntimeApiService:
                 "jobs": {},
                 "idempotency": {},
                 "idempotency_meta": {},
+                "collision_provenance": {},
                 "replay_tokens": {},
                 "token_jti_seen": {},
                 "quotas": {
@@ -782,6 +811,7 @@ class RuntimeApiService:
                     "replay_window_by_token": {},
                     "replay_window_by_job": {},
                     "replay_window_job_tokens": {},
+                    "idempotency_collisions": {},
                     "job_read_window": {},
                 },
             }
@@ -791,6 +821,7 @@ class RuntimeApiService:
         data.setdefault("jobs", {})
         data.setdefault("idempotency", {})
         data.setdefault("idempotency_meta", {})
+        data.setdefault("collision_provenance", {})
         data.setdefault("replay_tokens", {})
         data.setdefault("token_jti_seen", {})
         quotas = data.setdefault("quotas", {})
@@ -807,6 +838,7 @@ class RuntimeApiService:
         quotas.setdefault("replay_window_by_token", {})
         quotas.setdefault("replay_window_by_job", {})
         quotas.setdefault("replay_window_job_tokens", {})
+        quotas.setdefault("idempotency_collisions", {})
         quotas.setdefault("job_read_window", {})
         if not isinstance(data.get("token_jti_seen"), dict):
             raise ValueError("invalid token_jti_seen")

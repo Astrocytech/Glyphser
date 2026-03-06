@@ -89,6 +89,7 @@ def main(argv: list[str] | None = None) -> int:
 
     checked = 0
     spikes = 0
+    observed_scripts: set[str] = set()
     for script in required_budget_gates:
         if script not in budget_map:
             findings.append(f"missing_per_gate_budget:{script}")
@@ -105,6 +106,7 @@ def main(argv: list[str] | None = None) -> int:
             findings.append(f"missing_runtime_seconds:{script}")
             continue
         runtime_s = float(runtime)
+        observed_scripts.add(script)
         checked += 1
 
         budget = float(budget_map.get(script, default_budget))
@@ -138,6 +140,10 @@ def main(argv: list[str] | None = None) -> int:
                 )
         updated = (prev + [runtime_s])[-history_window:]
         history[script] = updated
+
+    for script in required_budget_gates:
+        if script not in observed_scripts:
+            findings.append(f"missing_runtime_observation:{script}")
 
     HISTORY.parent.mkdir(parents=True, exist_ok=True)
     HISTORY.write_text(json.dumps({"schema_version": 1, "gate_runtimes": history}, indent=2, sort_keys=True) + "\n", encoding="utf-8")

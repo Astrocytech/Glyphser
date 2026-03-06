@@ -12,12 +12,41 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 write_json_report = importlib.import_module("tooling.security.report_io").write_json_report
+SCAN_TOOLCHAIN_LOCK = ROOT / "tooling" / "security" / "security_toolchain_lock.json"
+SCAN_TOOLS = ("bandit", "pip-audit", "semgrep", "setuptools")
+
+
+def _toolchain_versions(findings: list[str]) -> dict[str, str]:
+    if not SCAN_TOOLCHAIN_LOCK.exists():
+        findings.append("missing_security_toolchain_lock")
+        return {}
+    try:
+        payload = json.loads(SCAN_TOOLCHAIN_LOCK.read_text(encoding="utf-8"))
+    except Exception:
+        findings.append("invalid_security_toolchain_lock")
+        return {}
+    if not isinstance(payload, dict):
+        findings.append("invalid_security_toolchain_lock")
+        return {}
+    versions: dict[str, str] = {}
+    for tool in SCAN_TOOLS:
+        entry = payload.get(tool)
+        if not isinstance(entry, dict):
+            findings.append(f"missing_scan_tool_version:{tool}")
+            continue
+        version = str(entry.get("version", "")).strip()
+        if not version:
+            findings.append(f"missing_scan_tool_version:{tool}")
+            continue
+        versions[tool] = version
+    return versions
 
 
 def main(argv: list[str] | None = None) -> int:
     _ = argv
     findings: list[str] = []
     correlation_ids: list[str] = []
+    toolchain_versions = _toolchain_versions(findings)
     state_path = ROOT / "artifacts" / "generated" / "tmp" / "security" / "runtime_api_state.json"
     try:
         policy = json.loads(
@@ -65,6 +94,7 @@ def main(argv: list[str] | None = None) -> int:
         "summary": {
             "state_path": str(state_path.relative_to(ROOT)).replace("\\", "/"),
             "correlation_ids": sorted(set(correlation_ids)),
+            "toolchain_versions": toolchain_versions,
         },
     }
     out = ROOT / "evidence" / "security" / "abuse_telemetry_snapshot.json"

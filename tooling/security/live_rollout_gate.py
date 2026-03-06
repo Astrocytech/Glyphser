@@ -45,7 +45,7 @@ def _verify_target(
     path = evidence_root() / "security" / _TARGET_TO_FILE[target]
     if not path.exists():
         if not allow_missing:
-            findings.append(f"{target}: missing evidence file {path.relative_to(ROOT)}")
+                findings.append(f"{target}: missing evidence file {path.relative_to(ROOT).as_posix()}")
         return findings
 
     payload = json.loads(path.read_text(encoding="utf-8"))

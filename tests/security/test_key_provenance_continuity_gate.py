@@ -66,3 +66,32 @@ def test_key_provenance_continuity_gate_fails_on_mismatch(monkeypatch, tmp_path:
     assert any(str(item).startswith("key_id_mismatch:") for item in report["findings"])
     assert any(str(item).startswith("adapter_mismatch:") for item in report["findings"])
     assert any(str(item).startswith("fallback_signing_used:") for item in report["findings"])
+    assert any(str(item).startswith("key_mode_mismatch:") for item in report["findings"])
+
+
+def test_key_provenance_continuity_gate_allows_key_mode_mismatch_when_policy_disabled(
+    monkeypatch, tmp_path: Path
+) -> None:
+    repo = tmp_path / "repo"
+    sec = repo / "evidence" / "security"
+    gov = repo / "governance" / "security"
+    _write(
+        sec / "policy_signature.json",
+        {"status": "PASS", "metadata": {"key_provenance": {"key_id": "k1", "source": "env", "fallback_used": False}}},
+    )
+    _write(
+        sec / "provenance_signature.json",
+        {"status": "PASS", "metadata": {"key_provenance": {"key_id": "k1", "source": "kms", "fallback_used": False}}},
+    )
+    _write(
+        sec / "evidence_attestation_index.json",
+        {"status": "PASS", "key_provenance": {"key_id": "k1", "source": "env", "fallback_used": False}},
+    )
+    _write(gov / "key_rotation_epochs.json", {"epochs": [{"epoch_id": "epoch-1", "key_id": "k1"}]})
+    _write(gov / "key_management_policy.json", {"enforce_sibling_key_mode_match": False})
+
+    monkeypatch.setattr(key_provenance_continuity_gate, "ROOT", repo)
+    monkeypatch.setattr(key_provenance_continuity_gate, "EPOCHS", gov / "key_rotation_epochs.json")
+    monkeypatch.setattr(key_provenance_continuity_gate, "KEY_POLICY", gov / "key_management_policy.json")
+    monkeypatch.setattr(key_provenance_continuity_gate, "evidence_root", lambda: repo / "evidence")
+    assert key_provenance_continuity_gate.main([]) == 0

@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "incident_id": "INC-DRILL-2026-03-06-BRANCH-PROTECTION-API",
+  "simulated_api_error": "github_api_timeout",
+  "expected_gate_behavior": "verify_branch_protection_live fails closed and emits structured evidence without ambiguous PASS.",
+  "observed_gate_status": "FAIL",
+  "fail_closed": true,
+  "emitted_evidence": "evidence/security/branch_protection_live.json",
+  "retry_strategy": "defer rollout, alert owner, rerun after API recovery",
+  "notes": [
+    "No branch protection updates are applied while API is unavailable.",
+    "Release promotion remains blocked until branch protection verification is PASS."
+  ]
+}

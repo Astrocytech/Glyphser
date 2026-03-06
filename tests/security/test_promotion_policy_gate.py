@@ -32,13 +32,12 @@ def test_promotion_policy_gate_passes_with_required_reports(monkeypatch, tmp_pat
     _write_policy(repo)
     sec = repo / "evidence" / "security"
     sec.mkdir(parents=True, exist_ok=True)
-    for name in (
-        "policy_signature.json",
-        "provenance_signature.json",
-        "evidence_attestation_gate.json",
-        "provenance_revocation_gate.json",
-    ):
+    for name in ("policy_signature.json", "provenance_signature.json", "evidence_attestation_gate.json"):
         (sec / name).write_text(json.dumps({"status": "PASS"}) + "\n", encoding="utf-8")
+    (sec / "provenance_revocation_gate.json").write_text(
+        json.dumps({"status": "PASS", "metadata": {"generated_at_utc": "2026-01-01T00:00:00+00:00"}}) + "\n",
+        encoding="utf-8",
+    )
     monkeypatch.setattr(promotion_policy_gate, "ROOT", repo)
     monkeypatch.setattr(promotion_policy_gate, "POLICY", repo / "governance/security/promotion_policy.json")
     monkeypatch.setattr(promotion_policy_gate, "OVERRIDE", repo / "governance/security/promotion_override.json")
@@ -64,13 +63,12 @@ def test_promotion_policy_gate_allows_valid_signed_override(monkeypatch, tmp_pat
     _write_policy(repo, allow_override=True)
     sec = repo / "evidence" / "security"
     sec.mkdir(parents=True, exist_ok=True)
-    for name in (
-        "policy_signature.json",
-        "provenance_signature.json",
-        "evidence_attestation_gate.json",
-        "provenance_revocation_gate.json",
-    ):
+    for name in ("policy_signature.json", "provenance_signature.json", "evidence_attestation_gate.json"):
         (sec / name).write_text(json.dumps({"status": "FAIL"}) + "\n", encoding="utf-8")
+    (sec / "provenance_revocation_gate.json").write_text(
+        json.dumps({"status": "PASS", "metadata": {"generated_at_utc": "2026-01-01T00:00:00+00:00"}}) + "\n",
+        encoding="utf-8",
+    )
     override = repo / "governance" / "security" / "promotion_override.json"
     override.parent.mkdir(parents=True, exist_ok=True)
     override.write_text(
@@ -124,3 +122,44 @@ def test_promotion_policy_gate_override_does_not_bypass_missing_mandatory_eviden
     monkeypatch.setattr(promotion_policy_gate, "OVERRIDE", override)
     monkeypatch.setattr(promotion_policy_gate, "evidence_root", lambda: repo / "evidence")
     assert promotion_policy_gate.main([]) == 1
+    report = json.loads((sec / "promotion_policy_gate.json").read_text(encoding="utf-8"))
+    assert "revocation_check_not_pass_before_promotion:MISSING" in report["findings"]
+
+
+def test_promotion_policy_gate_fails_when_revocation_is_not_pass_even_with_override(
+    monkeypatch, tmp_path: Path
+) -> None:
+    repo = tmp_path / "repo"
+    _write_policy(repo, allow_override=True)
+    sec = repo / "evidence" / "security"
+    sec.mkdir(parents=True, exist_ok=True)
+    (sec / "policy_signature.json").write_text(json.dumps({"status": "PASS"}) + "\n", encoding="utf-8")
+    (sec / "provenance_signature.json").write_text(json.dumps({"status": "PASS"}) + "\n", encoding="utf-8")
+    (sec / "evidence_attestation_gate.json").write_text(json.dumps({"status": "PASS"}) + "\n", encoding="utf-8")
+    (sec / "provenance_revocation_gate.json").write_text(json.dumps({"status": "FAIL"}) + "\n", encoding="utf-8")
+
+    override = repo / "governance" / "security" / "promotion_override.json"
+    override.parent.mkdir(parents=True, exist_ok=True)
+    override.write_text(
+        json.dumps(
+            {
+                "owner": "security-ops",
+                "reason": "Emergency promotion override for incident response.",
+                "expires_at_utc": "2099-01-01T00:00:00+00:00",
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    override.with_suffix(".json.sig").write_text(
+        sign_file(override, key=current_key(strict=False)) + "\n",
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(promotion_policy_gate, "ROOT", repo)
+    monkeypatch.setattr(promotion_policy_gate, "POLICY", repo / "governance/security/promotion_policy.json")
+    monkeypatch.setattr(promotion_policy_gate, "OVERRIDE", override)
+    monkeypatch.setattr(promotion_policy_gate, "evidence_root", lambda: repo / "evidence")
+    assert promotion_policy_gate.main([]) == 1
+    report = json.loads((sec / "promotion_policy_gate.json").read_text(encoding="utf-8"))
+    assert "revocation_check_not_pass_before_promotion:FAIL" in report["findings"]

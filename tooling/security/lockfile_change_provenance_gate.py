@@ -33,10 +33,11 @@ def _changed_files() -> list[str]:
 
 
 def _lockfile_changed() -> bool:
-    proc = run_checked(["git", "diff", "--name-only", "HEAD~1", "HEAD", "--", str(LOCKFILE_PATH.relative_to(ROOT))])
+    lock_rel = str(LOCKFILE_PATH.relative_to(ROOT)).replace("\\", "/")
+    proc = run_checked(["git", "diff", "--name-only", "HEAD~1", "HEAD", "--", lock_rel])
     if proc.returncode != 0:
         return False
-    return any(line.strip() == str(LOCKFILE_PATH.relative_to(ROOT)).replace("\\", "/") for line in proc.stdout.splitlines())
+    return any(line.strip() == lock_rel for line in proc.stdout.splitlines())
 
 
 def _parse_ts(text: str) -> datetime | None:

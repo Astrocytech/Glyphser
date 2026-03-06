@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "name": "distributed_low_rate_evasion",
+      "expected_classifier": {
+        "verdict": "anomalous_high",
+        "reason_code": "distributed_actor_spray",
+        "score": 24
+      },
+      "events": [
+        {
+          "actor_id": "actor-01",
+          "kind": "replay"
+        },
+        {
+          "actor_id": "actor-02",
+          "kind": "replay"
+        },
+        {
+          "actor_id": "actor-03",
+          "kind": "replay"
+        },
+        {
+          "actor_id": "actor-04",
+          "kind": "replay"
+        },
+        {
+          "actor_id": "actor-05",
+          "kind": "replay"
+        },
+        {
+          "actor_id": "actor-06",
+          "kind": "replay"
+        }
+      ]
+    },
+    {
+      "name": "mixed_valid_invalid_token_spray",
+      "expected_classifier": {
+        "verdict": "anomalous_high",
+        "reason_code": "distributed_actor_spray",
+        "score": 24
+      },
+      "events": [
+        {
+          "actor_id": "token-valid-01",
+          "kind": "auth_success"
+        },
+        {
+          "actor_id": "token-invalid-01",
+          "kind": "auth_fail"
+        },
+        {
+          "actor_id": "token-valid-02",
+          "kind": "auth_success"
+        },
+        {
+          "actor_id": "token-invalid-02",
+          "kind": "auth_fail"
+        },
+        {
+          "actor_id": "token-invalid-03",
+          "kind": "auth_fail"
+        },
+        {
+          "actor_id": "token-valid-03",
+          "kind": "auth_success"
+        }
+      ]
+    }
+  ]
+}

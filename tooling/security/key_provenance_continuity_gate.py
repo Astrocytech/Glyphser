@@ -14,6 +14,7 @@ from tooling.lib.path_config import evidence_root
 from tooling.security.report_io import write_json_report
 
 EPOCHS = ROOT / "governance" / "security" / "key_rotation_epochs.json"
+KEY_POLICY = ROOT / "governance" / "security" / "key_management_policy.json"
 
 
 def _load(path: Path) -> dict[str, Any]:
@@ -36,6 +37,18 @@ def _key_provenance(payload: dict[str, Any]) -> dict[str, Any]:
             return kp
     kp = payload.get("key_provenance", {})
     return kp if isinstance(kp, dict) else {}
+
+
+def _key_mode(kp: dict[str, Any]) -> str:
+    if bool(kp.get("fallback_used", False)):
+        return "fallback"
+    source = str(kp.get("source", "")).strip()
+    if source:
+        return source
+    adapter = str(kp.get("adapter", "")).strip()
+    if adapter:
+        return adapter
+    return "unknown"
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -71,6 +84,13 @@ def main(argv: list[str] | None = None) -> int:
     )
     if fallback_users:
         findings.append(f"fallback_signing_used:{','.join(fallback_users)}")
+
+    key_modes = {name: _key_mode(kp) for name, kp in sources.items() if kp}
+    policy = _load(KEY_POLICY)
+    enforce_mode_match = bool(policy.get("enforce_sibling_key_mode_match", True))
+    distinct_modes = sorted({mode for mode in key_modes.values() if mode})
+    if enforce_mode_match and len(distinct_modes) > 1:
+        findings.append(f"key_mode_mismatch:{','.join(distinct_modes)}")
 
     epochs_payload = _load(EPOCHS)
     raw_epochs = epochs_payload.get("epochs", []) if isinstance(epochs_payload, dict) else []
@@ -120,7 +140,9 @@ def main(argv: list[str] | None = None) -> int:
             "missing_sources": missing,
             "distinct_key_ids": sorted(key_ids),
             "distinct_adapters": sorted(adapters),
+            "distinct_key_modes": distinct_modes,
             "fallback_sources": fallback_users,
+            "enforce_sibling_key_mode_match": enforce_mode_match,
             "rotation_epoch_count": len(epoch_rows),
             "rotation_epoch_key_ids": sorted(set(epoch_key_ids)),
             "latest_rotation_epoch_id": latest_epoch_id,

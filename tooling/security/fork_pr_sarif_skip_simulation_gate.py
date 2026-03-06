@@ -45,7 +45,7 @@ def main(argv: list[str] | None = None) -> int:
     report = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
-        "summary": {"simulated_cases": len(simulation_cases), "workflow_checked": str(CI_WORKFLOW.relative_to(ROOT))},
+        "summary": {"simulated_cases": len(simulation_cases), "workflow_checked": CI_WORKFLOW.relative_to(ROOT).as_posix()},
         "metadata": {"gate": "fork_pr_sarif_skip_simulation_gate"},
         "simulation_cases": simulation_cases,
     }

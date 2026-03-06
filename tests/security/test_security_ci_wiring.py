@@ -34,18 +34,29 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/warning_lane_degraded_mode_artifact_gate.py" in ci
     assert "python tooling/security/workflow_change_management_gate.py" in ci
     assert "python tooling/security/workflow_deprecated_invocation_gate.py" in ci
+    assert "python tooling/security/tool_invocation_flag_policy_gate.py" in ci
     assert "python tooling/security/workflow_pin_change_approval_gate.py" in ci
     assert "python tooling/security/policy_schema_validation_gate.py" in ci
     assert "python tooling/security/security_schema_migration_tracker.py" in ci
+    assert "python tooling/security/policy_schema_migration_note_gate.py" in ci
     assert "python tooling/security/security_schema_strict_readiness_gate.py" in ci
     assert "python tooling/security/security_evidence_corruption_gate.py" in ci
     assert "python tooling/security/audit_archive_verify.py" in ci
     assert "python tooling/security/security_artifact_signature_coverage_gate.py" in ci
     assert "python tooling/security/artifact_path_case_conflict_gate.py" in ci
     assert "python tooling/security/security_unsigned_json_gate.py" in ci
+    assert "python tooling/security/docs_security_command_guard_gate.py" in ci
+    assert "python tooling/security/docs_snippet_pinning_gate.py" in ci
+    assert "python tooling/security/docs_workflow_reference_gate.py" in ci
+    assert "python tooling/security/architecture_artifact_path_gate.py" in ci
+    assert "python tooling/security/deprecated_docs_operational_guidance_gate.py" in ci
+    assert "python tooling/security/security_script_reference_gate.py" in ci
     assert "python tooling/security/security_workflow_trigger_gate.py" in ci
     assert "python tooling/security/security_critical_test_wiring_gate.py" in ci
     assert "python tooling/security/security_sarif_permissions_gate.py" in ci
+    assert "python tooling/security/sarif_upload_prerequisite_gate.py" in ci
+    assert "python tooling/security/sarif_fallback_upload_gate.py" in ci
+    assert "python tooling/security/workflow_upload_wildcard_gate.py" in ci
     assert "python tooling/security/security_workflow_permissions_policy_gate.py" in ci
     assert "python tooling/security/security_exception_suppression_gate.py" in ci
     assert "python tooling/security/security_dead_gate_wiring_gate.py" in ci
@@ -54,6 +65,7 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/policy_deprecation_gate.py" in ci
     assert "python tooling/security/ownership_continuity_gate.py" in ci
     assert "python tooling/security/threat_control_mapping_gate.py" in ci
+    assert "python tooling/security/control_failure_mode_remediation_gate.py" in ci
     assert "bandit -q -c tooling/security/bandit.yaml -r glyphser runtime tooling -l -ii" in ci
     assert "python tooling/security/pip_audit_gate.py" in ci
     assert "python tooling/security/dependency_freshness_gate.py" in ci
@@ -78,6 +90,7 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/container_provenance_gate.py" in ci
     assert "python tooling/security/container_registry_provenance_gate.py" in ci
     assert "python tooling/security/attestation_digest_match_gate.py" in ci
+    assert "python tooling/security/attestation_index_signed_artifacts_gate.py --lane security-matrix" in ci
     assert "python tooling/security/abuse_telemetry_snapshot.py" in ci
     assert "python tooling/security/runtime_api_state_schema_gate.py" in ci
     assert "python tooling/security/runtime_api_input_surface_gate.py" in ci
@@ -112,25 +125,36 @@ def test_ci_security_steps_are_wired() -> None:
     assert "external_action_owner_allowlist_gate.json" in ci
     assert "third_party_action_sha_mapping_gate.json" in ci
     assert "security_unsigned_json_gate.json" in ci
+    assert "docs_security_command_guard_gate.json" in ci
+    assert "docs_snippet_pinning_gate.json" in ci
+    assert "docs_workflow_reference_gate.json" in ci
+    assert "architecture_artifact_path_gate.json" in ci
+    assert "deprecated_docs_operational_guidance_gate.json" in ci
+    assert "security_script_reference_gate.json" in ci
     assert "dependency_freshness_gate.json" in ci
     assert "dependency_registry_policy_gate.json" in ci
     assert "lockfile_change_provenance_gate.json" in ci
     assert "temp_directory_policy_gate.json" in ci
     assert "stale_policy_review_gate.json" in ci
     assert "policy_deprecation_gate.json" in ci
+    assert "policy_schema_migration_note_gate.json" in ci
     assert "ownership_continuity_gate.json" in ci
     assert "threat_control_mapping_gate.json" in ci
+    assert "control_failure_mode_remediation_gate.json" in ci
     assert "post_incident_closure_gate.json" in ci
     assert "recent_incident_firebreak_gate.json" in ci
     assert "hotfix_verification_template_gate.json" in ci
     assert "patch_window_policy_gate.json" in ci
     assert "container_registry_provenance_gate.json" in ci
     assert "attestation_digest_match_gate.json" in ci
+    assert "attestation_index_signed_artifacts_gate.json" in ci
     assert "python tooling/security/security_gate_test_coverage_gate.py" in ci
     assert "python tooling/security/evidence_attestation_index.py --strict-key" in ci
     assert "python tooling/security/evidence_attestation_gate.py --strict-key" in ci
     assert "python tooling/security/provenance_signature_gate.py --strict-key" in ci
     assert "python tooling/security/key_provenance_continuity_gate.py" in ci
+    assert "python tooling/security/signature_key_lineage_policy_gate.py" in ci
+    assert "python tooling/security/key_usage_ledger.py" in ci
     assert "python tooling/security/signature_algorithm_policy_gate.py" in ci
     assert "python tooling/security/security_verification_summary.py --strict-key" in ci
     assert "python tooling/security/security_event_export.py" in ci
@@ -146,6 +170,8 @@ def test_ci_security_steps_are_wired() -> None:
     assert "python tooling/security/security_artifacts.py" in ci
     assert "security_trend_alert.json" in ci
     assert "key_provenance_continuity_gate.json" in ci
+    assert "signature_key_lineage_policy_gate.json" in ci
+    assert "key_usage_ledger.json" in ci
     assert "signature_algorithm_policy_gate.json" in ci
     assert "security_verification_summary.json" in ci
     assert "security_verification_summary.json.sig" in ci

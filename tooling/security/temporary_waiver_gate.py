@@ -27,6 +27,7 @@ def main(argv: list[str] | None = None) -> int:
     _ = argv
     policy = json.loads((ROOT / "governance" / "security" / "temporary_waiver_policy.json").read_text(encoding="utf-8"))
     max_active = int(policy.get("max_active_waivers", 5))
+    max_per_family = int(policy.get("max_active_waivers_per_control_family", 0))
     required = [f for f in policy.get("required_fields", []) if isinstance(f, str)]
     glob_pattern = str(policy.get("waiver_file_glob", "**/waivers.json")).strip() or "**/waivers.json"
     if glob_pattern.startswith("evidence/"):
@@ -34,6 +35,7 @@ def main(argv: list[str] | None = None) -> int:
     evidence_base = evidence_root()
     findings: list[str] = []
     active_count = 0
+    active_count_by_control_family: dict[str, int] = {}
     now = datetime.now(UTC)
 
     for path in sorted(evidence_base.glob(glob_pattern)):
@@ -61,14 +63,31 @@ def main(argv: list[str] | None = None) -> int:
                 findings.append(f"expired_waiver:{path}")
             else:
                 active_count += 1
+                if max_per_family > 0:
+                    control_family = str(w.get("control_family", "")).strip()
+                    if not control_family:
+                        findings.append(f"missing_waiver_control_family:{path}")
+                    else:
+                        active_count_by_control_family[control_family] = (
+                            active_count_by_control_family.get(control_family, 0) + 1
+                        )
 
     if active_count > max_active:
         findings.append(f"active_waivers_exceed_limit:{active_count}")
+    if max_per_family > 0:
+        for control_family, count in sorted(active_count_by_control_family.items()):
+            if count > max_per_family:
+                findings.append(f"active_waivers_exceed_control_family_limit:{control_family}:{count}:{max_per_family}")
 
     report = {
         "status": "PASS" if not findings else "FAIL",
         "findings": findings,
-        "summary": {"active_waivers": active_count, "max_active_waivers": max_active},
+        "summary": {
+            "active_waivers": active_count,
+            "max_active_waivers": max_active,
+            "max_active_waivers_per_control_family": max_per_family,
+            "active_waivers_by_control_family": active_count_by_control_family,
+        },
         "metadata": {"gate": "temporary_waiver_gate"},
     }
     out = evidence_root() / "security" / "temporary_waiver_gate.json"

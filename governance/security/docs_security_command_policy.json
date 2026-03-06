@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "scan_globs": [
+    "docs/**/*.md",
+    "governance/security/**/*.md",
+    "product/ops/**/*.md"
+  ],
+  "forbidden_patterns": [
+    {
+      "id": "disable_ssl_verification",
+      "pattern": "git\\s+config\\s+--global\\s+http\\.sslVerify\\s+false"
+    },
+    {
+      "id": "disable_shell_fail_fast",
+      "pattern": "set\\s+\\+e\\b"
+    },
+    {
+      "id": "security_gate_ignored_failure",
+      "pattern": "python\\s+tooling/security/[\\w./-]+\\.py[^\\n]*\\|\\|\\s*true"
+    }
+  ],
+  "deprecated_guidance": [
+    {
+      "id": "semgrep_module_invocation",
+      "contains": "python -m semgrep"
+    },
+    {
+      "id": "legacy_security_wrapper",
+      "contains": "python tooling/security/security_preflight.py"
+    }
+  ]
+}

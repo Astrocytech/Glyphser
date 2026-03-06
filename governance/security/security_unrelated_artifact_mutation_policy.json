@@ -1,0 +1,12 @@
+{
+  "probe_commands": [
+    [
+      "python",
+      "tooling/security/security_primary_report_path_gate.py"
+    ]
+  ],
+  "allowed_mutation_prefixes": [
+    "evidence/security/"
+  ],
+  "max_probe_runtime_sec": 300
+}
