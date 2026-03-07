@@ -599,55 +599,58 @@ Glyphser is designed to make ML execution **deterministic, verifiable, and gover
 
 ---
 
+This revision removes the repo-misaligned claims about a single canonical-CBOR commitment substrate and `v0.1` as the current public proof target, while keeping the section consistent with the current public verification surface, Python support, and hello-core workflow. ([GitHub][1])
+
 ### 5.2 Architectural Philosophy
 
 Glyphser’s architecture is guided by a “contracts + evidence” philosophy:
 
 1. **Contracts first, implementation second**
-   Behavior is specified as contracts (inputs/outputs, ordering, hashing preimages, failure semantics). Implementations are expected to conform and to be replaceable without changing meaning. 
+   Behavior is specified through explicit contracts for inputs, outputs, ordering, identity derivation, and failure semantics. Implementations are expected to conform to those contracts and to remain replaceable without changing the intended meaning of a run or a verification result.
 
-2. **Canonical representations as the root of truth**
-   All commitment-critical artifacts use a single canonical CBOR profile, with strict, explicit rules for key ordering, numeric representation, optional field omission, and special-value handling. This avoids ambiguity across languages and runtimes. 
+2. **Canonical representations where the contract requires them**
+   Glyphser uses canonical representations where stable comparison, hashing, or reproducible interpretation depends on them. In the current public implementation, serialization and identity procedures are artifact-specific rather than expressed as one universal commitment format for every artifact. The governing principle is not “one format everywhere,” but “explicit, stable, and testable rules for each verification-critical artifact.”
 
-3. **Domain-separated commitments (hashes) where required**
-   Commitment hashes and signatures are derived from canonical CBOR preimages with explicit domain tagging rules, so identities are unambiguous and non-interchangeable across contexts. 
+3. **Domain-separated commitments where identity boundaries matter**
+   Where hashes or other derived identities carry semantic meaning, they must be computed under explicit rules so that values are not silently reused across incompatible contexts. Identity derivation is treated as part of the contract surface, not as an incidental implementation detail.
 
 4. **Deterministic ordering is mandatory wherever drift could occur**
-   Any operation that could drift due to concurrency, iteration ordering, or map traversal must be tied to explicit deterministic tie-break rules (often derived from canonical CBOR byte ordering).  
+   Any operation that could drift because of iteration order, map traversal, runtime variation, or comparable nondeterministic effects must be tied to explicit deterministic rules. Stable ordering is required wherever verification outputs, evidence artifacts, or identity values depend on traversal or aggregation order.
 
 5. **Interpretation transparency**
-   When the specification has ambiguities, decisions are recorded explicitly (with rationale and test vectors) to prevent silent semantic drift. 
+   When specification intent is incomplete, underspecified, or evolving, interpretation decisions should be recorded explicitly with rationale and executable checks where possible. This prevents silent semantic drift between documentation, tooling, and implementation.
 
 6. **Verification is a first-class workflow**
-   Verification is not optional documentation; it is part of the normal development loop (verify artifacts, run conformance suite, run hello-core end-to-end). 
+   Verification is part of the normal development and release loop. Public-facing workflows center on reproducible evidence generation, local or CI verification, and end-to-end proof paths such as the hello-core run and release verification tooling, rather than on informal inspection alone.
 
 ---
-
-Use this updated text block:
 
 ### 5.3 Constraints and Assumptions
 
-Glyphser’s design makes explicit constraints and operational assumptions. The system is intentionally scoped around deterministic verification under a **declared determinism envelope**, rather than around a universal promise of bitwise-identical ML training across arbitrary environments. For v0.1, the required deterministic target is the verification pipeline, evidence artifacts, and release bundles under pinned inputs and documented constraints. 
+Glyphser’s design makes explicit constraints and operational assumptions. The system is intentionally scoped around deterministic verification under a **declared determinism envelope**, rather than around a universal promise of bitwise-identical ML behavior across arbitrary environments. In the current public implementation, the minimum proof point is the reproducibility of the published verification outputs and evidence identities for the supported verification path under pinned inputs and documented constraints.
 
-1. **Canonical CBOR is the commitment substrate**
-   All contract-critical artifacts used for commitments, digests, or signature preimages must use the canonical CBOR profile. Non-canonical payloads are invalid for conformance purposes because stable identities depend on stable serialization.  
+1. **Serialization and identity rules are explicit and artifact-specific**
+   Stable verification depends on stable preimages and stable derivation rules, but the current public implementation does not expose one universal commitment substrate for every contract-critical artifact. Instead, each verification-critical artifact must define its own deterministic serialization and identity procedure clearly enough to support conformance, reproducibility, and independent checking. Payloads that do not conform to the declared procedure for a given artifact are invalid for verification purposes.
 
-2. **Determinism profile is explicit (bitwise vs tolerance)**
-   Glyphser distinguishes strict bitwise equivalence from tolerance-based equivalence through explicit determinism profiles and comparison rules. For the public v0.1 onboarding and verification path, the required proof point is strict reproducibility of the published verification artifacts and evidence identities under the declared envelope. Tolerance-based comparison may exist as a conceptual mode for broader future workflows, but it is not the minimum public proof target for v0.1.  
+2. **Determinism profile is explicit (strict vs constrained comparison modes)**
+   Glyphser distinguishes between stricter reproducibility claims and broader comparison regimes by making the applicable determinism envelope explicit. For the public verification path, the required proof point is deterministic reproduction of the published verification artifacts and evidence identities under the declared constraints. Broader tolerance-based or profile-dependent comparison modes may exist conceptually or evolve later, but they should not be stated as the minimum current public proof target unless they are explicitly implemented and documented.
 
 3. **Environment identity is part of reproducibility**
-   Reproducibility depends not only on source code and inputs, but also on a captured and hashed environment identity. This includes the relevant host and runtime characteristics, dependency lock state, determinism profile, and determinism-sensitive environment configuration. A run is only meaningfully comparable when evaluated inside the same declared envelope or an explicitly documented compatibility procedure.  
+   Reproducibility depends not only on source code and inputs, but also on a captured execution context. Relevant host, runtime, dependency, backend, and configuration characteristics must be treated as part of the declared verification envelope. A run is only meaningfully comparable when evaluated within the same supported constraints or under an explicitly documented compatibility rule.
 
 4. **Dependency governance is required for reproducible builds and verification**
-   Dependency pinning, artifact integrity checks, and upgrade handling are treated as part of deterministic validation rather than as informal operational hygiene. Glyphser assumes that lock state, artifact hashes, and verification reports are stable enough to participate in reproducibility claims and release gating.  
+   Dependency pinning, artifact integrity checks, and controlled upgrade handling are part of deterministic validation, not merely operational hygiene. Glyphser assumes that dependency state, artifact hashes, and verification reports are stable enough to participate in reproducibility claims and release gating.
 
-5. **Content-addressed artifacts are assumed for integrity checks**
-   Verification workflows assume immutable retrieval of artifacts by content-addressed location, hash-pinned bundle, or an equivalent immutability guarantee. For the minimum v0.1 public path, the assumption should be read conservatively: the first-class story is local or CI-based verification with deterministic artifacts and evidence bundles, while broader artifact-store adapter coverage can evolve later without changing the core assumption that integrity depends on immutability.  
+5. **Integrity depends on immutability of the checked artifacts**
+   Verification workflows assume that the artifacts being checked are retrieved or produced in an immutable form, whether by local generation, CI artifacts, hash-pinned bundles, or an equivalent immutability guarantee. For the current public path, this assumption should be read conservatively: the first-class story is deterministic local or CI verification of the published artifacts and evidence outputs, while broader storage and retrieval surfaces may evolve separately.
 
 6. **Certain behaviors are intentionally abort-only**
-   Many contract violations are designed to fail deterministically rather than attempt silent recovery. This includes mismatches in verification artifacts, repeat-run determinism failures, and other conditions that would otherwise blur whether the system still conforms to its declared behavior. In Glyphser’s quality model, these cases are release-blocking until diagnosed and corrected.  
+   Many contract violations are designed to fail deterministically rather than trigger silent recovery. This includes verification mismatches, evidence-identity mismatches, and other conditions that would blur whether the system still conforms to its declared behavior. Within Glyphser’s quality model, such cases are blocking until diagnosed and corrected.
 
 ---
+
+[1]: https://raw.githubusercontent.com/Astrocytech/Glyphser/main/README.md "raw.githubusercontent.com"
+
 
 ### 5.4 Sustainability Considerations (optional)
 
@@ -899,57 +902,63 @@ In this interaction model, each layer contributes a distinct role to the same de
 
 ### 6.4 System Boundaries
 
-Glyphser draws deliberate boundaries so that determinism claims remain meaningful, testable, and tied to a declared verification envelope rather than to vague promises of “reproducibility everywhere.” In the current public v0.1 scope, Glyphser is centered on deterministic verification workflows, evidence artifacts, and release-bound checks under pinned inputs and documented constraints, not on universal bitwise-identical training across arbitrary environments.  
+Glyphser draws deliberate boundaries so that determinism claims remain meaningful, testable, and tied to a declared verification envelope rather than to vague promises of “reproducibility everywhere.” In the current public scope, Glyphser is presented as a deterministic execution verification harness for ML workloads, with its primary emphasis on single-host, CPU-first verification through the public CLI/API and reproducible evidence artifacts. It should not be described as a universal guarantee of bitwise-identical behavior across arbitrary environments. ([GitHub][1])
 
 #### In scope
 
-* Deterministic execution orchestration from manifest to operators to emitted artifacts.
-* Canonical serialization and commitment hashing for contract-critical artifacts.
-* Evidence artifacts such as traces, checkpoints, certificates, conformance reports, and related verification workflows.
-* Governance of specification ambiguities through interpretation logs, explicit decisions, and test vectors.
-* Verification-first onboarding paths such as documentation-bound artifact checks, conformance execution, and hello-core identity comparison.
-* Deterministic evidence generation for local execution, CI verification, and other bounded deployment contexts that stay within the declared determinism envelope.   
+* Deterministic verification workflows from declared inputs and execution steps to emitted evidence artifacts and machine-checkable verification outputs.
+* Public verification surfaces centered on the stable CLI/API that the repository currently highlights: `glyphser run`, `glyphser verify`, `glyphser snapshot`, the `hello-core` fixture, and release verification workflows. ([GitHub][1])
+* Evidence artifacts in the current public proof path, including trace, checkpoint, and execution-certificate outputs, together with release-facing evidence such as checksums, SBOMs, and provenance files. ([GitHub][2])
+* Stable public user surfaces documented as `glyphser.public.*` and top-level `glyphser` exports, rather than a broader unpublished internal protocol surface. ([GitHub][1])
+* Compatibility claims only within documented and bounded environments, versions, and supported backends. The current public materials publish a compatibility matrix rather than claiming unrestricted portability. ([GitHub][3])
+* Deterministic evidence generation for local execution, CI re-verification, and release-bound checks that remain inside the declared verification envelope. ([GitHub][4])
 
 #### Out of scope (or explicitly bounded)
 
-* **Model quality optimization.** Glyphser’s contracts are about deterministic validation, provenance, and evidence, not about maximizing task accuracy, loss, or downstream model utility.
-* **Universal host or hardware parity.** Glyphser should not be described as guaranteeing identical behavior across all operating systems, CPUs, accelerators, or unmanaged runtime combinations.
-* **Arbitrary nondeterministic execution.** Determinism holds only within the declared profile, captured environment, and documented constraints; outside those bounds, mismatches are failures, not acceptable approximations.
-* **Universal bitwise-identical training claims.** The v0.1 scope is intentionally narrower: deterministic verification pipelines, evidence artifacts, and release bundles under a declared determinism envelope.
-* **Implied external certification or affiliation.** Public-facing materials should not imply official certification, endorsement, or trust-root authority unless that relationship is explicitly established.
-* **Silent recovery from contract violations.** Many violations are intentionally abort-only so the system does not hide drift or semantic inconsistency behind best-effort fallback behavior.    
+* **Model quality optimization.** Glyphser’s public contracts are about deterministic validation, evidence, and verification, not about maximizing task accuracy, loss, or downstream model utility.
+* **Universal host or hardware parity.** Glyphser should not be described as guaranteeing identical behavior across all operating systems, CPUs, accelerators, or unmanaged runtime combinations. The public scope is explicitly narrower and CPU-first. ([GitHub][1])
+* **Arbitrary nondeterministic execution.** Determinism holds only within the declared profile, captured environment, and documented constraints; outside those bounds, mismatches are failures to investigate, not acceptable approximations.
+* **Universal bitwise-identical training claims.** The current public scope is verification-first: deterministic execution evidence, release checks, and bounded reproducibility workflows, not a blanket claim about all training scenarios. ([GitHub][1])
+* **Undeclared distributed or multi-host behavior.** Multi-host or orchestration-oriented scenarios should be treated as bounded extensions, not as the unrestricted default baseline. The public roadmap still presents broader orchestration adapters as later work. ([GitHub][5])
+* **Implied external certification or affiliation.** Public-facing materials should not imply official certification, endorsement, or trust-root authority unless such a relationship is explicitly established.
+* **Silent recovery from contract violations.** Contract-critical drift should be surfaced clearly; the system boundary is verification-first, not best-effort masking of inconsistency.
 
 #### Operational assumptions
 
 Glyphser’s system boundary also depends on several explicit operational assumptions:
 
-1. **Canonical CBOR is the commitment substrate.** Contract-critical hashed artifacts are assumed to use canonical CBOR; non-canonical encodings are invalid for deterministic commitments.
-2. **Determinism profiles are explicit, not implied.** Bitwise or tolerance-based comparison rules must be declared as part of the environment and contract context.
-3. **Environment identity is part of reproducibility.** The reproducibility claim assumes a captured environment identity that includes the determinism-relevant runtime and dependency state.
-4. **Dependency governance is part of the boundary.** Reproducible verification depends on pinned or governed dependencies and stable integrity checks rather than informal package resolution.
-5. **Artifacts are immutable for integrity purposes.** Verification assumes content-addressed artifacts or an equivalent immutability guarantee from the artifact store.
-6. **Clock-dependent behavior is not part of the Core claim unless explicitly captured.** Time-sensitive behavior should not influence deterministic identities unless it is normalized or declared as part of the contract and evidence.
-7. **Network and distributed behavior are bounded scenarios, not the default baseline.** Multi-host or distributed execution must be treated as an explicitly declared verification context with deterministic ordering and environment constraints, not as an unrestricted assumption.
-8. **Certain failures are intentionally terminal.** When contract-critical invariants break, Glyphser prefers deterministic abort behavior over implicit recovery that could mask first drift.   
+1. **Deterministic commitments follow documented artifact-specific rules.** The current public implementation should not be described as using one universal canonical-CBOR commitment rule for every artifact. Public verification currently relies on documented, artifact-specific serialization and hashing procedures for the relevant evidence outputs. ([GitHub][6])
+2. **Determinism profiles are explicit, not implied.** Bitwise or tolerance-based comparison rules must be declared as part of the execution and verification context.
+3. **Environment identity is part of reproducibility.** Reproducibility claims assume a captured environment boundary that includes determinism-relevant runtime and dependency state.
+4. **Dependency governance is part of the boundary.** Reproducible verification depends on pinned or governed dependencies and integrity checks rather than informal package resolution. The published local verification path assumes a controlled Python environment. ([GitHub][4])
+5. **Evidence artifacts are treated as immutable for integrity purposes.** Verification assumes that emitted evidence is checked as produced, not rewritten after the fact.
+6. **Clock-dependent or external side effects are outside the Core claim unless explicitly normalized.** Time-sensitive or externally sourced behavior should not influence deterministic identities unless it is captured and declared as part of the contract and evidence.
+7. **Networked, distributed, or multi-host verification is a bounded extension.** Such scenarios require their own declared ordering, environment, and verification constraints rather than being assumed by default. ([GitHub][5])
+8. **Certain failures are intentionally terminal.** When contract-critical invariants break, Glyphser should prefer explicit failure over implicit recovery that could hide first drift.
 
-#### Core profile boundary: mandatory vs optional components
+#### Core profile boundary: current public minimal proof path
 
-| Component / capability                                            | Core profile status                                                  | Notes                                                                                                 |    |
-| ----------------------------------------------------------------- | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | -- |
-| Manifest-driven execution path                                    | **Mandatory**                                                        | Core onboarding assumes a declared manifest and deterministic workflow.                               |    |
-| One backend adapter                                               | **Mandatory**                                                        | Core profile assumes exactly one backend adapter.                                                     |    |
-| One artifact store adapter                                        | **Mandatory**                                                        | Core profile assumes exactly one artifact store adapter.                                              |    |
-| Canonical artifact verification (`verify_doc_artifacts`)          | **Mandatory**                                                        | This is part of the first verification gate.                                                          |    |
-| Conformance run / verify / report workflow                        | **Mandatory**                                                        | Core onboarding includes conformance execution and verification.                                      |    |
-| hello-core end-to-end fixture                                     | **Mandatory**                                                        | Core onboarding requires comparison against published golden identities.                              |    |
-| Deterministic evidence artifacts (trace, checkpoint, certificate) | **Mandatory**                                                        | These are part of the minimal verifiable workflow.                                                    |    |
-| Local single-host verification path                               | **Mandatory**                                                        | This is the first-class onboarding and reproducibility path.                                          |    |
-| CI-based re-verification                                          | **Recommended / optional in deployment, but aligned with the model** | Strongly aligned with release control, though not required for the minimal local proof path.          |    |
-| Monitoring and drift operators                                    | **Optional module**                                                  | Monitoring is part of the broader architecture but not required for the minimal Core onboarding path. |    |
-| Alert lifecycle / policy transcript / gate hash workflows         | **Optional module**                                                  | Operationally useful, but beyond the minimum hello-core verification path.                            |    |
-| Distributed or multi-host comparison workflows                    | **Explicitly bounded extension**                                     | Not the unrestricted default; treated as a later bounded verification scenario.                       |    |
+* **Manifest- or declaration-driven execution path — Mandatory.** The public proof path assumes declared inputs and a deterministic workflow from execution to emitted evidence. ([GitHub][1])
+* **A supported backend selected within a declared profile — Mandatory.** The public compatibility materials list bounded backend support rather than an unrestricted backend model. ([GitHub][3])
+* **Filesystem evidence output path — Mandatory.** The current public proof path is centered on locally emitted evidence files such as `trace.json`, `checkpoint.json`, and `execution_certificate.json`. ([GitHub][2])
+* **Public CLI/API surface — Mandatory.** The current user-facing surface is the stable CLI/API described in the repository, especially `glyphser run`, `glyphser verify`, `glyphser snapshot`, `glyphser.public.*`, and top-level `glyphser` exports. ([GitHub][1])
+* **`hello-core` end-to-end fixture — Mandatory.** The current independent verification flow centers on checking `hello-core` expected versus actual identities and confirming the emitted evidence files. ([GitHub][6])
+* **Deterministic evidence artifacts (trace, checkpoint, certificate) — Mandatory.** These are part of the minimal verifiable workflow currently documented by the public repository. ([GitHub][2])
+* **Local single-host verification path — Mandatory.** This is the current first-class public onboarding and verification path. ([GitHub][1])
+* **Release verification (`python tooling/release/verify_release.py`) — Recommended and release-facing.** This is the public one-command local release verification procedure, but it is distinct from the minimal `hello-core` proof path. ([GitHub][4])
+* **Documentation-bound artifact checks and conformance tooling — Supporting gates, not the sole public baseline.** These may exist as useful validation gates, but they should not be described as the only or primary public proof path when the public docs center `glyphser verify hello-core` and release verification. ([GitHub][4])
+* **CI-based re-verification — Recommended.** It is strongly aligned with release control and regression detection, but it is not required for the minimal local proof path. ([GitHub][4])
+* **Monitoring, drift, or alert-lifecycle workflows — Optional broader architecture.** These may be useful operational extensions, but they are not part of the minimum public verification boundary described by the current repository.
+* **Distributed or multi-host comparison workflows — Explicitly bounded extension.** They should be described as later or separately declared verification contexts, not as the unrestricted default. ([GitHub][5])
 
-Taken together, these boundaries mean that a valid Glyphser claim is not simply that “the software ran.” It is that a declared workflow, under declared constraints, produced stable and verifiable evidence artifacts whose identities can be checked mechanically and reproduced within the stated envelope.  
+Taken together, these boundaries mean that a valid Glyphser claim is not simply that “the software ran.” It is that a declared workflow, under declared constraints, produced stable and verifiable evidence artifacts whose identities can be checked mechanically and reproduced within the stated verification envelope. ([GitHub][1])
+
+[1]: https://raw.githubusercontent.com/Astrocytech/Glyphser/main/README.md "raw.githubusercontent.com"
+[2]: https://raw.githubusercontent.com/Astrocytech/Glyphser/main/docs/EVIDENCE_FORMATS.md "raw.githubusercontent.com"
+[3]: https://raw.githubusercontent.com/Astrocytech/Glyphser/main/docs/COMPATIBILITY_MATRIX.md "raw.githubusercontent.com"
+[4]: https://raw.githubusercontent.com/Astrocytech/Glyphser/main/docs/VERIFY.md "raw.githubusercontent.com"
+[5]: https://raw.githubusercontent.com/Astrocytech/Glyphser/main/ROADMAP.md "raw.githubusercontent.com"
+[6]: https://raw.githubusercontent.com/Astrocytech/Glyphser/main/docs/INDEPENDENT_VERIFICATION.md "raw.githubusercontent.com"
 
 
 ## 7. CORE CONCEPTS AND TERMINOLOGY
@@ -1315,26 +1324,28 @@ Until those policies are published, the whitepaper should make a narrower but st
 
 ### 10.1 Integrity Guarantees
 
-Glyphser’s integrity model is based on **content-addressed, canonically serialized evidence** and **cryptographically verifiable certificates**. The purpose of this model is to ensure that verification outcomes are not merely asserted, but are bound to stable artifact identities that can be reproduced, compared, and audited across repeated runs under the declared determinism envelope.  
+Glyphser’s current public integrity model is based on **content-addressed evidence artifacts** and **deterministic verification outputs**. The purpose of this model is to ensure that verification outcomes are not merely asserted, but are bound to stable artifact identities that can be reproduced, compared, and audited across repeated runs within the declared determinism envelope. In the current public baseline, this integrity model should be described conservatively: Glyphser publishes reproducible evidence and verification identities, but it does **not** yet expose a single universal hashing or signing protocol for every artifact class.
 
 **Deterministic evidence identities**
 
-* Contract-critical outputs are targeted at **bitwise / E0 determinism**, meaning identical inputs, policies, and canonicalization rules must yield identical hashes and identical verification verdicts. Dependency-policy verdicts and signatures are therefore treated as deterministic outputs rather than approximate signals.
-* Canonical CBOR encoding is used to ensure stable preimages for hashing and signing, avoiding ambiguity caused by serializer differences, map-order drift, or inconsistent encoding behavior.
-* In the current whitepaper baseline, named integrity identities are expressed with explicit `SHA-256(CBOR_CANONICAL(...))` derivations unless a versioned contract defines a different construction. This keeps artifact identity rules simple, reviewable, and replayable. 
+* Public proof paths such as `hello-core` are targeted at **bitwise / E0 determinism** within the declared environment, meaning identical inputs, policies, and execution conditions are expected to yield identical published identities and identical verification verdicts.
+* In the current public implementation, artifact identities are derived through **artifact-specific, versioned constructions** rather than a single uniform `SHA-256(CBOR_CANONICAL(...))` rule applied to all commitment-critical outputs.
+* As a result, the whitepaper should treat published identities such as `manifest_hash`, `trace_final_hash`, `checkpoint_hash`, `certificate_hash`, and `interface_hash` as **defined verification outputs of the current implementation**, not as evidence that every artifact class already shares one common canonical preimage scheme.
+* Where canonical serialization is used, its role is to stabilize specific artifact preimages for reproducible hashing and comparison. However, the current public repo should not be described as if all integrity-bearing artifacts already use one universal canonical CBOR commitment substrate.
 
 **Execution certificate construction and verification**
 
-* `Glyphser.Certificate.Build` constructs a canonical payload from an evidence tuple so that the certificate binds the run’s core integrity inputs in a deterministic way.
-* `Glyphser.Certificate.Sign` signs **only** the canonical CBOR bytes of `signed_payload` and explicitly excludes `unsigned_metadata`. In `ATTESTED` mode, key release is gated by a successful attestation-policy check, and key custody may be mediated through an HSM/KMS-style brokered flow.
-* `Glyphser.Certificate.Verify` checks signature validity, required fields, trust chain integrity, key validity window, expiry status, and revocation status bound by `revocation_bundle_hash`.
-* `Glyphser.Certificate.EvidenceValidate` rejects mismatched or incoherent evidence before signing by checking cross-artifact consistency. This prevents a formally signed artifact from being treated as valid when its internal evidence tuple does not agree.  
+* In the current public baseline, Glyphser produces an **execution certificate artifact** that binds together key run evidence in a deterministic, identity-bearing form for inspection and comparison.
+* This certificate should presently be described as a **deterministic evidence artifact**, not as a fully published public signing, attestation, revocation, or trust-chain framework.
+* Public verification currently focuses on checking that the expected evidence artifacts are present, that their derived identities match the published proof values, and that cross-artifact references are coherent within the supported example or verification flow.
+* Stronger certificate capabilities—such as explicit signing workflows, attestation-gated key release, revocation-bundle validation, or external trust-chain enforcement—should be described as **future or extended architecture** unless and until they are exposed as part of the public implementation and documentation.
 
 **Auditable, deterministic verification reports**
 
-* Verification MUST produce a stable trust-report projection, not only a binary verdict. At minimum, that report is expected to record the trust roots used, revocation status, attestation-verification status, and policy or authorization linkage status.
-* The trust report is itself identity-bearing. A deterministic `trust_report_hash` is defined as `SHA-256(CBOR_CANONICAL(trust_report))`, allowing downstream workflows to compare report identity as well as verdict outcome.
-* This approach ensures that integrity extends beyond artifact bytes to the reasoning context under which a verification result was accepted. 
+* Verification should produce a **stable, reviewable result projection**, not only a binary pass/fail outcome. In the current public baseline, this is expressed through deterministic verification outputs, structured JSON verification results, and reproducible evidence files.
+* The current public implementation supports comparison of published identities and verification outputs across repeated runs, allowing downstream workflows to assess whether the same declared inputs produced the same evidence and verdicts.
+* Accordingly, Glyphser’s present integrity guarantees should be framed around **reproducible evidence, stable identity comparison, and deterministic verification output**, rather than around a broader trust-report or signature-validation model that the public repo does not yet fully expose.
+* This approach ensures that integrity is grounded in artifacts that can be independently recomputed and compared, while leaving room for later expansion into richer certificate, attestation, and trust-policy workflows.
 
 ---
 
@@ -1477,29 +1488,18 @@ A profile is considered ready for run start only when the manifest has been acce
 
 ### 11.2 Processing Flow
 
-The Core-profile processing flow is defined as a deterministic pipeline with a fixed sequence of stages. The run begins by loading the Core fixture manifest and executing the minimal reference workflow through the path:
+The current public Core-profile processing flow is implemented as a deterministic evidence-generation and verification pipeline. In the public `hello-core` path, the run begins by loading the Core fixture manifest, executing the reference workflow, and emitting the profile’s verification artifacts: trace, checkpoint, and execution certificate. The public verification flow then derives the corresponding published identity values and compares them against the expected golden outputs for the profile.
 
-WAL → trace → checkpoint → certificate → replay check
+In its current public form, this flow is best described as:
 
-After the workflow has executed, Glyphser computes deterministic identity values using canonical hashing rules and compares the emitted values against the golden identities defined for the profile. The final result of the run is not merely that execution completed, but that the evidence identities matched the expected commitments and that the system can therefore emit a deterministic onboarding verdict.
+manifest load → workflow execution → evidence emission (trace, checkpoint, certificate) → identity derivation → golden comparison → onboarding verdict
 
-This design is deliberate. In Glyphser, the terminal condition of a valid run is not “processing finished” or “training finished,” but “the produced evidence is deterministic and verifiably correct under the declared profile conditions.” The replay check is therefore part of the validation story rather than an optional add-on. Its purpose is to confirm that the generated evidence chain is internally coherent and suitable for deterministic comparison, so that the run can be assessed as reproducible rather than merely executable.
+This description is intentionally precise. The current public `hello-core` flow does not expose a WAL stage as part of its onboarding surface, and its terminal verification step is a deterministic evidence-comparison procedure rather than a separately published replay protocol. The purpose of the flow is to establish that the emitted evidence artifacts correspond to the expected profile outputs under controlled conditions, so that the run can be assessed as deterministically verified rather than merely executed successfully.
 
-Any mismatch in the expected identity path is treated as a determinism regression. The operational posture is stop-the-line: feature work yields to diagnosis, vectors are added or expanded to capture the case, determinism is restored, and verification is rerun before further progress is accepted. This ensures that the workflow remains governed by reproducibility rules rather than by informal tolerance for drift.   
+The terminal condition of a valid Core-profile run is therefore not simply that processing completed without error. A run is only considered successful when the generated evidence identities match the expected published values for the profile and the verification path can emit a deterministic onboarding verdict. This keeps the emphasis on evidence correctness and reproducibility, rather than on execution completion alone.
 
-### 11.3 Output Artifacts
+Any mismatch in the expected identity outputs is treated as a determinism regression. The operational posture is stop-the-line: feature work yields to diagnosis, vectors or fixtures are added or refined to capture the case, determinism is restored, and verification is rerun before further progress is accepted. This preserves the governing principle that Core-profile execution is validated by reproducible evidence and explicit verification outcomes, not by informal tolerance for drift.
 
-Glyphser validates its workflow through deterministic, hash-addressed artifacts. For the Core onboarding path, the system is expected to emit and report, at minimum, the following evidence identities:
-
-* `trace_final_hash`
-* `certificate_hash`
-* `interface_hash`
-
-These identities are not incidental metadata. They are the primary basis on which a run is judged reproducible for the reference onboarding flow. In addition, the onboarding path is structured around a Golden Demo Evidence Bundle that binds the run to its fixture manifest, golden identity references, and verifier-side outputs. This makes the run auditable as a complete evidence package rather than as a collection of loosely related files.
-
-The output artifacts fall into several functional families. Manifest artifacts define the declared run boundary and fixture references. Trace artifacts capture deterministic trace outputs and any trace-sidecar material required for verification. Checkpoint artifacts capture deterministic checkpoint commitments where checkpointing is part of the workflow. Certificate artifacts bind the execution into a certificate-bearing identity path. Verification artifacts include the reports, verdicts, and comparison results produced by the verification tooling. Together, these artifact families form the evidence model that supports deterministic validation.
-
-In this whitepaper, these artifacts should be understood as first-class outputs of the system. Glyphser’s validation claim depends on their stability, their canonical identity rules, and their ability to be compared across repeated runs or controlled verification contexts.   
 
 ### 11.4 Verification or Validation Steps
 
@@ -2294,20 +2294,21 @@ The Core onboarding path defines first success as producing deterministic output
 
 ### Q3) How do I verify the repository artifacts and the hello-core run locally?
 
-The local verification flow consists of three parts:
+The current public local verification flow consists of three parts:
 
-* verify the documentation-bound artifacts:
-  `python tools/verify_doc_artifacts.py`
-* run the conformance workflow:
-  `python tools/conformance/cli.py run`
-  `python tools/conformance/cli.py verify`
-  `python tools/conformance/cli.py report`
-* run the end-to-end hello-core path:
-  `python scripts/run_hello_core.py`
+* run the published hello example and emit the evidence tree:
+  `glyphser run --example hello --tree`
+* verify the published hello-core identities:
+  `glyphser verify hello-core --format json`
+* run the repository-level verification script:
+  `python tooling/release/verify_release.py`
 
-The expected result is that the commands complete successfully and the hello-core outputs match the published golden identities.
+The expected result is that these commands complete successfully, the hello-core evidence files are produced, and the reported `trace_final_hash`, `certificate_hash`, and `interface_hash` match the published verification values.
+
+Advanced tooling such as `tooling/docs/verify_doc_artifacts.py` and `tooling/conformance/cli.py` exists in the repository, but it is not the primary public verification path described by the current documentation.
 
 ---
+
 
 ### Q4) What happens if my output does not match the golden hashes?
 
@@ -2463,26 +2464,26 @@ Glyphser is currently specified as a deterministic execution verification harnes
 
 ### A.2 Protocol Model
 
-At the public protocol level, Glyphser treats verification as a declared input-to-evidence process. A user supplies either a built-in example flow such as `hello` / `hello-core` or a model-and-input pair through the public verification interface. The runtime executes the declared workload through the deterministic core, emits evidence artifacts, derives a small set of public identities, and returns a verification result. In the current public implementation, the main verification story is CLI-oriented: run a fixture or model verification command, inspect the generated evidence, and compare the derived identities or digest outputs against expected results.
+At the current public protocol level, Glyphser presents verification as a deterministic input-to-evidence process exposed through the top-level CLI and the public package surface. A user invokes a supported public entry point—most visibly the built-in onboarding path exposed as `glyphser run --example hello` and `glyphser verify hello-core`—and the public flow produces a verification result together with generated evidence files and published verification identities. In the current public implementation, the main verification story is CLI-centered: run the example or verification command, inspect the generated evidence, and compare the derived public identities against the published expected values. ([GitHub][1])
 
-For the built-in onboarding path, the practical reference flow is:
+For the built-in onboarding path, the practical public reference flow is:
 
 Manifest and fixture inputs
 → deterministic execution of the example workload
 → evidence files written for trace, checkpoint, and execution certificate
-→ derivation of public verification identities
-→ comparison against published golden values
-→ pass/fail result and reportable evidence tree
+→ derivation or retrieval of the public verification identities `trace_final_hash`, `certificate_hash`, and `interface_hash`
+→ comparison against the published golden values
+→ pass/fail result with a reportable evidence tree. ([GitHub][2])
 
-This is the current public flow. Richer internal protocol ideas that are not yet reflected in the public implementation should not be treated as normative here.
+This is the current public verification flow reflected in the repository. Broader internal protocol concepts that are not yet exposed as public, verifiable behavior should not be treated as normative in this section. ([GitHub][1])
 
 ### A.3 Run Lifecycle and Data Flow
 
-The typical public run path is structured as a deterministic verification sequence.
+The typical public run path is best described as a deterministic verification sequence.
 
-For the `hello-core` fixture, the runtime builds a small deterministic execution record, writes a trace artifact, derives a final trace hash, computes a manifest hash from the fixture manifest, writes a checkpoint artifact, writes an execution certificate artifact, reads the published interface hash artifact, and compares the resulting public identities against the published golden reference. The current public evidence directory for this flow is `artifacts/inputs/fixtures/hello-core/`, and the current published golden identities are stored under `specs/examples/hello-core/hello-core-golden.json`.
+For the `hello-core` fixture, the public runner executes the example workload, writes `trace.json`, `checkpoint.json`, and `execution_certificate.json` under `artifacts/inputs/fixtures/hello-core/`, reads the published golden identities from `specs/examples/hello-core/hello-core-golden.json`, reads the published interface hash from `specs/contracts/interface_hash.json`, recomputes the public verification identities `trace_final_hash` and `certificate_hash`, and compares the resulting `actual` values against the published `expected` values. The current public verification result for this flow reports status, fixture name, evidence directory, expected identities, actual identities, and the evidence file list. ([GitHub][2])
 
-For general public verification of a model JSON and optional input JSON, the public interface returns a verification result containing a digest and output payload. Snapshot generation can also write a verification snapshot manifest through the public CLI.
+For general public verification of a model JSON and optional input JSON, the public CLI loads the supplied JSON objects, calls the public `verify(...)` entry point, and returns a verification result containing `status`, `digest`, and `output`. Snapshot generation likewise uses the public verification result and writes a verification snapshot manifest, returning `status`, `digest`, and the snapshot path. ([GitHub][3])
 
 The current public lifecycle is therefore best described as:
 
@@ -2490,94 +2491,106 @@ Declared input or named fixture
 → deterministic verification execution
 → evidence writing
 → identity or digest derivation
-→ local or CI verification result
+→ local or CI verification result. ([GitHub][1])
 
-The whitepaper should not describe the current public implementation as ending in a separate WAL-finalization protocol, because that is not the public verification path exposed today.
+The current public whitepaper should not describe this lifecycle as ending in a separate WAL-finalization protocol, because that is not the public verification path exposed by the present CLI and onboarding flow. ([GitHub][1])
 
 ### A.4 Public Interface Surfaces
 
 Glyphser’s current public interface surface is intentionally small.
 
-The stable user-facing surface is the public Python API and the top-level CLI. The public CLI exposes three primary commands:
+The stable user-facing surface is the public Python API together with the top-level CLI. The public CLI exposes three primary commands:
 
 * `glyphser verify`
 * `glyphser run`
-* `glyphser snapshot`
+* `glyphser snapshot` ([GitHub][1])
 
-In addition, the CLI retains a forwarded `runtime` command for advanced operational workflows, but that is not the main default user experience.
+In addition, the CLI retains a forwarded `runtime` command for advanced operational workflows, but the source comments explicitly position those advanced runtime commands as available without exposing them as the default user experience. ([GitHub][3])
 
 The current whitepaper should therefore describe Glyphser’s public interface boundary in terms of:
 
 * public verification API calls,
 * public fixture verification,
 * public snapshot generation,
-* and advanced runtime commands exposed through the runtime CLI bridge.
+* and advanced runtime commands exposed through the runtime CLI bridge. ([GitHub][1])
 
-It should not describe the current public system as already exposing a broad network service API for artifact storage, run tracking, registry transitions, monitoring, or deterministic authorization workflows.
+It should not describe the current public system as already exposing a broad network service API for artifact storage, run tracking, registry transitions, monitoring, or deterministic authorization workflows, because that is not the present public surface described in the repository README and public CLI entrypoint. ([GitHub][1])
 
 ### A.5 Canonical Operator Registry
 
-The canonical operator and contract artifacts remain authoritative where they are published in the repository. In the current public onboarding flow, the `hello-core` runner reads the operator-registry root hash from `specs/contracts/catalog-manifest.json` and uses it as part of the evidence chain for the generated fixture artifacts. This means the canonical contract artifacts remain important as an identity and verification boundary.
+The canonical contract artifacts remain authoritative where they are published in the repository, namely under `specs/contracts/`. In the current public onboarding flow, the `hello-core` runner reads `operator_registry_root_hash` from `specs/contracts/catalog-manifest.json` and uses that value in the generated evidence chain, including the checkpoint header and the execution certificate evidence object. ([GitHub][2])
 
-At the same time, the whitepaper should avoid overstating the current public registry model. The public implementation clearly uses the published contract artifacts and derived identities, but it does not currently expose the richer service-surface registry story described in the older draft as part of the default public product surface.
+This means the published contract artifacts remain an important identity and verification boundary in the current public implementation. At the same time, the whitepaper should avoid overstating the current public registry model. The present public flow clearly consumes the published contract identities, but it does not expose the broader service-surface registry model that appeared in the older draft as part of the default public product surface. ([GitHub][2])
 
 ### A.6 Deterministic Serialization and Hashing
 
-Glyphser’s current public implementation uses deterministic serialization and stable hashing, but the hashing story is narrower and more mixed than the older draft suggests.
+Glyphser’s current public implementation relies on deterministic serialization and stable hashing, but the public hashing story is narrower and more mixed than the older draft suggested.
 
-The current public implementation does use canonical serialization and deterministic hashing rules internally. For example, the minimal checkpoint writer and execution-certificate writer both return CBOR-based digests over domain-separated payloads, while the public `hello-core` onboarding path derives some of its published verification identities through other concrete rules:
+The runtime checkpoint writer and execution-certificate writer each write deterministic JSON and return a CBOR-based digest over a domain-separated payload. The trace sidecar likewise writes deterministic JSON and returns the computed trace hash. However, the public `hello-core` onboarding path derives its published verification identities through artifact-specific rules rather than one single public hashing rule. ([GitHub][4])
 
-* the trace identity is computed from the trace records through the trace hash function,
-* the manifest hash is computed from the raw manifest file bytes,
-* the published `checkpoint_hash` in the `hello-core` runner is computed from canonical JSON bytes of the checkpoint header,
-* the published `certificate_hash` in the `hello-core` runner is computed from canonical JSON bytes of the execution certificate object.
+In the current public onboarding flow:
 
-Accordingly, the current appendix should say that Glyphser relies on deterministic serialization and stable hashing, while also acknowledging that the present public verification path uses more than one concrete identity-derivation rule depending on artifact type. It should not claim that all current public commitment-critical artifacts are uniformly published through one single canonical-CBOR rule.
+* `trace_final_hash` is computed from the trace records through the trace hash function.
+* `manifest_hash` is computed from the raw bytes of `manifest.core.yaml`.
+* The published `checkpoint_hash` in the `hello-core` runner is computed from canonical JSON bytes of the checkpoint header.
+* The published `certificate_hash` in the `hello-core` runner is computed from canonical JSON bytes of the execution certificate object.
+* `interface_hash` is read from the published artifact `specs/contracts/interface_hash.json` rather than recomputed inside the onboarding runner. ([GitHub][2])
+
+Accordingly, the appendix should say that Glyphser uses deterministic serialization and stable hashing, while also acknowledging that the present public verification path uses more than one concrete identity-derivation rule depending on artifact type. It should not claim that all current public commitment-critical artifacts are uniformly published through one single canonical-CBOR rule. ([GitHub][2])
 
 ### A.7 Primary Artifact Classes
 
 Glyphser’s primary public output model consists of deterministic evidence artifacts and verification identities that can be checked locally or in CI.
 
-The core artifact classes currently surfaced in the public onboarding and verification materials are:
+The core artifact classes surfaced in the present public onboarding and verification materials are:
 
 * trace artifacts,
 * checkpoint artifacts,
 * execution certificate artifacts,
 * interface-hash artifacts,
 * verification outputs and digests,
-* and evidence directories containing the generated files for a verification run.
+* and evidence directories containing the generated files for a verification run. ([GitHub][1])
 
 For the `hello-core` onboarding flow, the public identities treated as primary verification outputs are:
 
 * `trace_final_hash`
 * `certificate_hash`
-* `interface_hash`
+* `interface_hash` ([GitHub][2])
 
-These values are compared against the published golden identities to determine whether the onboarding verification passes.
+These are the values compared against the published golden identities to determine whether onboarding verification passes. The checkpoint artifact is part of the generated evidence set, but `checkpoint_hash` is not one of the three public identities compared by the current `hello-core` verification result. ([GitHub][2])
 
 #### A.7.1 Trace Artifacts
 
-A run trace in the current public implementation is a deterministic JSON artifact containing the trace records emitted by the example or verification flow. The trace sidecar writes the records with stable JSON serialization and returns the computed trace hash. In the public `hello-core` flow, the trace artifact is written to `artifacts/inputs/fixtures/hello-core/trace.json`, and its final public identity is the derived `trace_final_hash`.
+A run trace in the current public implementation is a deterministic JSON artifact containing the trace records emitted by the example flow. The trace sidecar writes the records with stable JSON serialization and returns the computed trace hash. In the public `hello-core` flow, the trace artifact is written to `artifacts/inputs/fixtures/hello-core/trace.json`, and its final public identity is the derived `trace_final_hash`. ([GitHub][5])
 
-The current whitepaper should describe the trace artifact at this level. It should not present a larger record taxonomy as though all of it is already part of the current public contract unless that taxonomy is published separately as a normative schema.
+The current whitepaper should describe the trace artifact at this level. It should not present a larger trace-record taxonomy as though all of it is already part of the current public contract unless that taxonomy is published separately as a normative schema. ([GitHub][5])
 
 #### A.7.2 Checkpoint Artifacts
 
-Checkpointing is currently represented in the public implementation as a deterministic checkpoint artifact written as JSON plus a digest returned by the checkpoint writer. In the public `hello-core` flow, the written checkpoint file is `artifacts/inputs/fixtures/hello-core/checkpoint.json`, and the checkpoint header binds the checkpoint to the current manifest hash and operator-registry root hash.
+Checkpointing is currently represented in the public implementation as a deterministic checkpoint artifact written as JSON plus a digest returned by the checkpoint writer. In the public `hello-core` flow, the checkpoint file is `artifacts/inputs/fixtures/hello-core/checkpoint.json`, and the checkpoint header binds the checkpoint to the current `manifest_hash` and `operator_registry_root_hash`. ([GitHub][4])
 
-The older draft’s richer checkpoint model, involving checkpoint manifests, shard descriptors, Merkle roots, and strict path-normalization rules, should not be presented as current public behavior in this appendix. The current public implementation supports a smaller checkpoint artifact model.
+The public `hello-core` verification result includes the checkpoint file in the evidence tree, while the execution certificate also embeds the derived `checkpoint_hash`. The current appendix should therefore describe checkpointing as a smaller public artifact model, not as a fully exposed checkpoint-manifest or Merkle-structured protocol. ([GitHub][2])
 
 #### A.7.3 Execution Certificate Artifacts
 
-The execution certificate is currently represented in the public implementation as a deterministic JSON artifact written from a small evidence object. In the public `hello-core` flow, the execution certificate file is `artifacts/inputs/fixtures/hello-core/execution_certificate.json`. The current certificate object binds a compact set of evidence anchors, including the run id, trace final hash, checkpoint hash, operator-contracts root hash, and a policy-gate hash.
+The execution certificate is currently represented in the public implementation as a deterministic JSON artifact written from a compact evidence object. In the public `hello-core` flow, the execution certificate file is `artifacts/inputs/fixtures/hello-core/execution_certificate.json`. The evidence object written there includes `certificate_id`, `run_id`, `trace_final_hash`, `checkpoint_hash`, `operator_contracts_root_hash`, and `policy_gate_hash`. ([GitHub][6])
 
-The current public appendix should describe this as a deterministic evidence artifact used in verification. It should not describe the present public certificate as a fully realized signed assurance artifact unless and until that stronger public capability is implemented and documented.
+The runtime certificate writer returns its own CBOR-based digest, but the public onboarding flow computes the published `certificate_hash` by hashing the canonical JSON form of the written execution certificate object and compares that value against the golden reference. The appendix should therefore describe the current public certificate as a deterministic evidence artifact used in verification, not as a fully realized public signed-assurance artifact. ([GitHub][6])
 
 #### A.7.4 Interface-Hash Artifacts
 
-Glyphser publishes an `interface_hash` artifact under `specs/contracts/interface_hash.json`, and that value is used directly by the current `hello-core` verification flow as one of the public identities compared against the golden reference. In the current public repository, the published `interface_hash` value matches the published `operator_registry_root_hash` in the contract catalog manifest.
+Glyphser publishes an `interface_hash` artifact under `specs/contracts/interface_hash.json`, and that value is used directly by the current `hello-core` verification flow as one of the public identities compared against the golden reference. In the current public repository, the published `interface_hash` value is the same as the published `operator_registry_root_hash` in `specs/contracts/catalog-manifest.json`. ([GitHub][7])
 
-The appendix should therefore describe `interface_hash` conservatively as a published contract identity consumed by the current verification flow. It should not overstate a richer separately derived interface protocol unless that derivation is formally published as part of the normative contract surface.
+The appendix should therefore describe `interface_hash` conservatively as a published contract identity consumed by the current verification flow. It should not overstate a richer separately derived interface protocol unless that derivation is formally published as part of the normative contract surface. ([GitHub][7])
+
+[1]: https://github.com/Astrocytech/Glyphser/blob/main/README.md "Glyphser/README.md at main · Astrocytech/Glyphser · GitHub"
+[2]: https://raw.githubusercontent.com/Astrocytech/Glyphser/main/tooling/scripts/run_hello_core.py "raw.githubusercontent.com"
+[3]: https://raw.githubusercontent.com/Astrocytech/Glyphser/main/glyphser/cli.py "raw.githubusercontent.com"
+[4]: https://raw.githubusercontent.com/Astrocytech/Glyphser/main/runtime/glyphser/checkpoint/write.py "raw.githubusercontent.com"
+[5]: https://raw.githubusercontent.com/Astrocytech/Glyphser/main/runtime/glyphser/trace/trace_sidecar.py "raw.githubusercontent.com"
+[6]: https://raw.githubusercontent.com/Astrocytech/Glyphser/main/runtime/glyphser/certificate/build.py "raw.githubusercontent.com"
+[7]: https://raw.githubusercontent.com/Astrocytech/Glyphser/main/specs/contracts/interface_hash.json "raw.githubusercontent.com"
+
 
 ### A.8 Verification and Conformance Interfaces
 
