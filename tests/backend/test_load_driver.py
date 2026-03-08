@@ -1,0 +1,235 @@
+from __future__ import annotations
+
+import pytest
+
+from runtime.glyphser.backend import load_driver as load_driver_module
+from runtime.glyphser.model.model_ir_executor import execute
+
+
+def test_load_driver_default_is_stable() -> None:
+    result = load_driver_module.load_driver({"driver_id": "default"})
+    assert result["status"] == "OK"
+    assert result["driver_id"] == "default"
+    assert result["backend_binary_hash"] == "sha256:reference"
+    assert result["driver_runtime_fingerprint_hash"] == "sha256:reference-runtime"
+
+
+def test_load_driver_pytorch_cpu_route(monkeypatch: pytest.MonkeyPatch) -> None:
+    class _FakeDriver:
+        backend_binary_hash = "sha256:fake-pytorch"
+        runtime_fingerprint_hash = "sha256:fake-pytorch-runtime"
+
+    monkeypatch.setattr(load_driver_module, "get_pytorch_cpu_driver", lambda: _FakeDriver())
+    result = load_driver_module.load_driver({"driver_id": "pytorch_cpu"})
+    assert result["status"] == "OK"
+    assert result["driver_id"] == "pytorch_cpu"
+    assert result["backend_binary_hash"] == "sha256:fake-pytorch"
+    assert result["driver_runtime_fingerprint_hash"] == "sha256:fake-pytorch-runtime"
+
+
+def test_load_driver_pytorch_gpu_route(monkeypatch: pytest.MonkeyPatch) -> None:
+    class _FakeDriver:
+        backend_binary_hash = "sha256:fake-pytorch-gpu"
+        runtime_fingerprint_hash = "sha256:fake-pytorch-gpu-runtime"
+
+    monkeypatch.setattr(load_driver_module, "get_pytorch_gpu_driver", lambda: _FakeDriver())
+    result = load_driver_module.load_driver({"driver_id": "pytorch_gpu"})
+    assert result["status"] == "OK"
+    assert result["driver_id"] == "pytorch_gpu"
+    assert result["backend_binary_hash"] == "sha256:fake-pytorch-gpu"
+    assert result["driver_runtime_fingerprint_hash"] == "sha256:fake-pytorch-gpu-runtime"
+
+
+def test_load_driver_keras_cpu_route(monkeypatch: pytest.MonkeyPatch) -> None:
+    class _FakeDriver:
+        backend_binary_hash = "sha256:fake-keras"
+        runtime_fingerprint_hash = "sha256:fake-keras-runtime"
+
+    monkeypatch.setattr(load_driver_module, "get_keras_cpu_driver", lambda: _FakeDriver())
+    result = load_driver_module.load_driver({"driver_id": "keras_cpu"})
+    assert result["status"] == "OK"
+    assert result["driver_id"] == "keras_cpu"
+    assert result["backend_binary_hash"] == "sha256:fake-keras"
+    assert result["driver_runtime_fingerprint_hash"] == "sha256:fake-keras-runtime"
+
+
+def test_load_driver_keras_gpu_route(monkeypatch: pytest.MonkeyPatch) -> None:
+    class _FakeDriver:
+        backend_binary_hash = "sha256:fake-keras-gpu"
+        runtime_fingerprint_hash = "sha256:fake-keras-gpu-runtime"
+
+    monkeypatch.setattr(load_driver_module, "get_keras_gpu_driver", lambda: _FakeDriver())
+    result = load_driver_module.load_driver({"driver_id": "keras_gpu"})
+    assert result["status"] == "OK"
+    assert result["driver_id"] == "keras_gpu"
+    assert result["backend_binary_hash"] == "sha256:fake-keras-gpu"
+    assert result["driver_runtime_fingerprint_hash"] == "sha256:fake-keras-gpu-runtime"
+
+
+def test_load_driver_universal_driver_explicit_route(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    class _FakeDriver:
+        backend_binary_hash = "sha256:fake-kcpu"
+        runtime_fingerprint_hash = "sha256:fake-kcpu-runtime"
+
+    monkeypatch.setattr(load_driver_module, "get_keras_cpu_driver", lambda: _FakeDriver())
+    result = load_driver_module.load_driver({"driver_id": "universal_driver", "universal_route": "keras_cpu"})
+    assert result["status"] == "OK"
+    assert result["driver_id"] == "universal_driver"
+    assert result["selected_route"] == "keras_cpu"
+    assert result["backend_binary_hash"] == "sha256:fake-kcpu"
+    assert result["driver_runtime_fingerprint_hash"] == "sha256:fake-kcpu-runtime"
+
+
+def test_load_driver_universal_driver_framework_fallback(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    class _PyCPU:
+        backend_binary_hash = "sha256:fake-pcpu"
+        runtime_fingerprint_hash = "sha256:fake-pcpu-runtime"
+
+    def _gpu_unavailable() -> None:
+        raise RuntimeError("gpu unavailable")
+
+    monkeypatch.setattr(load_driver_module, "get_pytorch_gpu_driver", _gpu_unavailable)
+    monkeypatch.setattr(load_driver_module, "get_pytorch_cpu_driver", lambda: _PyCPU())
+    result = load_driver_module.load_driver(
+        {
+            "driver_id": "universal_driver",
+            "universal_framework": "pytorch",
+            "universal_prefer_gpu": True,
+        }
+    )
+    assert result["status"] == "OK"
+    assert result["selected_route"] == "pytorch_cpu"
+
+
+def test_load_driver_universal_driver_rejects_java_rust_routes() -> None:
+    with pytest.raises(ValueError, match="unsupported universal_route"):
+        load_driver_module.load_driver({"driver_id": "universal_driver", "universal_route": "java_cpu"})
+    with pytest.raises(ValueError, match="unsupported universal_route"):
+        load_driver_module.load_driver({"driver_id": "universal_driver", "universal_route": "rust_cpu"})
+
+
+def test_load_driver_universal_driver_rejects_unknown_profile_mode() -> None:
+    with pytest.raises(ValueError, match="unsupported profile_mode"):
+        load_driver_module.load_driver({"driver_id": "universal_driver", "profile_mode": "mystery"})
+
+
+def test_load_driver_universal_driver_pinned_profile(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    class _FakeDriver:
+        backend_binary_hash = "sha256:fake-pcpu-pinned"
+        runtime_fingerprint_hash = "sha256:fake-pcpu-pinned-runtime"
+
+    monkeypatch.setattr(load_driver_module, "get_pytorch_cpu_driver", lambda: _FakeDriver())
+    result = load_driver_module.load_driver(
+        {
+            "driver_id": "universal_driver",
+            "profile_mode": "pinned_profile",
+            "profile_id": "universal_v1",
+        }
+    )
+    assert result["status"] == "OK"
+    assert result["selected_route"] == "pytorch_cpu"
+    assert result["routing_policy"]["profile_mode"] == "pinned_profile"
+    assert result["routing_policy"]["profile_id"] == "universal_v1"
+
+
+def test_load_driver_universal_driver_pinned_profile_inline(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    class _FakeDriver:
+        backend_binary_hash = "sha256:fake-pcpu-inline"
+        runtime_fingerprint_hash = "sha256:fake-pcpu-inline-runtime"
+
+    monkeypatch.setattr(load_driver_module, "get_pytorch_cpu_driver", lambda: _FakeDriver())
+    result = load_driver_module.load_driver(
+        {"driver_id": "universal_driver", "profile_mode": "pinned_profile:universal_v1"}
+    )
+    assert result["status"] == "OK"
+    assert result["selected_route"] == "pytorch_cpu"
+    assert result["routing_policy"]["profile_id"] == "universal_v1"
+
+
+def test_load_driver_universal_driver_strict_mode_no_cross_framework_fallback(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    def _raise() -> None:
+        raise RuntimeError("pytorch unavailable")
+
+    monkeypatch.setattr(load_driver_module, "get_pytorch_gpu_driver", _raise)
+    monkeypatch.setattr(load_driver_module, "get_pytorch_cpu_driver", _raise)
+    with pytest.raises(RuntimeError, match="could not resolve route"):
+        load_driver_module.load_driver(
+            {
+                "driver_id": "universal_driver",
+                "profile_mode": "strict_universal",
+                "universal_framework": "pytorch",
+            }
+        )
+
+
+def test_load_driver_rejects_unknown_driver() -> None:
+    with pytest.raises(ValueError, match="unsupported driver_id"):
+        load_driver_module.load_driver({"driver_id": "unknown"})
+
+
+def test_resolve_driver_reference_alias() -> None:
+    driver = load_driver_module.resolve_driver("reference")
+    assert driver.driver_id == "reference"
+
+
+def test_load_driver_pytorch_gpu_no_cuda(monkeypatch: pytest.MonkeyPatch) -> None:
+    def _raise() -> None:
+        raise RuntimeError("cuda is not available")
+
+    monkeypatch.setattr(load_driver_module, "get_pytorch_gpu_driver", _raise)
+    with pytest.raises(RuntimeError, match="cuda is not available"):
+        load_driver_module.load_driver({"driver_id": "pytorch_gpu"})
+
+
+def test_load_driver_keras_cpu_missing_runtime(monkeypatch: pytest.MonkeyPatch) -> None:
+    def _raise() -> None:
+        raise RuntimeError("tensorflow is not available")
+
+    monkeypatch.setattr(load_driver_module, "get_keras_cpu_driver", _raise)
+    with pytest.raises(RuntimeError, match="tensorflow is not available"):
+        load_driver_module.load_driver({"driver_id": "keras_cpu"})
+
+
+def test_load_driver_keras_gpu_no_gpu(monkeypatch: pytest.MonkeyPatch) -> None:
+    def _raise() -> None:
+        raise RuntimeError("tensorflow gpu is not available")
+
+    monkeypatch.setattr(load_driver_module, "get_keras_gpu_driver", _raise)
+    with pytest.raises(RuntimeError, match="tensorflow gpu is not available"):
+        load_driver_module.load_driver({"driver_id": "keras_gpu"})
+
+
+def test_model_executor_reports_unsupported_driver_id() -> None:
+    ir = {
+        "ir_schema_hash": "sha256:uml_model_ir_demo",
+        "nodes": [
+            {
+                "node_id": "input",
+                "instr": "Input",
+                "inputs": [],
+                "shape_out": [1],
+                "dtype": "float32",
+            },
+            {
+                "node_id": "output",
+                "instr": "Output",
+                "inputs": [{"node_id": "input", "output_idx": 0}],
+                "shape_out": [1],
+                "dtype": "float32",
+            },
+        ],
+        "outputs": [{"node_id": "output", "output_idx": 0}],
+    }
+    result = execute({"ir_dag": ir, "input_data": {"input": [1.0]}, "driver_id": "unknown"})
+    assert "error" in result
+    assert result["error"]["code_id"] == "PRIMITIVE_UNSUPPORTED"

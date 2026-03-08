@@ -1,0 +1,1 @@
+"""Generated code artifacts package."""

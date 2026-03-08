@@ -1,0 +1,5 @@
+{
+  "kind": "restore_checkpoint",
+  "scenario": "bad_suffix",
+  "expected_error_substring": ".json"
+}

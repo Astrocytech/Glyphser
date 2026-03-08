@@ -1,0 +1,5 @@
+{
+  "kind": "trace_migrate",
+  "request": "not-a-dict",
+  "expected_error_substring": "request must be dict"
+}

@@ -1,0 +1,7 @@
+{
+  "kind": "trace_migrate",
+  "request": {
+    "trace_path": "../../trace.json"
+  },
+  "expected_error_substring": "traversal"
+}

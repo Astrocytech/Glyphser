@@ -1,0 +1,5 @@
+{
+  "kind": "restore_checkpoint",
+  "scenario": "oversized_file",
+  "expected_error_substring": "checkpoint file too large"
+}

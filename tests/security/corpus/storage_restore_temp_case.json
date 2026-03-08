@@ -1,0 +1,5 @@
+{
+  "kind": "storage_restore",
+  "scenario": "temp_file",
+  "expected_error_substring": ".json"
+}

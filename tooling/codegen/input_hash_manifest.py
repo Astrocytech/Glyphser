@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import hashlib
+import json
+import sys
+from pathlib import Path
+
+from tooling.lib.path_config import generated_root
+
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
+OUT = generated_root() / "metadata" / "input_hashes.json"
+
+
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def main() -> int:
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    inputs = []
+    for path in sorted((ROOT / "specs" / "schemas").rglob("*.schema.json")):
+        inputs.append(
+            {
+                "path": str(path.relative_to(ROOT)).replace("\\", "/"),
+                "sha256": _sha256(path),
+            }
+        )
+    reg = ROOT / "specs" / "contracts" / "operator_registry.json"
+    if reg.exists():
+        inputs.append(
+            {
+                "path": str(reg.relative_to(ROOT)).replace("\\", "/"),
+                "sha256": _sha256(reg),
+            }
+        )
+    for path in sorted((ROOT / "tooling" / "codegen" / "templates").glob("*.tpl")):
+        inputs.append(
+            {
+                "path": str(path.relative_to(ROOT)).replace("\\", "/"),
+                "sha256": _sha256(path),
+            }
+        )
+
+    OUT.write_text(
+        json.dumps({"inputs": inputs}, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,0 +1,174 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.python-version
+.venv/
+venv/
+env/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# --- Notebook / editor / OS noise ---
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# --- Secrets and local credentials ---
+.env
+.env.*
+*.env
+secrets/
+private/
+internal/
+*.pem
+*.key
+*.p12
+*.crt
+*.csr
+*.der
+*.kdbx
+
+# --- Local outputs and scratch material ---
+tmp/
+temp/
+logs/
+*.log
+notes/private/
+*_scratch.md
+*_scratch.txt
+*_private.md
+*_private.txt
+*_internal.md
+*_internal.txt
+TODO.private.md
+
+# --- Private prompts / agent scaffolding ---
+prompts/private/
+*.prompt.local
+*_prompt.local.*
+
+# --- Generated evidence and artifacts (keep curated public fixtures elsewhere) ---
+artifacts/generated/
+artifacts/local/
+artifacts/tmp/
+artifacts/cache/
+evidence/generated/
+evidence/local/
+evidence/tmp/
+evidence/cache/
+reports/generated/
+reports/private/
+
+# --- Second-pass sanitization guards ---
+.github/ISSUE_TEMPLATE/
+.github/*.local.*
+.github/workflows/*release*
+.github/workflows/*sign*
+.github/workflows/*publish*
+.github/workflows/*hardening*
+
+# Private governance / spec / product surfaces should not reappear in public repo
+specs/
+governance/
+product/
+distribution/
+site/
+notebooks/
+evidence/
+artifacts/
+
+# Strategy / business / internal tasking
+WHITEPAPER.md
+ROADMAP.md
+REDUCE_TO_VANILLA.md
+reduce_to_vanilla.py
+glyphser_security_hardening_master_todo.txt
+run_codex_until_done.sh
+run_glyphser_hardening_prompt
+run_glyphser_hardening_prompt.txt
+# --- Public/private boundary protection ---
+.githooks/
+distribution/
+evidence/
+governance/
+notebooks/
+product/
+site/
+specs/
+artifacts/
+
+# --- Internal strategy / prompts / hardening ---
+WHITEPAPER.md
+ROADMAP.md
+REDUCE_TO_VANILLA.md
+reduce_to_vanilla.py
+glyphser_security_hardening_master_todo.txt
+run_codex_until_done.sh
+run_glyphser_hardening_prompt
+run_glyphser_hardening_prompt.txt
+
+# private / internal
+private/
+internal/
+secrets/
+
+# generated artifacts
+artifacts/generated/
+artifacts/local/
+evidence/generated/
+evidence/local/
+
+# local notes
+*_internal.md
+*_private.md
+TODO.private.md
+
+# private / internal
+private/
+internal/
+secrets/
+
+# generated artifacts
+artifacts/generated/
+artifacts/local/
+evidence/generated/
+evidence/local/
+
+# local notes
+*_internal.md
+*_private.md
+TODO.private.md
+
+# generated / private
+coverage.xml
+*.trace.json
+*.evidence.json
+artifacts/
+evidence/
+notebooks/
+private/
+internal/
+
+# generated artifacts
+coverage.xml
+*.trace.json
+*.evidence.json
+
+# local dev
+.venv/
+__pycache__/

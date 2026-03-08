@@ -1,0 +1,46 @@
+{
+  "bad.py": [
+    {
+      "check_id_suffix": "glyphser.path-traversal-archive-extractall",
+      "reason": "Archive extraction without member validation can allow path traversal."
+    },
+    {
+      "check_id_suffix": "glyphser.unsafe-tempfile-mktemp",
+      "reason": "tempfile.mktemp creates race-prone temporary paths."
+    },
+    {
+      "check_id_suffix": "glyphser.unsafe-tempfile-delete-false",
+      "reason": "NamedTemporaryFile(delete=False) needs stricter lifecycle controls."
+    },
+    {
+      "check_id_suffix": "glyphser.path-join-untrusted",
+      "reason": "Joining untrusted path segments can bypass intended root boundaries."
+    },
+    {
+      "check_id_suffix": "glyphser.permissive-file-mode",
+      "reason": "World-writable file modes violate least-privilege defaults."
+    }
+  ],
+  "bad_extended.py": [
+    {
+      "check_id_suffix": "glyphser.subprocess-shell-true",
+      "reason": "shell=True execution increases command injection risk."
+    },
+    {
+      "check_id_suffix": "glyphser.dynamic-code-execution",
+      "reason": "eval/exec introduces dynamic code execution risk."
+    },
+    {
+      "check_id_suffix": "glyphser.unsafe-yaml-load",
+      "reason": "Unsafe YAML loaders can deserialize attacker-controlled objects."
+    },
+    {
+      "check_id_suffix": "glyphser.unsafe-tempfile-delete-false",
+      "reason": "Temporary files with delete=False require strict cleanup controls."
+    },
+    {
+      "check_id_suffix": "glyphser.permissive-file-mode",
+      "reason": "Permissive file modes should be rejected in security-sensitive code."
+    }
+  ]
+}
