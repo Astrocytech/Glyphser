@@ -286,6 +286,7 @@ Modified versions must be clearly marked as modified and must not be presented
 as the original Glyphser Demo Edition. 
 
 ***Any use of existing or modified component MUST reference this original source of the project, including the name Glyphser and Astrocytech.***
+(see below: several reference styles are offered to copy-paste into your work)
 
 This repository does not grant any rights to separate private, proprietary,
 internal, or unpublished editions or components of Glyphser that are not
@@ -316,7 +317,7 @@ Please see `CONTRIBUTING.md` for contribution guidelines.
 
 
 
-Below are several common citation styles for the repository.
+# Reference Styles:
 
 ---
 
