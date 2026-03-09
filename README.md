@@ -1,29 +1,41 @@
+
+
+
+```
+
+           ██████         ███████████████                                                          
+     ███████         ███████          ████  █████████████████                ████████████████      
+  ████           ███████              ████  ██████  █████                       █████   █████      
+  ███          ██████               ████    ██████  ████                         ████   █████      
+  ███        ██████             █████       ██████  ████                          ███   █████      
+   █████   ██████       █████████           ██████  ████                          ███   █████      
+       ███████████████████       ██████     ██████  ████         ███████          ███   █████      
+          ██████              ██████        ██████  ████       ███████████        ███   █████      
+          █████            ████████   ███   ██████  ████       ███████████        ███   █████      
+          ██████      ██████ ██████████     ██████  ████        ████████          ███   █████      
+             ██████████    ████████         ██████  ████                          ███   █████      
+                    ███████████             ██████  ████                         ████   █████      
+             ██████     ██████              ██████  ██████                      █████   █████      
+          ████        ██████                ██████████████████              █████████████████      
+        ████       ███████                                                                         
+         █████████████      
+```
+
+
+
 # Glyphser
-
-
-```
-               ██████         ███████████████                                                          
-         ███████         ███████          ████  █████████████████                ████████████████      
-      ████           ███████              ████  ██████  █████                       █████   █████      
-      ███          ██████               ████    ██████  ████                         ████   █████      
-      ███        ██████             █████       ██████  ████                          ███   █████      
-       █████   ██████       █████████           ██████  ████                          ███   █████      
-           ███████████████████       ██████     ██████  ████         ███████          ███   █████      
-              ██████              ██████        ██████  ████       ███████████        ███   █████      
-              █████            ████████   ███   ██████  ████       ███████████        ███   █████      
-              ██████      ██████ ██████████     ██████  ████        ████████          ███   █████      
-                 ██████████    ████████         ██████  ████                          ███   █████      
-                        ███████████             ██████  ████                         ████   █████      
-                 ██████     ██████              ██████  ██████                      █████   █████      
-              ████        ██████                ██████████████████              █████████████████      
-            ████       ███████                                                                         
-             █████████████      
-
-```
-
-
-
 Deterministic verification engine for machine learning execution.
+ 
+
+**Glyphser Demo Edition**
+
+This repository is the public Demo Edition of Glyphser. It is intended to
+demonstrate selected architecture, workflows, and verification concepts of the
+system in an openly shared form.
+
+It is not a complete representation of the broader Glyphser system or of any
+separate private, internal, proprietary, or unpublished components that are
+not included in this repository.
 
 Glyphser provides a reproducible execution framework that produces verifiable
 artifacts for machine learning runs. Instead of relying on informal logs or
@@ -114,7 +126,7 @@ history and state of the execution.
 
 A simplified execution flow looks like this:
 
-```
+```text
 Manifest
    │
    ▼
@@ -134,7 +146,7 @@ Execution Certificate
    │
    ▼
 Verification
-```
+````
 
 Each stage produces artifacts that contribute to the final verification result.
 
@@ -184,13 +196,13 @@ After execution, the runtime generates artifacts describing the run.
 
 Typical artifact outputs include:
 
-- **Trace artifacts**  
+* **Trace artifacts**
   Ordered record of execution events.
 
-- **Checkpoint artifacts**  
+* **Checkpoint artifacts**
   Serialized intermediate states of operators.
 
-- **Execution certificate**  
+* **Execution certificate**
   Final verification object that binds the run identity and artifacts.
 
 Artifacts can be inspected or verified using the verification tools.
@@ -203,10 +215,10 @@ Glyphser supports independent verification of execution artifacts.
 
 Verification typically checks:
 
-- artifact integrity
-- manifest consistency
-- operator interface compatibility
-- trace completeness
+* artifact integrity
+* manifest consistency
+* operator interface compatibility
+* trace completeness
 
 Verification tools can confirm that the artifacts correspond to the declared
 execution.
@@ -220,11 +232,11 @@ important.
 
 Typical scenarios include:
 
-- reproducible machine learning research
-- regulated AI workflows
-- audit-ready ML pipelines
-- deterministic experiment tracking
-- reproducibility validation for CI systems
+* reproducible machine learning research
+* regulated AI workflows
+* audit-ready ML pipelines
+* deterministic experiment tracking
+* reproducibility validation for CI systems
 
 ---
 
@@ -233,7 +245,7 @@ Typical scenarios include:
 Full technical documentation and the detailed architecture description are
 available in the project documentation.
 
-```
+```text
 docs/WHITEPAPER_public.md
 ```
 
@@ -259,24 +271,30 @@ Unless otherwise noted, the source code and original project files in this
 repository are licensed under the GNU Affero General Public License, version 3
 only (AGPL-3.0-only).
 
+This repository is the public Demo Edition of Glyphser.
+
 You may use, modify, and redistribute this repository under the terms of the
 AGPL-3.0. If you modify it and distribute it, or make a modified version
 available for users to interact with over a network, you must provide the
 corresponding source code of that modified version under the same license.
 
+Redistributions and modified versions must preserve the existing copyright
+notices, license notices, and attribution notices identifying Astrocytech and
+Glyphser, as applicable to the material included here.
+
+Modified versions must be clearly marked as modified and must not be presented
+as the original Glyphser Demo Edition. 
+Furthermore, ***any use or modified component MUST reference this original source of the project, including Glypster and Astrocytech.***
+
 This repository does not grant any rights to separate private, proprietary,
-internal, or unpublished editions of Glyphser that are not included here.
+internal, or unpublished editions or components of Glyphser that are not
+included here.
 
 Third-party components, dependencies, or assets included in this repository,
 if any, remain subject to their own respective licenses.
 
 No trademark rights are granted by this license. “Astrocytech” and “Glyphser”
 are names and marks reserved by their owner, where applicable.
-
-### Note:
-
-This repository is a public proof-of-concept version of Glyphser and does not
-include all components of the broader Glyphser system.
 
 Separate private, proprietary, internal, or unpublished components, if any, are
 not included in this repository and are not licensed under this repository’s
@@ -285,6 +303,8 @@ AGPL-3.0 terms.
 Access to any such separate non-public materials may be provided only under a
 signed Non-Disclosure Agreement.
 
+See `LICENSE` for the full license text.
+
 ---
 
 # Contributing
@@ -292,3 +312,5 @@ signed Non-Disclosure Agreement.
 Contributions, issue reports, and design discussions are welcome.
 
 Please see `CONTRIBUTING.md` for contribution guidelines.
+
+
