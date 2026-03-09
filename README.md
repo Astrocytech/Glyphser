@@ -315,3 +315,57 @@ Contributions, issue reports, and design discussions are welcome.
 Please see `CONTRIBUTING.md` for contribution guidelines.
 
 
+
+Below are several common citation styles for the repository.
+
+---
+
+### APA (7th edition)
+
+Astrocytech (2026). *Glyphser* (Version main) [Source code]. GitHub. [https://github.com/Astrocytech/Glyphser](https://github.com/Astrocytech/Glyphser)
+
+---
+
+### MLA (9th edition)
+
+Astrocytech *Glyphser*. GitHub, 2026, [https://github.com/Astrocytech/Glyphser](https://github.com/Astrocytech/Glyphser).
+
+---
+
+### Chicago (Author–Date)
+
+Astrocytech 2026. *Glyphser*. GitHub repository. [https://github.com/Astrocytech/Glyphser](https://github.com/Astrocytech/Glyphser).
+
+---
+
+### Chicago (Notes and Bibliography)
+
+Astrocytech *Glyphser*. GitHub repository. 2026. [https://github.com/Astrocytech/Glyphser](https://github.com/Astrocytech/Glyphser).
+
+---
+
+### IEEE
+
+Astrocytech, “Glyphser,” GitHub repository, 2026. [Online]. Available: [https://github.com/Astrocytech/Glyphser](https://github.com/Astrocytech/Glyphser)
+
+---
+
+### Harvard
+
+Astrocytech (2026) *Glyphser*. GitHub repository. Available at: [https://github.com/Astrocytech/Glyphser](https://github.com/Astrocytech/Glyphser).
+
+---
+
+### BibTeX (for LaTeX papers)
+
+```bibtex
+@software{glyphser2026,
+  author = {Astrocytech},
+  title = {Glyphser},
+  year = {2026},
+  publisher = {GitHub},
+  url = {https://github.com/Astrocytech/Glyphser}
+}
+```
+
+
