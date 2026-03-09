@@ -322,38 +322,39 @@ Below are several common citation styles for the repository.
 
 ### APA (7th edition)
 
+```text
 Astrocytech (2026). *Glyphser* (Version main) [Source code]. GitHub. [https://github.com/Astrocytech/Glyphser](https://github.com/Astrocytech/Glyphser)
-
+```
 ---
 
 ### MLA (9th edition)
-
+```text
 Astrocytech *Glyphser*. GitHub, 2026, [https://github.com/Astrocytech/Glyphser](https://github.com/Astrocytech/Glyphser).
-
+```
 ---
 
 ### Chicago (Author–Date)
-
+```text
 Astrocytech 2026. *Glyphser*. GitHub repository. [https://github.com/Astrocytech/Glyphser](https://github.com/Astrocytech/Glyphser).
-
+```
 ---
 
 ### Chicago (Notes and Bibliography)
-
+```text
 Astrocytech *Glyphser*. GitHub repository. 2026. [https://github.com/Astrocytech/Glyphser](https://github.com/Astrocytech/Glyphser).
-
+```
 ---
 
 ### IEEE
-
+```text
 Astrocytech, “Glyphser,” GitHub repository, 2026. [Online]. Available: [https://github.com/Astrocytech/Glyphser](https://github.com/Astrocytech/Glyphser)
-
+```
 ---
 
 ### Harvard
-
+```text
 Astrocytech (2026) *Glyphser*. GitHub repository. Available at: [https://github.com/Astrocytech/Glyphser](https://github.com/Astrocytech/Glyphser).
-
+```
 ---
 
 ### BibTeX (for LaTeX papers)
