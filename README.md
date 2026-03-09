@@ -284,7 +284,8 @@ Glyphser, as applicable to the material included here.
 
 Modified versions must be clearly marked as modified and must not be presented
 as the original Glyphser Demo Edition. 
-Furthermore, ***any use or modified component MUST reference this original source of the project, including Glypster and Astrocytech.***
+
+***Any use of existing or modified component MUST reference this original source of the project, including the name Glypster and Astrocytech.***
 
 This repository does not grant any rights to separate private, proprietary,
 internal, or unpublished editions or components of Glyphser that are not
