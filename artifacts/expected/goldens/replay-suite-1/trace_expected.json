@@ -1,0 +1,8 @@
+{
+  "certificate": {
+    "run_id": "suite-1",
+    "status": "OK"
+  },
+  "checkpoint_hash": "e97991739b4ccd4dc2637579b51797b0b300183d891897e10d08321cdef9c419",
+  "trace_hash": "0894e446ee595109f7a5677a823a7f788731a94bf310cba1fe3440ceb53a6a2b"
+}

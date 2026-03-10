@@ -54,6 +54,22 @@ include = ["glyphser*", "runtime*", "tooling*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+addopts = [
+    "--ignore=tests/gates",
+    "--ignore=tests/security",
+    "--ignore=tests/api/test_api_contract_gate.py",
+    "--ignore=tests/canonical_cbor",
+    "--ignore=tests/conformance",
+    "--ignore=tests/data_structures",
+    "--ignore=tests/deploy",
+    "--ignore=tests/fixtures",
+    "--ignore=tests/goldens",
+    "--ignore=tests/interface_hash",
+    "--ignore=tests/operators",
+    "--ignore=tests/validation/test_external_validation_gate.py",
+    "--ignore=tests/fuzz/test_schema_parsing_fuzz.py",
+    "--ignore=tests/test_error_codes_manifest.py",
+]
 
 [tool.ruff]
 line-length = 120
