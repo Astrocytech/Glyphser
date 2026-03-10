@@ -1,0 +1,25 @@
+{
+  "files": [
+    {
+      "path": "artifacts/expected/goldens/hello-core/trace_snippet.json",
+      "sha256": "84d5719e24a24b9d15e586467f03cc87078d773c3d0ba980b01f87d18402234b",
+      "size_bytes": 676
+    },
+    {
+      "path": "artifacts/expected/goldens/hello-core/checkpoint_header.json",
+      "sha256": "3ad7eb2b679ce2e86c9cbeabc15a4c3deb2a5ed6d512136e5555c8a98178b7d8",
+      "size_bytes": 252
+    },
+    {
+      "path": "artifacts/expected/goldens/hello-core/execution_certificate.json",
+      "sha256": "633a8a1b92a3258c6a0a7d246acf5c0055a76a8d612f2a03fd51706b6a7a1da7",
+      "size_bytes": 449
+    },
+    {
+      "path": "artifacts/expected/goldens/hello-core/golden-identities.json",
+      "sha256": "cebfc4b34b1a6c58726940e0c6ce72e77cabeb565ef8c8b29e2892e5ddf6df4b",
+      "size_bytes": 440
+    }
+  ],
+  "golden_set_id": "hello-core-goldens-v1"
+}
