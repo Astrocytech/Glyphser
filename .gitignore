@@ -111,6 +111,20 @@ product/
 site/
 specs/
 artifacts/
+!specs/
+!specs/contracts/
+!specs/contracts/catalog-manifest.json
+!specs/contracts/interface_hash.json
+!specs/examples/
+!specs/examples/hello-core/
+!specs/examples/hello-core/hello-core-golden.json
+!artifacts/
+!artifacts/inputs/
+!artifacts/inputs/fixtures/
+!artifacts/inputs/fixtures/hello-core/
+!artifacts/inputs/fixtures/hello-core/manifest.core.yaml
+!artifacts/inputs/fixtures/hello-core/model_ir.json
+!artifacts/inputs/fixtures/hello-core/tiny_synth_dataset.jsonl
 
 # --- Internal strategy / prompts / hardening ---
 WHITEPAPER.md
@@ -163,6 +177,18 @@ evidence/
 notebooks/
 private/
 internal/
+!artifacts/
+!artifacts/inputs/
+!artifacts/inputs/fixtures/
+!artifacts/inputs/fixtures/hello-core/
+!artifacts/inputs/fixtures/hello-core/manifest.core.yaml
+!artifacts/inputs/fixtures/hello-core/model_ir.json
+!artifacts/inputs/fixtures/hello-core/tiny_synth_dataset.jsonl
+!glyphser/internal/
+!glyphser/internal/__init__.py
+!glyphser/internal/evidence_writer.py
+!glyphser/internal/hashing.py
+!glyphser/internal/manifest_builder.py
 
 # generated artifacts
 coverage.xml

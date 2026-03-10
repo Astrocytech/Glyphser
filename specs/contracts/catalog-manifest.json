@@ -1,0 +1,35 @@
+{
+  "artifacts": {
+    "capability_catalog.cbor": {
+      "sha256": "8be7133a236afffee10232412b5efe2d3d2b9d6a96f313a36588a5459f5e0ea0",
+      "size_bytes": 132
+    },
+    "digest_catalog.cbor": {
+      "sha256": "0a8d0150994cb5dabfc080f5d0a8421e849e6ad3dd053f04fd2226101c8ccdbd",
+      "size_bytes": 822
+    },
+    "error_codes.cbor": {
+      "sha256": "3077ef001013d5b70a1372e5a0b47e58ebfe3b846d747e52b284e3675fc1b3cb",
+      "size_bytes": 240
+    },
+    "operator_registry.cbor": {
+      "sha256": "3b9835998b3f2a24315c318baa91c5a2feaeed9fceb3360725e1b91b29ab2ed0",
+      "size_bytes": 14461
+    },
+    "schema_catalog.cbor": {
+      "sha256": "2bfaac6a4f45cfe55e33e0ca4de86923a3e78652947f56ea458f8a53c98eb9fd",
+      "size_bytes": 528
+    },
+    "vectors_catalog.cbor": {
+      "sha256": "7f7dcf04adb454fbc168b3d8840404692ba4a38215d922ce94ab62ffd7b93c65",
+      "size_bytes": 662
+    }
+  },
+  "canonical_profile": "CanonicalSerialization",
+  "derived_identities": {
+    "digest_catalog_hash": "b18d515a42abf201cd615865f04f25df6558df2d9eac632e54f8245330d91315",
+    "operator_registry_root_hash": "d6c07c27e755cca8767ab62fb8106fead06055e90dc50c86ea015cde45e9fbc4",
+    "vectors_catalog_hash": "7f7dcf04adb454fbc168b3d8840404692ba4a38215d922ce94ab62ffd7b93c65"
+  },
+  "manifest_version": "doc-artifacts-v1"
+}
