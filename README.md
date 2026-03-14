@@ -164,6 +164,17 @@ pip install -e .
 
 Dependencies are defined in `pyproject.toml`.
 
+## HTTP API (FastAPI, demo)
+
+Install server dependencies and run the API:
+
+```bash
+pip install -e ".[api]"
+glyphser-api
+```
+
+Default bind: `127.0.0.1:8000` (override with `GLYPHSER_HTTP_HOST` / `GLYPHSER_HTTP_PORT`).
+
 ---
 
 # Quick Example
@@ -369,5 +380,4 @@ Astrocytech (2026) *Glyphser*. GitHub repository. Available at: [https://github.
   url = {https://github.com/Astrocytech/Glyphser}
 }
 ```
-
 

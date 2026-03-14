@@ -30,6 +30,7 @@ Issues = "https://github.com/Astrocytech/Glyphser/issues"
 
 [project.scripts]
 glyphser = "glyphser.cli:main"
+glyphser-api = "glyphser.http_api.main:main"
 
 [project.optional-dependencies]
 dev = [
@@ -43,6 +44,10 @@ dev = [
     "pre-commit>=3.7.0",
     "ruff>=0.3.0",
     "build>=1.2.0",
+]
+api = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
 ]
 
 [tool.setuptools]

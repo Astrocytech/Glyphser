@@ -236,3 +236,23 @@ coverage.xml
 # local dev
 .venv/
 __pycache__/
+
+
+# --- Web Frontend (apps/web) ---
+node_modules/
+dist-ssr/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+
+
+
+
+
