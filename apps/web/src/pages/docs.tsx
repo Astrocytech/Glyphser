@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Badge } from '@/components/ui/badge'
 import { api } from '@/api/client'
 
 const DOC_CATEGORIES = [
@@ -11,10 +13,20 @@ const DOC_CATEGORIES = [
   { name: 'Contributing', slug: 'CONTRIBUTING.md', description: 'Contribution guide' },
 ]
 
+const CATEGORIES = ['all', 'Getting Started', 'Reference', 'Contributing'] as const
+
 export default function DocsPage() {
+  const [search, setSearch] = useState('')
+  const [category, setCategory] = useState<string>('all')
   const [selectedDoc, setSelectedDoc] = useState<string | null>(null)
   const [docContent, setDocContent] = useState<string>('')
   const [loading, setLoading] = useState(false)
+
+  const filteredDocs = DOC_CATEGORIES.filter((doc) => {
+    const matchesSearch = doc.name.toLowerCase().includes(search.toLowerCase()) || doc.slug.toLowerCase().includes(search.toLowerCase()) || doc.description.toLowerCase().includes(search.toLowerCase())
+    const matchesCategory = category === 'all' || doc.name === category
+    return matchesSearch && matchesCategory
+  })
 
   const handleSelectDoc = async (slug: string) => {
     setSelectedDoc(slug)
@@ -34,7 +46,7 @@ export default function DocsPage() {
     }
   }
 
-  const groupedDocs = DOC_CATEGORIES.reduce((acc, doc) => {
+  const groupedDocs = filteredDocs.reduce((acc, doc) => {
     if (!acc[doc.name]) acc[doc.name] = []
     acc[doc.name].push(doc)
     return acc
@@ -48,9 +60,19 @@ export default function DocsPage() {
             <CardTitle>Docs Index</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            {Object.entries(groupedDocs).map(([category, docs]) => (
-              <div key={category}>
-                <div className="text-sm font-medium text-muted-foreground mb-2">{category}</div>
+            <Input placeholder="Search docs..." value={search} onChange={(e) => setSearch(e.target.value)} />
+
+            <div className="flex flex-wrap gap-2">
+              {CATEGORIES.map((cat) => (
+                <Badge key={cat} variant={category === cat ? 'default' : 'outline'} className="cursor-pointer" onClick={() => setCategory(cat)}>
+                  {cat}
+                </Badge>
+              ))}
+            </div>
+
+            {Object.entries(groupedDocs).map(([cat, docs]) => (
+              <div key={cat}>
+                <div className="text-sm font-medium text-muted-foreground mb-2">{cat}</div>
                 <div className="space-y-2">
                   {docs.map((doc) => (
                     <div key={doc.slug} className={`cursor-pointer rounded-md border p-3 transition-colors ${selectedDoc === doc.slug ? 'border-primary bg-primary/10' : 'hover:bg-accent'}`} onClick={() => handleSelectDoc(doc.slug)}>
