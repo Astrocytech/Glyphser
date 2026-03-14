@@ -1,7 +1,13 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { navItems } from './nav'
 
 export default function AppLayout() {
+  const location = useLocation()
+  const currentItem = navItems.find(
+    (item) => item.to === location.pathname || 
+      (item.to !== '/' && location.pathname.startsWith(item.to)),
+  ) ?? navItems[0]
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="grid min-h-screen md:grid-cols-[260px_1fr]">
@@ -39,9 +45,9 @@ export default function AppLayout() {
           <header className="border-b px-6 py-4">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-lg font-medium">Console</h2>
+                <h2 className="text-lg font-medium">{currentItem.title}</h2>
                 <p className="text-sm text-muted-foreground">
-                  Deterministic execution and verification
+                  {currentItem.description}
                 </p>
               </div>
             </div>

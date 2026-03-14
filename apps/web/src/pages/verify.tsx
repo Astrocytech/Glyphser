@@ -48,13 +48,6 @@ export default function VerifyPage() {
 
   return (
     <div className="mx-auto max-w-5xl space-y-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Verify</h1>
-        <p className="text-sm text-muted-foreground">
-          Submit a manifest, artifact path, or verification payload.
-        </p>
-      </div>
-
       <Card>
         <CardHeader>
           <CardTitle>Verification Request</CardTitle>
