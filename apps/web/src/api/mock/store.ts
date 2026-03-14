@@ -1,5 +1,5 @@
 import type { RunDetails, RunRecord, RunStatus } from '@/types/run'
-import type { ArtifactFileResponse } from '@/types/artifact'
+import type { ArtifactEntry, ArtifactFileResponse } from '@/types/artifact'
 
 type ArtifactStoreEntry = ArtifactFileResponse
 
@@ -91,20 +91,31 @@ export function getMockRun(runId: string): RunDetails | undefined {
   const { artifacts, ...run } = found
   return {
     ...run,
-    artifacts: artifacts.map(({ content: _content, ...entry }) => entry),
+    artifacts: artifacts.map((a) => ({
+      path: a.path,
+      contentType: a.contentType,
+    })),
   }
 }
 
-export function listMockArtifacts(runId: string) {
+export function listMockArtifacts(runId: string): ArtifactEntry[] {
   const found = store.find((r) => r.id === runId)
   if (!found) return []
-  return found.artifacts.map(({ content: _content, ...entry }) => entry)
+  return found.artifacts.map((a: ArtifactFileResponse): ArtifactEntry => ({
+    path: a.path,
+    contentType: a.contentType,
+  }))
 }
 
-export function getMockArtifactFile(runId: string, path: string) {
+export function getMockArtifactFile(
+  runId: string,
+  path: string,
+): ArtifactFileResponse | undefined {
   const found = store.find((r) => r.id === runId)
   if (!found) return undefined
-  return found.artifacts.find((a) => a.path === path)
+  return found.artifacts.find(
+    (a: ArtifactFileResponse): boolean => a.path === path,
+  )
 }
 
 export function addMockRun(params: {

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
 
@@ -17,6 +17,14 @@ def _split_csv(raw: str) -> list[str]:
     return [item for item in items if item]
 
 
+def _default_cors_origins() -> list[str]:
+    return (
+        ["*"]
+        if not os.environ.get("GLYPHSER_HTTP_CORS_ORIGINS")
+        else _split_csv(os.environ["GLYPHSER_HTTP_CORS_ORIGINS"])
+    )
+
+
 _REPO_ROOT = Path(__file__).resolve().parents[3]
 
 
@@ -27,11 +35,7 @@ class HttpApiSettings:
     reload: bool = _env_bool("GLYPHSER_HTTP_RELOAD", False)
     require_https: bool = _env_bool("GLYPHSER_HTTP_REQUIRE_HTTPS", False)
 
-    cors_origins: list[str] = (
-        ["*"]
-        if not os.environ.get("GLYPHSER_HTTP_CORS_ORIGINS")
-        else _split_csv(os.environ["GLYPHSER_HTTP_CORS_ORIGINS"])
-    )
+    cors_origins: list[str] = field(default_factory=_default_cors_origins)
 
     runtime_root: Path = Path(os.environ.get("GLYPHSER_RUNTIME_API_ROOT", str(_REPO_ROOT)))
     runtime_state_path: Path = Path(
@@ -43,8 +47,8 @@ class HttpApiSettings:
         else None
     )
 
-    snapshot_root: Path = Path(os.environ.get("GLYPHSER_HTTP_SNAPSHOT_ROOT", "/tmp/glyphser_snapshots"))
-    work_root: Path = Path(os.environ.get("GLYPHSER_HTTP_WORK_ROOT", "/tmp/glyphser_http_workspace"))
+    snapshot_root: Path = Path(os.environ.get("GLYPHSER_HTTP_SNAPSHOT_ROOT", str(_REPO_ROOT / "workspace" / "snapshots")))
+    work_root: Path = Path(os.environ.get("GLYPHSER_HTTP_WORK_ROOT", str(_REPO_ROOT / "workspace")))
 
 
 settings = HttpApiSettings()
