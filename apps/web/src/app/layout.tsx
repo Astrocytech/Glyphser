@@ -5,6 +5,7 @@ import { Bug, CheckCircle2 } from 'lucide-react'
 import { Switch } from '@/components/ui/switch'
 import { Button } from '@/components/ui/button'
 import { NavigationProgress } from '@/lib/navigation-progress'
+import { BackToTop } from '@/components/state/back-to-top'
 
 function getStoredMockMode(): boolean {
   const stored = localStorage.getItem('glyphser-use-mock-api')
@@ -216,6 +217,8 @@ export default function AppLayout() {
           </div>
         </div>
       )}
+
+      <BackToTop />
     </div>
   )
 }
