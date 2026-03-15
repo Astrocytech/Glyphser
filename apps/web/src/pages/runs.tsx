@@ -58,6 +58,7 @@ export default function RunsPage() {
   const [page, setPage] = useState(1)
   const [showSummary, setShowSummary] = useState(true)
   const [showDate, setShowDate] = useState(true)
+  const [selectedRuns, setSelectedRuns] = useState<Set<string>>(new Set())
   const debouncedSearch = useDebounce(search, 300)
 
   const filteredRuns = useMemo(() => {
@@ -76,6 +77,24 @@ export default function RunsPage() {
 
   const handleFilterChange = () => {
     setPage(1)
+  }
+
+  const toggleSelectAll = () => {
+    if (selectedRuns.size === filteredRuns.length) {
+      setSelectedRuns(new Set())
+    } else {
+      setSelectedRuns(new Set(filteredRuns.map(r => r.id)))
+    }
+  }
+
+  const toggleSelect = (id: string) => {
+    const newSet = new Set(selectedRuns)
+    if (newSet.has(id)) {
+      newSet.delete(id)
+    } else {
+      newSet.add(id)
+    }
+    setSelectedRuns(newSet)
   }
 
   const statusOptions: StatusFilter[] = ['all', 'passed', 'failed', 'running', 'queued']
@@ -119,6 +138,11 @@ export default function RunsPage() {
           )}
           <ToggleButton label="Summary" enabled={showSummary} onToggle={() => setShowSummary(!showSummary)} />
           <ToggleButton label="Date" enabled={showDate} onToggle={() => setShowDate(!showDate)} />
+          {filteredRuns.length > 0 && (
+            <Button variant="outline" size="sm" onClick={toggleSelectAll}>
+              {selectedRuns.size === filteredRuns.length ? '✓ Deselect All' : 'Select All'}
+            </Button>
+          )}
         </div>
       </div>
 
@@ -144,6 +168,12 @@ export default function RunsPage() {
                 key={run.id}
                 className="flex items-center gap-2 rounded-md border p-3 transition-colors hover:bg-accent/40"
               >
+                <input
+                  type="checkbox"
+                  checked={selectedRuns.has(run.id)}
+                  onChange={() => toggleSelect(run.id)}
+                  className="h-4 w-4"
+                />
                 <Link to={`/runs/${encodeURIComponent(run.id)}`} className="flex-1 min-w-0">
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                     <div className="min-w-0">
