@@ -77,6 +77,7 @@ export default function AppLayout() {
                   window.location.reload()
                 }}
                 className="flex items-center gap-2 text-xs cursor-pointer hover:opacity-80 transition-opacity"
+                aria-label={isMockMode ? 'Switch to live API' : 'Switch to mock mode'}
               >
                 {isMockMode ? (
                   <>
@@ -98,6 +99,7 @@ export default function AppLayout() {
                   window.location.reload()
                 }}
                 className="data-[state=checked]:bg-amber-500 data-[state=unchecked]:bg-green-600 h-6 w-11"
+                aria-label="Toggle mock mode"
               />
             </div>
 
@@ -117,6 +119,7 @@ export default function AppLayout() {
                   }
                 }}
                 className="flex items-center gap-2 text-xs cursor-pointer hover:opacity-80 transition-opacity"
+                aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
               >
                 <span className="font-medium">{isDarkMode ? 'Dark Mode' : 'Light Mode'}</span>
               </button>
@@ -135,6 +138,7 @@ export default function AppLayout() {
                   }
                 }}
                 className="data-[state=checked]:bg-gray-300 data-[state=unchecked]:bg-gray-600 dark:data-[state=checked]:bg-gray-400 dark:data-[state=unchecked]:bg-gray-400 h-6 w-11"
+                aria-label="Toggle dark mode"
               />
             </div>
           </div>

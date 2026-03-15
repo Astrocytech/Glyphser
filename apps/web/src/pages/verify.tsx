@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import ErrorState from '@/components/state/error-state'
+import { SkeletonCard } from '@/components/state/skeleton'
 import { useVerify } from '@/features/verify/use-verify'
 import { getVerdictVariant, getVerdictLabel } from '@/lib/status'
 
@@ -76,6 +77,17 @@ export default function VerifyPage() {
       {validationError ? <ErrorState title="Invalid request" message={validationError} /> : null}
 
       {verify.isError ? <ErrorState message={verify.error.message} /> : null}
+
+      {verify.isPending ? (
+        <Card>
+          <CardHeader>
+            <CardTitle>Verification Result</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <SkeletonCard />
+          </CardContent>
+        </Card>
+      ) : null}
 
       {result ? (
         <Card>
