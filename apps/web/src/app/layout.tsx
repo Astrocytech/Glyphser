@@ -1,11 +1,27 @@
+import { useState } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { navItems } from './nav'
 import { Bug, CheckCircle2 } from 'lucide-react'
 
-const isMockMode = import.meta.env.VITE_USE_MOCK_API === 'true'
+function getStoredMockMode(): boolean {
+  const stored = localStorage.getItem('glyphser-use-mock-api')
+  if (stored !== null) {
+    return stored === 'true'
+  }
+  return import.meta.env.VITE_USE_MOCK_API === 'true'
+}
 
 export default function AppLayout() {
   const location = useLocation()
+  const [isMockMode, setIsMockMode] = useState(getStoredMockMode)
+
+  const handleToggleMock = () => {
+    const newValue = !isMockMode
+    setIsMockMode(newValue)
+    localStorage.setItem('glyphser-use-mock-api', String(newValue))
+    window.location.reload()
+  }
+
   const currentItem = navItems.find(
     (item) => item.to === location.pathname || 
       (item.to !== '/' && location.pathname.startsWith(item.to)),
@@ -44,17 +60,22 @@ export default function AppLayout() {
           </nav>
 
           <div className="mt-4 pt-4 border-t">
-            {isMockMode ? (
-              <div className="flex items-center gap-2 text-xs text-amber-600">
-                <Bug className="h-3 w-3" />
-                <span>Mock Mode</span>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2 text-xs text-green-600">
-                <CheckCircle2 className="h-3 w-3" />
-                <span>Live API</span>
-              </div>
-            )}
+            <button
+              onClick={handleToggleMock}
+              className="flex items-center gap-2 text-xs cursor-pointer hover:opacity-80 transition-opacity w-full"
+            >
+              {isMockMode ? (
+                <>
+                  <Bug className="h-3 w-3 text-amber-600" />
+                  <span className="text-amber-600">Mock Mode</span>
+                </>
+              ) : (
+                <>
+                  <CheckCircle2 className="h-3 w-3 text-green-600" />
+                  <span className="text-green-600">Live API</span>
+                </>
+              )}
+            </button>
           </div>
         </aside>
 

@@ -1,6 +1,7 @@
 import { api } from './client'
 import { addMockRun, listMockArtifacts } from '@/api/mock/store'
 import type { VerifyRequest, VerifyResponse } from '@/types/verify'
+import { isMockMode } from '@/lib/env'
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms))
@@ -53,7 +54,7 @@ async function mockVerify(payload: VerifyRequest): Promise<VerifyResponse> {
 }
 
 export function postVerify(payload: VerifyRequest) {
-  if (import.meta.env.VITE_USE_MOCK_API === 'true') {
+  if (isMockMode()) {
     return mockVerify(payload)
   }
 

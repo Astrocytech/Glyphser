@@ -4,6 +4,7 @@ import {
   listMockArtifacts,
 } from '@/api/mock/store'
 import type { ArtifactEntry, ArtifactFileResponse } from '@/types/artifact'
+import { isMockMode } from '@/lib/env'
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms))
@@ -25,7 +26,7 @@ async function mockGetArtifactFile(
 }
 
 export function getArtifacts(runId: string) {
-  if (import.meta.env.VITE_USE_MOCK_API === 'true') {
+  if (isMockMode()) {
     return mockGetArtifacts(runId)
   }
 
@@ -33,7 +34,7 @@ export function getArtifacts(runId: string) {
 }
 
 export function getArtifactFile(runId: string, path: string) {
-  if (import.meta.env.VITE_USE_MOCK_API === 'true') {
+  if (isMockMode()) {
     return mockGetArtifactFile(runId, path)
   }
 

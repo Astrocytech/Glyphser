@@ -1,6 +1,7 @@
 import { api, ApiError } from './client'
 import type { RunDetails, RunRecord } from '@/types/run'
 import { getMockRun, listMockRuns } from '@/api/mock/store'
+import { isMockMode } from '@/lib/env'
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms))
@@ -19,7 +20,7 @@ async function mockGetRun(runId: string): Promise<RunDetails> {
 }
 
 export function getRuns() {
-  if (import.meta.env.VITE_USE_MOCK_API === 'true') {
+  if (isMockMode()) {
     return mockGetRuns()
   }
 
@@ -27,7 +28,7 @@ export function getRuns() {
 }
 
 export function getRun(runId: string) {
-  if (import.meta.env.VITE_USE_MOCK_API === 'true') {
+  if (isMockMode()) {
     return mockGetRun(runId)
   }
 
