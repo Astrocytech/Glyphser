@@ -3,7 +3,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Info, RefreshCw, Trash2 } from 'lucide-react'
+import { Info, RefreshCw, Trash2, Download, Upload } from 'lucide-react'
 import { toast } from '@/lib/toast'
 
 interface Settings {
@@ -62,6 +62,47 @@ export default function SettingsPage() {
     toast({ title: 'Cache cleared', description: 'All cached data has been cleared.', variant: 'success' })
   }
 
+  const handleExportSettings = () => {
+    const allData = {
+      settings,
+      favorites: localStorage.getItem('glyphser-favorite-runs'),
+      filterPresets: localStorage.getItem('glyphser-filter-presets'),
+    }
+    const blob = new Blob([JSON.stringify(allData, null, 2)], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `glyphser-settings-${new Date().toISOString().split('T')[0]}.json`
+    a.click()
+    URL.revokeObjectURL(url)
+    toast({ title: 'Settings exported', variant: 'success' })
+  }
+
+  const handleImportSettings = () => {
+    const input = document.createElement('input')
+    input.type = 'file'
+    input.accept = '.json'
+    input.onchange = async (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0]
+      if (!file) return
+      const text = await file.text()
+      try {
+        const data = JSON.parse(text)
+        if (data.settings) {
+          setSettings(data.settings)
+          localStorage.setItem('glyphser-settings', JSON.stringify(data.settings))
+        }
+        if (data.favorites) localStorage.setItem('glyphser-favorite-runs', data.favorites)
+        if (data.filterPresets) localStorage.setItem('glyphser-filter-presets', data.filterPresets)
+        toast({ title: 'Settings imported', variant: 'success' })
+        window.location.reload()
+      } catch {
+        toast({ title: 'Invalid file', variant: 'destructive' })
+      }
+    }
+    input.click()
+  }
+
   const updateSetting = <K extends keyof Settings>(key: K, value: Settings[K]) => {
     setSettings((prev) => ({ ...prev, [key]: value }))
   }
@@ -104,10 +145,20 @@ export default function SettingsPage() {
           <CardDescription>Manage cached data</CardDescription>
         </CardHeader>
         <CardContent>
-          <Button variant="outline" onClick={handleClearCache}>
-            <Trash2 className="h-4 w-4 mr-2" />
-            Clear Query Cache
-          </Button>
+          <div className="flex gap-2">
+            <Button variant="outline" onClick={handleClearCache}>
+              <Trash2 className="h-4 w-4 mr-2" />
+              Clear Query Cache
+            </Button>
+            <Button variant="outline" onClick={handleExportSettings}>
+              <Download className="h-4 w-4 mr-2" />
+              Export
+            </Button>
+            <Button variant="outline" onClick={handleImportSettings}>
+              <Upload className="h-4 w-4 mr-2" />
+              Import
+            </Button>
+          </div>
         </CardContent>
       </Card>
 
