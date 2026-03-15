@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { navItems } from './nav'
-import { Bug, CheckCircle2 } from 'lucide-react'
+import { Bug, CheckCircle2, Menu, X } from 'lucide-react'
 import { Switch } from '@/components/ui/switch'
+import { Button } from '@/components/ui/button'
 
 function getStoredMockMode(): boolean {
   const stored = localStorage.getItem('glyphser-use-mock-api')
@@ -30,6 +31,7 @@ export default function AppLayout() {
   const navigate = useNavigate()
   const [isMockMode, setIsMockMode] = useState(getStoredMockMode)
   const [isDarkMode, setIsDarkMode] = useState(getStoredDarkMode)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -56,6 +58,10 @@ export default function AppLayout() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [navigate])
 
+  useEffect(() => {
+    setIsMobileMenuOpen(false)
+  }, [location.pathname])
+
   const currentItem = navItems.find(
     (item) => item.to === location.pathname || 
       (item.to !== '/' && location.pathname.startsWith(item.to)),
@@ -63,13 +69,22 @@ export default function AppLayout() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="grid min-h-screen md:grid-cols-[260px_1fr]">
-        <aside className="border-r bg-muted/30 p-4 flex flex-col">
-          <div className="mb-6">
-            <h1 className="text-xl font-semibold">Glyphser</h1>
-            <p className="text-sm text-muted-foreground">
-              Verification Console
-            </p>
+      <div className="grid min-h-screen lg:grid-cols-[260px_1fr]">
+        <aside className={`
+          fixed inset-y-0 left-0 z-50 w-64 border-r bg-muted/30 p-4 flex flex-col transform transition-transform duration-200 ease-in-out
+          lg:relative lg:transform-none
+          ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
+        `}>
+          <div className="flex items-center justify-between mb-6 lg:justify-start">
+            <div>
+              <h1 className="text-xl font-semibold">Glyphser</h1>
+              <p className="text-sm text-muted-foreground">
+                Verification Console
+              </p>
+            </div>
+            <Button variant="ghost" size="icon" className="lg:hidden" onClick={() => setIsMobileMenuOpen(false)}>
+              <X className="h-5 w-5" />
+            </Button>
           </div>
 
           <nav className="space-y-1 flex-1">
@@ -171,9 +186,12 @@ export default function AppLayout() {
         </aside>
 
         <div className="flex min-h-screen flex-col">
-          <header className="border-b px-6 py-4">
+          <header className="border-b px-4 py-3 lg:px-6 lg:py-4">
             <div className="flex items-center justify-between">
-              <div>
+              <Button variant="ghost" size="icon" className="lg:hidden" onClick={() => setIsMobileMenuOpen(true)}>
+                <Menu className="h-5 w-5" />
+              </Button>
+              <div className="lg:ml-0 ml-8">
                 <h2 className="text-lg font-medium">{currentItem.title}</h2>
                 <p className="text-sm text-muted-foreground">
                   {currentItem.description}
@@ -182,11 +200,15 @@ export default function AppLayout() {
             </div>
           </header>
 
-          <main className="flex-1 p-6">
+          <main className="flex-1 p-4 lg:p-6">
             <Outlet />
           </main>
         </div>
       </div>
+
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-40 bg-black/50 lg:hidden" onClick={() => setIsMobileMenuOpen(false)} />
+      )}
     </div>
   )
 }
