@@ -6,6 +6,7 @@ import { Switch } from '@/components/ui/switch'
 import { Button } from '@/components/ui/button'
 import { NavigationProgress } from '@/lib/navigation-progress'
 import { BackToTop } from '@/components/state/back-to-top'
+import { Announcements } from '@/components/state/announcements'
 
 function getStoredMockMode(): boolean {
   const stored = localStorage.getItem('glyphser-use-mock-api')
@@ -198,6 +199,7 @@ export default function AppLayout() {
           </header>
 
           <main className="flex-1 p-6">
+            {location.pathname === '/' && <Announcements />}
             <Outlet />
           </main>
         </div>
