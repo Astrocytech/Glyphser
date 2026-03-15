@@ -4,6 +4,7 @@ import { navItems } from './nav'
 import { Bug, CheckCircle2 } from 'lucide-react'
 import { Switch } from '@/components/ui/switch'
 import { Button } from '@/components/ui/button'
+import { NavigationProgress } from '@/lib/navigation-progress'
 
 function getStoredMockMode(): boolean {
   const stored = localStorage.getItem('glyphser-use-mock-api')
@@ -72,6 +73,7 @@ export default function AppLayout() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <NavigationProgress />
       <div className="grid min-h-screen md:grid-cols-[260px_1fr]">
         <aside className="border-r bg-muted/30 p-4 flex flex-col hidden md:block">
           <div className="mb-6">
