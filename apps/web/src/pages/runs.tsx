@@ -11,7 +11,7 @@ import { SkeletonList } from '@/components/state/skeleton'
 import { useRuns } from '@/features/runs/use-runs'
 import { runStatusBadgeVariant, runStatusLabel } from '@/lib/status'
 import { useDebounce } from '@/lib/debounce'
-import { Search, ChevronLeft, ChevronRight, Copy, Check } from 'lucide-react'
+import { Search, ChevronLeft, ChevronRight, Copy, Check, Download } from 'lucide-react'
 
 const PAGE_SIZE = 10
 
@@ -92,6 +92,20 @@ export default function RunsPage() {
               {status === 'all' ? 'All' : runStatusLabel(status as 'passed' | 'failed' | 'running' | 'queued')}
             </Button>
           ))}
+          {filteredRuns.length > 0 && (
+            <Button variant="outline" size="sm" onClick={() => {
+              const blob = new Blob([JSON.stringify(filteredRuns, null, 2)], { type: 'application/json' })
+              const url = URL.createObjectURL(blob)
+              const a = document.createElement('a')
+              a.href = url
+              a.download = `runs-${new Date().toISOString().split('T')[0]}.json`
+              a.click()
+              URL.revokeObjectURL(url)
+            }}>
+              <Download className="h-4 w-4 mr-1" />
+              Export
+            </Button>
+          )}
         </div>
       </div>
 
