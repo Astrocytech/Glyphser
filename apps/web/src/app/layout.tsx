@@ -31,6 +31,7 @@ export default function AppLayout() {
   const navigate = useNavigate()
   const [isMockMode, setIsMockMode] = useState(getStoredMockMode)
   const [isDarkMode, setIsDarkMode] = useState(getStoredDarkMode)
+  const [showShortcuts, setShowShortcuts] = useState(false)
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -38,6 +39,13 @@ export default function AppLayout() {
         event.target instanceof HTMLInputElement ||
         event.target instanceof HTMLTextAreaElement
       ) {
+        return
+      }
+
+      if (event.key === '?') {
+        event.preventDefault()
+        setShowShortcuts(true)
+        setTimeout(() => setShowShortcuts(false), 3000)
         return
       }
 
@@ -191,6 +199,21 @@ export default function AppLayout() {
           </main>
         </div>
       </div>
+
+      {showShortcuts && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="bg-background rounded-lg border p-6 shadow-xl space-y-3">
+            <h3 className="font-semibold text-lg">Keyboard Shortcuts</h3>
+            <div className="space-y-2 text-sm">
+              <div className="flex justify-between gap-8"><span>Dashboard</span><kbd className="bg-muted px-2 py-1 rounded">d</kbd></div>
+              <div className="flex justify-between gap-8"><span>Verify</span><kbd className="bg-muted px-2 py-1 rounded">v</kbd></div>
+              <div className="flex justify-between gap-8"><span>Runs</span><kbd className="bg-muted px-2 py-1 rounded">/</kbd></div>
+              <div className="flex justify-between gap-8"><span>Search/Filter</span><kbd className="bg-muted px-2 py-1 rounded">Ctrl+K</kbd></div>
+            </div>
+            <p className="text-xs text-muted-foreground text-center mt-4">Press any key to close</p>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
