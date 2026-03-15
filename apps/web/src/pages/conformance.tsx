@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { api } from '@/api/client'
 import LoadingState from '@/components/state/loading-state'
 import ErrorState from '@/components/state/error-state'
+import { getVerdictVariant, getVerdictLabel } from '@/lib/status'
 
 interface ConformanceReport {
   gates?: Array<{ gate: string; verdict: string; note?: string }>
@@ -87,8 +88,8 @@ export default function ConformancePage() {
                         <tr key={gate.gate} className="border-t">
                           <td className="px-4 py-3">{gate.gate}</td>
                           <td className="px-4 py-3">
-                            <Badge variant={gate.verdict === 'PASS' ? 'default' : gate.verdict === 'FAIL' ? 'destructive' : 'outline'}>
-                              {gate.verdict}
+                            <Badge variant={getVerdictVariant(gate.verdict)}>
+                              {getVerdictLabel(gate.verdict)}
                             </Badge>
                           </td>
                           <td className="px-4 py-3 text-muted-foreground">{gate.note}</td>
@@ -115,7 +116,7 @@ export default function ConformancePage() {
                       <div className="font-medium">{item.check}</div>
                       <div className="text-sm text-muted-foreground">{item.details}</div>
                     </div>
-                    <Badge variant="default">{item.status}</Badge>
+                    <Badge variant={getVerdictVariant(item.status)}>{getVerdictLabel(item.status)}</Badge>
                   </div>
                 ))}
               </div>
@@ -143,9 +144,9 @@ export default function ConformancePage() {
                     {replay.map((result) => (
                       <tr key={result.run_id} className="border-t">
                         <td className="px-4 py-3 font-mono text-sm">{result.run_id}</td>
-                        <td className="px-4 py-3"><Badge variant="default">{result.original}</Badge></td>
-                        <td className="px-4 py-3"><Badge variant="default">{result.replayed}</Badge></td>
-                        <td className="px-4 py-3"><Badge variant="outline">{result.verdict}</Badge></td>
+                        <td className="px-4 py-3"><Badge variant={getVerdictVariant(result.original)}>{getVerdictLabel(result.original)}</Badge></td>
+                        <td className="px-4 py-3"><Badge variant={getVerdictVariant(result.replayed)}>{getVerdictLabel(result.replayed)}</Badge></td>
+                        <td className="px-4 py-3"><Badge variant={getVerdictVariant(result.verdict)}>{getVerdictLabel(result.verdict)}</Badge></td>
                       </tr>
                     ))}
                   </tbody>
@@ -166,7 +167,7 @@ export default function ConformancePage() {
                   <div key={comp.artifact} className="rounded-md border p-4">
                     <div className="flex items-center justify-between mb-2">
                       <div className="font-mono text-sm">{comp.artifact}</div>
-                      <Badge variant="default">{comp.status}</Badge>
+                      <Badge variant={getVerdictVariant(comp.status)}>{getVerdictLabel(comp.status)}</Badge>
                     </div>
                     <div className="grid gap-2 text-sm">
                       <div className="flex justify-between"><span className="text-muted-foreground">Expected:</span><span className="font-mono">{comp.expected}</span></div>

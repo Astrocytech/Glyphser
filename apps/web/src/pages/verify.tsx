@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import ErrorState from '@/components/state/error-state'
 import { useVerify } from '@/features/verify/use-verify'
+import { getVerdictVariant, getVerdictLabel } from '@/lib/status'
 
 const MAX_PATH_CHARS = 2048
 const MAX_MANIFEST_CHARS = 100_000
@@ -82,10 +83,8 @@ export default function VerifyPage() {
             <CardTitle>Verification Result</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
-            <Badge
-              variant={result.status === 'PASS' ? 'default' : 'destructive'}
-            >
-              {result.status}
+            <Badge variant={getVerdictVariant(result.status)}>
+              {getVerdictLabel(result.status)}
             </Badge>
             {result.run_id ? (
               <p className="text-sm">

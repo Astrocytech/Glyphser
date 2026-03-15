@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { runCertify, type CertifyResponse } from '@/api/runtime-cli'
+import { getVerdictVariant, getVerdictLabel } from '@/lib/status'
 
 const PROFILES = ['available_local', 'available_local_partial', 'strict_universal']
 
@@ -84,7 +85,7 @@ export default function CertifyPage() {
             {result && (
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
-                  <Badge variant={result.status === 'PASS' ? 'default' : 'destructive'}>{result.status}</Badge>
+                  <Badge variant={getVerdictVariant(result.status)}>{getVerdictLabel(result.status)}</Badge>
                 </div>
                 <pre className="max-h-64 overflow-auto rounded-md bg-muted p-3 text-xs font-mono">{JSON.stringify(result.bundle, null, 2)}</pre>
               </div>

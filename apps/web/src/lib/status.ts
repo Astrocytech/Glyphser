@@ -1,6 +1,48 @@
-import type { RunStatus } from '@/types/run'
+import { badgeVariants } from '@/components/ui/badge'
+import type { VariantProps } from 'class-variance-authority'
 
-export type BadgeVariant = 'default' | 'secondary' | 'destructive' | 'outline'
+export type BadgeVariant = VariantProps<typeof badgeVariants>['variant']
+
+export type VerdictStatus = 'PASS' | 'FAIL' | 'WARN' | 'MATCH' | 'MISMATCH' | 'SKIP'
+
+export type RunStatus = 'queued' | 'running' | 'passed' | 'failed' | 'partial' | 'unknown'
+
+export function getVerdictLabel(status: string): string {
+  switch (status) {
+    case 'PASS':
+      return 'Pass'
+    case 'FAIL':
+      return 'Fail'
+    case 'WARN':
+      return 'Warning'
+    case 'MATCH':
+      return 'Match'
+    case 'MISMATCH':
+      return 'Mismatch'
+    case 'SKIP':
+      return 'Skipped'
+    default:
+      return status
+  }
+}
+
+export function getVerdictVariant(status: string): BadgeVariant {
+  switch (status) {
+    case 'PASS':
+    case 'MATCH':
+      return 'default'
+    case 'FAIL':
+    case 'MISMATCH':
+      return 'destructive'
+    case 'WARN':
+      return 'secondary'
+    case 'SKIP':
+    case 'unknown':
+      return 'outline'
+    default:
+      return 'outline'
+  }
+}
 
 export function runStatusLabel(status: RunStatus): string {
   switch (status) {
@@ -41,4 +83,3 @@ export function runStatusBadgeVariant(status: RunStatus): BadgeVariant {
     }
   }
 }
-

@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { runDoctor, type DoctorResponse } from '@/api/runtime-cli'
+import { getVerdictVariant, getVerdictLabel } from '@/lib/status'
 
 export default function DoctorPage() {
   const [runId, setRunId] = useState('')
@@ -50,7 +51,7 @@ export default function DoctorPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center gap-2">
-                <Badge variant={result.status === 'PASS' ? 'default' : 'destructive'}>{result.status}</Badge>
+                <Badge variant={getVerdictVariant(result.status)}>{getVerdictLabel(result.status)}</Badge>
                 <Badge variant="outline">{result.classification}</Badge>
               </div>
 
