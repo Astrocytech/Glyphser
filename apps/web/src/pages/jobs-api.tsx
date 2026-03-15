@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useQuery } from '@tanstack/react-query'
 import { submitJob, getJobsState, type JobSubmitResponse } from '@/api/jobs'
+import { toast } from '@/lib/toast'
 
 const JOBS_TABS = ['Submit', 'Status', 'Evidence', 'Replay'] as const
 
@@ -50,38 +51,46 @@ function SubmitPanel() {
   const [scope, setScope] = useState('')
   const [idempotencyKey, setIdempotencyKey] = useState('')
   const [result, setResult] = useState<JobSubmitResponse | null>(null)
-  const [error, setError] = useState<string | null>(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubmit = () => {
-    setError(null)
-    setResult(null)
-
+  const handleSubmit = async () => {
     let parsedPayload: object
     try {
       parsedPayload = JSON.parse(payload)
     } catch {
-      setError('Invalid JSON payload')
+      toast({ title: 'Invalid JSON payload', variant: 'destructive' })
       return
     }
 
     if (!token.trim()) {
-      setError('Token is required')
+      toast({ title: 'Token is required', variant: 'destructive' })
       return
     }
 
     if (!scope.trim()) {
-      setError('Scope is required')
+      toast({ title: 'Scope is required', variant: 'destructive' })
       return
     }
 
-    submitJob({
-      payload: parsedPayload,
-      token,
-      scope,
-      idempotency_key: idempotencyKey || undefined,
-    })
-      .then(setResult)
-      .catch((err) => setError(err.message))
+    setIsSubmitting(true)
+    try {
+      const res = await submitJob({
+        payload: parsedPayload,
+        token,
+        scope,
+        idempotency_key: idempotencyKey || undefined,
+      })
+      setResult(res)
+      toast({
+        title: res.accepted ? 'Job submitted' : 'Job rejected',
+        description: res.accepted ? 'Your job was accepted successfully' : 'Your job was rejected',
+        variant: res.accepted ? 'success' : 'destructive',
+      })
+    } catch (err) {
+      toast({ title: 'Failed to submit job', description: err.message, variant: 'destructive' })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -111,13 +120,9 @@ function SubmitPanel() {
           </div>
         </div>
 
-        {error && (
-          <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
-            {error}
-          </div>
-        )}
-
-        <Button onClick={handleSubmit}>Submit Job</Button>
+        <Button onClick={handleSubmit} disabled={isSubmitting}>
+          {isSubmitting ? 'Submitting...' : 'Submit Job'}
+        </Button>
 
         {result && (
           <div className="rounded-md bg-muted p-4">
