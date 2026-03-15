@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import { useRuns } from '@/features/runs/use-runs'
 import { runStatusBadgeVariant, runStatusLabel } from '@/lib/status'
 import ErrorState from '@/components/state/error-state'
 import { Skeleton, SkeletonCard } from '@/components/state/skeleton'
+import { RefreshCw } from 'lucide-react'
 
 function formatRelativeTime(isoString: string): string {
   const date = new Date(isoString)
@@ -36,6 +38,16 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <div className="text-sm text-muted-foreground">
+          Last updated: {runs.dataUpdatedAt ? new Date(runs.dataUpdatedAt).toLocaleTimeString() : 'Never'}
+        </div>
+        <Button variant="outline" size="sm" onClick={() => runs.refetch()} disabled={runs.isFetching}>
+          <RefreshCw className={`h-4 w-4 mr-2 ${runs.isFetching ? 'animate-spin' : ''}`} />
+          Refresh
+        </Button>
+      </div>
+
       {runs.isLoading ? (
         <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
           {Array.from({ length: 5 }).map((_, i) => (
