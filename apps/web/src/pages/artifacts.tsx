@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -8,7 +8,9 @@ import { useRuns } from '@/features/runs/use-runs'
 import { runStatusBadgeVariant, runStatusLabel } from '@/lib/status'
 import LoadingState from '@/components/state/loading-state'
 import ErrorState from '@/components/state/error-state'
-import { FolderOpen, Search } from 'lucide-react'
+import { FolderOpen, Search, ChevronLeft, ChevronRight } from 'lucide-react'
+
+const PAGE_SIZE = 10
 
 function formatRelativeTime(isoString: string): string {
   const date = new Date(isoString)
@@ -29,15 +31,25 @@ export default function ArtifactsPage() {
   const runs = useRuns()
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState<string>('all')
+  const [page, setPage] = useState(1)
 
-  const filteredRuns = runs.data?.filter((run) => {
-    const matchesSearch =
-      !search ||
-      run.id.toLowerCase().includes(search.toLowerCase()) ||
-      run.summary?.toLowerCase().includes(search.toLowerCase())
-    const matchesStatus = statusFilter === 'all' || run.status === statusFilter
-    return matchesSearch && matchesStatus
-  })
+  const filteredRuns = useMemo(() => {
+    return runs.data?.filter((run) => {
+      const matchesSearch =
+        !search ||
+        run.id.toLowerCase().includes(search.toLowerCase()) ||
+        run.summary?.toLowerCase().includes(search.toLowerCase())
+      const matchesStatus = statusFilter === 'all' || run.status === statusFilter
+      return matchesSearch && matchesStatus
+    }) ?? []
+  }, [runs.data, search, statusFilter])
+
+  const totalPages = Math.ceil(filteredRuns.length / PAGE_SIZE)
+  const paginatedRuns = filteredRuns.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
+
+  const handleFilterChange = () => {
+    setPage(1)
+  }
 
   const statusOptions = ['all', 'passed', 'failed', 'running', 'queued']
 
@@ -49,7 +61,7 @@ export default function ArtifactsPage() {
           <Input
             placeholder="Search by ID or summary..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => { setSearch(e.target.value); setPage(1); }}
             className="pl-9"
           />
         </div>
@@ -59,7 +71,7 @@ export default function ArtifactsPage() {
               key={status}
               variant={statusFilter === status ? 'default' : 'outline'}
               size="sm"
-              onClick={() => setStatusFilter(status)}
+              onClick={() => { setStatusFilter(status); handleFilterChange(); }}
             >
               {status === 'all' ? 'All' : runStatusLabel(status as 'passed' | 'failed' | 'running' | 'queued')}
             </Button>
@@ -79,7 +91,7 @@ export default function ArtifactsPage() {
             <LoadingState label="Loading runs..." />
           ) : runs.isError ? (
             <ErrorState message={runs.error.message} onRetry={() => runs.refetch()} />
-          ) : filteredRuns?.length === 0 ? (
+          ) : filteredRuns.length === 0 ? (
             <p className="text-muted-foreground text-sm">
               {search || statusFilter !== 'all'
                 ? "No runs match your search."
@@ -87,7 +99,7 @@ export default function ArtifactsPage() {
             </p>
           ) : (
             <div className="space-y-2">
-              {filteredRuns?.map((run) => (
+              {paginatedRuns.map((run) => (
                 <Link
                   key={run.id}
                   to={`/artifacts/${encodeURIComponent(run.id)}`}
@@ -107,6 +119,30 @@ export default function ArtifactsPage() {
           )}
         </CardContent>
       </Card>
+
+      {totalPages > 1 && (
+        <div className="flex items-center justify-center gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setPage(p => p - 1)}
+            disabled={page === 1}
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+          <span className="text-sm text-muted-foreground">
+            Page {page} of {totalPages}
+          </span>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setPage(p => p + 1)}
+            disabled={page === totalPages}
+          >
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
+      )}
     </div>
   )
 }
