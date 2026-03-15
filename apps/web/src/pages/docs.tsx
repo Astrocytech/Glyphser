@@ -73,7 +73,7 @@ export default function DocsPage() {
             {Object.entries(groupedDocs).map(([cat, docs]) => (
               <div key={cat}>
                 <div className="text-sm font-medium text-muted-foreground mb-2">{cat}</div>
-                <div className="space-y-2">
+                <div className="space-y-2 max-h-[400px] overflow-auto pr-2">
                   {docs.map((doc) => (
                     <div key={doc.slug} className={`cursor-pointer rounded-md border p-3 transition-colors ${selectedDoc === doc.slug ? 'border-primary bg-primary/10' : 'hover:bg-accent'}`} onClick={() => handleSelectDoc(doc.slug)}>
                       <div className="font-medium">{doc.slug.replace('.md', '').replace(/_/g, ' ')}</div>
