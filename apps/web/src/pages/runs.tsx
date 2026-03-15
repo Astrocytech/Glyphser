@@ -11,7 +11,7 @@ import { SkeletonList } from '@/components/state/skeleton'
 import { useRuns } from '@/features/runs/use-runs'
 import { runStatusBadgeVariant, runStatusLabel } from '@/lib/status'
 import { useDebounce } from '@/lib/debounce'
-import { Search, ChevronLeft, ChevronRight, Copy, Check, Download, Eye, EyeOff } from 'lucide-react'
+import { Search, ChevronLeft, ChevronRight, Copy, Check, Download, Eye, EyeOff, List, Minimize2 } from 'lucide-react'
 
 const PAGE_SIZE = 10
 
@@ -59,6 +59,7 @@ export default function RunsPage() {
   const [showSummary, setShowSummary] = useState(true)
   const [showDate, setShowDate] = useState(true)
   const [selectedRuns, setSelectedRuns] = useState<Set<string>>(new Set())
+  const [viewMode, setViewMode] = useState<'list' | 'compact'>('list')
   const debouncedSearch = useDebounce(search, 300)
 
   const filteredRuns = useMemo(() => {
@@ -143,6 +144,12 @@ export default function RunsPage() {
               {selectedRuns.size === filteredRuns.length ? '✓ Deselect All' : 'Select All'}
             </Button>
           )}
+          <Button variant={viewMode === 'list' ? 'default' : 'outline'} size="sm" onClick={() => setViewMode('list')}>
+            <List className="h-4 w-4" />
+          </Button>
+          <Button variant={viewMode === 'compact' ? 'default' : 'outline'} size="sm" onClick={() => setViewMode('compact')}>
+            <Minimize2 className="h-4 w-4" />
+          </Button>
         </div>
       </div>
 
@@ -166,7 +173,7 @@ export default function RunsPage() {
             {paginatedRuns.map((run) => (
               <div
                 key={run.id}
-                className="flex items-center gap-2 rounded-md border p-3 transition-colors hover:bg-accent/40"
+                className={`flex items-center gap-2 rounded-md border p-3 transition-colors hover:bg-accent/40 ${viewMode === 'compact' ? 'py-1 px-2' : ''}`}
               >
                 <input
                   type="checkbox"
