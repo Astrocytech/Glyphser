@@ -159,7 +159,7 @@ export default function RunsPage() {
 
       {paginatedRuns.length > 0 ? (
         <Card>
-          <CardHeader>
+          <CardHeader className="sticky top-0 bg-background z-10">
             <CardTitle>Recent runs</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
