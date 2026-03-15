@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { navItems } from './nav'
 import { Bug, CheckCircle2 } from 'lucide-react'
+import { Switch } from '@/components/ui/switch'
 
 function getStoredMockMode(): boolean {
   const stored = localStorage.getItem('glyphser-use-mock-api')
@@ -11,16 +12,23 @@ function getStoredMockMode(): boolean {
   return import.meta.env.VITE_USE_MOCK_API === 'true'
 }
 
+function getStoredDarkMode(): boolean {
+  const stored = localStorage.getItem('glyphser-settings')
+  if (stored) {
+    try {
+      const settings = JSON.parse(stored)
+      return settings.darkMode ?? false
+    } catch {
+      return false
+    }
+  }
+  return false
+}
+
 export default function AppLayout() {
   const location = useLocation()
   const [isMockMode, setIsMockMode] = useState(getStoredMockMode)
-
-  const handleToggleMock = () => {
-    const newValue = !isMockMode
-    setIsMockMode(newValue)
-    localStorage.setItem('glyphser-use-mock-api', String(newValue))
-    window.location.reload()
-  }
+  const [isDarkMode, setIsDarkMode] = useState(getStoredDarkMode)
 
   const currentItem = navItems.find(
     (item) => item.to === location.pathname || 
@@ -59,23 +67,76 @@ export default function AppLayout() {
             ))}
           </nav>
 
-          <div className="mt-4 pt-4 border-t">
-            <button
-              onClick={handleToggleMock}
-              className="flex items-center gap-2 text-xs cursor-pointer hover:opacity-80 transition-opacity w-full"
-            >
-              {isMockMode ? (
-                <>
-                  <Bug className="h-3 w-3 text-amber-600" />
-                  <span className="text-amber-600">Mock Mode</span>
-                </>
-              ) : (
-                <>
-                  <CheckCircle2 className="h-3 w-3 text-green-600" />
-                  <span className="text-green-600">Live API</span>
-                </>
-              )}
-            </button>
+          <div className="mt-4 pt-4 border-t space-y-4">
+            <div className="flex items-center justify-between">
+              <button
+                onClick={() => {
+                  const newValue = !isMockMode
+                  setIsMockMode(newValue)
+                  localStorage.setItem('glyphser-use-mock-api', String(newValue))
+                  window.location.reload()
+                }}
+                className="flex items-center gap-2 text-xs cursor-pointer hover:opacity-80 transition-opacity"
+              >
+                {isMockMode ? (
+                  <>
+                    <Bug className="h-4 w-4 text-amber-600" />
+                    <span className="text-amber-600 font-medium">Mock Mode</span>
+                  </>
+                ) : (
+                  <>
+                    <CheckCircle2 className="h-4 w-4 text-green-600" />
+                    <span className="text-green-600 font-medium">Live API</span>
+                  </>
+                )}
+              </button>
+              <Switch
+                checked={isMockMode}
+                onCheckedChange={(checked) => {
+                  setIsMockMode(checked)
+                  localStorage.setItem('glyphser-use-mock-api', String(checked))
+                  window.location.reload()
+                }}
+                className="data-[state=checked]:bg-amber-500 data-[state=unchecked]:bg-green-600 h-6 w-11"
+              />
+            </div>
+
+            <div className="flex items-center justify-between">
+              <button
+                onClick={() => {
+                  const checked = !isDarkMode
+                  setIsDarkMode(checked)
+                  const stored = localStorage.getItem('glyphser-settings')
+                  const settings = stored ? JSON.parse(stored) : {}
+                  settings.darkMode = checked
+                  localStorage.setItem('glyphser-settings', JSON.stringify(settings))
+                  if (checked) {
+                    document.documentElement.classList.add('dark')
+                  } else {
+                    document.documentElement.classList.remove('dark')
+                  }
+                }}
+                className="flex items-center gap-2 text-xs cursor-pointer hover:opacity-80 transition-opacity"
+              >
+                <span className="font-medium">{isDarkMode ? 'Dark Mode' : 'Light Mode'}</span>
+              </button>
+              <Switch
+                checked={isDarkMode}
+                onCheckedChange={(checked) => {
+                  setIsDarkMode(checked)
+                  const stored = localStorage.getItem('glyphser-settings')
+                  const settings = stored ? JSON.parse(stored) : {}
+                  settings.darkMode = checked
+                  localStorage.setItem('glyphser-settings', JSON.stringify(settings))
+                  if (checked) {
+                    document.documentElement.classList.add('dark')
+                  } else {
+                    document.documentElement.classList.remove('dark')
+                  }
+                }}
+                className="data-[state=checked]:bg-gray-300 data-[state=unchecked]:bg-gray-600 dark:data-[state=checked]:bg-gray-400 dark:data-[state=unchecked]:bg-gray-400 h-6 w-11"
+              />
+            </div>
           </div>
         </aside>
 

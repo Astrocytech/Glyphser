@@ -6,13 +6,11 @@ import { Input } from '@/components/ui/input'
 interface Settings {
   apiUrl: string
   useMockApi: boolean
-  darkMode: boolean
 }
 
 const DEFAULT_SETTINGS: Settings = {
   apiUrl: 'http://localhost:8000',
   useMockApi: false,
-  darkMode: false,
 }
 
 export default function SettingsPage() {
@@ -23,7 +21,11 @@ export default function SettingsPage() {
     const stored = localStorage.getItem('glyphser-settings')
     if (stored) {
       try {
-        setSettings({ ...DEFAULT_SETTINGS, ...JSON.parse(stored) })
+        const parsed = JSON.parse(stored)
+        setSettings({
+          apiUrl: parsed.apiUrl ?? DEFAULT_SETTINGS.apiUrl,
+          useMockApi: parsed.useMockApi ?? DEFAULT_SETTINGS.useMockApi,
+        })
       } catch {
         // ignore parse errors
       }
@@ -31,30 +33,26 @@ export default function SettingsPage() {
   }, [])
 
   const handleSave = () => {
-    localStorage.setItem('glyphser-settings', JSON.stringify(settings))
+    const stored = localStorage.getItem('glyphser-settings')
+    const existing = stored ? JSON.parse(stored) : {}
+    localStorage.setItem('glyphser-settings', JSON.stringify({ ...existing, ...settings }))
     setSaved(true)
     setTimeout(() => setSaved(false), 2000)
   }
 
   const handleReset = () => {
     setSettings(DEFAULT_SETTINGS)
-    localStorage.removeItem('glyphser-settings')
+    const stored = localStorage.getItem('glyphser-settings')
+    if (stored) {
+      const parsed = JSON.parse(stored)
+      delete parsed.apiUrl
+      delete parsed.useMockApi
+      localStorage.setItem('glyphser-settings', JSON.stringify(parsed))
+    }
   }
 
   const updateSetting = <K extends keyof Settings>(key: K, value: Settings[K]) => {
-    setSettings((prev) => {
-      const newSettings = { ...prev, [key]: value }
-      
-      if (key === 'darkMode') {
-        if (value) {
-          document.documentElement.classList.add('dark')
-        } else {
-          document.documentElement.classList.remove('dark')
-        }
-      }
-      
-      return newSettings
-    })
+    setSettings((prev) => ({ ...prev, [key]: value }))
   }
 
   return (
@@ -82,25 +80,6 @@ export default function SettingsPage() {
               className="h-4 w-4"
             />
             <label htmlFor="useMockApi" className="text-sm font-medium">Use Mock API</label>
-          </div>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Appearance</CardTitle>
-          <CardDescription>Customize the console look and feel</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              id="darkMode"
-              checked={settings.darkMode}
-              onChange={(e) => updateSetting('darkMode', e.target.checked)}
-              className="h-4 w-4"
-            />
-            <label htmlFor="darkMode" className="text-sm font-medium">Dark Mode</label>
           </div>
         </CardContent>
       </Card>
