@@ -9,6 +9,7 @@ import ErrorState from '@/components/state/error-state'
 import { SkeletonList } from '@/components/state/skeleton'
 import { useRuns } from '@/features/runs/use-runs'
 import { runStatusBadgeVariant, runStatusLabel } from '@/lib/status'
+import { useDebounce } from '@/lib/debounce'
 import { Search, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const PAGE_SIZE = 10
@@ -20,13 +21,14 @@ export default function RunsPage() {
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all')
   const [page, setPage] = useState(1)
+  const debouncedSearch = useDebounce(search, 300)
 
   const filteredRuns = useMemo(() => {
     return runs.data?.filter((run) => {
       const matchesSearch =
-        !search ||
-        run.id.toLowerCase().includes(search.toLowerCase()) ||
-        run.summary?.toLowerCase().includes(search.toLowerCase())
+        !debouncedSearch ||
+        run.id.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+        run.summary?.toLowerCase().includes(debouncedSearch.toLowerCase())
       const matchesStatus = statusFilter === 'all' || run.status === statusFilter
       return matchesSearch && matchesStatus
     }) ?? []

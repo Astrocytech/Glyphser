@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { useRuns } from '@/features/runs/use-runs'
 import { runStatusBadgeVariant, runStatusLabel } from '@/lib/status'
+import { useDebounce } from '@/lib/debounce'
 import LoadingState from '@/components/state/loading-state'
 import ErrorState from '@/components/state/error-state'
 import { FolderOpen, Search, ChevronLeft, ChevronRight } from 'lucide-react'
@@ -32,17 +33,18 @@ export default function ArtifactsPage() {
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState<string>('all')
   const [page, setPage] = useState(1)
+  const debouncedSearch = useDebounce(search, 300)
 
   const filteredRuns = useMemo(() => {
     return runs.data?.filter((run) => {
       const matchesSearch =
-        !search ||
-        run.id.toLowerCase().includes(search.toLowerCase()) ||
-        run.summary?.toLowerCase().includes(search.toLowerCase())
+        !debouncedSearch ||
+        run.id.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+        run.summary?.toLowerCase().includes(debouncedSearch.toLowerCase())
       const matchesStatus = statusFilter === 'all' || run.status === statusFilter
       return matchesSearch && matchesStatus
     }) ?? []
-  }, [runs.data, search, statusFilter])
+  }, [runs.data, debouncedSearch, statusFilter])
 
   const totalPages = Math.ceil(filteredRuns.length / PAGE_SIZE)
   const paginatedRuns = filteredRuns.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
