@@ -1,7 +1,9 @@
+import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { RefreshCw } from 'lucide-react'
 import EmptyState from '@/components/state/empty-state'
 import ErrorState from '@/components/state/error-state'
 import LoadingState from '@/components/state/loading-state'
@@ -11,6 +13,13 @@ import { runStatusBadgeVariant, runStatusLabel } from '@/lib/status'
 export default function RunDetailsPage() {
   const { runId = '' } = useParams()
   const run = useRun(runId)
+
+  useEffect(() => {
+    if (run.data?.status === 'running' || run.data?.status === 'queued') {
+      const interval = setInterval(() => run.refetch(), 5000)
+      return () => clearInterval(interval)
+    }
+  }, [run.data?.status, run.refetch])
 
   if (run.isLoading) return <LoadingState label="Loading run…" />
   if (run.isError)
@@ -34,6 +43,10 @@ export default function RunDetailsPage() {
           <Badge variant={runStatusBadgeVariant(data.status)}>
             {runStatusLabel(data.status)}
           </Badge>
+          <Button variant="outline" size="sm" onClick={() => run.refetch()} disabled={run.isFetching}>
+            <RefreshCw className={`h-4 w-4 mr-2 ${run.isFetching ? 'animate-spin' : ''}`} />
+            Refresh
+          </Button>
           <Button asChild variant="secondary">
             <Link to="/runs">Back to runs</Link>
           </Button>
