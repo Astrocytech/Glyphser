@@ -11,7 +11,7 @@ import { SkeletonList } from '@/components/state/skeleton'
 import { useRuns } from '@/features/runs/use-runs'
 import { runStatusBadgeVariant, runStatusLabel } from '@/lib/status'
 import { useDebounce } from '@/lib/debounce'
-import { Search, ChevronLeft, ChevronRight, Copy, Check, Download, Eye, EyeOff, List, Minimize2, Save, Bookmark } from 'lucide-react'
+import { Search, ChevronLeft, ChevronRight, Copy, Check, Download, Eye, EyeOff, List, Minimize2, Save, Bookmark, Star } from 'lucide-react'
 
 const PAGE_SIZE = 10
 
@@ -64,7 +64,22 @@ export default function RunsPage() {
     const saved = localStorage.getItem('glyphser-filter-presets')
     return saved ? JSON.parse(saved) : []
   })
+  const [favorites, setFavorites] = useState<Set<string>>(() => {
+    const saved = localStorage.getItem('glyphser-favorite-runs')
+    return saved ? new Set(JSON.parse(saved)) : new Set()
+  })
   const debouncedSearch = useDebounce(search, 300)
+
+  const toggleFavorite = (id: string) => {
+    const newFavorites = new Set(favorites)
+    if (newFavorites.has(id)) {
+      newFavorites.delete(id)
+    } else {
+      newFavorites.add(id)
+    }
+    setFavorites(newFavorites)
+    localStorage.setItem('glyphser-favorite-runs', JSON.stringify([...newFavorites]))
+  }
 
   const saveCurrentFilter = () => {
     const name = prompt('Enter a name for this filter:')
@@ -226,6 +241,9 @@ export default function RunsPage() {
                     )}
                   </div>
                 </Link>
+                <button onClick={(e) => { e.preventDefault(); toggleFavorite(run.id); }} className="p-1 hover:text-yellow-500">
+                  <Star className={`h-4 w-4 ${favorites.has(run.id) ? 'fill-yellow-500 text-yellow-500' : ''}`} />
+                </button>
                 <CopyButton text={run.id} />
               </div>
             ))}
