@@ -50,19 +50,38 @@ function SubmitPanel() {
   const [scope, setScope] = useState('')
   const [idempotencyKey, setIdempotencyKey] = useState('')
   const [result, setResult] = useState<JobSubmitResponse | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
+    setError(null)
+    setResult(null)
+
+    let parsedPayload: object
     try {
-      const res = await submitJob({
-        payload: JSON.parse(payload),
-        token,
-        scope,
-        idempotency_key: idempotencyKey || undefined,
-      })
-      setResult(res)
-    } catch (err) {
-      console.error(err)
+      parsedPayload = JSON.parse(payload)
+    } catch {
+      setError('Invalid JSON payload')
+      return
     }
+
+    if (!token.trim()) {
+      setError('Token is required')
+      return
+    }
+
+    if (!scope.trim()) {
+      setError('Scope is required')
+      return
+    }
+
+    submitJob({
+      payload: parsedPayload,
+      token,
+      scope,
+      idempotency_key: idempotencyKey || undefined,
+    })
+      .then(setResult)
+      .catch((err) => setError(err.message))
   }
 
   return (
@@ -73,16 +92,16 @@ function SubmitPanel() {
       <CardContent className="space-y-4">
         <div className="grid gap-4 md:grid-cols-2">
           <div className="space-y-2">
-            <label className="text-sm font-medium">Payload (JSON)</label>
+            <label className="text-sm font-medium">Payload (JSON) *</label>
             <Textarea value={payload} onChange={(e) => setPayload(e.target.value)} rows={6} className="font-mono text-xs" />
           </div>
           <div className="space-y-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium">Token</label>
+              <label className="text-sm font-medium">Token *</label>
               <Input value={token} onChange={(e) => setToken(e.target.value)} placeholder="Enter auth token" />
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium">Scope</label>
+              <label className="text-sm font-medium">Scope *</label>
               <Input value={scope} onChange={(e) => setScope(e.target.value)} placeholder="e.g., jobs:write" />
             </div>
             <div className="space-y-2">
@@ -91,6 +110,12 @@ function SubmitPanel() {
             </div>
           </div>
         </div>
+
+        {error && (
+          <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
+            {error}
+          </div>
+        )}
 
         <Button onClick={handleSubmit}>Submit Job</Button>
 

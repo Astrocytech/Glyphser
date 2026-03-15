@@ -3,7 +3,7 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import EmptyState from '@/components/state/empty-state'
 import ErrorState from '@/components/state/error-state'
-import LoadingState from '@/components/state/loading-state'
+import { SkeletonList } from '@/components/state/skeleton'
 import { useRuns } from '@/features/runs/use-runs'
 import { runStatusBadgeVariant, runStatusLabel } from '@/lib/status'
 
@@ -12,8 +12,6 @@ export default function RunsPage() {
 
   return (
     <div className="mx-auto max-w-5xl space-y-6">
-      {runs.isLoading ? <LoadingState label="Loading runs…" /> : null}
-
       {runs.isError ? (
         <ErrorState message={runs.error.message} onRetry={() => runs.refetch()} />
       ) : null}
@@ -61,6 +59,8 @@ export default function RunsPage() {
           </CardContent>
         </Card>
       ) : null}
+
+      {runs.isLoading ? <SkeletonList items={5} /> : null}
     </div>
   )
 }

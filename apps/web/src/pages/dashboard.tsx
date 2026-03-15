@@ -3,8 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { useRuns } from '@/features/runs/use-runs'
 import { runStatusBadgeVariant, runStatusLabel } from '@/lib/status'
-import LoadingState from '@/components/state/loading-state'
 import ErrorState from '@/components/state/error-state'
+import { Skeleton, SkeletonCard } from '@/components/state/skeleton'
 
 function formatRelativeTime(isoString: string): string {
   const date = new Date(isoString)
@@ -36,8 +36,22 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-6">
-      <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
-        <Card>
+      {runs.isLoading ? (
+        <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <Card key={i}>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <Skeleton className="h-4 w-16" />
+              </CardHeader>
+              <CardContent>
+                <Skeleton className="h-8 w-12" />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      ) : (
+        <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
+          <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total</CardTitle>
           </CardHeader>
@@ -77,7 +91,8 @@ export default function DashboardPage() {
             <div className="text-2xl font-bold text-yellow-600">{stats.queued}</div>
           </CardContent>
         </Card>
-      </div>
+        </div>
+      )}
 
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
@@ -87,10 +102,23 @@ export default function DashboardPage() {
           </Link>
         </CardHeader>
         <CardContent>
-          {runs.isLoading ? (
-            <LoadingState label="Loading runs..." />
-          ) : runs.isError ? (
+          {runs.isError ? (
             <ErrorState message={runs.error.message} onRetry={() => runs.refetch()} />
+          ) : runs.isLoading ? (
+            <div className="space-y-4">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <div key={i} className="flex items-center justify-between rounded-lg border p-3">
+                  <div className="space-y-2 w-full">
+                    <Skeleton className="h-4 w-1/3" />
+                    <Skeleton className="h-3 w-1/2" />
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Skeleton className="h-3 w-16" />
+                    <Skeleton className="h-5 w-20" />
+                  </div>
+                </div>
+              ))}
+            </div>
           ) : recentRuns.length === 0 ? (
             <p className="text-muted-foreground text-sm">No runs yet. Start a verification to see results here.</p>
           ) : (
