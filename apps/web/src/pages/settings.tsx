@@ -7,16 +7,12 @@ interface Settings {
   apiUrl: string
   useMockApi: boolean
   darkMode: boolean
-  autoRefresh: boolean
-  refreshInterval: number
 }
 
 const DEFAULT_SETTINGS: Settings = {
   apiUrl: 'http://localhost:8000',
   useMockApi: false,
   darkMode: false,
-  autoRefresh: true,
-  refreshInterval: 30,
 }
 
 export default function SettingsPage() {
@@ -93,36 +89,6 @@ export default function SettingsPage() {
               className="h-4 w-4"
             />
             <label htmlFor="darkMode" className="text-sm font-medium">Dark Mode</label>
-          </div>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Data Refresh</CardTitle>
-          <CardDescription>Configure automatic data refresh</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              id="autoRefresh"
-              checked={settings.autoRefresh}
-              onChange={(e) => updateSetting('autoRefresh', e.target.checked)}
-              className="h-4 w-4"
-            />
-            <label htmlFor="autoRefresh" className="text-sm font-medium">Auto Refresh</label>
-          </div>
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Refresh Interval (seconds)</label>
-            <Input
-              type="number"
-              min={5}
-              max={300}
-              value={settings.refreshInterval}
-              onChange={(e) => updateSetting('refreshInterval', parseInt(e.target.value) || 30)}
-              disabled={!settings.autoRefresh}
-            />
           </div>
         </CardContent>
       </Card>
