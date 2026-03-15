@@ -6,6 +6,7 @@ import { RouterProvider } from 'react-router-dom'
 import './index.css'
 import { router } from '@/app/router'
 import { useTheme } from '@/lib/theme'
+import { Toaster } from '@/components/state/toaster'
 
 function ThemeLoader() {
   useTheme()
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <ThemeLoader />
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
+      <Toaster />
       {import.meta.env.DEV ? <ReactQueryDevtools initialIsOpen={false} /> : null}
     </QueryClientProvider>
   </React.StrictMode>,
