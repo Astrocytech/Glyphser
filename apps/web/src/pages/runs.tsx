@@ -154,7 +154,6 @@ export default function RunsPage() {
                 </Link>
                 <CopyButton text={run.id} />
               </div>
-              </Link>
             ))}
           </CardContent>
         </Card>
