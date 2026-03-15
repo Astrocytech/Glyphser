@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Info } from 'lucide-react'
+import { Info, RefreshCw, Trash2 } from 'lucide-react'
+import { toast } from '@/lib/toast'
 
 interface Settings {
   apiUrl: string
@@ -17,6 +19,7 @@ const DEFAULT_SETTINGS: Settings = {
 const APP_VERSION = '1.0.0'
 
 export default function SettingsPage() {
+  const queryClient = useQueryClient()
   const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS)
   const [saved, setSaved] = useState(false)
 
@@ -54,6 +57,11 @@ export default function SettingsPage() {
     }
   }
 
+  const handleClearCache = async () => {
+    await queryClient.clear()
+    toast({ title: 'Cache cleared', description: 'All cached data has been cleared.', variant: 'success' })
+  }
+
   const updateSetting = <K extends keyof Settings>(key: K, value: Settings[K]) => {
     setSettings((prev) => ({ ...prev, [key]: value }))
   }
@@ -84,6 +92,22 @@ export default function SettingsPage() {
             />
             <label htmlFor="useMockApi" className="text-sm font-medium">Use Mock API</label>
           </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <RefreshCw className="h-4 w-4" />
+            Cache & Data
+          </CardTitle>
+          <CardDescription>Manage cached data</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Button variant="outline" onClick={handleClearCache}>
+            <Trash2 className="h-4 w-4 mr-2" />
+            Clear Query Cache
+          </Button>
         </CardContent>
       </Card>
 
