@@ -7,15 +7,9 @@ import './index.css'
 import { router } from '@/app/router'
 import { useTheme } from '@/lib/theme'
 import { Toaster } from '@/components/state/toaster'
-import { useGlobalKeyboardShortcuts } from '@/lib/keyboard'
 
 function ThemeLoader() {
   useTheme()
-  return null
-}
-
-function KeyboardShortcuts() {
-  useGlobalKeyboardShortcuts()
   return null
 }
 
@@ -36,7 +30,6 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeLoader />
-    <KeyboardShortcuts />
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
       <Toaster />

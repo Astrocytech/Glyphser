@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { NavLink, Outlet, useLocation } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { navItems } from './nav'
 import { Bug, CheckCircle2 } from 'lucide-react'
 import { Switch } from '@/components/ui/switch'
@@ -27,8 +27,34 @@ function getStoredDarkMode(): boolean {
 
 export default function AppLayout() {
   const location = useLocation()
+  const navigate = useNavigate()
   const [isMockMode, setIsMockMode] = useState(getStoredMockMode)
   const [isDarkMode, setIsDarkMode] = useState(getStoredDarkMode)
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (
+        event.target instanceof HTMLInputElement ||
+        event.target instanceof HTMLTextAreaElement
+      ) {
+        return
+      }
+
+      if (event.key === '/') {
+        event.preventDefault()
+        navigate('/runs')
+      } else if (event.key === 'v' && !event.ctrlKey && !event.metaKey) {
+        event.preventDefault()
+        navigate('/verify')
+      } else if (event.key === 'd' && !event.ctrlKey && !event.metaKey) {
+        event.preventDefault()
+        navigate('/')
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [navigate])
 
   const currentItem = navItems.find(
     (item) => item.to === location.pathname || 
