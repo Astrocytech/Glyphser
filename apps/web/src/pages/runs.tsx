@@ -96,6 +96,16 @@ export default function RunsPage() {
   }
 
   const [sortFavoritesFirst, setSortFavoritesFirst] = useState(true)
+  const [compareRuns, setCompareRuns] = useState<string[]>([])
+  const debouncedSearch = useDebounce(search, 300)
+
+  const toggleCompare = (id: string) => {
+    if (compareRuns.includes(id)) {
+      setCompareRuns(compareRuns.filter(r => r !== id))
+    } else if (compareRuns.length < 2) {
+      setCompareRuns([...compareRuns, id])
+    }
+  }
 
   const filteredRuns = useMemo(() => {
     return runs.data?.filter((run) => {
