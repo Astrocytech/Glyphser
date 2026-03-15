@@ -11,7 +11,7 @@ import { SkeletonList } from '@/components/state/skeleton'
 import { useRuns } from '@/features/runs/use-runs'
 import { runStatusBadgeVariant, runStatusLabel } from '@/lib/status'
 import { useDebounce } from '@/lib/debounce'
-import { Search, ChevronLeft, ChevronRight, Copy, Check, Download } from 'lucide-react'
+import { Search, ChevronLeft, ChevronRight, Copy, Check, Download, Eye, EyeOff } from 'lucide-react'
 
 const PAGE_SIZE = 10
 
@@ -42,11 +42,22 @@ function CopyButton({ text }: { text: string }) {
   )
 }
 
+function ToggleButton({ label, enabled, onToggle }: { label: string; enabled: boolean; onToggle: () => void }) {
+  return (
+    <Button variant={enabled ? 'default' : 'outline'} size="sm" onClick={onToggle}>
+      {enabled ? <Eye className="h-4 w-4 mr-1" /> : <EyeOff className="h-4 w-4 mr-1" />}
+      {label}
+    </Button>
+  )
+}
+
 export default function RunsPage() {
   const runs = useRuns()
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all')
   const [page, setPage] = useState(1)
+  const [showSummary, setShowSummary] = useState(true)
+  const [showDate, setShowDate] = useState(true)
   const debouncedSearch = useDebounce(search, 300)
 
   const filteredRuns = useMemo(() => {
@@ -106,6 +117,8 @@ export default function RunsPage() {
               Export
             </Button>
           )}
+          <ToggleButton label="Summary" enabled={showSummary} onToggle={() => setShowSummary(!showSummary)} />
+          <ToggleButton label="Date" enabled={showDate} onToggle={() => setShowDate(!showDate)} />
         </div>
       </div>
 
@@ -140,16 +153,18 @@ export default function RunsPage() {
                           {runStatusLabel(run.status)}
                         </Badge>
                       </div>
-                      {run.summary ? (
+                      {showSummary && run.summary ? (
                         <p className="mt-1 text-sm text-muted-foreground">
                           {run.summary}
                         </p>
                       ) : null}
                     </div>
-                    <div className="text-sm text-muted-foreground">
-                      <span className="font-medium">Started:</span>{' '}
-                      {new Date(run.started_at).toLocaleString()}
-                    </div>
+                    {showDate && (
+                      <div className="text-sm text-muted-foreground">
+                        <span className="font-medium">Started:</span>{' '}
+                        {new Date(run.started_at).toLocaleString()}
+                      </div>
+                    )}
                   </div>
                 </Link>
                 <CopyButton text={run.id} />
