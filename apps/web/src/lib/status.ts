@@ -30,12 +30,12 @@ export function getVerdictVariant(status: string): BadgeVariant {
   switch (status) {
     case 'PASS':
     case 'MATCH':
-      return 'default'
+      return 'success'
     case 'FAIL':
     case 'MISMATCH':
       return 'destructive'
     case 'WARN':
-      return 'secondary'
+      return 'warning'
     case 'SKIP':
     case 'unknown':
       return 'outline'
@@ -70,10 +70,11 @@ export function runStatusBadgeVariant(status: RunStatus): BadgeVariant {
     case 'failed':
       return 'destructive'
     case 'passed':
-      return 'default'
-    case 'queued':
+      return 'success'
     case 'running':
-      return 'secondary'
+      return 'info'
+    case 'queued':
+      return 'warning'
     case 'partial':
     case 'unknown':
       return 'outline'

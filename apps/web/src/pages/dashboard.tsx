@@ -29,6 +29,7 @@ export default function DashboardPage() {
     passed: runs.data?.filter((r) => r.status === 'passed').length ?? 0,
     failed: runs.data?.filter((r) => r.status === 'failed').length ?? 0,
     running: runs.data?.filter((r) => r.status === 'running').length ?? 0,
+    queued: runs.data?.filter((r) => r.status === 'queued').length ?? 0,
   }
 
   const recentRuns = runs.data?.slice(0, 5) ?? []
@@ -66,6 +67,14 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-blue-600">{stats.running}</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Queued</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-yellow-600">{stats.queued}</div>
           </CardContent>
         </Card>
       </div>
