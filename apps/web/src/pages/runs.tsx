@@ -11,7 +11,7 @@ import { SkeletonList } from '@/components/state/skeleton'
 import { useRuns } from '@/features/runs/use-runs'
 import { runStatusBadgeVariant, runStatusLabel } from '@/lib/status'
 import { useDebounce } from '@/lib/debounce'
-import { Search, ChevronLeft, ChevronRight, Copy, Check, Download, Eye, EyeOff, List, Minimize2 } from 'lucide-react'
+import { Search, ChevronLeft, ChevronRight, Copy, Check, Download, Eye, EyeOff, List, Minimize2, Save, Bookmark } from 'lucide-react'
 
 const PAGE_SIZE = 10
 
@@ -60,7 +60,25 @@ export default function RunsPage() {
   const [showDate, setShowDate] = useState(true)
   const [selectedRuns, setSelectedRuns] = useState<Set<string>>(new Set())
   const [viewMode, setViewMode] = useState<'list' | 'compact'>('list')
+  const [savedFilters, setSavedFilters] = useState<{name: string; filter: StatusFilter}[]>(() => {
+    const saved = localStorage.getItem('glyphser-filter-presets')
+    return saved ? JSON.parse(saved) : []
+  })
   const debouncedSearch = useDebounce(search, 300)
+
+  const saveCurrentFilter = () => {
+    const name = prompt('Enter a name for this filter:')
+    if (name) {
+      const newFilters = [...savedFilters, { name, filter: statusFilter }]
+      setSavedFilters(newFilters)
+      localStorage.setItem('glyphser-filter-presets', JSON.stringify(newFilters))
+    }
+  }
+
+  const loadFilter = (filter: StatusFilter) => {
+    setStatusFilter(filter)
+    setPage(1)
+  }
 
   const filteredRuns = useMemo(() => {
     return runs.data?.filter((run) => {
@@ -149,6 +167,10 @@ export default function RunsPage() {
           </Button>
           <Button variant={viewMode === 'compact' ? 'default' : 'outline'} size="sm" onClick={() => setViewMode('compact')}>
             <Minimize2 className="h-4 w-4" />
+          </Button>
+          <Button variant="outline" size="sm" onClick={saveCurrentFilter}>
+            <Save className="h-4 w-4 mr-1" />
+            Save
           </Button>
         </div>
       </div>
