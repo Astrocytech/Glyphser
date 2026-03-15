@@ -67,7 +67,10 @@ export default function AppLayout() {
       <div className="grid min-h-screen md:grid-cols-[260px_1fr]">
         <aside className="border-r bg-muted/30 p-4 flex flex-col hidden md:block">
           <div className="mb-6">
-            <h1 className="text-xl font-semibold">Glyphser</h1>
+            <h1 className="text-xl font-semibold flex items-center gap-2">
+              <span className="text-2xl">𝒢⟦·⟧</span>
+              Glyphser
+            </h1>
             <p className="text-sm text-muted-foreground">
               Verification Console
             </p>
