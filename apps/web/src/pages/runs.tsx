@@ -97,7 +97,21 @@ export default function RunsPage() {
 
   const [sortFavoritesFirst, setSortFavoritesFirst] = useState(true)
   const [compareRuns, setCompareRuns] = useState<string[]>([])
+  const [recentSearches, setRecentSearches] = useState<string[]>(() => {
+    const saved = localStorage.getItem('glyphser-recent-searches')
+    return saved ? JSON.parse(saved) : []
+  })
+  const [showRecent, setShowRecent] = useState(false)
   const debouncedSearch = useDebounce(search, 300)
+
+  const handleSearchChange = (value: string) => {
+    setSearch(value)
+    if (value.length > 2) {
+      const newSearches = [value, ...recentSearches.filter(s => s !== value)].slice(0, 5)
+      setRecentSearches(newSearches)
+      localStorage.setItem('glyphser-recent-searches', JSON.stringify(newSearches))
+    }
+  }
 
   const toggleCompare = (id: string) => {
     if (compareRuns.includes(id)) {
@@ -162,9 +176,21 @@ export default function RunsPage() {
           <Input
             placeholder="Search by ID or summary..."
             value={search}
-            onChange={(e) => { setSearch(e.target.value); setPage(1); }}
+            onChange={(e) => { handleSearchChange(e.target.value); setPage(1); }}
+            onFocus={() => setShowRecent(true)}
+            onBlur={() => setTimeout(() => setShowRecent(false), 200)}
             className="pl-9"
           />
+          {showRecent && recentSearches.length > 0 && (
+            <div className="absolute top-full left-0 right-0 bg-background border rounded-md mt-1 p-2 z-20 shadow-lg">
+              <div className="text-xs text-muted-foreground mb-1">Recent searches</div>
+              {recentSearches.map(s => (
+                <button key={s} className="block w-full text-left text-sm py-1 hover:bg-muted px-2 rounded" onClick={() => { setSearch(s); setShowRecent(false); }}>
+                  {s}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
         <div className="flex gap-1 flex-wrap">
           {statusOptions.map((status) => (
