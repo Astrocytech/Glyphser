@@ -6,7 +6,8 @@ import { useRuns } from '@/features/runs/use-runs'
 import { runStatusBadgeVariant, runStatusLabel } from '@/lib/status'
 import ErrorState from '@/components/state/error-state'
 import { Skeleton, SkeletonCard } from '@/components/state/skeleton'
-import { RefreshCw } from 'lucide-react'
+import { RefreshCw, Clock } from 'lucide-react'
+import { useState, useEffect } from 'react'
 
 function formatRelativeTime(isoString: string): string {
   const date = new Date(isoString)
@@ -25,6 +26,14 @@ function formatRelativeTime(isoString: string): string {
 
 export default function DashboardPage() {
   const runs = useRuns()
+  const [autoRefresh, setAutoRefresh] = useState(false)
+  const [refreshInterval, setRefreshInterval] = useState(30)
+
+  useEffect(() => {
+    if (!autoRefresh) return
+    const interval = setInterval(() => runs.refetch(), refreshInterval * 1000)
+    return () => clearInterval(interval)
+  }, [autoRefresh, refreshInterval, runs.refetch])
 
   const stats = {
     total: runs.data?.length ?? 0,
@@ -39,8 +48,23 @@ export default function DashboardPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <div className="text-sm text-muted-foreground">
-          Last updated: {runs.dataUpdatedAt ? new Date(runs.dataUpdatedAt).toLocaleTimeString() : 'Never'}
+        <div className="flex items-center gap-4">
+          <div className="text-sm text-muted-foreground">
+            Last updated: {runs.dataUpdatedAt ? new Date(runs.dataUpdatedAt).toLocaleTimeString() : 'Never'}
+          </div>
+          <label className="flex items-center gap-2 text-sm">
+            <input type="checkbox" checked={autoRefresh} onChange={(e) => setAutoRefresh(e.target.checked)} className="h-4 w-4" />
+            <Clock className="h-4 w-4" />
+            Auto-refresh
+          </label>
+          {autoRefresh && (
+            <select value={refreshInterval} onChange={(e) => setRefreshInterval(Number(e.target.value))} className="text-sm border rounded px-2 py-1">
+              <option value={10}>10s</option>
+              <option value={30}>30s</option>
+              <option value={60}>1m</option>
+              <option value={300}>5m</option>
+            </select>
+          )}
         </div>
         <Button variant="outline" size="sm" onClick={() => runs.refetch()} disabled={runs.isFetching}>
           <RefreshCw className={`h-4 w-4 mr-2 ${runs.isFetching ? 'animate-spin' : ''}`} />
