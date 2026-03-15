@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -9,10 +9,12 @@ import ErrorState from '@/components/state/error-state'
 import LoadingState from '@/components/state/loading-state'
 import { useRun } from '@/features/runs/use-run'
 import { runStatusBadgeVariant, runStatusLabel } from '@/lib/status'
+import { toast } from '@/lib/toast'
 
 export default function RunDetailsPage() {
   const { runId = '' } = useParams()
   const run = useRun(runId)
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
 
   useEffect(() => {
     if (run.data?.status === 'running' || run.data?.status === 'queued') {
@@ -46,6 +48,9 @@ export default function RunDetailsPage() {
           <Button variant="outline" size="sm" onClick={() => run.refetch()} disabled={run.isFetching}>
             <RefreshCw className={`h-4 w-4 mr-2 ${run.isFetching ? 'animate-spin' : ''}`} />
             Refresh
+          </Button>
+          <Button variant="destructive" size="sm" onClick={() => setShowDeleteConfirm(true)}>
+            Delete
           </Button>
           <Button asChild variant="secondary">
             <Link to="/runs">Back to runs</Link>
@@ -125,6 +130,25 @@ export default function RunDetailsPage() {
           )}
         </CardContent>
       </Card>
+
+      {showDeleteConfirm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="bg-background rounded-lg border p-6 shadow-xl space-y-4 w-96">
+            <h3 className="font-semibold text-lg">Delete Run?</h3>
+            <p className="text-sm text-muted-foreground">
+              Are you sure you want to delete run <span className="font-mono">{data.id}</span>? This action cannot be undone.
+            </p>
+            <div className="flex justify-end gap-2">
+              <Button variant="outline" onClick={() => setShowDeleteConfirm(false)}>Cancel</Button>
+              <Button variant="destructive" onClick={() => {
+                setShowDeleteConfirm(false)
+                toast({ title: 'Run deleted', variant: 'success' })
+                window.location.href = '/runs'
+              }}>Delete</Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
