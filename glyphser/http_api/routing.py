@@ -9,6 +9,7 @@ from glyphser.http_api.routes.runtime_cli import router as runtime_cli_router
 from glyphser.http_api.routes.runtime_jobs import router as runtime_jobs_router
 from glyphser.http_api.routes.runtime_ops import router as runtime_ops_router
 from glyphser.http_api.routes.runtime_tools import router as runtime_tools_router
+from glyphser.http_api.routes.runs import router as runs_router
 from glyphser.http_api.routes.snapshot import router as snapshot_router
 from glyphser.http_api.routes.status import router as status_router
 from glyphser.http_api.routes.verify import router as verify_router
@@ -23,6 +24,7 @@ class ApiRouter:
         self.router.include_router(status_router)
         self.router.include_router(misc_router)
         self.router.include_router(verify_router)
+        self.router.include_router(runs_router)
         self.router.include_router(snapshot_router)
         self.router.include_router(runtime_jobs_router)
         self.router.include_router(runtime_cli_router)
