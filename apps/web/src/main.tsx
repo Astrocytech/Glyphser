@@ -7,6 +7,7 @@ import './index.css'
 import { router } from '@/app/router'
 import { useTheme } from '@/lib/theme'
 import { Toaster } from '@/components/state/toaster'
+import { TooltipProvider } from '@/components/ui/tooltip'
 
 function ThemeLoader() {
   useTheme()
@@ -30,10 +31,12 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeLoader />
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-      <Toaster />
-      {import.meta.env.DEV ? <ReactQueryDevtools initialIsOpen={false} /> : null}
-    </QueryClientProvider>
+    <TooltipProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+        <Toaster />
+        {import.meta.env.DEV ? <ReactQueryDevtools initialIsOpen={false} /> : null}
+      </QueryClientProvider>
+    </TooltipProvider>
   </React.StrictMode>,
 )
