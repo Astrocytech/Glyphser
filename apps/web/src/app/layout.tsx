@@ -1,5 +1,8 @@
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { navItems } from './nav'
+import { Bug, CheckCircle2 } from 'lucide-react'
+
+const isMockMode = import.meta.env.VITE_USE_MOCK_API === 'true'
 
 export default function AppLayout() {
   const location = useLocation()
@@ -11,7 +14,7 @@ export default function AppLayout() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="grid min-h-screen md:grid-cols-[260px_1fr]">
-        <aside className="border-r bg-muted/30 p-4">
+        <aside className="border-r bg-muted/30 p-4 flex flex-col">
           <div className="mb-6">
             <h1 className="text-xl font-semibold">Glyphser</h1>
             <p className="text-sm text-muted-foreground">
@@ -19,7 +22,7 @@ export default function AppLayout() {
             </p>
           </div>
 
-          <nav className="space-y-1">
+          <nav className="space-y-1 flex-1">
             {navItems.map(({ to, label, icon: Icon }) => (
               <NavLink
                 key={to}
@@ -39,6 +42,20 @@ export default function AppLayout() {
               </NavLink>
             ))}
           </nav>
+
+          <div className="mt-4 pt-4 border-t">
+            {isMockMode ? (
+              <div className="flex items-center gap-2 text-xs text-amber-600">
+                <Bug className="h-3 w-3" />
+                <span>Mock Mode</span>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2 text-xs text-green-600">
+                <CheckCircle2 className="h-3 w-3" />
+                <span>Live API</span>
+              </div>
+            )}
+          </div>
         </aside>
 
         <div className="flex min-h-screen flex-col">
