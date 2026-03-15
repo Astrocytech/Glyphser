@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import ErrorState from '@/components/state/error-state'
 import { SkeletonCard } from '@/components/state/skeleton'
 import { useVerify } from '@/features/verify/use-verify'
@@ -16,6 +17,7 @@ export default function VerifyPage() {
   const [path, setPath] = useState('')
   const [manifest, setManifest] = useState('')
   const [validationError, setValidationError] = useState<string | null>(null)
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false)
   const verify = useVerify()
 
   const onSubmit = () => {
@@ -40,9 +42,14 @@ export default function VerifyPage() {
     }
 
     setValidationError(null)
+    setShowConfirmDialog(true)
+  }
+
+  const confirmSubmit = () => {
+    setShowConfirmDialog(false)
     verify.mutate({
-      path: trimmedPath || undefined,
-      manifest: trimmedManifest || undefined,
+      path: path.trim() || undefined,
+      manifest: manifest.trim() || undefined,
     })
   }
 
@@ -109,6 +116,21 @@ export default function VerifyPage() {
           </CardContent>
         </Card>
       ) : null}
+
+      <Dialog open={showConfirmDialog} onOpenChange={setShowConfirmDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Confirm Verification</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to run this verification? This will start a new verification process.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowConfirmDialog(false)}>Cancel</Button>
+            <Button onClick={confirmSubmit}>Confirm</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
