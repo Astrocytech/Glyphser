@@ -42,7 +42,19 @@ export default function SettingsPage() {
   }
 
   const updateSetting = <K extends keyof Settings>(key: K, value: Settings[K]) => {
-    setSettings((prev) => ({ ...prev, [key]: value }))
+    setSettings((prev) => {
+      const newSettings = { ...prev, [key]: value }
+      
+      if (key === 'darkMode') {
+        if (value) {
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
+      }
+      
+      return newSettings
+    })
   }
 
   return (
