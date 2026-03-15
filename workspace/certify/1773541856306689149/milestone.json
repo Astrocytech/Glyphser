@@ -1,0 +1,15 @@
+{
+  "classification": "E2",
+  "dependencies": [
+    28
+  ],
+  "evidence_dir": "workspace/certify/1773541856306689149/",
+  "milestone": 29,
+  "owner": "Astrocytech/Glyphser",
+  "profiles": [
+    "available_local"
+  ],
+  "result": "BLOCKED",
+  "slug": "certify",
+  "target_date": "2026-03-15"
+}

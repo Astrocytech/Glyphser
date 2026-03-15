@@ -11,7 +11,7 @@ import { SkeletonList } from '@/components/state/skeleton'
 import { useRuns } from '@/features/runs/use-runs'
 import { runStatusBadgeVariant, runStatusLabel } from '@/lib/status'
 import { useDebounce } from '@/lib/debounce'
-import { Search, ChevronLeft, ChevronRight, Copy, Check, Download, List, Minimize2, Star, Save, CheckSquare, Square, ChevronDown, X, Circle } from 'lucide-react'
+import { Search, ChevronLeft, ChevronRight, Copy, Check, CheckSquare, Square, Download, Star, ChevronDown, X, Circle } from 'lucide-react'
 
 const PAGE_SIZE = 10
 
@@ -71,11 +71,10 @@ function DropdownMenu({ trigger, children }: { trigger: React.ReactNode; childre
 export default function RunsPage() {
   const runs = useRuns()
   const [search, setSearch] = useState('')
-  const [statusFilter, setStatusFilter] = useState<StatusFilter>('all')
+  const [statusFilter, setStatusFilter] = useState<StatusFilter[]>(['all'])
   const [page, setPage] = useState(1)
   const [showSummary, setShowSummary] = useState(true)
   const [showDate, setShowDate] = useState(true)
-  const [viewMode, setViewMode] = useState<'list' | 'compact'>('list')
   const [favorites, setFavorites] = useState<Set<string>>(() => {
     const saved = localStorage.getItem('glyphser-favorite-runs')
     return saved ? new Set(JSON.parse(saved)) : new Set()
@@ -113,7 +112,7 @@ export default function RunsPage() {
         !debouncedSearch ||
         run.id.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
         run.summary?.toLowerCase().includes(debouncedSearch.toLowerCase())
-      const matchesStatus = statusFilter === 'all' || run.status === statusFilter
+      const matchesStatus = statusFilter.includes('all') || statusFilter.includes(run.status)
       return matchesSearch && matchesStatus
     }) ?? []
   }, [runs.data, debouncedSearch, statusFilter])
@@ -129,7 +128,7 @@ export default function RunsPage() {
   const totalPages = Math.ceil(sortedRuns.length / PAGE_SIZE)
   const paginatedRuns = sortedRuns.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
 
-  const statusOptions: StatusFilter[] = ['all', 'passed', 'failed', 'running', 'queued']
+  const statusOptions: StatusFilter[] = ['all', 'passed', 'failed', 'running', 'queued', 'partial', 'unknown']
 
   const exportRuns = () => {
     const blob = new Blob([JSON.stringify(filteredRuns, null, 2)], { type: 'application/json' })
@@ -176,28 +175,44 @@ export default function RunsPage() {
         <div className="flex gap-2 items-center">
           <DropdownMenu
             trigger={
-              <Button variant="outline" size="sm" className="gap-1.5">
-                <span className={statusFilter !== 'all' ? 'font-medium' : ''}>{statusFilter === 'all' ? 'Status' : runStatusLabel(statusFilter as 'passed' | 'failed' | 'running' | 'queued')}</span>
-                <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
+              <Button variant="outline" size="sm" className="gap-1.5 w-[90px] justify-start">
+                <span className={statusFilter.length > 0 && !statusFilter.includes('all') ? 'font-medium' : ''}>{statusFilter.length > 0 && !statusFilter.includes('all') ? `${statusFilter.length} Status` : 'Status'}</span>
+                <ChevronDown className="h-3.5 w-3.5 text-muted-foreground ml-auto" />
               </Button>
             }
           >
-            {statusOptions.map((status) => (
-              <button
-                key={status}
-                className={`w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-accent rounded-sm mx-1 ${statusFilter === status ? 'bg-accent font-medium' : ''}`}
-                onClick={() => { setStatusFilter(status); setPage(1); }}
-              >
-                <span className="w-4">{statusFilter === status && <CheckSquare className="h-4 w-4 text-primary" />}</span>
-                <Circle className={`h-2.5 w-2.5 fill-current ${status === 'passed' ? 'text-green-500' : status === 'failed' ? 'text-red-500' : status === 'running' ? 'text-blue-500' : 'text-yellow-500'}`} />
-                <span>{status === 'all' ? 'All' : runStatusLabel(status as 'passed' | 'failed' | 'running' | 'queued')}</span>
-              </button>
-            ))}
+            {statusOptions.map((status) => {
+              const isSelected = statusFilter.includes(status)
+              return (
+                <button
+                  key={status}
+                  className={`w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-accent rounded-sm mx-1 ${isSelected ? 'bg-accent font-medium' : ''}`}
+                  onClick={() => {
+                    if (status === 'all') {
+                      setStatusFilter(['all'])
+                    } else {
+                      const newFilter = statusFilter.filter(s => s !== 'all')
+                      if (newFilter.includes(status)) {
+                        const updated = newFilter.filter(s => s !== status)
+                        setStatusFilter(updated.length === 0 ? ['all'] : updated)
+                      } else {
+                        setStatusFilter([...newFilter, status])
+                      }
+                    }
+                    setPage(1)
+                  }}
+                >
+                  <span className="w-4">{isSelected ? <CheckSquare className="h-4 w-4 text-primary" /> : <Square className="h-4 w-4" />}</span>
+                  <Circle className={`h-2.5 w-2.5 fill-current ${status === 'passed' ? 'text-green-500' : status === 'failed' ? 'text-red-500' : status === 'running' ? 'text-blue-500' : status === 'queued' ? 'text-yellow-500' : 'text-muted-foreground'}`} />
+                  <span>{status === 'all' ? 'All' : runStatusLabel(status)}</span>
+                </button>
+              )
+            })}
           </DropdownMenu>
           <DropdownMenu
             trigger={
-              <Button variant="outline" size="sm" className="gap-1.5">
-                Columns <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
+              <Button variant="outline" size="sm" className="gap-1.5 w-[95px] justify-start">
+                Columns <ChevronDown className="h-3.5 w-3.5 text-muted-foreground ml-auto" />
               </Button>
             }
           >
@@ -218,8 +233,8 @@ export default function RunsPage() {
           </DropdownMenu>
           <DropdownMenu
             trigger={
-              <Button variant="outline" size="sm" className="gap-1.5">
-                Sort <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
+              <Button variant="outline" size="sm" className="gap-1.5 w-[90px] justify-start">
+                Actions <ChevronDown className="h-3.5 w-3.5 text-muted-foreground ml-auto" />
               </Button>
             }
           >
@@ -230,18 +245,18 @@ export default function RunsPage() {
               <Star className="h-4 w-4 text-muted-foreground" />
               Clear Favorites
             </button>
+            {filteredRuns.length > 0 && (
+              <button
+                className="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-accent rounded-sm mx-1"
+                onClick={exportRuns}
+              >
+                <Download className="h-4 w-4 text-muted-foreground" />
+                Export to JSON
+              </button>
+            )}
           </DropdownMenu>
-          {filteredRuns.length > 0 && (
-            <Button variant="outline" size="sm" onClick={exportRuns}>
-              <Download className="h-4 w-4 mr-1.5" />
-              Export
-            </Button>
-          )}
-          <Button variant={viewMode === 'list' ? 'default' : 'outline'} size="sm" onClick={() => setViewMode(viewMode === 'list' ? 'compact' : 'list')}>
-            {viewMode === 'list' ? <List className="h-4 w-4" /> : <Minimize2 className="h-4 w-4" />}
-          </Button>
-          {(search || statusFilter !== 'all') && (
-            <Button variant="ghost" size="sm" onClick={() => { setSearch(''); setStatusFilter('all'); setPage(1); }} className="text-muted-foreground hover:text-foreground">
+          {(search || (statusFilter.length > 0 && !statusFilter.includes('all'))) && (
+            <Button variant="ghost" size="sm" onClick={() => { setSearch(''); setStatusFilter(['all']); setPage(1); }} className="text-muted-foreground hover:text-foreground">
               <X className="h-4 w-4 mr-1" />
               Clear
             </Button>
@@ -256,7 +271,7 @@ export default function RunsPage() {
       {filteredRuns.length === 0 && !runs.isLoading ? (
         <EmptyState
           title="No runs found"
-          message={search || statusFilter !== 'all' ? "Try adjusting your search or filter." : "When you run a verification, it will appear here."}
+          message={search || (statusFilter.length > 0 && !statusFilter.includes('all')) ? "Try adjusting your search or filter." : "When you run a verification, it will appear here."}
         />
       ) : null}
 
@@ -273,7 +288,7 @@ export default function RunsPage() {
               {paginatedRuns.map((run) => (
                 <div
                   key={run.id}
-                  className={`flex items-center gap-3 px-4 py-2.5 hover:bg-accent/50 ${viewMode === 'compact' ? 'py-2' : ''}`}
+                  className="flex items-center gap-3 px-4 py-2.5 hover:bg-accent/50"
                 >
                   <Link to={`/runs/${encodeURIComponent(run.id)}`} className="flex-1 min-w-0 flex items-center gap-3">
                     <span className="truncate font-mono text-sm text-foreground">{run.id}</span>

@@ -1,0 +1,7 @@
+{
+  "classification": "E2",
+  "milestone": 29,
+  "profile": "available_local",
+  "reason": "Blocked prerequisite milestones: 12, 16, 20, 21, 22, 23, 24",
+  "status": "BLOCKED"
+}

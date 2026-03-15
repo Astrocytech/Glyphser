@@ -1,0 +1,58 @@
+{
+  "bundle_schema_version": "cert_bundle.v1",
+  "classification": "E2",
+  "prerequisites": [
+    {
+      "classification": "E2",
+      "milestone": 12,
+      "reason": "missing report.json",
+      "slug": "milestone-12-multi-host-multi-os",
+      "status": "BLOCKED"
+    },
+    {
+      "classification": "E2",
+      "milestone": 16,
+      "reason": "missing report.json",
+      "slug": "milestone-16-universal-profile-v1",
+      "status": "BLOCKED"
+    },
+    {
+      "classification": "E2",
+      "milestone": 20,
+      "reason": "missing report.json",
+      "slug": "milestone-20-language-ecosystem-v2",
+      "status": "BLOCKED"
+    },
+    {
+      "classification": "E2",
+      "milestone": 21,
+      "reason": "missing report.json",
+      "slug": "milestone-21-library-ecosystem",
+      "status": "BLOCKED"
+    },
+    {
+      "classification": "E2",
+      "milestone": 22,
+      "reason": "missing report.json",
+      "slug": "milestone-22-artifact-portability",
+      "status": "BLOCKED"
+    },
+    {
+      "classification": "E2",
+      "milestone": 23,
+      "reason": "missing report.json",
+      "slug": "milestone-23-distributed-heterogeneous",
+      "status": "BLOCKED"
+    },
+    {
+      "classification": "E2",
+      "milestone": 24,
+      "reason": "missing report.json",
+      "slug": "milestone-24-edge-mobile-web",
+      "status": "BLOCKED"
+    }
+  ],
+  "reason": "Blocked prerequisite milestones: 12, 16, 20, 21, 22, 23, 24",
+  "scope_label": "available_local",
+  "status": "BLOCKED"
+}
