@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Info } from 'lucide-react'
 
 interface Settings {
   apiUrl: string
@@ -12,6 +13,8 @@ const DEFAULT_SETTINGS: Settings = {
   apiUrl: 'http://localhost:8000',
   useMockApi: false,
 }
+
+const APP_VERSION = '1.0.0'
 
 export default function SettingsPage() {
   const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS)
@@ -80,6 +83,30 @@ export default function SettingsPage() {
               className="h-4 w-4"
             />
             <label htmlFor="useMockApi" className="text-sm font-medium">Use Mock API</label>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Info className="h-4 w-4" />
+            About
+          </CardTitle>
+          <CardDescription>Application information</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-2">
+          <div className="flex justify-between text-sm">
+            <span className="text-muted-foreground">Version</span>
+            <span>{APP_VERSION}</span>
+          </div>
+          <div className="flex justify-between text-sm">
+            <span className="text-muted-foreground">Framework</span>
+            <span>React + Vite</span>
+          </div>
+          <div className="flex justify-between text-sm">
+            <span className="text-muted-foreground">UI Library</span>
+            <span>Shadcn/UI</span>
           </div>
         </CardContent>
       </Card>
