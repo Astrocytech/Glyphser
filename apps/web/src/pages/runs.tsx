@@ -4,17 +4,43 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import EmptyState from '@/components/state/empty-state'
 import ErrorState from '@/components/state/error-state'
 import { SkeletonList } from '@/components/state/skeleton'
 import { useRuns } from '@/features/runs/use-runs'
 import { runStatusBadgeVariant, runStatusLabel } from '@/lib/status'
 import { useDebounce } from '@/lib/debounce'
-import { Search, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Search, ChevronLeft, ChevronRight, Copy, Check } from 'lucide-react'
 
 const PAGE_SIZE = 10
 
 type StatusFilter = 'all' | 'passed' | 'failed' | 'running' | 'queued'
+
+function CopyButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false)
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(text)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="ghost" size="icon-sm" onClick={handleCopy}>
+            {copied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          {copied ? 'Copied!' : 'Copy ID'}
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
+}
 
 export default function RunsPage() {
   const runs = useRuns()
@@ -87,30 +113,33 @@ export default function RunsPage() {
           </CardHeader>
           <CardContent className="space-y-3">
             {paginatedRuns.map((run) => (
-              <Link
+              <div
                 key={run.id}
-                to={`/runs/${encodeURIComponent(run.id)}`}
-                className="block rounded-md border p-3 transition-colors hover:bg-accent/40"
+                className="flex items-center gap-2 rounded-md border p-3 transition-colors hover:bg-accent/40"
               >
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="truncate font-mono text-sm">{run.id}</span>
-                      <Badge variant={runStatusBadgeVariant(run.status)}>
-                        {runStatusLabel(run.status)}
-                      </Badge>
+                <Link to={`/runs/${encodeURIComponent(run.id)}`} className="flex-1 min-w-0">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span className="truncate font-mono text-sm">{run.id}</span>
+                        <Badge variant={runStatusBadgeVariant(run.status)}>
+                          {runStatusLabel(run.status)}
+                        </Badge>
+                      </div>
+                      {run.summary ? (
+                        <p className="mt-1 text-sm text-muted-foreground">
+                          {run.summary}
+                        </p>
+                      ) : null}
                     </div>
-                    {run.summary ? (
-                      <p className="mt-1 text-sm text-muted-foreground">
-                        {run.summary}
-                      </p>
-                    ) : null}
+                    <div className="text-sm text-muted-foreground">
+                      <span className="font-medium">Started:</span>{' '}
+                      {new Date(run.started_at).toLocaleString()}
+                    </div>
                   </div>
-                  <div className="text-sm text-muted-foreground">
-                    <span className="font-medium">Started:</span>{' '}
-                    {new Date(run.started_at).toLocaleString()}
-                  </div>
-                </div>
+                </Link>
+                <CopyButton text={run.id} />
+              </div>
               </Link>
             ))}
           </CardContent>
