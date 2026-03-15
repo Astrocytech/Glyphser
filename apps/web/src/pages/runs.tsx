@@ -11,7 +11,7 @@ import { SkeletonList } from '@/components/state/skeleton'
 import { useRuns } from '@/features/runs/use-runs'
 import { runStatusBadgeVariant, runStatusLabel } from '@/lib/status'
 import { useDebounce } from '@/lib/debounce'
-import { Search, ChevronLeft, ChevronRight, Copy, Check, Download, Eye, EyeOff, List, Minimize2, Save, Bookmark, Star } from 'lucide-react'
+import { Search, ChevronLeft, ChevronRight, Copy, Check, Download, Eye, EyeOff, List, Minimize2, Save, Bookmark, Star, ArrowDownUp } from 'lucide-react'
 
 const PAGE_SIZE = 10
 
@@ -95,6 +95,8 @@ export default function RunsPage() {
     setPage(1)
   }
 
+  const [sortFavoritesFirst, setSortFavoritesFirst] = useState(true)
+
   const filteredRuns = useMemo(() => {
     return runs.data?.filter((run) => {
       const matchesSearch =
@@ -104,10 +106,19 @@ export default function RunsPage() {
       const matchesStatus = statusFilter === 'all' || run.status === statusFilter
       return matchesSearch && matchesStatus
     }) ?? []
-  }, [runs.data, search, statusFilter])
+  }, [runs.data, debouncedSearch, statusFilter])
 
-  const totalPages = Math.ceil(filteredRuns.length / PAGE_SIZE)
-  const paginatedRuns = filteredRuns.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
+  const sortedRuns = useMemo(() => {
+    if (!sortFavoritesFirst) return filteredRuns
+    return [...filteredRuns].sort((a, b) => {
+      const aFav = favorites.has(a.id) ? 0 : 1
+      const bFav = favorites.has(b.id) ? 0 : 1
+      return aFav - bFav
+    })
+  }, [filteredRuns, sortFavoritesFirst, favorites])
+
+  const totalPages = Math.ceil(sortedRuns.length / PAGE_SIZE)
+  const paginatedRuns = sortedRuns.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
 
   const handleFilterChange = () => {
     setPage(1)
@@ -186,6 +197,10 @@ export default function RunsPage() {
           <Button variant="outline" size="sm" onClick={saveCurrentFilter}>
             <Save className="h-4 w-4 mr-1" />
             Save
+          </Button>
+          <Button variant={sortFavoritesFirst ? 'default' : 'outline'} size="sm" onClick={() => setSortFavoritesFirst(!sortFavoritesFirst)}>
+            <ArrowDownUp className="h-4 w-4 mr-1" />
+            Favorites First
           </Button>
         </div>
       </div>
